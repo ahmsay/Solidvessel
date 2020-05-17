@@ -1,0 +1,16 @@
+*
+!*/
+!.gitignore
+!.README.md
+
+!/account-service/src/**
+!/account-service/pom.xml
+
+!/inventory-service/src/**
+!/inventory-service/pom.xml
+
+!/order-service/src/**
+!/order-service/pom.xml
+
+!/payment-service/src/**
+!/payment-service/pom.xml
