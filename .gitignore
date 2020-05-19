@@ -5,12 +5,16 @@
 
 !/account-service/src/**
 !/account-service/pom.xml
+!/account-service/Dockerfile
 
 !/inventory-service/src/**
 !/inventory-service/pom.xml
+!/inventory-service/Dockerfile
 
 !/order-service/src/**
 !/order-service/pom.xml
+!/order-service/Dockerfile
 
 !/payment-service/src/**
 !/payment-service/pom.xml
+!/payment-service/Dockerfile
