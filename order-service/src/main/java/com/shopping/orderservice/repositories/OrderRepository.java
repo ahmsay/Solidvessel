@@ -13,10 +13,9 @@ public class OrderRepository implements IOrderRepository {
 
     public OrderRepository() {
         orders = new HashSet<>();
-        orders.add(new Order(1, "Delivered"));
-        orders.add(new Order(2, "On the way"));
-        orders.add(new Order(3, "Crashed"));
-        orders.add(new Order(4, "Delivered"));
+        orders.add(new Order(1, "Delivered", 1, 1));
+        orders.add(new Order(2, "On the way", 2, 2));
+        orders.add(new Order(3, "Crashed", 2, 3));
     }
 
     @Override
