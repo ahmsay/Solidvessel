@@ -3,6 +3,8 @@ package com.shopping.paymentservice.repositories;
 import com.shopping.paymentservice.entity.Payment;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,11 +15,9 @@ public class PaymentRepository implements IPaymentRepository {
 
     public PaymentRepository() {
         payments = new HashSet<>();
-        payments.add(new Payment(1, 10.5));
-        payments.add(new Payment(2, 200));
-        payments.add(new Payment(3, 999.99));
-        payments.add(new Payment(4, 55));
-        payments.add(new Payment(5, 750));
+        payments.add(new Payment(1, 10.5, 1, new HashSet<>(Arrays.asList(1, 2, 3))));
+        payments.add(new Payment(2, 200, 2, new HashSet<>(Collections.singletonList(4))));
+        payments.add(new Payment(3, 999.99, 3, new HashSet<>(Arrays.asList(5, 6))));
     }
 
     @Override
