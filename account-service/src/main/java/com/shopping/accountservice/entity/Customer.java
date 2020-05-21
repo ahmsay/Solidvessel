@@ -7,11 +7,13 @@ public class Customer {
     private int id;
     private String name;
     private Set<Integer> paymentIds;
+    private Set<Integer> orderIds;
 
-    public Customer(final int id, final String name, final Set<Integer> paymentIds) {
+    public Customer(final int id, final String name, final Set<Integer> paymentIds, final Set<Integer> orderIds) {
         this.id = id;
         this.name = name;
         this.paymentIds = paymentIds;
+        this.orderIds = orderIds;
     }
 
     public int getId() {
@@ -36,5 +38,13 @@ public class Customer {
 
     public void setPaymentIds(final Set<Integer> paymentIds) {
         this.paymentIds = paymentIds;
+    }
+
+    public Set<Integer> getOrderIds() {
+        return orderIds;
+    }
+
+    public void setOrderIds(final Set<Integer> orderIds) {
+        this.orderIds = orderIds;
     }
 }
