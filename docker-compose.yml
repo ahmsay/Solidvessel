@@ -5,27 +5,27 @@ services:
     image: account-service-img
     build: ./account-service
     volumes:
-      - /data/account-service-img
+      - /data/account-service-app
     ports:
       - 8081:8081
   inventory-service:
     image: inventory-service-img
     build: ./inventory-service
     volumes:
-      - /data/inventory-service-img
+      - /data/inventory-service-app
     ports:
       - 8082:8082
   order-service:
     image: order-service-img
     build: ./order-service
     volumes:
-      - /data/order-service-img
+      - /data/order-service-app
     ports:
       - 8083:8083
   payment-service:
     image: payment-service-img
     build: ./payment-service
     volumes:
-      - /data/payment-service-img
+      - /data/payment-service-app
     ports:
       - 8084:8084
