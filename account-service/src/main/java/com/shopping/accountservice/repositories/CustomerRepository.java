@@ -3,6 +3,8 @@ package com.shopping.accountservice.repositories;
 import com.shopping.accountservice.entity.Customer;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,9 +15,9 @@ public class CustomerRepository implements ICustomerRepository {
 
     public CustomerRepository() {
         customers = new HashSet<>();
-        customers.add(new Customer(1, "Zorkov"));
-        customers.add(new Customer(2, "Lorne"));
-        customers.add(new Customer(3, "Matthias"));
+        customers.add(new Customer(1, "Zorkov", new HashSet<>(Collections.singletonList(1))));
+        customers.add(new Customer(2, "Lorne", new HashSet<>(Arrays.asList(2, 3))));
+        customers.add(new Customer(3, "Matthias", new HashSet<>()));
     }
 
     @Override

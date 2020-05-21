@@ -17,7 +17,7 @@ public class PaymentRepository implements IPaymentRepository {
         payments = new HashSet<>();
         payments.add(new Payment(1, 10.5, 1, new HashSet<>(Arrays.asList(1, 2, 3))));
         payments.add(new Payment(2, 200, 2, new HashSet<>(Collections.singletonList(4))));
-        payments.add(new Payment(3, 999.99, 3, new HashSet<>(Arrays.asList(5, 6))));
+        payments.add(new Payment(3, 999.99, 2, new HashSet<>(Arrays.asList(5, 6))));
     }
 
     @Override
