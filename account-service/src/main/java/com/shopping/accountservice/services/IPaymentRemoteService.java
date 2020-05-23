@@ -4,5 +4,5 @@ import com.shopping.accountservice.entity.Payment;
 
 public interface IPaymentRemoteService {
 
-    Payment[] getPaymentsOfCustomer(int id);
+    Payment[] getPaymentsOfCustomer(String id);
 }

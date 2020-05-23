@@ -4,21 +4,21 @@ import java.util.Set;
 
 public class Payment {
 
-    private int id;
+    private String id;
     private double totalCharge;
-    private Set<Integer> productIds;
+    private Set<String> productIds;
 
-    public Payment(final int id, final double amount, final Set<Integer> productIds) {
+    public Payment(final String id, final double amount, final Set<String> productIds) {
         this.id = id;
         this.totalCharge = amount;
         this.productIds = productIds;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -30,11 +30,11 @@ public class Payment {
         this.totalCharge = totalCharge;
     }
 
-    public Set<Integer> getProductIds() {
+    public Set<String> getProductIds() {
         return productIds;
     }
 
-    public void setProductIds(final Set<Integer> productIds) {
+    public void setProductIds(final Set<String> productIds) {
         this.productIds = productIds;
     }
 }

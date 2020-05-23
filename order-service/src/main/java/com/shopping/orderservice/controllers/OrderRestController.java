@@ -25,7 +25,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/{orderId}")
-    public Order getOrderById(@PathVariable("orderId") final int id) {
+    public Order getOrderById(@PathVariable("orderId") final String id) {
         return orderService.getOrderById(id);
     }
 }

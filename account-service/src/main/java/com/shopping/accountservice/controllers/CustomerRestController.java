@@ -29,12 +29,12 @@ public class CustomerRestController {
     }
 
     @GetMapping("/{customerId}")
-    public Customer getCustomerById(@PathVariable("customerId") final int id) {
+    public Customer getCustomerById(@PathVariable("customerId") final String id) {
         return customerService.getCustomerById(id);
     }
 
     @GetMapping("/{customerId}/payments")
-    public Payment[] getPaymentsOfCustomer(@PathVariable("customerId") final int id) {
+    public Payment[] getPaymentsOfCustomer(@PathVariable("customerId") final String id) {
         return paymentRemoteService.getPaymentsOfCustomer(id);
     }
 }

@@ -8,5 +8,5 @@ public interface IPaymentService {
 
     Set<Payment> getAllPayments();
 
-    Payment getPaymentById(int id);
+    Payment getPaymentById(String id);
 }

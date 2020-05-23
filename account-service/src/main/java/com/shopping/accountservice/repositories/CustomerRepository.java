@@ -15,9 +15,9 @@ public class CustomerRepository implements ICustomerRepository {
 
     public CustomerRepository() {
         customers = new HashSet<>();
-        customers.add(new Customer(1, "Zorkov", new HashSet<>(Collections.singletonList(1)), new HashSet<>(Collections.singletonList(1))));
-        customers.add(new Customer(2, "Lorne", new HashSet<>(Arrays.asList(2, 3)), new HashSet<>(Arrays.asList(2, 3))));
-        customers.add(new Customer(3, "Matthias", new HashSet<>(), new HashSet<>()));
+        customers.add(new Customer("1", "Zorkov", new HashSet<>(Collections.singletonList("1")), new HashSet<>(Collections.singletonList("1"))));
+        customers.add(new Customer("2", "Lorne", new HashSet<>(Arrays.asList("2", "3")), new HashSet<>(Arrays.asList("2", "3"))));
+        customers.add(new Customer("3", "Matthias", new HashSet<>(), new HashSet<>()));
     }
 
     @Override
@@ -26,9 +26,9 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public Customer getCustomerById(final int id) {
+    public Customer getCustomerById(final String id) {
         return customers.stream()
-                .filter(customer -> customer.getId() == id)
+                .filter(customer -> customer.getId().equals(id))
                 .findAny()
                 .orElse(null);
     }

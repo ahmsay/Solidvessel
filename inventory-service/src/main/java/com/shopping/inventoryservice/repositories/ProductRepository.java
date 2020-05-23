@@ -13,14 +13,14 @@ public class ProductRepository implements IProductRepository {
 
     public ProductRepository() {
         products = new HashSet<>();
-        products.add(new Product(1, "Clipper", "Tool", 1));
-        products.add(new Product(2, "Laptop", "Electronics", 1));
-        products.add(new Product(3, "Phone", "Electronics", 1));
-        products.add(new Product(4, "Car", "Vehicle", 2));
-        products.add(new Product(5, "Spaceship", "Vehicle", 3));
-        products.add(new Product(6, "Apple", "Fruit", 3));
-        products.add(new Product(7, "Ice Pick", "Tool", -1));
-        products.add(new Product(8, "Desk", "Furniture", -1));
+        products.add(new Product("1", "Clipper", "Tool", "1"));
+        products.add(new Product("2", "Laptop", "Electronics", "1"));
+        products.add(new Product("3", "Phone", "Electronics", "1"));
+        products.add(new Product("4", "Car", "Vehicle", "2"));
+        products.add(new Product("5", "Spaceship", "Vehicle", "3"));
+        products.add(new Product("6", "Apple", "Fruit", "3"));
+        products.add(new Product("7", "Ice Pick", "Tool", "-"));
+        products.add(new Product("8", "Desk", "Furniture", "-"));
     }
 
     @Override
@@ -29,9 +29,9 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product getProductById(final int id) {
+    public Product getProductById(final String id) {
         return products.stream()
-                .filter(product -> product.getId() == id)
+                .filter(product -> product.getId().equals(id))
                 .findAny()
                 .orElse(null);
     }

@@ -21,7 +21,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment getPaymentById(final int id) {
+    public Payment getPaymentById(final String id) {
         return paymentRepository.getPaymentById(id);
     }
 }

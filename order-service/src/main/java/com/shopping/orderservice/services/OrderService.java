@@ -21,7 +21,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order getOrderById(final int id) {
+    public Order getOrderById(final String id) {
         return orderRepository.getOrderById(id);
     }
 }

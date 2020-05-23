@@ -4,13 +4,13 @@ import java.util.Set;
 
 public class Payment {
 
-    private int id;
+    private String id;
     private double totalCharge;
-    private int customerId;
-    private Set<Integer> productIds;
-    private int orderId;
+    private String customerId;
+    private Set<String> productIds;
+    private String orderId;
 
-    public Payment(final int id, final double amount, final int customerId, final Set<Integer> productIds, final int orderId) {
+    public Payment(final String id, final double amount, final String customerId, final Set<String> productIds, final String orderId) {
         this.id = id;
         this.totalCharge = amount;
         this.customerId = customerId;
@@ -18,11 +18,11 @@ public class Payment {
         this.orderId = orderId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -34,27 +34,27 @@ public class Payment {
         this.totalCharge = totalCharge;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(final int customerId) {
+    public void setCustomerId(final String customerId) {
         this.customerId = customerId;
     }
 
-    public Set<Integer> getProductIds() {
+    public Set<String> getProductIds() {
         return productIds;
     }
 
-    public void setProductIds(final Set<Integer> productIds) {
+    public void setProductIds(final Set<String> productIds) {
         this.productIds = productIds;
     }
 
-    public int getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(final int orderId) {
+    public void setOrderId(final String orderId) {
         this.orderId = orderId;
     }
 }

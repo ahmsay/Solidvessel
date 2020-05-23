@@ -8,5 +8,5 @@ public interface ICustomerService {
 
     Set<Customer> getAllCustomers();
 
-    Customer getCustomerById(int id);
+    Customer getCustomerById(String id);
 }

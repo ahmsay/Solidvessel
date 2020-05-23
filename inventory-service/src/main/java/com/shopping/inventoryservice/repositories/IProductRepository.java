@@ -8,5 +8,5 @@ public interface IProductRepository {
 
     Set<Product> getAllProducts();
 
-    Product getProductById(int id);
+    Product getProductById(String id);
 }

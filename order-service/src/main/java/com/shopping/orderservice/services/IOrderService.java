@@ -8,5 +8,5 @@ public interface IOrderService {
 
     Set<Order> getAllOrders();
 
-    Order getOrderById(int id);
+    Order getOrderById(String id);
 }

@@ -25,7 +25,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable("productId") final int id) {
+    public Product getProductById(@PathVariable("productId") final String id) {
         return productService.getProductById(id);
     }
 }

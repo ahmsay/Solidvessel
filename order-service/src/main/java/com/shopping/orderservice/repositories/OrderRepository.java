@@ -13,9 +13,9 @@ public class OrderRepository implements IOrderRepository {
 
     public OrderRepository() {
         orders = new HashSet<>();
-        orders.add(new Order(1, "Delivered", 1, 1));
-        orders.add(new Order(2, "On the way", 2, 2));
-        orders.add(new Order(3, "Crashed", 2, 3));
+        orders.add(new Order("1", "Delivered", "1", "1"));
+        orders.add(new Order("2", "On the way", "2", "2"));
+        orders.add(new Order("3", "Crashed", "2", "3"));
     }
 
     @Override
@@ -24,9 +24,9 @@ public class OrderRepository implements IOrderRepository {
     }
 
     @Override
-    public Order getOrderById(final int id) {
+    public Order getOrderById(final String id) {
         return orders.stream()
-                .filter(order -> order.getId() == id)
+                .filter(order -> order.getId().equals(id))
                 .findAny()
                 .orElse(null);
     }
