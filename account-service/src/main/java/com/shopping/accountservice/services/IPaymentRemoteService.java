@@ -2,7 +2,9 @@ package com.shopping.accountservice.services;
 
 import com.shopping.accountservice.entity.Payment;
 
+import java.util.List;
+
 public interface IPaymentRemoteService {
 
-    Payment[] getPaymentsOfCustomer(String id);
+    List<Payment> getPaymentsOfCustomer(String id);
 }

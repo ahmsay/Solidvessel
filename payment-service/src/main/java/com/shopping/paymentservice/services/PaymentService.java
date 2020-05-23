@@ -4,7 +4,9 @@ import com.shopping.paymentservice.entity.Payment;
 import com.shopping.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PaymentService implements IPaymentService {
@@ -23,5 +25,10 @@ public class PaymentService implements IPaymentService {
     @Override
     public Payment getPaymentById(final String id) {
         return paymentRepository.getPaymentById(id);
+    }
+
+    @Override
+    public List<Payment> getPayments(final List<String> paymentIds) {
+        return paymentIds.stream().map(this::getPaymentById).collect(Collectors.toList());
     }
 }
