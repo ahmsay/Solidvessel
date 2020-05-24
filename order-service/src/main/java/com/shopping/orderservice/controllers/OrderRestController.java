@@ -2,11 +2,9 @@ package com.shopping.orderservice.controllers;
 
 import com.shopping.orderservice.entity.Order;
 import com.shopping.orderservice.services.IOrderService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -27,5 +25,10 @@ public class OrderRestController {
     @GetMapping("/{orderId}")
     public Order getOrderById(@PathVariable("orderId") final String id) {
         return orderService.getOrderById(id);
+    }
+
+    @GetMapping("/withIds")
+    public List<Order> getOrdersByIds(@RequestParam("orderIds") final List<String> orderIds) {
+        return orderService.getOrdersByIds(orderIds);
     }
 }
