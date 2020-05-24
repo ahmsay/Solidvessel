@@ -28,7 +28,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public List<Payment> getPayments(final List<String> paymentIds) {
+    public List<Payment> getPaymentsByIds(final List<String> paymentIds) {
         return paymentIds.stream().map(this::getPaymentById).collect(Collectors.toList());
     }
 }

@@ -28,7 +28,7 @@ public class PaymentRestController {
     }
 
     @GetMapping("/withIds")
-    public List<Payment> getPaymentsOfCustomer(@RequestParam("paymentIds") final List<String> paymentIds) {
-        return paymentService.getPayments(paymentIds);
+    public List<Payment> getPaymentsByIds(@RequestParam("paymentIds") final List<String> paymentIds) {
+        return paymentService.getPaymentsByIds(paymentIds);
     }
 }
