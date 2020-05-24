@@ -34,7 +34,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
                     .queryParam("paymentIds", String.join(",", paymentIds));
             URI uri = builder.build().encode().toUri();
 
-            ResponseEntity<List<Payment>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Payment>>() {});
+            ResponseEntity<List<Payment>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
             return response.getBody();
         }
         return null;
