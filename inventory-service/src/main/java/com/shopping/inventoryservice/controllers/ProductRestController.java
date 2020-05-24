@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -27,5 +28,10 @@ public class ProductRestController {
     @GetMapping("/{productId}")
     public Product getProductById(@PathVariable("productId") final String id) {
         return productService.getProductById(id);
+    }
+
+    @GetMapping("/withIds")
+    public List<Product> getProductsByIds(@PathVariable("productIds") final List<String> productIds) {
+        return productService.getProductsByIds(productIds);
     }
 }
