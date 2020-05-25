@@ -2,8 +2,10 @@ package com.shopping.orderservice.controllers;
 
 import com.shopping.orderservice.entity.Customer;
 import com.shopping.orderservice.entity.Order;
+import com.shopping.orderservice.entity.Payment;
 import com.shopping.orderservice.services.ICustomerRemoteService;
 import com.shopping.orderservice.services.IOrderService;
+import com.shopping.orderservice.services.IPaymentRemoteService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +17,12 @@ public class OrderRestController {
 
     private IOrderService orderService;
     private ICustomerRemoteService customerRemoteService;
+    private IPaymentRemoteService paymentRemoteService;
 
-    public OrderRestController(final IOrderService orderService, final ICustomerRemoteService customerRemoteService) {
+    public OrderRestController(final IOrderService orderService, final ICustomerRemoteService customerRemoteService, final IPaymentRemoteService paymentRemoteService) {
         this.orderService = orderService;
         this.customerRemoteService = customerRemoteService;
+        this.paymentRemoteService = paymentRemoteService;
     }
 
     @GetMapping("/")
@@ -39,5 +43,10 @@ public class OrderRestController {
     @GetMapping("/{orderId}/customer")
     public Customer getCustomerOfOrder(@PathVariable("orderId") final String id) {
         return customerRemoteService.getCustomerOfOrder(id);
+    }
+
+    @GetMapping("/{orderId}/payment")
+    public Payment getPaymentOfOrder(@PathVariable("orderId") final String id) {
+        return paymentRemoteService.getPaymentOfOrder(id);
     }
 }
