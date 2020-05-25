@@ -25,8 +25,8 @@ public class OrderRemoteService implements IOrderRemoteService {
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(final String id) {
-        Customer customer = customerService.getCustomerById(id);
+    public List<Order> getOrdersOfCustomer(final String customerId) {
+        Customer customer = customerService.getCustomerById(customerId);
         if (customer != null) {
             List<String> orderIds = new ArrayList<>(customer.getOrderIds());
 

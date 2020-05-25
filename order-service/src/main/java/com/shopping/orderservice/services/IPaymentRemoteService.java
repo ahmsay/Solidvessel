@@ -4,5 +4,5 @@ import com.shopping.orderservice.entity.Payment;
 
 public interface IPaymentRemoteService {
 
-    Payment getPaymentOfOrder(String id);
+    Payment getPaymentOfOrder(String orderId);
 }

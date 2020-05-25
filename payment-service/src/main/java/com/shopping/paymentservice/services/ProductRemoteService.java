@@ -25,8 +25,8 @@ public class ProductRemoteService implements IProductRemoteService {
     }
 
     @Override
-    public List<Product> getProductsOfPayment(final String id) {
-        Payment payment = paymentService.getPaymentById(id);
+    public List<Product> getProductsOfPayment(final String paymentId) {
+        Payment payment = paymentService.getPaymentById(paymentId);
         if (payment != null) {
             List<String> productIds = new ArrayList<>(payment.getProductIds());
 

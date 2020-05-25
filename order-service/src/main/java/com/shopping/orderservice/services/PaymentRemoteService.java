@@ -14,7 +14,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
     }
 
     @Override
-    public Payment getPaymentOfOrder(final String id) {
-        return restTemplate.getForObject("http://localhost:8084/payments/" + id, Payment.class);
+    public Payment getPaymentOfOrder(final String orderId) {
+        return restTemplate.getForObject("http://localhost:8084/payments/" + orderId, Payment.class);
     }
 }

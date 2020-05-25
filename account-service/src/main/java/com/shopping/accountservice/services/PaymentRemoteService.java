@@ -25,8 +25,8 @@ public class PaymentRemoteService implements IPaymentRemoteService {
     }
 
     @Override
-    public List<Payment> getPaymentsOfCustomer(final String id) {
-        Customer customer = customerService.getCustomerById(id);
+    public List<Payment> getPaymentsOfCustomer(final String customerId) {
+        Customer customer = customerService.getCustomerById(customerId);
         if (customer != null) {
             List<String> paymentIds = new ArrayList<>(customer.getPaymentIds());
 

@@ -51,11 +51,11 @@ public class PaymentRestController {
 
     @GetMapping("/{paymentId}/customer")
     public Customer getCustomerOfPayment(@PathVariable("paymentId") final String id) {
-        return customerRemoteService.getCustomerById(id);
+        return customerRemoteService.getCustomerOfPayment(id);
     }
 
     @GetMapping("/{paymentId}/order")
     public Order getOrderOfPayment(@PathVariable("paymentId") final String id) {
-        return orderRemoteService.getOrderById(id);
+        return orderRemoteService.getOrderOfPayment(id);
     }
 }

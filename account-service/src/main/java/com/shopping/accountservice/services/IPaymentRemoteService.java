@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IPaymentRemoteService {
 
-    List<Payment> getPaymentsOfCustomer(String id);
+    List<Payment> getPaymentsOfCustomer(String customerId);
 }

@@ -4,5 +4,5 @@ import com.shopping.paymentservice.entity.Customer;
 
 public interface ICustomerRemoteService {
 
-    Customer getCustomerById(String id);
+    Customer getCustomerOfPayment(String paymentId);
 }
