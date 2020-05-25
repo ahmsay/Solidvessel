@@ -1,7 +1,9 @@
 package com.shopping.paymentservice.controllers;
 
+import com.shopping.paymentservice.entity.Customer;
 import com.shopping.paymentservice.entity.Payment;
 import com.shopping.paymentservice.entity.Product;
+import com.shopping.paymentservice.services.ICustomerRemoteService;
 import com.shopping.paymentservice.services.IPaymentService;
 import com.shopping.paymentservice.services.IProductRemoteService;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +17,12 @@ public class PaymentRestController {
 
     private IPaymentService paymentService;
     private IProductRemoteService productRemoteService;
+    private ICustomerRemoteService customerRemoteService;
 
-    public PaymentRestController(final IPaymentService paymentService, final IProductRemoteService productRemoteService) {
+    public PaymentRestController(final IPaymentService paymentService, final IProductRemoteService productRemoteService, final ICustomerRemoteService customerRemoteService) {
         this.paymentService = paymentService;
         this.productRemoteService = productRemoteService;
+        this.customerRemoteService = customerRemoteService;
     }
 
     @GetMapping("/")
@@ -39,5 +43,10 @@ public class PaymentRestController {
     @GetMapping("/{paymentId}/products")
     public List<Product> getProductsOfPayment(@PathVariable("paymentId") final String id) {
         return productRemoteService.getProductsOfPayment(id);
+    }
+
+    @GetMapping("/{paymentId}/customer")
+    public Customer getCustomerOfPayment(@PathVariable("paymentId") final String id) {
+        return customerRemoteService.getCustomerById(id);
     }
 }
