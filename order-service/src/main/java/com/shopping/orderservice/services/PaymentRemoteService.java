@@ -1,5 +1,6 @@
 package com.shopping.orderservice.services;
 
+import com.shopping.orderservice.entity.Order;
 import com.shopping.orderservice.entity.Payment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -8,13 +9,16 @@ import org.springframework.web.client.RestTemplate;
 public class PaymentRemoteService implements IPaymentRemoteService {
 
     private RestTemplate restTemplate;
+    private IOrderService orderService;
 
-    public PaymentRemoteService(final RestTemplate restTemplate) {
+    public PaymentRemoteService(final RestTemplate restTemplate, final IOrderService orderService) {
         this.restTemplate = restTemplate;
+        this.orderService = orderService;
     }
 
     @Override
     public Payment getPaymentOfOrder(final String orderId) {
-        return restTemplate.getForObject("http://localhost:8084/payments/" + orderId, Payment.class);
+        Order order = orderService.getOrderById(orderId);
+        return restTemplate.getForObject("http://localhost:8084/payments/" + order.getPaymentId(), Payment.class);
     }
 }
