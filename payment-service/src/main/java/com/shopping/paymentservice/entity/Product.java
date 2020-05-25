@@ -6,6 +6,8 @@ public class Product {
     private String name;
     private String category;
 
+    public Product() {}
+
     public Product(final String id, final String name, final String category) {
         this.id = id;
         this.name = name;

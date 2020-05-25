@@ -8,7 +8,7 @@ public class Payment {
     private double totalCharge;
     private Set<String> productIds;
 
-    public Payment() {};
+    public Payment() {}
 
     public Payment(final String id, final double amount, final Set<String> productIds) {
         this.id = id;

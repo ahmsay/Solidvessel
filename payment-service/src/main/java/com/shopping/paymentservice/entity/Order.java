@@ -6,6 +6,8 @@ public class Order {
     private String status;
     private String customerId;
 
+    public Order() {}
+
     public Order(final String id, final String status, final String customerId) {
         this.id = id;
         this.status = status;

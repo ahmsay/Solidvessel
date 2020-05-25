@@ -9,6 +9,8 @@ public class Payment {
     private String customerId;
     private Set<String> productIds;
 
+    public Payment() {}
+
     public Payment(final String id, final double totalCharge, final String customerId, final Set<String> productIds) {
         this.id = id;
         this.totalCharge = totalCharge;

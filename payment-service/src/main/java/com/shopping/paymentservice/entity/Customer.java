@@ -9,6 +9,8 @@ public class Customer {
     private Set<String> paymentIds;
     private Set<String> orderIds;
 
+    public Customer() {}
+
     public Customer(final String id, final String name, final Set<String> paymentIds, final Set<String> orderIds) {
         this.id = id;
         this.name = name;
