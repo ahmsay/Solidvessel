@@ -7,13 +7,15 @@ public class Payment {
     private String id;
     private double totalCharge;
     private Set<String> productIds;
+    private String orderId;
 
     public Payment() {}
 
-    public Payment(final String id, final double amount, final Set<String> productIds) {
+    public Payment(final String id, final double amount, final Set<String> productIds, final String orderId) {
         this.id = id;
         this.totalCharge = amount;
         this.productIds = productIds;
+        this.orderId = orderId;
     }
 
     public String getId() {
@@ -38,5 +40,13 @@ public class Payment {
 
     public void setProductIds(final Set<String> productIds) {
         this.productIds = productIds;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(final String orderId) {
+        this.orderId = orderId;
     }
 }

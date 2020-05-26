@@ -4,10 +4,7 @@ import com.shopping.inventoryservice.entity.Payment;
 import com.shopping.inventoryservice.entity.Product;
 import com.shopping.inventoryservice.services.IPaymentRemoteService;
 import com.shopping.inventoryservice.services.IProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -35,7 +32,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/withIds")
-    public List<Product> getProductsByIds(@PathVariable("productIds") final List<String> productIds) {
+    public List<Product> getProductsByIds(@RequestParam("productIds") final List<String> productIds) {
         return productService.getProductsByIds(productIds);
     }
 
