@@ -3,6 +3,7 @@
 !.gitignore
 !.README.md
 !docker-compose.yml
+!online-shopping-app.postman_collection.json
 
 !/account-service/src/**
 !/account-service/pom.xml
