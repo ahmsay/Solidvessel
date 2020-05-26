@@ -19,6 +19,9 @@ public class OrderRemoteService implements IOrderRemoteService {
     @Override
     public Order getOrderOfPayment(final String paymentId) {
         Payment payment = paymentService.getPaymentById(paymentId);
-        return restTemplate.getForObject("http://localhost:8083/orders/" + payment.getOrderId(), Order.class);
+        if (payment != null) {
+            return restTemplate.getForObject("http://localhost:8083/orders/" + payment.getOrderId(), Order.class);
+        }
+        return null;
     }
 }
