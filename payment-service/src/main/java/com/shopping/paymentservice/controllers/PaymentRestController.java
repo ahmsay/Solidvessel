@@ -10,7 +10,6 @@ import com.shopping.paymentservice.services.IPaymentService;
 import com.shopping.paymentservice.services.IProductRemoteService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -40,12 +39,12 @@ public class PaymentRestController {
     }
 
     @GetMapping("/withIds")
-    public List<Payment> getPaymentsByIds(@RequestParam("paymentIds") final List<String> paymentIds) {
+    public Set<Payment> getPaymentsByIds(@RequestParam("paymentIds") final Set<String> paymentIds) {
         return paymentService.getPaymentsByIds(paymentIds);
     }
 
     @GetMapping("/{paymentId}/products")
-    public List<Product> getProductsOfPayment(@PathVariable("paymentId") final String id) {
+    public Set<Product> getProductsOfPayment(@PathVariable("paymentId") final String id) {
         return productRemoteService.getProductsOfPayment(id);
     }
 

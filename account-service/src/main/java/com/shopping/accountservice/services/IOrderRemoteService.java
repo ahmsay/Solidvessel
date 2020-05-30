@@ -2,9 +2,9 @@ package com.shopping.accountservice.services;
 
 import com.shopping.accountservice.entity.Order;
 
-import java.util.List;
+import java.util.Set;
 
 public interface IOrderRemoteService {
 
-    List<Order> getOrdersOfCustomer(String customerId);
+    Set<Order> getOrdersOfCustomer(String customerId);
 }

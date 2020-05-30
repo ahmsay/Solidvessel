@@ -12,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PaymentRemoteService implements IPaymentRemoteService {
@@ -25,7 +26,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
     }
 
     @Override
-    public List<Payment> getPaymentsOfCustomer(final String customerId) {
+    public Set<Payment> getPaymentsOfCustomer(final String customerId) {
         Customer customer = customerService.getCustomerById(customerId);
         if (customer != null) {
             List<String> paymentIds = new ArrayList<>(customer.getPaymentIds());
@@ -34,7 +35,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
                     .queryParam("paymentIds", String.join(",", paymentIds));
             URI uri = builder.build().encode().toUri();
 
-            ResponseEntity<List<Payment>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+            ResponseEntity<Set<Payment>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
             return response.getBody();
         }
         return null;

@@ -4,7 +4,6 @@ import com.shopping.orderservice.entity.Order;
 import com.shopping.orderservice.repositories.IOrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<Order> getOrdersByIds(final List<String> orderIds) {
-        return orderIds.stream().map(this::getOrderById).collect(Collectors.toList());
+    public Set<Order> getOrdersByIds(final Set<String> orderIds) {
+        return orderIds.stream().map(this::getOrderById).collect(Collectors.toSet());
     }
 }
