@@ -10,9 +10,9 @@ public class Payment {
     private Set<String> productIds;
     private String orderId;
 
-    public Payment(final String id, final double amount, final String customerId, final Set<String> productIds, final String orderId) {
+    public Payment(final String id, final double totalCharge, final String customerId, final Set<String> productIds, final String orderId) {
         this.id = id;
-        this.totalCharge = amount;
+        this.totalCharge = totalCharge;
         this.customerId = customerId;
         this.productIds = productIds;
         this.orderId = orderId;

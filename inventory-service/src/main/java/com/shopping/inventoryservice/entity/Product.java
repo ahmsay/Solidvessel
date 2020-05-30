@@ -4,12 +4,14 @@ public class Product {
 
     private String id;
     private String name;
+    private double price;
     private String category;
     private String paymentId;
 
-    public Product(final String id, final String name, final String category, final String paymentId) {
+    public Product(final String id, final String name, final double price, final String category, final String paymentId) {
         this.id = id;
         this.name = name;
+        this.price = price;
         this.category = category;
         this.paymentId = paymentId;
     }
@@ -28,6 +30,14 @@ public class Product {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(final double price) {
+        this.price = price;
     }
 
     public String getCategory() {
