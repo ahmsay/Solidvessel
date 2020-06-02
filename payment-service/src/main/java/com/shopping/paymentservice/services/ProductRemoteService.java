@@ -31,7 +31,7 @@ public class ProductRemoteService implements IProductRemoteService {
         if (payment != null) {
             List<String> productIds = new ArrayList<>(payment.getProductIds());
 
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/products/withIds/")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://inventory-service/products/withIds/")
                     .queryParam("productIds", String.join(",", productIds));
             URI uri = builder.build().encode().toUri();
 

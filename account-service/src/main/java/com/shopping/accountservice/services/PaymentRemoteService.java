@@ -31,7 +31,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
         if (customer != null) {
             List<String> paymentIds = new ArrayList<>(customer.getPaymentIds());
 
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8084/payments/withIds/")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://payment-service/payments/withIds/")
                     .queryParam("paymentIds", String.join(",", paymentIds));
             URI uri = builder.build().encode().toUri();
 

@@ -20,7 +20,7 @@ public class CustomerRemoteService implements ICustomerRemoteService {
     public Customer getCustomerOfOrder(final String orderId) {
         Order order = orderService.getOrderById(orderId);
         if (order != null) {
-            return restTemplate.getForObject("http://localhost:8081/customers/" + order.getCustomerId(), Customer.class);
+            return restTemplate.getForObject("http://account-service/customers/" + order.getCustomerId(), Customer.class);
         }
         return null;
     }

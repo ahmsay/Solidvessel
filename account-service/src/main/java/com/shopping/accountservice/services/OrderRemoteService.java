@@ -31,7 +31,7 @@ public class OrderRemoteService implements IOrderRemoteService {
         if (customer != null) {
             List<String> orderIds = new ArrayList<>(customer.getOrderIds());
 
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8083/orders/withIds/")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://order-service/orders/withIds/")
                     .queryParam("orderIds", String.join(",", orderIds));
             URI uri = builder.build().encode().toUri();
 

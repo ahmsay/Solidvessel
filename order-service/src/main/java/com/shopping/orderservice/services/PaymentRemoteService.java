@@ -20,7 +20,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
     public Payment getPaymentOfOrder(final String orderId) {
         Order order = orderService.getOrderById(orderId);
         if (order != null) {
-            return restTemplate.getForObject("http://localhost:8084/payments/" + order.getPaymentId(), Payment.class);
+            return restTemplate.getForObject("http://payment-service/payments/" + order.getPaymentId(), Payment.class);
         }
         return null;
     }
