@@ -11,26 +11,18 @@ services:
     build: ./account-service
     ports:
       - 8081:8081
-    depends_on:
-      - discovery-server
   inventory-service:
     image: inventory-service-img
     build: ./inventory-service
     ports:
       - 8082:8082
-    depends_on:
-      - discovery-server
   order-service:
     image: order-service-img
     build: ./order-service
     ports:
       - 8083:8083
-    depends_on:
-      - discovery-server
   payment-service:
     image: payment-service-img
     build: ./payment-service
     ports:
       - 8084:8084
-    depends_on:
-      - discovery-server
