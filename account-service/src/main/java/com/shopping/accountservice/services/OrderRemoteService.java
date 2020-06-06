@@ -2,6 +2,7 @@ package com.shopping.accountservice.services;
 
 import com.shopping.accountservice.entity.Customer;
 import com.shopping.accountservice.entity.Order;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import java.util.Set;
 @Service
 public class OrderRemoteService implements IOrderRemoteService {
 
+    @Value("${orderServiceUrl}")
+    private String orderServiceUrl;
+
     private RestTemplate restTemplate;
     private ICustomerService customerService;
 
@@ -31,7 +35,7 @@ public class OrderRemoteService implements IOrderRemoteService {
         if (customer != null) {
             List<String> orderIds = new ArrayList<>(customer.getOrderIds());
 
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://order-service/orders/withIds/")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "orders/withIds/")
                     .queryParam("orderIds", String.join(",", orderIds));
             URI uri = builder.build().encode().toUri();
 

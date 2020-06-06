@@ -2,11 +2,15 @@ package com.shopping.inventoryservice.services;
 
 import com.shopping.inventoryservice.entity.Payment;
 import com.shopping.inventoryservice.entity.Product;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class PaymentRemoteService implements IPaymentRemoteService {
+
+    @Value("${paymentServiceUrl}")
+    private String paymentServiceUrl;
 
     private RestTemplate restTemplate;
     private IProductService productService;
@@ -20,7 +24,7 @@ public class PaymentRemoteService implements IPaymentRemoteService {
     public Payment getPaymentOfProduct(final String productId) {
         Product product = productService.getProductById(productId);
         if (product != null) {
-            return restTemplate.getForObject("http://payment-service/payments/" + product.getPaymentId(), Payment.class);
+            return restTemplate.getForObject(paymentServiceUrl + "payments/" + product.getPaymentId(), Payment.class);
         }
         return null;
     }

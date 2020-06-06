@@ -2,6 +2,7 @@ package com.shopping.paymentservice.services;
 
 import com.shopping.paymentservice.entity.Payment;
 import com.shopping.paymentservice.entity.Product;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import java.util.Set;
 @Service
 public class ProductRemoteService implements IProductRemoteService {
 
+    @Value("${inventoryServiceUrl}")
+    private String inventoryServiceUrl;
+
     private RestTemplate restTemplate;
     private IPaymentService paymentService;
 
@@ -31,7 +35,7 @@ public class ProductRemoteService implements IProductRemoteService {
         if (payment != null) {
             List<String> productIds = new ArrayList<>(payment.getProductIds());
 
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://inventory-service/products/withIds/")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(inventoryServiceUrl + "products/withIds/")
                     .queryParam("productIds", String.join(",", productIds));
             URI uri = builder.build().encode().toUri();
 
