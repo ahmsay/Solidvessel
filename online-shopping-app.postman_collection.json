@@ -10,6 +10,20 @@
 			"item": [
 				{
 					"name": "get all customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "666f2d01-bff1-4b58-a30b-b0892393b3f1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -29,6 +43,20 @@
 				},
 				{
 					"name": "get customer by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f1e29b9e-72c0-458c-a042-87bb23a7209d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -48,6 +76,20 @@
 				},
 				{
 					"name": "get payments of customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d893244-738e-4ff8-a0ba-5d6cf749141f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -68,6 +110,20 @@
 				},
 				{
 					"name": "get orders of customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "296083c5-1c35-440d-bae4-0b72105a46c5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -94,6 +150,20 @@
 			"item": [
 				{
 					"name": "get all products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab0d6612-4ac6-448a-9c1c-b497c1e0da5c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -113,6 +183,20 @@
 				},
 				{
 					"name": "get product by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37a72302-aa01-40ed-86a8-d765bc9457c7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -132,6 +216,20 @@
 				},
 				{
 					"name": "get products by ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6dca3f7-b0cf-4dab-bdc0-67ee6dce0d77",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -170,6 +268,20 @@
 				},
 				{
 					"name": "get the payment of product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f418569-4cb2-4d6e-b671-a6d68e38ba49",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -196,6 +308,20 @@
 			"item": [
 				{
 					"name": "get all orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba98f798-e1fd-4588-b750-6ef97b5545b0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -215,6 +341,20 @@
 				},
 				{
 					"name": "get order by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e20ee1d1-3d2b-4977-ab65-7fd09d34f513",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -234,6 +374,20 @@
 				},
 				{
 					"name": "get the customer of order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b839ba5-f442-463c-a781-bb3fedc5da5e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -254,6 +408,20 @@
 				},
 				{
 					"name": "get the payment of order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a68b51e8-d3f1-48a6-9542-1ed73cf9e751",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -280,6 +448,20 @@
 			"item": [
 				{
 					"name": "get all payments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5866c34-70d6-497e-945f-68a55968b7e0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -299,6 +481,20 @@
 				},
 				{
 					"name": "get payment by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d46cc98f-a5d2-4493-b16d-cf0de9ab5548",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -318,6 +514,20 @@
 				},
 				{
 					"name": "get payments by ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25e8070e-8ea7-48d3-8b40-835ddf033130",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -344,6 +554,20 @@
 				},
 				{
 					"name": "get products of payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b6be6d50-8ad7-4b0c-89fb-419fccd8ab7b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -364,6 +588,20 @@
 				},
 				{
 					"name": "get the customer of payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b15dd69-c2c4-4a55-8c5a-c61e6430cc63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -384,6 +622,20 @@
 				},
 				{
 					"name": "get the order of payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a654e7f9-d7d5-4993-a55c-93a18ea68ef0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
