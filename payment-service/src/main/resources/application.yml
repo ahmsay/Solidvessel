@@ -3,3 +3,4 @@ spring.application.name: payment-service
 inventoryServiceUrl: http://inventory-service/
 orderServiceUrl: http://order-service/
 accountServiceUrl: http://account-service/
+spring.cloud.config.uri: http://localhost:8888

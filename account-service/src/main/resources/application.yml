@@ -2,3 +2,4 @@ server.port: 8081
 spring.application.name: account-service
 orderServiceUrl: http://order-service/
 paymentServiceUrl: http://payment-service/
+spring.cloud.config.uri: http://localhost:8888
