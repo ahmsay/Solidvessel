@@ -1,6 +1,11 @@
 version: '3'
 
 services:
+  config-server:
+    image: config-server-img
+    build: ./discovery-server
+    ports:
+      - 8888:8888
   discovery-server:
     image: discovery-server-img
     build: ./discovery-server
