@@ -1,3 +1,7 @@
 server.port: 8888
-spring.application.name: config-server
-spring.cloud.config.server.git.uri: https://github.com/ahmsay/Online-Shopping-Application-Configuration.git
+
+spring:
+  application.name: config-server
+  cloud.config.server.git.uri: https://github.com/ahmsay/Online-Shopping-Application-Configuration.git
+
+eureka.instance.lease-renewal-interval-in-seconds: 5
