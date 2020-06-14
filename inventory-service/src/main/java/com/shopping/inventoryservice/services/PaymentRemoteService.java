@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class PaymentRemoteService implements IPaymentRemoteService {
 
-    @Value("${paymentServiceUrl}")
+    @Value("${paymentServiceUrl:failed fetching url}")
     private String paymentServiceUrl;
 
     private RestTemplate restTemplate;

@@ -18,7 +18,7 @@ import java.util.Set;
 @Service
 public class PaymentRemoteService implements IPaymentRemoteService {
 
-    @Value("${paymentServiceUrl}")
+    @Value("${paymentServiceUrl:failed fetching url}")
     private String paymentServiceUrl;
 
     private RestTemplate restTemplate;

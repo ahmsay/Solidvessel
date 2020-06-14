@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class OrderRemoteService implements IOrderRemoteService {
 
-    @Value("${orderServiceUrl}")
+    @Value("${orderServiceUrl:failed fetching url}")
     private String orderServiceUrl;
 
     private RestTemplate restTemplate;
