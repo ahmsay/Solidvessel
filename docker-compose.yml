@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  config-server:
-    image: config-server-img
-    build: ./discovery-server
-    ports:
-      - 8888:8888
   discovery-server:
     image: discovery-server-img
     build: ./discovery-server
     ports:
       - 8761:8761
+  config-server:
+    image: config-server-img
+    build: ./discovery-server
+    ports:
+      - 8888:8888
   account-service:
     image: account-service-img
     build: ./account-service
