@@ -1,8 +1,6 @@
 server.port: 8084
 
-spring:
-  application.name: payment-service
-  cloud.config.uri: http://config-server/
+spring.application.name: payment-service
 
 eureka.instance.lease-renewal-interval-in-seconds: 5
 

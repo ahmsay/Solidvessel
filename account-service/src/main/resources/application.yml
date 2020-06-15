@@ -1,8 +1,6 @@
 server.port: 8081
 
-spring:
-  application.name: account-service
-  cloud.config.uri: http://config-server/
+spring.application.name: account-service
 
 eureka.instance.lease-renewal-interval-in-seconds: 5
 
