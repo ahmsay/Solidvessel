@@ -1,7 +1,0 @@
-server.port: 8083
-
-spring.application.name: order-service
-
-eureka.instance.lease-renewal-interval-in-seconds: 5
-
-logging.level.org.springframework.retry: trace
