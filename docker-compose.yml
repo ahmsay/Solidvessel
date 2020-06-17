@@ -8,7 +8,7 @@ services:
       - 8761:8761
   config-server:
     image: config-server-img
-    build: ./discovery-server
+    build: ./config-server
     ports:
       - 8888:8888
   account-service:
