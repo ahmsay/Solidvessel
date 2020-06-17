@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class CustomerRemoteService implements ICustomerRemoteService {
 
-    @Value("${accountServiceUrl:failed fetching url}")
+    @Value("${accountServiceUrl}")
     private String accountServiceUrl;
 
     private RestTemplate restTemplate;

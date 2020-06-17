@@ -18,7 +18,7 @@ import java.util.Set;
 @Service
 public class OrderRemoteService implements IOrderRemoteService {
 
-    @Value("${orderServiceUrl:failed fetching url}")
+    @Value("${orderServiceUrl}")
     private String orderServiceUrl;
 
     private RestTemplate restTemplate;

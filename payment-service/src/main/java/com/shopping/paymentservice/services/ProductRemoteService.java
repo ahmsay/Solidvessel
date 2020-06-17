@@ -18,7 +18,7 @@ import java.util.Set;
 @Service
 public class ProductRemoteService implements IProductRemoteService {
 
-    @Value("${inventoryServiceUrl:failed fetching url}")
+    @Value("${inventoryServiceUrl}")
     private String inventoryServiceUrl;
 
     private RestTemplate restTemplate;
