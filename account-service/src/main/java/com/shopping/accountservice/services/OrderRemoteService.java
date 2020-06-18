@@ -32,16 +32,14 @@ public class OrderRemoteService implements IOrderRemoteService {
     @Override
     public Set<Order> getOrdersOfCustomer(final String customerId) {
         Customer customer = customerService.getCustomerById(customerId);
-        if (customer != null) {
-            List<String> orderIds = new ArrayList<>(customer.getOrderIds());
-
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "orders/withIds/")
-                    .queryParam("orderIds", String.join(",", orderIds));
-            URI uri = builder.build().encode().toUri();
-
-            ResponseEntity<Set<Order>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-            return response.getBody();
+        if (customer == null) {
+            return null;
         }
-        return null;
+        List<String> orderIds = new ArrayList<>(customer.getOrderIds());
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "orders/withIds/").queryParam("orderIds", String.join(",", orderIds));
+        URI uri = builder.build().encode().toUri();
+        ResponseEntity<Set<Order>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+        return response.getBody();
     }
 }

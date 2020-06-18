@@ -23,9 +23,9 @@ public class CustomerRemoteService implements ICustomerRemoteService {
     @Override
     public Customer getCustomerOfPayment(final String paymentId) {
         Payment payment = paymentService.getPaymentById(paymentId);
-        if (payment != null) {
-            return restTemplate.getForObject(accountServiceUrl + "customers/" + payment.getCustomerId(), Customer.class);
+        if (payment == null) {
+            return null;
         }
-        return null;
+        return restTemplate.getForObject(accountServiceUrl + "customers/" + payment.getCustomerId(), Customer.class);
     }
 }

@@ -32,16 +32,14 @@ public class ProductRemoteService implements IProductRemoteService {
     @Override
     public Set<Product> getProductsOfPayment(final String paymentId) {
         Payment payment = paymentService.getPaymentById(paymentId);
-        if (payment != null) {
-            List<String> productIds = new ArrayList<>(payment.getProductIds());
-
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(inventoryServiceUrl + "products/withIds/")
-                    .queryParam("productIds", String.join(",", productIds));
-            URI uri = builder.build().encode().toUri();
-
-            ResponseEntity<Set<Product>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-            return response.getBody();
+        if (payment == null) {
+            return null;
         }
-        return null;
+        List<String> productIds = new ArrayList<>(payment.getProductIds());
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(inventoryServiceUrl + "products/withIds/").queryParam("productIds", String.join(",", productIds));
+        URI uri = builder.build().encode().toUri();
+        ResponseEntity<Set<Product>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+        return response.getBody();
     }
 }

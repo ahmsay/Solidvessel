@@ -32,16 +32,14 @@ public class PaymentRemoteService implements IPaymentRemoteService {
     @Override
     public Set<Payment> getPaymentsOfCustomer(final String customerId) {
         Customer customer = customerService.getCustomerById(customerId);
-        if (customer != null) {
-            List<String> paymentIds = new ArrayList<>(customer.getPaymentIds());
-
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(paymentServiceUrl + "payments/withIds/")
-                    .queryParam("paymentIds", String.join(",", paymentIds));
-            URI uri = builder.build().encode().toUri();
-
-            ResponseEntity<Set<Payment>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-            return response.getBody();
+        if (customer == null) {
+            return null;
         }
-        return null;
+        List<String> paymentIds = new ArrayList<>(customer.getPaymentIds());
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(paymentServiceUrl + "payments/withIds/").queryParam("paymentIds", String.join(",", paymentIds));
+        URI uri = builder.build().encode().toUri();
+        ResponseEntity<Set<Payment>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+        return response.getBody();
     }
 }
