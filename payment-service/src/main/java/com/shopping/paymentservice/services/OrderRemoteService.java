@@ -26,6 +26,6 @@ public class OrderRemoteService implements IOrderRemoteService {
         if (payment == null) {
             return null;
         }
-        return restTemplate.getForObject(orderServiceUrl + "orders/" + payment.getOrderId(), Order.class);
+        return restTemplate.getForObject(orderServiceUrl + "/orders/" + payment.getOrderId(), Order.class);
     }
 }

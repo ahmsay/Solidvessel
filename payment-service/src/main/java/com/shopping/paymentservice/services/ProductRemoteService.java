@@ -37,7 +37,7 @@ public class ProductRemoteService implements IProductRemoteService {
         }
         List<String> productIds = new ArrayList<>(payment.getProductIds());
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(inventoryServiceUrl + "products/withIds/").queryParam("productIds", String.join(",", productIds));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(inventoryServiceUrl + "/products/withIds/").queryParam("productIds", String.join(",", productIds));
         URI uri = builder.build().encode().toUri();
         ResponseEntity<Set<Product>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
         return response.getBody();

@@ -26,6 +26,6 @@ public class CustomerRemoteService implements ICustomerRemoteService {
         if (payment == null) {
             return null;
         }
-        return restTemplate.getForObject(accountServiceUrl + "customers/" + payment.getCustomerId(), Customer.class);
+        return restTemplate.getForObject(accountServiceUrl + "/customers/" + payment.getCustomerId(), Customer.class);
     }
 }

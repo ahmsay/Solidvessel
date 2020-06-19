@@ -26,6 +26,6 @@ public class PaymentRemoteService implements IPaymentRemoteService {
         if (order == null) {
             return null;
         }
-        return restTemplate.getForObject(paymentServiceUrl + "payments/" + order.getPaymentId(), Payment.class);
+        return restTemplate.getForObject(paymentServiceUrl + "/payments/" + order.getPaymentId(), Payment.class);
     }
 }

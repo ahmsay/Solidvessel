@@ -37,7 +37,7 @@ public class OrderRemoteService implements IOrderRemoteService {
         }
         List<String> orderIds = new ArrayList<>(customer.getOrderIds());
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "orders/withIds/").queryParam("orderIds", String.join(",", orderIds));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "/orders/withIds/").queryParam("orderIds", String.join(",", orderIds));
         URI uri = builder.build().encode().toUri();
         ResponseEntity<Set<Order>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
         return response.getBody();
