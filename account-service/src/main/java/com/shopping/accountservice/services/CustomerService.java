@@ -4,7 +4,7 @@ import com.shopping.accountservice.entity.Customer;
 import com.shopping.accountservice.repositories.ICustomerRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -16,7 +16,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Set<Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return customerRepository.getAllCustomers();
     }
 

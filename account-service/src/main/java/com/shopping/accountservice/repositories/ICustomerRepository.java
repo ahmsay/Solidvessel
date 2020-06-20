@@ -2,11 +2,11 @@ package com.shopping.accountservice.repositories;
 
 import com.shopping.accountservice.entity.Customer;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ICustomerRepository {
 
-    Set<Customer> getAllCustomers();
+    List<Customer> getAllCustomers();
 
     Customer getCustomerById(String id);
 }

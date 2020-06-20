@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
@@ -28,7 +28,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/")
-    public Set<Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
@@ -38,12 +38,12 @@ public class CustomerRestController {
     }
 
     @GetMapping("/{customerId}/payments")
-    public Set<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final String id) {
+    public List<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final String id) {
         return paymentRemoteService.getPaymentsOfCustomer(id);
     }
 
     @GetMapping("/{customerId}/orders")
-    public Set<Order> getOrdersOfCustomer(@PathVariable("customerId") final String id) {
+    public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final String id) {
         return orderRemoteService.getOrdersOfCustomer(id);
     }
 }

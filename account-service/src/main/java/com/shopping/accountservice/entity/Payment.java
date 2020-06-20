@@ -1,17 +1,17 @@
 package com.shopping.accountservice.entity;
 
-import java.util.Set;
+import java.util.List;
 
 public class Payment {
 
     private String id;
     private double totalCharge;
-    private Set<String> productIds;
+    private List<String> productIds;
     private String orderId;
 
     public Payment() {}
 
-    public Payment(final String id, final double amount, final Set<String> productIds, final String orderId) {
+    public Payment(final String id, final double amount, final List<String> productIds, final String orderId) {
         this.id = id;
         this.totalCharge = amount;
         this.productIds = productIds;
@@ -34,11 +34,11 @@ public class Payment {
         this.totalCharge = totalCharge;
     }
 
-    public Set<String> getProductIds() {
+    public List<String> getProductIds() {
         return productIds;
     }
 
-    public void setProductIds(final Set<String> productIds) {
+    public void setProductIds(final List<String> productIds) {
         this.productIds = productIds;
     }
 

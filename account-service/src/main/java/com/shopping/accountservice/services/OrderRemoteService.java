@@ -11,9 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class OrderRemoteService implements IOrderRemoteService {
@@ -30,16 +28,14 @@ public class OrderRemoteService implements IOrderRemoteService {
     }
 
     @Override
-    public Set<Order> getOrdersOfCustomer(final String customerId) {
+    public List<Order> getOrdersOfCustomer(final String customerId) {
         Customer customer = customerService.getCustomerById(customerId);
         if (customer == null) {
             return null;
         }
-        List<String> orderIds = new ArrayList<>(customer.getOrderIds());
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "/orders/withIds/").queryParam("orderIds", String.join(",", orderIds));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(orderServiceUrl + "/orders/withIds/").queryParam("orderIds", String.join(",", customer.getOrderIds()));
         URI uri = builder.build().encode().toUri();
-        ResponseEntity<Set<Order>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+        ResponseEntity<List<Order>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
         return response.getBody();
     }
 }
