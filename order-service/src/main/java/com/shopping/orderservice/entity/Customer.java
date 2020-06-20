@@ -1,17 +1,17 @@
 package com.shopping.orderservice.entity;
 
-import java.util.Set;
+import java.util.List;
 
 public class Customer {
 
     private String id;
     private String name;
-    private Set<String> paymentIds;
-    private Set<String> orderIds;
+    private List<String> paymentIds;
+    private List<String> orderIds;
 
     public Customer() {}
 
-    public Customer(final String id, final String name, final Set<String> paymentIds, final Set<String> orderIds) {
+    public Customer(final String id, final String name, final List<String> paymentIds, final List<String> orderIds) {
         this.id = id;
         this.name = name;
         this.paymentIds = paymentIds;
@@ -34,19 +34,19 @@ public class Customer {
         this.name = name;
     }
 
-    public Set<String> getPaymentIds() {
+    public List<String> getPaymentIds() {
         return paymentIds;
     }
 
-    public void setPaymentIds(final Set<String> paymentIds) {
+    public void setPaymentIds(final List<String> paymentIds) {
         this.paymentIds = paymentIds;
     }
 
-    public Set<String> getOrderIds() {
+    public List<String> getOrderIds() {
         return orderIds;
     }
 
-    public void setOrderIds(final Set<String> orderIds) {
+    public void setOrderIds(final List<String> orderIds) {
         this.orderIds = orderIds;
     }
 }

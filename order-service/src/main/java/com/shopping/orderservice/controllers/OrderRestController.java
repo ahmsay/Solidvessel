@@ -8,7 +8,7 @@ import com.shopping.orderservice.services.IOrderService;
 import com.shopping.orderservice.services.IPaymentRemoteService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
@@ -25,7 +25,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/")
-    public Set<Order> getAllOrders() {
+    public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
 
@@ -35,7 +35,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/withIds")
-    public Set<Order> getOrdersByIds(@RequestParam("orderIds") final Set<String> orderIds) {
+    public List<Order> getOrdersByIds(@RequestParam("orderIds") final List<String> orderIds) {
         return orderService.getOrdersByIds(orderIds);
     }
 

@@ -2,13 +2,13 @@ package com.shopping.orderservice.services;
 
 import com.shopping.orderservice.entity.Order;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IOrderService {
 
-    Set<Order> getAllOrders();
+    List<Order> getAllOrders();
 
     Order getOrderById(String id);
 
-    Set<Order> getOrdersByIds(Set<String> orderIds);
+    List<Order> getOrdersByIds(List<String> orderIds);
 }

@@ -3,23 +3,23 @@ package com.shopping.orderservice.repositories;
 import com.shopping.orderservice.entity.Order;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class OrderRepository implements IOrderRepository {
 
-    private Set<Order> orders;
+    private List<Order> orders;
 
     public OrderRepository() {
-        orders = new HashSet<>();
+        orders = new ArrayList<>();
         orders.add(new Order("1", "Delivered", "1", "1"));
         orders.add(new Order("2", "On the way", "2", "2"));
         orders.add(new Order("3", "Crashed", "2", "3"));
     }
 
     @Override
-    public Set<Order> getAllOrders() {
+    public List<Order> getAllOrders() {
         return orders;
     }
 
