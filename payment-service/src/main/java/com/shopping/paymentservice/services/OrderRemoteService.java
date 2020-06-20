@@ -2,9 +2,9 @@ package com.shopping.paymentservice.services;
 
 import com.shopping.paymentservice.entity.Order;
 import com.shopping.paymentservice.entity.Payment;
+import com.shopping.paymentservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class OrderRemoteService implements IOrderRemoteService {
@@ -12,12 +12,12 @@ public class OrderRemoteService implements IOrderRemoteService {
     @Value("${orderServiceUrl}")
     private String orderServiceUrl;
 
-    private RestTemplate restTemplate;
     private IPaymentService paymentService;
+    private IAsyncRequestService requestService;
 
-    public OrderRemoteService(final RestTemplate restTemplate, final IPaymentService paymentService) {
-        this.restTemplate = restTemplate;
+    public OrderRemoteService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
         this.paymentService = paymentService;
+        this.requestService = requestService;
     }
 
     @Override
@@ -26,6 +26,8 @@ public class OrderRemoteService implements IOrderRemoteService {
         if (payment == null) {
             return null;
         }
-        return restTemplate.getForObject(orderServiceUrl + "/orders/" + payment.getOrderId(), Order.class);
+        return requestService.createRequest()
+                .toUrl(orderServiceUrl + "/orders/" + payment.getOrderId())
+                .send();
     }
 }
