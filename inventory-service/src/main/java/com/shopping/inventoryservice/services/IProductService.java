@@ -2,13 +2,13 @@ package com.shopping.inventoryservice.services;
 
 import com.shopping.inventoryservice.entity.Product;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IProductService {
 
-    Set<Product> getAllProducts();
+    List<Product> getAllProducts();
 
     Product getProductById(String id);
 
-    Set<Product> getProductsByIds(Set<String> productIds);
+    List<Product> getProductsByIds(List<String> productIds);
 }

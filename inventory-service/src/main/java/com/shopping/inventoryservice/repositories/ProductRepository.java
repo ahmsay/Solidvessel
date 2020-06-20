@@ -3,16 +3,16 @@ package com.shopping.inventoryservice.repositories;
 import com.shopping.inventoryservice.entity.Product;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class ProductRepository implements IProductRepository {
 
-    private Set<Product> products;
+    private List<Product> products;
 
     public ProductRepository() {
-        products = new HashSet<>();
+        products = new ArrayList<>();
         products.add(new Product("1", "Clipper", 2.5, "Tool", "1"));
         products.add(new Product("2", "Laptop", 3, "Electronics", "1"));
         products.add(new Product("3", "Phone", 5, "Electronics", "1"));
@@ -24,7 +24,7 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Set<Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         return products;
     }
 

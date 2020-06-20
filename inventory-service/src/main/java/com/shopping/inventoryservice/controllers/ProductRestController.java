@@ -6,7 +6,7 @@ import com.shopping.inventoryservice.services.IPaymentRemoteService;
 import com.shopping.inventoryservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -21,7 +21,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/")
-    public Set<Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
@@ -31,7 +31,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/withIds")
-    public Set<Product> getProductsByIds(@RequestParam("productIds") final Set<String> productIds) {
+    public List<Product> getProductsByIds(@RequestParam("productIds") final List<String> productIds) {
         return productService.getProductsByIds(productIds);
     }
 

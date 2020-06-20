@@ -4,7 +4,7 @@ import com.shopping.inventoryservice.entity.Product;
 import com.shopping.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,7 +17,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Set<Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         return productRepository.getAllProducts();
     }
 
@@ -27,7 +27,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Set<Product> getProductsByIds(final Set<String> productIds) {
-        return productIds.stream().map(this::getProductById).collect(Collectors.toSet());
+    public List<Product> getProductsByIds(final List<String> productIds) {
+        return productIds.stream().map(this::getProductById).collect(Collectors.toList());
     }
 }
