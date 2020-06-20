@@ -2,11 +2,11 @@ package com.shopping.paymentservice.repositories;
 
 import com.shopping.paymentservice.entity.Payment;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IPaymentRepository {
 
-    Set<Payment> getAllPayments();
+    List<Payment> getAllPayments();
 
     Payment getPaymentById(String id);
 }
