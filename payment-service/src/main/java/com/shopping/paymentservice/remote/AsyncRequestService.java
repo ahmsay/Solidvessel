@@ -25,9 +25,9 @@ public class AsyncRequestService implements IAsyncRequestService {
     }
 
     @Override
-    public <T> T sendRequest(final IAsyncRequest remotingRequest) {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(remotingRequest.getUrl());
-        for (Map.Entry<String, Object[]> entry : remotingRequest.getQueryParameters().entrySet()) {
+    public <T> T sendRequest(final IAsyncRequest request) {
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getUrl());
+        for (Map.Entry<String, Object[]> entry : request.getQueryParameters().entrySet()) {
             builder.queryParam(entry.getKey(), entry.getValue());
         }
         URI uri = builder.build().encode().toUri();

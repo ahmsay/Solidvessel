@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class AsyncRequest implements IAsyncRequest {
 
-    private IAsyncRequestService remotingService;
+    private IAsyncRequestService requestService;
 
     private String url;
     private Map<String, Object[]> queryParameters;
 
-    public AsyncRequest(final IAsyncRequestService remotingService) {
-        this.remotingService = remotingService;
+    public AsyncRequest(final IAsyncRequestService requestService) {
+        this.requestService = requestService;
         url = "";
         queryParameters = new HashMap<>();
     }
@@ -40,6 +40,6 @@ public class AsyncRequest implements IAsyncRequest {
 
     @Override
     public <T> T send() {
-        return remotingService.sendRequest(this);
+        return requestService.sendRequest(this);
     }
 }

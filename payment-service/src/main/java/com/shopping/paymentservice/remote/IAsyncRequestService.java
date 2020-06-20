@@ -4,5 +4,5 @@ public interface IAsyncRequestService {
 
     IAsyncRequest createRequest();
 
-    <T> T sendRequest(IAsyncRequest remotingRequest);
+    <T> T sendRequest(IAsyncRequest request);
 }
