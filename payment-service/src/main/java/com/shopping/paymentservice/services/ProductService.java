@@ -30,7 +30,7 @@ public class ProductService implements IProductService {
             return null;
         }
         Product[] products = requestService.createRequest(inventoryServiceUrl)
-                .toPath("/products/withIds")
+                .toPath("/products/filter")
                 .withQueryParameter("productIds", String.join(",", payment.getProductIds()))
                 .withResponseType(Product[].class)
                 .send();

@@ -30,7 +30,7 @@ public class PaymentService implements IPaymentService {
             return null;
         }
         Payment[] payments = requestService.createRequest(paymentServiceUrl)
-                .toPath("/payments/withIds/")
+                .toPath("/payments/filter")
                 .withQueryParameter("paymentIds", String.join(",", customer.getPaymentIds()))
                 .withResponseType(Payment[].class)
                 .send();

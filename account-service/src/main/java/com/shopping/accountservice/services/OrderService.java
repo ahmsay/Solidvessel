@@ -30,7 +30,7 @@ public class OrderService implements IOrderService {
             return null;
         }
         Order[] orders = requestService.createRequest(orderServiceUrl)
-                .toPath("/orders/withIds")
+                .toPath("/orders/filter")
                 .withQueryParameter("orderIds", String.join(",", customer.getOrderIds()))
                 .withResponseType(Order[].class)
                 .send();

@@ -30,7 +30,7 @@ public class ProductRestController {
         return productService.getProductById(id);
     }
 
-    @GetMapping("/withIds")
+    @GetMapping("/filter")
     public List<Product> getProductsByIds(@RequestParam("productIds") final List<String> productIds) {
         return productService.getProductsByIds(productIds);
     }

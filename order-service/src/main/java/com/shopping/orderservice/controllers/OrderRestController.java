@@ -34,7 +34,7 @@ public class OrderRestController {
         return orderService.getOrderById(id);
     }
 
-    @GetMapping("/withIds")
+    @GetMapping("/filter")
     public List<Order> getOrdersByIds(@RequestParam("orderIds") final List<String> orderIds) {
         return orderService.getOrdersByIds(orderIds);
     }
