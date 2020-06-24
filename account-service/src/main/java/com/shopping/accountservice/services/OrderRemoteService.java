@@ -6,6 +6,7 @@ import com.shopping.accountservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -28,9 +29,11 @@ public class OrderRemoteService implements IOrderRemoteService {
         if (customer == null) {
             return null;
         }
-        return requestService.createRequest()
-                .toUrl(orderServiceUrl + "/orders/withIds/")
-                .withQueryParam("orderIds", String.join(",", customer.getOrderIds()))
+        Order[] orders = requestService.createRequest(orderServiceUrl)
+                .toPath("/orders/withIds")
+                .withQueryParameter("orderIds", String.join(",", customer.getOrderIds()))
+                .withResponseType(Order[].class)
                 .send();
+        return Arrays.asList(orders);
     }
 }
