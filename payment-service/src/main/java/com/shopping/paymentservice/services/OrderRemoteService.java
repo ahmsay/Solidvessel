@@ -26,8 +26,9 @@ public class OrderRemoteService implements IOrderRemoteService {
         if (payment == null) {
             return null;
         }
-        return requestService.createRequest()
-                .toUrl(orderServiceUrl + "/orders/" + payment.getOrderId())
+        return requestService.createRequest(orderServiceUrl)
+                .toPath("/orders/" + payment.getOrderId())
+                .withResponseType(Order.class)
                 .send();
     }
 }

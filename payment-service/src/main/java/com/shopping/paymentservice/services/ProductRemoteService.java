@@ -6,6 +6,7 @@ import com.shopping.paymentservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -28,9 +29,11 @@ public class ProductRemoteService implements IProductRemoteService {
         if (payment == null) {
             return null;
         }
-        return requestService.createRequest()
-                .toUrl(inventoryServiceUrl + "/products/withIds/")
-                .withQueryParam("productIds", String.join(",", payment.getProductIds()))
+        Product[] products = requestService.createRequest(inventoryServiceUrl)
+                .toPath("/products/withIds")
+                .withQueryParameter("productIds", String.join(",", payment.getProductIds()))
+                .withResponseType(Product[].class)
                 .send();
+        return Arrays.asList(products);
     }
 }
