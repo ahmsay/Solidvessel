@@ -26,8 +26,9 @@ public class PaymentRemoteService implements IPaymentRemoteService {
         if (product == null) {
             return null;
         }
-        return requestService.createRequest()
-                .toUrl(paymentServiceUrl + "/payments/" + product.getPaymentId())
+        return requestService.createRequest(paymentServiceUrl)
+                .toPath("/payments/" + product.getPaymentId())
+                .withResponseType(Payment.class)
                 .send();
     }
 }
