@@ -1,8 +1,6 @@
 package com.shopping.orderservice.remote;
 
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,18 +18,17 @@ public class AsyncRequestService implements IAsyncRequestService {
     }
 
     @Override
-    public IAsyncRequest createRequest() {
-        return new AsyncRequest(this);
+    public IAsyncRequest createRequest(final String baseUrl) {
+        return new AsyncRequest(this, baseUrl);
     }
 
     @Override
     public <T> T sendRequest(final IAsyncRequest request) {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getUrl());
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getBaseUrl() + request.getPath());
         for (Map.Entry<String, Object[]> entry : request.getQueryParameters().entrySet()) {
             builder.queryParam(entry.getKey(), entry.getValue());
         }
         URI uri = builder.build().encode().toUri();
-        ResponseEntity<T> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
-        return response.getBody();
+        return (T) restTemplate.exchange(uri, HttpMethod.GET, null, request.getResponseType()).getBody();
     }
 }

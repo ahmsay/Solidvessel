@@ -4,13 +4,19 @@ import java.util.Map;
 
 public interface IAsyncRequest {
 
-    String getUrl();
+    String getBaseUrl();
+
+    String getPath();
 
     Map<String, Object[]> getQueryParameters();
 
-    IAsyncRequest toUrl(String url);
+    Class<?> getResponseType();
 
-    IAsyncRequest withQueryParam(String paramName, Object... values);
+    IAsyncRequest toPath(String path);
+
+    IAsyncRequest withQueryParameter(String parameterName, Object... parameterValues);
+
+    IAsyncRequest withResponseType(Class<?> responseType);
 
     <T> T send();
 }

@@ -7,18 +7,27 @@ public class AsyncRequest implements IAsyncRequest {
 
     private IAsyncRequestService requestService;
 
-    private String url;
+    private String baseUrl;
+    private String path;
     private Map<String, Object[]> queryParameters;
+    private Class<?> responseType;
 
-    public AsyncRequest(final IAsyncRequestService requestService) {
+    public AsyncRequest(final IAsyncRequestService requestService, final String baseUrl) {
         this.requestService = requestService;
-        url = "";
+        this.baseUrl = baseUrl;
+        path = "";
         queryParameters = new HashMap<>();
+        responseType = String.class;
     }
 
     @Override
-    public String getUrl() {
-        return url;
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    @Override
+    public String getPath() {
+        return path;
     }
 
     @Override
@@ -27,14 +36,23 @@ public class AsyncRequest implements IAsyncRequest {
     }
 
     @Override
-    public AsyncRequest toUrl(final String url) {
-        this.url = url;
+    public Class<?> getResponseType() { return responseType; }
+
+    @Override
+    public AsyncRequest toPath(final String path) {
+        this.path = path;
         return this;
     }
 
     @Override
-    public IAsyncRequest withQueryParam(final String parameterName, final Object... parameterValues) {
+    public IAsyncRequest withQueryParameter(final String parameterName, final Object... parameterValues) {
         this.queryParameters.put(parameterName, parameterValues);
+        return this;
+    }
+
+    @Override
+    public IAsyncRequest withResponseType(final Class<?> responseType) {
+        this.responseType = responseType;
         return this;
     }
 

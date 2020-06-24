@@ -2,7 +2,7 @@ package com.shopping.paymentservice.remote;
 
 public interface IAsyncRequestService {
 
-    IAsyncRequest createRequest();
+    IAsyncRequest createRequest(String baseUrl);
 
     <T> T sendRequest(IAsyncRequest request);
 }
