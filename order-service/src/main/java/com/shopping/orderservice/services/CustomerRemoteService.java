@@ -26,8 +26,9 @@ public class CustomerRemoteService implements ICustomerRemoteService {
         if (order == null) {
             return null;
         }
-        return requestService.createRequest()
-                .toUrl(accountServiceUrl + "/customers/" + order.getCustomerId())
+        return requestService.createRequest(accountServiceUrl)
+                .toPath("/customers/" + order.getCustomerId())
+                .withResponseType(Customer.class)
                 .send();
     }
 }
