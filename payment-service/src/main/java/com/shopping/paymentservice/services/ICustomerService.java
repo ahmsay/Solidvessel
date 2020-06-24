@@ -2,7 +2,7 @@ package com.shopping.paymentservice.services;
 
 import com.shopping.paymentservice.entity.Customer;
 
-public interface ICustomerRemoteService {
+public interface ICustomerService {
 
     Customer getCustomerOfPayment(String paymentId);
 }

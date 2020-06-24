@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerRemoteService implements ICustomerRemoteService {
+public class CustomerService implements ICustomerService {
 
     @Value("${accountServiceUrl}")
     private String accountServiceUrl;
@@ -15,7 +15,7 @@ public class CustomerRemoteService implements ICustomerRemoteService {
     private IPaymentService paymentService;
     private IAsyncRequestService requestService;
 
-    public CustomerRemoteService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
+    public CustomerService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
         this.paymentService = paymentService;
         this.requestService = requestService;
     }

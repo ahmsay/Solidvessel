@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class ProductRemoteService implements IProductRemoteService {
+public class ProductService implements IProductService {
 
     @Value("${inventoryServiceUrl}")
     private String inventoryServiceUrl;
@@ -18,7 +18,7 @@ public class ProductRemoteService implements IProductRemoteService {
     private IPaymentService paymentService;
     private IAsyncRequestService requestService;
 
-    public ProductRemoteService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
+    public ProductService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
         this.paymentService = paymentService;
         this.requestService = requestService;
     }

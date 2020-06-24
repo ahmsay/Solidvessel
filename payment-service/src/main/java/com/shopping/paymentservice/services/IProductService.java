@@ -4,7 +4,7 @@ import com.shopping.paymentservice.entity.Product;
 
 import java.util.List;
 
-public interface IProductRemoteService {
+public interface IProductService {
 
     List<Product> getProductsOfPayment(String paymentId);
 }

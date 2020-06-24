@@ -3,9 +3,9 @@ package com.shopping.orderservice.controllers;
 import com.shopping.orderservice.entity.Customer;
 import com.shopping.orderservice.entity.Order;
 import com.shopping.orderservice.entity.Payment;
-import com.shopping.orderservice.services.ICustomerRemoteService;
+import com.shopping.orderservice.services.ICustomerService;
 import com.shopping.orderservice.services.IOrderService;
-import com.shopping.orderservice.services.IPaymentRemoteService;
+import com.shopping.orderservice.services.IPaymentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,13 +15,13 @@ import java.util.List;
 public class OrderRestController {
 
     private IOrderService orderService;
-    private ICustomerRemoteService customerRemoteService;
-    private IPaymentRemoteService paymentRemoteService;
+    private ICustomerService customerService;
+    private IPaymentService paymentService;
 
-    public OrderRestController(final IOrderService orderService, final ICustomerRemoteService customerRemoteService, final IPaymentRemoteService paymentRemoteService) {
+    public OrderRestController(final IOrderService orderService, final ICustomerService customerService, final IPaymentService paymentService) {
         this.orderService = orderService;
-        this.customerRemoteService = customerRemoteService;
-        this.paymentRemoteService = paymentRemoteService;
+        this.customerService = customerService;
+        this.paymentService = paymentService;
     }
 
     @GetMapping("/")
@@ -41,11 +41,11 @@ public class OrderRestController {
 
     @GetMapping("/{orderId}/customer")
     public Customer getCustomerOfOrder(@PathVariable("orderId") final String id) {
-        return customerRemoteService.getCustomerOfOrder(id);
+        return customerService.getCustomerOfOrder(id);
     }
 
     @GetMapping("/{orderId}/payment")
     public Payment getPaymentOfOrder(@PathVariable("orderId") final String id) {
-        return paymentRemoteService.getPaymentOfOrder(id);
+        return paymentService.getPaymentOfOrder(id);
     }
 }

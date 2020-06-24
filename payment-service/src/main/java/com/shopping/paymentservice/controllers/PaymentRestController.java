@@ -4,10 +4,10 @@ import com.shopping.paymentservice.entity.Customer;
 import com.shopping.paymentservice.entity.Order;
 import com.shopping.paymentservice.entity.Payment;
 import com.shopping.paymentservice.entity.Product;
-import com.shopping.paymentservice.services.ICustomerRemoteService;
-import com.shopping.paymentservice.services.IOrderRemoteService;
+import com.shopping.paymentservice.services.ICustomerService;
+import com.shopping.paymentservice.services.IOrderService;
 import com.shopping.paymentservice.services.IPaymentService;
-import com.shopping.paymentservice.services.IProductRemoteService;
+import com.shopping.paymentservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,15 +17,15 @@ import java.util.List;
 public class PaymentRestController {
 
     private IPaymentService paymentService;
-    private IProductRemoteService productRemoteService;
-    private ICustomerRemoteService customerRemoteService;
-    private IOrderRemoteService orderRemoteService;
+    private IProductService productService;
+    private ICustomerService customerService;
+    private IOrderService orderService;
 
-    public PaymentRestController(final IPaymentService paymentService, final IProductRemoteService productRemoteService, final ICustomerRemoteService customerRemoteService, final IOrderRemoteService orderRemoteService) {
+    public PaymentRestController(final IPaymentService paymentService, final IProductService productService, final ICustomerService customerService, final IOrderService orderService) {
         this.paymentService = paymentService;
-        this.productRemoteService = productRemoteService;
-        this.customerRemoteService = customerRemoteService;
-        this.orderRemoteService = orderRemoteService;
+        this.productService = productService;
+        this.customerService = customerService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/")
@@ -45,16 +45,16 @@ public class PaymentRestController {
 
     @GetMapping("/{paymentId}/products")
     public List<Product> getProductsOfPayment(@PathVariable("paymentId") final String id) {
-        return productRemoteService.getProductsOfPayment(id);
+        return productService.getProductsOfPayment(id);
     }
 
     @GetMapping("/{paymentId}/customer")
     public Customer getCustomerOfPayment(@PathVariable("paymentId") final String id) {
-        return customerRemoteService.getCustomerOfPayment(id);
+        return customerService.getCustomerOfPayment(id);
     }
 
     @GetMapping("/{paymentId}/order")
     public Order getOrderOfPayment(@PathVariable("paymentId") final String id) {
-        return orderRemoteService.getOrderOfPayment(id);
+        return orderService.getOrderOfPayment(id);
     }
 }

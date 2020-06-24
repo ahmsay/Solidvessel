@@ -4,8 +4,8 @@ import com.shopping.accountservice.entity.Customer;
 import com.shopping.accountservice.entity.Order;
 import com.shopping.accountservice.entity.Payment;
 import com.shopping.accountservice.services.ICustomerService;
-import com.shopping.accountservice.services.IOrderRemoteService;
-import com.shopping.accountservice.services.IPaymentRemoteService;
+import com.shopping.accountservice.services.IOrderService;
+import com.shopping.accountservice.services.IPaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +18,13 @@ import java.util.List;
 public class CustomerRestController {
 
     private final ICustomerService customerService;
-    private final IPaymentRemoteService paymentRemoteService;
-    private final IOrderRemoteService orderRemoteService;
+    private final IPaymentService paymentService;
+    private final IOrderService orderService;
 
-    public CustomerRestController(final ICustomerService customerService, final IPaymentRemoteService paymentRemoteService, final IOrderRemoteService orderRemoteService) {
+    public CustomerRestController(final ICustomerService customerService, final IPaymentService paymentService, final IOrderService orderService) {
         this.customerService = customerService;
-        this.paymentRemoteService = paymentRemoteService;
-        this.orderRemoteService = orderRemoteService;
+        this.paymentService = paymentService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/")
@@ -39,11 +39,11 @@ public class CustomerRestController {
 
     @GetMapping("/{customerId}/payments")
     public List<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final String id) {
-        return paymentRemoteService.getPaymentsOfCustomer(id);
+        return paymentService.getPaymentsOfCustomer(id);
     }
 
     @GetMapping("/{customerId}/orders")
     public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final String id) {
-        return orderRemoteService.getOrdersOfCustomer(id);
+        return orderService.getOrdersOfCustomer(id);
     }
 }

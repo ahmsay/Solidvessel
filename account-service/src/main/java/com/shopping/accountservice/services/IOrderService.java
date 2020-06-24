@@ -4,7 +4,7 @@ import com.shopping.accountservice.entity.Order;
 
 import java.util.List;
 
-public interface IOrderRemoteService {
+public interface IOrderService {
 
     List<Order> getOrdersOfCustomer(String customerId);
 }

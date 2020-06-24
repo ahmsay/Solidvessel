@@ -1,7 +1,7 @@
 package com.shopping.accountservice.services;
 
 import com.shopping.accountservice.entity.Customer;
-import com.shopping.accountservice.entity.Payment;
+import com.shopping.accountservice.entity.Order;
 import com.shopping.accountservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -10,30 +10,30 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class PaymentRemoteService implements IPaymentRemoteService {
+public class OrderService implements IOrderService {
 
-    @Value("${paymentServiceUrl}")
-    private String paymentServiceUrl;
+    @Value("${orderServiceUrl}")
+    private String orderServiceUrl;
 
     private ICustomerService customerService;
     private IAsyncRequestService requestService;
 
-    public PaymentRemoteService(final ICustomerService customerService, final IAsyncRequestService requestService) {
+    public OrderService(final ICustomerService customerService, final IAsyncRequestService requestService) {
         this.customerService = customerService;
         this.requestService = requestService;
     }
 
     @Override
-    public List<Payment> getPaymentsOfCustomer(final String customerId) {
+    public List<Order> getOrdersOfCustomer(final String customerId) {
         Customer customer = customerService.getCustomerById(customerId);
         if (customer == null) {
             return null;
         }
-        Payment[] payments = requestService.createRequest(paymentServiceUrl)
-                .toPath("/payments/withIds/")
-                .withQueryParameter("paymentIds", String.join(",", customer.getPaymentIds()))
-                .withResponseType(Payment[].class)
+        Order[] orders = requestService.createRequest(orderServiceUrl)
+                .toPath("/orders/withIds")
+                .withQueryParameter("orderIds", String.join(",", customer.getOrderIds()))
+                .withResponseType(Order[].class)
                 .send();
-        return Arrays.asList(payments);
+        return Arrays.asList(orders);
     }
 }
