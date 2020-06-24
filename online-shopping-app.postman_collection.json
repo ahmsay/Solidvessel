@@ -246,14 +246,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/products/withIds/?productIds=1,4,8",
+							"raw": "localhost:8082/products/filter/?productIds=1,4,8",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"products",
-								"withIds",
+								"filter",
 								""
 							],
 							"query": [
@@ -267,7 +267,7 @@
 					"response": []
 				},
 				{
-					"name": "get the payment of product",
+					"name": "get payment of product",
 					"event": [
 						{
 							"listen": "test",
@@ -373,7 +373,32 @@
 					"response": []
 				},
 				{
-					"name": "get the customer of order",
+					"name": "get orders by ids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/orders/filter?orderIds=1,2",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "orderIds",
+									"value": "1,2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get customer of order",
 					"event": [
 						{
 							"listen": "test",
@@ -407,7 +432,7 @@
 					"response": []
 				},
 				{
-					"name": "get the payment of order",
+					"name": "get payment of order",
 					"event": [
 						{
 							"listen": "test",
@@ -532,14 +557,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8084/payments/withIds/?paymentIds=1,2",
+							"raw": "localhost:8084/payments/filter/?paymentIds=1,2",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
 								"payments",
-								"withIds",
+								"filter",
 								""
 							],
 							"query": [
@@ -587,7 +612,7 @@
 					"response": []
 				},
 				{
-					"name": "get the customer of payment",
+					"name": "get customer of payment",
 					"event": [
 						{
 							"listen": "test",
@@ -621,7 +646,7 @@
 					"response": []
 				},
 				{
-					"name": "get the order of payment",
+					"name": "get order of payment",
 					"event": [
 						{
 							"listen": "test",
