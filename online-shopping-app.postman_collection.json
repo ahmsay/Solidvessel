@@ -374,6 +374,20 @@
 				},
 				{
 					"name": "get orders by ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b28cd14b-a860-48fe-bf3d-a8ece696af20",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
