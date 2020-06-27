@@ -2,32 +2,32 @@ version: '3'
 
 services:
   discovery-server:
-    image: discovery-server-img
+    image: ahmsay/online-shopping-application:discovery-server
     build: ./discovery-server
     ports:
       - 8761:8761
   config-server:
-    image: config-server-img
+    image: ahmsay/online-shopping-application:config-server
     build: ./config-server
     ports:
       - 8888:8888
   account-service:
-    image: account-service-img
+    image: ahmsay/online-shopping-application:account-service
     build: ./account-service
     ports:
       - 8081:8081
   inventory-service:
-    image: inventory-service-img
+    image: ahmsay/online-shopping-application:inventory-service
     build: ./inventory-service
     ports:
       - 8082:8082
   order-service:
-    image: order-service-img
+    image: ahmsay/online-shopping-application:order-service
     build: ./order-service
     ports:
       - 8083:8083
   payment-service:
-    image: payment-service-img
+    image: ahmsay/online-shopping-application:payment-service
     build: ./payment-service
     ports:
       - 8084:8084
