@@ -3,26 +3,14 @@ This is an online shopping application designed with microservices architecture.
 Docker Repository: https://hub.docker.com/repository/docker/ahmsay/online-shopping-application
 
 ## To Run
-### Option 1 (Use the images directly)
+### Option 1 (Run with docker)
 #### Prerequisites
 - docker
 - docker-compose
 #### Steps
-1. Pull the images with `docker pull --all-tags ahmsay/online-shopping-application` command.
-2. Use the <b>docker-compose.yml</b> file to start the application.
+1. Use the <b>docker-compose.yml</b> file to start the application with `docker-compose up` command.
 
-### Option 2 (Build the images yourself)
-#### Prerequisites
-- java 11
-- maven
-- docker
-- docker-compose
-#### Steps
-1. Clone this repository.
-2. Go to the directory of each service and run `mvn package` command to build the jar files.
-3. Run `docker-compose up` command from the main directory.
-
-### Option 3 (Run without docker)
+### Option 2 (Run without docker)
 #### Prerequisites
 - java 11
 - maven
