@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderRepository implements IOrderRepository {
@@ -29,5 +30,12 @@ public class OrderRepository implements IOrderRepository {
                 .filter(order -> order.getId().equals(id))
                 .findAny()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Order> getOrdersOfCustomer(final String customerId) {
+        return orders.stream()
+                .filter(order -> order.getCustomerId().equals(customerId))
+                .collect(Collectors.toList());
     }
 }

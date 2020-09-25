@@ -34,9 +34,9 @@ public class OrderRestController {
         return orderService.getOrderById(id);
     }
 
-    @GetMapping("/filter")
-    public List<Order> getOrdersByIds(@RequestParam("orderIds") final List<String> orderIds) {
-        return orderService.getOrdersByIds(orderIds);
+    @GetMapping("/ofCustomer/{customerId}")
+    public List<Order> getOrdersOfCustomer(@RequestParam("customerId") final String customerId) {
+        return orderService.getOrdersOfCustomer(customerId);
     }
 
     @GetMapping("/{orderId}/customer")

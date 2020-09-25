@@ -10,5 +10,5 @@ public interface IProductService {
 
     Product getProductById(String id);
 
-    List<Product> getProductsByIds(List<String> productIds);
+    List<Product> getProductsOfPayment(String paymentId);
 }

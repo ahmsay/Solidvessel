@@ -5,7 +5,6 @@ import com.shopping.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService implements IProductService {
@@ -27,7 +26,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getProductsByIds(final List<String> productIds) {
-        return productIds.stream().map(this::getProductById).collect(Collectors.toList());
+    public List<Product> getProductsOfPayment(final String paymentId) {
+        return productRepository.getProductsOfPayment(paymentId);
     }
 }

@@ -9,4 +9,6 @@ public interface IProductRepository {
     List<Product> getAllProducts();
 
     Product getProductById(String id);
+
+    List<Product> getProductsOfPayment(String paymentId);
 }

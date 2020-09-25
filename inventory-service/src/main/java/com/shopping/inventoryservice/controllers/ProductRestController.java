@@ -30,9 +30,9 @@ public class ProductRestController {
         return productService.getProductById(id);
     }
 
-    @GetMapping("/filter")
-    public List<Product> getProductsByIds(@RequestParam("productIds") final List<String> productIds) {
-        return productService.getProductsByIds(productIds);
+    @GetMapping("/ofPayment/{paymentId}")
+    public List<Product> getProductsOfPayment(@RequestParam("paymentId") final String id) {
+        return productService.getProductsOfPayment(id);
     }
 
     @GetMapping("/{productId}/payment")

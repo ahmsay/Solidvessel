@@ -9,4 +9,6 @@ public interface IOrderRepository {
     List<Order> getAllOrders();
 
     Order getOrderById(String id);
+
+    List<Order> getOrdersOfCustomer(String customerId);
 }

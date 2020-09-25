@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PaymentRepository implements IPaymentRepository {
@@ -29,5 +30,12 @@ public class PaymentRepository implements IPaymentRepository {
                 .filter(payment -> payment.getId().equals(id))
                 .findAny()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Payment> getPaymentsOfCustomer(final String customerId) {
+        return payments.stream()
+                .filter(payment -> payment.getCustomerId().equals(customerId))
+                .collect(Collectors.toList());
     }
 }

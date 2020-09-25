@@ -10,5 +10,5 @@ public interface IPaymentService {
 
     Payment getPaymentById(String id);
 
-    List<Payment> getPaymentsByIds(List<String> paymentIds);
+    List<Payment> getPaymentsOfCustomer(String customerId);
 }

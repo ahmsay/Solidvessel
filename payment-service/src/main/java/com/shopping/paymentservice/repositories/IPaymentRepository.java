@@ -9,4 +9,6 @@ public interface IPaymentRepository {
     List<Payment> getAllPayments();
 
     Payment getPaymentById(String id);
+
+    List<Payment> getPaymentsOfCustomer(String CustomerId);
 }
