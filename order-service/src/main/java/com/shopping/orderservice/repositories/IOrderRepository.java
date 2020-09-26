@@ -1,14 +1,15 @@
 package com.shopping.orderservice.repositories;
 
 import com.shopping.orderservice.entity.Order;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IOrderRepository {
+public interface IOrderRepository extends CrudRepository<Order, Long> {
 
-    List<Order> getAllOrders();
+    List<Order> findAll();
 
-    Order getOrderById(long id);
+    Order findById(long id);
 
-    List<Order> getOrdersOfCustomer(long customerId);
+    List<Order> findByCustomerId(long customerId);
 }

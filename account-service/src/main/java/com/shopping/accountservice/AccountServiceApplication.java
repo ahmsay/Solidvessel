@@ -1,5 +1,8 @@
 package com.shopping.accountservice;
 
+import com.shopping.accountservice.entity.Customer;
+import com.shopping.accountservice.repositories.ICustomerRepository;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -15,6 +18,15 @@ public class AccountServiceApplication {
 	@LoadBalanced
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
+	}
+
+	@Bean
+	InitializingBean seedDatabase(ICustomerRepository customerRepository) {
+		return () -> {
+			customerRepository.save(new Customer("Zorkov"));
+			customerRepository.save(new Customer("Lorne"));
+			customerRepository.save(new Customer("Matthias"));
+		};
 	}
 
 	public static void main(String[] args) {

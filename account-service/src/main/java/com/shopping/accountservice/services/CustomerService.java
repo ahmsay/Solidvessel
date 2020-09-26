@@ -17,11 +17,11 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public List<Customer> getAllCustomers() {
-        return customerRepository.getAllCustomers();
+        return customerRepository.findAll();
     }
 
     @Override
     public Customer getCustomerById(final long id) {
-        return customerRepository.getCustomerById(id);
+        return customerRepository.findById(id);
     }
 }

@@ -1,14 +1,23 @@
 package com.shopping.paymentservice.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Payment {
 
+    @Id
+    @GeneratedValue
     private long id;
+
     private double totalCharge;
+
     private long customerId;
+
     private long orderId;
 
-    public Payment(final long id, final double totalCharge, final long customerId, final long orderId) {
-        this.id = id;
+    public Payment(final double totalCharge, final long customerId, final long orderId) {
         this.totalCharge = totalCharge;
         this.customerId = customerId;
         this.orderId = orderId;

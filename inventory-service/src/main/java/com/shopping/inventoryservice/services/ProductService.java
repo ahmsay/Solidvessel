@@ -17,16 +17,16 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+        return productRepository.findAll();
     }
 
     @Override
     public Product getProductById(final long id) {
-        return productRepository.getProductById(id);
+        return productRepository.findById(id);
     }
 
     @Override
     public List<Product> getProductsOfPayment(final long paymentId) {
-        return productRepository.getProductsOfPayment(paymentId);
+        return productRepository.findByPaymentId(paymentId);
     }
 }

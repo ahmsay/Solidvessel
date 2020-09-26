@@ -17,16 +17,16 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public List<Payment> getAllPayments() {
-        return paymentRepository.getAllPayments();
+        return paymentRepository.findAll();
     }
 
     @Override
     public Payment getPaymentById(final long id) {
-        return paymentRepository.getPaymentById(id);
+        return paymentRepository.findById(id);
     }
 
     @Override
     public List<Payment> getPaymentsOfCustomer(final long customerId) {
-        return paymentRepository.getPaymentsOfCustomer(customerId);
+        return paymentRepository.findByCustomerId(customerId);
     }
 }

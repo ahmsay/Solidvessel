@@ -1,12 +1,13 @@
 package com.shopping.accountservice.repositories;
 
 import com.shopping.accountservice.entity.Customer;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ICustomerRepository {
+public interface ICustomerRepository extends CrudRepository<Customer, Long> {
 
-    List<Customer> getAllCustomers();
+    List<Customer> findAll();
 
-    Customer getCustomerById(long id);
+    Customer findById(long id);
 }

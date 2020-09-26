@@ -1,15 +1,27 @@
 package com.shopping.inventoryservice.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue
     private long id;
+
     private String name;
+
     private double price;
+
     private String category;
+
     private long paymentId;
 
-    public Product(final long id, final String name, final double price, final String category, final long paymentId) {
-        this.id = id;
+    Product() { }
+
+    public Product(final String name, final double price, final String category, final long paymentId) {
         this.name = name;
         this.price = price;
         this.category = category;

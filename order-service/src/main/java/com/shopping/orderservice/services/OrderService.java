@@ -17,16 +17,16 @@ public class OrderService implements IOrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderRepository.getAllOrders();
+        return orderRepository.findAll();
     }
 
     @Override
     public Order getOrderById(final long id) {
-        return orderRepository.getOrderById(id);
+        return orderRepository.findById(id);
     }
 
     @Override
     public List<Order> getOrdersOfCustomer(final long customerId) {
-        return orderRepository.getOrdersOfCustomer(customerId);
+        return orderRepository.findByCustomerId(customerId);
     }
 }

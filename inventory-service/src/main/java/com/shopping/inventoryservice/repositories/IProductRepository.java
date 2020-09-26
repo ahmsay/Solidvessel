@@ -1,14 +1,15 @@
 package com.shopping.inventoryservice.repositories;
 
 import com.shopping.inventoryservice.entity.Product;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IProductRepository {
+public interface IProductRepository extends CrudRepository<Product, Long> {
 
-    List<Product> getAllProducts();
+    List<Product> findAll();
 
-    Product getProductById(long id);
+    Product findById(long id);
 
-    List<Product> getProductsOfPayment(long paymentId);
+    List<Product> findByPaymentId(long paymentId);
 }
