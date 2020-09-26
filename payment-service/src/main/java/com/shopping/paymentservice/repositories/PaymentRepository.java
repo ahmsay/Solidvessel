@@ -14,9 +14,9 @@ public class PaymentRepository implements IPaymentRepository {
 
     public PaymentRepository() {
         payments = new ArrayList<>();
-        payments.add(new Payment(1L, 10.5, 1L));
-        payments.add(new Payment(2L, 200, 2L));
-        payments.add(new Payment(3L, 999.99, 2L));
+        payments.add(new Payment(1L, 10.5, 1L, 1L));
+        payments.add(new Payment(2L, 200, 2L, 2L));
+        payments.add(new Payment(3L, 999.99, 2L, 3L));
     }
 
     @Override

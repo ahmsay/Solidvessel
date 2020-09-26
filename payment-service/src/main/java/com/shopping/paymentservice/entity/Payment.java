@@ -5,11 +5,13 @@ public class Payment {
     private long id;
     private double totalCharge;
     private long customerId;
+    private long orderId;
 
-    public Payment(final long id, final double totalCharge, final long customerId) {
+    public Payment(final long id, final double totalCharge, final long customerId, final long orderId) {
         this.id = id;
         this.totalCharge = totalCharge;
         this.customerId = customerId;
+        this.orderId = orderId;
     }
 
     public long getId() {
@@ -34,5 +36,13 @@ public class Payment {
 
     public void setCustomerId(final long customerId) {
         this.customerId = customerId;
+    }
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(final long orderId) {
+        this.orderId = orderId;
     }
 }
