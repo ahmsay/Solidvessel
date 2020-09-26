@@ -33,17 +33,17 @@ public class CustomerRestController {
     }
 
     @GetMapping("/{customerId}")
-    public Customer getCustomerById(@PathVariable("customerId") final String id) {
+    public Customer getCustomerById(@PathVariable("customerId") final long id) {
         return customerService.getCustomerById(id);
     }
 
     @GetMapping("/{customerId}/payments")
-    public List<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final String id) {
+    public List<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final long id) {
         return paymentService.getPaymentsOfCustomer(id);
     }
 
     @GetMapping("/{customerId}/orders")
-    public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final String id) {
+    public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final long id) {
         return orderService.getOrdersOfCustomer(id);
     }
 }

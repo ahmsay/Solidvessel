@@ -2,25 +2,25 @@ package com.shopping.paymentservice.entity;
 
 public class Product {
 
-    private String id;
+    private long id;
     private String name;
     private double price;
     private String category;
 
     public Product() {}
 
-    public Product(final String id, final String name, final double price, final String category) {
+    public Product(final long id, final String name, final double price, final String category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 

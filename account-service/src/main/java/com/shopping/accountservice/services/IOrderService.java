@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IOrderService {
 
-    List<Order> getOrdersOfCustomer(String customerId);
+    List<Order> getOrdersOfCustomer(long customerId);
 }

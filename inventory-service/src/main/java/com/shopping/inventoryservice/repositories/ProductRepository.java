@@ -14,14 +14,14 @@ public class ProductRepository implements IProductRepository {
 
     public ProductRepository() {
         products = new ArrayList<>();
-        products.add(new Product("1", "Clipper", 2.5, "Tool", "1"));
-        products.add(new Product("2", "Laptop", 3, "Electronics", "1"));
-        products.add(new Product("3", "Phone", 5, "Electronics", "1"));
-        products.add(new Product("4", "Car", 200, "Vehicle", "2"));
-        products.add(new Product("5", "Spaceship", 500, "Vehicle", "3"));
-        products.add(new Product("6", "Apple", 499.99,"Fruit", "3"));
-        products.add(new Product("7", "Ice Pick", 53, "Tool", "-"));
-        products.add(new Product("8", "Desk", 25, "Furniture", "-"));
+        products.add(new Product(1L, "Clipper", 2.5, "Tool", 1L));
+        products.add(new Product(2L, "Laptop", 3, "Electronics", 1L));
+        products.add(new Product(3L, "Phone", 5, "Electronics", 1L));
+        products.add(new Product(4L, "Car", 200, "Vehicle", 2L));
+        products.add(new Product(5L, "Spaceship", 500, "Vehicle", 3L));
+        products.add(new Product(6L, "Apple", 499.99,"Fruit", 3L));
+        products.add(new Product(7L, "Ice Pick", 53, "Tool", -1));
+        products.add(new Product(8L, "Desk", 25, "Furniture", -1));
     }
 
     @Override
@@ -30,17 +30,17 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product getProductById(final String id) {
+    public Product getProductById(final long id) {
         return products.stream()
-                .filter(product -> product.getId().equals(id))
+                .filter(product -> product.getId() == id)
                 .findAny()
                 .orElse(null);
     }
 
     @Override
-    public List<Product> getProductsOfPayment(final String paymentId) {
+    public List<Product> getProductsOfPayment(final long paymentId) {
         return products.stream()
-                .filter(product -> product.getPaymentId().equals(paymentId))
+                .filter(product -> product.getPaymentId() == paymentId)
                 .collect(Collectors.toList());
     }
 }

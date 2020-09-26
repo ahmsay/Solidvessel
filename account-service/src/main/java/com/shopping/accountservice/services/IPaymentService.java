@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IPaymentService {
 
-    List<Payment> getPaymentsOfCustomer(String customerId);
+    List<Payment> getPaymentsOfCustomer(long customerId);
 }

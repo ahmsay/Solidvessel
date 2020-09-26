@@ -26,17 +26,17 @@ public class ProductRestController {
     }
 
     @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable("productId") final String id) {
+    public Product getProductById(@PathVariable("productId") final long id) {
         return productService.getProductById(id);
     }
 
     @GetMapping("/ofPayment/{paymentId}")
-    public List<Product> getProductsOfPayment(@RequestParam("paymentId") final String id) {
+    public List<Product> getProductsOfPayment(@RequestParam("paymentId") final long id) {
         return productService.getProductsOfPayment(id);
     }
 
     @GetMapping("/{productId}/payment")
-    public Payment getPaymentOfProduct(@PathVariable("productId") final String id) {
+    public Payment getPaymentOfProduct(@PathVariable("productId") final long id) {
         return paymentService.getPaymentOfProduct(id);
     }
 }

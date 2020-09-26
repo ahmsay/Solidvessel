@@ -13,9 +13,9 @@ public class CustomerRepository implements ICustomerRepository {
 
     public CustomerRepository() {
         customers = new ArrayList<>();
-        customers.add(new Customer("1", "Zorkov"));
-        customers.add(new Customer("2", "Lorne"));
-        customers.add(new Customer("3", "Matthias"));
+        customers.add(new Customer(1L, "Zorkov"));
+        customers.add(new Customer(2L, "Lorne"));
+        customers.add(new Customer(3L, "Matthias"));
     }
 
     @Override
@@ -24,9 +24,9 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public Customer getCustomerById(final String id) {
+    public Customer getCustomerById(final long id) {
         return customers.stream()
-                .filter(customer -> customer.getId().equals(id))
+                .filter(customer -> customer.getId() == id)
                 .findAny()
                 .orElse(null);
     }

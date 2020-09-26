@@ -2,21 +2,21 @@ package com.shopping.paymentservice.entity;
 
 public class Payment {
 
-    private String id;
+    private long id;
     private double totalCharge;
-    private String customerId;
+    private long customerId;
 
-    public Payment(final String id, final double totalCharge, final String customerId) {
+    public Payment(final long id, final double totalCharge, final long customerId) {
         this.id = id;
         this.totalCharge = totalCharge;
         this.customerId = customerId;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -28,11 +28,11 @@ public class Payment {
         this.totalCharge = totalCharge;
     }
 
-    public String getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(final String customerId) {
+    public void setCustomerId(final long customerId) {
         this.customerId = customerId;
     }
 }

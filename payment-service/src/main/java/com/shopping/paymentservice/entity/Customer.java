@@ -2,21 +2,21 @@ package com.shopping.paymentservice.entity;
 
 public class Customer {
 
-    private String id;
+    private long id;
     private String name;
 
     public Customer() {}
 
-    public Customer(final String id, final String name) {
+    public Customer(final long id, final String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 

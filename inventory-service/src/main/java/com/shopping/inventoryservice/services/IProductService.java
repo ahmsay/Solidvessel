@@ -8,7 +8,7 @@ public interface IProductService {
 
     List<Product> getAllProducts();
 
-    Product getProductById(String id);
+    Product getProductById(long id);
 
-    List<Product> getProductsOfPayment(String paymentId);
+    List<Product> getProductsOfPayment(long paymentId);
 }

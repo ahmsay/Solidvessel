@@ -8,5 +8,5 @@ public interface ICustomerService {
 
     List<Customer> getAllCustomers();
 
-    Customer getCustomerById(String id);
+    Customer getCustomerById(long id);
 }

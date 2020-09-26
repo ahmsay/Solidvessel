@@ -21,7 +21,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Customer getCustomerOfOrder(final String orderId) {
+    public Customer getCustomerOfOrder(final long orderId) {
         Order order = orderService.getOrderById(orderId);
         if (order == null) {
             return null;

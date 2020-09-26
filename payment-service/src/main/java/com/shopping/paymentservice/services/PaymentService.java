@@ -21,12 +21,12 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment getPaymentById(final String id) {
+    public Payment getPaymentById(final long id) {
         return paymentRepository.getPaymentById(id);
     }
 
     @Override
-    public List<Payment> getPaymentsOfCustomer(final String customerId) {
+    public List<Payment> getPaymentsOfCustomer(final long customerId) {
         return paymentRepository.getPaymentsOfCustomer(customerId);
     }
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IProductService {
 
-    List<Product> getProductsOfPayment(String paymentId);
+    List<Product> getProductsOfPayment(long paymentId);
 }

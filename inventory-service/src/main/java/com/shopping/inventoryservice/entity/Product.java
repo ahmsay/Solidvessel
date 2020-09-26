@@ -2,13 +2,13 @@ package com.shopping.inventoryservice.entity;
 
 public class Product {
 
-    private String id;
+    private long id;
     private String name;
     private double price;
     private String category;
-    private String paymentId;
+    private long paymentId;
 
-    public Product(final String id, final String name, final double price, final String category, final String paymentId) {
+    public Product(final long id, final String name, final double price, final String category, final long paymentId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -16,11 +16,11 @@ public class Product {
         this.paymentId = paymentId;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -48,11 +48,11 @@ public class Product {
         this.category = category;
     }
 
-    public String getPaymentId() {
+    public long getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(final String paymentId) {
+    public void setPaymentId(final long paymentId) {
         this.paymentId = paymentId;
     }
 }

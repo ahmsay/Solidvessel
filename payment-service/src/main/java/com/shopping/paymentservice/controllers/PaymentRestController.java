@@ -30,22 +30,22 @@ public class PaymentRestController {
     }
 
     @GetMapping("/{paymentId}")
-    public Payment getPaymentById(@PathVariable("paymentId") final String id) {
+    public Payment getPaymentById(@PathVariable("paymentId") final long id) {
         return paymentService.getPaymentById(id);
     }
 
     @GetMapping("/ofCustomer/{customerId}")
-    public List<Payment> getPaymentsOfCustomer(@RequestParam("customerId") final String customerId) {
+    public List<Payment> getPaymentsOfCustomer(@RequestParam("customerId") final long customerId) {
         return paymentService.getPaymentsOfCustomer(customerId);
     }
 
     @GetMapping("/{paymentId}/products")
-    public List<Product> getProductsOfPayment(@PathVariable("paymentId") final String id) {
+    public List<Product> getProductsOfPayment(@PathVariable("paymentId") final long id) {
         return productService.getProductsOfPayment(id);
     }
 
     @GetMapping("/{paymentId}/customer")
-    public Customer getCustomerOfPayment(@PathVariable("paymentId") final String id) {
+    public Customer getCustomerOfPayment(@PathVariable("paymentId") final long id) {
         return customerService.getCustomerOfPayment(id);
     }
 }

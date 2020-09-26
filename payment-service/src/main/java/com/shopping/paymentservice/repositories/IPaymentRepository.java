@@ -8,7 +8,7 @@ public interface IPaymentRepository {
 
     List<Payment> getAllPayments();
 
-    Payment getPaymentById(String id);
+    Payment getPaymentById(long id);
 
-    List<Payment> getPaymentsOfCustomer(String CustomerId);
+    List<Payment> getPaymentsOfCustomer(long CustomerId);
 }

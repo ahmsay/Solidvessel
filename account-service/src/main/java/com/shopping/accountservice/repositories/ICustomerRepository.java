@@ -8,5 +8,5 @@ public interface ICustomerRepository {
 
     List<Customer> getAllCustomers();
 
-    Customer getCustomerById(String id);
+    Customer getCustomerById(long id);
 }

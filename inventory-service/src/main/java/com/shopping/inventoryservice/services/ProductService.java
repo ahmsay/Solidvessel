@@ -21,12 +21,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product getProductById(final String id) {
+    public Product getProductById(final long id) {
         return productRepository.getProductById(id);
     }
 
     @Override
-    public List<Product> getProductsOfPayment(final String paymentId) {
+    public List<Product> getProductsOfPayment(final long paymentId) {
         return productRepository.getProductsOfPayment(paymentId);
     }
 }

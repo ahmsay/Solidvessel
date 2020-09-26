@@ -21,12 +21,12 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order getOrderById(final String id) {
+    public Order getOrderById(final long id) {
         return orderRepository.getOrderById(id);
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(final String customerId) {
+    public List<Order> getOrdersOfCustomer(final long customerId) {
         return orderRepository.getOrdersOfCustomer(customerId);
     }
 }

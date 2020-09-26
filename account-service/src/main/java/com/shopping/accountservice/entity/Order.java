@@ -2,23 +2,23 @@ package com.shopping.accountservice.entity;
 
 public class Order {
 
-    private String id;
+    private long id;
     private String status;
-    private String paymentId;
+    private long paymentId;
 
     public Order() {}
 
-    public Order(final String id, final String status, final String paymentId) {
+    public Order(final long id, final String status, final long paymentId) {
         this.id = id;
         this.status = status;
         this.paymentId = paymentId;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -30,11 +30,11 @@ public class Order {
         this.status = status;
     }
 
-    public String getPaymentId() {
+    public long getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(final String paymentId) {
+    public void setPaymentId(final long paymentId) {
         this.paymentId = paymentId;
     }
 }

@@ -21,7 +21,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment getPaymentOfProduct(final String productId) {
+    public Payment getPaymentOfProduct(final long productId) {
         Product product = productService.getProductById(productId);
         if (product == null) {
             return null;

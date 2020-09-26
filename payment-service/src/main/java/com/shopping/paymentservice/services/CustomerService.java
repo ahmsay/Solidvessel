@@ -21,7 +21,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Customer getCustomerOfPayment(final String paymentId) {
+    public Customer getCustomerOfPayment(final long paymentId) {
         Payment payment = paymentService.getPaymentById(paymentId);
         if (payment == null) {
             return null;

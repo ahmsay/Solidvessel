@@ -21,7 +21,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(final String customerId) {
+    public List<Order> getOrdersOfCustomer(final long customerId) {
         Order[] orders = requestService.createRequest(orderServiceUrl)
                 .toPath("/orders/ofCustomer")
                 .withQueryParameter("customerId", customerId)

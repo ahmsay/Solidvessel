@@ -14,9 +14,9 @@ public class PaymentRepository implements IPaymentRepository {
 
     public PaymentRepository() {
         payments = new ArrayList<>();
-        payments.add(new Payment("1", 10.5, "1"));
-        payments.add(new Payment("2", 200, "2"));
-        payments.add(new Payment("3", 999.99, "2"));
+        payments.add(new Payment(1L, 10.5, 1L));
+        payments.add(new Payment(2L, 200, 2L));
+        payments.add(new Payment(3L, 999.99, 2L));
     }
 
     @Override
@@ -25,17 +25,17 @@ public class PaymentRepository implements IPaymentRepository {
     }
 
     @Override
-    public Payment getPaymentById(final String id) {
+    public Payment getPaymentById(final long id) {
         return payments.stream()
-                .filter(payment -> payment.getId().equals(id))
+                .filter(payment -> payment.getId() == id)
                 .findAny()
                 .orElse(null);
     }
 
     @Override
-    public List<Payment> getPaymentsOfCustomer(final String customerId) {
+    public List<Payment> getPaymentsOfCustomer(final long customerId) {
         return payments.stream()
-                .filter(payment -> payment.getCustomerId().equals(customerId))
+                .filter(payment -> payment.getCustomerId() == customerId)
                 .collect(Collectors.toList());
     }
 }
