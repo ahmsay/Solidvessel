@@ -4,7 +4,10 @@ import com.shopping.inventoryservice.entity.Payment;
 import com.shopping.inventoryservice.entity.Product;
 import com.shopping.inventoryservice.services.IPaymentService;
 import com.shopping.inventoryservice.services.IProductService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/ofPayment/{paymentId}")
-    public List<Product> getProductsOfPayment(@RequestParam("paymentId") final long id) {
+    public List<Product> getProductsOfPayment(@PathVariable("paymentId") final long id) {
         return productService.getProductsOfPayment(id);
     }
 

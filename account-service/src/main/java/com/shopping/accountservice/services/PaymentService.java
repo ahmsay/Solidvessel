@@ -23,8 +23,7 @@ public class PaymentService implements IPaymentService {
     @Override
     public List<Payment> getPaymentsOfCustomer(final long customerId) {
         Payment[] payments = requestService.createRequest(paymentServiceUrl)
-                .toPath("/payments/ofCustomer")
-                .withQueryParameter("customerId", customerId)
+                .toPath("/payments/ofCustomer/" + customerId)
                 .withResponseType(Payment[].class)
                 .send();
         return Arrays.asList(payments);
