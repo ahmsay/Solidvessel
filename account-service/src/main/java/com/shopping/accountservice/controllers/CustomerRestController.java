@@ -1,11 +1,7 @@
 package com.shopping.accountservice.controllers;
 
 import com.shopping.accountservice.entity.Customer;
-import com.shopping.accountservice.entity.Order;
-import com.shopping.accountservice.entity.Payment;
 import com.shopping.accountservice.services.ICustomerService;
-import com.shopping.accountservice.services.IOrderService;
-import com.shopping.accountservice.services.IPaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +14,9 @@ import java.util.List;
 public class CustomerRestController {
 
     private final ICustomerService customerService;
-    private final IPaymentService paymentService;
-    private final IOrderService orderService;
 
-    public CustomerRestController(final ICustomerService customerService, final IPaymentService paymentService, final IOrderService orderService) {
+    public CustomerRestController(final ICustomerService customerService) {
         this.customerService = customerService;
-        this.paymentService = paymentService;
-        this.orderService = orderService;
     }
 
     @GetMapping("/")
@@ -35,15 +27,5 @@ public class CustomerRestController {
     @GetMapping("/{customerId}")
     public Customer getCustomerById(@PathVariable("customerId") final long id) {
         return customerService.getCustomerById(id);
-    }
-
-    @GetMapping("/{customerId}/payments")
-    public List<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final long id) {
-        return paymentService.getPaymentsOfCustomer(id);
-    }
-
-    @GetMapping("/{customerId}/orders")
-    public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final long id) {
-        return orderService.getOrdersOfCustomer(id);
     }
 }
