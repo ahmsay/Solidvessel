@@ -17,6 +17,8 @@ public class Payment {
 
     private long orderId;
 
+    Payment() { }
+
     public Payment(final double totalCharge, final long customerId, final long orderId) {
         this.totalCharge = totalCharge;
         this.customerId = customerId;

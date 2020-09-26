@@ -17,6 +17,8 @@ public class Order {
 
     private long paymentId;
 
+    Order() { }
+
     public Order(final String status, final long customerId, final long paymentId) {
         this.status = status;
         this.customerId = customerId;
