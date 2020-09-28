@@ -19,4 +19,4 @@ Docker Repository: https://hub.docker.com/repository/docker/ahmsay/online-shoppi
 2. Use your favorite IDE.
 
 ## Test It With Postman
-You can import <b>online-shopping-app.postman_collection.json</b> file in Postman to test the application.
+You can import <b>extra/online-shopping-app.postman_collection.json</b> file in Postman to test the application.
