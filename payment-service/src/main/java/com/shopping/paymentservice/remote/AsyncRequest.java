@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class AsyncRequest implements IAsyncRequest {
 
-    private IAsyncRequestService requestService;
+    private final IAsyncRequestService requestService;
 
-    private String baseUrl;
+    private final String baseUrl;
     private String path;
-    private Map<String, Object[]> queryParameters;
+    private final Map<String, Object[]> queryParameters;
     private Class<?> responseType;
 
     public AsyncRequest(final IAsyncRequestService requestService, final String baseUrl) {

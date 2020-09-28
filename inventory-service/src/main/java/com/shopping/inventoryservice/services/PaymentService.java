@@ -12,8 +12,8 @@ public class PaymentService implements IPaymentService {
     @Value("${paymentServiceUrl}")
     private String paymentServiceUrl;
 
-    private IProductService productService;
-    private IAsyncRequestService requestService;
+    private final IProductService productService;
+    private final IAsyncRequestService requestService;
 
     public PaymentService(final IProductService productService, final IAsyncRequestService requestService) {
         this.productService = productService;

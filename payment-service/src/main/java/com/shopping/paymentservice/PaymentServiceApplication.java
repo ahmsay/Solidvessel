@@ -21,7 +21,7 @@ public class PaymentServiceApplication {
 	}
 
 	@Bean
-	InitializingBean seedDatabase(IPaymentRepository paymentRepository) {
+	InitializingBean seedDatabase(final IPaymentRepository paymentRepository) {
 		return () -> {
 			paymentRepository.save(new Payment(10.5, 1L, 1L));
 			paymentRepository.save(new Payment(200, 2L, 2L));
@@ -29,7 +29,7 @@ public class PaymentServiceApplication {
 		};
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(PaymentServiceApplication.class, args);
 	}
 

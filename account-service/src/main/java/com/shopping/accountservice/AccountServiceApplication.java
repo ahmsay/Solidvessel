@@ -21,7 +21,7 @@ public class AccountServiceApplication {
 	}
 
 	@Bean
-	InitializingBean seedDatabase(ICustomerRepository customerRepository) {
+	InitializingBean seedDatabase(final ICustomerRepository customerRepository) {
 		return () -> {
 			customerRepository.save(new Customer("Zorkov"));
 			customerRepository.save(new Customer("Lorne"));
@@ -29,7 +29,7 @@ public class AccountServiceApplication {
 		};
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(AccountServiceApplication.class, args);
 	}
 

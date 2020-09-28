@@ -12,8 +12,8 @@ public class OrderService implements IOrderService {
     @Value("${orderServiceUrl}")
     private String orderServiceUrl;
 
-    private IPaymentService paymentService;
-    private IAsyncRequestService requestService;
+    private final IPaymentService paymentService;
+    private final IAsyncRequestService requestService;
 
     public OrderService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
         this.paymentService = paymentService;

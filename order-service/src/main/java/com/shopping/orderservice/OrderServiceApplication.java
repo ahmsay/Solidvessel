@@ -21,7 +21,7 @@ public class OrderServiceApplication {
 	}
 
 	@Bean
-	InitializingBean seedDatabase(IOrderRepository orderRepository) {
+	InitializingBean seedDatabase(final IOrderRepository orderRepository) {
 		return () -> {
 			orderRepository.save(new Order("Delivered", 1L, 1L));
 			orderRepository.save(new Order("On the way", 2L, 2L));
@@ -29,7 +29,7 @@ public class OrderServiceApplication {
 		};
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
 	}
 

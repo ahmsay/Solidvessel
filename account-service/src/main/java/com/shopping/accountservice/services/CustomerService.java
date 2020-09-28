@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class CustomerService implements ICustomerService {
 
-    private ICustomerRepository customerRepository;
+    private final ICustomerRepository customerRepository;
 
     public CustomerService(final ICustomerRepository customerRepository) {
         this.customerRepository = customerRepository;

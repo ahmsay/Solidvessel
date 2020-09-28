@@ -21,7 +21,7 @@ public class InventoryServiceApplication {
 	}
 
 	@Bean
-	InitializingBean seedDatabase(IProductRepository productRepository) {
+	InitializingBean seedDatabase(final IProductRepository productRepository) {
 		return () -> {
 			productRepository.save(new Product("Clipper", 2.5, "Tool", 1L));
 			productRepository.save(new Product("Laptop", 3, "Electronics", 1L));
@@ -34,7 +34,7 @@ public class InventoryServiceApplication {
 		};
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(InventoryServiceApplication.class, args);
 	}
 

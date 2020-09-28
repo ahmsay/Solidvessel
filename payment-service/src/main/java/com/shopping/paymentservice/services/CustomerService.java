@@ -12,8 +12,8 @@ public class CustomerService implements ICustomerService {
     @Value("${accountServiceUrl}")
     private String accountServiceUrl;
 
-    private IPaymentService paymentService;
-    private IAsyncRequestService requestService;
+    private final IPaymentService paymentService;
+    private final IAsyncRequestService requestService;
 
     public CustomerService(final IPaymentService paymentService, final IAsyncRequestService requestService) {
         this.paymentService = paymentService;

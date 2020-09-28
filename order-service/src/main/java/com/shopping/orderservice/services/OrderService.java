@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class OrderService implements IOrderService {
 
-    private IOrderRepository orderRepository;
+    private final IOrderRepository orderRepository;
 
     public OrderService(final IOrderRepository orderRepository) {
         this.orderRepository = orderRepository;

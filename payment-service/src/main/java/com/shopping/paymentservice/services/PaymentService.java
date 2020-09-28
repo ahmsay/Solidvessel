@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class PaymentService implements IPaymentService {
 
-    private IPaymentRepository paymentRepository;
+    private final IPaymentRepository paymentRepository;
 
     public PaymentService(final IPaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;

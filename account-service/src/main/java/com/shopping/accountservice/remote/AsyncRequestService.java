@@ -11,7 +11,7 @@ import java.util.Map;
 @Service
 public class AsyncRequestService implements IAsyncRequestService {
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     public AsyncRequestService(final RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
