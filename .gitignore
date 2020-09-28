@@ -3,7 +3,8 @@
 !.gitignore
 !.README.md
 !docker-compose.yml
-!online-shopping-app.postman_collection.json
+!/extra/online-shopping-app.postman_collection.json
+!/extra/build_images.sh
 
 !/account-service/src/**
 !/account-service/pom.xml
