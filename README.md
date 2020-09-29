@@ -20,3 +20,19 @@ Docker Repository: https://hub.docker.com/repository/docker/ahmsay/online-shoppi
 
 ## Test It With Postman
 You can import <b>extra/online-shopping-app.postman_collection.json</b> file in Postman to test the application.
+
+## Project Details
+My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order has a payment and one payment can have multiple products.
+### Client Services
+There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (Currenlty H2).
+### Communication and Service Discovery
+
+### Configuration
+
+### Docker
+
+### Docker Compose
+
+### Docker Hub
+
+### Spring Data
