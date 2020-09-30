@@ -22,11 +22,11 @@ Docker Repository: https://hub.docker.com/repository/docker/ahmsay/online-shoppi
 You can import <b>extra/online-shopping-app.postman_collection.json</b> file in Postman to test the application.
 
 ## Project Details
-My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order has a payment and one payment can have multiple products.
+My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order is related to a payment and one payment can have multiple products.
 ### Client Services
-There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (Currenlty H2).
+There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (Currenlty H2, an in-memory database).
 ### Communication and Service Discovery
-
+When a service needs to get information which is stored in another service, it sends an HTTP request to that service. Therefore, the url of the service must be known. But url depends on where the application is. It can be in a local machine, or a container, or deployed in a server. So how do we know the correct url to send our request? Actually, we don't need to. This is where service discovery comes in.
 ### Configuration
 
 ### Docker
