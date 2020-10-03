@@ -34,7 +34,7 @@ So how do we update our config properties without restarting the application? On
 ### Docker
 Docker simply lets you run an application without relying on dependencies. All services have a Dockerfile to create their images. Updating the jar and creating an image for 6 services was a-bit time consuming, so I wrote a shell script to do it with one command.
 ### Docker Hub
-
+Once images are created, I push them to my docker repository with `docker push <hub-user>/<repo-name>:<tag>` command. Since `docker-compose push` doesn't work (god knows why) I push the images seperately.
 ### Docker Compose
 If you run images of the services seperately, Docker will put them in seperated networks and they won't be able to communicate each other. But if you run them with Docker Compose, they will be in the same network. So I created a docker-compose.yml file. If images don't exist in local device, they will be pulled. But there is still a problem. Since the services start in a different network, they are not running on localhost anymore. Docker reflects them to localhost but it is only for us to access them from the browser. Client services need to get configuration server and discovery server's urls to run properly.</br>
 
