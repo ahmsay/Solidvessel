@@ -1,3 +1,5 @@
+cd ..
+
 cd account-service
 mvn clean package
 docker build --tag ahmsay/online-shopping-application:account-service .
