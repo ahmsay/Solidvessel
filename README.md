@@ -28,11 +28,11 @@ In this project, all other services register to the discovery server as discover
 ### Configuration Server
 Spring Framework provides some options to seperate our configuration from code, which makes our application to run in different environments without touching the code but Spring Cloud Configuration Server takes it to another level. We can update our configuration properties without restarting the application.</br>
 
-To do this, first I created a seperate service and declared it as configuration server. Then I declared the four client services as configuration clients. Spring Cloud Config provides a <b>Git</b> repository to store common properties and update them dynamically. So I created a <a href="https://github.com/ahmsay/Online-Shopping-Application-Configuration">Git repo</a> and gave its url to the config server. Now client services fetch data from the config server while starting.</br>
+To do this, first I created a seperate service and declared it as configuration server. Then I declared the four client services as configuration clients. Spring Cloud Config provides a <b>Git</b> repository to store common properties and update them dynamically. So I created a <a href="https://github.com/ahmsay/Online-Shopping-Application-Configuration" target="_blank">Git repo</a> and gave its url to the config server. Now client services fetch data from the config server while starting.</br>
 
 So how do we update our config properties without restarting the application? Once we change a property in the Git repo, config server automatically fetches it but client services will still get the old value. That's because it's not their job to continuously ask the config server "Hey, are you updated?". To trigger them, we send a <b>refresh</b> request to the intended REST controller. Now we get the updated property in run time.
 ### Docker
-Docker simply lets you run an application without relying on dependencies. All services have a Dockerfile to create their images. Updating the jar and creating an image for 6 services was a-bit time-consuming, so I wrote a <a href="https://github.com/ahmsay/Online-Shopping-Application/blob/master/extra/build_images.sh">shell script</a> to do it with one command.
+Docker simply lets you run an application without relying on dependencies. All services have a Dockerfile to create their images. Updating the jar and creating an image for 6 services was a-bit time-consuming, so I wrote a <a href="https://github.com/ahmsay/Online-Shopping-Application/blob/master/extra/build_images.sh" target="_blank">shell script</a> to do it with one command.
 ### Docker Hub
 Once images are created, I push them to my docker repository with `docker push <hub-user>/<repo-name>:<tag>` command. Since `docker-compose push` doesn't work (god knows why) I push the images seperately.
 ### Docker Compose
@@ -44,4 +44,4 @@ So is it done now? NO! Client services first try to connect the config server, t
 
 In conclusion, to run this application with Docker Compose, you only need the docker-compose.yml file. When you write `docker-compose up` command, after a bunch of errors (services desperately trying to connect each other) it will run.
 ### Testing
-Currently, there is no unit test or integration test but there are <a href="https://github.com/ahmsay/Online-Shopping-Application/blob/master/extra/online-shopping-app.postman_collection.json">API tests</a>. You can import it in Postman to test the application.
+Currently, there is no unit test or integration test but there are <a href="https://github.com/ahmsay/Online-Shopping-Application/blob/master/extra/online-shopping-app.postman_collection.json" target="_blank">API tests</a>. You can import it in Postman to test the application.
