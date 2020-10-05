@@ -2,6 +2,12 @@ server.port: 8081
 
 spring:
   application.name: account-service
+  datasource:
+    url: jdbc:postgresql://dbpostgresql:5432/mydb
+    username: postgre
+    password: password
+  jpa:
+    hibernate.ddl-auto: create
   cloud.config:
     fail-fast: true
     retry:

@@ -15,6 +15,8 @@ services:
     ports:
       - 8081:8081
     command: --spring.profiles.active=dockerCompose
+    depends_on:
+      - dbpostgresql
   inventory-service:
     image: ahmsay/online-shopping-application:inventory-service
     ports:
@@ -30,3 +32,11 @@ services:
     ports:
       - 8084:8084
     command: --spring.profiles.active=dockerCompose
+  dbpostgresql:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgre
+      - POSTGRES_DB=mydb
