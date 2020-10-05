@@ -16,27 +16,57 @@ services:
       - 8081:8081
     command: --spring.profiles.active=dockerCompose
     depends_on:
-      - dbpostgresql
+      - account-service-db
   inventory-service:
     image: ahmsay/online-shopping-application:inventory-service
     ports:
       - 8082:8082
     command: --spring.profiles.active=dockerCompose
+    depends_on:
+      - inventory-service-db
   order-service:
     image: ahmsay/online-shopping-application:order-service
     ports:
       - 8083:8083
     command: --spring.profiles.active=dockerCompose
+    depends_on:
+      - order-service-db
   payment-service:
     image: ahmsay/online-shopping-application:payment-service
     ports:
       - 8084:8084
     command: --spring.profiles.active=dockerCompose
-  dbpostgresql:
+    depends_on:
+      - payment-service-db
+  account-service-db:
+    image: postgres
+    ports:
+      - 5431:5431
+    environment:
+      - POSTGRES_DB=account
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+  inventory-service-db:
     image: postgres
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=postgre
-      - POSTGRES_DB=mydb
+      - POSTGRES_DB=inventory
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+  order-service-db:
+    image: postgres
+    ports:
+      - 5433:5433
+    environment:
+      - POSTGRES_DB=order
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+  payment-service-db:
+    image: postgres
+    ports:
+      - 5434:5434
+    environment:
+      - POSTGRES_DB=payment
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
