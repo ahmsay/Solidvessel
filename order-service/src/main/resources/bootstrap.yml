@@ -3,10 +3,12 @@ server.port: 8083
 spring:
   application.name: order-service
   datasource:
-    url: jdbc:postgresql://order-service-db:5432/order
+    url: unknown
     username: nihilus
     password: nihilus
-  jpa.hibernate.ddl-auto: create
+  jpa:
+    hibernate.ddl-auto: unknown
+    properties.hibernate.globally_quoted_identifiers: true
   cloud.config:
     fail-fast: true
     retry:
@@ -18,5 +20,3 @@ eureka.instance.lease-renewal-interval-in-seconds: 5
 logging.level.org.springframework.retry: trace
 
 management.endpoints.web.exposure.include: '*'
-
-spring.jpa.properties.hibernate.globally_quoted_identifiers: true

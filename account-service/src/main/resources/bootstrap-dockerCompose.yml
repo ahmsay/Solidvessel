@@ -1,2 +1,7 @@
 eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka/
-spring.cloud.config.uri: http://config-server:8888
+
+spring:
+  cloud.config.uri: http://config-server:8888
+  datasource:
+    url: jdbc:postgresql://account-service-db:5432/account
+  jpa.hibernate.ddl-auto: create
