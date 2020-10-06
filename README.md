@@ -4,21 +4,23 @@ Docker Repository: https://hub.docker.com/r/ahmsay/online-shopping-application
 ## To Run
 ### Option 1 (Run with docker)
 #### Prerequisites
-- docker
-- docker-compose
+- Docker
+- Docker Compose
 #### Steps
 1. Use the <b>docker-compose.yml</b> file to start the application with `docker-compose up` command.
 ### Option 2 (Run without docker)
 #### Prerequisites
-- java 11
-- maven
+- Java 11
+- Maven
+- PostgreSQL
 #### Steps
 1. Clone this repository.
-2. Use your favorite IDE.
+2. Configure databases (Or you can edit <b>bootstrap.yml</b> files for your own preferences).
+3. Use your favorite IDE.
 ## Project Details
 My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order is related to a payment and one payment can have multiple products.
 ### Client Services
-There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (Currenlty <b>H2</b>, an in-memory database).
+There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (PostgreSQL). If you'll run the application locally, you must create clients' databases. You don't need to create tables. On the other hand, with Docker Compose, no action is needed at all.
 ### Spring Data
 If you look into any client service, you won't see a repository implementation. There are only interfaces. This is the work of Spring Data which has a bunch of utilities and makes CRUD operations a lot easier. Spring Data CRUD repositories don't need to be implemented. When you write your method with a specific format, it is automatically resolved.
 ### Communication and Service Discovery
@@ -34,11 +36,11 @@ So how do we update our config properties without restarting the application? On
 ### Docker
 Docker simply lets you run an application without relying on dependencies. All services have a Dockerfile to create their images. Updating the jar and creating an image for 6 services was a-bit time-consuming, so I wrote a <a href="https://github.com/ahmsay/Online-Shopping-Application/blob/master/extra/build_images.sh" target="_blank">shell script</a> to do it with one command.
 ### Docker Hub
-Once images are created, I push them to my docker repository with `docker push <hub-user>/<repo-name>:<tag>` command. Since `docker-compose push` doesn't work (god knows why) I push the images seperately.
+Once images are created, I push them to my docker repository with `docker push <hub-user>/<repo-name>:<tag>` command. Since `docker-compose push` doesn't work (god knows why) I push them seperately.
 ### Docker Compose
-If you run images of the services seperately, Docker will put them in seperated networks, and they won't be able to communicate each other but if you run them with Docker Compose, they will be in the same network. So I created a docker-compose.yml file. If images don't exist in a local device, they will be pulled but there is still a problem. Since the services start in a different network, they are not running on localhost anymore. Docker reflects them to localhost, but it is only for us to access them from the browser. Client services need to get configuration server and discovery server's urls to run properly.</br>
+If you run images of the services seperately, Docker will put them in seperated networks, and they won't be able to communicate each other but if you run them with Docker Compose, they will be in the same network. So I created a docker-compose.yml file. If images don't exist in local device, they will be pulled but there is still a problem. Since the services start in a different network, they are not running on localhost anymore. I did port mapping, but it is only for me to access them from the host. Client services need to get the url of configuration server, discovery server and their databases' urls to run properly.</br>
 
-To solve this problem, I wrote an additional command in the docker-compose.yml file for client services to run them with a different Spring profile. For example when I try to run the application with Docker Compose, account service starts with a new Spring profile. Now I can override the discovery server url for that profile. The new url is the same service name in the docker-compose.yml file: <b>discovery-server</b>. Spring is clever enough to resolve it. Same thing also applies for the config server. Now with the overriden url, account service and other services can connect to discovery and config server. Furthermore, -thanks to Spring profiles- I don't need to change my code to run the application in different environments.</br>
+To solve this problem, I wrote an additional command in the docker-compose.yml file for client services to run them with a different Spring profile. For example when I try to run the application with Docker Compose, account service starts with a new Spring profile. Now I can override the discovery server url for that profile. The new url is the same service name in the docker-compose.yml file: <b>discovery-server</b>. Spring is clever enough to resolve it. Same thing also applies for config server and database. Now with the overriden urls, account service and other services can connect to the discovery server, the config server and their databases. Furthermore, -thanks to Spring profiles- I don't need to change my code to run the application in different environments.</br>
 
 So is it done now? NO! Client services first try to connect the config server, then the discovery server. When using docker compose, all services start at the same time. That means the config server may not be ready when a client tries to connect. That causes the client to fail to start. To fix it, I added <b>spring-retry</b> dependency to client services. This solution was not working with <b>application.yml</b> files, so I started to use <b>bootstrap.yml</b> files (Bootstrap context loads before the application context). Now if config server is not ready, clients retry connecting instead of shutting down. Once they connect to the config server, they'll try to connect the discovery server. Fortunately, if the discovery server is not ready, they won't shut down and automatically try to reconnect.</br>
 
