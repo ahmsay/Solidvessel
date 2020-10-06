@@ -3,10 +3,10 @@ server.port: 8082
 spring:
   application.name: inventory-service
   datasource:
-    url: unknown
+    url: jdbc:postgresql://localhost:5432/inventory
     username: nihilus
     password: nihilus
-  jpa.hibernate.ddl-auto: unknown
+  jpa.hibernate.ddl-auto: create
   cloud.config:
     fail-fast: true
     retry:

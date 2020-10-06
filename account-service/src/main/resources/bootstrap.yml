@@ -3,10 +3,10 @@ server.port: 8081
 spring:
   application.name: account-service
   datasource:
-    url: unknown
+    url: jdbc:postgresql://localhost:5432/account
     username: nihilus
     password: nihilus
-  jpa.hibernate.ddl-auto: unknown
+  jpa.hibernate.ddl-auto: create
   cloud.config:
     fail-fast: true
     retry:
