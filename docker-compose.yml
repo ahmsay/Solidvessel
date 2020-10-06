@@ -41,7 +41,7 @@ services:
   account-service-db:
     image: postgres
     ports:
-      - 5431:5431
+      - 5431:5432
     environment:
       - POSTGRES_DB=account
       - POSTGRES_USER=nihilus
@@ -57,7 +57,7 @@ services:
   order-service-db:
     image: postgres
     ports:
-      - 5433:5433
+      - 5433:5432
     environment:
       - POSTGRES_DB=order
       - POSTGRES_USER=nihilus
@@ -65,7 +65,7 @@ services:
   payment-service-db:
     image: postgres
     ports:
-      - 5434:5434
+      - 5434:5432
     environment:
       - POSTGRES_DB=payment
       - POSTGRES_USER=nihilus

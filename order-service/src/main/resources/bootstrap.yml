@@ -3,7 +3,7 @@ server.port: 8083
 spring:
   application.name: order-service
   datasource:
-    url: jdbc:postgresql://order-service-db:5433/order
+    url: jdbc:postgresql://order-service-db:5432/order
     username: nihilus
     password: nihilus
   jpa.hibernate.ddl-auto: create

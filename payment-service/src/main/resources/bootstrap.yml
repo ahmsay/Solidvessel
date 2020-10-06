@@ -3,7 +3,7 @@ server.port: 8084
 spring:
   application.name: payment-service
   datasource:
-    url: jdbc:postgresql://payment-service-db:5434/payment
+    url: jdbc:postgresql://payment-service-db:5432/payment
     username: nihilus
     password: nihilus
   jpa.hibernate.ddl-auto: create
