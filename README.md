@@ -20,7 +20,7 @@ Docker Repository: https://hub.docker.com/r/ahmsay/online-shopping-application
 ## Project Details
 My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order is related to a payment and one payment can have multiple products.
 ### Client Services
-There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (PostgreSQL). If you'll run the application locally, you must create clients' databases. You don't need to create tables. On the other hand, with Docker Compose, no action is needed at all.
+There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (PostgreSQL). If you'll run the application locally, you must create clients' databases and a database user. You don't need to create tables. On the other hand, with Docker Compose, databases and user will be created automatically.
 ### Spring Data
 If you look into any client service, you won't see a repository implementation. There are only interfaces. This is the work of Spring Data which has a bunch of utilities and makes CRUD operations a lot easier. Spring Data CRUD repositories don't need to be implemented. When you write your method with a specific format, it is automatically resolved.
 ### Communication and Service Discovery
