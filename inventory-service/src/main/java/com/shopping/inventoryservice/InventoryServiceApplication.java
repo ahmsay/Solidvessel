@@ -29,8 +29,8 @@ public class InventoryServiceApplication {
 			productRepository.save(new Product("Car", 200, "Vehicle", 2L));
 			productRepository.save(new Product("Spaceship", 500, "Vehicle", 3L));
 			productRepository.save(new Product("Apple", 499.99, "Fruit", 3L));
-			productRepository.save(new Product("Ice Pick", 53, "Tool", -1));
-			productRepository.save(new Product("Desk", 25, "Furniture", -1));
+			productRepository.save(new Product("Ice Pick", 53, "Tool"));
+			productRepository.save(new Product("Desk", 25, "Furniture"));
 		};
 	}
 
