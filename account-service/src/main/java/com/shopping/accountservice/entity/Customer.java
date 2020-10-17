@@ -3,6 +3,7 @@ package com.shopping.accountservice.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Customer {
@@ -11,6 +12,7 @@ public class Customer {
     @GeneratedValue
     private long id;
 
+    @NotNull
     private String name;
 
     Customer() { }

@@ -3,6 +3,7 @@ package com.shopping.inventoryservice.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Product {
@@ -11,8 +12,10 @@ public class Product {
     @GeneratedValue
     private long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private double price;
 
     private String category;
