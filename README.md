@@ -2,21 +2,11 @@
 This is an online shopping application designed with microservices architecture.<br>
 Docker Repository: https://hub.docker.com/r/ahmsay/online-shopping-application
 ## To Run
-### Option 1 (Run with docker)
 #### Prerequisites
 - Docker
 - Docker Compose
 #### Steps
 1. Use the <b>docker-compose.yml</b> file to start the application with `docker-compose up` command.
-### Option 2 (Run without docker)
-#### Prerequisites
-- Java 11
-- Maven
-- PostgreSQL
-#### Steps
-1. Clone this repository.
-2. Configure databases (Or you can edit <b>bootstrap.yml</b> files for your own preferences).
-3. Use your favorite IDE.
 ## Project Details
 My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order is related to a payment and one payment can have multiple products.
 ### Client Services
