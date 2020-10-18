@@ -4,12 +4,13 @@ import com.shopping.inventoryservice.entity.Product;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IProductRepository extends CrudRepository<Product, Long> {
 
     List<Product> findAll();
 
-    Product findById(long id);
+    Optional<Product> findById(Long id);
 
-    List<Product> findByPaymentId(long paymentId);
+    List<Product> findByPaymentId(Long paymentId);
 }

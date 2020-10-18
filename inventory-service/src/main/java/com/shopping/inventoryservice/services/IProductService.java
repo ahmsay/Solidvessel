@@ -3,12 +3,13 @@ package com.shopping.inventoryservice.services;
 import com.shopping.inventoryservice.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IProductService {
 
     List<Product> getAllProducts();
 
-    Product getProductById(long id);
+    Optional<Product> getProductById(Long id);
 
-    List<Product> getProductsOfPayment(long paymentId);
+    List<Product> getProductsOfPayment(Long paymentId);
 }

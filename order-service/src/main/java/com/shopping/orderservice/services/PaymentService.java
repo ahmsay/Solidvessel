@@ -21,7 +21,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment getPaymentOfOrder(final long orderId) {
+    public Payment getPaymentOfOrder(final Long orderId) {
         Order order = orderService.getOrderById(orderId);
         if (order == null) {
             return null;

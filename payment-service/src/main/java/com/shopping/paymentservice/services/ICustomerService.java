@@ -4,5 +4,5 @@ import com.shopping.paymentservice.entity.Customer;
 
 public interface ICustomerService {
 
-    Customer getCustomerOfPayment(long paymentId);
+    Customer getCustomerOfPayment(Long paymentId);
 }

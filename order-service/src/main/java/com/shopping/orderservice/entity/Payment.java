@@ -2,39 +2,39 @@ package com.shopping.orderservice.entity;
 
 public class Payment {
 
-    private long id;
-    private double totalCharge;
-    private long customerId;
+    private Long id;
+    private Double totalCharge;
+    private Long customerId;
 
     public Payment() {}
 
-    public Payment(final long id, final double totalCharge, final long customerId) {
+    public Payment(final Long id, final Double totalCharge, final Long customerId) {
         this.id = id;
         this.totalCharge = totalCharge;
         this.customerId = customerId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
-    public double getTotalCharge() {
+    public Double getTotalCharge() {
         return totalCharge;
     }
 
-    public void setTotalCharge(final double totalCharge) {
+    public void setTotalCharge(final Double totalCharge) {
         this.totalCharge = totalCharge;
     }
 
-    public long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(final long customerId) {
+    public void setCustomerId(final Long customerId) {
         this.customerId = customerId;
     }
 }

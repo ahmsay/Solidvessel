@@ -23,14 +23,14 @@ public class InventoryServiceApplication {
 	@Bean
 	InitializingBean seedDatabase(final IProductRepository productRepository) {
 		return () -> {
-			productRepository.save(new Product("Clipper", 2.5, "Tool", 1L));
-			productRepository.save(new Product("Laptop", 3, "Electronics", 1L));
-			productRepository.save(new Product("Phone", 5, "Electronics", 1L));
-			productRepository.save(new Product("Car", 200, "Vehicle", 2L));
-			productRepository.save(new Product("Spaceship", 500, "Vehicle", 3L));
-			productRepository.save(new Product("Apple", 499.99, "Fruit", 3L));
-			productRepository.save(new Product("Ice Pick", 53, "Tool"));
-			productRepository.save(new Product("Desk", 25, "Furniture"));
+			productRepository.save(new Product("Clipper", 2.5D, "Tool", 1L));
+			productRepository.save(new Product("Laptop", 3D, "Electronics", 1L));
+			productRepository.save(new Product("Phone", 5D, "Electronics", 1L));
+			productRepository.save(new Product("Car", 200D, "Vehicle", 2L));
+			productRepository.save(new Product("Spaceship", 500D, "Vehicle", 3L));
+			productRepository.save(new Product("Apple", 499.99D, "Fruit", 3L));
+			productRepository.save(new Product("Ice Pick", 53D, "Tool"));
+			productRepository.save(new Product("Desk", 25D, "Furniture"));
 		};
 	}
 

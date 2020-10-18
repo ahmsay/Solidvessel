@@ -10,54 +10,54 @@ public class Payment {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
-    private double totalCharge;
+    private Double totalCharge;
 
     @NotNull
-    private long customerId;
+    private Long customerId;
 
     @NotNull
-    private long orderId;
+    private Long orderId;
 
     Payment() { }
 
-    public Payment(final double totalCharge, final long customerId, final long orderId) {
+    public Payment(final Double totalCharge, final Long customerId, final Long orderId) {
         this.totalCharge = totalCharge;
         this.customerId = customerId;
         this.orderId = orderId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
-    public double getTotalCharge() {
+    public Double getTotalCharge() {
         return totalCharge;
     }
 
-    public void setTotalCharge(final double totalCharge) {
+    public void setTotalCharge(final Double totalCharge) {
         this.totalCharge = totalCharge;
     }
 
-    public long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(final long customerId) {
+    public void setCustomerId(final Long customerId) {
         this.customerId = customerId;
     }
 
-    public long getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(final long orderId) {
+    public void setOrderId(final Long orderId) {
         this.orderId = orderId;
     }
 }

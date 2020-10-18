@@ -10,38 +10,37 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
     private String name;
 
-    @NotNull
-    private double price;
+    private Double price;
 
     private String category;
 
-    private long paymentId;
+    private Long paymentId;
 
     Product() { }
 
-    public Product(final String name, final double price, final String category, final long paymentId) {
+    public Product(final String name, final Double price, final String category, final Long paymentId) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.paymentId = paymentId;
     }
 
-    public Product(final String name, final double price, final String category) {
+    public Product(final String name, final Double price, final String category) {
         this.name = name;
         this.price = price;
         this.category = category;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -53,11 +52,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(final double price) {
+    public void setPrice(final Double price) {
         this.price = price;
     }
 
@@ -69,11 +68,11 @@ public class Product {
         this.category = category;
     }
 
-    public long getPaymentId() {
+    public Long getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(final long paymentId) {
+    public void setPaymentId(final Long paymentId) {
         this.paymentId = paymentId;
     }
 }

@@ -10,30 +10,30 @@ public class Order {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
     private String status;
 
     @NotNull
-    private long customerId;
+    private Long customerId;
 
     @NotNull
-    private long paymentId;
+    private Long paymentId;
 
     Order() { }
 
-    public Order(final String status, final long customerId, final long paymentId) {
+    public Order(final String status, final Long customerId, final Long paymentId) {
         this.status = status;
         this.customerId = customerId;
         this.paymentId = paymentId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -45,19 +45,19 @@ public class Order {
         this.status = status;
     }
 
-    public long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(final long customerId) {
+    public void setCustomerId(final Long customerId) {
         this.customerId = customerId;
     }
 
-    public long getPaymentId() {
+    public Long getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(final long paymentId) {
+    public void setPaymentId(final Long paymentId) {
         this.paymentId = paymentId;
     }
 }

@@ -5,6 +5,7 @@ import com.shopping.orderservice.repositories.IOrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService implements IOrderService {
@@ -21,12 +22,12 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order getOrderById(final long id) {
+    public Optional<Order> getOrderById(final Long id) {
         return orderRepository.findById(id);
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(final long customerId) {
+    public List<Order> getOrdersOfCustomer(final Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 }

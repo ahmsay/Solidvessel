@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderRestController {
 
-    private IOrderService orderService;
-    private ICustomerService customerService;
-    private IPaymentService paymentService;
+    private final IOrderService orderService;
+    private final ICustomerService customerService;
+    private final IPaymentService paymentService;
 
     public OrderRestController(final IOrderService orderService, final ICustomerService customerService, final IPaymentService paymentService) {
         this.orderService = orderService;
@@ -33,22 +34,22 @@ public class OrderRestController {
     }
 
     @GetMapping("/{orderId}")
-    public Order getOrderById(@PathVariable("orderId") final long id) {
+    public Optional<Order> getOrderById(@PathVariable("orderId") final Long id) {
         return orderService.getOrderById(id);
     }
 
     @GetMapping("/ofCustomer/{customerId}")
-    public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final long customerId) {
+    public List<Order> getOrdersOfCustomer(@PathVariable("customerId") final Long customerId) {
         return orderService.getOrdersOfCustomer(customerId);
     }
 
     @GetMapping("/{orderId}/customer")
-    public Customer getCustomerOfOrder(@PathVariable("orderId") final long id) {
+    public Customer getCustomerOfOrder(@PathVariable("orderId") final Long id) {
         return customerService.getCustomerOfOrder(id);
     }
 
     @GetMapping("/{orderId}/payment")
-    public Payment getPaymentOfOrder(@PathVariable("orderId") final long id) {
+    public Payment getPaymentOfOrder(@PathVariable("orderId") final Long id) {
         return paymentService.getPaymentOfOrder(id);
     }
 }

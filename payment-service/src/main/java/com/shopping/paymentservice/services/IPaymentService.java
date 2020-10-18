@@ -3,12 +3,13 @@ package com.shopping.paymentservice.services;
 import com.shopping.paymentservice.entity.Payment;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IPaymentService {
 
     List<Payment> getAllPayments();
 
-    Payment getPaymentById(long id);
+    Optional<Payment> getPaymentById(Long id);
 
-    List<Payment> getPaymentsOfCustomer(long customerId);
+    List<Payment> getPaymentsOfCustomer(Long customerId);
 }

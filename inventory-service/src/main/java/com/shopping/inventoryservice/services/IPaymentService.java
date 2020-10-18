@@ -4,5 +4,5 @@ import com.shopping.inventoryservice.entity.Payment;
 
 public interface IPaymentService {
 
-    Payment getPaymentOfProduct(long productId);
+    Payment getPaymentOfProduct(Long productId);
 }

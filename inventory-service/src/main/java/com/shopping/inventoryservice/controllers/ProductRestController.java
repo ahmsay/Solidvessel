@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -29,17 +30,17 @@ public class ProductRestController {
     }
 
     @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable("productId") final long id) {
+    public Optional<Product> getProductById(@PathVariable("productId") final Long id) {
         return productService.getProductById(id);
     }
 
     @GetMapping("/ofPayment/{paymentId}")
-    public List<Product> getProductsOfPayment(@PathVariable("paymentId") final long id) {
+    public List<Product> getProductsOfPayment(@PathVariable("paymentId") final Long id) {
         return productService.getProductsOfPayment(id);
     }
 
     @GetMapping("/{productId}/payment")
-    public Payment getPaymentOfProduct(@PathVariable("productId") final long id) {
+    public Payment getPaymentOfProduct(@PathVariable("productId") final Long id) {
         return paymentService.getPaymentOfProduct(id);
     }
 }

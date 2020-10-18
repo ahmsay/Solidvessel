@@ -4,12 +4,13 @@ import com.shopping.orderservice.entity.Order;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IOrderRepository extends CrudRepository<Order, Long> {
 
     List<Order> findAll();
 
-    Order findById(long id);
+    Optional<Order> findById(Long id);
 
-    List<Order> findByCustomerId(long customerId);
+    List<Order> findByCustomerId(Long customerId);
 }
