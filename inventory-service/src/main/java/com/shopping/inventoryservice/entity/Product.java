@@ -30,12 +30,6 @@ public class Product {
         this.paymentId = paymentId;
     }
 
-    public Product(final String name, final Double price, final String category) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-    }
-
     public Long getId() {
         return id;
     }

@@ -22,7 +22,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order getOrderOfPayment(final Long paymentId) {
-        Payment payment = paymentService.getPaymentById(paymentId).orElse(null);
+        Payment payment = paymentService.getPaymentById(paymentId);
         if (payment == null) {
             return null;
         }

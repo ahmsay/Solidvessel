@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/customers")
@@ -26,7 +25,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/{customerId}")
-    public Optional<Customer> getCustomerById(@PathVariable("customerId") final Long id) {
+    public Customer getCustomerById(@PathVariable("customerId") final Long id) {
         return customerService.getCustomerById(id);
     }
 }

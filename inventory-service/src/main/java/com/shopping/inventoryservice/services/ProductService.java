@@ -5,7 +5,6 @@ import com.shopping.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService implements IProductService {
@@ -22,8 +21,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Optional<Product> getProductById(final Long id) {
-        return productRepository.findById(id);
+    public Product getProductById(final Long id) {
+        return productRepository.findById(id).orElse(null);
     }
 
     @Override

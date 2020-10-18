@@ -5,7 +5,6 @@ import com.shopping.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PaymentService implements IPaymentService {
@@ -22,8 +21,8 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Optional<Payment> getPaymentById(final Long id) {
-        return paymentRepository.findById(id);
+    public Payment getPaymentById(final Long id) {
+        return paymentRepository.findById(id).orElse(null);
     }
 
     @Override

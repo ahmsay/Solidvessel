@@ -22,7 +22,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer getCustomerOfPayment(final Long paymentId) {
-        Payment payment = paymentService.getPaymentById(paymentId).orElse(null);
+        Payment payment = paymentService.getPaymentById(paymentId);
         if (payment == null) {
             return null;
         }
