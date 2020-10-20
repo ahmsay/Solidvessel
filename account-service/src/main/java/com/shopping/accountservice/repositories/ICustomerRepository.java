@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ICustomerRepository extends CrudRepository<Customer, Long> {
 
-    List<Customer> findAll();
+    List<Customer> findAll();//TODO base methods are not needed to be declared
 
     Optional<Customer> findById(Long id);
 }

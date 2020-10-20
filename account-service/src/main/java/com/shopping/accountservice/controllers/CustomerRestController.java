@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/customers")//TODO use aggregate root
 public class CustomerRestController {
 
     private final ICustomerService customerService;
