@@ -24,4 +24,9 @@ public class CustomerService implements ICustomerService {
     public Customer getCustomerById(final Long id) {
         return customerRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Customer addCustomer(final Customer customer) {
+        return customerRepository.save(customer);
+    }
 }

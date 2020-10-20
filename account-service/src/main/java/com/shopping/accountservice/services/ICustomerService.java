@@ -9,4 +9,6 @@ public interface ICustomerService {
     List<Customer> getAllCustomers();
 
     Customer getCustomerById(Long id);
+
+    Customer addCustomer(Customer customer);
 }

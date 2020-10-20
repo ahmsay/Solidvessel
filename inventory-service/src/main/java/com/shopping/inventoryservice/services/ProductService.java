@@ -29,4 +29,9 @@ public class ProductService implements IProductService {
     public List<Product> getProductsOfPayment(final Long paymentId) {
         return productRepository.findByPaymentId(paymentId);
     }
+
+    @Override
+    public Product addProduct(final Product product) {
+        return productRepository.save(product);
+    }
 }

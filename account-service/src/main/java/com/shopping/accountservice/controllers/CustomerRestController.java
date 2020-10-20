@@ -2,10 +2,7 @@ package com.shopping.accountservice.controllers;
 
 import com.shopping.accountservice.entity.Customer;
 import com.shopping.accountservice.services.ICustomerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,10 @@ public class CustomerRestController {
     @GetMapping("/{customerId}")
     public Customer getCustomerById(@PathVariable("customerId") final Long id) {
         return customerService.getCustomerById(id);
+    }
+
+    @PostMapping("/addCustomer")
+    public Customer addCustomer(@RequestBody final Customer customer) {
+        return customerService.addCustomer(customer);
     }
 }

@@ -11,4 +11,6 @@ public interface IProductService {
     Product getProductById(Long id);
 
     List<Product> getProductsOfPayment(Long paymentId);
+
+    Product addProduct(Product product);
 }
