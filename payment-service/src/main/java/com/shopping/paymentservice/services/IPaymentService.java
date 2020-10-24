@@ -5,11 +5,11 @@ import com.shopping.paymentservice.entity.Payment;
 
 public interface IPaymentService {
 
-    Iterable<Payment> getAllPayments();
+    Iterable<Payment> findAll();
 
-    Payment getPaymentById(Long id);
+    Payment findById(Long id);
 
-    Iterable<Payment> getPaymentsOfCustomer(Long customerId);
+    Iterable<Payment> findByCustomerId(Long customerId);
 
-    Payment addPayment(PaymentDTO paymentDTO);
+    Payment save(PaymentDTO paymentDTO);
 }

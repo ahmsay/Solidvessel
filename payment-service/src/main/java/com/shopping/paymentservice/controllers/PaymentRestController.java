@@ -8,7 +8,6 @@ import com.shopping.paymentservice.services.IPaymentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/payments")
 public class PaymentRestController {
 
     private final IPaymentService paymentService;
@@ -19,28 +18,28 @@ public class PaymentRestController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/")
-    public Iterable<Payment> getAllPayments() {
-        return paymentService.getAllPayments();
+    @GetMapping("/payments")
+    public Iterable<Payment> findAll() {
+        return paymentService.findAll();
     }
 
-    @GetMapping("/{paymentId}")
-    public Payment getPaymentById(@PathVariable("paymentId") final Long id) {
-        return paymentService.getPaymentById(id);
+    @GetMapping("/payments/{id}")
+    public Payment findById(@PathVariable final Long id) {
+        return paymentService.findById(id);
     }
 
-    @GetMapping("/ofCustomer/{customerId}")
-    public Iterable<Payment> getPaymentsOfCustomer(@PathVariable("customerId") final Long customerId) {
-        return paymentService.getPaymentsOfCustomer(customerId);
+    @GetMapping("/payments/ofCustomer/{customerId}")
+    public Iterable<Payment> findByCustomerId(@PathVariable final Long customerId) {
+        return paymentService.findByCustomerId(customerId);
     }
 
-    @GetMapping("/{paymentId}/customer")
-    public Customer getCustomerOfPayment(@PathVariable("paymentId") final Long id) {
-        return customerService.getCustomerOfPayment(id);
+    @GetMapping("/payments/{id}/customer")
+    public Customer findCustomerOfPayment(@PathVariable final Long id) {
+        return customerService.findCustomerOfPayment(id);
     }
 
-    @PostMapping("/addPayment")
-    public Payment addPayment(@RequestBody final PaymentDTO paymentDTO) {
-        return paymentService.addPayment(paymentDTO);
+    @PostMapping("/payments")
+    public Payment save(@RequestBody final PaymentDTO paymentDTO) {
+        return paymentService.save(paymentDTO);
     }
 }

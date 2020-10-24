@@ -4,6 +4,7 @@ import com.shopping.inventoryservice.entity.Payment;
 import com.shopping.inventoryservice.entity.Product;
 import com.shopping.inventoryservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +24,14 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment getPaymentOfProduct(final Long productId) {
-        Product product = productService.getProductById(productId);
+    public Payment findPaymentOfProduct(final Long productId) {
+        Product product = productService.findById(productId);
         if (product == null) {
             return null;
         }
         return requestService.createRequest(paymentServiceUrl)
                 .toPath("/payments/" + product.getPaymentId())
+                .withHttpMethod(HttpMethod.GET)
                 .withResponseType(Payment.class)
                 .send();
     }

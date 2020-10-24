@@ -21,9 +21,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void updatePayments(final ProductDTO productDTO) {
+    public void setPaymentIds(final ProductDTO productDTO) {
         requestService.createRequest(inventoryServiceUrl)
-                .toPath("/products/setPayments")
+                .toPath("/products/setPaymentIds")
                 .withHttpMethod(HttpMethod.PUT)
                 .withRequestBody(productDTO)
                 .withResponseType(ProductDTO.class)

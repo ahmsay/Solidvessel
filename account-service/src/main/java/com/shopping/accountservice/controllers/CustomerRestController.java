@@ -5,7 +5,6 @@ import com.shopping.accountservice.services.ICustomerService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customers")//TODO use aggregate root
 public class CustomerRestController {
 
     private final ICustomerService customerService;
@@ -14,18 +13,18 @@ public class CustomerRestController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/")
-    public Iterable<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    @GetMapping("/customers")
+    public Iterable<Customer> all() {
+        return customerService.findAll();
     }
 
-    @GetMapping("/{customerId}")
-    public Customer getCustomerById(@PathVariable("customerId") final Long id) {
-        return customerService.getCustomerById(id);
+    @GetMapping("/customers/{id}")
+    public Customer findById(@PathVariable final Long id) {
+        return customerService.findById(id);
     }
 
-    @PostMapping("/addCustomer")
+    @PostMapping("/customers")
     public Customer addCustomer(@RequestBody final Customer customer) {
-        return customerService.addCustomer(customer);
+        return customerService.save(customer);
     }
 }

@@ -4,5 +4,5 @@ import com.shopping.paymentservice.dto.ProductDTO;
 
 public interface IProductService {
 
-    void updatePayments(ProductDTO productDTO);
+    void setPaymentIds(ProductDTO productDTO);
 }

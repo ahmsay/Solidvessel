@@ -16,17 +16,17 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Iterable<Customer> getAllCustomers() {
+    public Iterable<Customer> findAll() {
         return customerRepository.findAll();
     }
 
     @Override
-    public Customer getCustomerById(final Long id) {
+    public Customer findById(final Long id) {
         return customerRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Customer addCustomer(final Customer customer) {
+    public Customer save(final Customer customer) {
         return customerRepository.save(customer);
     }
 }

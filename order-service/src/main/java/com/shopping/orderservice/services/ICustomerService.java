@@ -4,5 +4,5 @@ import com.shopping.orderservice.entity.Customer;
 
 public interface ICustomerService {
 
-    Customer getCustomerOfOrder(Long orderId);
+    Customer findCustomerOfOrder(Long orderId);
 }

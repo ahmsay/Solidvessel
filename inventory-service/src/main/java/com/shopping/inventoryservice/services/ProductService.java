@@ -17,29 +17,29 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Iterable<Product> getAllProducts() {
+    public Iterable<Product> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public Product getProductById(final Long id) {
+    public Product findById(final Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Iterable<Product> getProductsOfPayment(final Long paymentId) {
+    public Iterable<Product> findByPaymentId(final Long paymentId) {
         return productRepository.findByPaymentId(paymentId);
     }
 
     @Override
-    public Product addProduct(final Product product) {
+    public Product save(final Product product) {
         return productRepository.save(product);
     }
 
     @Override
-    public ProductDTO setPayments(final ProductDTO productDTO) {
+    public ProductDTO setPaymentIds(final ProductDTO productDTO) {
         for (Long id : productDTO.getIds()) {
-            Product product = getProductById(id);
+            Product product = findById(id);
             if (product != null) {
                 product.setPaymentId(productDTO.getPaymentId());
                 productRepository.save(product);

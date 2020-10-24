@@ -9,7 +9,6 @@ import com.shopping.orderservice.services.IPaymentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/orders")
 public class OrderRestController {
 
     private final IOrderService orderService;
@@ -22,33 +21,33 @@ public class OrderRestController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/")
-    public Iterable<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    @GetMapping("/orders")
+    public Iterable<Order> findAll() {
+        return orderService.findAll();
     }
 
-    @GetMapping("/{orderId}")
-    public Order getOrderById(@PathVariable("orderId") final Long id) {
-        return orderService.getOrderById(id);
+    @GetMapping("/orders/{id}")
+    public Order findById(@PathVariable final Long id) {
+        return orderService.findById(id);
     }
 
-    @GetMapping("/ofCustomer/{customerId}")
-    public Iterable<Order> getOrdersOfCustomer(@PathVariable("customerId") final Long customerId) {
-        return orderService.getOrdersOfCustomer(customerId);
+    @GetMapping("/orders/ofCustomer/{customerId}")
+    public Iterable<Order> findByCustomerId(@PathVariable final Long customerId) {
+        return orderService.findByCustomerId(customerId);
     }
 
-    @GetMapping("/{orderId}/customer")
-    public Customer getCustomerOfOrder(@PathVariable("orderId") final Long id) {
-        return customerService.getCustomerOfOrder(id);
+    @GetMapping("/orders/{id}/customer")
+    public Customer findCustomerOfOrder(@PathVariable final Long id) {
+        return customerService.findCustomerOfOrder(id);
     }
 
-    @GetMapping("/{orderId}/payment")
-    public Payment getPaymentOfOrder(@PathVariable("orderId") final Long id) {
-        return paymentService.getPaymentOfOrder(id);
+    @GetMapping("/orders/{id}/payment")
+    public Payment findPaymentOfOrder(@PathVariable final Long id) {
+        return paymentService.findPaymentOfOrder(id);
     }
 
-    @PostMapping("/addOrder")
-    public Order addOrder(@RequestBody final Order order) {
-        return orderService.addOrder(order);
+    @PostMapping("/orders")
+    public Order save(@RequestBody final Order order) {
+        return orderService.save(order);
     }
 }

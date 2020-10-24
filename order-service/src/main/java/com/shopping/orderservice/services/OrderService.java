@@ -16,22 +16,22 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Iterable<Order> getAllOrders() {
+    public Iterable<Order> findAll() {
         return orderRepository.findAll();
     }
 
     @Override
-    public Order getOrderById(final Long id) {
+    public Order findById(final Long id) {
         return orderRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Iterable<Order> getOrdersOfCustomer(final Long customerId) {
+    public Iterable<Order> findByCustomerId(final Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 
     @Override
-    public Order addOrder(final Order order) {
+    public Order save(final Order order) {
         return orderRepository.save(order);
     }
 }

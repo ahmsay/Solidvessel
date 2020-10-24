@@ -4,11 +4,11 @@ import com.shopping.orderservice.entity.Order;
 
 public interface IOrderService {
 
-    Iterable<Order> getAllOrders();
+    Iterable<Order> findAll();
 
-    Order getOrderById(Long id);
+    Order findById(Long id);
 
-    Iterable<Order> getOrdersOfCustomer(Long customerId);
+    Iterable<Order> findByCustomerId(Long customerId);
 
-    Order addOrder(Order order);
+    Order save(Order order);
 }

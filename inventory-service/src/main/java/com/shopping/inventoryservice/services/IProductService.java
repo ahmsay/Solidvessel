@@ -5,13 +5,13 @@ import com.shopping.inventoryservice.entity.Product;
 
 public interface IProductService {
 
-    Iterable<Product> getAllProducts();
+    Iterable<Product> findAll();
 
-    Product getProductById(Long id);
+    Product findById(Long id);
 
-    Iterable<Product> getProductsOfPayment(Long paymentId);
+    Iterable<Product> findByPaymentId(Long paymentId);
 
-    Product addProduct(Product product);
+    Product save(Product product);
 
-    ProductDTO setPayments(ProductDTO productDTO);
+    ProductDTO setPaymentIds(ProductDTO productDTO);
 }

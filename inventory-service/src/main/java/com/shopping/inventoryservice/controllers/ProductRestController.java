@@ -8,7 +8,6 @@ import com.shopping.inventoryservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/products")
 public class ProductRestController {
 
     private final IProductService productService;
@@ -19,33 +18,33 @@ public class ProductRestController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/")
-    public Iterable<Product> getAllProducts() {
-        return productService.getAllProducts();
+    @GetMapping("/products")
+    public Iterable<Product> findAll() {
+        return productService.findAll();
     }
 
-    @GetMapping("/{productId}")
-    public Product getProductById(@PathVariable("productId") final Long id) {
-        return productService.getProductById(id);
+    @GetMapping("/products/{id}")
+    public Product findById(@PathVariable final Long id) {
+        return productService.findById(id);
     }
 
-    @GetMapping("/ofPayment/{paymentId}")
-    public Iterable<Product> getProductsOfPayment(@PathVariable("paymentId") final Long id) {
-        return productService.getProductsOfPayment(id);
+    @GetMapping("/products/ofPayment/{paymentId}")
+    public Iterable<Product> findByPaymentId(@PathVariable final Long paymentId) {
+        return productService.findByPaymentId(paymentId);
     }
 
-    @GetMapping("/{productId}/payment")
-    public Payment getPaymentOfProduct(@PathVariable("productId") final Long id) {
-        return paymentService.getPaymentOfProduct(id);
+    @GetMapping("/products/{id}/payment")
+    public Payment findPaymentOfProduct(@PathVariable final Long id) {
+        return paymentService.findPaymentOfProduct(id);
     }
 
-    @PostMapping("/addProduct")
-    public Product addProduct(@RequestBody final Product product) {
-        return productService.addProduct(product);
+    @PostMapping("/products")
+    public Product save(@RequestBody final Product product) {
+        return productService.save(product);
     }
 
-    @PutMapping("/setPayments")
-    public ProductDTO setPayments(@RequestBody final ProductDTO productDTO) {
-        return productService.setPayments(productDTO);
+    @PutMapping("/products/setPaymentIds")
+    public ProductDTO setPaymentIds(@RequestBody final ProductDTO productDTO) {
+        return productService.setPaymentIds(productDTO);
     }
 }

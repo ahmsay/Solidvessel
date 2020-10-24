@@ -4,6 +4,7 @@ import com.shopping.orderservice.entity.Customer;
 import com.shopping.orderservice.entity.Order;
 import com.shopping.orderservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +24,14 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Customer getCustomerOfOrder(final Long orderId) {
-        Order order = orderService.getOrderById(orderId);
+    public Customer findCustomerOfOrder(final Long orderId) {
+        Order order = orderService.findById(orderId);
         if (order == null) {
             return null;
         }
         return requestService.createRequest(accountServiceUrl)
                 .toPath("/customers/" + order.getCustomerId())
+                .withHttpMethod(HttpMethod.GET)
                 .withResponseType(Customer.class)
                 .send();
     }

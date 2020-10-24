@@ -4,9 +4,9 @@ import com.shopping.accountservice.entity.Customer;
 
 public interface ICustomerService {
 
-    Iterable<Customer> getAllCustomers();
+    Iterable<Customer> findAll();
 
-    Customer getCustomerById(Long id);
+    Customer findById(Long id);
 
-    Customer addCustomer(Customer customer);
+    Customer save(Customer customer);
 }

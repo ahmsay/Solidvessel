@@ -21,25 +21,25 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Iterable<Payment> getAllPayments() {
+    public Iterable<Payment> findAll() {
         return paymentRepository.findAll();
     }
 
     @Override
-    public Payment getPaymentById(final Long id) {
+    public Payment findById(final Long id) {
         return paymentRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Iterable<Payment> getPaymentsOfCustomer(final Long customerId) {
+    public Iterable<Payment> findByCustomerId(final Long customerId) {
         return paymentRepository.findByCustomerId(customerId);
     }
 
     @Override
-    public Payment addPayment(final PaymentDTO paymentDTO) {
+    public Payment save(final PaymentDTO paymentDTO) {
         Payment payment = new Payment(paymentDTO.getTotalCharge(), paymentDTO.getCustomerId());
         paymentRepository.save(payment);
-        productService.updatePayments(new ProductDTO(paymentDTO.getProductIds(), payment.getId()));
+        productService.setPaymentIds(new ProductDTO(paymentDTO.getProductIds(), payment.getId()));
         return payment;
     }
 }
