@@ -5,8 +5,6 @@ import com.shopping.orderservice.repositories.IOrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class OrderService implements IOrderService {
@@ -18,7 +16,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<Order> getAllOrders() {
+    public Iterable<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
@@ -28,7 +26,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(final Long customerId) {
+    public Iterable<Order> getOrdersOfCustomer(final Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 

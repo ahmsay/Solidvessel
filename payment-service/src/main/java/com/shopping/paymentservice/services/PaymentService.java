@@ -7,8 +7,6 @@ import com.shopping.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class PaymentService implements IPaymentService {
@@ -23,7 +21,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public List<Payment> getAllPayments() {
+    public Iterable<Payment> getAllPayments() {
         return paymentRepository.findAll();
     }
 
@@ -33,7 +31,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public List<Payment> getPaymentsOfCustomer(final Long customerId) {
+    public Iterable<Payment> getPaymentsOfCustomer(final Long customerId) {
         return paymentRepository.findByCustomerId(customerId);
     }
 

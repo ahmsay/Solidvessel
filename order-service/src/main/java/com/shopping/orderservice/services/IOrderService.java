@@ -2,15 +2,13 @@ package com.shopping.orderservice.services;
 
 import com.shopping.orderservice.entity.Order;
 
-import java.util.List;
-
 public interface IOrderService {
 
-    List<Order> getAllOrders();
+    Iterable<Order> getAllOrders();
 
     Order getOrderById(Long id);
 
-    List<Order> getOrdersOfCustomer(Long customerId);
+    Iterable<Order> getOrdersOfCustomer(Long customerId);
 
     Order addOrder(Order order);
 }

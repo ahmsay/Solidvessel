@@ -5,8 +5,6 @@ import com.shopping.accountservice.repositories.ICustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class CustomerService implements ICustomerService {
@@ -18,7 +16,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
+    public Iterable<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 

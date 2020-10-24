@@ -6,8 +6,6 @@ import com.shopping.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class ProductService implements IProductService {
@@ -19,7 +17,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getAllProducts() {
+    public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
@@ -29,7 +27,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getProductsOfPayment(final Long paymentId) {
+    public Iterable<Product> getProductsOfPayment(final Long paymentId) {
         return productRepository.findByPaymentId(paymentId);
     }
 

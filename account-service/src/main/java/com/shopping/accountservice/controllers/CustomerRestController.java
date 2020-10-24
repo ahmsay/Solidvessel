@@ -4,8 +4,6 @@ import com.shopping.accountservice.entity.Customer;
 import com.shopping.accountservice.services.ICustomerService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/customers")//TODO use aggregate root
 public class CustomerRestController {
@@ -17,7 +15,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/")
-    public List<Customer> getAllCustomers() {
+    public Iterable<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
