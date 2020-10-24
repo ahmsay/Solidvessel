@@ -9,16 +9,16 @@ public class AsyncRequest implements IAsyncRequest {
 
     private final IAsyncRequestService requestService;
 
-    private final String application;
+    private final String applicationUrl;
     private HttpMethod httpMethod;
     private String path;
     private final Map<String, Object[]> queryParameters;
     private Object body;
     private Class<?> responseType;
 
-    public AsyncRequest(final IAsyncRequestService requestService, final String application) {
+    public AsyncRequest(final IAsyncRequestService requestService, final String applicationUrl) {
         this.requestService = requestService;
-        this.application = application;
+        this.applicationUrl = applicationUrl;
         httpMethod = HttpMethod.GET;
         path = "";
         queryParameters = new HashMap<>();
@@ -27,8 +27,8 @@ public class AsyncRequest implements IAsyncRequest {
     }
 
     @Override
-    public String getApplication() {
-        return application;
+    public String getApplicationUrl() {
+        return applicationUrl;
     }
 
     @Override

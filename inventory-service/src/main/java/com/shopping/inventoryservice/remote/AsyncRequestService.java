@@ -18,13 +18,13 @@ public class AsyncRequestService implements IAsyncRequestService {
     }
 
     @Override
-    public IAsyncRequest createRequest(final String baseUrl) {
-        return new AsyncRequest(this, baseUrl);
+    public IAsyncRequest createRequest(final String applicationUrl) {
+        return new AsyncRequest(this, applicationUrl);
     }
 
     @Override
     public <T> T sendRequest(final IAsyncRequest request) {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getApplication() + request.getPath());
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getApplicationUrl() + request.getPath());
         for (Map.Entry<String, Object[]> entry : request.getQueryParameters().entrySet()) {
             builder.queryParam(entry.getKey(), entry.getValue());
         }

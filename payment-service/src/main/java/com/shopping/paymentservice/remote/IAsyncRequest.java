@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface IAsyncRequest {
 
-    String getApplication();
+    String getApplicationUrl();
 
     HttpMethod getHttpMethod();
 
