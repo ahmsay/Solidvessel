@@ -5,10 +5,12 @@ import com.shopping.paymentservice.dto.ProductDTO;
 import com.shopping.paymentservice.entity.Payment;
 import com.shopping.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service//TODO make all services transactional
+@Service
+@Transactional
 public class PaymentService implements IPaymentService {
 
     private final IPaymentRepository paymentRepository;

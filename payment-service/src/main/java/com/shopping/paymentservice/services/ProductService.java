@@ -5,8 +5,10 @@ import com.shopping.paymentservice.remote.IAsyncRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ProductService implements IProductService {
 
     @Value("${inventoryServiceUrl}")

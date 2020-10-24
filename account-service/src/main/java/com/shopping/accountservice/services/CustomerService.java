@@ -3,10 +3,12 @@ package com.shopping.accountservice.services;
 import com.shopping.accountservice.entity.Customer;
 import com.shopping.accountservice.repositories.ICustomerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CustomerService implements ICustomerService {
 
     private final ICustomerRepository customerRepository;

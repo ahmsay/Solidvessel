@@ -4,10 +4,12 @@ import com.shopping.inventoryservice.dto.ProductDTO;
 import com.shopping.inventoryservice.entity.Product;
 import com.shopping.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService implements IProductService {
 
     private final IProductRepository productRepository;

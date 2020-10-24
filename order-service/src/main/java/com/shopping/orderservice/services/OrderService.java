@@ -3,10 +3,12 @@ package com.shopping.orderservice.services;
 import com.shopping.orderservice.entity.Order;
 import com.shopping.orderservice.repositories.IOrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class OrderService implements IOrderService {
 
     private final IOrderRepository orderRepository;
