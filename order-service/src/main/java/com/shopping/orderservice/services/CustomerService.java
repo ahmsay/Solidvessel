@@ -2,7 +2,7 @@ package com.shopping.orderservice.services;
 
 import com.shopping.orderservice.entity.Customer;
 import com.shopping.orderservice.entity.Order;
-import com.shopping.orderservice.remote.IAsyncRequestService;
+import com.shopping.orderservice.remote.IRemoteRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public class CustomerService implements ICustomerService {
     private String accountServiceUrl;
 
     private final IOrderService orderService;
-    private final IAsyncRequestService requestService;
+    private final IRemoteRequestService requestService;
 
-    public CustomerService(final IOrderService orderService, final IAsyncRequestService requestService) {
+    public CustomerService(final IOrderService orderService, final IRemoteRequestService requestService) {
         this.orderService = orderService;
         this.requestService = requestService;
     }

@@ -1,4 +1,4 @@
-package com.shopping.orderservice.remote;
+package com.shopping.inventoryservice.remote;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
@@ -9,21 +9,21 @@ import java.net.URI;
 import java.util.Map;
 
 @Service
-public class AsyncRequestService implements IAsyncRequestService {
+public class RemoteRequestService implements IRemoteRequestService {
 
     private final RestTemplate restTemplate;
 
-    public AsyncRequestService(final RestTemplate restTemplate) {
+    public RemoteRequestService(final RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Override
-    public IAsyncRequest createRequest(final String applicationUrl) {
-        return new AsyncRequest(this, applicationUrl);
+    public IRemoteRequest createRequest(final String applicationUrl) {
+        return new RemoteRequest(this, applicationUrl);
     }
 
     @Override
-    public <T> T sendRequest(final IAsyncRequest request) {
+    public <T> T sendRequest(final IRemoteRequest request) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getApplicationUrl() + request.getPath());
         for (Map.Entry<String, Object[]> entry : request.getQueryParameters().entrySet()) {
             builder.queryParam(entry.getKey(), entry.getValue());

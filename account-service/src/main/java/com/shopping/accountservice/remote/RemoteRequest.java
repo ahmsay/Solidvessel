@@ -1,13 +1,13 @@
-package com.shopping.orderservice.remote;
+package com.shopping.accountservice.remote;
 
 import org.springframework.http.HttpMethod;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AsyncRequest implements IAsyncRequest {
+public class RemoteRequest implements IRemoteRequest {
 
-    private final IAsyncRequestService requestService;
+    private final IRemoteRequestService requestService;
 
     private final String applicationUrl;
     private HttpMethod httpMethod;
@@ -16,7 +16,7 @@ public class AsyncRequest implements IAsyncRequest {
     private Object body;
     private Class<?> responseType;
 
-    public AsyncRequest(final IAsyncRequestService requestService, final String applicationUrl) {
+    public RemoteRequest(final IRemoteRequestService requestService, final String applicationUrl) {
         this.requestService = requestService;
         this.applicationUrl = applicationUrl;
         httpMethod = HttpMethod.GET;
@@ -53,31 +53,31 @@ public class AsyncRequest implements IAsyncRequest {
     public Class<?> getResponseType() { return responseType; }
 
     @Override
-    public AsyncRequest toPath(final String path) {
+    public RemoteRequest toPath(final String path) {
         this.path = path;
         return this;
     }
 
     @Override
-    public IAsyncRequest withQueryParameter(final String parameterName, final Object... parameterValues) {
+    public IRemoteRequest withQueryParameter(final String parameterName, final Object... parameterValues) {
         this.queryParameters.put(parameterName, parameterValues);
         return this;
     }
 
     @Override
-    public IAsyncRequest withRequestBody(final Object requestBody) {
+    public IRemoteRequest withRequestBody(final Object requestBody) {
         this.body = requestBody;
         return this;
     }
 
     @Override
-    public IAsyncRequest withHttpMethod(final HttpMethod httpMethod) {
+    public IRemoteRequest withHttpMethod(final HttpMethod httpMethod) {
         this.httpMethod = httpMethod;
         return this;
     }
 
     @Override
-    public IAsyncRequest withResponseType(final Class<?> responseType) {
+    public IRemoteRequest withResponseType(final Class<?> responseType) {
         this.responseType = responseType;
         return this;
     }

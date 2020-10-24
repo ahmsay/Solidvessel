@@ -2,7 +2,7 @@ package com.shopping.inventoryservice.services;
 
 import com.shopping.inventoryservice.entity.Payment;
 import com.shopping.inventoryservice.entity.Product;
-import com.shopping.inventoryservice.remote.IAsyncRequestService;
+import com.shopping.inventoryservice.remote.IRemoteRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public class PaymentService implements IPaymentService {
     private String paymentServiceUrl;
 
     private final IProductService productService;
-    private final IAsyncRequestService requestService;
+    private final IRemoteRequestService requestService;
 
-    public PaymentService(final IProductService productService, final IAsyncRequestService requestService) {
+    public PaymentService(final IProductService productService, final IRemoteRequestService requestService) {
         this.productService = productService;
         this.requestService = requestService;
     }
