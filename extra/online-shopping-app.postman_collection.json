@@ -28,14 +28,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/customers/",
+							"raw": "localhost:8081/customers",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
-								"customers",
-								""
+								"customers"
 							]
 						}
 					},
@@ -73,6 +72,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "add customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82f24a7e-d67d-4a9b-abe5-df473639ec05",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Vessel\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -100,14 +140,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/products/",
+							"raw": "localhost:8082/products",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
-								"products",
-								""
+								"products"
 							]
 						}
 					},
@@ -225,6 +264,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "add product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b33dc081-8db6-4232-acae-0b865b775a4d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Light Saber\",\n    \"price\": 13,\n    \"category\": \"Electronics\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -252,14 +332,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8083/orders/",
+							"raw": "localhost:8083/orders",
 							"host": [
 								"localhost"
 							],
 							"port": "8083",
 							"path": [
-								"orders",
-								""
+								"orders"
 							]
 						}
 					},
@@ -399,6 +478,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "add order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "56532b74-d552-48a0-81b6-70eb47096559",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"Crashed\",\n    \"customerId\": 2,\n    \"paymentId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8083/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -426,14 +546,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8084/payments/",
+							"raw": "localhost:8084/payments",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
-								"payments",
-								""
+								"payments"
 							]
 						}
 					},
@@ -541,12 +660,12 @@
 					"response": []
 				},
 				{
-					"name": "get order of payment",
+					"name": "add payment",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "b844a1e4-1199-44e4-b584-d7d3ccae01d4",
+								"id": "b38ba8da-34be-4663-83c4-3531c39af1c8",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -557,18 +676,25 @@
 						}
 					],
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"totalCharge\": 120.8,\n    \"customerId\": 3,\n    \"productIds\": [7, 8]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8084/payments/1/order",
+							"raw": "localhost:8084/payments",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
-								"payments",
-								"1",
-								"order"
+								"payments"
 							]
 						}
 					},
