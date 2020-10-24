@@ -41,8 +41,8 @@ public class PaymentRestController {
         return customerService.getCustomerOfPayment(id);
     }
 
-    @GetMapping("/{paymentId}/order")
-    public Order getOrderOfPayment(@PathVariable("paymentId") final Long id) {
-        return orderService.getOrderOfPayment(id);
+    @PostMapping("/addPayment")
+    public Payment addPayment(@RequestBody final PaymentDTO paymentDTO) {
+        return paymentService.addPayment(paymentDTO);
     }
 }

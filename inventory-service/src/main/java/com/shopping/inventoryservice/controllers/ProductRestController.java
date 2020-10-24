@@ -1,5 +1,6 @@
 package com.shopping.inventoryservice.controllers;
 
+import com.shopping.inventoryservice.dto.ProductDTO;
 import com.shopping.inventoryservice.entity.Payment;
 import com.shopping.inventoryservice.entity.Product;
 import com.shopping.inventoryservice.services.IPaymentService;
@@ -43,5 +44,10 @@ public class ProductRestController {
     @PostMapping("/addProduct")
     public Product addProduct(@RequestBody final Product product) {
         return productService.addProduct(product);
+    }
+
+    @PutMapping("/setPayments")
+    public ProductDTO setPayments(@RequestBody final ProductDTO productDTO) {
+        return productService.setPayments(productDTO);
     }
 }
