@@ -18,15 +18,11 @@ public class Payment {
     @NotNull
     private Long customerId;
 
-    @NotNull
-    private Long orderId;
-
     Payment() { }
 
-    public Payment(final Double totalCharge, final Long customerId, final Long orderId) {
+    public Payment(final Double totalCharge, final Long customerId) {
         this.totalCharge = totalCharge;
         this.customerId = customerId;
-        this.orderId = orderId;
     }
 
     public Long getId() {
@@ -51,13 +47,5 @@ public class Payment {
 
     public void setCustomerId(final Long customerId) {
         this.customerId = customerId;
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(final Long orderId) {
-        this.orderId = orderId;
     }
 }

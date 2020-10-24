@@ -1,15 +1,11 @@
 package com.shopping.paymentservice.controllers;
 
+import com.shopping.paymentservice.dto.PaymentDTO;
 import com.shopping.paymentservice.entity.Customer;
-import com.shopping.paymentservice.entity.Order;
 import com.shopping.paymentservice.entity.Payment;
 import com.shopping.paymentservice.services.ICustomerService;
-import com.shopping.paymentservice.services.IOrderService;
 import com.shopping.paymentservice.services.IPaymentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +15,10 @@ public class PaymentRestController {
 
     private final IPaymentService paymentService;
     private final ICustomerService customerService;
-    private final IOrderService orderService;
 
-    public PaymentRestController(final IPaymentService paymentService, final ICustomerService customerService, final IOrderService orderService) {
+    public PaymentRestController(final IPaymentService paymentService, final ICustomerService customerService) {
         this.paymentService = paymentService;
         this.customerService = customerService;
-        this.orderService = orderService;
     }
 
     @GetMapping("/")

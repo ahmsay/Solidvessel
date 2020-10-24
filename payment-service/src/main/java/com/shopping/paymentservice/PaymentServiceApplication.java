@@ -23,9 +23,9 @@ public class PaymentServiceApplication {
 	@Bean
 	InitializingBean seedDatabase(final IPaymentRepository paymentRepository) {
 		return () -> {
-			paymentRepository.save(new Payment(10.5D, 1L, 1L));
-			paymentRepository.save(new Payment(200D, 2L, 2L));
-			paymentRepository.save(new Payment(999.99D, 2L, 3L));
+			paymentRepository.save(new Payment(10.5D, 1L));
+			paymentRepository.save(new Payment(200D, 2L));
+			paymentRepository.save(new Payment(999.99D, 2L));
 		};
 	}
 
