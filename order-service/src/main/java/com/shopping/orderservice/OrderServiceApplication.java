@@ -25,7 +25,6 @@ public class OrderServiceApplication {
 		return () -> {
 			orderRepository.save(new Order("Delivered", 1L, 1L));
 			orderRepository.save(new Order("On the way", 2L, 2L));
-			orderRepository.save(new Order("Crashed", 2L, 3L));
 		};
 	}
 

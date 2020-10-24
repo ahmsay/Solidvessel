@@ -29,4 +29,9 @@ public class OrderService implements IOrderService {
     public List<Order> getOrdersOfCustomer(final Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
+
+    @Override
+    public Order addOrder(final Order order) {
+        return orderRepository.save(order);
+    }
 }
