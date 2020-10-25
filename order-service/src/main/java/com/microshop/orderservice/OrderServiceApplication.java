@@ -1,0 +1,35 @@
+package com.microshop.orderservice;
+
+import com.microshop.orderservice.entity.Order;
+import com.microshop.orderservice.repositories.IOrderRepository;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class OrderServiceApplication {
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
+
+	@Bean
+	InitializingBean seedDatabase(final IOrderRepository orderRepository) {
+		return () -> {
+			orderRepository.save(new Order("Delivered", 1L, 1L));
+			orderRepository.save(new Order("On the way", 2L, 2L));
+		};
+	}
+
+	public static void main(final String[] args) {
+		SpringApplication.run(OrderServiceApplication.class, args);
+	}
+
+}

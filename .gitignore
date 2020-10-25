@@ -3,7 +3,7 @@
 !.gitignore
 !.README.md
 !docker-compose.yml
-!/extra/online-shopping-app.postman_collection.json
+!/extra/microshop.postman_collection.json
 !/extra/build_images.sh
 
 !/account-service/src/**

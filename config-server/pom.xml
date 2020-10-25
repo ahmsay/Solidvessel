@@ -8,11 +8,11 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.shopping</groupId>
+	<groupId>com.microshop</groupId>
 	<artifactId>config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Configuration Server</name>
-	<description>Online Shopping Application Configuration Server</description>
+	<description>Configuration Server for Online Shopping Application </description>
 
 	<properties>
 		<java.version>11</java.version>
