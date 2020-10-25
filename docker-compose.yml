@@ -2,37 +2,37 @@ version: '3'
 
 services:
   discovery-server:
-    image: ahmsay/online-shopping-application:discovery-server
+    image: ahmsay/microshop:discovery-server
     ports:
       - 8761:8761
   config-server:
-    image: ahmsay/online-shopping-application:config-server
+    image: ahmsay/microshop:config-server
     ports:
       - 8888:8888
     command: --spring.profiles.active=dockerCompose
   account-service:
-    image: ahmsay/online-shopping-application:account-service
+    image: ahmsay/microshop:account-service
     ports:
       - 8081:8081
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - account-service-db
   inventory-service:
-    image: ahmsay/online-shopping-application:inventory-service
+    image: ahmsay/microshop:inventory-service
     ports:
       - 8082:8082
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - inventory-service-db
   order-service:
-    image: ahmsay/online-shopping-application:order-service
+    image: ahmsay/microshop:order-service
     ports:
       - 8083:8083
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - order-service-db
   payment-service:
-    image: ahmsay/online-shopping-application:payment-service
+    image: ahmsay/microshop:payment-service
     ports:
       - 8084:8084
     command: --spring.profiles.active=dockerCompose
