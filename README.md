@@ -1,6 +1,6 @@
 # Microshop
 This is an online shopping application designed with microservices architecture.<br>
-Docker Repository: https://hub.docker.com/r/ahmsay/online-shopping-application
+Docker Repository: https://hub.docker.com/r/ahmsay/microshop
 ## To Run
 #### Prerequisites
 - Docker
