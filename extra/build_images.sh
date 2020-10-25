@@ -2,31 +2,31 @@ cd ..
 
 cd account-service
 mvn clean package
-docker build --tag ahmsay/online-shopping-application:account-service .
+docker build --tag ahmsay/microshop:account-service .
 cd ..
 
 cd inventory-service
 mvn clean package
-docker build --tag ahmsay/online-shopping-application:inventory-service .
+docker build --tag ahmsay/microshop:inventory-service .
 cd ..
 
 cd payment-service
 mvn clean package
-docker build --tag ahmsay/online-shopping-application:payment-service .
+docker build --tag ahmsay/microshop:payment-service .
 cd ..
 
 cd order-service
 mvn clean package
-docker build --tag ahmsay/online-shopping-application:order-service .
+docker build --tag ahmsay/microshop:order-service .
 cd ..
 
 cd discovery-server
 mvn clean package
-docker build --tag ahmsay/online-shopping-application:discovery-server .
+docker build --tag ahmsay/microshop:discovery-server .
 cd ..
 
 cd config-server
 mvn clean package
-docker build --tag ahmsay/online-shopping-application:config-server .
+docker build --tag ahmsay/microshop:config-server .
 cd ..
 
