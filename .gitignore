@@ -29,3 +29,8 @@
 !/config-server/src/**
 !/config-server/pom.xml
 !/config-server/Dockerfile
+
+!/web-app/public/**
+!/web-app/src/**
+!/web-app/package.json
+!/web-app/package-lock.json
