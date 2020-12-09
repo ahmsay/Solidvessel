@@ -1,12 +1,13 @@
 # Microshop
 This is an online shopping application designed with microservices architecture.<br>
 Docker Repository: https://hub.docker.com/r/ahmsay/microshop
-## To Run
-#### Prerequisites
-- Docker
-- Docker Compose
-#### Steps
-1. Use the <b>docker-compose.yml</b> file to start the application with `docker-compose up` command.
+## Useful Scripts
+### Run 
+`docker-compose up`
+### Run with Detached mode
+`docker-compose up -d`
+### Push containers
+`docker push <hub-user>/<repo-name>:<tag>`
 ## Project Details
 My main goal is to learn about microservices, so I kept the domain part of the project as simple as possible. The project is about recording transactions of a shopping application. The relations about entities are: One customer can have multiple payments and orders, each order is related to a payment and one payment can have multiple products.
 ### Client Services
