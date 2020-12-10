@@ -1,5 +1,6 @@
 package com.microshop.accountservice.controllers;
 
+import com.microshop.accountservice.dto.CustomerDTO;
 import com.microshop.accountservice.entity.Customer;
 import com.microshop.accountservice.services.ICustomerService;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/customers/{id}")
-    public Customer findById(@PathVariable final Long id) {
+    public CustomerDTO findById(@PathVariable final Long id) {
         return customerService.findById(id);
     }
 
