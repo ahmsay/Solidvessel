@@ -35,8 +35,8 @@ public class CustomerService implements ICustomerService {
         if (customer == null) {
             return null;
         }
-        List<Payment> paymentList = paymentService.findByCustomerId(id);
-        List<Order> orderList = orderService.findByCustomerId(id);
+        List<Payment> paymentList = paymentService.findByCustomerId(customer.getId());
+        List<Order> orderList = orderService.findByCustomerId(customer.getId());
         return new CustomerDTO(customer.getId(), customer.getName(), paymentList, orderList);
     }
 
