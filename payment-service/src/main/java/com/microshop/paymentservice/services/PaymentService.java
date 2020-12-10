@@ -1,11 +1,11 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.dto.PaymentDTO;
-import com.microshop.paymentservice.dto.ProductDTO;
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -36,10 +36,9 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment save(final PaymentDTO paymentDTO) {
-        Payment payment = new Payment(paymentDTO.getTotalCharge(), paymentDTO.getCustomerId());
+    public Payment save(final Payment payment, final List<Long> productIds) {
         paymentRepository.save(payment);
-        productService.setPaymentIds(new ProductDTO(paymentDTO.getProductIds(), payment.getId()));
+        productService.setPaymentIds(payment.getId(), productIds);
         return payment;
     }
 }

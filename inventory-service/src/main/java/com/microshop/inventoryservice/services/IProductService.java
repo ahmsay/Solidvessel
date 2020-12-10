@@ -1,7 +1,8 @@
 package com.microshop.inventoryservice.services;
 
-import com.microshop.inventoryservice.dto.ProductDTO;
 import com.microshop.inventoryservice.entity.Product;
+
+import java.util.List;
 
 public interface IProductService {
 
@@ -13,5 +14,5 @@ public interface IProductService {
 
     Product save(Product product);
 
-    ProductDTO setPaymentIds(ProductDTO productDTO);
+    String setPaymentIds(Long paymentId, List<Long> productIds);
 }

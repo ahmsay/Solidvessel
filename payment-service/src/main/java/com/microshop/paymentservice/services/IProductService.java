@@ -1,8 +1,8 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.dto.ProductDTO;
+import java.util.List;
 
 public interface IProductService {
 
-    void setPaymentIds(ProductDTO productDTO);
+    void setPaymentIds(Long paymentId, List<Long> productIds);
 }

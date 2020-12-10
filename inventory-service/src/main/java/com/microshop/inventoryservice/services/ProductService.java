@@ -1,10 +1,11 @@
 package com.microshop.inventoryservice.services;
 
-import com.microshop.inventoryservice.dto.ProductDTO;
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -37,14 +38,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ProductDTO setPaymentIds(final ProductDTO productDTO) {
-        for (Long id : productDTO.getIds()) {
+    public String setPaymentIds(final Long paymentId, final List<Long> productIds) {
+        for (Long id : productIds) {
             Product product = findById(id);
             if (product != null) {
-                product.setPaymentId(productDTO.getPaymentId());
+                product.setPaymentId(paymentId);
                 productRepository.save(product);
             }
         }
-        return productDTO;
+        return "Payment ids are set to related products";
     }
 }

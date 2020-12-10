@@ -1,11 +1,12 @@
 package com.microshop.inventoryservice.controllers;
 
-import com.microshop.inventoryservice.dto.ProductDTO;
 import com.microshop.inventoryservice.entity.Payment;
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.services.IPaymentService;
 import com.microshop.inventoryservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ProductRestController {
@@ -44,7 +45,8 @@ public class ProductRestController {
     }
 
     @PutMapping("/products/setPaymentIds")
-    public ProductDTO setPaymentIds(@RequestBody final ProductDTO productDTO) {
-        return productService.setPaymentIds(productDTO);
+    public String setPaymentIds(@RequestParam final Long paymentId,
+                                @RequestParam final List<Long> productIds) {
+        return productService.setPaymentIds(paymentId, productIds);
     }
 }
