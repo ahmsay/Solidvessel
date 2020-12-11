@@ -33,8 +33,8 @@ public class OrderService implements IOrderService {
         if (order == null) {
             return null;
         }
-        Customer customer = customerService.findCustomerOfOrder(order.getId());
-        Payment payment = paymentService.findPaymentOfOrder(order.getId());
+        Customer customer = customerService.findById(order.getCustomerId());
+        Payment payment = paymentService.findById(order.getPaymentId());
         return new OrderDTO(order.getId(), order.getStatus(), customer, payment);
     }
 

@@ -39,12 +39,12 @@ public class OrderRestController {
 
     @GetMapping("/orders/{id}/customer")
     public Customer findCustomerOfOrder(@PathVariable final Long id) {
-        return customerService.findCustomerOfOrder(id);
+        return customerService.findById(id);
     }
 
     @GetMapping("/orders/{id}/payment")
     public Payment findPaymentOfOrder(@PathVariable final Long id) {
-        return paymentService.findPaymentOfOrder(id);
+        return paymentService.findById(id);
     }
 
     @PostMapping("/orders")

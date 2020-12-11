@@ -4,5 +4,5 @@ import com.microshop.orderservice.entity.Payment;
 
 public interface IPaymentService {
 
-    Payment findPaymentOfOrder(Long orderId);
+    Payment findById(Long id);
 }

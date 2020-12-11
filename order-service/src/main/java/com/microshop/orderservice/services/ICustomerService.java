@@ -4,5 +4,5 @@ import com.microshop.orderservice.entity.Customer;
 
 public interface ICustomerService {
 
-    Customer findCustomerOfOrder(Long orderId);
+    Customer findById(Long id);
 }
