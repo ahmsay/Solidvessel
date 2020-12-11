@@ -1,7 +1,6 @@
 package com.microshop.inventoryservice.services;
 
 import com.microshop.inventoryservice.entity.Payment;
-import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.remote.IRemoteRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -15,22 +14,16 @@ public class PaymentService implements IPaymentService {
     @Value("${paymentServiceUrl}")
     private String paymentServiceUrl;
 
-    private final IProductService productService;
     private final IRemoteRequestService requestService;
 
-    public PaymentService(final IProductService productService, final IRemoteRequestService requestService) {
-        this.productService = productService;
+    public PaymentService(final IRemoteRequestService requestService) {
         this.requestService = requestService;
     }
 
     @Override
-    public Payment findPaymentOfProduct(final Long productId) {
-        Product product = productService.findById(productId);
-        if (product == null) {
-            return null;
-        }
+    public Payment findPaymentOfProduct(final Long paymentId) {
         return requestService.createRequest(paymentServiceUrl)
-                .toPath("/payments/" + product.getPaymentId())
+                .toPath("/payments/" + paymentId)
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(Payment.class)
                 .send();

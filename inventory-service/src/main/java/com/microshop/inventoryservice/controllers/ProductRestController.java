@@ -1,5 +1,6 @@
 package com.microshop.inventoryservice.controllers;
 
+import com.microshop.inventoryservice.dto.ProductDTO;
 import com.microshop.inventoryservice.entity.Payment;
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.services.IPaymentService;
@@ -25,7 +26,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/products/{id}")
-    public Product findById(@PathVariable final Long id) {
+    public ProductDTO findById(@PathVariable final Long id) {
         return productService.findById(id);
     }
 

@@ -1,24 +1,40 @@
 package com.microshop.inventoryservice.dto;
 
-import java.util.List;
+import com.microshop.inventoryservice.entity.Payment;
 
 public class ProductDTO {
 
-    private List<Long> ids;
-    private Long paymentId;
+    private final Long id;
+    private final String name;
+    private final Double price;
+    private final String category;
+    private final Payment payment;
 
-    public ProductDTO() {}
-
-    public ProductDTO(final List<Long> ids, final Long paymentId) {
-        this.ids = ids;
-        this.paymentId = paymentId;
+    public ProductDTO(final Long id, final String name, final Double price, final String category, final Payment payment) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.payment = payment;
     }
 
-    public List<Long> getIds() {
-        return ids;
+    public Long getId() {
+        return id;
     }
 
-    public Long getPaymentId() {
-        return paymentId;
+    public String getName() {
+        return name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Payment getPayment() {
+        return payment;
     }
 }

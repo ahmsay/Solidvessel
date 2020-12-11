@@ -1,5 +1,7 @@
 package com.microshop.inventoryservice.services;
 
+import com.microshop.inventoryservice.dto.ProductDTO;
+import com.microshop.inventoryservice.entity.Payment;
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,11 @@ import java.util.List;
 public class ProductService implements IProductService {
 
     private final IProductRepository productRepository;
+    private final IPaymentService paymentService;
 
-    public ProductService(final IProductRepository productRepository) {
+    public ProductService(final IProductRepository productRepository, final IPaymentService paymentService) {
         this.productRepository = productRepository;
+        this.paymentService = paymentService;
     }
 
     @Override
@@ -23,8 +27,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product findById(final Long id) {
-        return productRepository.findById(id).orElse(null);
+    public ProductDTO findById(final Long id) {
+        Product product = productRepository.findById(id).orElse(null);
+        if (product == null) {
+            return null;
+        }
+        Payment payment = paymentService.findPaymentOfProduct(product.getPaymentId());
+        return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory(), payment);
     }
 
     @Override
@@ -40,7 +49,7 @@ public class ProductService implements IProductService {
     @Override
     public String setPaymentIds(final Long paymentId, final List<Long> productIds) {
         for (Long id : productIds) {
-            Product product = findById(id);
+            Product product = productRepository.findById(id).orElse(null);
             if (product != null) {
                 product.setPaymentId(paymentId);
                 productRepository.save(product);
