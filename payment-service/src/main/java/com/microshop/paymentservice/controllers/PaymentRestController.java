@@ -1,5 +1,6 @@
 package com.microshop.paymentservice.controllers;
 
+import com.microshop.paymentservice.dto.PaymentDTO;
 import com.microshop.paymentservice.entity.Customer;
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.services.ICustomerService;
@@ -25,7 +26,7 @@ public class PaymentRestController {
     }
 
     @GetMapping("/payments/{id}")
-    public Payment findById(@PathVariable final Long id) {
+    public PaymentDTO findById(@PathVariable final Long id) {
         return paymentService.findById(id);
     }
 

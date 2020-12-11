@@ -4,5 +4,5 @@ import com.microshop.paymentservice.entity.Customer;
 
 public interface ICustomerService {
 
-    Customer findCustomerOfPayment(Long paymentId);
+    Customer findCustomerOfPayment(Long customerId);
 }

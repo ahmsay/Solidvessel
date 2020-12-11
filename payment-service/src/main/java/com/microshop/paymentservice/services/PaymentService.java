@@ -1,5 +1,7 @@
 package com.microshop.paymentservice.services;
 
+import com.microshop.paymentservice.dto.PaymentDTO;
+import com.microshop.paymentservice.entity.Customer;
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
@@ -12,12 +14,13 @@ import java.util.List;
 public class PaymentService implements IPaymentService {
 
     private final IPaymentRepository paymentRepository;
-
     private final IProductService productService;
+    private final ICustomerService customerService;
 
-    public PaymentService(final IPaymentRepository paymentRepository, final IProductService productService) {
+    public PaymentService(final IPaymentRepository paymentRepository, final IProductService productService, final ICustomerService customerService) {
         this.paymentRepository = paymentRepository;
         this.productService = productService;
+        this.customerService = customerService;
     }
 
     @Override
@@ -26,8 +29,13 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment findById(final Long id) {
-        return paymentRepository.findById(id).orElse(null);
+    public PaymentDTO findById(final Long id) {
+        Payment payment = paymentRepository.findById(id).orElse(null);
+        if (payment == null) {
+            return null;
+        }
+        Customer customer = customerService.findCustomerOfPayment(payment.getCustomerId());
+        return new PaymentDTO(payment.getId(), payment.getTotalCharge(), customer);
     }
 
     @Override

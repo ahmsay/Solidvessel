@@ -1,7 +1,6 @@
 package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.entity.Customer;
-import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.remote.IRemoteRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -24,13 +23,9 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Customer findCustomerOfPayment(final Long paymentId) {
-        Payment payment = paymentService.findById(paymentId);
-        if (payment == null) {
-            return null;
-        }
+    public Customer findCustomerOfPayment(final Long customerId) {
         return requestService.createRequest(accountServiceUrl)
-                .toPath("/customers/" + payment.getCustomerId())
+                .toPath("/customers/" + customerId)
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(Customer.class)
                 .send();
