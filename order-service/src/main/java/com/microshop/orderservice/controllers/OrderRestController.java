@@ -1,5 +1,6 @@
 package com.microshop.orderservice.controllers;
 
+import com.microshop.orderservice.dto.OrderDTO;
 import com.microshop.orderservice.entity.Customer;
 import com.microshop.orderservice.entity.Order;
 import com.microshop.orderservice.entity.Payment;
@@ -27,7 +28,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/orders/{id}")
-    public Order findById(@PathVariable final Long id) {
+    public OrderDTO findById(@PathVariable final Long id) {
         return orderService.findById(id);
     }
 
