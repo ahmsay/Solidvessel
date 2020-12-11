@@ -1,9 +1,7 @@
 package com.microshop.paymentservice.controllers;
 
 import com.microshop.paymentservice.dto.PaymentDTO;
-import com.microshop.paymentservice.entity.Customer;
 import com.microshop.paymentservice.entity.Payment;
-import com.microshop.paymentservice.services.ICustomerService;
 import com.microshop.paymentservice.services.IPaymentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +11,9 @@ import java.util.List;
 public class PaymentRestController {
 
     private final IPaymentService paymentService;
-    private final ICustomerService customerService;
 
-    public PaymentRestController(final IPaymentService paymentService, final ICustomerService customerService) {
+    public PaymentRestController(final IPaymentService paymentService) {
         this.paymentService = paymentService;
-        this.customerService = customerService;
     }
 
     @GetMapping("/payments")
@@ -33,11 +29,6 @@ public class PaymentRestController {
     @GetMapping("/payments/ofCustomer/{customerId}")
     public Iterable<Payment> findByCustomerId(@PathVariable final Long customerId) {
         return paymentService.findByCustomerId(customerId);
-    }
-
-    @GetMapping("/payments/{id}/customer")
-    public Customer findCustomerOfPayment(@PathVariable final Long id) {
-        return customerService.findById(id);
     }
 
     @PostMapping("/payments")
