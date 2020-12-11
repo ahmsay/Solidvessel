@@ -14,18 +14,16 @@ public class CustomerService implements ICustomerService {
     @Value("${accountServiceUrl}")
     private String accountServiceUrl;
 
-    private final IPaymentService paymentService;
     private final IRemoteRequestService requestService;
 
-    public CustomerService(final IPaymentService paymentService, final IRemoteRequestService requestService) {
-        this.paymentService = paymentService;
+    public CustomerService(final IRemoteRequestService requestService) {
         this.requestService = requestService;
     }
 
     @Override
-    public Customer findCustomerOfPayment(final Long customerId) {
+    public Customer findById(final Long id) {
         return requestService.createRequest(accountServiceUrl)
-                .toPath("/customers/" + customerId)
+                .toPath("/customers/" + id)
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(Customer.class)
                 .send();

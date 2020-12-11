@@ -34,7 +34,7 @@ public class PaymentService implements IPaymentService {
         if (payment == null) {
             return null;
         }
-        Customer customer = customerService.findCustomerOfPayment(payment.getCustomerId());
+        Customer customer = customerService.findById(payment.getCustomerId());
         return new PaymentDTO(payment.getId(), payment.getTotalCharge(), customer);
     }
 

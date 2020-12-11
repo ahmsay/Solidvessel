@@ -37,7 +37,7 @@ public class PaymentRestController {
 
     @GetMapping("/payments/{id}/customer")
     public Customer findCustomerOfPayment(@PathVariable final Long id) {
-        return customerService.findCustomerOfPayment(id);
+        return customerService.findById(id);
     }
 
     @PostMapping("/payments")
