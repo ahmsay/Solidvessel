@@ -32,7 +32,7 @@ public class ProductService implements IProductService {
         if (product == null) {
             return null;
         }
-        Payment payment = paymentService.findById(product.getPaymentId());
+        Payment payment = product.getPaymentId() == null ? null : paymentService.findById(product.getPaymentId());
         return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory(), payment);
     }
 
