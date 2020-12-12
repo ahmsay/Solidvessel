@@ -2,6 +2,7 @@ package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.remote.IRequestService;
 import com.microshop.paymentservice.wrapper.Product;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class ProductService implements IProductService {
                 .toPath("/products/setPaymentIds")
                 .withHttpMethod(HttpMethod.PUT)
                 .withQueryParameter("paymentId", paymentId)
-                .withQueryParameter("productIds", productIds)
+                .withQueryParameter("productIds", StringUtils.join(productIds, ","))
                 .withResponseType(Void.class)
                 .send();
     }
