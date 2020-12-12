@@ -25,14 +25,19 @@ public class RemoteRequestService implements IRemoteRequestService {
     @Override
     public <T> T sendRequest(final IRemoteRequest request) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(request.getApplicationUrl() + request.getPath());
+        setQueryParameters(request, builder);
+        URI uri = builder.build().encode().toUri();
+        HttpEntity<Object> entity = prepareRequestEntity(request.getBody());
+        return (T) restTemplate.exchange(uri, request.getHttpMethod(), entity, request.getResponseType()).getBody();
+    }
+
+    private void setQueryParameters(final IRemoteRequest request, final UriComponentsBuilder builder) {
         for (Map.Entry<String, Object[]> entry : request.getQueryParameters().entrySet()) {
             builder.queryParam(entry.getKey(), entry.getValue());
         }
-        URI uri = builder.build().encode().toUri();
-        HttpEntity<Object> entity = null;
-        if (request.getBody() != null) {
-            entity = new HttpEntity<>(request.getBody());
-        }
-        return (T) restTemplate.exchange(uri, request.getHttpMethod(), entity, request.getResponseType()).getBody();
+    }
+
+    private HttpEntity<Object> prepareRequestEntity(final Object body) {
+        return body != null ? new HttpEntity<>(body) : null;
     }
 }
