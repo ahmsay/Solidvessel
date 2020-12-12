@@ -47,7 +47,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public String setPaymentIds(final Long paymentId, final List<Long> productIds) {
+    public void setPaymentIds(final Long paymentId, final List<Long> productIds) {
         for (Long id : productIds) {
             Product product = productRepository.findById(id).orElse(null);
             if (product != null) {
@@ -55,6 +55,5 @@ public class ProductService implements IProductService {
                 productRepository.save(product);
             }
         }
-        return "Payment ids are set to related products";
     }
 }

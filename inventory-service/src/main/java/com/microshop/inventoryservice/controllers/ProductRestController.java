@@ -37,8 +37,8 @@ public class ProductRestController {
     }
 
     @PutMapping("/products/setPaymentIds")
-    public String setPaymentIds(@RequestParam final Long paymentId,
+    public void setPaymentIds(@RequestParam final Long paymentId,
                                 @RequestParam final List<Long> productIds) {
-        return productService.setPaymentIds(paymentId, productIds);
+        productService.setPaymentIds(paymentId, productIds);
     }
 }

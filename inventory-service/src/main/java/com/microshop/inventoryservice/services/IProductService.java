@@ -15,5 +15,5 @@ public interface IProductService {
 
     Product save(Product product);
 
-    String setPaymentIds(Long paymentId, List<Long> productIds);
+    void setPaymentIds(Long paymentId, List<Long> productIds);
 }
