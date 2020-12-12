@@ -8,12 +8,6 @@ public class Order {
 
     public Order() { }
 
-    public Order(final Long id, final String status, final Long paymentId) {
-        this.id = id;
-        this.status = status;
-        this.paymentId = paymentId;
-    }
-
     public Long getId() {
         return id;
     }
