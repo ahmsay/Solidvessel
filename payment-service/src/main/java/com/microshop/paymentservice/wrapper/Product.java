@@ -7,7 +7,7 @@ public class Product {
     private Double price;
     private String category;
 
-    public Product() { }
+    public Product() {}
 
     public Long getId() {
         return id;

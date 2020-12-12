@@ -6,7 +6,7 @@ public class Order {
     private String status;
     private Long paymentId;
 
-    public Order() { }
+    public Order() {}
 
     public Long getId() {
         return id;

@@ -5,7 +5,7 @@ public class Payment {
     private Long id;
     private Double totalCharge;
 
-    public Payment() { }
+    public Payment() {}
 
     public Long getId() {
         return id;
