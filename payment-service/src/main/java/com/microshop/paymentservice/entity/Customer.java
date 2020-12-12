@@ -7,11 +7,6 @@ public class Customer {
 
     public Customer() {}
 
-    public Customer(final Long id, final String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
     }

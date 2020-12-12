@@ -40,7 +40,6 @@ public class ProductService implements IProductService {
                 .withHttpMethod(HttpMethod.PUT)
                 .withQueryParameter("paymentId", paymentId)
                 .withQueryParameter("productIds", productIds)
-                .withResponseType(String.class)
                 .send();
     }
 }
