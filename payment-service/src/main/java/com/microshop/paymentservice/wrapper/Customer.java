@@ -1,4 +1,4 @@
-package com.microshop.orderservice.entity;
+package com.microshop.paymentservice.wrapper;
 
 public class Customer {
 

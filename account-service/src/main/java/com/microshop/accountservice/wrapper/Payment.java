@@ -1,4 +1,4 @@
-package com.microshop.accountservice.entity;
+package com.microshop.accountservice.wrapper;
 
 public class Payment {
 

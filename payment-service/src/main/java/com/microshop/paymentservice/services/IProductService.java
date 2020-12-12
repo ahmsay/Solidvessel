@@ -1,6 +1,6 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.entity.Product;
+import com.microshop.paymentservice.wrapper.Product;
 
 import java.util.List;
 

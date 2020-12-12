@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
-import com.microshop.accountservice.entity.Order;
 import com.microshop.accountservice.remote.IRequestService;
+import com.microshop.accountservice.wrapper.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;

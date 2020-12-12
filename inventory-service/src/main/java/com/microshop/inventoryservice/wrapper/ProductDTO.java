@@ -1,6 +1,4 @@
-package com.microshop.inventoryservice.dto;
-
-import com.microshop.inventoryservice.entity.Payment;
+package com.microshop.inventoryservice.wrapper;
 
 public class ProductDTO {
 

@@ -1,6 +1,6 @@
 package com.microshop.inventoryservice.services;
 
-import com.microshop.inventoryservice.entity.Payment;
+import com.microshop.inventoryservice.wrapper.Payment;
 
 public interface IPaymentService {
 

@@ -1,10 +1,10 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.dto.PaymentDTO;
-import com.microshop.paymentservice.entity.Customer;
 import com.microshop.paymentservice.entity.Payment;
-import com.microshop.paymentservice.entity.Product;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
+import com.microshop.paymentservice.wrapper.Customer;
+import com.microshop.paymentservice.wrapper.PaymentDTO;
+import com.microshop.paymentservice.wrapper.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

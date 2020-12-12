@@ -1,6 +1,6 @@
 package com.microshop.orderservice.services;
 
-import com.microshop.orderservice.entity.Customer;
+import com.microshop.orderservice.wrapper.Customer;
 
 public interface ICustomerService {
 

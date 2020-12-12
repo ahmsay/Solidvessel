@@ -1,7 +1,7 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.entity.Product;
 import com.microshop.paymentservice.remote.IRequestService;
+import com.microshop.paymentservice.wrapper.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;

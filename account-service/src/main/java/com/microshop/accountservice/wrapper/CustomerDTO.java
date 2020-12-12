@@ -1,7 +1,4 @@
-package com.microshop.accountservice.dto;
-
-import com.microshop.accountservice.entity.Order;
-import com.microshop.accountservice.entity.Payment;
+package com.microshop.accountservice.wrapper;
 
 import java.util.List;
 

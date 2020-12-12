@@ -1,6 +1,6 @@
 package com.microshop.accountservice.services;
 
-import com.microshop.accountservice.entity.Order;
+import com.microshop.accountservice.wrapper.Order;
 
 import java.util.List;
 

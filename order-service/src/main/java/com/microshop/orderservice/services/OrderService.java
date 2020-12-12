@@ -1,10 +1,10 @@
 package com.microshop.orderservice.services;
 
-import com.microshop.orderservice.dto.OrderDTO;
-import com.microshop.orderservice.entity.Customer;
 import com.microshop.orderservice.entity.Order;
-import com.microshop.orderservice.entity.Payment;
 import com.microshop.orderservice.repositories.IOrderRepository;
+import com.microshop.orderservice.wrapper.Customer;
+import com.microshop.orderservice.wrapper.OrderDTO;
+import com.microshop.orderservice.wrapper.Payment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

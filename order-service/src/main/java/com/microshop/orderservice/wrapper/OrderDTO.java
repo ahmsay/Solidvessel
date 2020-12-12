@@ -1,7 +1,4 @@
-package com.microshop.orderservice.dto;
-
-import com.microshop.orderservice.entity.Customer;
-import com.microshop.orderservice.entity.Payment;
+package com.microshop.orderservice.wrapper;
 
 public class OrderDTO {
 
