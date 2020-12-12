@@ -4,5 +4,5 @@ import com.microshop.inventoryservice.entity.Payment;
 
 public interface IPaymentService {
 
-    Payment findById(Long paymentId);
+    Payment findById(Long id);
 }

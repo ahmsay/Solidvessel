@@ -15,7 +15,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/customers")
-    public Iterable<Customer> all() {
+    public Iterable<Customer> findAll() {
         return customerService.findAll();
     }
 
