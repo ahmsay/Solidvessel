@@ -1,7 +1,7 @@
 package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.entity.Product;
-import com.microshop.paymentservice.remote.IRemoteRequestService;
+import com.microshop.paymentservice.remote.IRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ public class ProductService implements IProductService {
     @Value("${inventoryServiceUrl}")
     private String inventoryServiceUrl;
 
-    private final IRemoteRequestService requestService;
+    private final IRequestService requestService;
 
-    public ProductService(final IRemoteRequestService requestService) {
+    public ProductService(final IRequestService requestService) {
         this.requestService = requestService;
     }
 

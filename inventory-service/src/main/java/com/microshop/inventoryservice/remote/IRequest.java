@@ -4,7 +4,7 @@ import org.springframework.http.HttpMethod;
 
 import java.util.Map;
 
-public interface IRemoteRequest {
+public interface IRequest {
 
     String getApplicationUrl();
 
@@ -18,15 +18,15 @@ public interface IRemoteRequest {
 
     Class<?> getResponseType();
 
-    IRemoteRequest withHttpMethod(HttpMethod httpMethod);
+    IRequest withHttpMethod(HttpMethod httpMethod);
 
-    IRemoteRequest toPath(String path);
+    IRequest toPath(String path);
 
-    IRemoteRequest withQueryParameter(String parameterName, Object... parameterValues);
+    IRequest withQueryParameter(String parameterName, Object... parameterValues);
 
-    IRemoteRequest withRequestBody(Object requestBody);
+    IRequest withRequestBody(Object requestBody);
 
-    IRemoteRequest withResponseType(Class<?> responseType);
+    IRequest withResponseType(Class<?> responseType);
 
     <T> T send();
 }

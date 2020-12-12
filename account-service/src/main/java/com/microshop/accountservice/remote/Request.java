@@ -1,13 +1,13 @@
-package com.microshop.paymentservice.remote;
+package com.microshop.accountservice.remote;
 
 import org.springframework.http.HttpMethod;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RemoteRequest implements IRemoteRequest {
+public class Request implements IRequest {
 
-    private final IRemoteRequestService requestService;
+    private final IRequestService requestService;
 
     private final String applicationUrl;
     private HttpMethod httpMethod;
@@ -16,7 +16,7 @@ public class RemoteRequest implements IRemoteRequest {
     private Object body;
     private Class<?> responseType;
 
-    public RemoteRequest(final IRemoteRequestService requestService, final String applicationUrl) {
+    public Request(final IRequestService requestService, final String applicationUrl) {
         this.requestService = requestService;
         this.applicationUrl = applicationUrl;
         httpMethod = HttpMethod.GET;
@@ -53,31 +53,31 @@ public class RemoteRequest implements IRemoteRequest {
     public Class<?> getResponseType() { return responseType; }
 
     @Override
-    public RemoteRequest toPath(final String path) {
+    public Request toPath(final String path) {
         this.path = path;
         return this;
     }
 
     @Override
-    public IRemoteRequest withQueryParameter(final String parameterName, final Object... parameterValues) {
+    public IRequest withQueryParameter(final String parameterName, final Object... parameterValues) {
         this.queryParameters.put(parameterName, parameterValues);
         return this;
     }
 
     @Override
-    public IRemoteRequest withRequestBody(final Object requestBody) {
+    public IRequest withRequestBody(final Object requestBody) {
         this.body = requestBody;
         return this;
     }
 
     @Override
-    public IRemoteRequest withHttpMethod(final HttpMethod httpMethod) {
+    public IRequest withHttpMethod(final HttpMethod httpMethod) {
         this.httpMethod = httpMethod;
         return this;
     }
 
     @Override
-    public IRemoteRequest withResponseType(final Class<?> responseType) {
+    public IRequest withResponseType(final Class<?> responseType) {
         this.responseType = responseType;
         return this;
     }

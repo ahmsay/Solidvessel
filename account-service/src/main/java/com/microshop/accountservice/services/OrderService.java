@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
 import com.microshop.accountservice.entity.Order;
-import com.microshop.accountservice.remote.IRemoteRequestService;
+import com.microshop.accountservice.remote.IRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ public class OrderService implements IOrderService {
     @Value("${orderServiceUrl}")
     private String orderServiceUrl;
 
-    private final IRemoteRequestService requestService;
+    private final IRequestService requestService;
 
-    public OrderService(final IRemoteRequestService requestService) {
+    public OrderService(final IRequestService requestService) {
         this.requestService = requestService;
     }
 
