@@ -38,6 +38,6 @@ public class RequestService implements IRequestService {
     }
 
     private HttpEntity<Object> prepareRequestEntity(final Object body) {
-        return body != null ? new HttpEntity<>(body) : null;
+        return body == null ? null : new HttpEntity<>(body);
     }
 }
