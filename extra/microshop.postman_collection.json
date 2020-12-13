@@ -232,40 +232,6 @@
 					"response": []
 				},
 				{
-					"name": "get payment of product",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9f418569-4cb2-4d6e-b671-a6d68e38ba49",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8082/products/1/payment",
-							"host": [
-								"localhost"
-							],
-							"port": "8082",
-							"path": [
-								"products",
-								"1",
-								"payment"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add product",
 					"event": [
 						{
@@ -406,74 +372,6 @@
 								"orders",
 								"ofCustomer",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get customer of order",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "6b839ba5-f442-463c-a781-bb3fedc5da5e",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8083/orders/1/customer",
-							"host": [
-								"localhost"
-							],
-							"port": "8083",
-							"path": [
-								"orders",
-								"1",
-								"customer"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get payment of order",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a68b51e8-d3f1-48a6-9542-1ed73cf9e751",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8083/orders/1/payment",
-							"host": [
-								"localhost"
-							],
-							"port": "8083",
-							"path": [
-								"orders",
-								"1",
-								"payment"
 							]
 						}
 					},
@@ -626,40 +524,6 @@
 					"response": []
 				},
 				{
-					"name": "get customer of payment",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3b15dd69-c2c4-4a55-8c5a-c61e6430cc63",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8084/payments/1/customer",
-							"host": [
-								"localhost"
-							],
-							"port": "8084",
-							"path": [
-								"payments",
-								"1",
-								"customer"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add payment",
 					"event": [
 						{
@@ -680,7 +544,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"totalCharge\": 120.8,\n    \"customerId\": 3,\n    \"productIds\": [7, 8]\n}",
+							"raw": "{\n    \"totalCharge\": 120.8,\n    \"customerId\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -688,13 +552,19 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8084/payments",
+							"raw": "localhost:8084/payments?productIds=7,8",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
 								"payments"
+							],
+							"query": [
+								{
+									"key": "productIds",
+									"value": "7,8"
+								}
 							]
 						}
 					},
