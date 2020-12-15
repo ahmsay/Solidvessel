@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Map;
 
 @Service
 public class RequestService implements IRequestService {
@@ -32,9 +31,7 @@ public class RequestService implements IRequestService {
     }
 
     private void setQueryParameters(final IRequest request, final UriComponentsBuilder builder) {
-        for (Map.Entry<String, Object[]> entry : request.getQueryParameters().entrySet()) {
-            builder.queryParam(entry.getKey(), entry.getValue());
-        }
+        request.getQueryParameters().forEach(builder::queryParam);
     }
 
     private HttpEntity<Object> prepareRequestEntity(final Object body) {
