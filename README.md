@@ -43,3 +43,5 @@ So is it done now? NO! Client services first try to connect the config server, t
 In conclusion, to run this application with Docker Compose, you only need the <b>docker-compose.yml</b> file. When you write `docker-compose up` command, after a bunch of errors (services desperately trying to connect each other) it will run.
 ### Testing
 Currently, there is no unit test or integration test but there are <a href="https://github.com/ahmsay/Microshop/blob/master/extra/microshop.postman_collection.json" target="_blank">API tests</a>. You can import it in Postman to test the application.
+### Web App
+I am also building the <a href="https://github.com/ahmsay/Microshop-Web" target="_blank">client side</a> of the project by using React. It is currently unfinished and supports only read operations. I am planning to finish it soon.
