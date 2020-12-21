@@ -20,8 +20,9 @@ public class CustomerRestController {
     }
 
     @GetMapping("/customers/{id}")
-    public CustomerDTO findById(@PathVariable final Long id) {
-        return customerService.findById(id);
+    public CustomerDTO findById(@PathVariable final Long id,
+                                @RequestParam(required = false) final boolean pruned) {
+        return customerService.findById(id, pruned);
     }
 
     @PostMapping("/customers")

@@ -30,10 +30,13 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public CustomerDTO findById(final Long id) {
+    public CustomerDTO findById(final Long id, final boolean pruned) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
             return null;
+        }
+        if (pruned) {
+            return new CustomerDTO(customer.getId(), customer.getName());
         }
         List<Payment> paymentList = paymentService.findByCustomerId(customer.getId());
         List<Order> orderList = orderService.findByCustomerId(customer.getId());

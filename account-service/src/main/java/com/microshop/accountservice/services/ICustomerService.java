@@ -7,7 +7,7 @@ public interface ICustomerService {
 
     Iterable<Customer> findAll();
 
-    CustomerDTO findById(Long id);
+    CustomerDTO findById(Long id, boolean pruned);
 
     Customer save(Customer customer);
 }

@@ -6,8 +6,13 @@ public class CustomerDTO {
 
     private final Long id;
     private final String name;
-    private final List<Payment> paymentList;
-    private final List<Order> orderList;
+    private List<Payment> paymentList;
+    private List<Order> orderList;
+
+    public CustomerDTO(final Long id, final String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public CustomerDTO(final Long id, final String name, final List<Payment> paymentList, final List<Order> orderList) {
         this.id = id;
