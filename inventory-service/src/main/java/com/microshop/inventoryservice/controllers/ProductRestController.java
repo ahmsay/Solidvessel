@@ -22,8 +22,9 @@ public class ProductRestController {
     }
 
     @GetMapping("/products/{id}")
-    public ProductDTO findById(@PathVariable final Long id) {
-        return productService.findById(id);
+    public ProductDTO findById(@PathVariable final Long id,
+                               @RequestParam(required = false) final boolean pruned) {
+        return productService.findById(id, pruned);
     }
 
     @GetMapping("/products/ofPayment/{paymentId}")
@@ -38,7 +39,7 @@ public class ProductRestController {
 
     @PutMapping("/products/setPaymentIds")
     public void setPaymentIds(@RequestParam final Long paymentId,
-                                @RequestParam final List<Long> productIds) {
+                              @RequestParam final List<Long> productIds) {
         productService.setPaymentIds(paymentId, productIds);
     }
 }

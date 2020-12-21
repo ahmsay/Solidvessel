@@ -27,10 +27,13 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ProductDTO findById(final Long id) {
+    public ProductDTO findById(final Long id, final boolean pruned) {
         Product product = productRepository.findById(id).orElse(null);
         if (product == null) {
             return null;
+        }
+        if (pruned) {
+            return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory());
         }
         Payment payment = product.getPaymentId() == null ? null : paymentService.findById(product.getPaymentId());
         return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory(), payment);

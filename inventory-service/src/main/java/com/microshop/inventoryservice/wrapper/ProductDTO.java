@@ -6,7 +6,14 @@ public class ProductDTO {
     private final String name;
     private final Double price;
     private final String category;
-    private final Payment payment;
+    private Payment payment;
+
+    public ProductDTO(final Long id, final String name, final Double price, final String category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 
     public ProductDTO(final Long id, final String name, final Double price, final String category, final Payment payment) {
         this.id = id;

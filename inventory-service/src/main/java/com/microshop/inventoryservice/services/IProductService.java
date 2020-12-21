@@ -9,7 +9,7 @@ public interface IProductService {
 
     Iterable<Product> findAll();
 
-    ProductDTO findById(Long id);
+    ProductDTO findById(Long id, boolean pruned);
 
     Iterable<Product> findByPaymentId(Long paymentId);
 

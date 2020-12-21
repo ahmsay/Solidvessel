@@ -25,6 +25,7 @@ public class PaymentService implements IPaymentService {
         return requestService.createRequest(paymentServiceUrl)
                 .toPath("/payments/" + id)
                 .withHttpMethod(HttpMethod.GET)
+                .withQueryParameter("pruned", true)
                 .withResponseType(Payment.class)
                 .send();
     }
