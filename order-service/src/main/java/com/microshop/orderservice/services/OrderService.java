@@ -28,10 +28,13 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderDTO findById(final Long id) {
+    public OrderDTO findById(final Long id, final boolean pruned) {
         Order order = orderRepository.findById(id).orElse(null);
         if (order == null) {
             return null;
+        }
+        if (pruned) {
+            return new OrderDTO(order.getId(), order.getStatus());
         }
         Customer customer = customerService.findById(order.getCustomerId());
         Payment payment = paymentService.findById(order.getPaymentId());

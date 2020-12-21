@@ -7,7 +7,7 @@ public interface IOrderService {
 
     Iterable<Order> findAll();
 
-    OrderDTO findById(Long id);
+    OrderDTO findById(Long id, boolean pruned);
 
     Iterable<Order> findByCustomerId(Long customerId);
 

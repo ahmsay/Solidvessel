@@ -4,8 +4,13 @@ public class OrderDTO {
 
     private final Long id;
     private final String status;
-    private final Customer customer;
-    private final Payment payment;
+    private Customer customer;
+    private Payment payment;
+
+    public OrderDTO(final Long id, final String status) {
+        this.id = id;
+        this.status = status;
+    }
 
     public OrderDTO(final long id, final String status, final Customer customer, final Payment payment) {
         this.id = id;
