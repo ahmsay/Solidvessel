@@ -21,7 +21,7 @@ public class OrderRestController {
 
     @GetMapping("/orders/{id}")
     public OrderDTO findById(@PathVariable final Long id,
-                             @RequestParam final boolean pruned) {
+                             @RequestParam(required = false) final boolean pruned) {
         return orderService.findById(id, pruned);
     }
 
