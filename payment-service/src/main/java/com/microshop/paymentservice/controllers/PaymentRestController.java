@@ -22,8 +22,9 @@ public class PaymentRestController {
     }
 
     @GetMapping("/payments/{id}")
-    public PaymentDTO findById(@PathVariable final Long id) {
-        return paymentService.findById(id);
+    public PaymentDTO findById(@PathVariable final Long id,
+                               @RequestParam(required = false) final boolean pruned) {
+        return paymentService.findById(id, pruned);
     }
 
     @GetMapping("/payments/ofCustomer/{customerId}")

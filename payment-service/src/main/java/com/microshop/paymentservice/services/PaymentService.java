@@ -30,10 +30,13 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public PaymentDTO findById(final Long id) {
+    public PaymentDTO findById(final Long id, final boolean pruned) {
         Payment payment = paymentRepository.findById(id).orElse(null);
         if (payment == null) {
             return null;
+        }
+        if (pruned) {
+            return new PaymentDTO(payment.getId(), payment.getTotalCharge());
         }
         Customer customer = customerService.findById(payment.getCustomerId());
         List<Product> productList = productService.findByPaymentId(payment.getId());

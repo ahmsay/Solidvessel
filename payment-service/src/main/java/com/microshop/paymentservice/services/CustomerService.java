@@ -25,6 +25,7 @@ public class CustomerService implements ICustomerService {
         return requestService.createRequest(accountServiceUrl)
                 .toPath("/customers/" + id)
                 .withHttpMethod(HttpMethod.GET)
+                .withQueryParameter("pruned", true)
                 .withResponseType(Customer.class)
                 .send();
     }

@@ -6,8 +6,13 @@ public class PaymentDTO {
 
     private final Long id;
     private final Double totalCharge;
-    private final Customer customer;
-    private final List<Product> productList;
+    private Customer customer;
+    private List<Product> productList;
+
+    public PaymentDTO(final Long id, final Double totalCharge) {
+        this.id = id;
+        this.totalCharge = totalCharge;
+    }
 
     public PaymentDTO(final Long id, final Double totalCharge, final Customer customer, final List<Product> productList) {
         this.id = id;
