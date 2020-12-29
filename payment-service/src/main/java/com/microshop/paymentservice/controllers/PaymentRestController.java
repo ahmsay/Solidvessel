@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/payments")
 public class PaymentRestController {
 
     private final IPaymentService paymentService;
@@ -16,27 +17,27 @@ public class PaymentRestController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/payments")
+    @GetMapping()
     public Iterable<Payment> findAll() {
         return paymentService.findAll();
     }
 
-    @GetMapping("/payments/{id}")
+    @GetMapping("/{id}")
     public PaymentDTO findById(@PathVariable final Long id) {
         return paymentService.findById(id);
     }
 
-    @GetMapping("/payments/{id}/pruned")
+    @GetMapping("/{id}/pruned")
     public Payment findPrunedById(@PathVariable final Long id) {
         return paymentService.findPrunedById(id);
     }
 
-    @GetMapping("/payments/ofCustomer/{customerId}")
+    @GetMapping("/ofCustomer/{customerId}")
     public Iterable<Payment> findByCustomerId(@PathVariable final Long customerId) {
         return paymentService.findByCustomerId(customerId);
     }
 
-    @PostMapping("/payments")
+    @PostMapping()
     public Payment save(@RequestBody final Payment payment,
                         @RequestParam final List<Long> productIds) {
         return paymentService.save(payment, productIds);

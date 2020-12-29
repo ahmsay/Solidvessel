@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/products")
 public class ProductRestController {
 
     private final IProductService productService;
@@ -16,32 +17,32 @@ public class ProductRestController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
+    @GetMapping()
     public Iterable<Product> findAll() {
         return productService.findAll();
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ProductDTO findById(@PathVariable final Long id) {
         return productService.findById(id);
     }
 
-    @GetMapping("/products/{id}/pruned")
+    @GetMapping("/{id}/pruned")
     public Product findPrunedById(@PathVariable final Long id) {
         return productService.findPrunedById(id);
     }
 
-    @GetMapping("/products/ofPayment/{paymentId}")
+    @GetMapping("/ofPayment/{paymentId}")
     public Iterable<Product> findByPaymentId(@PathVariable final Long paymentId) {
         return productService.findByPaymentId(paymentId);
     }
 
-    @PostMapping("/products")
+    @PostMapping()
     public Product save(@RequestBody final Product product) {
         return productService.save(product);
     }
 
-    @PutMapping("/products/setPaymentIds")
+    @PutMapping("/setPaymentIds")
     public void setPaymentIds(@RequestParam final Long paymentId,
                               @RequestParam final List<Long> productIds) {
         productService.setPaymentIds(paymentId, productIds);

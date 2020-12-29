@@ -6,6 +6,7 @@ import com.microshop.orderservice.wrapper.OrderDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/orders")
 public class OrderRestController {
 
     private final IOrderService orderService;
@@ -14,27 +15,27 @@ public class OrderRestController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/orders")
+    @GetMapping()
     public Iterable<Order> findAll() {
         return orderService.findAll();
     }
 
-    @GetMapping("/orders/{id}")
+    @GetMapping("/{id}")
     public OrderDTO findById(@PathVariable final Long id) {
         return orderService.findById(id);
     }
 
-    @GetMapping("/orders/{id}/pruned")
+    @GetMapping("/{id}/pruned")
     public Order findPrunedById(@PathVariable final Long id) {
         return orderService.findPrunedById(id);
     }
 
-    @GetMapping("/orders/ofCustomer/{customerId}")
+    @GetMapping("/ofCustomer/{customerId}")
     public Iterable<Order> findByCustomerId(@PathVariable final Long customerId) {
         return orderService.findByCustomerId(customerId);
     }
 
-    @PostMapping("/orders")
+    @PostMapping()
     public Order save(@RequestBody final Order order) {
         return orderService.save(order);
     }

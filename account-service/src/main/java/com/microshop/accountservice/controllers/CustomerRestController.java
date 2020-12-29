@@ -6,6 +6,7 @@ import com.microshop.accountservice.wrapper.CustomerDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/customers")
 public class CustomerRestController {
 
     private final ICustomerService customerService;
@@ -14,22 +15,22 @@ public class CustomerRestController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/customers")
+    @GetMapping()
     public Iterable<Customer> findAll() {
         return customerService.findAll();
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/{id}")
     public CustomerDTO findById(@PathVariable final Long id) {
         return customerService.findById(id);
     }
 
-    @GetMapping("/customers/{id}/pruned")
+    @GetMapping("/{id}/pruned")
     public Customer findByIdPruned(@PathVariable final Long id) {
         return customerService.findPrunedById(id);
     }
 
-    @PostMapping("/customers")
+    @PostMapping()
     public Customer addCustomer(@RequestBody final Customer customer) {
         return customerService.save(customer);
     }
