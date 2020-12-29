@@ -23,9 +23,8 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer findById(final Long id) {
         return requestService.createRequest(accountServiceUrl)
-                .toPath("/customers/" + id)
+                .toPath("/customers/" + id + "/pruned")
                 .withHttpMethod(HttpMethod.GET)
-                .withQueryParameter("pruned", true)
                 .withResponseType(Customer.class)
                 .send();
     }

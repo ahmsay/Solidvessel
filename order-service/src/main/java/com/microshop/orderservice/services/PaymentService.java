@@ -23,9 +23,8 @@ public class PaymentService implements IPaymentService {
     @Override
     public Payment findById(final Long id) {
         return requestService.createRequest(paymentServiceUrl)
-                .toPath("/payments/" + id)
+                .toPath("/payments/" + id + "/pruned")
                 .withHttpMethod(HttpMethod.GET)
-                .withQueryParameter("pruned", true)
                 .withResponseType(Payment.class)
                 .send();
     }
