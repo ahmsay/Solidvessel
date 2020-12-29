@@ -25,6 +25,11 @@ public class CustomerRestController {
         return customerService.findById(id, pruned);
     }
 
+    @GetMapping("/customers/{id}/pruned")
+    public Customer findByIdPruned(@PathVariable final Long id) {
+        return customerService.findPrunedById(id);
+    }
+
     @PostMapping("/customers")
     public Customer addCustomer(@RequestBody final Customer customer) {
         return customerService.save(customer);

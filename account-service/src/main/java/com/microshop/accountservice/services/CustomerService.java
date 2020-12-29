@@ -35,12 +35,14 @@ public class CustomerService implements ICustomerService {
         if (customer == null) {
             return null;
         }
-        if (pruned) {
-            return new CustomerDTO(customer.getId(), customer.getName());
-        }
         List<Payment> paymentList = paymentService.findByCustomerId(customer.getId());
         List<Order> orderList = orderService.findByCustomerId(customer.getId());
         return new CustomerDTO(customer.getId(), customer.getName(), paymentList, orderList);
+    }
+
+    @Override
+    public Customer findPrunedById(final Long id) {
+        return customerRepository.findById(id).orElse(null);
     }
 
     @Override

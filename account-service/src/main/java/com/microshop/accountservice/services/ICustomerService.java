@@ -9,5 +9,7 @@ public interface ICustomerService {
 
     CustomerDTO findById(Long id, boolean pruned);
 
+    Customer findPrunedById(Long id);
+
     Customer save(Customer customer);
 }
