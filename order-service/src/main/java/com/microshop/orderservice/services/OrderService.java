@@ -33,12 +33,14 @@ public class OrderService implements IOrderService {
         if (order == null) {
             return null;
         }
-        if (pruned) {
-            return new OrderDTO(order.getId(), order.getStatus());
-        }
         Customer customer = customerService.findById(order.getCustomerId());
         Payment payment = paymentService.findById(order.getPaymentId());
         return new OrderDTO(order.getId(), order.getStatus(), customer, payment);
+    }
+
+    @Override
+    public Order findPrunedById(final Long id) {
+        return orderRepository.findById(id).orElse(null);
     }
 
     @Override

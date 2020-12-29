@@ -25,6 +25,11 @@ public class OrderRestController {
         return orderService.findById(id, pruned);
     }
 
+    @GetMapping("/orders/{id}/pruned")
+    public Order findPrunedById(@PathVariable final Long id) {
+        return orderService.findPrunedById(id);
+    }
+
     @GetMapping("/orders/ofCustomer/{customerId}")
     public Iterable<Order> findByCustomerId(@PathVariable final Long customerId) {
         return orderService.findByCustomerId(customerId);

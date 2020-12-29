@@ -9,6 +9,8 @@ public interface IOrderService {
 
     OrderDTO findById(Long id, boolean pruned);
 
+    Order findPrunedById(Long id);
+
     Iterable<Order> findByCustomerId(Long customerId);
 
     Order save(Order order);
