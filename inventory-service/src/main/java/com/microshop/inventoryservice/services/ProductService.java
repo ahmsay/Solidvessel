@@ -32,11 +32,13 @@ public class ProductService implements IProductService {
         if (product == null) {
             return null;
         }
-        if (pruned) {
-            return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory());
-        }
         Payment payment = product.getPaymentId() == null ? null : paymentService.findById(product.getPaymentId());
         return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory(), payment);
+    }
+
+    @Override
+    public Product findPrunedById(final Long id) {
+        return productRepository.findById(id).orElse(null);
     }
 
     @Override

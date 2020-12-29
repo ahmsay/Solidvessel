@@ -11,6 +11,8 @@ public interface IProductService {
 
     ProductDTO findById(Long id, boolean pruned);
 
+    Product findPrunedById(Long id);
+
     Iterable<Product> findByPaymentId(Long paymentId);
 
     Product save(Product product);
