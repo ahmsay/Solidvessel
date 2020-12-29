@@ -28,7 +28,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderDTO findById(final Long id, final boolean pruned) {
+    public OrderDTO findById(final Long id) {
         Order order = orderRepository.findById(id).orElse(null);
         if (order == null) {
             return null;

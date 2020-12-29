@@ -9,7 +9,7 @@ public interface IProductService {
 
     Iterable<Product> findAll();
 
-    ProductDTO findById(Long id, boolean pruned);
+    ProductDTO findById(Long id);
 
     Product findPrunedById(Long id);
 

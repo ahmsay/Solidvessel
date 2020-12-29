@@ -9,7 +9,7 @@ public interface IPaymentService {
 
     Iterable<Payment> findAll();
 
-    PaymentDTO findById(Long id, boolean pruned);
+    PaymentDTO findById(Long id);
 
     Payment findPrunedById(Long id);
 

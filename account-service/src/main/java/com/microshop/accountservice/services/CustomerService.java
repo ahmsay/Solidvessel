@@ -30,7 +30,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public CustomerDTO findById(final Long id, final boolean pruned) {
+    public CustomerDTO findById(final Long id) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
             return null;

@@ -20,9 +20,8 @@ public class OrderRestController {
     }
 
     @GetMapping("/orders/{id}")
-    public OrderDTO findById(@PathVariable final Long id,
-                             @RequestParam(required = false) final boolean pruned) {
-        return orderService.findById(id, pruned);
+    public OrderDTO findById(@PathVariable final Long id) {
+        return orderService.findById(id);
     }
 
     @GetMapping("/orders/{id}/pruned")

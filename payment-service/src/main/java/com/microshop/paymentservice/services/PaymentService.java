@@ -30,7 +30,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public PaymentDTO findById(final Long id, final boolean pruned) {
+    public PaymentDTO findById(final Long id) {
         Payment payment = paymentRepository.findById(id).orElse(null);
         if (payment == null) {
             return null;

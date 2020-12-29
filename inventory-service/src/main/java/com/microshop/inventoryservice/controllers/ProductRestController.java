@@ -22,9 +22,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/products/{id}")
-    public ProductDTO findById(@PathVariable final Long id,
-                               @RequestParam(required = false) final boolean pruned) {
-        return productService.findById(id, pruned);
+    public ProductDTO findById(@PathVariable final Long id) {
+        return productService.findById(id);
     }
 
     @GetMapping("/products/{id}/pruned")

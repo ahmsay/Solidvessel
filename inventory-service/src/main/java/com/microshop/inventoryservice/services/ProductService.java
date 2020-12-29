@@ -27,7 +27,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ProductDTO findById(final Long id, final boolean pruned) {
+    public ProductDTO findById(final Long id) {
         Product product = productRepository.findById(id).orElse(null);
         if (product == null) {
             return null;
