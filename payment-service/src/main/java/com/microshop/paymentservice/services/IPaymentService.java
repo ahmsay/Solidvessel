@@ -11,6 +11,8 @@ public interface IPaymentService {
 
     PaymentDTO findById(Long id, boolean pruned);
 
+    Payment findPrunedById(Long id);
+
     Iterable<Payment> findByCustomerId(Long customerId);
 
     Payment save(Payment payment, List<Long> productIds);

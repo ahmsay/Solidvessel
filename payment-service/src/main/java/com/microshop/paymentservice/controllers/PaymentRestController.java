@@ -27,6 +27,11 @@ public class PaymentRestController {
         return paymentService.findById(id, pruned);
     }
 
+    @GetMapping("/payments/{id}/pruned")
+    public Payment findPrunedById(@PathVariable final Long id) {
+        return paymentService.findPrunedById(id);
+    }
+
     @GetMapping("/payments/ofCustomer/{customerId}")
     public Iterable<Payment> findByCustomerId(@PathVariable final Long customerId) {
         return paymentService.findByCustomerId(customerId);

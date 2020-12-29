@@ -35,12 +35,14 @@ public class PaymentService implements IPaymentService {
         if (payment == null) {
             return null;
         }
-        if (pruned) {
-            return new PaymentDTO(payment.getId(), payment.getTotalCharge());
-        }
         Customer customer = customerService.findById(payment.getCustomerId());
         List<Product> productList = productService.findByPaymentId(payment.getId());
         return new PaymentDTO(payment.getId(), payment.getTotalCharge(), customer, productList);
+    }
+
+    @Override
+    public Payment findPrunedById(final Long id) {
+        return paymentRepository.findById(id).orElse(null);
     }
 
     @Override
