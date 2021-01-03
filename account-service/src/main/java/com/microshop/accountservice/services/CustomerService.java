@@ -31,7 +31,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public CustomerDTO findById(final Long id) {
-        Customer customer = customerRepository.findById(id).orElse(null);
+        Customer customer = findPrunedById(id);
         if (customer == null) {
             return null;
         }

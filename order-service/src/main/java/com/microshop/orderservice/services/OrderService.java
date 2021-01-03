@@ -29,7 +29,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public OrderDTO findById(final Long id) {
-        Order order = orderRepository.findById(id).orElse(null);
+        Order order = findPrunedById(id);
         if (order == null) {
             return null;
         }
