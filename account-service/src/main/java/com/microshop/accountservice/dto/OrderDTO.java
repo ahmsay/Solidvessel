@@ -1,4 +1,4 @@
-package com.microshop.accountservice.wrapper;
+package com.microshop.accountservice.dto;
 
 public class OrderDTO {
 

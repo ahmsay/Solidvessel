@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
+import com.microshop.accountservice.dto.CustomerDTO;
 import com.microshop.accountservice.entity.Customer;
-import com.microshop.accountservice.wrapper.CustomerDTO;
 
 public interface ICustomerService {
 

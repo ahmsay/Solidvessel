@@ -1,6 +1,6 @@
 package com.microshop.accountservice.services;
 
-import com.microshop.accountservice.wrapper.PaymentDTO;
+import com.microshop.accountservice.dto.PaymentDTO;
 
 import java.util.List;
 

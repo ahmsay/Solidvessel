@@ -1,4 +1,4 @@
-package com.microshop.paymentservice.wrapper;
+package com.microshop.paymentservice.dto;
 
 import java.util.List;
 

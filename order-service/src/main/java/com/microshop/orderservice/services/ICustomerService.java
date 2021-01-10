@@ -1,6 +1,6 @@
 package com.microshop.orderservice.services;
 
-import com.microshop.orderservice.wrapper.CustomerDTO;
+import com.microshop.orderservice.dto.CustomerDTO;
 
 public interface ICustomerService {
 

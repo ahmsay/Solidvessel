@@ -1,8 +1,8 @@
 package com.microshop.inventoryservice.controllers;
 
+import com.microshop.inventoryservice.dto.ProductDTO;
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.services.IProductService;
-import com.microshop.inventoryservice.wrapper.ProductDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.microshop.orderservice.controllers;
 
+import com.microshop.orderservice.dto.OrderDTO;
 import com.microshop.orderservice.entity.Order;
 import com.microshop.orderservice.services.IOrderService;
-import com.microshop.orderservice.wrapper.OrderDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

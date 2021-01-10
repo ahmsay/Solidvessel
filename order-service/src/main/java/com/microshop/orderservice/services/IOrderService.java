@@ -1,7 +1,7 @@
 package com.microshop.orderservice.services;
 
+import com.microshop.orderservice.dto.OrderDTO;
 import com.microshop.orderservice.entity.Order;
-import com.microshop.orderservice.wrapper.OrderDTO;
 
 public interface IOrderService {
 

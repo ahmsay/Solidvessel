@@ -1,8 +1,8 @@
 package com.microshop.paymentservice.controllers;
 
+import com.microshop.paymentservice.dto.PaymentDTO;
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.services.IPaymentService;
-import com.microshop.paymentservice.wrapper.PaymentDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

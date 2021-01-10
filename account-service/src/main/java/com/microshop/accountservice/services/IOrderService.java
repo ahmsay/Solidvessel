@@ -1,6 +1,6 @@
 package com.microshop.accountservice.services;
 
-import com.microshop.accountservice.wrapper.OrderDTO;
+import com.microshop.accountservice.dto.OrderDTO;
 
 import java.util.List;
 

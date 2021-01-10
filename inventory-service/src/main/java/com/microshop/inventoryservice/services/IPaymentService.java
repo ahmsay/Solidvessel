@@ -1,6 +1,6 @@
 package com.microshop.inventoryservice.services;
 
-import com.microshop.inventoryservice.wrapper.PaymentDTO;
+import com.microshop.inventoryservice.dto.PaymentDTO;
 
 public interface IPaymentService {
 

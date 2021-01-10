@@ -1,4 +1,4 @@
-package com.microshop.inventoryservice.wrapper;
+package com.microshop.inventoryservice.dto;
 
 public class PaymentDTO {
 

@@ -1,6 +1,6 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.wrapper.CustomerDTO;
+import com.microshop.paymentservice.dto.CustomerDTO;
 
 public interface ICustomerService {
 
