@@ -1,4 +1,4 @@
-package com.microshop.accountservice.configuration;
+package com.microshop.inventoryservice.configuration.remote;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
