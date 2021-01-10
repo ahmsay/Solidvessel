@@ -1,4 +1,4 @@
-package com.microshop.paymentservice.remote;
+package com.microshop.paymentservice.configuration.remote;
 
 public interface IRequestService {
 

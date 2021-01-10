@@ -1,7 +1,7 @@
 package com.microshop.paymentservice.services;
 
+import com.microshop.paymentservice.configuration.remote.IRequestService;
 import com.microshop.paymentservice.dto.ProductDTO;
-import com.microshop.paymentservice.remote.IRequestService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;

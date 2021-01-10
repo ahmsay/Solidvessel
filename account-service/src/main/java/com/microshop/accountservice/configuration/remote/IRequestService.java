@@ -1,4 +1,4 @@
-package com.microshop.orderservice.remote;
+package com.microshop.accountservice.configuration.remote;
 
 public interface IRequestService {
 

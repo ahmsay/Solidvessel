@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
+import com.microshop.accountservice.configuration.remote.IRequestService;
 import com.microshop.accountservice.dto.OrderDTO;
-import com.microshop.accountservice.remote.IRequestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;

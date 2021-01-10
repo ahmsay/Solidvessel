@@ -1,4 +1,4 @@
-package com.microshop.inventoryservice.remote;
+package com.microshop.orderservice.configuration.remote;
 
 import org.springframework.http.HttpMethod;
 

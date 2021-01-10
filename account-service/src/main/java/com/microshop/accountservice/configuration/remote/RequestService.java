@@ -1,4 +1,4 @@
-package com.microshop.accountservice.remote;
+package com.microshop.accountservice.configuration.remote;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;

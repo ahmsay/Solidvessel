@@ -1,4 +1,4 @@
-package com.microshop.paymentservice.remote;
+package com.microshop.inventoryservice.configuration.remote;
 
 import org.springframework.http.HttpMethod;
 

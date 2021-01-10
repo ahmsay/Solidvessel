@@ -1,4 +1,4 @@
-package com.microshop.orderservice.remote;
+package com.microshop.paymentservice.configuration.remote;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
