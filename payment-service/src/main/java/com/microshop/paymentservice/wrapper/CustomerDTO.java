@@ -1,11 +1,11 @@
-package com.microshop.orderservice.wrapper;
+package com.microshop.paymentservice.wrapper;
 
-public class Customer {
+public class CustomerDTO {
 
     private Long id;
     private String name;
 
-    public Customer() {}
+    public CustomerDTO() {}
 
     public Long getId() {
         return id;

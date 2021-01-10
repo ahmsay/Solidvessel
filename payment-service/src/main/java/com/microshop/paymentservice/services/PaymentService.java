@@ -2,9 +2,9 @@ package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
-import com.microshop.paymentservice.wrapper.Customer;
+import com.microshop.paymentservice.wrapper.CustomerDTO;
 import com.microshop.paymentservice.wrapper.PaymentDTO;
-import com.microshop.paymentservice.wrapper.Product;
+import com.microshop.paymentservice.wrapper.ProductDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +35,8 @@ public class PaymentService implements IPaymentService {
         if (payment == null) {
             return null;
         }
-        Customer customer = customerService.findById(payment.getCustomerId());
-        List<Product> productList = productService.findByPaymentId(payment.getId());
+        CustomerDTO customer = customerService.findById(payment.getCustomerId());
+        List<ProductDTO> productList = productService.findByPaymentId(payment.getId());
         return new PaymentDTO(payment.getId(), payment.getTotalCharge(), customer, productList);
     }
 

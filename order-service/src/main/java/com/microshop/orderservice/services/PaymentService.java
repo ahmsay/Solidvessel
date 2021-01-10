@@ -1,7 +1,7 @@
 package com.microshop.orderservice.services;
 
 import com.microshop.orderservice.remote.IRequestService;
-import com.microshop.orderservice.wrapper.Payment;
+import com.microshop.orderservice.wrapper.PaymentDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -21,11 +21,11 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public Payment findById(final Long id) {
+    public PaymentDTO findById(final Long id) {
         return requestService.createRequest(paymentServiceUrl)
                 .toPath("/payments/" + id + "/pruned")
                 .withHttpMethod(HttpMethod.GET)
-                .withResponseType(Payment.class)
+                .withResponseType(PaymentDTO.class)
                 .send();
     }
 }

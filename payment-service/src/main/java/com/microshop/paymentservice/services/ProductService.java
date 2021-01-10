@@ -1,7 +1,7 @@
 package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.remote.IRequestService;
-import com.microshop.paymentservice.wrapper.Product;
+import com.microshop.paymentservice.wrapper.ProductDTO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -25,11 +25,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> findByPaymentId(final Long paymentId) {
-        Product[] products = requestService.createRequest(inventoryServiceUrl)
+    public List<ProductDTO> findByPaymentId(final Long paymentId) {
+        ProductDTO[] products = requestService.createRequest(inventoryServiceUrl)
                 .toPath("/products/ofPayment/" + paymentId)
                 .withHttpMethod(HttpMethod.GET)
-                .withResponseType(Product[].class)
+                .withResponseType(ProductDTO[].class)
                 .send();
         return Arrays.asList(products);
     }

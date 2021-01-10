@@ -6,7 +6,7 @@ public class ProductDTO {
     private final String name;
     private final Double price;
     private final String category;
-    private Payment payment;
+    private PaymentDTO payment;
 
     public ProductDTO(final Long id, final String name, final Double price, final String category) {
         this.id = id;
@@ -15,7 +15,7 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public ProductDTO(final Long id, final String name, final Double price, final String category, final Payment payment) {
+    public ProductDTO(final Long id, final String name, final Double price, final String category, final PaymentDTO payment) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -39,7 +39,7 @@ public class ProductDTO {
         return category;
     }
 
-    public Payment getPayment() {
+    public PaymentDTO getPayment() {
         return payment;
     }
 }

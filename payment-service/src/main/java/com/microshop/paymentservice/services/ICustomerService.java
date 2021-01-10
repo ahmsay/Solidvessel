@@ -1,8 +1,8 @@
 package com.microshop.paymentservice.services;
 
-import com.microshop.paymentservice.wrapper.Customer;
+import com.microshop.paymentservice.wrapper.CustomerDTO;
 
 public interface ICustomerService {
 
-    Customer findById(Long id);
+    CustomerDTO findById(Long id);
 }

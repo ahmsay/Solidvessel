@@ -1,10 +1,10 @@
 package com.microshop.accountservice.services;
 
-import com.microshop.accountservice.wrapper.Order;
+import com.microshop.accountservice.wrapper.OrderDTO;
 
 import java.util.List;
 
 public interface IOrderService {
 
-    List<Order> findByCustomerId(Long customerId);
+    List<OrderDTO> findByCustomerId(Long customerId);
 }

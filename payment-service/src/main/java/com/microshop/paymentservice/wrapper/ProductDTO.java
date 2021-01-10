@@ -1,13 +1,13 @@
 package com.microshop.paymentservice.wrapper;
 
-public class Product {
+public class ProductDTO {
 
     private Long id;
     private String name;
     private Double price;
     private String category;
 
-    public Product() {}
+    public ProductDTO() {}
 
     public Long getId() {
         return id;

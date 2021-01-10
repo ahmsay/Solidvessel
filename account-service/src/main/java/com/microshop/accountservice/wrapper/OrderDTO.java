@@ -1,12 +1,12 @@
 package com.microshop.accountservice.wrapper;
 
-public class Order {
+public class OrderDTO {
 
     private Long id;
     private String status;
     private Long paymentId;
 
-    public Order() {}
+    public OrderDTO() {}
 
     public Long getId() {
         return id;

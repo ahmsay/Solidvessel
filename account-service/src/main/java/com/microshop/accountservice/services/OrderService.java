@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
 import com.microshop.accountservice.remote.IRequestService;
-import com.microshop.accountservice.wrapper.Order;
+import com.microshop.accountservice.wrapper.OrderDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -24,11 +24,11 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<Order> findByCustomerId(final Long customerId) {
-        Order[] orders = requestService.createRequest(orderServiceUrl)
+    public List<OrderDTO> findByCustomerId(final Long customerId) {
+        OrderDTO[] orders = requestService.createRequest(orderServiceUrl)
                 .toPath("/orders/ofCustomer/" + customerId)
                 .withHttpMethod(HttpMethod.GET)
-                .withResponseType(Order[].class)
+                .withResponseType(OrderDTO[].class)
                 .send();
         return Arrays.asList(orders);
     }

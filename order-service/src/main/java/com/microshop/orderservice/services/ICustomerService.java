@@ -1,8 +1,8 @@
 package com.microshop.orderservice.services;
 
-import com.microshop.orderservice.wrapper.Customer;
+import com.microshop.orderservice.wrapper.CustomerDTO;
 
 public interface ICustomerService {
 
-    Customer findById(Long id);
+    CustomerDTO findById(Long id);
 }

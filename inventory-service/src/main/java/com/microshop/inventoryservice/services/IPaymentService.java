@@ -1,8 +1,8 @@
 package com.microshop.inventoryservice.services;
 
-import com.microshop.inventoryservice.wrapper.Payment;
+import com.microshop.inventoryservice.wrapper.PaymentDTO;
 
 public interface IPaymentService {
 
-    Payment findById(Long id);
+    PaymentDTO findById(Long id);
 }

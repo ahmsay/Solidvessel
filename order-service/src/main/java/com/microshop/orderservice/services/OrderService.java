@@ -2,9 +2,9 @@ package com.microshop.orderservice.services;
 
 import com.microshop.orderservice.entity.Order;
 import com.microshop.orderservice.repositories.IOrderRepository;
-import com.microshop.orderservice.wrapper.Customer;
+import com.microshop.orderservice.wrapper.CustomerDTO;
 import com.microshop.orderservice.wrapper.OrderDTO;
-import com.microshop.orderservice.wrapper.Payment;
+import com.microshop.orderservice.wrapper.PaymentDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,8 +33,8 @@ public class OrderService implements IOrderService {
         if (order == null) {
             return null;
         }
-        Customer customer = customerService.findById(order.getCustomerId());
-        Payment payment = paymentService.findById(order.getPaymentId());
+        CustomerDTO customer = customerService.findById(order.getCustomerId());
+        PaymentDTO payment = paymentService.findById(order.getPaymentId());
         return new OrderDTO(order.getId(), order.getStatus(), customer, payment);
     }
 

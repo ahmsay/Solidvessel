@@ -6,15 +6,15 @@ public class CustomerDTO {
 
     private final Long id;
     private final String name;
-    private List<Payment> paymentList;
-    private List<Order> orderList;
+    private List<PaymentDTO> paymentList;
+    private List<OrderDTO> orderList;
 
     public CustomerDTO(final Long id, final String name) {
         this.id = id;
         this.name = name;
     }
 
-    public CustomerDTO(final Long id, final String name, final List<Payment> paymentList, final List<Order> orderList) {
+    public CustomerDTO(final Long id, final String name, final List<PaymentDTO> paymentList, final List<OrderDTO> orderList) {
         this.id = id;
         this.name = name;
         this.paymentList = paymentList;
@@ -29,11 +29,11 @@ public class CustomerDTO {
         return name;
     }
 
-    public List<Payment> getPaymentList() {
+    public List<PaymentDTO> getPaymentList() {
         return paymentList;
     }
 
-    public List<Order> getOrderList() {
+    public List<OrderDTO> getOrderList() {
         return orderList;
     }
 }

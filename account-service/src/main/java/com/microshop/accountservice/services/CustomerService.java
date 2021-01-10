@@ -3,8 +3,8 @@ package com.microshop.accountservice.services;
 import com.microshop.accountservice.entity.Customer;
 import com.microshop.accountservice.repositories.ICustomerRepository;
 import com.microshop.accountservice.wrapper.CustomerDTO;
-import com.microshop.accountservice.wrapper.Order;
-import com.microshop.accountservice.wrapper.Payment;
+import com.microshop.accountservice.wrapper.OrderDTO;
+import com.microshop.accountservice.wrapper.PaymentDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +35,8 @@ public class CustomerService implements ICustomerService {
         if (customer == null) {
             return null;
         }
-        List<Payment> paymentList = paymentService.findByCustomerId(customer.getId());
-        List<Order> orderList = orderService.findByCustomerId(customer.getId());
+        List<PaymentDTO> paymentList = paymentService.findByCustomerId(customer.getId());
+        List<OrderDTO> orderList = orderService.findByCustomerId(customer.getId());
         return new CustomerDTO(customer.getId(), customer.getName(), paymentList, orderList);
     }
 

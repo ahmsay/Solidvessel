@@ -1,11 +1,11 @@
 package com.microshop.orderservice.wrapper;
 
-public class Payment {
+public class PaymentDTO {
 
     private Long id;
     private Double totalCharge;
 
-    public Payment() {}
+    public PaymentDTO() {}
 
     public Long getId() {
         return id;

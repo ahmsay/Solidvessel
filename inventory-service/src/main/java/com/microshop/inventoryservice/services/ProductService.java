@@ -2,7 +2,7 @@ package com.microshop.inventoryservice.services;
 
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.repositories.IProductRepository;
-import com.microshop.inventoryservice.wrapper.Payment;
+import com.microshop.inventoryservice.wrapper.PaymentDTO;
 import com.microshop.inventoryservice.wrapper.ProductDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class ProductService implements IProductService {
         if (product == null) {
             return null;
         }
-        Payment payment = product.getPaymentId() == null ? null : paymentService.findById(product.getPaymentId());
+        PaymentDTO payment = product.getPaymentId() == null ? null : paymentService.findById(product.getPaymentId());
         return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory(), payment);
     }
 

@@ -4,15 +4,15 @@ public class OrderDTO {
 
     private final Long id;
     private final String status;
-    private Customer customer;
-    private Payment payment;
+    private CustomerDTO customer;
+    private PaymentDTO payment;
 
     public OrderDTO(final Long id, final String status) {
         this.id = id;
         this.status = status;
     }
 
-    public OrderDTO(final long id, final String status, final Customer customer, final Payment payment) {
+    public OrderDTO(final long id, final String status, final CustomerDTO customer, final PaymentDTO payment) {
         this.id = id;
         this.status = status;
         this.customer = customer;
@@ -27,11 +27,11 @@ public class OrderDTO {
         return status;
     }
 
-    public Customer getCustomer() {
+    public CustomerDTO getCustomer() {
         return customer;
     }
 
-    public Payment getPayment() {
+    public PaymentDTO getPayment() {
         return payment;
     }
 }

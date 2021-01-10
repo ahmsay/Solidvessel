@@ -6,15 +6,15 @@ public class PaymentDTO {
 
     private final Long id;
     private final Double totalCharge;
-    private Customer customer;
-    private List<Product> productList;
+    private CustomerDTO customer;
+    private List<ProductDTO> productList;
 
     public PaymentDTO(final Long id, final Double totalCharge) {
         this.id = id;
         this.totalCharge = totalCharge;
     }
 
-    public PaymentDTO(final Long id, final Double totalCharge, final Customer customer, final List<Product> productList) {
+    public PaymentDTO(final Long id, final Double totalCharge, final CustomerDTO customer, final List<ProductDTO> productList) {
         this.id = id;
         this.totalCharge = totalCharge;
         this.customer = customer;
@@ -29,11 +29,11 @@ public class PaymentDTO {
         return totalCharge;
     }
 
-    public Customer getCustomer() {
+    public CustomerDTO getCustomer() {
         return customer;
     }
 
-    public List<Product> getProductList() {
+    public List<ProductDTO> getProductList() {
         return productList;
     }
 }
