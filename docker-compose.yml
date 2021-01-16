@@ -70,3 +70,8 @@ services:
       - POSTGRES_DB=payment
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - 5672:5672
+      - 15672:15672
