@@ -20,3 +20,4 @@ logging.level.org.springframework.retry: trace
 management.endpoints.web.exposure.include: '*'
 
 payment.exchange: payment_exchange
+payment.saved.key: payment.saved

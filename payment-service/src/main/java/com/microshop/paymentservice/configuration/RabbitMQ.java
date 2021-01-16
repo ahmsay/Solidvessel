@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbiqMQ {
+public class RabbitMQ {
 
     @Bean
     public TopicExchange topicExchange(@Value("${payment.exchange}") final String exchangeName) {
