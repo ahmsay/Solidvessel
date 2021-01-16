@@ -4,6 +4,8 @@ import com.microshop.paymentservice.dto.CustomerDTO;
 import com.microshop.paymentservice.dto.PaymentDTO;
 import com.microshop.paymentservice.dto.ProductDTO;
 import com.microshop.paymentservice.entity.Payment;
+import com.microshop.paymentservice.event.IEventDispatcher;
+import com.microshop.paymentservice.event.PaymentSavedEvent;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +19,13 @@ public class PaymentService implements IPaymentService {
     private final IPaymentRepository paymentRepository;
     private final IProductService productService;
     private final ICustomerService customerService;
+    private final IEventDispatcher eventDispatcher;
 
-    public PaymentService(final IPaymentRepository paymentRepository, final IProductService productService, final ICustomerService customerService) {
+    public PaymentService(final IPaymentRepository paymentRepository, final IProductService productService, final ICustomerService customerService, final IEventDispatcher eventDispatcher) {
         this.paymentRepository = paymentRepository;
         this.productService = productService;
         this.customerService = customerService;
+        this.eventDispatcher = eventDispatcher;
     }
 
     @Override
@@ -53,7 +57,7 @@ public class PaymentService implements IPaymentService {
     @Override
     public Payment save(final Payment payment, final List<Long> productIds) {
         paymentRepository.save(payment);
-        productService.setPaymentIds(payment.getId(), productIds);
+        eventDispatcher.send(new PaymentSavedEvent(payment.getId(), productIds));
         return payment;
     }
 }

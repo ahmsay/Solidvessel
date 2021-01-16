@@ -5,8 +5,6 @@ import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/products")
 public class ProductRestController {
@@ -40,11 +38,5 @@ public class ProductRestController {
     @PostMapping()
     public Product save(@RequestBody final Product product) {
         return productService.save(product);
-    }
-
-    @PutMapping("/setPaymentIds")
-    public void setPaymentIds(@RequestParam final Long paymentId,
-                              @RequestParam final List<Long> productIds) {
-        productService.setPaymentIds(paymentId, productIds);
     }
 }
