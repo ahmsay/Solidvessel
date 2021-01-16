@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EventDispatcher {
+public class EventDispatcher implements IEventDispatcher {
 
     private final RabbitTemplate rabbitTemplate;
     private final String paymentExchange;
@@ -19,6 +19,7 @@ public class EventDispatcher {
         this.paymentSavedRoutingKey = paymentSavedRoutingKey;
     }
 
+    @Override
     public void send(final PaymentSavedEvent event) {
         rabbitTemplate.convertAndSend(paymentExchange, paymentSavedRoutingKey, event);
     }
