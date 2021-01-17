@@ -19,6 +19,10 @@ My main goal is to learn about microservices, so I kept the domain part of the p
 There are four client services: account service, inventory service, payment service and order service. Each of them has their own database (PostgreSQL). If you'll run the application locally, you must create clients' databases and a database user. You don't need to create tables. On the other hand, with Docker Compose, databases and user will be created automatically.
 ### Spring Data
 If you look into any client service, you won't see a repository implementation. There are only interfaces. This is the work of Spring Data which has a bunch of utilities and makes CRUD operations a lot easier. Spring Data CRUD repositories don't need to be implemented. When you write your method with a specific format, it is automatically resolved.
+### RabbitMQ
+When a new payment is saved, payment id should be passed to related products. But products are not in the same database with payments. There can be a rest call to inventory service to update related products after the payment is saved but payment service doesn't need to know about inventory service. Furthermore, this approach doesn't guarantee to keep databases synchronized.</br>
+
+I decided to use event driven approach with RabbitMQ to solve this problem. In this approach, microservices send events when an action happens. When a new payment is saved, an event will be sent to inventory service through a message broker. Also if inventory service is down, the event won't be lost. It can be processed later when the service is up again.
 ### Communication and Service Discovery
 When a service needs to get information which is stored in another service, it sends an HTTP request to that service. Therefore, the url of the service must be known but url depends on where the application is. It can be in a local machine, or a container, or deployed in a server. So how do we know the correct url to send our request? Actually, we don't need to. This is where service discovery comes in.</br>
 
