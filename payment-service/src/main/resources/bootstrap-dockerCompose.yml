@@ -4,3 +4,6 @@ spring:
   cloud.config.uri: http://config-server:8888
   datasource:
     url: jdbc:postgresql://payment-service-db:5432/payment
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
