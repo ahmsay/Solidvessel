@@ -17,6 +17,10 @@ services:
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - account-service-db
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: eu-central-1
   inventory-service:
     image: ahmsay/microshop-inventory-service:1.0
     ports:
@@ -24,6 +28,10 @@ services:
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - inventory-service-db
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: eu-central-1
   order-service:
     image: ahmsay/microshop-order-service:1.0
     ports:
@@ -31,6 +39,10 @@ services:
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - order-service-db
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: eu-central-1
   payment-service:
     image: ahmsay/microshop-payment-service:1.0
     ports:
@@ -38,6 +50,10 @@ services:
     command: --spring.profiles.active=dockerCompose
     depends_on:
       - payment-service-db
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: eu-central-1
   account-service-db:
     image: postgres
     environment:
