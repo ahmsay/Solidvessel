@@ -7,3 +7,4 @@ eureka.client:
   fetch-registry: false
 
 management.endpoints.web.exposure.include: '*'
+logging.level.root: trace
