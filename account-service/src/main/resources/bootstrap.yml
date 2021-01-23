@@ -1,7 +1,7 @@
 server.port: 8081
 
 spring:
-  application.name: account-service
+  application.name: account-s
   datasource:
     url: jdbc:postgresql://localhost:5432/account
     username: nihilus

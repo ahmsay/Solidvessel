@@ -1,6 +1,6 @@
 server.port: 8761
 
-spring.application.name: discovery-server
+spring.application.name: discovery-s
 
 eureka.client:
   register-with-eureka: false

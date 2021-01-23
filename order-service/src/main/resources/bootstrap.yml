@@ -1,7 +1,7 @@
 server.port: 8083
 
 spring:
-  application.name: order-service
+  application.name: order-s
   datasource:
     url: jdbc:postgresql://localhost:5432/order
     username: nihilus
