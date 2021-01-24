@@ -15,7 +15,7 @@ spring:
 
 eureka.instance.lease-renewal-interval-in-seconds: 5
 
-logging.level.root: trace
+logging.level.root: info
 
 management.endpoints.web.exposure.include: '*'
 
