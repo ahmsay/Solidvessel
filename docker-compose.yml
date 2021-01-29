@@ -9,7 +9,7 @@ services:
     image: ahmsay/microshop-config-server:1.0
     ports:
       - 8888:8888
-    command: --spring.profiles.active=dockerCompose
+    command: --spring.profiles.active=dockerCompose --some.application.property=someValue
   account-service:
     image: ahmsay/microshop-account-service:1.0
     ports:
