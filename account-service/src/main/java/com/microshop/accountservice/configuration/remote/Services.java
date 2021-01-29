@@ -1,4 +1,4 @@
-package com.microshop.orderservice.configuration.remote;
+package com.microshop.accountservice.configuration.remote;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @RefreshScope
 @Configuration
 @ConfigurationProperties(prefix = "services")
-public class URLs {
+public class Services {
 
     private String account;
     private String inventory;

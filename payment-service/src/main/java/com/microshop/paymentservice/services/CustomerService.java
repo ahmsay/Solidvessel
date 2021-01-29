@@ -1,7 +1,7 @@
 package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.configuration.remote.IRequestService;
-import com.microshop.paymentservice.configuration.remote.URLs;
+import com.microshop.paymentservice.configuration.remote.Services;
 import com.microshop.paymentservice.dto.CustomerDTO;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -12,16 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerService implements ICustomerService {
 
     private final IRequestService requestService;
-    private final URLs urls;
+    private final Services services;
 
-    public CustomerService(final IRequestService requestService, final URLs urls) {
+    public CustomerService(final IRequestService requestService, final Services services) {
         this.requestService = requestService;
-        this. urls = urls;
+        this. services = services;
     }
 
     @Override
     public CustomerDTO findById(final Long id) {
-        return requestService.createRequest(urls.getAccount())
+        return requestService.createRequest(services.getAccount())
                 .toPath("/customers/" + id + "/pruned")
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(CustomerDTO.class)

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @RefreshScope
 @Configuration
 @ConfigurationProperties(prefix = "services")
-public class URLs {
+public class Services {
 
     private String account;
     private String inventory;

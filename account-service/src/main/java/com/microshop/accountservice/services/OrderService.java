@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
 import com.microshop.accountservice.configuration.remote.IRequestService;
-import com.microshop.accountservice.configuration.remote.URLs;
+import com.microshop.accountservice.configuration.remote.Services;
 import com.microshop.accountservice.dto.OrderDTO;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,16 @@ import java.util.List;
 public class OrderService implements IOrderService {
 
     private final IRequestService requestService;
-    private final URLs urls;
+    private final Services services;
 
-    public OrderService(final IRequestService requestService, final URLs urls) {
+    public OrderService(final IRequestService requestService, final Services services) {
         this.requestService = requestService;
-        this. urls = urls;
+        this. services = services;
     }
 
     @Override
     public List<OrderDTO> findByCustomerId(final Long customerId) {
-        OrderDTO[] orders = requestService.createRequest(urls.getOrder())
+        OrderDTO[] orders = requestService.createRequest(services.getOrder())
                 .toPath("/orders/ofCustomer/" + customerId)
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(OrderDTO[].class)

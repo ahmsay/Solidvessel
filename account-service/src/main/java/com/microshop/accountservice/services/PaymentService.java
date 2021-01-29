@@ -1,7 +1,7 @@
 package com.microshop.accountservice.services;
 
 import com.microshop.accountservice.configuration.remote.IRequestService;
-import com.microshop.accountservice.configuration.remote.URLs;
+import com.microshop.accountservice.configuration.remote.Services;
 import com.microshop.accountservice.dto.PaymentDTO;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,16 @@ import java.util.List;
 public class PaymentService implements IPaymentService {
 
     private final IRequestService requestService;
-    private final URLs urls;
+    private final Services services;
 
-    public PaymentService(final IRequestService requestService, final URLs urls) {
+    public PaymentService(final IRequestService requestService, final Services services) {
         this.requestService = requestService;
-        this. urls = urls;
+        this. services = services;
     }
 
     @Override
     public List<PaymentDTO> findByCustomerId(final Long customerId) {
-        PaymentDTO[] payments = requestService.createRequest(urls.getPayment())
+        PaymentDTO[] payments = requestService.createRequest(services.getPayment())
                 .toPath("/payments/ofCustomer/" + customerId)
                 .withHttpMethod(HttpMethod.GET)
                 .withResponseType(PaymentDTO[].class)
