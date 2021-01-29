@@ -10,5 +10,5 @@ public class AccountServiceApplication {
 
 	public static void main(final String[] args) {
 		SpringApplication.run(AccountServiceApplication.class, args);
-	}//test
+	}
 }
