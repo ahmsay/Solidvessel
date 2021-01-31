@@ -63,4 +63,4 @@ services:
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:3-management
