@@ -12,14 +12,14 @@ public class OrderDTO {
         this.status = status;
     }
 
-    public OrderDTO(final long id, final String status, final CustomerDTO customer, final PaymentDTO payment) {
+    public OrderDTO(final Long id, final String status, final CustomerDTO customer, final PaymentDTO payment) {
         this.id = id;
         this.status = status;
         this.customer = customer;
         this.payment = payment;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
