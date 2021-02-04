@@ -57,7 +57,7 @@ public class PaymentService implements IPaymentService {
     @Override
     public Payment save(final Payment payment, final List<Long> productIds) {
         paymentRepository.save(payment);
-        eventDispatcher.send(new PaymentSavedEvent(payment.getId(), productIds));
+        eventDispatcher.send(new PaymentSavedEvent(payment.getId(), payment.getCustomerId()));
         return payment;
     }
 }

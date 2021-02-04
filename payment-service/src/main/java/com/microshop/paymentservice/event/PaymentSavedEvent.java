@@ -6,20 +6,20 @@ import java.util.List;
 public class PaymentSavedEvent implements Serializable {
 
     private Long paymentId;
-    private List<Long> productIds;
+    private Long customerId;
 
     public PaymentSavedEvent() { }
 
-    public PaymentSavedEvent(final Long paymentId, final List<Long> productIds) {
+    public PaymentSavedEvent(final Long paymentId, final Long customerId) {
         this.paymentId = paymentId;
-        this.productIds = productIds;
+        this.customerId = customerId;
     }
 
     public Long getPaymentId() {
         return paymentId;
     }
 
-    public List<Long> getProductIds() {
-        return productIds;
+    public Long getCustomerId() {
+        return customerId;
     }
 }
