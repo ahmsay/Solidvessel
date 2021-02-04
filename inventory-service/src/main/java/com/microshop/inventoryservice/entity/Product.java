@@ -19,15 +19,12 @@ public class Product {
 
     private String category;
 
-    private Long paymentId;
-
     Product() { }
 
-    public Product(final String name, final Double price, final String category, final Long paymentId) {
+    public Product(final String name, final Double price, final String category) {
         this.name = name;
         this.price = price;
         this.category = category;
-        this.paymentId = paymentId;
     }
 
     public Long getId() {
@@ -60,13 +57,5 @@ public class Product {
 
     public void setCategory(final String category) {
         this.category = category;
-    }
-
-    public Long getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(final Long paymentId) {
-        this.paymentId = paymentId;
     }
 }
