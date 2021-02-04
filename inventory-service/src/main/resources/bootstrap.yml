@@ -18,7 +18,3 @@ eureka.instance.lease-renewal-interval-in-seconds: 5
 logging.level.org.springframework.retry: trace
 
 management.endpoints.web.exposure.include: '*'
-
-payment.exchange: payment_exchange
-product.queue: product_queue
-payment.saved.key: payment.saved
