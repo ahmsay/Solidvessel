@@ -1,6 +1,5 @@
 package com.microshop.inventoryservice.controllers;
 
-import com.microshop.inventoryservice.dto.ProductDTO;
 import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/{id}")
-    public ProductDTO findById(@PathVariable final Long id) {
+    public Product findById(@PathVariable final Long id) {
         return productService.findById(id);
     }
 
