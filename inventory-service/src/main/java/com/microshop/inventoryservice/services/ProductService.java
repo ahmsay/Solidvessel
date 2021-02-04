@@ -28,17 +28,12 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductDTO findById(final Long id) {
-        Product product = findPrunedById(id);
+        Product product = productRepository.findById(id).orElse(null);
         if (product == null) {
             return null;
         }
         PaymentDTO payment = product.getPaymentId() == null ? null : paymentService.findById(product.getPaymentId());
         return new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getCategory(), payment);
-    }
-
-    @Override
-    public Product findPrunedById(final Long id) {
-        return productRepository.findById(id).orElse(null);
     }
 
     @Override

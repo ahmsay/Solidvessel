@@ -11,7 +11,5 @@ public interface IProductService {
 
     ProductDTO findById(Long id);
 
-    Product findPrunedById(Long id);
-
     Product save(Product product);
 }

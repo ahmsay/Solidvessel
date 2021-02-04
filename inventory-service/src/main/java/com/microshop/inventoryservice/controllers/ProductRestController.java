@@ -25,11 +25,6 @@ public class ProductRestController {
         return productService.findById(id);
     }
 
-    @GetMapping("/{id}/pruned")
-    public Product findPrunedById(@PathVariable final Long id) {
-        return productService.findPrunedById(id);
-    }
-
     @PostMapping()
     public Product save(@RequestBody final Product product) {
         return productService.save(product);
