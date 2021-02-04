@@ -30,11 +30,6 @@ public class ProductRestController {
         return productService.findPrunedById(id);
     }
 
-    @GetMapping("/ofPayment/{paymentId}")
-    public Iterable<Product> findByPaymentId(@PathVariable final Long paymentId) {
-        return productService.findByPaymentId(paymentId);
-    }
-
     @PostMapping()
     public Product save(@RequestBody final Product product) {
         return productService.save(product);

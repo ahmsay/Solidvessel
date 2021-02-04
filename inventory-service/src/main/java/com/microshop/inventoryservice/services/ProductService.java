@@ -42,23 +42,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Iterable<Product> findByPaymentId(final Long paymentId) {
-        return productRepository.findByPaymentId(paymentId);
-    }
-
-    @Override
     public Product save(final Product product) {
         return productRepository.save(product);
-    }
-
-    @Override
-    public void setPaymentIds(final Long paymentId, final List<Long> productIds) {
-        for (Long id : productIds) {
-            Product product = productRepository.findById(id).orElse(null);
-            if (product != null) {
-                product.setPaymentId(paymentId);
-                productRepository.save(product);
-            }
-        }
     }
 }

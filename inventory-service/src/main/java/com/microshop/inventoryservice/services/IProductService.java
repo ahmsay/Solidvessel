@@ -13,9 +13,5 @@ public interface IProductService {
 
     Product findPrunedById(Long id);
 
-    Iterable<Product> findByPaymentId(Long paymentId);
-
     Product save(Product product);
-
-    void setPaymentIds(Long paymentId, List<Long> productIds);
 }
