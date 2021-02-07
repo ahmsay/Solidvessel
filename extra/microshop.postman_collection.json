@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "27000a38-25f3-468f-9c90-1348220bd486",
+		"_postman_id": "0808eb63-e147-4360-bf95-deb299122b45",
 		"name": "microshop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "666f2d01-bff1-4b58-a30b-b0892393b3f1",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -46,7 +45,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f1e29b9e-72c0-458c-a042-87bb23a7209d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -79,7 +77,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "82f24a7e-d67d-4a9b-abe5-df473639ec05",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -114,8 +111,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "inventory service",
@@ -126,7 +122,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ab0d6612-4ac6-448a-9c1c-b497c1e0da5c",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -158,7 +153,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "37a72302-aa01-40ed-86a8-d765bc9457c7",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -186,12 +180,11 @@
 					"response": []
 				},
 				{
-					"name": "get products of payment",
+					"name": "get products by ids",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "e6dca3f7-b0cf-4dab-bdc0-67ee6dce0d77",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -217,15 +210,20 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/products/ofPayment/1",
+							"raw": "localhost:8082/products/findByIds?ids=1,2,3",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"products",
-								"ofPayment",
-								"1"
+								"findByIds"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,3"
+								}
 							]
 						}
 					},
@@ -237,7 +235,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b33dc081-8db6-4232-acae-0b865b775a4d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -272,8 +269,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "order service",
@@ -284,7 +280,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ba98f798-e1fd-4588-b750-6ef97b5545b0",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -316,7 +311,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e20ee1d1-3d2b-4977-ab65-7fd09d34f513",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -349,7 +343,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b28cd14b-a860-48fe-bf3d-a8ece696af20",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -383,7 +376,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "56532b74-d552-48a0-81b6-70eb47096559",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -418,8 +410,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "payment service",
@@ -430,7 +421,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e5866c34-70d6-497e-945f-68a55968b7e0",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -462,7 +452,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d46cc98f-a5d2-4493-b16d-cf0de9ab5548",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -495,7 +484,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "25e8070e-8ea7-48d3-8b40-835ddf033130",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -529,7 +517,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b38ba8da-34be-4663-83c4-3531c39af1c8",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -570,9 +557,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
