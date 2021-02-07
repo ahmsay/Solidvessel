@@ -3,6 +3,7 @@ package com.microshop.paymentservice.services;
 import com.microshop.paymentservice.configuration.remote.IRequestService;
 import com.microshop.paymentservice.configuration.remote.Services;
 import com.microshop.paymentservice.dto.ProductDTO;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class ProductService implements IProductService {
         ProductDTO[] products = requestService.createRequest(services.getInventory())
                 .toPath("/products/findByIds")
                 .withHttpMethod(HttpMethod.GET)
-                .withQueryParameter("productIds", productIds)
+                .withQueryParameter("ids", StringUtils.join(productIds, ","))
                 .withResponseType(ProductDTO[].class)
                 .send();
         return Arrays.asList(products);
