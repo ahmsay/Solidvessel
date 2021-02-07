@@ -4,10 +4,10 @@ import com.microshop.paymentservice.dto.CustomerDTO;
 import com.microshop.paymentservice.dto.PaymentDTO;
 import com.microshop.paymentservice.dto.ProductDTO;
 import com.microshop.paymentservice.entity.Payment;
-import com.microshop.paymentservice.entity.PaymentProduct;
+import com.microshop.paymentservice.entity.Sale;
 import com.microshop.paymentservice.event.IEventDispatcher;
 import com.microshop.paymentservice.event.PaymentSavedEvent;
-import com.microshop.paymentservice.repositories.IPaymentProductRepository;
+import com.microshop.paymentservice.repositories.ISaleRepository;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,16 +21,16 @@ public class PaymentService implements IPaymentService {
     private final IPaymentRepository paymentRepository;
     private final IProductService productService;
     private final ICustomerService customerService;
-    private final IPaymentProductRepository paymentProductRepository;
+    private final ISaleRepository saleRepository;
     private final IEventDispatcher eventDispatcher;
 
     public PaymentService(final IPaymentRepository paymentRepository, final IProductService productService,
-                          final ICustomerService customerService, final IPaymentProductRepository paymentProductRepository,
+                          final ICustomerService customerService, final ISaleRepository saleRepository,
                           final IEventDispatcher eventDispatcher) {
         this.paymentRepository = paymentRepository;
         this.productService = productService;
         this.customerService = customerService;
-        this.paymentProductRepository = paymentProductRepository;
+        this.saleRepository = saleRepository;
         this.eventDispatcher = eventDispatcher;
     }
 
@@ -64,7 +64,7 @@ public class PaymentService implements IPaymentService {
     public Payment save(final Payment payment, final List<Long> productIds) {
         // TODO Refactor this method
         Payment savedPayment = paymentRepository.save(payment);
-        productIds.forEach(productId -> paymentProductRepository.save(new PaymentProduct(savedPayment.getId(), productId)));
+        productIds.forEach(productId -> saleRepository.save(new Sale(savedPayment.getId(), productId)));
         eventDispatcher.send(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
     }

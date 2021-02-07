@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
-@IdClass(PaymentProductId.class)
-public class PaymentProduct {
+@IdClass(SaleId.class)
+public class Sale {
 
     @Id
     private Long paymentId;
@@ -14,7 +14,9 @@ public class PaymentProduct {
     @Id
     private Long productId;
 
-    public PaymentProduct(Long paymentId, Long productId) {
+    public Sale() { }
+
+    public Sale(Long paymentId, Long productId) {
         this.paymentId = paymentId;
         this.productId = productId;
     }
