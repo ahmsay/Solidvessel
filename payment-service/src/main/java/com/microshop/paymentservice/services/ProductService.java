@@ -23,10 +23,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductDTO> findByPaymentId(final Long paymentId) {
+    public List<ProductDTO> findByIds(final List<Long> productIds) {
         ProductDTO[] products = requestService.createRequest(services.getInventory())
-                .toPath("/products/ofPayment/" + paymentId)
+                .toPath("/products/findByIds")
                 .withHttpMethod(HttpMethod.GET)
+                .withQueryParameter("productIds", productIds)
                 .withResponseType(ProductDTO[].class)
                 .send();
         return Arrays.asList(products);

@@ -5,6 +5,9 @@ import com.microshop.inventoryservice.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class ProductService implements IProductService {
@@ -23,6 +26,11 @@ public class ProductService implements IProductService {
     @Override
     public Product findById(final Long id) {
         return productRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Iterable<Product> findByIds(List<Long> ids) {
+        return ids.stream().map(id -> productRepository.findById(id).orElse(null)).collect(Collectors.toList());
     }
 
     @Override

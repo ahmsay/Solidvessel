@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IProductService {
 
-    List<ProductDTO> findByPaymentId(Long paymentId);
+    List<ProductDTO> findByIds(List<Long> productIds);
 }

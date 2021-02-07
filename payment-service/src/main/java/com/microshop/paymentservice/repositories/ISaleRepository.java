@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ISaleRepository extends CrudRepository<Sale, SaleId> {
 
+    Iterable<Sale> findByPaymentId(Long paymentId);
 }

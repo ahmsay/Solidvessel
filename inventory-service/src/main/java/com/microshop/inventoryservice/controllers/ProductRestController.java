@@ -4,6 +4,8 @@ import com.microshop.inventoryservice.entity.Product;
 import com.microshop.inventoryservice.services.IProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 public class ProductRestController {
@@ -22,6 +24,11 @@ public class ProductRestController {
     @GetMapping("/{id}")
     public Product findById(@PathVariable final Long id) {
         return productService.findById(id);
+    }
+
+    @GetMapping("/findByIds")
+    public Iterable<Product> findByIds(@RequestParam final List<Long> ids) {
+        return productService.findByIds(ids);
     }
 
     @PostMapping()

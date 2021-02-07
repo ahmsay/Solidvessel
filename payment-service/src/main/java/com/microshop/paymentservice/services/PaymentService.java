@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -46,7 +47,7 @@ public class PaymentService implements IPaymentService {
             return null;
         }
         CustomerDTO customer = customerService.findById(payment.getCustomerId());
-        List<ProductDTO> productList = productService.findByPaymentId(payment.getId());
+        List<ProductDTO> productList = findProductsOfPayment(payment.getId());
         return new PaymentDTO(payment.getId(), payment.getTotalCharge(), customer, productList);
     }
 
@@ -66,5 +67,11 @@ public class PaymentService implements IPaymentService {
         productIds.forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
         eventDispatcher.send(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
+    }
+
+    private List<ProductDTO> findProductsOfPayment(final Long paymentId) {
+        List<Sale> sales = (List<Sale>) saleService.findByPaymentId(paymentId);
+        List<Long> productIds = sales.stream().map(Sale::getProductId).collect(Collectors.toList());
+        return productService.findByIds(productIds);
     }
 }

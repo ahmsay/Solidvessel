@@ -17,6 +17,11 @@ public class SaleService implements ISaleService {
     }
 
     @Override
+    public Iterable<Sale> findByPaymentId(Long paymentId) {
+        return saleRepository.findByPaymentId(paymentId);
+    }
+
+    @Override
     public void save(final Sale sale) {
         saleRepository.save(sale);
     }
