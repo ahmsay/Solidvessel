@@ -21,16 +21,16 @@ public class PaymentService implements IPaymentService {
     private final IPaymentRepository paymentRepository;
     private final IProductService productService;
     private final ICustomerService customerService;
-    private final ISaleRepository saleRepository;
+    private final ISaleService saleService;
     private final IEventDispatcher eventDispatcher;
 
     public PaymentService(final IPaymentRepository paymentRepository, final IProductService productService,
-                          final ICustomerService customerService, final ISaleRepository saleRepository,
+                          final ICustomerService customerService, final ISaleService saleService,
                           final IEventDispatcher eventDispatcher) {
         this.paymentRepository = paymentRepository;
         this.productService = productService;
         this.customerService = customerService;
-        this.saleRepository = saleRepository;
+        this.saleService = saleService;
         this.eventDispatcher = eventDispatcher;
     }
 
@@ -62,9 +62,8 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public Payment save(final Payment payment, final List<Long> productIds) {
-        // TODO Refactor this method
         Payment savedPayment = paymentRepository.save(payment);
-        productIds.forEach(productId -> saleRepository.save(new Sale(savedPayment.getId(), productId)));
+        productIds.forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
         eventDispatcher.send(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
     }
