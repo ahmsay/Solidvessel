@@ -7,14 +7,7 @@ spring:
     username: nihilus
     password: nihilus
   jpa.hibernate.ddl-auto: create
-  cloud.config:
-    fail-fast: true
-    retry:
-      max-attempts: 20
-      max-interval: 7000
 
 eureka.instance.lease-renewal-interval-in-seconds: 5
-
-logging.level.org.springframework.retry: trace
 
 management.endpoints.web.exposure.include: '*'
