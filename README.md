@@ -1,7 +1,5 @@
 # Microshop
 This is an online shopping application designed with microservices architecture.
-## Warning
-<b>Since the project is having a huge update right now, it is recommended to run the stable build with Docker.</b>
 ## Useful Scripts
 ### Run
 `docker-compose up`
