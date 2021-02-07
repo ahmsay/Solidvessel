@@ -14,7 +14,7 @@ public class Sale {
     @Id
     private Long productId;
 
-    public Sale() { }
+    Sale() { }
 
     public Sale(Long paymentId, Long productId) {
         this.paymentId = paymentId;

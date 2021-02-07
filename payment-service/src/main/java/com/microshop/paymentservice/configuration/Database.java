@@ -1,7 +1,9 @@
 package com.microshop.paymentservice.configuration;
 
 import com.microshop.paymentservice.entity.Payment;
+import com.microshop.paymentservice.entity.Sale;
 import com.microshop.paymentservice.repositories.IPaymentRepository;
+import com.microshop.paymentservice.repositories.ISaleRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,11 +12,19 @@ import org.springframework.context.annotation.Configuration;
 public class Database {
 
     @Bean
-    InitializingBean seedDatabase(final IPaymentRepository paymentRepository) {
+    InitializingBean seedDatabase(final IPaymentRepository paymentRepository, final ISaleRepository saleRepository) {
         return () -> {
             paymentRepository.save(new Payment(10.5D, 1L));
             paymentRepository.save(new Payment(200D, 2L));
             paymentRepository.save(new Payment(999.99D, 2L));
+
+            saleRepository.save(new Sale(1L, 1L));
+            saleRepository.save(new Sale(1L, 2L));
+            saleRepository.save(new Sale(1L, 3L));
+            saleRepository.save(new Sale(2L, 4L));
+            saleRepository.save(new Sale(3L, 1L));
+            saleRepository.save(new Sale(3L, 5L));
+            saleRepository.save(new Sale(3L, 6L));
         };
     }
 }
