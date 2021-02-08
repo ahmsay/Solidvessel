@@ -2,9 +2,7 @@
 !*/
 !.gitignore
 !.README.md
-!docker-compose.yml
-!/extra/microshop.postman_collection.json
-!/extra/build_images.sh
+!/project_configuration/**
 
 !/account-service/src/**
 !/account-service/pom.xml
