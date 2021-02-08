@@ -31,6 +31,7 @@ services:
     command: --spring.profiles.active=test
     depends_on:
       - order-service-db
+      - rabbitmq
   payment-service:
     image: ahmsay/microshop-payment-service:latest
     ports:
