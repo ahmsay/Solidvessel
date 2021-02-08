@@ -9,33 +9,33 @@ services:
     image: ahmsay/microshop-config-server:latest
     ports:
       - 8888:8888
-    command: --spring.profiles.active=dockerCompose
+    command: --spring.profiles.active=test
   account-service:
     image: ahmsay/microshop-account-service:latest
     ports:
       - 8081:8081
-    command: --spring.profiles.active=dockerCompose
+    command: --spring.profiles.active=test
     depends_on:
       - account-service-db
   inventory-service:
     image: ahmsay/microshop-inventory-service:latest
     ports:
       - 8082:8082
-    command: --spring.profiles.active=dockerCompose
+    command: --spring.profiles.active=test
     depends_on:
       - inventory-service-db
   order-service:
     image: ahmsay/microshop-order-service:latest
     ports:
       - 8083:8083
-    command: --spring.profiles.active=dockerCompose
+    command: --spring.profiles.active=test
     depends_on:
       - order-service-db
   payment-service:
     image: ahmsay/microshop-payment-service:latest
     ports:
       - 8084:8084
-    command: --spring.profiles.active=dockerCompose
+    command: --spring.profiles.active=test
     depends_on:
       - payment-service-db
   account-service-db:
