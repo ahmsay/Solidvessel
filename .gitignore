@@ -2,7 +2,7 @@
 !*/
 !.gitignore
 !.README.md
-!/project_configuration/**
+!/project-configuration/**
 
 !/account-service/src/**
 !/account-service/pom.xml
