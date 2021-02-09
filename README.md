@@ -88,7 +88,7 @@ broker. If order service is down, the event won't be lost. It can be processed l
 
 Docker simply lets you run an application without relying on dependencies. All services have a Dockerfile to create
 their images. Updating the jar and creating an image for 6 services was a-bit time-consuming, so I wrote
-a <a href="https://github.com/ahmsay/Microshop/blob/master/project_configuration/build_images.sh" target="_blank">shell
+a <a href="https://github.com/ahmsay/Microshop/blob/master/project-configuration/build_images.sh" target="_blank">shell
 script</a> to do it with one command.
 
 ### Docker Hub
@@ -127,5 +127,5 @@ run.
 ### Testing
 
 Currently, there is no unit test or integration test but there
-are <a href="https://github.com/ahmsay/Microshop/blob/master/extra/microshop.postman_collection.json" target="_blank">
+are <a href="https://github.com/ahmsay/Microshop/blob/master/project-configuration/microshop.postman_collection.json" target="_blank">
 API tests</a>. You can import it in Postman to test the application.
