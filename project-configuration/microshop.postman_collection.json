@@ -72,6 +72,39 @@
 					"response": []
 				},
 				{
+					"name": "get customer by id - pruned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/customers/1/pruned",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"customers",
+								"1",
+								"pruned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "add customer",
 					"event": [
 						{
@@ -338,6 +371,39 @@
 					"response": []
 				},
 				{
+					"name": "get order by id - pruned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/orders/1/pruned",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders",
+								"1",
+								"pruned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get orders of customer",
 					"event": [
 						{
@@ -473,6 +539,39 @@
 							"path": [
 								"payments",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get payment by id - pruned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8084/payments/1/pruned",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payments",
+								"1",
+								"pruned"
 							]
 						}
 					},
