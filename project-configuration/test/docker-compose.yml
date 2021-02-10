@@ -2,30 +2,30 @@ version: "3"
 
 services:
   discovery-server:
-    image: ahmsay/microshop-discovery-server:latest
+    image: ahmsay/microshop-discovery-server
     ports:
       - 8761:8761
   config-server:
-    image: ahmsay/microshop-config-server:latest
+    image: ahmsay/microshop-config-server
     ports:
       - 8888:8888
     command: --spring.profiles.active=test
   account-service:
-    image: ahmsay/microshop-account-service:latest
+    image: ahmsay/microshop-account-service
     ports:
       - 8081:8081
     command: --spring.profiles.active=test
     depends_on:
       - account-service-db
   inventory-service:
-    image: ahmsay/microshop-inventory-service:latest
+    image: ahmsay/microshop-inventory-service
     ports:
       - 8082:8082
     command: --spring.profiles.active=test
     depends_on:
       - inventory-service-db
   order-service:
-    image: ahmsay/microshop-order-service:latest
+    image: ahmsay/microshop-order-service
     ports:
       - 8083:8083
     command: --spring.profiles.active=test
@@ -33,7 +33,7 @@ services:
       - order-service-db
       - rabbitmq
   payment-service:
-    image: ahmsay/microshop-payment-service:latest
+    image: ahmsay/microshop-payment-service
     ports:
       - 8084:8084
     command: --spring.profiles.active=test
