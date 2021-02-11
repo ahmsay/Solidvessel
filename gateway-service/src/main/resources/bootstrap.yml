@@ -1,1 +1,25 @@
+server:
+  port: 8000
 
+zuul:
+  routes:
+    customers:
+      path: /customers/**
+      url: http://localhost:8081/customers
+    products:
+      path: /products/**
+      url: http://localhost:8082/products
+    orders:
+      path: /orders/**
+      url: http://localhost:8083/orders
+    payments:
+      path: /payments/**
+      url: http://localhost:8084/payments
+
+endpoints:
+  trace:
+    sensitive: false
+
+ribbon:
+  eureka:
+    enabled: false
