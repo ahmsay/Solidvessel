@@ -1,6 +1,8 @@
 server:
   port: 8000
 
+spring.application.name: gateway-s
+
 zuul:
   routes:
     customers:
@@ -23,3 +25,5 @@ endpoints:
 ribbon:
   eureka:
     enabled: false
+
+management.endpoints.web.exposure.include: '*'
