@@ -27,11 +27,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/customers",
+							"raw": "localhost:8000/customers",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8000",
 							"path": [
 								"customers"
 							]
@@ -58,11 +58,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/customers/1",
+							"raw": "localhost:8000/customers/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8000",
 							"path": [
 								"customers",
 								"1"
@@ -90,11 +90,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/customers/1/pruned",
+							"raw": "localhost:8000/customers/1/pruned",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8000",
 							"path": [
 								"customers",
 								"1",
@@ -132,11 +132,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8081/customers",
+							"raw": "localhost:8000/customers",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8000",
 							"path": [
 								"customers"
 							]
@@ -168,11 +168,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/products",
+							"raw": "localhost:8000/products",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8000",
 							"path": [
 								"products"
 							]
@@ -199,11 +199,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/products/1",
+							"raw": "localhost:8000/products/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8000",
 							"path": [
 								"products",
 								"1"
@@ -243,11 +243,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/products/findByIds?ids=1,2,3",
+							"raw": "localhost:8000/products/findByIds?ids=1,2,3",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8000",
 							"path": [
 								"products",
 								"findByIds"
@@ -290,11 +290,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/products",
+							"raw": "localhost:8000/products",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8000",
 							"path": [
 								"products"
 							]
@@ -326,11 +326,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8083/orders",
+							"raw": "localhost:8000/orders",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8000",
 							"path": [
 								"orders"
 							]
@@ -357,11 +357,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8083/orders/1",
+							"raw": "localhost:8000/orders/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8000",
 							"path": [
 								"orders",
 								"1"
@@ -389,11 +389,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8083/orders/1/pruned",
+							"raw": "localhost:8000/orders/1/pruned",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8000",
 							"path": [
 								"orders",
 								"1",
@@ -422,11 +422,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8083/orders/ofCustomer/1",
+							"raw": "localhost:8000/orders/ofCustomer/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8000",
 							"path": [
 								"orders",
 								"ofCustomer",
@@ -464,11 +464,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8083/orders",
+							"raw": "localhost:8000/orders",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8000",
 							"path": [
 								"orders"
 							]
@@ -500,11 +500,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8084/payments",
+							"raw": "localhost:8000/payments",
 							"host": [
 								"localhost"
 							],
-							"port": "8084",
+							"port": "8000",
 							"path": [
 								"payments"
 							]
@@ -531,11 +531,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8084/payments/1",
+							"raw": "localhost:8000/payments/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8084",
+							"port": "8000",
 							"path": [
 								"payments",
 								"1"
@@ -563,11 +563,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8084/payments/1/pruned",
+							"raw": "localhost:8000/payments/1/pruned",
 							"host": [
 								"localhost"
 							],
-							"port": "8084",
+							"port": "8000",
 							"path": [
 								"payments",
 								"1",
@@ -596,11 +596,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8084/payments/ofCustomer/1",
+							"raw": "localhost:8000/payments/ofCustomer/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8084",
+							"port": "8000",
 							"path": [
 								"payments",
 								"ofCustomer",
@@ -638,11 +638,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8084/payments?productIds=7,8",
+							"raw": "localhost:8000/payments?productIds=7,8",
 							"host": [
 								"localhost"
 							],
-							"port": "8084",
+							"port": "8000",
 							"path": [
 								"payments"
 							],
