@@ -4,26 +4,25 @@ server:
 spring.application.name: gateway-s
 
 zuul:
+  ignoredServices: '*'
   routes:
     customers:
       path: /customers/**
-      url: http://localhost:8081/customers
+      serviceId: account-s
     products:
       path: /products/**
-      url: http://localhost:8082/products
+      serviceId: inventory-s
     orders:
       path: /orders/**
-      url: http://localhost:8083/orders
+      serviceId: order-s
     payments:
       path: /payments/**
-      url: http://localhost:8084/payments
+      serviceId: payment-s
 
 endpoints:
   trace:
     sensitive: false
 
-ribbon:
-  eureka:
-    enabled: false
+eureka.instance.lease-renewal-interval-in-seconds: 5
 
 management.endpoints.web.exposure.include: '*'
