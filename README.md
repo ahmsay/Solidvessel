@@ -100,11 +100,15 @@ https://hub.docker.com/u/ahmsay
 
 ### Docker Compose
 
-Docker Compose lets you run multiple containers in the same network, with a simple command. So I created a
-docker-compose.yml file. If images don't exist in a local device, they will be pulled. But there is still a problem.
-Since the services start in a different network, they are not running on localhost anymore. I did port mapping, but it
-is only for me to access them by using my local device. Client services need to get the url of configuration server,
-discovery server and their databases' urls to run properly.
+Docker Compose lets you run multiple containers in the same network, with a simple command. So I created a two
+docker-compose.yml files in project-configuration folder, for development and testing. In development mode only
+databases and message queue will run as container, so I can keep debugging and developing the application. In test mode
+whole application will run as containers, so I can verify if everything works correctly. If images don't exist in a
+local device, they will be pulled.
+
+Initially, there is a problem with docker configuration. Since the services start in a different network, they are not
+running on localhost anymore. I did port mapping, but it is only for me to access them by using my local device. Client
+services need to get the url of configuration server, discovery server and their databases' urls to run properly.
 
 To solve this problem, I wrote an additional command in the <b>docker-compose.yml</b> file for client services to run
 them with a different Spring profile. For example when I try to run the application with Docker Compose, account service
