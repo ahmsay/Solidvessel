@@ -57,6 +57,18 @@ discoveries. I used Eureka, which makes client side discovery. We can also see r
 discovery server. I registered the config server as well just to see its status. Also, if the discovery server goes
 down, other instances will continue to communicate each other by using cache.
 
+### Gateway Service
+
+At this point, client services have different endpoints. This makes our API hard to use for our consumers. More
+importantly, we can't use load balancing properly when we have multiple instances for the same service. Because each
+instance will have a different endpoint, and we can't provide a new url to a consumer. To solve this problem, I included
+a gateway service to the project and registered it to the discovery server. Now gateway service knows all other service
+urls. Then I registered all client services to the gateway service by using service names. This way there is no url
+dependency anymore, and I can use load balancing when a new instance is up. Also, our consumers won't even know whether
+this is a microservice project or not, because all requests will go to the gateway service first, then the gateway
+service will redirect them to the related microservice. Last but not least, I can handle authentication in this service
+instead of implementing it in every client service.
+
 ### Configuration Server
 
 Spring Framework provides some options to separate our configuration from code. This makes our application to run in
