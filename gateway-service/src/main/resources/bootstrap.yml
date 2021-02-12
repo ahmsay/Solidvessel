@@ -1,5 +1,4 @@
-server:
-  port: 8000
+server.port: 8000
 
 spring.application.name: gateway-s
 
@@ -23,9 +22,7 @@ zuul:
       serviceId: payment-s
       stripPrefix: false
 
-endpoints:
-  trace:
-    sensitive: false
+endpoints.trace.sensitive: false
 
 eureka.instance.lease-renewal-interval-in-seconds: 5
 
