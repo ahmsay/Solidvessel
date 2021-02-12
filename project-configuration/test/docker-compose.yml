@@ -10,6 +10,11 @@ services:
     ports:
       - 8888:8888
     command: --spring.profiles.active=test
+  gateway-service:
+    image: ahmsay/microshop-gateway-service
+    ports:
+      - 8000:8000
+    command: --spring.profiles.active=test
   account-service:
     image: ahmsay/microshop-account-service
     ports:
