@@ -15,6 +15,7 @@ public class Product {
     @NotNull
     private String name;
 
+    @NotNull
     private Double price;
 
     private String category;
