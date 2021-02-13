@@ -4,6 +4,4 @@ spring:
   application.name: config-s
   cloud.config.server.git.uri: https://github.com/ahmsay/Microshop-Configuration.git
 
-eureka.instance.lease-renewal-interval-in-seconds: 5
-
 management.endpoints.web.exposure.include: '*'

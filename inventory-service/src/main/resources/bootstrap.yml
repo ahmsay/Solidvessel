@@ -8,6 +8,4 @@ spring:
     password: nihilus
   jpa.hibernate.ddl-auto: create
 
-eureka.instance.lease-renewal-interval-in-seconds: 5
-
 management.endpoints.web.exposure.include: '*'
