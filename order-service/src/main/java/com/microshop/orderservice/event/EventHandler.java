@@ -1,7 +1,7 @@
 package com.microshop.orderservice.event;
 
 import com.microshop.orderservice.entity.Order;
-import com.microshop.orderservice.services.IOrderService;
+import com.microshop.orderservice.services.OrderService;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventHandler {
 
-    private final IOrderService orderService;
+    private final OrderService orderService;
 
-    public EventHandler(IOrderService orderService) {
+    public EventHandler(OrderService orderService) {
         this.orderService = orderService;
     }
 

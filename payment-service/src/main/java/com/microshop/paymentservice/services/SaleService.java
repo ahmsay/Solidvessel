@@ -1,28 +1,10 @@
 package com.microshop.paymentservice.services;
 
 import com.microshop.paymentservice.entity.Sale;
-import com.microshop.paymentservice.repositories.ISaleRepository;
-import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+public interface SaleService {
 
-@Service
-@Transactional
-public class SaleService implements ISaleService {
+    Iterable<Sale> findByPaymentId(Long paymentId);
 
-    private final ISaleRepository saleRepository;
-
-    public SaleService(ISaleRepository saleRepository) {
-        this.saleRepository = saleRepository;
-    }
-
-    @Override
-    public Iterable<Sale> findByPaymentId(Long paymentId) {
-        return saleRepository.findByPaymentId(paymentId);
-    }
-
-    @Override
-    public void save(final Sale sale) {
-        saleRepository.save(sale);
-    }
+    void save(Sale sale);
 }

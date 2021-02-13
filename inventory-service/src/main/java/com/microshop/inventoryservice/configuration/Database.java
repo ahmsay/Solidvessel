@@ -1,7 +1,7 @@
 package com.microshop.inventoryservice.configuration;
 
 import com.microshop.inventoryservice.entity.Product;
-import com.microshop.inventoryservice.repositories.IProductRepository;
+import com.microshop.inventoryservice.repositories.ProductRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class Database {
 
     @Bean
-    InitializingBean seedDatabase(final IProductRepository productRepository) {
+    InitializingBean seedDatabase(final ProductRepository productRepository) {
         return () -> {
             productRepository.save(new Product("Clipper", 2.5D, "Tool"));
             productRepository.save(new Product("Laptop", 3D, "Electronics"));

@@ -2,16 +2,16 @@ package com.microshop.orderservice.controllers;
 
 import com.microshop.orderservice.dto.OrderDTO;
 import com.microshop.orderservice.entity.Order;
-import com.microshop.orderservice.services.IOrderService;
+import com.microshop.orderservice.services.OrderService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderRestController {
 
-    private final IOrderService orderService;
+    private final OrderService orderService;
 
-    public OrderRestController(final IOrderService orderService) {
+    public OrderRestController(final OrderService orderService) {
         this.orderService = orderService;
     }
 

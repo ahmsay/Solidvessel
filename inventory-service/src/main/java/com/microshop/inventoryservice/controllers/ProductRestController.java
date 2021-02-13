@@ -1,7 +1,7 @@
 package com.microshop.inventoryservice.controllers;
 
 import com.microshop.inventoryservice.entity.Product;
-import com.microshop.inventoryservice.services.IProductService;
+import com.microshop.inventoryservice.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductRestController {
 
-    private final IProductService productService;
+    private final ProductService productService;
 
-    public ProductRestController(final IProductService productService) {
+    public ProductRestController(final ProductService productService) {
         this.productService = productService;
     }
 

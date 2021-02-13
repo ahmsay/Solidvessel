@@ -2,7 +2,7 @@ package com.microshop.paymentservice.controllers;
 
 import com.microshop.paymentservice.dto.PaymentDTO;
 import com.microshop.paymentservice.entity.Payment;
-import com.microshop.paymentservice.services.IPaymentService;
+import com.microshop.paymentservice.services.PaymentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/payments")
 public class PaymentRestController {
 
-    private final IPaymentService paymentService;
+    private final PaymentService paymentService;
 
-    public PaymentRestController(final IPaymentService paymentService) {
+    public PaymentRestController(final PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
