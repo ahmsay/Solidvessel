@@ -24,6 +24,6 @@ zuul:
 
 endpoints.trace.sensitive: false
 
-ribbon.ReadTimeout: 10000
+ribbon.ReadTimeout: 60000
 
 management.endpoints.web.exposure.include: '*'
