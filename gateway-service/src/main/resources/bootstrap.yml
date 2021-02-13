@@ -26,4 +26,6 @@ endpoints.trace.sensitive: false
 
 eureka.instance.lease-renewal-interval-in-seconds: 5
 
+ribbon.ReadTimeout: 10000
+
 management.endpoints.web.exposure.include: '*'
