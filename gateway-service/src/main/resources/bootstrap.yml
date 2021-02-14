@@ -1,6 +1,12 @@
 server.port: 8000
 
-spring.application.name: gateway-s
+spring:
+  application.name: gateway-s
+  cloud.config:
+    fail-fast: true
+    retry:
+      max-attempts: 20
+      max-interval: 7000
 
 zuul:
   ignoredServices: '*'
@@ -27,3 +33,5 @@ endpoints.trace.sensitive: false
 ribbon.ReadTimeout: 60000
 
 management.endpoints.web.exposure.include: '*'
+
+logging.level.org.springframework.retry: trace
