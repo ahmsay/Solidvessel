@@ -9,13 +9,6 @@ spring:
   jpa:
     hibernate.ddl-auto: create
     properties.hibernate.globally_quoted_identifiers: true
-  cloud.config:
-    fail-fast: true
-    retry:
-      max-attempts: 20
-      max-interval: 7000
-
-logging.level.org.springframework.retry: trace
 
 management.endpoints.web.exposure.include: '*'
 

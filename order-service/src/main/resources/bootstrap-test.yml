@@ -1,9 +1,7 @@
 eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka
 
 spring:
-  cloud.config.uri: http://config-server:8888
-  datasource:
-    url: jdbc:postgresql://order-service-db:5432/order
+  datasource.url: jdbc:postgresql://order-service-db:5432/order
   rabbitmq:
     host: rabbitmq
     port: 5672
