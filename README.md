@@ -1,6 +1,7 @@
 # Microshop
-
 This is an online shopping application designed with microservices architecture.
+
+<img src="https://user-images.githubusercontent.com/22731894/107980171-d9a0b200-6fd0-11eb-91e3-7cc1aae927e4.png">
 
 ## Useful Scripts
 
