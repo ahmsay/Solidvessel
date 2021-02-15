@@ -25,7 +25,7 @@ If you use detached mode, containers will be automatically removed after you sto
 
 ### Push Images
 
-`docker push <hub-user>/<repo-name>:<tag>`
+`docker push <repository-name>:<tag>`
 
 ## Project Details
 
@@ -106,7 +106,7 @@ script</a> to do it with one command.
 
 ### Docker Hub
 
-Once images are created, I push them to my docker repositories with `docker push <hub-user>/<repo-name>:<tag>` command.
+Once images are created, I push them to my docker repositories with `docker push <repository-name>:<tag>` command.
 Since `docker-compose push` doesn't work (god knows why) I push them separately.
 
 https://hub.docker.com/u/ahmsay
