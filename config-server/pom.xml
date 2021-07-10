@@ -15,7 +15,7 @@
 	<description>Configuration Server for Online Shopping Application </description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>16</java.version>
 		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 	</properties>
 
