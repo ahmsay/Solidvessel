@@ -1,0 +1,13 @@
+server.port: 8000
+
+spring:
+  application.name: gateway-s
+  cloud:
+    gateway:
+      routes:
+      - id: accountService
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/customers/**
+
+management.endpoints.web.exposure.include: '*'
