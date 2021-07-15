@@ -5,9 +5,21 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: accountService
-        uri: http://localhost:8081/
-        predicates:
-        - Path=/customers/**
+        - id: accountService
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/customers/**
+        - id: inventoryService
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/products/**
+        - id: orderService
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/orders/**
+        - id: paymentService
+          uri: http://localhost:8084/
+          predicates:
+            - Path=/payments/**
 
 management.endpoints.web.exposure.include: '*'
