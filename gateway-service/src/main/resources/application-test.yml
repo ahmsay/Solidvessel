@@ -1,1 +1,22 @@
 eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: accountService
+          uri: http://account-service:8081/
+          predicates:
+            - Path=/customers/**
+        - id: inventoryService
+          uri: http://inventory-service:8082/
+          predicates:
+            - Path=/products/**
+        - id: orderService
+          uri: http://order-service:8083/
+          predicates:
+            - Path=/orders/**
+        - id: paymentService
+          uri: http://payment-service:8084/
+          predicates:
+            - Path=/payments/**
