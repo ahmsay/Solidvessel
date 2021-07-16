@@ -25,11 +25,6 @@ mvn clean package
 docker build --tag ahmsay/microshop-discovery-server:latest .
 cd ..
 
-cd config-server
-mvn clean package
-docker build --tag ahmsay/microshop-config-server:latest .
-cd ..
-
 cd gateway-service
 mvn clean package
 docker build --tag ahmsay/microshop-gateway-service:latest .

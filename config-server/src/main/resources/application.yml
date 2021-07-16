@@ -1,7 +1,0 @@
-server.port: 8888
-
-spring:
-  application.name: config-s
-  cloud.config.server.git.uri: https://github.com/ahmsay/Microshop-Configuration.git
-
-management.endpoints.web.exposure.include: '*'

@@ -5,11 +5,6 @@ services:
     image: ahmsay/microshop-discovery-server
     ports:
       - 8761:8761
-  config-server:
-    image: ahmsay/microshop-config-server
-    ports:
-      - 8888:8888
-    command: --spring.profiles.active=test
   gateway-service:
     image: ahmsay/microshop-gateway-service
     ports:
