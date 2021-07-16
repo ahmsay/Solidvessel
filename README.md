@@ -1,7 +1,7 @@
 # Microshop
 This is an online shopping application designed with microservices architecture.
 
-<img src="https://user-images.githubusercontent.com/22731894/109545852-6f146980-7ada-11eb-8c1f-ad67a29643f2.png">
+<img src="https://user-images.githubusercontent.com/22731894/125931833-2a7e28cd-703e-4e4c-a16a-0f307d21410c.png" alt="diagram">
 
 ## Useful Scripts
 
@@ -69,22 +69,6 @@ dependency anymore, and I can use load balancing when a new instance is up. Also
 this is a microservice project or not, because all requests will go to the gateway service first, then the gateway
 service will redirect them to the related microservice. Last but not least, I can handle authentication in this service
 instead of implementing it in every client service.
-
-### Configuration Server
-
-Spring Framework provides some options to separate our configuration from code. This makes our application to run in
-different environments without touching the code. But Spring Cloud Config Server takes it to another level. We can
-update our configuration properties without restarting the application.
-
-To do this, first I created a separate service and declared it as configuration server. Then I declared client services
-as configuration clients. Spring Cloud Config provides a <b>Git</b> repository to store common properties and update
-them dynamically. So I created a <a href="https://github.com/ahmsay/Microshop-Configuration" target="_blank">Git
-repo</a> and gave its url to the config server. Now client services fetch data from the config server while starting.
-
-So how do we update our config properties without restarting the application? Once we change a property in the Git repo,
-config server automatically fetches it but client services will still get the old value. That's because it's not their
-job to continuously ask the config server "Hey, are you updated?". To trigger them, we send a <b>refresh</b> request to
-the intended bean. Then we get the updated property in run time.
 
 ### RabbitMQ
 
