@@ -1,4 +1,4 @@
-FROM openjdk:16-jdk-alpine
+FROM ahmsay/microshop-base
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["jre/bin/java","-jar","/app.jar"]
