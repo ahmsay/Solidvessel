@@ -1,5 +1,10 @@
 cd ..
 
+cd base-image
+docker build --tag ahmsay/microshop-base .
+cd ..
+cd ..
+
 cd account-service
 mvn clean package
 docker build --tag ahmsay/microshop-account-service:latest .
