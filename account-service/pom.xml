@@ -86,6 +86,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<from>
+						<image>docker.io/ahmsay/microshop-base</image>
+					</from>
+					<to>
+						<image>docker.io/ahmsay/microshop-account-service</image>
+					</to>
+					<container>
+						<entrypoint>jre/bin/java,-cp,@/app/jib-classpath-file,com.microshop.accountservice.AccountServiceApplication</entrypoint>
+					</container>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
