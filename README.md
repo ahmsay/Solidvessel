@@ -51,11 +51,11 @@ machine, or a container, or deployed in a server. So how do we know the correct 
 don't need to. This is where service discovery comes in.
 
 In this project, all other services register to the discovery server as discovery clients. Each of them has a name
-located in their <b>bootstrap.yml</b> file. So instead of writing the url to send the request, we write the service
+located in their <b>application.yml</b> file. So instead of writing the url to send the request, we write the service
 name. This encapsulates the varying service url. The discovery server knows the url, and the rest is just REST. It also
 does load balancing which is crucial when you'll have multiple instances. There are server side and client side service
 discoveries. I used Eureka, which makes client side discovery. We can also see registered services and their status on
-discovery server. I registered the config server as well just to see its status. Also, if the discovery server goes
+discovery server. Also, if the discovery server goes
 down, other instances will continue to communicate each other by using cache.
 
 ### Gateway Service
@@ -83,10 +83,19 @@ broker. If order service is down, the event won't be lost. It can be processed l
 
 ### Docker
 
-Docker simply lets you run an application without relying on dependencies. All services have a Dockerfile to create
-their images. Updating the jar and creating an image for 6 services was a-bit time-consuming, so I wrote
-a <a href="https://github.com/ahmsay/Microshop/blob/master/project-configuration/build_images.sh" target="_blank">shell
-script</a> to do it with one command.
+Docker simply lets you run an application without relying on dependencies. Normally I was using official `openjdk:16-alpine` 
+image. With that image, containers' size were more than 350 mb. To reduce the image size, I started to use my own java
+image. I included only necessary java modules. With this approach, I have a base image and all services use that base image
+to generate their containers. Now containers' size are around 120 mb.
+
+I was also using Dockerfiles for all services. With this configuration, in the Dockerfile, you add the generated .jar file 
+to the container, and they are ready to use. However, when pushing the image, it treats the whole application as one layer.
+So no matter how small a code change is, you must push the entire application. To solve this problem I started to use Jib,
+which can split the application into more layers while building the image. Now all Dockerfile configurations are in the
+<b>pom.xml</b> file for each service, and with `mvn compile jib:dockerBuild` command, Jib
+builds the Docker image in a more granular way. With this approach, when I make a code change, I only push the necessary
+parts.
+
 
 ### Docker Hub
 
@@ -105,23 +114,16 @@ local device, they will be pulled.
 
 Initially, there is a problem with docker configuration. Since the services start in a different network, they are not
 running on localhost anymore. I did port mapping, but it is only for me to access them by using my local device. Client
-services need to get the url of configuration server, discovery server and their databases' urls to run properly.
+services need to get the url of discovery server, and their databases' urls to run properly.
 
 To solve this problem, I wrote an additional command in the <b>docker-compose.yml</b> file for client services to run
 them with a different Spring profile. For example when I try to run the application with Docker Compose, account service
 starts with a new Spring profile. Now I can override the discovery server url for that profile. The new url is the same
 service name in the docker-compose.yml file: <b>discovery-server</b>. Spring is clever enough to resolve it. Same thing
 also applies for config server and database. Now with the overridden urls, account service and other services can
-connect to the discovery server, the config server and their databases. Furthermore, -thanks to Spring profiles- I don't
-need to change my code to run the application in different environments.
-
-So is it done now? NO! Client services first try to connect the config server, then the discovery server. When using
-docker compose, all services start at the same time. That means the config server may not be ready when a client tries
-to connect. That causes clients to fail to start. To fix it, I added <b>spring-retry</b> dependency to client services.
-This solution was not working with <b>application.yml</b> files, so I started to use <b>bootstrap.yml</b>
-files (Bootstrap context loads before the application context). Now if config server is not ready, clients try to
-reconnect instead of shutting down. Once they connect to the config server, they'll try to connect the discovery server.
-Fortunately, if the discovery server is not ready, they won't shut down and automatically try to reconnect.
+connect to the discovery server, and their databases. Furthermore, -thanks to Spring profiles- I don't
+need to change my code to run the application in different environments. Quick note: If the discovery server is not ready,
+client services will automatically try to reconnect.
 
 In conclusion, to run this application with Docker Compose, you only need the <b>docker-compose.yml</b> file. When you
 write `docker-compose up` command, after a bunch of errors (services desperately trying to connect each other) it will
