@@ -6,31 +6,25 @@ cd ..
 cd ..
 
 cd account-service
-mvn clean package
-docker build --tag ahmsay/microshop-account-service:latest .
+mvn clean compile jib:dockerBuild
 cd ..
 
 cd inventory-service
-mvn clean package
-docker build --tag ahmsay/microshop-inventory-service:latest .
+mvn clean compile jib:dockerBuild
 cd ..
 
 cd payment-service
-mvn clean package
-docker build --tag ahmsay/microshop-payment-service:latest .
+mvn clean compile jib:dockerBuild
 cd ..
 
 cd order-service
-mvn clean package
-docker build --tag ahmsay/microshop-order-service:latest .
+mvn clean compile jib:dockerBuild
 cd ..
 
 cd discovery-server
-mvn clean package
-docker build --tag ahmsay/microshop-discovery-server:latest .
+mvn clean compile jib:dockerBuild
 cd ..
 
 cd gateway-service
-mvn clean package
-docker build --tag ahmsay/microshop-gateway-service:latest .
+mvn clean compile jib:dockerBuild
 cd ..
