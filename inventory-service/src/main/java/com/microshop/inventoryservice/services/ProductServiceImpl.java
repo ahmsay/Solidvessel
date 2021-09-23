@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -31,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Iterable<Product> findByIds(List<Long> ids) {
-        return ids.stream().map(id -> productRepository.findById(id).orElse(null)).collect(Collectors.toList());
+        return productRepository.findByIdIn(ids);
     }
 
     @Override
