@@ -1,5 +1,3 @@
-cd ..
-
 cd base-image
 docker build --tag ahmsay/microshop-base .
 cd ..
