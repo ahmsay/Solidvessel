@@ -1,16 +1,36 @@
 package com.microshop.inventoryservice.services;
 
 import com.microshop.inventoryservice.entity.Product;
+import com.microshop.inventoryservice.repositories.ProductRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-public interface ProductService {
+@Service
+@Transactional
+public class ProductService {
 
-    Iterable<Product> findAll();
+    private final ProductRepository productRepository;
 
-    Product findById(Long id);
+    public ProductService(final ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
-    Iterable<Product> findByIds(List<Long> ids);
+    public Iterable<Product> findAll() {
+        return productRepository.findAll();
+    }
 
-    Product save(Product product);
+    public Product findById(final Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
+    }
+
+    public Iterable<Product> findByIds(List<Long> ids) {
+        return productRepository.findByIdIn(ids);
+    }
+
+    public Product save(final Product product) {
+        return productRepository.save(product);
+    }
 }

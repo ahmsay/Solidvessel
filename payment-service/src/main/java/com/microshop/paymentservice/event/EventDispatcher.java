@@ -1,6 +1,25 @@
 package com.microshop.paymentservice.event;
 
-public interface EventDispatcher {
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-    void send(PaymentSavedEvent event);
+@Component
+public class EventDispatcher {
+
+    private final RabbitTemplate rabbitTemplate;
+    private final String paymentExchange;
+    private final String paymentSavedRoutingKey;
+
+    public EventDispatcher(final RabbitTemplate rabbitTemplate,
+                           @Value("${payment.exchange}") final String paymentExchange,
+                           @Value("${payment.saved.key}") final String paymentSavedRoutingKey) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.paymentExchange = paymentExchange;
+        this.paymentSavedRoutingKey = paymentSavedRoutingKey;
+    }
+
+    public void send(final PaymentSavedEvent event) {
+        rabbitTemplate.convertAndSend(paymentExchange, paymentSavedRoutingKey, event);
+    }
 }
