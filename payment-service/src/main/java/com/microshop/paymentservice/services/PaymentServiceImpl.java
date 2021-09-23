@@ -11,6 +11,7 @@ import com.microshop.paymentservice.repositories.PaymentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDTO findById(final Long id) {
         Payment payment = findPrunedById(id);
-        if (payment == null) {
-            return null;
-        }
         CustomerDTO customer = customerService.findById(payment.getCustomerId());
         List<ProductDTO> productList = findProductsOfPayment(payment.getId());
         return new PaymentDTO(payment.getId(), payment.getTotalCharge(), customer, productList);
@@ -52,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment findPrunedById(final Long id) {
-        return paymentRepository.findById(id).orElse(null);
+        return paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
     }
 
     @Override

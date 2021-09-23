@@ -8,6 +8,8 @@ import com.microshop.orderservice.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
@@ -30,9 +32,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO findById(final Long id) {
         Order order = findPrunedById(id);
-        if (order == null) {
-            return null;
-        }
         CustomerDTO customer = customerService.findById(order.getCustomerId());
         PaymentDTO payment = paymentService.findById(order.getPaymentId());
         return new OrderDTO(order.getId(), order.getStatus(), customer, payment);
@@ -40,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findPrunedById(final Long id) {
-        return orderRepository.findById(id).orElse(null);
+        return orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found!"));
     }
 
     @Override

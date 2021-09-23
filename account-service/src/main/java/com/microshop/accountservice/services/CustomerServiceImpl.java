@@ -8,6 +8,7 @@ import com.microshop.accountservice.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -32,9 +33,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO findById(final Long id) {
         Customer customer = findPrunedById(id);
-        if (customer == null) {
-            return null;
-        }
         List<PaymentDTO> paymentList = paymentService.findByCustomerId(customer.getId());
         List<OrderDTO> orderList = orderService.findByCustomerId(customer.getId());
         return new CustomerDTO(customer.getId(), customer.getName(), paymentList, orderList);
@@ -42,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findPrunedById(final Long id) {
-        return customerRepository.findById(id).orElse(null);
+        return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
     }
 
     @Override

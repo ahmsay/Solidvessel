@@ -5,6 +5,7 @@ import com.microshop.inventoryservice.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(final Long id) {
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
     }
 
     @Override
