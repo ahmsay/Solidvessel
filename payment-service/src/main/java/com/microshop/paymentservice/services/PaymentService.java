@@ -3,6 +3,7 @@ package com.microshop.paymentservice.services;
 import com.microshop.paymentservice.dto.CustomerDTO;
 import com.microshop.paymentservice.dto.PaymentDTO;
 import com.microshop.paymentservice.dto.ProductDTO;
+import com.microshop.paymentservice.dto.SavePaymentDTO;
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.entity.Sale;
 import com.microshop.paymentservice.event.EventDispatcher;
@@ -54,9 +55,9 @@ public class PaymentService {
         return paymentRepository.findByCustomerId(customerId);
     }
 
-    public Payment save(final Payment payment, final List<Long> productIds) {
-        Payment savedPayment = paymentRepository.save(payment);
-        productIds.forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
+    public Payment save(final SavePaymentDTO savePaymentDTO) {
+        Payment savedPayment = paymentRepository.save(savePaymentDTO.getPayment());
+        savePaymentDTO.getProductIds().forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
         eventDispatcher.sendPaymentSavedEvent(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
     }

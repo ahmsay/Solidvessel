@@ -630,7 +630,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"totalCharge\": 120.8,\n    \"customerId\": 3\n}",
+							"raw": "{\n    \"payment\": {\n        \"totalCharge\": 120.8,\n        \"customerId\": 3\n    },\n    \"productIds\": [7,8]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,19 +638,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/payments?productIds=7,8",
+							"raw": "localhost:8000/payments",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"payments"
-							],
-							"query": [
-								{
-									"key": "productIds",
-									"value": "7,8"
-								}
 							]
 						}
 					},

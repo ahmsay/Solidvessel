@@ -1,11 +1,10 @@
 package com.microshop.paymentservice.controllers;
 
 import com.microshop.paymentservice.dto.PaymentDTO;
+import com.microshop.paymentservice.dto.SavePaymentDTO;
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.services.PaymentService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/payments")
@@ -38,8 +37,7 @@ public class PaymentRestController {
     }
 
     @PostMapping()
-    public Payment save(@RequestBody final Payment payment,
-                        @RequestParam final List<Long> productIds) {
-        return paymentService.save(payment, productIds);
+    public Payment save(@RequestBody final SavePaymentDTO savePaymentDTO) {
+        return paymentService.save(savePaymentDTO);
     }
 }
