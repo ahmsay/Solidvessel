@@ -12,6 +12,10 @@ spring:
 
 management.endpoints.web.exposure.include: '*'
 
-payment.exchange: payment_exchange
-order.queue: order_queue
-payment.saved.key: payment.saved
+exchanges:
+  payment: payment.topic
+queues:
+  order: order.queue
+routing-keys:
+  payment:
+    saved: payment.saved

@@ -57,7 +57,7 @@ public class PaymentService {
     public Payment save(final Payment payment, final List<Long> productIds) {
         Payment savedPayment = paymentRepository.save(payment);
         productIds.forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
-        eventDispatcher.send(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
+        eventDispatcher.sendPaymentSavedEvent(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
     }
 

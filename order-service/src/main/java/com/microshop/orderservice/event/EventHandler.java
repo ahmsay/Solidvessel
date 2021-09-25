@@ -15,7 +15,7 @@ public class EventHandler {
         this.orderService = orderService;
     }
 
-    @RabbitListener(queues = "${order.queue}")
+    @RabbitListener(queues = "${queues.order}")
     void handlePaymentSaved(final PaymentSavedEvent event) {
         try {
             orderService.save(new Order("Preparing", event.getCustomerId(), event.getPaymentId()));

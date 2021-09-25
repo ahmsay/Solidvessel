@@ -8,18 +8,18 @@ import org.springframework.stereotype.Component;
 public class EventDispatcher {
 
     private final RabbitTemplate rabbitTemplate;
-    private final String paymentExchange;
-    private final String paymentSavedRoutingKey;
 
-    public EventDispatcher(final RabbitTemplate rabbitTemplate,
-                           @Value("${payment.exchange}") final String paymentExchange,
-                           @Value("${payment.saved.key}") final String paymentSavedRoutingKey) {
+    @Value("${exchanges.payment}")
+    private String paymentExchange;
+
+    @Value("${routing-keys.payment.saved}")
+    private String paymentSavedRoutingKey;
+
+    public EventDispatcher(final RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        this.paymentExchange = paymentExchange;
-        this.paymentSavedRoutingKey = paymentSavedRoutingKey;
     }
 
-    public void send(final PaymentSavedEvent event) {
+    public void sendPaymentSavedEvent(final PaymentSavedEvent event) {
         rabbitTemplate.convertAndSend(paymentExchange, paymentSavedRoutingKey, event);
     }
 }
