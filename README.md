@@ -141,3 +141,5 @@ API tests</a>. You can import it in Postman to test the application.
 - Remove "save order" endpoint
 - Open container ports in test environment for debugging
 - Create a shared kernel
+- Add authentication
+- Add authorization
