@@ -1,4 +1,4 @@
-FROM openjdk:16-alpine AS jre-build
+FROM openjdk:17-alpine AS jre-build
 RUN jlink --verbose \
 --compress 2 \
 --strip-java-debug-attributes \
