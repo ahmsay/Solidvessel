@@ -18,7 +18,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Iterable<Product> findAll() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
@@ -26,7 +26,7 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
     }
 
-    public Iterable<Product> findByIds(List<Long> ids) {
+    public List<Product> findByIds(List<Long> ids) {
         return productRepository.findByIdIn(ids);
     }
 

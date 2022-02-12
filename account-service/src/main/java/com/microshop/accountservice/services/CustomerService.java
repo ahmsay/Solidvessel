@@ -1,8 +1,5 @@
 package com.microshop.accountservice.services;
 
-import com.microshop.accountservice.dto.CustomerDTO;
-import com.microshop.accountservice.dto.OrderDTO;
-import com.microshop.accountservice.dto.PaymentDTO;
 import com.microshop.accountservice.entity.Customer;
 import com.microshop.accountservice.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -16,24 +13,13 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final PaymentService paymentService;
-    private final OrderService orderService;
 
-    public CustomerService(final CustomerRepository customerRepository, final PaymentService paymentService, final OrderService orderService) {
+    public CustomerService(final CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.paymentService = paymentService;
-        this.orderService = orderService;
     }
 
-    public Iterable<Customer> findAll() {
+    public List<Customer> findAll() {
         return customerRepository.findAll();
-    }
-
-    public CustomerDTO findById(final Long id) {
-        Customer customer = findPrunedById(id);
-        List<PaymentDTO> paymentList = paymentService.findByCustomerId(customer.getId());
-        List<OrderDTO> orderList = orderService.findByCustomerId(customer.getId());
-        return new CustomerDTO(customer.getId(), customer.getName(), paymentList, orderList);
     }
 
     public Customer findPrunedById(final Long id) {

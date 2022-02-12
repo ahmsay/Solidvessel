@@ -1,9 +1,11 @@
 package com.microshop.orderservice.repositories;
 
 import com.microshop.orderservice.entity.Order;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository extends CrudRepository<Order, Long> {
+import java.util.List;
 
-    Iterable<Order> findByCustomerId(Long customerId);
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
+    List<Order> findByCustomerId(Long customerId);
 }

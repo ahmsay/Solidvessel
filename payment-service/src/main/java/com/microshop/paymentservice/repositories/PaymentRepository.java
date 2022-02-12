@@ -1,9 +1,11 @@
 package com.microshop.paymentservice.repositories;
 
 import com.microshop.paymentservice.entity.Payment;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PaymentRepository extends CrudRepository<Payment, Long> {
+import java.util.List;
 
-    Iterable<Payment> findByCustomerId(Long customerId);
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
+
+    List<Payment> findByCustomerId(Long customerId);
 }

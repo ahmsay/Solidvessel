@@ -1,33 +1,48 @@
 package com.microshop.accountservice.controllers;
 
-import com.microshop.accountservice.dto.CustomerDTO;
 import com.microshop.accountservice.entity.Customer;
+import com.microshop.accountservice.response.CustomerDetailResponse;
+import com.microshop.accountservice.response.CustomerResponse;
+import com.microshop.accountservice.response.OrderResponse;
+import com.microshop.accountservice.response.PaymentResponse;
 import com.microshop.accountservice.services.CustomerService;
+import com.microshop.accountservice.services.OrderService;
+import com.microshop.accountservice.services.PaymentService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/customers")
 public class CustomerRestController {
 
     private final CustomerService customerService;
+    private final PaymentService paymentService;
+    private final OrderService orderService;
 
-    public CustomerRestController(final CustomerService customerService) {
+    public CustomerRestController(CustomerService customerService, PaymentService paymentService, OrderService orderService) {
         this.customerService = customerService;
+        this.paymentService = paymentService;
+        this.orderService = orderService;
     }
 
     @GetMapping()
-    public Iterable<Customer> findAll() {
-        return customerService.findAll();
+    public List<CustomerResponse> findAll() {
+        return customerService.findAll().stream().map(CustomerResponse::from).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public CustomerDTO findById(@PathVariable final Long id) {
-        return customerService.findById(id);
+    public CustomerDetailResponse findById(@PathVariable final Long id) {
+        CustomerResponse customer = findByIdPruned(id);
+        List<PaymentResponse> payments = paymentService.findByCustomerId(customer.id());
+        List<OrderResponse> orders = orderService.findByCustomerId(customer.id());
+        return new CustomerDetailResponse(customer.id(), customer.name(), payments, orders);
     }
 
     @GetMapping("/{id}/pruned")
-    public Customer findByIdPruned(@PathVariable final Long id) {
-        return customerService.findPrunedById(id);
+    public CustomerResponse findByIdPruned(@PathVariable final Long id) {
+        return CustomerResponse.from(customerService.findPrunedById(id));
     }
 
     @PostMapping()
