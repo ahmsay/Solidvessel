@@ -21,6 +21,9 @@ public class Order {
     @NotNull
     private Long paymentId;
 
+    public Order() {
+    }
+
     public Order(final String status, final Long customerId, final Long paymentId) {
         this.status = status;
         this.customerId = customerId;

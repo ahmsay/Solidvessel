@@ -18,6 +18,9 @@ public class Payment {
     @NotNull
     private Long customerId;
 
+    public Payment() {
+    }
+
     public Payment(final Double totalCharge, final Long customerId) {
         this.totalCharge = totalCharge;
         this.customerId = customerId;

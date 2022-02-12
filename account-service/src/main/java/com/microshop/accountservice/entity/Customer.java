@@ -15,6 +15,9 @@ public class Customer {
     @NotNull
     private String name;
 
+    public Customer() {
+    }
+
     public Customer(final String name) {
         this.name = name;
     }
