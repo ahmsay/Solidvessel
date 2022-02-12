@@ -20,8 +20,6 @@ public class Product {
 
     private String category;
 
-    Product() { }
-
     public Product(final String name, final Double price, final String category) {
         this.name = name;
         this.price = price;
@@ -32,31 +30,15 @@ public class Product {
         return id;
     }
 
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(final Double price) {
-        this.price = price;
-    }
-
     public String getCategory() {
         return category;
-    }
-
-    public void setCategory(final String category) {
-        this.category = category;
     }
 }

@@ -21,8 +21,6 @@ public class Order {
     @NotNull
     private Long paymentId;
 
-    Order() { }
-
     public Order(final String status, final Long customerId, final Long paymentId) {
         this.status = status;
         this.customerId = customerId;
@@ -33,31 +31,15 @@ public class Order {
         return id;
     }
 
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(final String status) {
-        this.status = status;
     }
 
     public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(final Long customerId) {
-        this.customerId = customerId;
-    }
-
     public Long getPaymentId() {
         return paymentId;
-    }
-
-    public void setPaymentId(final Long paymentId) {
-        this.paymentId = paymentId;
     }
 }
