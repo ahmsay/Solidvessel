@@ -22,7 +22,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findPrunedById(final Long id) {
+    public Order findById(final Long id) {
         return orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found!"));
     }
 

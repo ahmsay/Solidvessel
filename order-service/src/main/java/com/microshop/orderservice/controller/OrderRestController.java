@@ -33,16 +33,16 @@ public class OrderRestController {
     }
 
     @GetMapping("/{id}")
-    public OrderDetailResponse findById(@PathVariable final Long id) {
-        OrderResponse order = findPrunedById(id);
+    public OrderResponse findById(@PathVariable final Long id) {
+        return OrderResponse.from(orderService.findById(id));
+    }
+
+    @GetMapping("/{id}/detail")
+    public OrderDetailResponse findDetailById(@PathVariable final Long id) {
+        OrderResponse order = findById(id);
         CustomerResponse customer = customerService.findById(order.customerId());
         PaymentResponse payment = paymentService.findById(order.paymentId());
         return new OrderDetailResponse(order.id(), order.status(), customer, payment);
-    }
-
-    @GetMapping("/{id}/pruned")
-    public OrderResponse findPrunedById(@PathVariable final Long id) {
-        return OrderResponse.from(orderService.findPrunedById(id));
     }
 
     @GetMapping("/ofCustomer/{customerId}")

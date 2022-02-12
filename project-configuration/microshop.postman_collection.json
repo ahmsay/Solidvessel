@@ -72,7 +72,7 @@
 					"response": []
 				},
 				{
-					"name": "get customer by id - pruned",
+					"name": "get customer by id - detailed",
 					"event": [
 						{
 							"listen": "test",
@@ -90,7 +90,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/customers/1/pruned",
+							"raw": "localhost:8000/customers/1/detail",
 							"host": [
 								"localhost"
 							],
@@ -98,7 +98,7 @@
 							"path": [
 								"customers",
 								"1",
-								"pruned"
+								"detail"
 							]
 						}
 					},
@@ -371,7 +371,7 @@
 					"response": []
 				},
 				{
-					"name": "get order by id - pruned",
+					"name": "get order by id - detailed",
 					"event": [
 						{
 							"listen": "test",
@@ -389,7 +389,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/orders/1/pruned",
+							"raw": "localhost:8000/orders/1/detail",
 							"host": [
 								"localhost"
 							],
@@ -397,7 +397,7 @@
 							"path": [
 								"orders",
 								"1",
-								"pruned"
+								"detail"
 							]
 						}
 					},
@@ -545,7 +545,7 @@
 					"response": []
 				},
 				{
-					"name": "get payment by id - pruned",
+					"name": "get payment by id - detailed",
 					"event": [
 						{
 							"listen": "test",
@@ -563,7 +563,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/payments/1/pruned",
+							"raw": "localhost:8000/payments/1/detail",
 							"host": [
 								"localhost"
 							],
@@ -571,7 +571,7 @@
 							"path": [
 								"payments",
 								"1",
-								"pruned"
+								"detail"
 							]
 						}
 					},

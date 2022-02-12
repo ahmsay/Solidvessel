@@ -22,7 +22,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer findPrunedById(final Long id) {
+    public Customer findById(final Long id) {
         return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
     }
 

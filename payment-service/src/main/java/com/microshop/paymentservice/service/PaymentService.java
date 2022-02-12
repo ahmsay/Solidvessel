@@ -32,7 +32,7 @@ public class PaymentService {
         return paymentRepository.findAll();
     }
 
-    public Payment findPrunedById(final Long id) {
+    public Payment findById(final Long id) {
         return paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
     }
 

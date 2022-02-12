@@ -33,16 +33,16 @@ public class CustomerRestController {
     }
 
     @GetMapping("/{id}")
-    public CustomerDetailResponse findById(@PathVariable final Long id) {
-        CustomerResponse customer = findByIdPruned(id);
+    public CustomerResponse findById(@PathVariable final Long id) {
+        return CustomerResponse.from(customerService.findById(id));
+    }
+
+    @GetMapping("/{id}/detail")
+    public CustomerDetailResponse findDetailById(@PathVariable final Long id) {
+        CustomerResponse customer = findById(id);
         List<PaymentResponse> payments = paymentService.findByCustomerId(customer.id());
         List<OrderResponse> orders = orderService.findByCustomerId(customer.id());
         return new CustomerDetailResponse(customer.id(), customer.name(), payments, orders);
-    }
-
-    @GetMapping("/{id}/pruned")
-    public CustomerResponse findByIdPruned(@PathVariable final Long id) {
-        return CustomerResponse.from(customerService.findPrunedById(id));
     }
 
     @PostMapping()

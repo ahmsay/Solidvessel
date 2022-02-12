@@ -37,16 +37,16 @@ public class PaymentRestController {
     }
 
     @GetMapping("/{id}")
-    public PaymentDetailResponse findById(@PathVariable final Long id) {
-        PaymentResponse payment = findPrunedById(id);
+    public PaymentResponse findById(@PathVariable final Long id) {
+        return PaymentResponse.from(paymentService.findById(id));
+    }
+
+    @GetMapping("/{id}/detail")
+    public PaymentDetailResponse findDetailById(@PathVariable final Long id) {
+        PaymentResponse payment = findById(id);
         CustomerResponse customer = customerService.findById(payment.customerId());
         List<ProductResponse> products = findProductsOfPayment(payment.id());
         return new PaymentDetailResponse(payment.id(), payment.totalCharge(), customer, products);
-    }
-
-    @GetMapping("/{id}/pruned")
-    public PaymentResponse findPrunedById(@PathVariable final Long id) {
-        return PaymentResponse.from(paymentService.findPrunedById(id));
     }
 
     @GetMapping("/ofCustomer/{customerId}")
