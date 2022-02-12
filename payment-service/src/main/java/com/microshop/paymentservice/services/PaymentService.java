@@ -56,8 +56,8 @@ public class PaymentService {
     }
 
     public Payment save(final SavePaymentDTO savePaymentDTO) {
-        Payment savedPayment = paymentRepository.save(savePaymentDTO.getPayment());
-        savePaymentDTO.getProductIds().forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
+        Payment savedPayment = paymentRepository.save(savePaymentDTO.payment());
+        savePaymentDTO.productIds().forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
         eventDispatcher.sendPaymentSavedEvent(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
     }
