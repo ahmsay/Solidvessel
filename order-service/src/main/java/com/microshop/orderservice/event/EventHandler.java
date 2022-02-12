@@ -18,7 +18,7 @@ public class EventHandler {
     @RabbitListener(queues = "${queues.order}")
     void handlePaymentSaved(final PaymentSavedEvent event) {
         try {
-            orderService.add(new Order("Preparing", event.getCustomerId(), event.getPaymentId()));
+            orderService.add(new Order("Preparing", event.customerId(), event.paymentId()));
         } catch (final Exception ex) {
             throw new AmqpRejectAndDontRequeueException(ex);
         }
