@@ -10,6 +10,6 @@ import java.util.List;
 @FeignClient("inventory-s")
 public interface ProductService {
 
-    @GetMapping("/products/findByIds")
-    List<ProductResponse> findByIds(@RequestParam final List<Long> ids);
+    @GetMapping("/products/getByIds")
+    List<ProductResponse> getByIds(@RequestParam final List<Long> ids);
 }

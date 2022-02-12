@@ -19,22 +19,22 @@ public class ProductRestController {
     }
 
     @GetMapping()
-    public List<ProductResponse> findAll() {
-        return productService.findAll().stream().map(ProductResponse::from).collect(Collectors.toList());
+    public List<ProductResponse> getAll() {
+        return productService.getAll().stream().map(ProductResponse::from).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ProductResponse findById(@PathVariable final Long id) {
-        return ProductResponse.from(productService.findById(id));
+    public ProductResponse getById(@PathVariable final Long id) {
+        return ProductResponse.from(productService.getById(id));
     }
 
-    @GetMapping("/findByIds")
-    public List<ProductResponse> findByIds(@RequestParam final List<Long> ids) {
-        return productService.findByIds(ids).stream().map(ProductResponse::from).collect(Collectors.toList());
+    @GetMapping("/getByIds")
+    public List<ProductResponse> getByIds(@RequestParam final List<Long> ids) {
+        return productService.getByIds(ids).stream().map(ProductResponse::from).collect(Collectors.toList());
     }
 
     @PostMapping()
-    public ProductResponse save(@RequestBody final Product product) {
-        return ProductResponse.from(productService.save(product));
+    public ProductResponse add(@RequestBody final Product product) {
+        return ProductResponse.from(productService.add(product));
     }
 }

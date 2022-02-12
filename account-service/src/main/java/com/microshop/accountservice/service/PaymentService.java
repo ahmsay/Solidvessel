@@ -11,5 +11,5 @@ import java.util.List;
 public interface PaymentService {
 
     @GetMapping("/payments/ofCustomer/{customerId}")
-    List<PaymentResponse> findByCustomerId(@PathVariable final Long customerId);
+    List<PaymentResponse> getByCustomerId(@PathVariable final Long customerId);
 }

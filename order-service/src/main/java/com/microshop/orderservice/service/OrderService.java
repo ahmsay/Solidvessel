@@ -18,19 +18,19 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public List<Order> findAll() {
+    public List<Order> getAll() {
         return orderRepository.findAll();
     }
 
-    public Order findById(final Long id) {
+    public Order getById(final Long id) {
         return orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found!"));
     }
 
-    public List<Order> findByCustomerId(final Long customerId) {
+    public List<Order> getByCustomerId(final Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 
-    public Order save(final Order order) {
+    public Order add(final Order order) {
         return orderRepository.save(order);
     }
 }

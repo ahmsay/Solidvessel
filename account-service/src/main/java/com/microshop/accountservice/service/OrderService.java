@@ -11,5 +11,5 @@ import java.util.List;
 public interface OrderService {
 
     @GetMapping("/orders/ofCustomer/{customerId}")
-    List<OrderResponse> findByCustomerId(@PathVariable final Long customerId);
+    List<OrderResponse> getByCustomerId(@PathVariable final Long customerId);
 }

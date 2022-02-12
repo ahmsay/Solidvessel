@@ -18,19 +18,19 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> findAll() {
+    public List<Product> getAll() {
         return productRepository.findAll();
     }
 
-    public Product findById(final Long id) {
+    public Product getById(final Long id) {
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
     }
 
-    public List<Product> findByIds(List<Long> ids) {
+    public List<Product> getByIds(List<Long> ids) {
         return productRepository.findByIdIn(ids);
     }
 
-    public Product save(final Product product) {
+    public Product add(final Product product) {
         return productRepository.save(product);
     }
 }

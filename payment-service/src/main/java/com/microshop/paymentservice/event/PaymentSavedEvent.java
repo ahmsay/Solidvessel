@@ -1,7 +1,6 @@
 package com.microshop.paymentservice.event;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class PaymentSavedEvent implements Serializable {
 

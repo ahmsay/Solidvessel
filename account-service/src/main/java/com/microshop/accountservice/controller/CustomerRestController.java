@@ -28,25 +28,25 @@ public class CustomerRestController {
     }
 
     @GetMapping()
-    public List<CustomerResponse> findAll() {
-        return customerService.findAll().stream().map(CustomerResponse::from).collect(Collectors.toList());
+    public List<CustomerResponse> getAll() {
+        return customerService.getAll().stream().map(CustomerResponse::from).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public CustomerResponse findById(@PathVariable final Long id) {
-        return CustomerResponse.from(customerService.findById(id));
+    public CustomerResponse getById(@PathVariable final Long id) {
+        return CustomerResponse.from(customerService.getById(id));
     }
 
     @GetMapping("/{id}/detail")
-    public CustomerDetailResponse findDetailById(@PathVariable final Long id) {
-        CustomerResponse customer = findById(id);
-        List<PaymentResponse> payments = paymentService.findByCustomerId(customer.id());
-        List<OrderResponse> orders = orderService.findByCustomerId(customer.id());
+    public CustomerDetailResponse getDetailById(@PathVariable final Long id) {
+        CustomerResponse customer = getById(id);
+        List<PaymentResponse> payments = paymentService.getByCustomerId(customer.id());
+        List<OrderResponse> orders = orderService.getByCustomerId(customer.id());
         return new CustomerDetailResponse(customer.id(), customer.name(), payments, orders);
     }
 
     @PostMapping()
-    public CustomerResponse save(@RequestBody final Customer customer) {
-        return CustomerResponse.from(customerService.save(customer));
+    public CustomerResponse add(@RequestBody final Customer customer) {
+        return CustomerResponse.from(customerService.add(customer));
     }
 }

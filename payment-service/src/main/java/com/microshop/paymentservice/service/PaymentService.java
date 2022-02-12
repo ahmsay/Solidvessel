@@ -5,7 +5,7 @@ import com.microshop.paymentservice.entity.Sale;
 import com.microshop.paymentservice.event.EventDispatcher;
 import com.microshop.paymentservice.event.PaymentSavedEvent;
 import com.microshop.paymentservice.repository.PaymentRepository;
-import com.microshop.paymentservice.request.SavePaymentRequest;
+import com.microshop.paymentservice.request.AddPaymentRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,21 +28,21 @@ public class PaymentService {
         this.eventDispatcher = eventDispatcher;
     }
 
-    public List<Payment> findAll() {
+    public List<Payment> getAll() {
         return paymentRepository.findAll();
     }
 
-    public Payment findById(final Long id) {
+    public Payment getById(final Long id) {
         return paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
     }
 
-    public List<Payment> findByCustomerId(final Long customerId) {
+    public List<Payment> getByCustomerId(final Long customerId) {
         return paymentRepository.findByCustomerId(customerId);
     }
 
-    public Payment save(final SavePaymentRequest request) {
+    public Payment add(final AddPaymentRequest request) {
         Payment savedPayment = paymentRepository.save(request.payment());
-        request.productIds().forEach(productId -> saleService.save(new Sale(savedPayment.getId(), productId)));
+        request.productIds().forEach(productId -> saleService.add(new Sale(savedPayment.getId(), productId)));
         eventDispatcher.sendPaymentSavedEvent(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
         return savedPayment;
     }

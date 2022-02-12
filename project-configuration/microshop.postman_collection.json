@@ -243,14 +243,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/products/findByIds?ids=1,2,3",
+							"raw": "localhost:8000/products/getByIds?ids=1,2,3",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"products",
-								"findByIds"
+								"getByIds"
 							],
 							"query": [
 								{

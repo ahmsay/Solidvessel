@@ -18,15 +18,15 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> findAll() {
+    public List<Customer> getAll() {
         return customerRepository.findAll();
     }
 
-    public Customer findById(final Long id) {
+    public Customer getById(final Long id) {
         return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
     }
 
-    public Customer save(final Customer customer) {
+    public Customer add(final Customer customer) {
         return customerRepository.save(customer);
     }
 }

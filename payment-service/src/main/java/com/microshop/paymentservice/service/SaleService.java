@@ -16,11 +16,11 @@ public class SaleService {
         this.saleRepository = saleRepository;
     }
 
-    public Iterable<Sale> findByPaymentId(Long paymentId) {
+    public Iterable<Sale> getByPaymentId(Long paymentId) {
         return saleRepository.findByPaymentId(paymentId);
     }
 
-    public void save(final Sale sale) {
+    public void add(final Sale sale) {
         saleRepository.save(sale);
     }
 }

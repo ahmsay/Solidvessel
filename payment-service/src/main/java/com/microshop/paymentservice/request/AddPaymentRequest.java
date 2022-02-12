@@ -4,5 +4,5 @@ import com.microshop.paymentservice.entity.Payment;
 
 import java.util.List;
 
-public record SavePaymentRequest(Payment payment, List<Long> productIds) {
+public record AddPaymentRequest(Payment payment, List<Long> productIds) {
 }

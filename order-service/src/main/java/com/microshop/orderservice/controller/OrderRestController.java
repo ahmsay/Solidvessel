@@ -28,30 +28,30 @@ public class OrderRestController {
     }
 
     @GetMapping()
-    public List<OrderResponse> findAll() {
-        return orderService.findAll().stream().map(OrderResponse::from).collect(Collectors.toList());
+    public List<OrderResponse> getAll() {
+        return orderService.getAll().stream().map(OrderResponse::from).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public OrderResponse findById(@PathVariable final Long id) {
-        return OrderResponse.from(orderService.findById(id));
+    public OrderResponse getById(@PathVariable final Long id) {
+        return OrderResponse.from(orderService.getById(id));
     }
 
     @GetMapping("/{id}/detail")
-    public OrderDetailResponse findDetailById(@PathVariable final Long id) {
-        OrderResponse order = findById(id);
-        CustomerResponse customer = customerService.findById(order.customerId());
-        PaymentResponse payment = paymentService.findById(order.paymentId());
+    public OrderDetailResponse getDetailById(@PathVariable final Long id) {
+        OrderResponse order = getById(id);
+        CustomerResponse customer = customerService.getById(order.customerId());
+        PaymentResponse payment = paymentService.getById(order.paymentId());
         return new OrderDetailResponse(order.id(), order.status(), customer, payment);
     }
 
     @GetMapping("/ofCustomer/{customerId}")
-    public List<OrderResponse> findByCustomerId(@PathVariable final Long customerId) {
-        return orderService.findByCustomerId(customerId).stream().map(OrderResponse::from).collect(Collectors.toList());
+    public List<OrderResponse> getByCustomerId(@PathVariable final Long customerId) {
+        return orderService.getByCustomerId(customerId).stream().map(OrderResponse::from).collect(Collectors.toList());
     }
 
     @PostMapping()
-    public OrderResponse save(@RequestBody final Order order) {
-        return OrderResponse.from(orderService.save(order));
+    public OrderResponse add(@RequestBody final Order order) {
+        return OrderResponse.from(orderService.add(order));
     }
 }

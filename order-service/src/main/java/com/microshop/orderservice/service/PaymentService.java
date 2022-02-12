@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface PaymentService {
 
     @GetMapping("/payments/{id}/pruned")
-    PaymentResponse findById(@PathVariable Long id);
+    PaymentResponse getById(@PathVariable Long id);
 }
