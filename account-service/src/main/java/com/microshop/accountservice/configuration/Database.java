@@ -1,7 +1,7 @@
 package com.microshop.accountservice.configuration;
 
 import com.microshop.accountservice.entity.Customer;
-import com.microshop.accountservice.repositories.CustomerRepository;
+import com.microshop.accountservice.repository.CustomerRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

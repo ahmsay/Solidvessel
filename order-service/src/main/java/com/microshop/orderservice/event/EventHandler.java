@@ -1,7 +1,7 @@
 package com.microshop.orderservice.event;
 
 import com.microshop.orderservice.entity.Order;
-import com.microshop.orderservice.services.OrderService;
+import com.microshop.orderservice.service.OrderService;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

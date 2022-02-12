@@ -1,7 +1,7 @@
 package com.microshop.inventoryservice.configuration;
 
 import com.microshop.inventoryservice.entity.Product;
-import com.microshop.inventoryservice.repositories.ProductRepository;
+import com.microshop.inventoryservice.repository.ProductRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

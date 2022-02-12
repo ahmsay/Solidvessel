@@ -2,8 +2,8 @@ package com.microshop.paymentservice.configuration;
 
 import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.entity.Sale;
-import com.microshop.paymentservice.repositories.PaymentRepository;
-import com.microshop.paymentservice.repositories.SaleRepository;
+import com.microshop.paymentservice.repository.PaymentRepository;
+import com.microshop.paymentservice.repository.SaleRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
