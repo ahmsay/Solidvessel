@@ -34,7 +34,7 @@ public class ProductRestController {
     }
 
     @PostMapping()
-    public Product save(@RequestBody final Product product) {
-        return productService.save(product);
+    public ProductResponse save(@RequestBody final Product product) {
+        return ProductResponse.from(productService.save(product));
     }
 }

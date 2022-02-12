@@ -46,7 +46,7 @@ public class CustomerRestController {
     }
 
     @PostMapping()
-    public Customer save(@RequestBody final Customer customer) {
-        return customerService.save(customer);
+    public CustomerResponse save(@RequestBody final Customer customer) {
+        return CustomerResponse.from(customerService.save(customer));
     }
 }

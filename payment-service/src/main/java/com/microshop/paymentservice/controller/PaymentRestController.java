@@ -1,6 +1,5 @@
 package com.microshop.paymentservice.controller;
 
-import com.microshop.paymentservice.entity.Payment;
 import com.microshop.paymentservice.entity.Sale;
 import com.microshop.paymentservice.request.SavePaymentRequest;
 import com.microshop.paymentservice.response.CustomerResponse;
@@ -56,8 +55,8 @@ public class PaymentRestController {
     }
 
     @PostMapping()
-    public Payment save(@RequestBody final SavePaymentRequest request) {
-        return paymentService.save(request);
+    public PaymentResponse save(@RequestBody final SavePaymentRequest request) {
+        return PaymentResponse.from(paymentService.save(request));
     }
 
     private List<ProductResponse> findProductsOfPayment(final Long paymentId) {

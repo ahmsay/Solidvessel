@@ -51,7 +51,7 @@ public class OrderRestController {
     }
 
     @PostMapping()
-    public Order save(@RequestBody final Order order) {
-        return orderService.save(order);
+    public OrderResponse save(@RequestBody final Order order) {
+        return OrderResponse.from(orderService.save(order));
     }
 }
