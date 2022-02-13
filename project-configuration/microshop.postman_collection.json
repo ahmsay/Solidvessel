@@ -27,11 +27,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/customers",
+							"raw": "localhost:8081/customers",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8081",
 							"path": [
 								"customers"
 							]
@@ -58,11 +58,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/customers/1",
+							"raw": "localhost:8081/customers/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8081",
 							"path": [
 								"customers",
 								"1"
@@ -90,11 +90,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/customers/1/detail",
+							"raw": "localhost:8081/customers/1/detail",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8081",
 							"path": [
 								"customers",
 								"1",
@@ -132,11 +132,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/customers",
+							"raw": "localhost:8081/customers",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8081",
 							"path": [
 								"customers"
 							]
@@ -168,11 +168,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/products",
+							"raw": "localhost:8082/products",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8082",
 							"path": [
 								"products"
 							]
@@ -199,11 +199,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/products/1",
+							"raw": "localhost:8082/products/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8082",
 							"path": [
 								"products",
 								"1"
@@ -213,17 +213,17 @@
 					"response": []
 				},
 				{
-                  "name": "get products of payment",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "exec": [
-                          "pm.test(\"Status code is 200\", function () {",
-                          "    pm.response.to.have.status(200);",
-                          "});"
-                        ],
-                        "type": "text/javascript"
+					"name": "get products of payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -243,17 +243,17 @@
 							}
 						},
 						"url": {
-                          "raw": "localhost:8000/products/ofPayment/1",
-                          "host": [
-                            "localhost"
-                          ],
-                          "port": "8000",
-                          "path": [
-                            "products",
-                            "ofPayment",
-                            "1"
-                          ]
-                        }
+							"raw": "localhost:8082/products/ofPayment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"products",
+								"ofPayment",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -285,11 +285,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/products",
+							"raw": "localhost:8082/products",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8082",
 							"path": [
 								"products"
 							]
@@ -321,11 +321,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/orders",
+							"raw": "localhost:8083/orders",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8083",
 							"path": [
 								"orders"
 							]
@@ -352,11 +352,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/orders/1",
+							"raw": "localhost:8083/orders/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8083",
 							"path": [
 								"orders",
 								"1"
@@ -384,11 +384,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/orders/1/detail",
+							"raw": "localhost:8083/orders/1/detail",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8083",
 							"path": [
 								"orders",
 								"1",
@@ -417,11 +417,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/orders/ofCustomer/1",
+							"raw": "localhost:8083/orders/ofCustomer/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8083",
 							"path": [
 								"orders",
 								"ofCustomer",
@@ -459,11 +459,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/orders",
+							"raw": "localhost:8083/orders",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8083",
 							"path": [
 								"orders"
 							]
@@ -495,11 +495,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/payments",
+							"raw": "localhost:8084/payments",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8084",
 							"path": [
 								"payments"
 							]
@@ -526,11 +526,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/payments/1",
+							"raw": "localhost:8084/payments/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8084",
 							"path": [
 								"payments",
 								"1"
@@ -558,11 +558,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/payments/1/detail",
+							"raw": "localhost:8084/payments/1/detail",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8084",
 							"path": [
 								"payments",
 								"1",
@@ -591,11 +591,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/payments/ofCustomer/1",
+							"raw": "localhost:8084/payments/ofCustomer/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8084",
 							"path": [
 								"payments",
 								"ofCustomer",
@@ -633,11 +633,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/payments",
+							"raw": "localhost:8084/payments",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "8084",
 							"path": [
 								"payments"
 							]

@@ -20,7 +20,3 @@ cd ..
 cd discovery-server
 mvn clean compile jib:dockerBuild
 cd ..
-
-cd gateway-service
-mvn clean compile jib:dockerBuild
-cd ..

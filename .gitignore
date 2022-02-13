@@ -18,6 +18,3 @@
 
 !/discovery-server/src/**
 !/discovery-server/pom.xml
-
-!/gateway-service/src/**
-!/gateway-service/pom.xml
