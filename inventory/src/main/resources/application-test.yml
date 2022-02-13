@@ -1,3 +1,7 @@
 eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka
 
-spring.datasource.url: jdbc:postgresql://inventory-db:5432/inventory
+spring:
+  datasource.url: jdbc:postgresql://inventory-db:5432/inventory
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
