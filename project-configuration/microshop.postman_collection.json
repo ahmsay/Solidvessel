@@ -213,17 +213,17 @@
 					"response": []
 				},
 				{
-					"name": "get products by ids",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
+                  "name": "get products of payment",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {",
+                          "    pm.response.to.have.status(200);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
 							}
 						}
 					],
@@ -243,22 +243,17 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/products/getByIds?ids=1,2,3",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"products",
-								"getByIds"
-							],
-							"query": [
-								{
-									"key": "ids",
-									"value": "1,2,3"
-								}
-							]
-						}
+                          "raw": "localhost:8000/products/ofPayment/1",
+                          "host": [
+                            "localhost"
+                          ],
+                          "port": "8000",
+                          "path": [
+                            "products",
+                            "ofPayment",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
