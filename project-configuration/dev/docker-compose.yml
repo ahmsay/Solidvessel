@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  account-service-db:
+  account-db:
     image: postgres
     ports:
       - 6001:5432
@@ -9,7 +9,7 @@ services:
       - POSTGRES_DB=account
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
-  inventory-service-db:
+  inventory-db:
     image: postgres
     ports:
       - 6002:5432
@@ -17,7 +17,7 @@ services:
       - POSTGRES_DB=inventory
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
-  order-service-db:
+  order-db:
     image: postgres
     ports:
       - 6003:5432
@@ -25,7 +25,7 @@ services:
       - POSTGRES_DB=order
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
-  payment-service-db:
+  payment-db:
     image: postgres
     ports:
       - 6004:5432

@@ -4,17 +4,17 @@
 !.README.md
 !/project-configuration/**
 
-!/account-service/src/**
-!/account-service/pom.xml
+!/account/src/**
+!/account/pom.xml
 
-!/inventory-service/src/**
-!/inventory-service/pom.xml
+!/inventory/src/**
+!/inventory/pom.xml
 
-!/order-service/src/**
-!/order-service/pom.xml
+!/order/src/**
+!/order/pom.xml
 
-!/payment-service/src/**
-!/payment-service/pom.xml
+!/payment/src/**
+!/payment/pom.xml
 
 !/discovery-server/src/**
 !/discovery-server/pom.xml

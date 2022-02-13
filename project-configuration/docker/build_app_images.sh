@@ -1,19 +1,19 @@
 cd ..
 cd ..
 
-cd account-service
+cd account
 mvn clean compile jib:dockerBuild
 cd ..
 
-cd inventory-service
+cd inventory
 mvn clean compile jib:dockerBuild
 cd ..
 
-cd payment-service
+cd order
 mvn clean compile jib:dockerBuild
 cd ..
 
-cd order-service
+cd payment
 mvn clean compile jib:dockerBuild
 cd ..
 
