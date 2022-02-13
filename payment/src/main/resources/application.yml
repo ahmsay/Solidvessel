@@ -2,11 +2,14 @@ server.port: 8084
 
 spring:
   application.name: payment-s
+  jpa.hibernate.ddl-auto: create
   datasource:
-    url: jdbc:postgresql://localhost:6004/payment
+    url: jdbc:postgresql://localhost:32004/payment
     username: nihilus
     password: nihilus
-  jpa.hibernate.ddl-auto: create
+  rabbitmq:
+    host: localhost
+    port: 32101
 
 management.endpoints.web.exposure.include: '*'
 

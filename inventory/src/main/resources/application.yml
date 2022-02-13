@@ -2,11 +2,14 @@ server.port: 8082
 
 spring:
   application.name: inventory-s
+  jpa.hibernate.ddl-auto: create
   datasource:
-    url: jdbc:postgresql://localhost:6002/inventory
+    url: jdbc:postgresql://localhost:32002/inventory
     username: nihilus
     password: nihilus
-  jpa.hibernate.ddl-auto: create
+  rabbitmq:
+    host: localhost
+    port: 32101
 
 management.endpoints.web.exposure.include: '*'
 

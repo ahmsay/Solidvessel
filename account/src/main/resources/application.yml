@@ -2,10 +2,13 @@ server.port: 8081
 
 spring:
   application.name: account-s
+  jpa.hibernate.ddl-auto: create
   datasource:
-    url: jdbc:postgresql://localhost:6001/account
+    url: jdbc:postgresql://localhost:32001/account
     username: nihilus
     password: nihilus
-  jpa.hibernate.ddl-auto: create
+  rabbitmq:
+    host: localhost
+    port: 32101
 
 management.endpoints.web.exposure.include: '*'
