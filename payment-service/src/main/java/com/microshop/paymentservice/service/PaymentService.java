@@ -1,7 +1,6 @@
 package com.microshop.paymentservice.service;
 
 import com.microshop.paymentservice.entity.Payment;
-import com.microshop.paymentservice.entity.Sale;
 import com.microshop.paymentservice.event.EventDispatcher;
 import com.microshop.paymentservice.event.PaymentSavedEvent;
 import com.microshop.paymentservice.repository.PaymentRepository;
@@ -17,14 +16,10 @@ import java.util.List;
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
-    private final SaleService saleService;
     private final EventDispatcher eventDispatcher;
 
-    public PaymentService(final PaymentRepository paymentRepository,
-                          final SaleService saleService,
-                          final EventDispatcher eventDispatcher) {
+    public PaymentService(final PaymentRepository paymentRepository, final EventDispatcher eventDispatcher) {
         this.paymentRepository = paymentRepository;
-        this.saleService = saleService;
         this.eventDispatcher = eventDispatcher;
     }
 
@@ -42,8 +37,7 @@ public class PaymentService {
 
     public Payment add(final AddPaymentRequest request) {
         Payment savedPayment = paymentRepository.save(request.payment());
-        request.productIds().forEach(productId -> saleService.add(new Sale(savedPayment.getId(), productId)));
-        eventDispatcher.sendPaymentSavedEvent(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId()));
+        eventDispatcher.sendPaymentSavedEvent(new PaymentSavedEvent(savedPayment.getId(), savedPayment.getCustomerId(), request.productIds()));
         return savedPayment;
     }
 }

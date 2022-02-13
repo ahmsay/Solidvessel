@@ -28,9 +28,9 @@ public class ProductRestController {
         return ProductResponse.from(productService.getById(id));
     }
 
-    @GetMapping("/getByIds")
-    public List<ProductResponse> getByIds(@RequestParam final List<Long> ids) {
-        return productService.getByIds(ids).stream().map(ProductResponse::from).collect(Collectors.toList());
+    @GetMapping("/ofPayment/{paymentId}")
+    List<ProductResponse> getByPaymentId(@PathVariable final Long paymentId) {
+        return productService.getByPaymentId(paymentId).stream().map(ProductResponse::from).collect(Collectors.toList());
     }
 
     @PostMapping()

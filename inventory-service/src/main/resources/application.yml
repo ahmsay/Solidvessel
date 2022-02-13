@@ -9,3 +9,11 @@ spring:
   jpa.hibernate.ddl-auto: create
 
 management.endpoints.web.exposure.include: '*'
+
+exchanges:
+  payment: payment.topic
+queues:
+  product: product.queue
+routing-keys:
+  payment:
+    saved: payment.saved

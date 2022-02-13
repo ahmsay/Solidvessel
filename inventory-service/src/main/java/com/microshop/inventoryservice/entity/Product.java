@@ -20,10 +20,13 @@ public class Product {
 
     private String category;
 
-    public Product(final String name, final Double price, final String category) {
+    private Long paymentId;
+
+    public Product(final String name, final Double price, final String category, final Long paymentId) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.paymentId = paymentId;
     }
 
     public Product() {
@@ -43,5 +46,13 @@ public class Product {
 
     public String getCategory() {
         return category;
+    }
+
+    public Long getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(Long paymentId) {
+        this.paymentId = paymentId;
     }
 }

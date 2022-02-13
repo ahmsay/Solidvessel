@@ -26,11 +26,19 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
     }
 
-    public List<Product> getByIds(List<Long> ids) {
-        return productRepository.findByIdIn(ids);
+    public List<Product> getByPaymentId(final Long paymentId) {
+        return productRepository.findByPaymentId(paymentId);
     }
 
     public Product add(final Product product) {
         return productRepository.save(product);
+    }
+
+    public void updateSoldProducts(final Long paymentId, final List<Long> productIds) {
+        productIds.forEach(productId -> {
+            Product product = productRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
+            product.setPaymentId(paymentId);
+            productRepository.save(product);
+        });
     }
 }
