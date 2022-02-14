@@ -1,11 +1,6 @@
 version: "3"
 
 services:
-  discovery-server:
-    image: ahmsay/microshop-discovery-server
-    ports:
-      - 8761:8761
-    command: --spring.profiles.active=test
   account:
     image: ahmsay/microshop-account
     ports:

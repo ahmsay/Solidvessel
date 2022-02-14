@@ -15,6 +15,3 @@
 
 !/payment/src/**
 !/payment/pom.xml
-
-!/discovery-server/src/**
-!/discovery-server/pom.xml

@@ -16,7 +16,3 @@ cd ..
 cd payment
 mvn clean compile jib:dockerBuild
 cd ..
-
-cd discovery-server
-mvn clean compile jib:dockerBuild
-cd ..
