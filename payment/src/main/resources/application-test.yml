@@ -1,7 +1,0 @@
-eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka
-
-spring:
-  datasource.url: jdbc:postgresql://payment-db:5432/payment
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
