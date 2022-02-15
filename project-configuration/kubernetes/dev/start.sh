@@ -1,5 +1,10 @@
 kubectl create ns microshop
 
+cd rabbitmq
+kubectl create -f pod.yaml
+kubectl create -f service.yaml
+cd ..
+
 cd account/db
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
@@ -16,11 +21,6 @@ kubectl create -f service.yaml
 cd ../..
 
 cd payment/db
-kubectl create -f pod.yaml
-kubectl create -f service.yaml
-cd ../..
-
-cd rabbitmq
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ../..

@@ -1,5 +1,4 @@
-cd ..
-cd ..
+cd ../..
 
 cd account
 mvn clean compile jib:dockerBuild
