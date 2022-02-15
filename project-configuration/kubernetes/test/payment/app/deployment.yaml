@@ -14,6 +14,10 @@ spec:
       labels:
         app: payment
     spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: [ 'sh', '-c', "until nslookup payment-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
       containers:
         - name: payment-app
           image: ahmsay/microshop-payment
