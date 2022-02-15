@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "inventory", url = "${inventory.url}")
+@FeignClient(name = "productService", url = "${inventory.url}")
 public interface ProductService {
 
     @GetMapping("/products/ofPayment/{paymentId}")
