@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/products")
-public class ProductRestController {
+public class ProductController {
 
     private final ProductService productService;
 
-    public ProductRestController(final ProductService productService) {
+    public ProductController(final ProductService productService) {
         this.productService = productService;
     }
 

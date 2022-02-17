@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/customers")
-public class CustomerRestController {
+public class CustomerController {
 
     private final CustomerService customerService;
     private final PaymentService paymentService;
     private final OrderService orderService;
 
-    public CustomerRestController(CustomerService customerService, PaymentService paymentService, OrderService orderService) {
+    public CustomerController(CustomerService customerService, PaymentService paymentService, OrderService orderService) {
         this.customerService = customerService;
         this.paymentService = paymentService;
         this.orderService = orderService;
