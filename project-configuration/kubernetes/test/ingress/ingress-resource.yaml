@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microshop-ingress
+  namespace: microshop
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /account/api
+            pathType: Prefix
+            backend:
+              service:
+                name: account
+                port:
+                  number: 8080
+          - path: /inventory/api
+            pathType: Prefix
+            backend:
+              service:
+                name: inventory
+                port:
+                  number: 8080
+          - path: /order/api
+            pathType: Prefix
+            backend:
+              service:
+                name: order
+                port:
+                  number: 8080
+          - path: /payment/api
+            pathType: Prefix
+            backend:
+              service:
+                name: payment
+                port:
+                  number: 8080
