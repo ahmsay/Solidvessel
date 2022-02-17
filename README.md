@@ -6,9 +6,9 @@ This is an online shopping application designed with microservices architecture.
 microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a
 shopping application.
 
-## Full Picture
+## Architecture
 
-...image here...
+<img src="https://user-images.githubusercontent.com/22731894/154577454-7bc6e153-b6c9-4561-a3c3-4e70bb4a9d63.png" alt="diagram">
 
 ## Run
 
