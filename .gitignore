@@ -2,6 +2,8 @@
 !*/
 !.gitignore
 !.README.md
+!microshop.postman_collection.json
+
 !/project-configuration/**
 
 !/account/src/**
