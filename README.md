@@ -8,7 +8,7 @@ shopping application.
 
 ## Architecture
 
-<img src="https://user-images.githubusercontent.com/22731894/154732288-c5f10de3-0694-40d4-b61f-afb46090735c.png" alt="diagram">
+<img src="https://user-images.githubusercontent.com/22731894/154733504-b08cb7e2-c05d-4081-8a4a-5e7347cb224b.png" alt="diagram">
 
 ## Run
 
