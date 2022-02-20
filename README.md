@@ -20,11 +20,11 @@ This is the whole application that lives in a Kubernetes cluster.
 
 - Read / Write operations
 - Synchronous and asynchronous communication
+- Circuit breaking
 - Horizontal scaling
 - Load balancing
 - Traffic routing
 - Authentication (will be added)
-- Circuit breaking (will be added)
 
 ## Run Options
 
@@ -61,11 +61,19 @@ as a bridge to achieve this goal.
 
 ![image](https://user-images.githubusercontent.com/22731894/154794971-b2ef08f4-812c-44b0-ba68-a902fd753030.png)
 
+## Circuit Breaking
+
+Consider the scenario above. If the inventory microservice is down, this will impact payment microservice as well. So we
+need to implement the circuit breaker pattern to make microservices less coupled to each other when doing synchronous
+communication. This way, even if the inventory service is down, we can still return the payment information.
+
+![image](https://user-images.githubusercontent.com/22731894/154850214-266ffeaf-77b6-47e1-8be8-cfd7ac2db9ec.png)
+
 ## Asynchronous Communication
 
 If a payment is created, an order related to the payment must be created as well. Since these two tasks are not directly
-connected to each other, we can to this asynchronously. This approach provides loose coupling between microservices.
-Even if the order microservice is down, the order can be created when it's up again.
+connected to each other, we can to this asynchronously. This approach is also another way to provide loose coupling
+between microservices. Even if the order microservice is down, the order can be created when it's up again.
 
 ![image](https://user-images.githubusercontent.com/22731894/154795436-d415a6c3-f430-4803-a847-25f715bafbe8.png)
 
