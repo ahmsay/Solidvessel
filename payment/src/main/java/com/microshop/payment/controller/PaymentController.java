@@ -4,7 +4,7 @@ import com.microshop.payment.request.AddPaymentRequest;
 import com.microshop.payment.response.CustomerResponse;
 import com.microshop.payment.response.PaymentDetailResponse;
 import com.microshop.payment.response.PaymentResponse;
-import com.microshop.payment.response.ProductResponse;
+import com.microshop.payment.response.ProductsResponse;
 import com.microshop.payment.service.CustomerService;
 import com.microshop.payment.service.PaymentService;
 import com.microshop.payment.service.ProductService;
@@ -40,8 +40,8 @@ public class PaymentController {
     @GetMapping("/{id}/detail")
     public PaymentDetailResponse getDetailById(@PathVariable final Long id) {
         PaymentResponse payment = getById(id);
-        CustomerResponse customer = customerService.getById(payment.customerId());
-        List<ProductResponse> products = productService.getByPaymentId(payment.id());
+        CustomerResponse customer = customerService.getCustomerOfPayment(payment.customerId());
+        ProductsResponse products = productService.getProductsOfPayment(payment.id());
         return new PaymentDetailResponse(payment.id(), payment.totalCharge(), customer, products);
     }
 

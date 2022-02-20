@@ -1,15 +1,26 @@
 package com.microshop.account.service;
 
-import com.microshop.account.response.PaymentResponse;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.microshop.account.port.PaymentPort;
+import com.microshop.account.response.PaymentsResponse;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
-@FeignClient(value = "paymentService", url = "${payment.url}")
-public interface PaymentService {
+@Service
+public class PaymentService {
 
-    @GetMapping("/payments/ofCustomer/{customerId}")
-    List<PaymentResponse> getByCustomerId(@PathVariable final Long customerId);
+    private final CircuitBreakerFactory circuitBreakerFactory;
+    private final PaymentPort paymentPort;
+
+    public PaymentService(final CircuitBreakerFactory circuitBreakerFactory, final PaymentPort paymentPort) {
+        this.circuitBreakerFactory = circuitBreakerFactory;
+        this.paymentPort = paymentPort;
+    }
+
+    public PaymentsResponse getPaymentsOfCustomer(final Long customerId) {
+        return circuitBreakerFactory.create("paymentCircuitBreaker")
+                .run(() -> PaymentsResponse.from(paymentPort.getByCustomerId(customerId)),
+                        throwable -> new PaymentsResponse(new ArrayList<>(), "Couldn't retrieve payments of the customer."));
+    }
 }

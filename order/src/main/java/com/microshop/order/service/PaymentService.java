@@ -1,13 +1,24 @@
 package com.microshop.order.service;
 
+import com.microshop.order.port.PaymentPort;
 import com.microshop.order.response.PaymentResponse;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.stereotype.Service;
 
-@FeignClient(name = "paymentService", url = "${payment.url}")
-public interface PaymentService {
+@Service
+public class PaymentService {
 
-    @GetMapping("/payments/{id}")
-    PaymentResponse getById(@PathVariable Long id);
+    private final CircuitBreakerFactory circuitBreakerFactory;
+    private final PaymentPort paymentPort;
+
+    public PaymentService(final CircuitBreakerFactory circuitBreakerFactory, final PaymentPort paymentPort) {
+        this.circuitBreakerFactory = circuitBreakerFactory;
+        this.paymentPort = paymentPort;
+    }
+
+    public PaymentResponse getPaymentOfOrder(final Long paymentId) {
+        return circuitBreakerFactory.create("paymentCircuitBreaker")
+                .run(() -> paymentPort.getById(paymentId),
+                        throwable -> new PaymentResponse(null, null, "Couldn't retrieve payment of the order."));
+    }
 }

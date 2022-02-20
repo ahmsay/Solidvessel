@@ -40,8 +40,8 @@ public class OrderController {
     @GetMapping("/{id}/detail")
     public OrderDetailResponse getDetailById(@PathVariable final Long id) {
         OrderResponse order = getById(id);
-        CustomerResponse customer = customerService.getById(order.customerId());
-        PaymentResponse payment = paymentService.getById(order.paymentId());
+        CustomerResponse customer = customerService.getCustomerOfOrder(order.customerId());
+        PaymentResponse payment = paymentService.getPaymentOfOrder(order.paymentId());
         return new OrderDetailResponse(order.id(), order.status(), customer, payment);
     }
 

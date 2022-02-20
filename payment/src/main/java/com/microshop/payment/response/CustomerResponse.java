@@ -1,4 +1,4 @@
 package com.microshop.payment.response;
 
-public record CustomerResponse(Long id, String name) {
+public record CustomerResponse(Long id, String name, String error) {
 }

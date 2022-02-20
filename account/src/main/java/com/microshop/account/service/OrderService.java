@@ -1,15 +1,26 @@
 package com.microshop.account.service;
 
-import com.microshop.account.response.OrderResponse;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.microshop.account.port.OrderPort;
+import com.microshop.account.response.OrdersResponse;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
-@FeignClient(value = "orderService", url = "${order.url}")
-public interface OrderService {
+@Service
+public class OrderService {
 
-    @GetMapping("/orders/ofCustomer/{customerId}")
-    List<OrderResponse> getByCustomerId(@PathVariable final Long customerId);
+    private final CircuitBreakerFactory circuitBreakerFactory;
+    private final OrderPort orderPort;
+
+    public OrderService(final CircuitBreakerFactory circuitBreakerFactory, final OrderPort orderPort) {
+        this.circuitBreakerFactory = circuitBreakerFactory;
+        this.orderPort = orderPort;
+    }
+
+    public OrdersResponse getOrdersOfCustomer(final Long customerId) {
+        return circuitBreakerFactory.create("orderCircuitBreaker")
+                .run(() -> OrdersResponse.from(orderPort.getByCustomerId(customerId)),
+                        throwable -> new OrdersResponse(new ArrayList<>(), "Couldn't retrieve orders of the customer."));
+    }
 }

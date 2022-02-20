@@ -3,8 +3,8 @@ package com.microshop.account.controller;
 import com.microshop.account.entity.Customer;
 import com.microshop.account.response.CustomerDetailResponse;
 import com.microshop.account.response.CustomerResponse;
-import com.microshop.account.response.OrderResponse;
-import com.microshop.account.response.PaymentResponse;
+import com.microshop.account.response.OrdersResponse;
+import com.microshop.account.response.PaymentsResponse;
 import com.microshop.account.service.CustomerService;
 import com.microshop.account.service.OrderService;
 import com.microshop.account.service.PaymentService;
@@ -40,8 +40,8 @@ public class CustomerController {
     @GetMapping("/{id}/detail")
     public CustomerDetailResponse getDetailById(@PathVariable final Long id) {
         CustomerResponse customer = getById(id);
-        List<PaymentResponse> payments = paymentService.getByCustomerId(customer.id());
-        List<OrderResponse> orders = orderService.getByCustomerId(customer.id());
+        PaymentsResponse payments = paymentService.getPaymentsOfCustomer(customer.id());
+        OrdersResponse orders = orderService.getOrdersOfCustomer(customer.id());
         return new CustomerDetailResponse(customer.id(), customer.name(), payments, orders);
     }
 

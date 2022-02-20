@@ -1,13 +1,24 @@
 package com.microshop.order.service;
 
+import com.microshop.order.port.CustomerPort;
 import com.microshop.order.response.CustomerResponse;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.stereotype.Service;
 
-@FeignClient(value = "customerService", url = "${account.url}")
-public interface CustomerService {
+@Service
+public class CustomerService {
 
-    @GetMapping("/customers/{id}")
-    CustomerResponse getById(@PathVariable Long id);
+    private final CircuitBreakerFactory circuitBreakerFactory;
+    private final CustomerPort customerPort;
+
+    public CustomerService(final CircuitBreakerFactory circuitBreakerFactory, final CustomerPort customerPort) {
+        this.circuitBreakerFactory = circuitBreakerFactory;
+        this.customerPort = customerPort;
+    }
+
+    public CustomerResponse getCustomerOfOrder(final Long customerId) {
+        return circuitBreakerFactory.create("customerCircuitBreaker")
+                .run(() -> customerPort.getById(customerId),
+                        throwable -> new CustomerResponse(null, null, "Couldn't retrieve customer of the order."));
+    }
 }
