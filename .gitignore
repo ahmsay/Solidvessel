@@ -9,6 +9,9 @@
 !/account/src/**
 !/account/pom.xml
 
+!/auth/src/**
+!/auth/pom.xml
+
 !/inventory/src/**
 !/inventory/pom.xml
 
