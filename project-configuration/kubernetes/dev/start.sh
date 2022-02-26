@@ -10,6 +10,11 @@ kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ..
 
+cd auth/db
+kubectl create -f pod.yaml
+kubectl create -f service.yaml
+cd ../..
+
 cd account/db
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
