@@ -1,7 +1,7 @@
 package com.microshop.auth.service;
 
-import com.microshop.auth.entity.ApplicationUser;
-import com.microshop.auth.repository.ApplicationUserRepository;
+import com.microshop.auth.entity.AppUser;
+import com.microshop.auth.repository.AppUserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,15 +9,15 @@ import javax.persistence.EntityNotFoundException;
 
 @Service
 @Transactional
-public class ApplicationUserService {
+public class AppUserService {
 
-    private final ApplicationUserRepository applicationUserRepository;
+    private final AppUserRepository applicationUserRepository;
 
-    public ApplicationUserService(final ApplicationUserRepository applicationUserRepository) {
+    public AppUserService(final AppUserRepository applicationUserRepository) {
         this.applicationUserRepository = applicationUserRepository;
     }
 
-    public ApplicationUser getById(final Long id) {
+    public AppUser getById(final Long id) {
         return applicationUserRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found!"));
     }
 }
