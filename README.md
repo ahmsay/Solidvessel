@@ -24,7 +24,7 @@ This is the whole application that lives in a Kubernetes cluster.
 - Horizontal scaling
 - Load balancing
 - Traffic routing
-- Authentication (will be added)
+- Authentication (In progress)
 
 ## Run Options
 
