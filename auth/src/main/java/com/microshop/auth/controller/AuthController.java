@@ -1,8 +1,8 @@
 package com.microshop.auth.controller;
 
 import com.microshop.auth.service.AuthService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,12 +14,12 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/login/{id}")
+    @GetMapping("/login/{id}")
     public void login(@PathVariable final Long id) {
         authService.login(id);
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public void logout() {
         authService.logout();
     }
