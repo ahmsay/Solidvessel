@@ -5,11 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class MicroshopUserDetails implements UserDetails {
+public class AppUserDetails implements UserDetails {
 
     private final Long id;
 
-    public MicroshopUserDetails(Long id) {
+    public AppUserDetails(Long id) {
         this.id = id;
     }
 

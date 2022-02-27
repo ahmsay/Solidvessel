@@ -13,9 +13,9 @@ public class Database {
     @Bean
     InitializingBean seedDatabase(final AppUserRepository applicationUserRepository) {
         return () -> {
-            applicationUserRepository.save(new AppUser("Zorkov"));
-            applicationUserRepository.save(new AppUser("Lorne"));
-            applicationUserRepository.save(new AppUser("Matthias"));
+            applicationUserRepository.save(new AppUser(1L));
+            applicationUserRepository.save(new AppUser(2L));
+            applicationUserRepository.save(new AppUser(3L));
         };
     }
 }

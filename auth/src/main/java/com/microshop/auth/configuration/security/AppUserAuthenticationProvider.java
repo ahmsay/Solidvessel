@@ -7,11 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MicroshopAuthenticationProvider implements AuthenticationProvider {
+public class AppUserAuthenticationProvider implements AuthenticationProvider {
 
-    private final MicroshopUserDetailsService userDetailsService;
+    private final AppUserDetailsService userDetailsService;
 
-    public MicroshopAuthenticationProvider(MicroshopUserDetailsService userDetailsService) {
+    public AppUserAuthenticationProvider(AppUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 

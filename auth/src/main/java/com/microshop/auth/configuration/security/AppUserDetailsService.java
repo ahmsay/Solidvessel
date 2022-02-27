@@ -8,17 +8,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MicroshopUserDetailsService implements UserDetailsService {
+public class AppUserDetailsService implements UserDetailsService {
 
     private final AppUserService applicationUserService;
 
-    public MicroshopUserDetailsService(AppUserService applicationUserService) {
+    public AppUserDetailsService(AppUserService applicationUserService) {
         this.applicationUserService = applicationUserService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = applicationUserService.getById(Long.parseLong(username));
-        return new MicroshopUserDetails(user.getId());
+        return new AppUserDetails(user.getId());
     }
 }

@@ -13,16 +13,16 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final MicroshopAuthenticationProvider microshopAuthenticationProvider;
+    private final AppUserAuthenticationProvider appUserAuthenticationProvider;
 
-    public SecurityConfig(final MicroshopAuthenticationProvider microshopAuthenticationProvider) {
-        this.microshopAuthenticationProvider = microshopAuthenticationProvider;
+    public SecurityConfig(final AppUserAuthenticationProvider appUserAuthenticationProvider) {
+        this.appUserAuthenticationProvider = appUserAuthenticationProvider;
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) {
         authenticationManagerBuilder
-                .authenticationProvider(microshopAuthenticationProvider);
+                .authenticationProvider(appUserAuthenticationProvider);
     }
 
     @Override
