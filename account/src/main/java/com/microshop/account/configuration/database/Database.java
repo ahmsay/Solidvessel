@@ -1,4 +1,4 @@
-package com.microshop.account.configuration;
+package com.microshop.account.configuration.database;
 
 import com.microshop.account.entity.Customer;
 import com.microshop.account.repository.CustomerRepository;
