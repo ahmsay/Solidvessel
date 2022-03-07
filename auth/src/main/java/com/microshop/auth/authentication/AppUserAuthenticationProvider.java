@@ -1,5 +1,6 @@
-package com.microshop.auth.configuration.security;
+package com.microshop.auth.authentication;
 
+import com.microshop.auth.service.AppUserDetailsService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
