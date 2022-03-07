@@ -1,4 +1,4 @@
-package com.microshop.auth.configuration.security;
+package com.microshop.auth.configuration;
 
 import com.microshop.auth.authentication.AppUserAuthenticationProvider;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.microshop.auth.configuration.database;
+package com.microshop.auth.configuration;
 
 
 import com.microshop.auth.entity.AppUser;

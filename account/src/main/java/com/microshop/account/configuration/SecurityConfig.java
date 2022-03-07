@@ -1,4 +1,4 @@
-package com.microshop.account.configuration.security;
+package com.microshop.account.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
