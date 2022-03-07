@@ -1,4 +1,4 @@
-package com.microshop.auth.configuration.security;
+package com.microshop.auth.authentication;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,7 +7,10 @@ import java.util.Collection;
 
 public class AppUserDetails implements UserDetails {
 
-    private final Long id;
+    private Long id;
+
+    public AppUserDetails() {
+    }
 
     public AppUserDetails(Long id) {
         this.id = id;
