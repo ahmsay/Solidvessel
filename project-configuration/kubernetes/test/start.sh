@@ -7,6 +7,19 @@ kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ..
 
+cd redis
+kubectl create -f pod.yaml
+kubectl create -f service.yaml
+cd ..
+
+cd auth/db
+kubectl create -f pod.yaml
+kubectl create -f service.yaml
+cd ../app
+kubectl create -f deployment.yaml
+kubectl create -f service.yaml
+cd ../..
+
 cd account/db
 kubectl create -f pod.yaml
 kubectl create -f service.yaml

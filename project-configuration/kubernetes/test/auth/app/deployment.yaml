@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+  namespace: microshop
+  labels:
+    app: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: [ 'sh', '-c', "until nslookup auth-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
+      containers:
+        - name: auth-app
+          image: ahmsay/microshop-auth
+          imagePullPolicy: IfNotPresent
+          args: [ "--spring.profiles.active=test" ]
+          ports:
+            - containerPort: 8080

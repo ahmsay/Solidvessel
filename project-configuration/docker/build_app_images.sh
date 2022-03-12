@@ -1,5 +1,9 @@
 cd ../..
 
+cd auth
+mvn clean compile jib:dockerBuild
+cd ..
+
 cd account
 mvn clean compile jib:dockerBuild
 cd ..

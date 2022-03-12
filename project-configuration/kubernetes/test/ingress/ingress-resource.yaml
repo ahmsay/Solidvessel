@@ -8,6 +8,13 @@ spec:
   rules:
     - http:
         paths:
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth
+                port:
+                  number: 8080
           - path: /account/api
             pathType: Prefix
             backend:
