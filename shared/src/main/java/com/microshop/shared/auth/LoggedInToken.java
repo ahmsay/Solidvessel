@@ -1,4 +1,4 @@
-package com.microshop.auth.authentication;
+package com.microshop.shared.auth;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;

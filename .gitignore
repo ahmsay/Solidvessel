@@ -20,3 +20,6 @@
 
 !/payment/src/**
 !/payment/pom.xml
+
+!/shared/src/**
+!/shared/pom.xml
