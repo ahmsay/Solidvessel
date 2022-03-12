@@ -1,7 +1,7 @@
 package com.microshop.auth.service;
 
-import com.microshop.auth.authentication.AppUserDetails;
 import com.microshop.auth.entity.AppUser;
+import com.microshop.shared.auth.AppUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
