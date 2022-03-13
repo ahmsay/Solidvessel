@@ -8,8 +8,10 @@ import com.microshop.order.response.PaymentResponse;
 import com.microshop.order.service.CustomerService;
 import com.microshop.order.service.OrderService;
 import com.microshop.order.service.PaymentService;
+import com.microshop.shared.auth.SessionUtil;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,10 +40,11 @@ public class OrderController {
     }
 
     @GetMapping("/{id}/detail")
-    public OrderDetailResponse getDetailById(@PathVariable final Long id) {
+    public OrderDetailResponse getDetailById(@PathVariable final Long id, final HttpServletRequest request) {
         OrderResponse order = getById(id);
-        CustomerResponse customer = customerService.getCustomerOfOrder(order.customerId());
-        PaymentResponse payment = paymentService.getPaymentOfOrder(order.paymentId());
+        String session = SessionUtil.getSession(request);
+        CustomerResponse customer = customerService.getCustomerOfOrder(order.customerId(), session);
+        PaymentResponse payment = paymentService.getPaymentOfOrder(order.paymentId(), session);
         return new OrderDetailResponse(order.id(), order.status(), customer, payment);
     }
 

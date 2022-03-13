@@ -18,9 +18,9 @@ public class ProductService {
         this.productPort = productPort;
     }
 
-    public ProductsResponse getProductsOfPayment(final Long paymentId) {
+    public ProductsResponse getProductsOfPayment(final Long paymentId, final String session) {
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> ProductsResponse.from(productPort.getByPaymentId(paymentId)),
+                .run(() -> ProductsResponse.from(productPort.getByPaymentId(paymentId, session)),
                         throwable -> new ProductsResponse(new ArrayList<>(), "Couldn't retrieve products of the payment."));
     }
 }

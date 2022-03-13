@@ -18,9 +18,9 @@ public class PaymentService {
         this.paymentPort = paymentPort;
     }
 
-    public PaymentsResponse getPaymentsOfCustomer(final Long customerId) {
+    public PaymentsResponse getPaymentsOfCustomer(final Long customerId, final String session) {
         return circuitBreakerFactory.create("paymentCircuitBreaker")
-                .run(() -> PaymentsResponse.from(paymentPort.getByCustomerId(customerId)),
+                .run(() -> PaymentsResponse.from(paymentPort.getByCustomerId(customerId, session)),
                         throwable -> new PaymentsResponse(new ArrayList<>(), "Couldn't retrieve payments of the customer."));
     }
 }

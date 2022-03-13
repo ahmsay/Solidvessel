@@ -18,9 +18,9 @@ public class OrderService {
         this.orderPort = orderPort;
     }
 
-    public OrdersResponse getOrdersOfCustomer(final Long customerId) {
+    public OrdersResponse getOrdersOfCustomer(final Long customerId, final String session) {
         return circuitBreakerFactory.create("orderCircuitBreaker")
-                .run(() -> OrdersResponse.from(orderPort.getByCustomerId(customerId)),
+                .run(() -> OrdersResponse.from(orderPort.getByCustomerId(customerId, session)),
                         throwable -> new OrdersResponse(new ArrayList<>(), "Couldn't retrieve orders of the customer."));
     }
 }
