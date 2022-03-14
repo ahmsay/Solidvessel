@@ -54,4 +54,3 @@ cd ../..
 
 cd ingress
 kubectl create -f ingress-resource.yaml # the ingress controller may not be ready. try to run this line again if you get an error.
-cd ..
