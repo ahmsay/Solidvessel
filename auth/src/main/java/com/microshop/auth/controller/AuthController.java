@@ -25,4 +25,9 @@ public class AuthController {
     public void logout() {
         authService.logout();
     }
+
+    @PostMapping("/signUp")
+    public void signUp(@RequestBody final AppUser signUpRequest) {
+        authService.signUp(signUpRequest);
+    }
 }

@@ -38,4 +38,8 @@ public class AuthService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logoutHandler.logout(attr.getRequest(), attr.getResponse(), authentication);
     }
+
+    public void signUp(final AppUser appUser) {
+        appUserRepository.save(appUser);
+    }
 }
