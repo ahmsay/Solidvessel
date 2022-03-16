@@ -12,9 +12,9 @@ public class Database {
     @Bean
     InitializingBean seedDatabase(final CustomerRepository customerRepository) {
         return () -> {
-            customerRepository.save(new Customer("Zorkov"));
-            customerRepository.save(new Customer("Lorne"));
-            customerRepository.save(new Customer("Matthias"));
+            customerRepository.save(new Customer(1L, "Anakin", "Skywalker"));
+            customerRepository.save(new Customer(2L, "Lorne", "Malvo"));
+            customerRepository.save(new Customer(3L, "Thomas", "Shelby"));
         };
     }
 }

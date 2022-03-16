@@ -1,7 +1,6 @@
 package com.microshop.account.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -9,24 +8,32 @@ import javax.validation.constraints.NotNull;
 public class Customer {
 
     @Id
-    @GeneratedValue
     private Long id;
 
     @NotNull
-    private String name;
+    private String firstName;
+
+    @NotNull
+    private String lastName;
 
     public Customer() {
     }
 
-    public Customer(final String name) {
-        this.name = name;
+    public Customer(final Long id, final String firstName, final String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

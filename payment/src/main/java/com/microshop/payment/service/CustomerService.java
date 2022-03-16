@@ -19,6 +19,6 @@ public class CustomerService {
     public CustomerResponse getCustomerOfPayment(final Long customerId, final String session) {
         return circuitBreakerFactory.create("customerCircuitBreaker")
                 .run(() -> customerPort.getById(customerId, session),
-                        throwable -> new CustomerResponse(null, null, "Couldn't retrieve customer of the payment."));
+                        throwable -> new CustomerResponse(null, null, null, "Couldn't retrieve customer of the payment."));
     }
 }

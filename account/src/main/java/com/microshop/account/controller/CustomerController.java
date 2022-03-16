@@ -45,7 +45,7 @@ public class CustomerController {
         String session = SessionUtil.getSession(request);
         PaymentsResponse payments = paymentService.getPaymentsOfCustomer(customer.id(), session);
         OrdersResponse orders = orderService.getOrdersOfCustomer(customer.id(), session);
-        return new CustomerDetailResponse(customer.id(), customer.name(), payments, orders);
+        return new CustomerDetailResponse(customer.id(), customer.firstName(), customer.lastName(), payments, orders);
     }
 
     @PostMapping()
