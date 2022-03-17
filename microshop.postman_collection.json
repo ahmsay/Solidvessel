@@ -6,6 +6,143 @@
   },
   "item": [
     {
+      "name": "auth service",
+      "item": [
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.globals.set('session', pm.cookies.get('SESSION'))"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"vader_666\",\r\n    \"password\": \"i_hate_sand\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost/auth/login",
+              "host": [
+                "localhost"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "sign up",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Ezio\",\r\n    \"lastName\": \"Auditore\",\r\n    \"username\": \"assassin_guy\",\r\n    \"password\": \"requiescat_in_pace\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost/auth/signUp",
+              "host": [
+                "localhost"
+              ],
+              "path": [
+                "auth",
+                "signUp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost/auth/logout",
+              "host": [
+                "localhost"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "account service",
       "item": [
         {
@@ -21,11 +158,26 @@
                 ],
                 "type": "text/javascript"
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
             }
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/account/api/customers",
               "host": [
@@ -57,7 +209,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/account/api/customers/1",
               "host": [
@@ -90,7 +248,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/account/api/customers/1/detail",
               "host": [
@@ -124,7 +288,13 @@
           ],
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
               "raw": "{\n    \"name\": \"Vessel\"\n}",
@@ -170,7 +340,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/inventory/api/products",
               "host": [
@@ -202,7 +378,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/inventory/api/products/1",
               "host": [
@@ -238,7 +420,13 @@
           },
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
               "raw": "",
@@ -281,7 +469,13 @@
           ],
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
               "raw": "{\n    \"name\": \"Light Saber\",\n    \"price\": 13,\n    \"category\": \"Electronics\"\n}",
@@ -327,7 +521,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/order/api/orders",
               "host": [
@@ -359,7 +559,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/order/api/orders/1",
               "host": [
@@ -392,7 +598,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/order/api/orders/1/detail",
               "host": [
@@ -426,7 +638,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/order/api/orders/ofCustomer/1",
               "host": [
@@ -460,7 +678,13 @@
           ],
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
               "raw": "{\n    \"status\": \"Crashed\",\n    \"customerId\": 2,\n    \"paymentId\": 3\n}",
@@ -506,7 +730,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/payment/api/payments",
               "host": [
@@ -538,7 +768,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/payment/api/payments/1",
               "host": [
@@ -571,7 +807,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/payment/api/payments/1/detail",
               "host": [
@@ -605,7 +847,13 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "localhost/payment/api/payments/ofCustomer/1",
               "host": [
@@ -639,7 +887,13 @@
           ],
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
               "raw": "{\n    \"payment\": {\n        \"totalCharge\": 120.8,\n        \"customerId\": 3\n    },\n    \"productIds\": [7,8]\n}",
