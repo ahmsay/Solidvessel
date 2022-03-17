@@ -1,6 +1,7 @@
 package com.microshop.auth.controller;
 
 import com.microshop.auth.entity.AppUser;
+import com.microshop.auth.entity.SignUpInfo;
 import com.microshop.auth.service.AuthService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping("/signUp")
-    public void signUp(@RequestBody final AppUser signUpRequest) {
-        authService.signUp(signUpRequest);
+    public void signUp(@RequestBody final SignUpInfo signUpInfo) {
+        authService.signUp(signUpInfo);
     }
 }

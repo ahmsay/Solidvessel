@@ -2,6 +2,7 @@ package com.microshop.auth.service;
 
 import com.microshop.auth.authentication.LoginToken;
 import com.microshop.auth.entity.AppUser;
+import com.microshop.auth.entity.SignUpInfo;
 import com.microshop.auth.repository.AppUserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -39,7 +40,7 @@ public class AuthService {
         logoutHandler.logout(attr.getRequest(), attr.getResponse(), authentication);
     }
 
-    public void signUp(final AppUser appUser) {
-        appUserRepository.save(appUser);
+    public void signUp(final SignUpInfo signUpInfo) {
+        appUserRepository.save(new AppUser(signUpInfo.username(), signUpInfo.password()));
     }
 }
