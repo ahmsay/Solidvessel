@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 
-    private final AppUserService applicationUserService;
+    private final AppUserService appUserService;
 
-    public AppUserDetailsService(AppUserService applicationUserService) {
-        this.applicationUserService = applicationUserService;
+    public AppUserDetailsService(AppUserService appUserService) {
+        this.appUserService = appUserService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = applicationUserService.getById(Long.parseLong(username));
+        AppUser user = appUserService.getById(Long.parseLong(username));
         return new AppUserDetails(user.getId());
     }
 }

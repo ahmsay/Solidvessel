@@ -3,7 +3,6 @@ package com.microshop.auth.service;
 import com.microshop.auth.authentication.LoginToken;
 import com.microshop.auth.entity.AppUser;
 import com.microshop.auth.entity.SignUpInfo;
-import com.microshop.auth.repository.AppUserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,15 +15,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class AuthService {
 
     private final AuthenticationManager authenticationManager;
-    private final AppUserRepository appUserRepository;
+    private final AppUserService appUserService;
 
-    public AuthService(AuthenticationManager authenticationManager, AppUserRepository appUserRepository) {
+    public AuthService(AuthenticationManager authenticationManager, AppUserService appUserService) {
         this.authenticationManager = authenticationManager;
-        this.appUserRepository = appUserRepository;
+        this.appUserService = appUserService;
     }
 
     public void login(final AppUser loginRequest) {
-        AppUser appUser = appUserRepository.getByUsername(loginRequest.getUsername()).orElseThrow(() -> new RuntimeException("Invalid username or password!"));
+        AppUser appUser = appUserService.getByUsername(loginRequest.getUsername());
         if (!appUser.getPassword().equals(loginRequest.getPassword())) {
             throw new RuntimeException("Invalid username or password!");
         }
@@ -41,6 +40,6 @@ public class AuthService {
     }
 
     public void signUp(final SignUpInfo signUpInfo) {
-        appUserRepository.save(new AppUser(signUpInfo.username(), signUpInfo.password()));
+        appUserService.addAppUser(new AppUser(signUpInfo.username(), signUpInfo.password()));
     }
 }
