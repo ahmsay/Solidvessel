@@ -11,13 +11,21 @@ import javax.persistence.EntityNotFoundException;
 @Transactional
 public class AppUserService {
 
-    private final AppUserRepository applicationUserRepository;
+    private final AppUserRepository appUserRepository;
 
-    public AppUserService(final AppUserRepository applicationUserRepository) {
-        this.applicationUserRepository = applicationUserRepository;
+    public AppUserService(final AppUserRepository appUserRepository) {
+        this.appUserRepository = appUserRepository;
     }
 
     public AppUser getById(final Long id) {
-        return applicationUserRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found!"));
+        return appUserRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found!"));
+    }
+
+    public AppUser getByUsername(final String userName) {
+        return appUserRepository.findByUsername(userName).orElseThrow(() -> new RuntimeException("Invalid username or password!"));
+    }
+
+    public AppUser add(final AppUser appUser) {
+        return appUserRepository.save(appUser);
     }
 }

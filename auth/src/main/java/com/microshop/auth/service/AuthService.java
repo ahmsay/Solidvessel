@@ -3,6 +3,8 @@ package com.microshop.auth.service;
 import com.microshop.auth.authentication.LoginToken;
 import com.microshop.auth.entity.AppUser;
 import com.microshop.auth.entity.SignUpInfo;
+import com.microshop.auth.event.EventDispatcher;
+import com.microshop.auth.event.UserSavedEvent;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +18,12 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
     private final AppUserService appUserService;
+    private final EventDispatcher eventDispatcher;
 
-    public AuthService(AuthenticationManager authenticationManager, AppUserService appUserService) {
+    public AuthService(AuthenticationManager authenticationManager, AppUserService appUserService, EventDispatcher eventDispatcher) {
         this.authenticationManager = authenticationManager;
         this.appUserService = appUserService;
+        this.eventDispatcher = eventDispatcher;
     }
 
     public void login(final AppUser loginRequest) {
@@ -40,6 +44,7 @@ public class AuthService {
     }
 
     public void signUp(final SignUpInfo signUpInfo) {
-        appUserService.addAppUser(new AppUser(signUpInfo.username(), signUpInfo.password()));
+        AppUser savedUser = appUserService.add(new AppUser(signUpInfo.username(), signUpInfo.password()));
+        eventDispatcher.sendUserSavedEvent(new UserSavedEvent(savedUser.getId(), signUpInfo.firstName(), signUpInfo.lastName()));
     }
 }
