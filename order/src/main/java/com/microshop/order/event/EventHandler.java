@@ -1,6 +1,6 @@
 package com.microshop.order.event;
 
-import com.microshop.order.entity.Order;
+import com.microshop.order.entity.CustomerOrder;
 import com.microshop.order.service.OrderService;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,7 +18,7 @@ public class EventHandler {
     @RabbitListener(queues = "${queues.order}")
     void handlePaymentSaved(final PaymentSavedEvent event) {
         try {
-            orderService.add(new Order("Preparing", event.customerId(), event.paymentId()));
+            orderService.add(new CustomerOrder("Preparing", event.customerId(), event.paymentId()));
         } catch (final Exception ex) {
             throw new AmqpRejectAndDontRequeueException(ex);
         }

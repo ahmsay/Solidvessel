@@ -1,6 +1,6 @@
 package com.microshop.order.controller;
 
-import com.microshop.order.entity.Order;
+import com.microshop.order.entity.CustomerOrder;
 import com.microshop.order.response.CustomerResponse;
 import com.microshop.order.response.OrderDetailResponse;
 import com.microshop.order.response.OrderResponse;
@@ -54,7 +54,7 @@ public class OrderController {
     }
 
     @PostMapping()
-    public OrderResponse add(@RequestBody final Order order) {
+    public OrderResponse add(@RequestBody final CustomerOrder order) {
         return OrderResponse.from(orderService.add(order));
     }
 }

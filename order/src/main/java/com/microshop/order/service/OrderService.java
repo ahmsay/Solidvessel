@@ -1,6 +1,6 @@
 package com.microshop.order.service;
 
-import com.microshop.order.entity.Order;
+import com.microshop.order.entity.CustomerOrder;
 import com.microshop.order.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,19 +18,19 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public List<Order> getAll() {
+    public List<CustomerOrder> getAll() {
         return orderRepository.findAll();
     }
 
-    public Order getById(final Long id) {
+    public CustomerOrder getById(final Long id) {
         return orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found!"));
     }
 
-    public List<Order> getByCustomerId(final Long customerId) {
+    public List<CustomerOrder> getByCustomerId(final Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 
-    public Order add(final Order order) {
+    public CustomerOrder add(final CustomerOrder order) {
         return orderRepository.save(order);
     }
 }

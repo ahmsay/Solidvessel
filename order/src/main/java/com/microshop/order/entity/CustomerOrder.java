@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Order {
+public class CustomerOrder {
 
     @Id
     @GeneratedValue
@@ -21,10 +21,10 @@ public class Order {
     @NotNull
     private Long paymentId;
 
-    public Order() {
+    public CustomerOrder() {
     }
 
-    public Order(final String status, final Long customerId, final Long paymentId) {
+    public CustomerOrder(final String status, final Long customerId, final Long paymentId) {
         this.status = status;
         this.customerId = customerId;
         this.paymentId = paymentId;
