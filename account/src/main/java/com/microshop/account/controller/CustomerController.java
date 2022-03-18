@@ -1,6 +1,5 @@
 package com.microshop.account.controller;
 
-import com.microshop.account.entity.Customer;
 import com.microshop.account.response.CustomerDetailResponse;
 import com.microshop.account.response.CustomerResponse;
 import com.microshop.account.response.OrdersResponse;
@@ -9,7 +8,10 @@ import com.microshop.account.service.CustomerService;
 import com.microshop.account.service.OrderService;
 import com.microshop.account.service.PaymentService;
 import com.microshop.shared.auth.SessionUtil;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -46,10 +48,5 @@ public class CustomerController {
         PaymentsResponse payments = paymentService.getPaymentsOfCustomer(customer.id(), session);
         OrdersResponse orders = orderService.getOrdersOfCustomer(customer.id(), session);
         return new CustomerDetailResponse(customer.id(), customer.firstName(), customer.lastName(), payments, orders);
-    }
-
-    @PostMapping()
-    public CustomerResponse add(@RequestBody final Customer customer) {
-        return CustomerResponse.from(customerService.add(customer));
     }
 }
