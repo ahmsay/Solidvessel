@@ -10,11 +10,20 @@ spec:
     - name: postgres
       image: postgres
       env:
-        - name: POSTGRES_DB
-          value: auth
         - name: POSTGRES_USER
           value: nihilus
         - name: POSTGRES_PASSWORD
           value: nihilus
       ports:
         - containerPort: 5432
+      volumeMounts:
+        - name: init-db
+          mountPath: "/docker-entrypoint-initdb.d"
+          readOnly: true
+  volumes:
+    - name: init-db
+      configMap:
+        name: auth-init-db
+        items:
+          - key: "init_db.sql"
+            path: "init_db.sql"
