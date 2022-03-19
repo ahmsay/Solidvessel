@@ -9,44 +9,18 @@
       "name": "auth service",
       "item": [
         {
-          "name": "login",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.globals.set('session', pm.cookies.get('SESSION'))"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "protocolProfileBehavior": {
-            "disabledSystemHeaders": {}
-          },
+          "name": "ping",
           "request": {
-            "method": "POST",
+            "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"username\": \"vader_666\",\r\n    \"password\": \"i_hate_sand\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "localhost/auth/login",
+              "raw": "localhost/auth/",
               "host": [
                 "localhost"
               ],
               "path": [
                 "auth",
-                "login"
+                ""
               ]
             }
           },
@@ -96,7 +70,7 @@
           "response": []
         },
         {
-          "name": "logout",
+          "name": "login",
           "event": [
             {
               "listen": "test",
@@ -105,22 +79,21 @@
                   "pm.test(\"Status code is 200\", function () {\r",
                   "    pm.response.to.have.status(200);\r",
                   "});\r",
-                  ""
+                  "pm.globals.set('session', pm.cookies.get('SESSION'))"
                 ],
                 "type": "text/javascript"
               }
             }
           ],
           "protocolProfileBehavior": {
-            "disableBodyPruning": true,
             "disabledSystemHeaders": {}
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "",
+              "raw": "{\r\n    \"username\": \"vader_666\",\r\n    \"password\": \"i_hate_sand\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -128,13 +101,13 @@
               }
             },
             "url": {
-              "raw": "localhost/auth/logout",
+              "raw": "localhost/auth/login",
               "host": [
                 "localhost"
               ],
               "path": [
                 "auth",
-                "logout"
+                "login"
               ]
             }
           },
@@ -145,6 +118,30 @@
     {
       "name": "account service",
       "item": [
+        {
+          "name": "ping",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost/account/api",
+              "host": [
+                "localhost"
+              ],
+              "path": [
+                "account",
+                "api"
+              ]
+            }
+          },
+          "response": []
+        },
         {
           "name": "get all customers",
           "event": [
@@ -270,24 +267,16 @@
             }
           },
           "response": []
-        },
+        }
+      ]
+    },
+    {
+      "name": "inventory service",
+      "item": [
         {
-          "name": "add customer",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
+          "name": "ping",
           "request": {
-            "method": "POST",
+            "method": "GET",
             "header": [
               {
                 "key": "Cookie",
@@ -295,34 +284,19 @@
                 "type": "text"
               }
             ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Vessel\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "localhost/account/api/customers",
+              "raw": "localhost/inventory/api",
               "host": [
                 "localhost"
               ],
               "path": [
-                "account",
-                "api",
-                "customers"
+                "inventory",
+                "api"
               ]
             }
           },
           "response": []
-        }
-      ]
-    },
-    {
-      "name": "inventory service",
-      "item": [
+        },
         {
           "name": "get all products",
           "event": [
@@ -504,6 +478,30 @@
     {
       "name": "order service",
       "item": [
+        {
+          "name": "ping",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost/order/api",
+              "host": [
+                "localhost"
+              ],
+              "path": [
+                "order",
+                "api"
+              ]
+            }
+          },
+          "response": []
+        },
         {
           "name": "get all orders",
           "event": [
@@ -714,6 +712,30 @@
       "name": "payment service",
       "item": [
         {
+          "name": "ping",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookie",
+                "value": "SESSION={{session}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost/payment/api",
+              "host": [
+                "localhost"
+              ],
+              "path": [
+                "payment",
+                "api"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "get all payments",
           "event": [
             {
@@ -918,6 +940,51 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "logout",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost/auth/logout",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "auth",
+            "logout"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
