@@ -5,7 +5,6 @@ metadata:
   namespace: microshop
 data:
   init_db.sql: |
-    create database auth;
     create table app_user (
       id serial primary key,
       username varchar(50) not null,

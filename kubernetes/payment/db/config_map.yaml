@@ -5,7 +5,6 @@ metadata:
   namespace: microshop
 data:
   init_db.sql: |
-    create database payment;
     create table payment (
       id serial primary key,
       total_charge numeric(10,2) not null,

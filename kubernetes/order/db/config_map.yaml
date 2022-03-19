@@ -5,7 +5,6 @@ metadata:
   namespace: microshop
 data:
   init_db.sql: |
-    create database order_db;
     create table customer_order (
       id serial primary key,
       status varchar(50) not null,

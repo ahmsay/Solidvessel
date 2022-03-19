@@ -13,6 +13,7 @@ kubectl create -f service.yaml
 cd ..
 
 cd auth/db
+kubectl create -f config_map.yaml
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ../app
@@ -21,6 +22,7 @@ kubectl create -f service.yaml
 cd ../..
 
 cd account/db
+kubectl create -f config_map.yaml
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ../app
@@ -29,6 +31,7 @@ kubectl create -f service.yaml
 cd ../..
 
 cd inventory/db
+kubectl create -f config_map.yaml
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ../app
@@ -37,6 +40,7 @@ kubectl create -f service.yaml
 cd ../..
 
 cd order/db
+kubectl create -f config_map.yaml
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ../app
@@ -45,6 +49,7 @@ kubectl create -f service.yaml
 cd ../..
 
 cd payment/db
+kubectl create -f config_map.yaml
 kubectl create -f pod.yaml
 kubectl create -f service.yaml
 cd ../app

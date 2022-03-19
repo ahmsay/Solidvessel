@@ -5,7 +5,6 @@ metadata:
   namespace: microshop
 data:
   init_db.sql: |
-    create database account;
     create table customer (
       id bigint primary key,
       first_name varchar(50) not null,

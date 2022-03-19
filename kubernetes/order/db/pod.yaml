@@ -10,6 +10,8 @@ spec:
     - name: postgres
       image: postgres
       env:
+        - name: POSTGRES_DB
+          value: order_db
         - name: POSTGRES_USER
           value: nihilus
         - name: POSTGRES_PASSWORD
