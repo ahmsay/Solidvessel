@@ -14,7 +14,7 @@ sh ./project-configuration/kubernetes/test/start.sh
 
 This is the whole application that lives in a Kubernetes cluster.
 
-![image](https://user-images.githubusercontent.com/22731894/154794561-259fd95d-c418-4dd2-9c4f-8c32b0f697ff.png)
+![image](https://user-images.githubusercontent.com/22731894/159161219-dfe06fe6-17cc-4c2f-9910-bb40d87f773a.svg)
 
 ## Capabilities
 
