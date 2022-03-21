@@ -12,7 +12,7 @@ sh ./kubernetes/test_start.sh
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/22731894/159341395-6d4d5433-2bd5-4bea-8005-47f5c8cff344.svg)
+![image](https://user-images.githubusercontent.com/22731894/159353041-7dd9dd6c-ae8e-448b-978e-9b59c6464332.svg)
 
 This is the whole application that lives in a Kubernetes cluster.
 
