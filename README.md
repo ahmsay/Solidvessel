@@ -18,8 +18,8 @@ This is the whole application that lives in a Kubernetes cluster.
 
 ## Capabilities
 
-- Read / Write operations
-- Synchronous and asynchronous communication
+- Read / write operations
+- Synchronous / asynchronous communication
 - Circuit breaking
 - Horizontal scaling
 - Load balancing
