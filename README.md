@@ -55,7 +55,7 @@ The entity relationships are shown above.
 
 ## Synchronous Communication
 
-![image](https://user-images.githubusercontent.com/22731894/159342918-ea00b2c4-5fb4-4a41-bb1e-b5d541aca75b.svg)
+![image](https://user-images.githubusercontent.com/22731894/159354677-8fb0a2fd-2a42-464a-9b09-6b76d630dfd5.svg)
 
 Let's say we want to retrieve all products that are related to a payment, along with the payment information. Payment
 information is in Payment DB and product information is in Inventory DB. To retrieve product information, we need to
@@ -72,7 +72,7 @@ communication. This way, even if the inventory service is down, we can still ret
 
 ## Asynchronous Communication
 
-![image](https://user-images.githubusercontent.com/22731894/159349309-97cbec2c-a48c-4d26-95f3-62d56676bc2b.svg)
+![image](https://user-images.githubusercontent.com/22731894/159354544-46ae0621-cb0a-41f1-b78f-e09f1296db8a.svg)
 
 If a payment is created, an order related to the payment must be created as well. Since these two tasks are not directly
 connected to each other, we can to this asynchronously. This approach is also another way to provide loose coupling
