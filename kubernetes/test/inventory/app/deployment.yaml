@@ -22,7 +22,7 @@ spec:
       containers:
         - name: inventory-app
           image: ahmsay/microshop-inventory
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           args: [ "--spring.profiles.active=test" ]
           ports:
             - containerPort: 8080

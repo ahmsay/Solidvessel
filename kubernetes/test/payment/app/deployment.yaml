@@ -22,7 +22,7 @@ spec:
       containers:
         - name: payment-app
           image: ahmsay/microshop-payment
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           args: [ "--spring.profiles.active=test" ]
           ports:
             - containerPort: 8080
