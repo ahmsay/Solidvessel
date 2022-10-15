@@ -3,7 +3,7 @@
 !.gitignore
 !.README.md
 !microshop.postman_collection.json
-!/docker/**
+!build_and_push_images.sh
 !/kubernetes/**
 
 !/account/src/**

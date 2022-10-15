@@ -116,18 +116,24 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>3.1.1</version>
+				<version>3.3.0</version>
 				<configuration>
 					<from>
-						<image>docker.io/ahmsay/microshop-base</image>
+						<image>openjdk:17.0.2-slim</image>
+						<platforms>
+							<platform>
+								<os>linux</os>
+								<architecture>amd64</architecture>
+							</platform>
+							<platform>
+								<os>linux</os>
+								<architecture>arm64</architecture>
+							</platform>
+						</platforms>
 					</from>
 					<to>
 						<image>docker.io/ahmsay/microshop-order</image>
 					</to>
-					<container>
-						<entrypoint>jre/bin/java,-cp,@/app/jib-classpath-file,com.microshop.order.OrderApplication
-						</entrypoint>
-					</container>
 				</configuration>
 			</plugin>
 		</plugins>
