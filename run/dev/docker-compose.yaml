@@ -33,7 +33,7 @@ services:
   order-db:
     image: postgres:15.0
     environment:
-      - POSTGRES_DB=order
+      - POSTGRES_DB=order_db
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
     ports:

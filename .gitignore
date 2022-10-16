@@ -5,6 +5,8 @@
 !microshop.postman_collection.json
 !build_and_push_images.sh
 !/run/**
+!/run_dev_environment.sh
+!/run_test_environment.sh
 
 !/account/src/**
 !/account/pom.xml

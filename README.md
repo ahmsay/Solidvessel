@@ -7,7 +7,7 @@ shopping application.
 ## Run
 
 ```bash
-sh ./kubernetes/test_start.sh
+sh ./run_test_environment.sh
 ```
 
 ## Architecture
@@ -36,7 +36,7 @@ IDE. Also, you need to manually install the shared module first.
 
 ```shell
 mvn install -f ./shared/pom.xml
-sh ./kubernetes/dev_start.sh
+sh ./run_dev_environment.sh
 ```
 
 ### Test
@@ -44,7 +44,7 @@ sh ./kubernetes/dev_start.sh
 This mode will start the whole application in K8S cluster.
 
 ```shell
-sh ./kubernetes/test_start.sh
+sh ./run_test_environment.sh
 ```
 
 ## Entity Relationships

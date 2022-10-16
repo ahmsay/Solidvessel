@@ -1,19 +1,5 @@
-cd auth
-mvn clean compile jib:build
-cd ..
-
-cd account
-mvn clean compile jib:build
-cd ..
-
-cd inventory
-mvn clean compile jib:build
-cd ..
-
-cd order
-mvn clean compile jib:build
-cd ..
-
-cd payment
-mvn clean compile jib:build
-cd ..
+mvn clean compile jib:build -f ./auth/pom.xml
+mvn clean compile jib:build -f ./account/pom.xml
+mvn clean compile jib:build -f ./inventory/pom.xml
+mvn clean compile jib:build -f ./order/pom.xml
+mvn clean compile jib:build -f ./payment/pom.xml
