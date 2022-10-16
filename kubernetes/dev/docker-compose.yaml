@@ -1,0 +1,61 @@
+version: "3"
+services:
+  auth-db:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_DB=auth
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+    ports:
+      - "6000:5432"
+    volumes:
+      - ./auth-init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  account-db:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_DB=account
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+    ports:
+      - "6001:5432"
+    volumes:
+      - ./account-init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  inventory-db:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_DB=inventory
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+    ports:
+      - "6002:5432"
+    volumes:
+      - ./inventory-init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  order-db:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_DB=order
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+    ports:
+      - "6003:5432"
+    volumes:
+      - ./order-init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  payment-db:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_DB=payment
+      - POSTGRES_USER=nihilus
+      - POSTGRES_PASSWORD=nihilus
+    ports:
+      - "6004:5432"
+    volumes:
+      - ./payment-init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  redis:
+    image: redis:7.0.5-alpine3.16
+    ports:
+      - "6379:6379"
+  rabbitmq:
+    image: rabbitmq:3.11.1-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
