@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: postgres
-      image: postgres
+      image: postgres:15.0
       env:
         - name: POSTGRES_DB
           value: order_db
