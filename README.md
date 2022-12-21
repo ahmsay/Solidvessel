@@ -25,12 +25,12 @@ This is the whole application that lives in a Kubernetes cluster.
 
 ### Development
 
-This mode will start the databases and the message queue in the K8S cluster. You can start the microservices with your
-IDE. Also, you need to manually install the shared module first.
+This mode will start the databases, Redis and RabbitMQ as containers. You can start the microservices with your
+IDE. Also, you need to install the shared module first.
 
 ```shell
 mvn install -f ./shared/pom.xml
-docker-compose -f ./run/dev/docker-compose.yaml up -d
+docker-compose up -d
 ```
 
 ### Test

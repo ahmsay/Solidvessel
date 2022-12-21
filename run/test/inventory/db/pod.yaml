@@ -18,14 +18,3 @@ spec:
           value: nihilus
       ports:
         - containerPort: 5432
-      volumeMounts:
-        - name: init-db
-          mountPath: "/docker-entrypoint-initdb.d"
-          readOnly: true
-  volumes:
-    - name: init-db
-      configMap:
-        name: inventory-init-db
-        items:
-          - key: "init_db.sql"
-            path: "init_db.sql"
