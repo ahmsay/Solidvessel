@@ -4,12 +4,6 @@ This is an online shopping application designed with microservices architecture.
 microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a
 shopping application.
 
-## Run
-
-```bash
-sh ./run_test_environment.sh
-```
-
 ## Architecture
 
 ![image](https://user-images.githubusercontent.com/22731894/159353041-7dd9dd6c-ae8e-448b-978e-9b59c6464332.svg)
@@ -36,15 +30,19 @@ IDE. Also, you need to manually install the shared module first.
 
 ```shell
 mvn install -f ./shared/pom.xml
-sh ./run_dev_environment.sh
+docker-compose -f ./run/dev/docker-compose.yaml up -d
 ```
 
 ### Test
 
-This mode will start the whole application in K8S cluster.
+This mode will start the whole application in K8S cluster. You can test it on your own computer if you enable Kubernetes
+on Docker Desktop.
 
 ```shell
-sh ./run_test_environment.sh
+kubectl create ns microshop
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/cloud/deploy.yaml
+# Wait for the ingress controller to be ready
+kubectl apply -f ./run/test -R
 ```
 
 ## Entity Relationships
