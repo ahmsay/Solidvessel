@@ -1,0 +1,9 @@
+resources:
+- account
+- auth
+- ingress
+- inventory
+- order
+- payment
+- rabbitmq
+- redis
