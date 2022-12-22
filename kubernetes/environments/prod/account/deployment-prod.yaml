@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account
+spec:
+  template:
+    spec:
+      containers:
+      - name: account-app
+        args: [ "--spring.profiles.active=prod" ]

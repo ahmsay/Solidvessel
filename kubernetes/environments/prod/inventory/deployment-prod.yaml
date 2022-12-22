@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory
+spec:
+  template:
+    spec:
+      containers:
+      - name: inventory-app
+        args: [ "--spring.profiles.active=prod" ]

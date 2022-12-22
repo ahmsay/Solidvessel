@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+spec:
+  template:
+    spec:
+      containers:
+      - name: order-app
+        args: [ "--spring.profiles.active=prod" ]
