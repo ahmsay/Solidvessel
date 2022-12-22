@@ -106,7 +106,7 @@
 				<version>3.3.0</version>
 				<configuration>
 					<from>
-						<image>openjdk:17.0.2-slim</image>
+						<image>eclipse-temurin:17.0.5_8-jre-jammy</image>
 						<platforms>
 							<platform>
 								<os>linux</os>
