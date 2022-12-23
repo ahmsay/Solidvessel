@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: account-db
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 12.1.6
+    chart: postgresql
+    helm:
+      values: |
+        global:
+          postgresql:
+            auth:
+              database: account
+              username: nihilus
+              password: nihilus
+        primary:
+          persistence:
+            enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microshop
+  syncPolicy:
+    automated:
+      prune: true

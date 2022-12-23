@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ahmsay/Microshop.git
+    targetRevision: master
+    path: kubernetes/environments/prod/order
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microshop
+  syncPolicy:
+    automated:
+      prune: true
