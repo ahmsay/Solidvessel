@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: wait-for-db
           image: busybox
-          command: [ 'sh', '-c', "until nslookup auth-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
+          command: [ 'sh', '-c', "until nslookup auth-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
       containers:
         - name: auth-app
           image: ahmsay/microshop-auth
