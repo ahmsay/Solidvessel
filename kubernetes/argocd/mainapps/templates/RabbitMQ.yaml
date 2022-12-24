@@ -12,6 +12,7 @@ spec:
     helm:
       values: |
         auth:
+          username: guest
           password: nihilus
         persistence:
           enabled: false
