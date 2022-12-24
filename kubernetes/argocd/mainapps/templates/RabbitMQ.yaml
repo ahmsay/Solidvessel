@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 11.3.0
+    chart: rabbitmq
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microshop
+  syncPolicy:
+    automated:
+      prune: true
