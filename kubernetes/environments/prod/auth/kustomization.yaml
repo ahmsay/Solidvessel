@@ -2,3 +2,4 @@ resources:
 - ../../../base/auth/app
 patchesStrategicMerge:
 - deployment-prod.yaml
+- service-prod.yaml
