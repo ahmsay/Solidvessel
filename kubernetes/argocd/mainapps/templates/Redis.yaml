@@ -11,6 +11,9 @@ spec:
     chart: redis
     helm:
       values: |
+        global:
+          redis:
+            password: nihilus
         master:
           persistence:
             enabled: false

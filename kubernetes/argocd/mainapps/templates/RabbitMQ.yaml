@@ -11,6 +11,8 @@ spec:
     chart: rabbitmq
     helm:
       values: |
+        auth:
+          password: nihilus
         persistence:
           enabled: false
   destination:
