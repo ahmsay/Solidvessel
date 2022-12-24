@@ -9,6 +9,14 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 17.4.0
     chart: redis
+    helm:
+      values: |
+        master:
+          persistence:
+            enabled: false
+        replica:
+          persistence:
+            enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: microshop

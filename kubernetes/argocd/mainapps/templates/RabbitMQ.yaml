@@ -9,6 +9,10 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 11.3.0
     chart: rabbitmq
+    helm:
+      values: |
+        persistence:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: microshop
