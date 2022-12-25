@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: redis
+  name: inventory-db
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 17.4.0
-    chart: redis
+    chart: postgresql
+    targetRevision: 12.1.6
     helm:
       values: |
         global:
-          redis:
-            password: nihilus
-        master:
-          persistence:
-            enabled: false
-        replica:
+          postgresql:
+            auth:
+              database: inventory
+              username: nihilus
+              password: nihilus
+        primary:
           persistence:
             enabled: false
   destination:

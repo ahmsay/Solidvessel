@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ahmsay/Microshop.git
     targetRevision: master
-    path: kubernetes/environments/prod/payment
+    path: .kubernetes/environments/prod/payment
   destination:
     server: https://kubernetes.default.svc
     namespace: microshop

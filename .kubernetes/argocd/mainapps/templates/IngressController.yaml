@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    chart: aws-load-balancer-controller
     repoURL: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
     targetRevision: 1.4.6
     helm:
       releaseName: aws-load-balancer-controller

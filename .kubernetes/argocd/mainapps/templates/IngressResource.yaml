@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: auth-app
+  name: ingress-resource
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ahmsay/Microshop.git
     targetRevision: master
-    path: kubernetes/environments/prod/auth
+    path: .kubernetes/environments/prod/ingress
   destination:
     server: https://kubernetes.default.svc
     namespace: microshop

@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: order-app
+  name: auth-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ahmsay/Microshop.git
     targetRevision: master
-    path: kubernetes/environments/prod/order
+    path: .kubernetes/environments/prod/auth
   destination:
     server: https://kubernetes.default.svc
     namespace: microshop

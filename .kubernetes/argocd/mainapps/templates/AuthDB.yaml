@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: order-db
+  name: auth-db
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 12.1.6
     chart: postgresql
+    targetRevision: 12.1.6
     helm:
       values: |
         global:
           postgresql:
             auth:
-              database: order_db
+              database: auth
               username: nihilus
               password: nihilus
         primary:

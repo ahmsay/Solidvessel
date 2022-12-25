@@ -4,7 +4,7 @@
 !.README.md
 !microshop.postman_collection.json
 !build_and_push_images.sh
-!/kubernetes/**
+!/.kubernetes/**
 !docker-compose.yaml
 
 !/account/src/**

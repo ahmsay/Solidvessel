@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: account-app
+  name: microshop-root
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ahmsay/Microshop.git
     targetRevision: master
-    path: kubernetes/environments/prod/account
+    path: .kubernetes/argocd/mainapps
   destination:
     server: https://kubernetes.default.svc
     namespace: microshop

@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: auth-db
+  name: payment-db
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 12.1.6
     chart: postgresql
+    targetRevision: 12.1.6
     helm:
       values: |
         global:
           postgresql:
             auth:
-              database: auth
+              database: payment
               username: nihilus
               password: nihilus
         primary:
