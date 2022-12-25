@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 @RestController
 public class RootController {
 
-    @GetMapping("/")
+    @GetMapping("/ping")
     public String ping() {
         try {
             InetAddress address = InetAddress.getLocalHost();
