@@ -13,7 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/ping").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().disable()
