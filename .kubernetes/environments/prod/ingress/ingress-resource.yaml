@@ -18,28 +18,28 @@ spec:
             name: auth
             port:
               number: 8080
-      - path: /account/api
+      - path: /account
         pathType: Prefix
         backend:
           service:
             name: account
             port:
               number: 8080
-      - path: /inventory/api
+      - path: /inventory
         pathType: Prefix
         backend:
           service:
             name: inventory
             port:
               number: 8080
-      - path: /order/api
+      - path: /order
         pathType: Prefix
         backend:
           service:
             name: order
             port:
               number: 8080
-      - path: /payment/api
+      - path: /payment
         pathType: Prefix
         backend:
           service:
