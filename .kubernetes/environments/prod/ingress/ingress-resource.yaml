@@ -28,7 +28,7 @@ spec:
             port:
               number: 8080
       - path: /inventory
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: forward-inventory
