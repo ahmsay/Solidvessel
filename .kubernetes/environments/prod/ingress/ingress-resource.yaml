@@ -6,6 +6,8 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/actions.forward-inventory: >
+      {"type":"forward","forwardConfig":{"targetGroups":[{"serviceName":"inventory","servicePort":8080}]}}
 spec:
   ingressClassName: alb
   rules:
@@ -26,12 +28,12 @@ spec:
             port:
               number: 8080
       - path: /inventory
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
-            name: inventory
+            name: forward-inventory
             port:
-              number: 8080
+              name: use-annotation
       - path: /order
         pathType: Prefix
         backend:
