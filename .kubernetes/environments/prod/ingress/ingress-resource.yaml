@@ -6,8 +6,8 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/actions.redirect-inventory: > 
-      {"Type":"redirect","RedirectConfig": {"Path":"/","serviceName":"inventory","servicePort":8080,"StatusCode":"HTTP_301"}}
+    alb.ingress.kubernetes.io/actions.redirect-inventory: >
+      {"type":"redirect","redirectConfig":{ "host": "#{host}","port": "#{port}","protocol": "#{protocol}","query": "#{query}","path":"/","statusCode":"HTTP_302"}}
 spec:
   ingressClassName: alb
   rules:
@@ -28,7 +28,7 @@ spec:
             port:
               number: 8080
       - path: /inventory
-        pathType: ImplementationSpecific
+        pathType: Exact
         backend:
           service:
             name: redirect-inventory
