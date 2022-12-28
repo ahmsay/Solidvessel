@@ -1,1 +1,3 @@
-resources: [] # ingress resource won't be used until route53 domain names are set
+resources:
+- ../../../base/ingress
+# alb ingress resource won't be used until route53 domain names are set

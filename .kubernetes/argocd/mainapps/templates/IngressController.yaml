@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-controller
+  name: alb-controller
   namespace: argocd
 spec:
   project: default
@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: aws-load-balancer-controller
       values: |
-        clusterName: microshop
+        clusterName: test-cluster
         serviceAccount:
           create: false
           name: aws-load-balancer-controller
