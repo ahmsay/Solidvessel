@@ -1,2 +1,1 @@
-resources:
-- ingress-resource.yaml
+resources: [] # ingress resource won't be used until route53 domain names are set
