@@ -1,3 +1,4 @@
 resources:
 - ../../../base/ingress
+- argocd-ingress.resource.yaml
 # alb ingress resource won't be used until route53 domain names are set
