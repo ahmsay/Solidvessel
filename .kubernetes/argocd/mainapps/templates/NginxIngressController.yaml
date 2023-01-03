@@ -11,7 +11,7 @@ spec:
     targetRevision: 9.3.24
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: microshop
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true
