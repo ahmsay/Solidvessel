@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: nginx-ingress-controller
-    targetRevision: 9.3.24
+    repoURL: https://github.com/kubernetes/ingress-nginx.git
+    targetRevision: master
+    path: deploy/static/provider/cloud
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
