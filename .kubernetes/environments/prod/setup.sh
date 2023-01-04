@@ -15,6 +15,6 @@ eksctl create iamserviceaccount --cluster=microshop --namespace=kube-system --na
 kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
 kubectl create -f .kubernetes/argocd/root/Root.yaml
-kubectl patch svc nginx-ingress-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-type": "external"}}}'
-kubectl patch svc nginx-ingress-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"}}}'
-kubectl patch svc nginx-ingress-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"}}}'
+kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-type": "external"}}}'
+kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"}}}'
+kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"}}}'
