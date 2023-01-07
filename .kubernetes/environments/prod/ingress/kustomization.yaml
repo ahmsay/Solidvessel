@@ -1,4 +1,3 @@
 resources:
-#- ../../../base/ingress
+- microshop-ingress-resource.yaml
 - argocd-ingress.resource.yaml
-- alb-ingress-resource.yaml
