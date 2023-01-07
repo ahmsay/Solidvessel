@@ -9,37 +9,50 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - http:
+  - host: auth.ahmetsay.com
+    http:
       paths:
-      - path: /auth
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: auth
             port:
               number: 8080
-      - path: /account
+  - host: account.ahmetsay.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: account
             port:
               number: 8080
-      - path: /inventory
+  - host: inventory.ahmetsay.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: inventory
             port:
               number: 8080
-      - path: /order
+  - host: order.ahmetsay.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: order
             port:
               number: 8080
-      - path: /payment
+  - host: payment.ahmetsay.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
