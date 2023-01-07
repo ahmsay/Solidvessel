@@ -1,9 +1,9 @@
 aws_account_id=
 argo_cd_password=adminadmin
 
-curl https://raw.githubusercontent.com/ahmsay/AWS-Experiments/main/EKS/cluster.yaml \
-| yq '.metadata.name = "microshop"' > cluster.yaml
+curl https://raw.githubusercontent.com/ahmsay/AWS-Experiments/main/EKS/cluster.yaml | yq '.metadata.name = "microshop"' > cluster.yaml
 eksctl create cluster --config-file=cluster.yaml
+rm cluster.yaml
 
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
@@ -15,6 +15,8 @@ eksctl create iamserviceaccount --cluster=microshop --namespace=kube-system --na
 kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
 kubectl create -f .kubernetes/argocd/root/Root.yaml
-kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-type": "external"}}}'
-kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"}}}'
-kubectl patch svc ingress-nginx-controller -n ingress-nginx -p '{"metadata": {"annotations": {"service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"}}}'
+
+# fetch aws account id
+# add --insecure parameter to argocd yaml
+# configure route 53 records
+# configure ssl and remove --insecure from argocd
