@@ -6,6 +6,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: microshop-ingress-group
 spec:
   ingressClassName: alb
   rules:
@@ -59,13 +60,3 @@ spec:
             name: payment
             port:
               number: 8080
-  - host: argocd.ahmetsay.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server.argocd.svc.cluster.local
-            port:
-              number: 443

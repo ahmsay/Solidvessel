@@ -4,13 +4,16 @@ metadata:
   name: argocd-ingress
   namespace: argocd
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: microshop-ingress-group
 spec:
-  ingressClassName: nginx
+  ingressClassName: alb
   rules:
-  - http:
+  - host: argocd.ahmetsay.com
+    http:
       paths:
-      - path: /argocd(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:

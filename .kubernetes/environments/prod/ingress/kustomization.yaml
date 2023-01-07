@@ -1,4 +1,4 @@
 resources:
 #- ../../../base/ingress
-#- argocd-ingress.resource.yaml
+- argocd-ingress.resource.yaml
 - alb-ingress-resource.yaml
