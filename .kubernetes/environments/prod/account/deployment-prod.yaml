@@ -4,7 +4,6 @@ metadata:
   name: account
   namespace: microshop
 spec:
-  replicas: 2
   template:
     spec:
       containers:
