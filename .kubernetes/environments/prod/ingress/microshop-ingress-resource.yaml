@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: auth.ahmetsay.com
+  - host: auth.solidvessel.com
     http:
       paths:
       - path: /
@@ -20,7 +20,7 @@ spec:
             name: auth
             port:
               number: 8080
-  - host: account.ahmetsay.com
+  - host: account.solidvessel.com
     http:
       paths:
       - path: /
@@ -30,7 +30,7 @@ spec:
             name: account
             port:
               number: 8080
-  - host: inventory.ahmetsay.com
+  - host: inventory.solidvessel.com
     http:
       paths:
       - path: /
@@ -40,7 +40,7 @@ spec:
             name: inventory
             port:
               number: 8080
-  - host: order.ahmetsay.com
+  - host: order.solidvessel.com
     http:
       paths:
       - path: /
@@ -50,7 +50,7 @@ spec:
             name: order
             port:
               number: 8080
-  - host: payment.ahmetsay.com
+  - host: payment.solidvessel.com
     http:
       paths:
       - path: /

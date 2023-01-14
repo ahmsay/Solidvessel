@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: argocd.ahmetsay.com
+  - host: argocd.solidvessel.com
     http:
       paths:
       - path: /

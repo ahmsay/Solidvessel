@@ -20,7 +20,7 @@ kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/
 kubectl create -f ../../argocd/root/Root.yaml
 
 # create route53 records
-route_53_dns_name=ahmetsay.com
+route_53_dns_name=solidvessel.com
 load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text)
 load_balancer_dns_name=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
 load_balancer_hosted_zone_id=$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)
