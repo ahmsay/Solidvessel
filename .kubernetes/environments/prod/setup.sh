@@ -40,5 +40,3 @@ echo '{"Comment":"Create hosted zones","Changes":[]}' \
 > dns-records.json
 route_53_dns_hosted_zone_id=$(aws route53 list-hosted-zones --query "HostedZones[?(@.Name=='$(echo $route_53_dns_name).')].Id" --output text | tr -d '/hostedzone/')
 aws route53 change-resource-record-sets --hosted-zone-id $route_53_dns_hosted_zone_id --change-batch file://dns-records.json
-
-# configure ssl and remove --insecure from argocd
