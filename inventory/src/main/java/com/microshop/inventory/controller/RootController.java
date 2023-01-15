@@ -9,11 +9,11 @@ import java.net.UnknownHostException;
 @RestController
 public class RootController {
 
-    @GetMapping("/ping")
+    @GetMapping("/")
     public String ping() {
         try {
             InetAddress address = InetAddress.getLocalHost();
-            return "Inventory microservice works. Host: %s".formatted(address.getHostAddress());
+            return "Inventory microservice works. Host: %s".formatted(address.getHostName());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

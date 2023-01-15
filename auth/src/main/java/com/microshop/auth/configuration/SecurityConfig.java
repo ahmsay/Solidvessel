@@ -29,9 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/ping").permitAll()
-                .antMatchers("/login/**").permitAll()
-                .antMatchers("/signUp/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/signUp").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().disable()
