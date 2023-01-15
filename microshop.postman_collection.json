@@ -14,13 +14,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/auth/ping",
+							"raw": "localhost/auth",
 							"host": [
 								"localhost"
 							],
 							"path": [
-								"auth",
-								"ping"
+								"auth"
 							]
 						}
 					},
@@ -175,13 +174,12 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/account/ping",
+							"raw": "localhost/account",
 							"host": [
 								"localhost"
 							],
 							"path": [
-								"account",
-								"ping"
+								"account"
 							]
 						}
 					},
@@ -327,13 +325,12 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/inventory/ping",
+							"raw": "localhost/inventory",
 							"host": [
 								"localhost"
 							],
 							"path": [
-								"inventory",
-								"ping"
+								"inventory"
 							]
 						}
 					},
@@ -528,13 +525,12 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/order/ping",
+							"raw": "localhost/order",
 							"host": [
 								"localhost"
 							],
 							"path": [
-								"order",
-								"ping"
+								"order"
 							]
 						}
 					},
@@ -756,13 +752,12 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/payment/ping",
+							"raw": "localhost/payment",
 							"host": [
 								"localhost"
 							],
 							"path": [
-								"payment",
-								"ping"
+								"payment"
 							]
 						}
 					},
