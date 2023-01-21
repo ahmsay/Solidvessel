@@ -1,6 +1,7 @@
 # create cluster
 curl https://raw.githubusercontent.com/ahmsay/AWS-Experiments/main/EKS/cluster.yaml | yq '.metadata.name = "microshop"' > cluster.yaml
 eksctl create cluster --config-file=cluster.yaml
+eksctl utils write-kubeconfig --cluster=microshop
 
 # install argocd
 kubectl create namespace argocd
