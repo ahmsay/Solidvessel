@@ -6,6 +6,7 @@
 !build_and_push_images.sh
 !/.kubernetes/**
 !docker-compose.yaml
+!zero2prod.sh
 
 !/account/src/**
 !/account/pom.xml

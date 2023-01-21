@@ -17,7 +17,7 @@ eksctl create iamserviceaccount --cluster=microshop --namespace=kube-system --na
 kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
 # create applications
-kubectl create -f ../../argocd/root/Root.yaml
+kubectl create -f .kubernetes/argocd/root/Root.yaml
 
 # create route53 records
 route_53_dns_name=solidvessel.com
