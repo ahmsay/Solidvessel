@@ -22,7 +22,12 @@ kubectl create -f .kubernetes/argocd/root/Root.yaml
 
 # create route53 records
 route_53_dns_name=solidvessel.com
-load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text)
+until [ $load_balancer_arn != 'None' ]
+do
+  echo 'Waiting for load balancer arn to be generated...'
+  sleep 5
+  load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text)
+done
 load_balancer_dns_name=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
 load_balancer_hosted_zone_id=$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)
 auth_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"auth.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
