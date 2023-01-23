@@ -14,4 +14,4 @@ phases:
     - sudo chmod +x build-everything.sh
   build:
     commands:
-    - build-everything.sh
+    - ./build-everything.sh
