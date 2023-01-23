@@ -13,4 +13,4 @@ phases:
     - sudo chmod +x zero2prod.sh
   build:
     commands:
-    - ./zero2prod.sh
+    - ./zero-2-prod.sh
