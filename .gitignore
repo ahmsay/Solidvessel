@@ -3,10 +3,10 @@
 !.gitignore
 !.README.md
 !microshop.postman_collection.json
-!build_and_push_images.sh
 !/.kubernetes/**
 !docker-compose.yaml
-!zero2prod.sh
+
+!.ci/**
 
 !/account/src/**
 !/account/pom.xml
