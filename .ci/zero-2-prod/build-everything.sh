@@ -1,7 +1,7 @@
 # create cluster
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 perl -i -pe"s/<aws_account_id>/$AWS_ACCOUNT_ID/" .ci/zero-2-prod/cluster.yaml
-eksctl create cluster --config-file=cluster.yaml
+eksctl create cluster --config-file=.ci/zero-2-prod/cluster.yaml
 aws eks update-kubeconfig --region eu-central-1 --name solidvessel
 
 # install argocd
