@@ -1,22 +1,17 @@
 # create cluster
-aws_account_id=$(aws sts get-caller-identity --query "Account" --output text)
-sed 's/<aws_account_id>/$aws_account_id' cluster.yaml
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
+perl -i -pe"s/<aws_account_id>/$AWS_ACCOUNT_ID/" cluster.yaml
 eksctl create cluster --config-file=cluster.yaml
 aws eks update-kubeconfig --region eu-central-1 --name solidvessel
 
 # install argocd
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-argo_cd_password=adminadmin
-new_argo_cd_password=$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$argo_cd_password', bcrypt.gensalt()).decode())")
-kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(echo $new_argo_cd_password)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+ARGO_CD_PASSWORD=adminadmin
+NEW_ARGO_CD_PASSWORD=$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$ARGO_CD_PASSWORD', bcrypt.gensalt()).decode())")
+kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(echo $NEW_ARGO_CD_PASSWORD)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
 kubectl delete secret argocd-initial-admin-secret -n argocd
 kubectl -n argocd patch deploy argocd-server --type=json -p='[{ "op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure" }]'
-
-# install serviceaccount for alb controller
-aws_account_id=$(aws sts get-caller-identity --query "Account" --output text)
-eksctl create iamserviceaccount --cluster=solidvessel --namespace=kube-system --name=aws-load-balancer-controller --role-name "AmazonEKSLoadBalancerControllerRole" --attach-policy-arn=arn:aws:iam::$aws_account_id:policy/AWSLoadBalancerControllerIAMPolicy --approve
-kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
 # create applications
 kubectl create -f .kubernetes/argocd/root/Root.yaml
