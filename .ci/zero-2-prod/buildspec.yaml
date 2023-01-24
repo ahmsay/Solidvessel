@@ -2,16 +2,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
-    - apt-get update
-    - sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-    - sudo chmod a+x /usr/local/bin/yq
     - pip install bcrypt
     - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     - sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     - curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
     - sudo mv /tmp/eksctl /usr/local/bin
-    - cd .ci/zero-2-prod
-    - sudo chmod +x build-everything.sh
+    - sudo chmod +x .ci/zero-2-prod/build-everything.sh
   build:
     commands:
-    - ./build-everything.sh
+    - .ci/zero-2-prod/build-everything.sh

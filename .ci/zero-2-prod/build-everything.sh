@@ -1,7 +1,6 @@
 # create cluster
-curl https://raw.githubusercontent.com/ahmsay/AWS-Experiments/main/EKS/cluster.yaml | yq '.metadata.name = "microshop"' > cluster.yaml
 eksctl create cluster --config-file=cluster.yaml
-aws eks update-kubeconfig --region eu-central-1 --name microshop
+aws eks update-kubeconfig --region eu-central-1 --name solidvessel
 
 # install argocd
 kubectl create namespace argocd
@@ -14,7 +13,7 @@ kubectl -n argocd patch deploy argocd-server --type=json -p='[{ "op": "add", "pa
 
 # install serviceaccount for alb controller
 aws_account_id=$(aws sts get-caller-identity --query "Account" --output text)
-eksctl create iamserviceaccount --cluster=microshop --namespace=kube-system --name=aws-load-balancer-controller --role-name "AmazonEKSLoadBalancerControllerRole" --attach-policy-arn=arn:aws:iam::$aws_account_id:policy/AWSLoadBalancerControllerIAMPolicy --approve
+eksctl create iamserviceaccount --cluster=solidvessel --namespace=kube-system --name=aws-load-balancer-controller --role-name "AmazonEKSLoadBalancerControllerRole" --attach-policy-arn=arn:aws:iam::$aws_account_id:policy/AWSLoadBalancerControllerIAMPolicy --approve
 kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller/crds?ref=master"
 
 # create applications
