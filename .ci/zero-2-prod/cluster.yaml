@@ -23,6 +23,12 @@ vpc:
     privateAccess: true
 iam:
   withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: aws-load-balancer-controller
+      namespace: kube-system
+    attachPolicyARNs:
+    - "arn:aws:iam::<aws_account_id>:policy/AWSLoadBalancerControllerIAMPolicy"
 addons:
   - name: vpc-cni
     version: latest

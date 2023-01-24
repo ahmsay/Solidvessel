@@ -1,4 +1,6 @@
 # create cluster
+aws_account_id=$(aws sts get-caller-identity --query "Account" --output text)
+sed 's/<aws_account_id>/$aws_account_id' cluster.yaml
 eksctl create cluster --config-file=cluster.yaml
 aws eks update-kubeconfig --region eu-central-1 --name solidvessel
 
