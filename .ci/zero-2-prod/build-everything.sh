@@ -1,3 +1,4 @@
+#!/bin/bash
 # create cluster
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 perl -i -pe"s/<aws_account_id>/$AWS_ACCOUNT_ID/" .ci/zero-2-prod/cluster.yaml
