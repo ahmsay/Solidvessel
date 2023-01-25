@@ -10,7 +10,6 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ARGO_CD_PASSWORD=adminadmin
 NEW_ARGO_CD_PASSWORD=$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$ARGO_CD_PASSWORD', bcrypt.gensalt()).decode())")
 kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(echo $NEW_ARGO_CD_PASSWORD)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
-kubectl delete secret argocd-initial-admin-secret -n argocd
 kubectl -n argocd patch deploy argocd-server --type=json -p='[{ "op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure" }]'
 kubectl -n argocd wait --for=condition=Available deploy/argocd-server --timeout=300s
 
