@@ -8,9 +8,9 @@ aws eks update-kubeconfig --region $AWS_REGION --name solidvessel
 # install argocd
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl -n argocd patch deploy argocd-server --type=json -p='[{ "op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure" }]'
 NEW_ARGO_CD_PASSWORD=$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$ARGO_CD_PASSWORD', bcrypt.gensalt()).decode())")
 kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(echo $NEW_ARGO_CD_PASSWORD)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
-kubectl -n argocd patch deploy argocd-server --type=json -p='[{ "op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure" }]'
 sleep 10
 
 # create applications
