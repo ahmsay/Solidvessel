@@ -17,24 +17,11 @@ kubectl -n argocd wait --for=condition=Ready pod -l app.kubernetes.io/name=argoc
 kubectl create -f .kubernetes/argocd/root/Root.yaml
 
 # create route53 records
-route_53_dns_name=solidvessel.com
 load_balancer_arn=None
 until [[ $load_balancer_arn != 'None' ]]; do echo 'Waiting for load balancer arn to be generated...'; sleep 10; export load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text); done
-load_balancer_dns_name=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
-load_balancer_hosted_zone_id=$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)
-auth_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"auth.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
-account_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"account.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
-inventory_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"inventory.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
-order_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"order.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
-payment_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"payment.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
-argocd_dns_record=$(echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"argocd.'$(echo $route_53_dns_name)'.","Type":"A","AliasTarget":{"DNSName":"'$(echo $load_balancer_dns_name)'","EvaluateTargetHealth":true,"HostedZoneId":"'$(echo $load_balancer_hosted_zone_id)'"}}}')
-echo '{"Comment":"Create hosted zones","Changes":[]}' \
-| jq ".Changes += ["$auth_dns_record"]" \
-| jq ".Changes += ["$account_dns_record"]" \
-| jq ".Changes += ["$inventory_dns_record"]" \
-| jq ".Changes += ["$order_dns_record"]" \
-| jq ".Changes += ["$payment_dns_record"]" \
-| jq ".Changes += ["$argocd_dns_record"]" \
-> dns-records.json
-route_53_dns_hosted_zone_id=$(aws route53 list-hosted-zones --query "HostedZones[?(@.Name=='$(echo $route_53_dns_name).')].Id" --output text | tr -d '/hostedzone/')
+LOAD_BALANCER_DNS_NAME=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
+LOAD_BALANCER_HOSTED_ZONE_ID=$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)
+perl -i -pe"s/<load-balancer-dns-name>/$LOAD_BALANCER_DNS_NAME/g" .ci/zero-2-prod/dns-records.json
+perl -i -pe"s/<load-balancer-hosted-zone-id>/$LOAD_BALANCER_HOSTED_ZONE_ID/g" .ci/zero-2-prod/dns-records.json
+route_53_dns_hosted_zone_id=$(aws route53 list-hosted-zones --query "HostedZones[?(@.Name=='solidvessel.com.')].Id" --output text | tr -d '/hostedzone/')
 aws route53 change-resource-record-sets --hosted-zone-id $route_53_dns_hosted_zone_id --change-batch file://dns-records.json
