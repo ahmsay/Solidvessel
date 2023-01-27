@@ -1,0 +1,77 @@
+{
+  "Comment": "Create hosted zones",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "auth.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "account.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "inventory.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "order.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "payment.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "argocd.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
+    }
+  ]
+}
