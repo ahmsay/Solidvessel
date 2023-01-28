@@ -22,7 +22,7 @@ phases:
     - sleep 60
     - # create applications
     - kubectl create -f .kubernetes/argocd/root/Root.yaml
-    - # create route53 records
+    - # create route53 dns records
     - load_balancer_arn=None
     - until [[ $load_balancer_arn != 'None' ]]; do echo 'Waiting for load balancer to be generated...'; sleep 10; export load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text); done
     - LOAD_BALANCER_DNS_NAME=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
