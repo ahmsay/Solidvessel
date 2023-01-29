@@ -1,4 +1,4 @@
-# Solid Vessel
+# Solidvessel
 
 This is a shopping application designed with microservices architecture. My main goal is to learn about
 microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a
