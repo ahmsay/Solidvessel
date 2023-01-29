@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: inventory
-  namespace: microshop
+  namespace: solidvessel
   labels:
     app: inventory
 spec:
@@ -21,7 +21,7 @@ spec:
           command: [ 'sh', '-c', "until nslookup inventory-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
       containers:
         - name: inventory-app
-          image: ahmsay/microshop-inventory
+          image: ahmsay/solidvessel-inventory
           imagePullPolicy: Always
           args: [ "--spring.profiles.active=test" ]
           ports:

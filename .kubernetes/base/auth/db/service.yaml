@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: auth-db-postgresql
-  namespace: microshop
+  namespace: solidvessel
 spec:
   type: NodePort
   selector:

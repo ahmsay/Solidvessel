@@ -8,11 +8,11 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.microshop</groupId>
+    <groupId>com.solidvessel</groupId>
     <artifactId>payment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Payment Service</name>
-    <description>Payment Service for Online Shopping Application</description>
+    <description>Payment Service for Shopping Application</description>
 
     <properties>
         <java.version>17</java.version>
@@ -21,7 +21,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.microshop</groupId>
+            <groupId>com.solidvessel</groupId>
             <artifactId>shared</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -119,7 +119,7 @@
                         </platforms>
                     </from>
                     <to>
-                        <image>docker.io/ahmsay/microshop-payment</image>
+                        <image>docker.io/ahmsay/solidvessel-payment</image>
                     </to>
                 </configuration>
             </plugin>

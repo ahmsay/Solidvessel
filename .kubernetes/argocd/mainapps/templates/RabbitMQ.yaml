@@ -18,7 +18,7 @@ spec:
           enabled: false
   destination:
     server: https://kubernetes.default.svc
-    namespace: microshop
+    namespace: solidvessel
   syncPolicy:
     automated:
       prune: true

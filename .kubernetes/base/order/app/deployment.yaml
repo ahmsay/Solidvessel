@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: order
-  namespace: microshop
+  namespace: solidvessel
   labels:
     app: order
 spec:
@@ -21,7 +21,7 @@ spec:
           command: [ 'sh', '-c', "until nslookup order-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
       containers:
         - name: order-app
-          image: ahmsay/microshop-order
+          image: ahmsay/solidvessel-order
           imagePullPolicy: Always
           args: [ "--spring.profiles.active=test" ]
           ports:

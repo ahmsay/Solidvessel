@@ -8,11 +8,11 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.microshop</groupId>
+    <groupId>com.solidvessel</groupId>
     <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Auth Service</name>
-    <description>Authentication Service for Online Shopping Application</description>
+    <description>Authentication Service for Shopping Application</description>
 
     <properties>
         <java.version>17</java.version>
@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.microshop</groupId>
+            <groupId>com.solidvessel</groupId>
             <artifactId>shared</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -98,7 +98,7 @@
                         </platforms>
                     </from>
                     <to>
-                        <image>docker.io/ahmsay/microshop-auth</image>
+                        <image>docker.io/ahmsay/solidvessel-auth</image>
                     </to>
                 </configuration>
             </plugin>

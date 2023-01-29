@@ -8,11 +8,11 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.microshop</groupId>
+	<groupId>com.solidvessel</groupId>
 	<artifactId>inventory</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Inventory Service</name>
-	<description>Inventory Service for Online Shopping Application</description>
+	<description>Inventory Service for Shopping Application</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -21,7 +21,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.microshop</groupId>
+			<groupId>com.solidvessel</groupId>
 			<artifactId>shared</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -111,7 +111,7 @@
 						</platforms>
 					</from>
 					<to>
-						<image>docker.io/ahmsay/microshop-inventory</image>
+						<image>docker.io/ahmsay/solidvessel-inventory</image>
 					</to>
 				</configuration>
 			</plugin>

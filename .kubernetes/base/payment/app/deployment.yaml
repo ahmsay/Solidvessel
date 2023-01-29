@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment
-  namespace: microshop
+  namespace: solidvessel
   labels:
     app: payment
 spec:
@@ -21,7 +21,7 @@ spec:
           command: [ 'sh', '-c', "until nslookup payment-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
       containers:
         - name: payment-app
-          image: ahmsay/microshop-payment
+          image: ahmsay/solidvessel-payment
           imagePullPolicy: Always
           args: [ "--spring.profiles.active=test" ]
           ports:

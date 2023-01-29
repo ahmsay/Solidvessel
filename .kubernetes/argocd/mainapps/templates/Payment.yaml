@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ahmsay/Microshop.git
+    repoURL: https://github.com/ahmsay/Solidvessel.git
     targetRevision: master
     path: .kubernetes/environments/prod/payment
   destination:
     server: https://kubernetes.default.svc
-    namespace: microshop
+    namespace: solidvessel
   syncPolicy:
     automated:
       prune: true

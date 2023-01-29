@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: microshop-ingress
-  namespace: microshop
+  name: solidvessel-ingress
+  namespace: solidvessel
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:

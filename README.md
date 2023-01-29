@@ -1,6 +1,6 @@
-# Microshop
+# Solid Vessel
 
-This is an online shopping application designed with microservices architecture. My main goal is to learn about
+This is a shopping application designed with microservices architecture. My main goal is to learn about
 microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a
 shopping application.
 
@@ -39,7 +39,7 @@ This mode will start the whole application in K8S cluster. You can test it on yo
 on Docker Desktop.
 
 ```shell
-kubectl create ns microshop
+kubectl create ns solidvessel
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/cloud/deploy.yaml
 # Wait for the ingress controller to be ready
 kubectl apply -k ./.kubernetes/base
@@ -81,7 +81,7 @@ between microservices. Even if the order microservice is down, the order can be 
 We can scale in or out a microservice with `kubectl scale` command.
 
 ```bash
-kubectl scale --replicas=5 deployment/inventory -n microshop
+kubectl scale --replicas=5 deployment/inventory -n solidvessel
 ```
 
 ## Load Balancing
@@ -131,5 +131,5 @@ put those classes in the shared kernel and made them have a common package.
 ## Testing
 
 You can test the application by using
-<a href="https://github.com/ahmsay/Microshop/blob/master/microshop.postman_collection.json" target="_blank">
+<a href="https://github.com/ahmsay/Solidvessel/blob/master/solidvessel.postman_collection.json" target="_blank">
 API tests</a> that can be imported into Postman.

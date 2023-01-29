@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth
-  namespace: microshop
+  namespace: solidvessel
   labels:
     app: auth
 spec:
@@ -21,7 +21,7 @@ spec:
           command: [ 'sh', '-c', "until nslookup auth-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
       containers:
         - name: auth-app
-          image: ahmsay/microshop-auth
+          image: ahmsay/solidvessel-auth
           imagePullPolicy: Always
           args: [ "--spring.profiles.active=test" ]
           ports:

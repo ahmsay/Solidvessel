@@ -2,7 +2,7 @@
 !*/
 !.gitignore
 !.README.md
-!microshop.postman_collection.json
+!solidvessel.postman_collection.json
 !/.kubernetes/**
 !docker-compose.yaml
 

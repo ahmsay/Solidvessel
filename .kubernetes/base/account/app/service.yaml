@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: account
-  namespace: microshop
+  namespace: solidvessel
 spec:
   selector:
     app: account
