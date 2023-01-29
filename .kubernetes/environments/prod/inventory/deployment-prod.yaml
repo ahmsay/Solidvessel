@@ -4,6 +4,7 @@ metadata:
   name: inventory
   namespace: solidvessel
 spec:
+  replicas: 4
   template:
     spec:
       containers:
