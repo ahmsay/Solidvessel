@@ -40,7 +40,7 @@ on Docker Desktop.
 
 ```shell
 kubectl create ns solidvessel
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml
 # Wait for the ingress controller to be ready
 kubectl apply -k ./.kubernetes/base
 ```
