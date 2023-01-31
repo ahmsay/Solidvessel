@@ -1,23 +1,24 @@
 package com.solidvessel.order.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
-    @Override
-    public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
+    @Bean
+    public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeHttpRequests()
+                .requestMatchers(antMatcher("/")).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().disable()
                 .formLogin().disable()
                 .csrf().disable();
+        return httpSecurity.build();
     }
 }

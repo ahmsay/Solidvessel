@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,11 +20,13 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final AppUserService appUserService;
     private final EventDispatcher eventDispatcher;
+    private final SecurityContextRepository securityContextRepository;
 
-    public AuthService(AuthenticationManager authenticationManager, AppUserService appUserService, EventDispatcher eventDispatcher) {
+    public AuthService(AuthenticationManager authenticationManager, AppUserService appUserService, EventDispatcher eventDispatcher, SecurityContextRepository securityContextRepository) {
         this.authenticationManager = authenticationManager;
         this.appUserService = appUserService;
         this.eventDispatcher = eventDispatcher;
+        this.securityContextRepository = securityContextRepository;
     }
 
     public void login(final AppUser loginRequest) {
@@ -34,6 +37,7 @@ public class AuthService {
 
         Authentication authentication = authenticationManager.authenticate(new LoginToken(appUser.getId().toString()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        saveContext();
     }
 
     public void logout() {
@@ -46,5 +50,13 @@ public class AuthService {
     public void signUp(final SignUpInfo signUpInfo) {
         AppUser savedUser = appUserService.add(new AppUser(signUpInfo.username(), signUpInfo.password()));
         eventDispatcher.sendUserSavedEvent(new UserSavedEvent(savedUser.getId(), signUpInfo.firstName(), signUpInfo.lastName()));
+    }
+
+    private void saveContext() {
+        if (RequestContextHolder.getRequestAttributes() != null) {
+            var request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            var response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+            securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
+        }
     }
 }

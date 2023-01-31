@@ -1,47 +1,47 @@
 package com.solidvessel.auth.configuration;
 
-import com.solidvessel.auth.authentication.AppUserAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
-    private final AppUserAuthenticationProvider appUserAuthenticationProvider;
+    private final AuthenticationManager authenticationManager;
 
-    public SecurityConfig(final AppUserAuthenticationProvider appUserAuthenticationProvider) {
-        this.appUserAuthenticationProvider = appUserAuthenticationProvider;
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) {
-        authenticationManagerBuilder
-                .authenticationProvider(appUserAuthenticationProvider);
-    }
-
-    @Override
-    public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/signUp").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .logout().disable()
-                .formLogin().disable()
-                .csrf().disable();
+    public SecurityConfig(final AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeHttpRequests()
+                .requestMatchers(antMatcher("/")).permitAll()
+                .requestMatchers(antMatcher("/login")).permitAll()
+                .requestMatchers(antMatcher("/signUp")).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .authenticationManager(authenticationManager)
+                .logout().disable()
+                .formLogin().disable()
+                .csrf().disable();
+        return httpSecurity.build();
+    }
+
+    public Customizer<CsrfConfigurer<HttpSecurity>> configureCsrf() { // would be needed later
+        CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName(null);
+        return (csrf) -> csrf
+                .csrfTokenRepository(tokenRepository)
+                .csrfTokenRequestHandler(requestHandler);
     }
 }
