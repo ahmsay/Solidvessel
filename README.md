@@ -133,3 +133,15 @@ put those classes in the shared kernel and made them have a common package.
 You can test the application by using
 <a href="https://github.com/ahmsay/Solidvessel/blob/master/solidvessel.postman_collection.json" target="_blank">
 API tests</a> that can be imported into Postman.
+
+## Roadmap
+- Hexagonal architecture
+- Domain enrichment
+- Data enrichment
+- Persistence
+- Authorization
+- Migration to Kafka
+- Security improvements
+- Building images on CI environment
+- Authentication with JWT ??
+- Spring native ??
