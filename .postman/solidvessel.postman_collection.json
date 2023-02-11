@@ -14,14 +14,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/auth",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"auth"
-							]
-						}
+                          "raw": "{{authServiceUrl}}",
+                          "host": [
+                            "{{authServiceUrl}}"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -56,15 +53,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/auth/signUp",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"auth",
-								"signUp"
-							]
-						}
+                          "raw": "{{authServiceUrl}}/signUp",
+                          "host": [
+                            "{{authServiceUrl}}"
+                          ],
+                          "path": [
+                            "signUp"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -100,15 +96,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/auth/login",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
+                          "raw": "{{authServiceUrl}}/login",
+                          "host": [
+                            "{{authServiceUrl}}"
+                          ],
+                          "path": [
+                            "login"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -145,15 +140,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/auth/logout",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"auth",
-								"logout"
-							]
-						}
+                          "raw": "{{authServiceUrl}}/logout",
+                          "host": [
+                            "{{authServiceUrl}}"
+                          ],
+                          "path": [
+                            "logout"
+                          ]
+                        }
 					},
 					"response": []
 				}
@@ -174,14 +168,11 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/account",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"account"
-							]
-						}
+                          "raw": "{{accountServiceUrl}}",
+                          "host": [
+                            "{{accountServiceUrl}}"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -219,15 +210,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/account/customers",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"account",
-								"customers"
-							]
-						}
+                          "raw": "{{accountServiceUrl}}/customers",
+                          "host": [
+                            "{{accountServiceUrl}}"
+                          ],
+                          "path": [
+                            "customers"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -256,16 +246,15 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/account/customers/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"account",
-								"customers",
-								"1"
-							]
-						}
+                          "raw": "{{accountServiceUrl}}/customers/1",
+                          "host": [
+                            "{{accountServiceUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -294,17 +283,16 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/account/customers/1/detail",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"account",
-								"customers",
-								"1",
-								"detail"
-							]
-						}
+                          "raw": "{{accountServiceUrl}}/customers/1/detail",
+                          "host": [
+                            "{{accountServiceUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            "1",
+                            "detail"
+                          ]
+                        }
 					},
 					"response": []
 				}
@@ -325,14 +313,11 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/inventory",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"inventory"
-							]
-						}
+                          "raw": "{{inventoryServiceUrl}}",
+                          "host": [
+                            "{{inventoryServiceUrl}}"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -361,15 +346,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/inventory/products",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"inventory",
-								"products"
-							]
-						}
+                          "raw": "{{inventoryServiceUrl}}/products",
+                          "host": [
+                            "{{inventoryServiceUrl}}"
+                          ],
+                          "path": [
+                            "products"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -398,16 +382,15 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/inventory/products/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"inventory",
-								"products",
-								"1"
-							]
-						}
+                          "raw": "{{inventoryServiceUrl}}/products/1",
+                          "host": [
+                            "{{inventoryServiceUrl}}"
+                          ],
+                          "path": [
+                            "products",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -448,17 +431,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/inventory/products/ofPayment/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"inventory",
-								"products",
-								"ofPayment",
-								"1"
-							]
-						}
+                          "raw": "{{inventoryServiceUrl}}/products/ofPayment/1",
+                          "host": [
+                            "{{inventoryServiceUrl}}"
+                          ],
+                          "path": [
+                            "products",
+                            "ofPayment",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -496,15 +478,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/inventory/products",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"inventory",
-								"products"
-							]
-						}
+                          "raw": "{{inventoryServiceUrl}}/products",
+                          "host": [
+                            "{{inventoryServiceUrl}}"
+                          ],
+                          "path": [
+                            "products"
+                          ]
+                        }
 					},
 					"response": []
 				}
@@ -525,14 +506,11 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/order",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"order"
-							]
-						}
+                          "raw": "{{orderServiceUrl}}",
+                          "host": [
+                            "{{orderServiceUrl}}"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -561,15 +539,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/order/orders",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"order",
-								"orders"
-							]
-						}
+                          "raw": "{{orderServiceUrl}}/orders",
+                          "host": [
+                            "{{orderServiceUrl}}"
+                          ],
+                          "path": [
+                            "orders"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -598,16 +575,15 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/order/orders/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"order",
-								"orders",
-								"1"
-							]
-						}
+                          "raw": "{{orderServiceUrl}}/orders/1",
+                          "host": [
+                            "{{orderServiceUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -636,17 +612,16 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/order/orders/1/detail",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"order",
-								"orders",
-								"1",
-								"detail"
-							]
-						}
+                          "raw": "{{orderServiceUrl}}/orders/1/detail",
+                          "host": [
+                            "{{orderServiceUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            "1",
+                            "detail"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -675,17 +650,16 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/order/orders/ofCustomer/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"order",
-								"orders",
-								"ofCustomer",
-								"1"
-							]
-						}
+                          "raw": "{{orderServiceUrl}}/orders/ofCustomer/1",
+                          "host": [
+                            "{{orderServiceUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            "ofCustomer",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -723,15 +697,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/order/orders",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"order",
-								"orders"
-							]
-						}
+                          "raw": "{{orderServiceUrl}}/orders",
+                          "host": [
+                            "{{orderServiceUrl}}"
+                          ],
+                          "path": [
+                            "orders"
+                          ]
+                        }
 					},
 					"response": []
 				}
@@ -752,14 +725,11 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/payment",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"payment"
-							]
-						}
+                          "raw": "{{paymentServiceUrl}}",
+                          "host": [
+                            "{{paymentServiceUrl}}"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -788,15 +758,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/payment/payments",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"payment",
-								"payments"
-							]
-						}
+                          "raw": "{{paymentServiceUrl}}/payments",
+                          "host": [
+                            "{{paymentServiceUrl}}"
+                          ],
+                          "path": [
+                            "payments"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -825,16 +794,15 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/payment/payments/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"payment",
-								"payments",
-								"1"
-							]
-						}
+                          "raw": "{{paymentServiceUrl}}/payments/1",
+                          "host": [
+                            "{{paymentServiceUrl}}"
+                          ],
+                          "path": [
+                            "payments",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -863,17 +831,16 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/payment/payments/1/detail",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"payment",
-								"payments",
-								"1",
-								"detail"
-							]
-						}
+                          "raw": "{{paymentServiceUrl}}/payments/1/detail",
+                          "host": [
+                            "{{paymentServiceUrl}}"
+                          ],
+                          "path": [
+                            "payments",
+                            "1",
+                            "detail"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -902,17 +869,16 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/payment/payments/ofCustomer/1",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"payment",
-								"payments",
-								"ofCustomer",
-								"1"
-							]
-						}
+                          "raw": "{{paymentServiceUrl}}/payments/ofCustomer/1",
+                          "host": [
+                            "{{paymentServiceUrl}}"
+                          ],
+                          "path": [
+                            "payments",
+                            "ofCustomer",
+                            "1"
+                          ]
+                        }
 					},
 					"response": []
 				},
@@ -950,15 +916,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/payment/payments",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"payment",
-								"payments"
-							]
-						}
+                          "raw": "{{paymentServiceUrl}}/payments",
+                          "host": [
+                            "{{paymentServiceUrl}}"
+                          ],
+                          "path": [
+                            "payments"
+                          ]
+                        }
 					},
 					"response": []
 				}

@@ -2,8 +2,8 @@
 !*/
 !.gitignore
 !.README.md
-!solidvessel.postman_collection.json
 !/.kubernetes/**
+!.postman/**
 !docker-compose.yaml
 
 !.ci/**

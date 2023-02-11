@@ -130,9 +130,7 @@ put those classes in the shared kernel and made them have a common package.
 
 ## Testing
 
-You can test the application by using
-<a href="https://github.com/ahmsay/Solidvessel/blob/master/solidvessel.postman_collection.json" target="_blank">
-API tests</a> that can be imported into Postman.
+You can test the application by importing the collection and environments into Postman.
 
 ## Roadmap
 - Hexagonal architecture
