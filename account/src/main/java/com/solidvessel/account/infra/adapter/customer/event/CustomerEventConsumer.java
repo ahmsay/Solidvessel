@@ -8,11 +8,11 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerEventHandler {
+public class CustomerEventConsumer {
 
     private final CustomerService customerService;
 
-    public CustomerEventHandler(CustomerService customerService) {
+    public CustomerEventConsumer(CustomerService customerService) {
         this.customerService = customerService;
     }
 
