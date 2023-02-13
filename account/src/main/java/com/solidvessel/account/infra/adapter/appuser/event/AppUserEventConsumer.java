@@ -1,4 +1,4 @@
-package com.solidvessel.account.infra.adapter.customer.event;
+package com.solidvessel.account.infra.adapter.appuser.event;
 
 import com.solidvessel.account.domain.appuser.event.UserSavedEvent;
 import com.solidvessel.account.domain.customer.model.Customer;
@@ -8,16 +8,16 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerEventConsumer {
+public class AppUserEventConsumer {
 
     private final CustomerService customerService;
 
-    public CustomerEventConsumer(CustomerService customerService) {
+    public AppUserEventConsumer(CustomerService customerService) {
         this.customerService = customerService;
     }
 
     @RabbitListener(queues = "${queues.customer}")
-    void handleUserSavedEvent(final UserSavedEvent event) {
+    void consumeUserSavedEvent(final UserSavedEvent event) {
         try {
             customerService.add(new Customer(event.userId(), event.firstName(), event.lastName()));
         } catch (final Exception ex) {
