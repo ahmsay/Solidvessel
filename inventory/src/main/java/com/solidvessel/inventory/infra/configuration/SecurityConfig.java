@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.configuration;
+package com.solidvessel.inventory.infra.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

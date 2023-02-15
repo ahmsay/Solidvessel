@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.event;
+package com.solidvessel.inventory.domain.payment.event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.configuration;
+package com.solidvessel.inventory.infra.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.Binding;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMQ {
+public class RabbitMQConfig {
 
     @Value("${exchanges.payment}")
     private String paymentTopicName;

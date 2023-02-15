@@ -1,36 +1,26 @@
-package com.solidvessel.inventory.entity;
+package com.solidvessel.inventory.domain.product.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-
-@Entity
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
     private String name;
-
-    @NotNull
     private Double price;
-
     private String category;
-
     private Long paymentId;
 
-    public Product(final String name, final Double price, final String category, final Long paymentId) {
+    public Product(Long id, String name, Double price, String category, Long paymentId) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.paymentId = paymentId;
     }
 
-    public Product() {
+    public Product(String name, Double price, String category, Long paymentId) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.paymentId = paymentId;
     }
 
     public Long getId() {

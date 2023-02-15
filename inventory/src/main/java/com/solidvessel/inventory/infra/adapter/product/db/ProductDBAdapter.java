@@ -1,0 +1,42 @@
+package com.solidvessel.inventory.infra.adapter.product.db;
+
+import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
+import com.solidvessel.inventory.domain.product.model.Product;
+import com.solidvessel.inventory.domain.product.port.ProductPort;
+import com.solidvessel.inventory.infra.adapter.product.db.entity.ProductJpaEntity;
+import com.solidvessel.inventory.infra.adapter.product.db.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class ProductDBAdapter implements ProductPort {
+
+    private final ProductRepository productRepository;
+
+    public ProductDBAdapter(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    @Override
+    public List<ProductDataModel> getAll() {
+        return productRepository.findAll().stream().map(ProductJpaEntity::toDataModel).toList();
+    }
+
+    @Override
+    public ProductDataModel getById(Long id) {
+        ProductJpaEntity productJpaEntity = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
+        return productJpaEntity.toDataModel();
+    }
+
+    @Override
+    public List<ProductDataModel> getByPaymentId(Long paymentId) {
+        return productRepository.findByPaymentId(paymentId).stream().map(ProductJpaEntity::toDataModel).toList();
+    }
+
+    @Override
+    public void add(Product product) {
+        productRepository.save(ProductJpaEntity.from(product));
+    }
+}
