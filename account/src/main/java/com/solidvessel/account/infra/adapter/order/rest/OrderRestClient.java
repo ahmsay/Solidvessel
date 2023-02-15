@@ -1,6 +1,7 @@
 package com.solidvessel.account.infra.adapter.order.rest;
 
-import com.solidvessel.account.infra.adapter.order.rest.response.OrderResponse;
+import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
+import com.solidvessel.shared.infra.Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,5 +13,5 @@ import java.util.List;
 public interface OrderRestClient {
 
     @GetMapping("/orders/ofCustomer/{customerId}")
-    List<OrderResponse> getByCustomerId(@PathVariable final Long customerId, @RequestHeader("Cookie") String session);
+    Response<List<OrderDataModel>> getByCustomerId(@PathVariable final Long customerId, @RequestHeader("Cookie") String session);
 }

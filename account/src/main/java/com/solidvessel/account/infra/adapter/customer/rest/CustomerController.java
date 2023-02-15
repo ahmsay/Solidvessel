@@ -1,13 +1,14 @@
 package com.solidvessel.account.infra.adapter.customer.rest;
 
+import com.solidvessel.account.domain.customer.datamodel.CustomerDataModel;
+import com.solidvessel.account.domain.customer.datamodel.CustomerDetailDataModel;
 import com.solidvessel.account.domain.customer.port.CustomerPort;
+import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.account.domain.order.port.OrderPort;
+import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.domain.payment.port.PaymentPort;
-import com.solidvessel.account.infra.adapter.customer.rest.response.CustomerDetailResponse;
-import com.solidvessel.account.infra.adapter.customer.rest.response.CustomerResponse;
-import com.solidvessel.account.infra.adapter.order.rest.response.OrdersResponse;
-import com.solidvessel.account.infra.adapter.payment.rest.response.PaymentsResponse;
 import com.solidvessel.shared.auth.SessionUtil;
+import com.solidvessel.shared.infra.Response;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,21 +32,21 @@ public class CustomerController {
     }
 
     @GetMapping()
-    public List<CustomerResponse> getAll() {
-        return customerPort.getAll();
+    public Response<List<CustomerDataModel>> getAll() {
+        return new Response<>(customerPort.getAll());
     }
 
     @GetMapping("/{id}")
-    public CustomerResponse getById(@PathVariable final Long id) {
-        return customerPort.getById(id);
+    public Response<CustomerDataModel> getById(@PathVariable final Long id) {
+        return new Response<>(customerPort.getById(id));
     }
 
     @GetMapping("/{id}/detail")
-    public CustomerDetailResponse getDetailById(@PathVariable final Long id, final HttpServletRequest request) {
+    public Response<CustomerDetailDataModel> getDetailById(@PathVariable final Long id, final HttpServletRequest request) {
         String session = SessionUtil.getSession(request);
-        CustomerResponse customer = customerPort.getById(id);
-        OrdersResponse orders = orderPort.getOrdersOfCustomer(id, session);
-        PaymentsResponse payments = paymentPort.getPaymentsOfCustomer(id, session);
-        return CustomerDetailResponse.from(customer, orders, payments);
+        CustomerDataModel customer = customerPort.getById(id);
+        List<OrderDataModel> orders = orderPort.getOrdersOfCustomer(id, session);
+        List<PaymentDataModel> payments = paymentPort.getPaymentsOfCustomer(id, session);
+        return new Response<>(CustomerDetailDataModel.from(customer, orders, payments));
     }
 }

@@ -1,7 +1,7 @@
 package com.solidvessel.account.infra.adapter.customer.db.entity;
 
+import com.solidvessel.account.domain.customer.datamodel.CustomerDataModel;
 import com.solidvessel.account.domain.customer.model.Customer;
-import com.solidvessel.account.infra.adapter.customer.rest.response.CustomerResponse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
@@ -39,8 +39,8 @@ public class CustomerJpaEntity {
         return lastName;
     }
 
-    public CustomerResponse toResponse() {
-        return new CustomerResponse(id, firstName, lastName);
+    public CustomerDataModel toDataModel() {
+        return new CustomerDataModel(id, firstName, lastName);
     }
 
     public static CustomerJpaEntity from(final Customer customer) {

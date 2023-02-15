@@ -1,11 +1,12 @@
 package com.solidvessel.account.infra.adapter.order.rest;
 
+import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.account.domain.order.port.OrderPort;
-import com.solidvessel.account.infra.adapter.order.rest.response.OrdersResponse;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class OrderRestAdapter implements OrderPort {
@@ -18,9 +19,9 @@ public class OrderRestAdapter implements OrderPort {
         this.orderRestClient = orderRestClient;
     }
 
-    public OrdersResponse getOrdersOfCustomer(final Long customerId, final String session) {
+    public List<OrderDataModel> getOrdersOfCustomer(final Long customerId, final String session) {
         return circuitBreakerFactory.create("orderCircuitBreaker")
-                .run(() -> OrdersResponse.from(orderRestClient.getByCustomerId(customerId, session)),
-                        throwable -> new OrdersResponse(new ArrayList<>(), "Couldn't retrieve orders of the customer."));
+                .run(() -> orderRestClient.getByCustomerId(customerId, session).data(),
+                        throwable -> new ArrayList<>());
     }
 }

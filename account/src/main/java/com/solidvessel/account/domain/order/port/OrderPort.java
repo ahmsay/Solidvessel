@@ -1,8 +1,10 @@
 package com.solidvessel.account.domain.order.port;
 
-import com.solidvessel.account.infra.adapter.order.rest.response.OrdersResponse;
+import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
+
+import java.util.List;
 
 public interface OrderPort {
 
-    OrdersResponse getOrdersOfCustomer(Long customerId, String session);
+    List<OrderDataModel> getOrdersOfCustomer(Long customerId, String session);
 }

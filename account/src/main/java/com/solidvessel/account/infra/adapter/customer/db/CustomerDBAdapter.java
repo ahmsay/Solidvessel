@@ -1,10 +1,10 @@
 package com.solidvessel.account.infra.adapter.customer.db;
 
+import com.solidvessel.account.domain.customer.datamodel.CustomerDataModel;
 import com.solidvessel.account.domain.customer.model.Customer;
 import com.solidvessel.account.domain.customer.port.CustomerPort;
 import com.solidvessel.account.infra.adapter.customer.db.entity.CustomerJpaEntity;
 import com.solidvessel.account.infra.adapter.customer.db.repository.CustomerRepository;
-import com.solidvessel.account.infra.adapter.customer.rest.response.CustomerResponse;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -20,14 +20,14 @@ public class CustomerDBAdapter implements CustomerPort {
     }
 
     @Override
-    public List<CustomerResponse> getAll() {
-        return customerRepository.findAll().stream().map(CustomerJpaEntity::toResponse).toList();
+    public List<CustomerDataModel> getAll() {
+        return customerRepository.findAll().stream().map(CustomerJpaEntity::toDataModel).toList();
     }
 
     @Override
-    public CustomerResponse getById(Long id) {
+    public CustomerDataModel getById(Long id) {
         CustomerJpaEntity customerJpaEntity = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
-        return customerJpaEntity.toResponse();
+        return customerJpaEntity.toDataModel();
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.solidvessel.account.domain.payment.port;
 
-import com.solidvessel.account.infra.adapter.payment.rest.response.PaymentsResponse;
+import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
+
+import java.util.List;
 
 public interface PaymentPort {
 
-    PaymentsResponse getPaymentsOfCustomer(Long customerId, String session);
+    List<PaymentDataModel> getPaymentsOfCustomer(Long customerId, String session);
 }
