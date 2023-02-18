@@ -8,8 +8,6 @@ import com.solidvessel.account.domain.order.port.OrderPort;
 import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.domain.payment.port.PaymentPort;
 import com.solidvessel.shared.infra.rest.Response;
-import com.solidvessel.shared.infra.util.SessionUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,11 +40,10 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}/detail")
-    public Response<CustomerDetailDataModel> getDetailById(@PathVariable final Long id, final HttpServletRequest request) {
-        String session = SessionUtil.getSession(request);
+    public Response<CustomerDetailDataModel> getDetailById(@PathVariable final Long id) {
         CustomerDataModel customer = customerPort.getById(id);
-        List<OrderDataModel> orders = orderPort.getOrdersOfCustomer(id, session);
-        List<PaymentDataModel> payments = paymentPort.getPaymentsOfCustomer(id, session);
+        List<OrderDataModel> orders = orderPort.getOrdersOfCustomer(id);
+        List<PaymentDataModel> payments = paymentPort.getPaymentsOfCustomer(id);
         return new Response<>(CustomerDetailDataModel.from(customer, orders, payments));
     }
 }

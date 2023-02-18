@@ -2,6 +2,7 @@ package com.solidvessel.order.infra.adapter.payment.rest;
 
 import com.solidvessel.order.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.order.domain.payment.port.PaymentPort;
+import com.solidvessel.shared.infra.util.SessionUtil;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,8 @@ public class PaymentRestAdapter implements PaymentPort {
     }
 
     @Override
-    public PaymentDataModel getPaymentOfOrder(Long paymentId, String session) {
+    public PaymentDataModel getPaymentOfOrder(Long paymentId) {
+        String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("paymentCircuitBreaker")
                 .run(() -> paymentRestClient.getById(paymentId, session).data(),
                         throwable -> null);

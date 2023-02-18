@@ -2,6 +2,7 @@ package com.solidvessel.order.infra.adapter.customer.rest;
 
 import com.solidvessel.order.domain.customer.datamodel.CustomerDataModel;
 import com.solidvessel.order.domain.customer.port.CustomerPort;
+import com.solidvessel.shared.infra.util.SessionUtil;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,8 @@ public class CustomerRestAdapter implements CustomerPort {
     }
 
     @Override
-    public CustomerDataModel getCustomerOfOrder(Long customerId, String session) {
+    public CustomerDataModel getCustomerOfOrder(Long customerId) {
+        String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("customerCircuitBreaker")
                 .run(() -> customerRestClient.getById(customerId, session).data(),
                         throwable -> null);

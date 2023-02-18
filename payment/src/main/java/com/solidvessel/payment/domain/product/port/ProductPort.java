@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProductPort {
 
-    List<ProductDataModel> getProductsOfPayment(Long paymentId, String session);
+    List<ProductDataModel> getProductsOfPayment(Long paymentId);
 }

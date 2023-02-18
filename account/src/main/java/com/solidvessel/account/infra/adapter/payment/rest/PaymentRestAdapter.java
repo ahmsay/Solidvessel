@@ -2,6 +2,7 @@ package com.solidvessel.account.infra.adapter.payment.rest;
 
 import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.domain.payment.port.PaymentPort;
+import com.solidvessel.shared.infra.util.SessionUtil;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,8 @@ public class PaymentRestAdapter implements PaymentPort {
         this.paymentRestClient = paymentRestClient;
     }
 
-    public List<PaymentDataModel> getPaymentsOfCustomer(final Long customerId, final String session) {
+    public List<PaymentDataModel> getPaymentsOfCustomer(final Long customerId) {
+        String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("paymentCircuitBreaker")
                 .run(() -> paymentRestClient.getByCustomerId(customerId, session).data(),
                         throwable -> new ArrayList<>());

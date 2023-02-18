@@ -4,5 +4,5 @@ import com.solidvessel.order.domain.payment.datamodel.PaymentDataModel;
 
 public interface PaymentPort {
 
-    PaymentDataModel getPaymentOfOrder(Long paymentId, String session);
+    PaymentDataModel getPaymentOfOrder(Long paymentId);
 }

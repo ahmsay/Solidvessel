@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface OrderPort {
 
-    List<OrderDataModel> getOrdersOfCustomer(Long customerId, String session);
+    List<OrderDataModel> getOrdersOfCustomer(Long customerId);
 }

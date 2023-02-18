@@ -10,8 +10,6 @@ import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.payment.infra.adapter.payment.rest.request.AddPaymentRequest;
 import com.solidvessel.shared.infra.rest.Response;
-import com.solidvessel.shared.infra.util.SessionUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,11 +41,10 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}/detail")
-    public Response<PaymentDetailDataModel> getDetailById(@PathVariable final Long id, final HttpServletRequest request) {
-        String session = SessionUtil.getSession(request);
+    public Response<PaymentDetailDataModel> getDetailById(@PathVariable final Long id) {
         PaymentDataModel payment = paymentPort.getById(id);
-        CustomerDataModel customer = customerPort.getCustomerOfPayment(payment.customerId(), session);
-        List<ProductDataModel> products = productPort.getProductsOfPayment(payment.id(), session);
+        CustomerDataModel customer = customerPort.getCustomerOfPayment(payment.customerId());
+        List<ProductDataModel> products = productPort.getProductsOfPayment(payment.id());
         return new Response<>(PaymentDetailDataModel.from(payment, customer, products));
     }
 
