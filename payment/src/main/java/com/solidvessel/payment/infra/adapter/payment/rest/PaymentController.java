@@ -9,8 +9,8 @@ import com.solidvessel.payment.domain.payment.service.PaymentCommandService;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.payment.infra.adapter.payment.rest.request.AddPaymentRequest;
-import com.solidvessel.shared.auth.SessionUtil;
-import com.solidvessel.shared.infra.Response;
+import com.solidvessel.shared.infra.rest.Response;
+import com.solidvessel.shared.infra.util.SessionUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 

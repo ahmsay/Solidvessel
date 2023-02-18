@@ -1,7 +1,8 @@
-package com.solidvessel.shared.auth;
+package com.solidvessel.shared.infra.util;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.Arrays;
 
 public class SessionUtil {

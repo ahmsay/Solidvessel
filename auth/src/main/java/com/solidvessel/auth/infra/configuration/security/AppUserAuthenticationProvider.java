@@ -1,7 +1,7 @@
 package com.solidvessel.auth.infra.configuration.security;
 
 import com.solidvessel.auth.infra.adapter.login.security.LoginToken;
-import com.solidvessel.shared.auth.LoggedInToken;
+import com.solidvessel.shared.infra.security.LoggedInToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

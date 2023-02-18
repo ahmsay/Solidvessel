@@ -1,4 +1,4 @@
-package com.solidvessel.shared.auth;
+package com.solidvessel.shared.infra.security;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;

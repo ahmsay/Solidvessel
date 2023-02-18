@@ -2,7 +2,7 @@ package com.solidvessel.auth.infra.configuration.security;
 
 import com.solidvessel.auth.domain.appuser.model.AppUser;
 import com.solidvessel.auth.domain.appuser.port.AppUserPort;
-import com.solidvessel.shared.auth.AppUserDetails;
+import com.solidvessel.shared.infra.security.AppUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

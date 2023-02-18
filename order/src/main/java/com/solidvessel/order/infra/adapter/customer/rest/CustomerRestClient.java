@@ -1,7 +1,7 @@
 package com.solidvessel.order.infra.adapter.customer.rest;
 
 import com.solidvessel.order.domain.customer.datamodel.CustomerDataModel;
-import com.solidvessel.shared.infra.Response;
+import com.solidvessel.shared.infra.rest.Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

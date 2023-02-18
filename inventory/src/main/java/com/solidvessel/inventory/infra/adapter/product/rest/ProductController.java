@@ -4,7 +4,7 @@ import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.domain.product.service.ProductCommandService;
 import com.solidvessel.inventory.infra.adapter.product.rest.request.AddProductRequest;
-import com.solidvessel.shared.infra.Response;
+import com.solidvessel.shared.infra.rest.Response;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

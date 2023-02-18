@@ -1,4 +1,4 @@
-package com.solidvessel.shared.infra;
+package com.solidvessel.shared.infra.rest;
 
 public record Response<T>(T data, Boolean error) {
 
