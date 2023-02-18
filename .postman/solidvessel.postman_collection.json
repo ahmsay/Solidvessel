@@ -14,11 +14,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-                          "raw": "{{authServiceUrl}}",
-                          "host": [
-                            "{{authServiceUrl}}"
-                          ]
-                        }
+							"raw": "{{authServiceUrl}}",
+							"host": [
+								"{{authServiceUrl}}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -53,14 +53,14 @@
 							}
 						},
 						"url": {
-                          "raw": "{{authServiceUrl}}/signUp",
-                          "host": [
-                            "{{authServiceUrl}}"
-                          ],
-                          "path": [
-                            "signUp"
-                          ]
-                        }
+							"raw": "{{authServiceUrl}}/signUp",
+							"host": [
+								"{{authServiceUrl}}"
+							],
+							"path": [
+								"signUp"
+							]
+						}
 					},
 					"response": []
 				},
@@ -96,14 +96,14 @@
 							}
 						},
 						"url": {
-                          "raw": "{{authServiceUrl}}/login",
-                          "host": [
-                            "{{authServiceUrl}}"
-                          ],
-                          "path": [
-                            "login"
-                          ]
-                        }
+							"raw": "{{authServiceUrl}}/login",
+							"host": [
+								"{{authServiceUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -140,14 +140,14 @@
 							}
 						},
 						"url": {
-                          "raw": "{{authServiceUrl}}/logout",
-                          "host": [
-                            "{{authServiceUrl}}"
-                          ],
-                          "path": [
-                            "logout"
-                          ]
-                        }
+							"raw": "{{authServiceUrl}}/logout",
+							"host": [
+								"{{authServiceUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
 					},
 					"response": []
 				}
@@ -168,11 +168,11 @@
 							}
 						],
 						"url": {
-                          "raw": "{{accountServiceUrl}}",
-                          "host": [
-                            "{{accountServiceUrl}}"
-                          ]
-                        }
+							"raw": "{{accountServiceUrl}}",
+							"host": [
+								"{{accountServiceUrl}}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -210,14 +210,14 @@
 							}
 						],
 						"url": {
-                          "raw": "{{accountServiceUrl}}/customers",
-                          "host": [
-                            "{{accountServiceUrl}}"
-                          ],
-                          "path": [
-                            "customers"
-                          ]
-                        }
+							"raw": "{{accountServiceUrl}}/customers",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
 					},
 					"response": []
 				},
@@ -246,15 +246,15 @@
 							}
 						],
 						"url": {
-                          "raw": "{{accountServiceUrl}}/customers/1",
-                          "host": [
-                            "{{accountServiceUrl}}"
-                          ],
-                          "path": [
-                            "customers",
-                            "1"
-                          ]
-                        }
+							"raw": "{{accountServiceUrl}}/customers/1",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"customers",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -283,16 +283,16 @@
 							}
 						],
 						"url": {
-                          "raw": "{{accountServiceUrl}}/customers/1/detail",
-                          "host": [
-                            "{{accountServiceUrl}}"
-                          ],
-                          "path": [
-                            "customers",
-                            "1",
-                            "detail"
-                          ]
-                        }
+							"raw": "{{accountServiceUrl}}/customers/1/detail",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"customers",
+								"1",
+								"detail"
+							]
+						}
 					},
 					"response": []
 				}
@@ -313,11 +313,11 @@
 							}
 						],
 						"url": {
-                          "raw": "{{inventoryServiceUrl}}",
-                          "host": [
-                            "{{inventoryServiceUrl}}"
-                          ]
-                        }
+							"raw": "{{inventoryServiceUrl}}",
+							"host": [
+								"{{inventoryServiceUrl}}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -346,14 +346,14 @@
 							}
 						],
 						"url": {
-                          "raw": "{{inventoryServiceUrl}}/products",
-                          "host": [
-                            "{{inventoryServiceUrl}}"
-                          ],
-                          "path": [
-                            "products"
-                          ]
-                        }
+							"raw": "{{inventoryServiceUrl}}/products",
+							"host": [
+								"{{inventoryServiceUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -382,15 +382,15 @@
 							}
 						],
 						"url": {
-                          "raw": "{{inventoryServiceUrl}}/products/1",
-                          "host": [
-                            "{{inventoryServiceUrl}}"
-                          ],
-                          "path": [
-                            "products",
-                            "1"
-                          ]
-                        }
+							"raw": "{{inventoryServiceUrl}}/products/1",
+							"host": [
+								"{{inventoryServiceUrl}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -431,16 +431,16 @@
 							}
 						},
 						"url": {
-                          "raw": "{{inventoryServiceUrl}}/products/ofPayment/1",
-                          "host": [
-                            "{{inventoryServiceUrl}}"
-                          ],
-                          "path": [
-                            "products",
-                            "ofPayment",
-                            "1"
-                          ]
-                        }
+							"raw": "{{inventoryServiceUrl}}/products/ofPayment/1",
+							"host": [
+								"{{inventoryServiceUrl}}"
+							],
+							"path": [
+								"products",
+								"ofPayment",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -478,14 +478,14 @@
 							}
 						},
 						"url": {
-                          "raw": "{{inventoryServiceUrl}}/products",
-                          "host": [
-                            "{{inventoryServiceUrl}}"
-                          ],
-                          "path": [
-                            "products"
-                          ]
-                        }
+							"raw": "{{inventoryServiceUrl}}/products",
+							"host": [
+								"{{inventoryServiceUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				}
@@ -506,11 +506,11 @@
 							}
 						],
 						"url": {
-                          "raw": "{{orderServiceUrl}}",
-                          "host": [
-                            "{{orderServiceUrl}}"
-                          ]
-                        }
+							"raw": "{{orderServiceUrl}}",
+							"host": [
+								"{{orderServiceUrl}}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -539,14 +539,14 @@
 							}
 						],
 						"url": {
-                          "raw": "{{orderServiceUrl}}/orders",
-                          "host": [
-                            "{{orderServiceUrl}}"
-                          ],
-                          "path": [
-                            "orders"
-                          ]
-                        }
+							"raw": "{{orderServiceUrl}}/orders",
+							"host": [
+								"{{orderServiceUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -575,15 +575,15 @@
 							}
 						],
 						"url": {
-                          "raw": "{{orderServiceUrl}}/orders/1",
-                          "host": [
-                            "{{orderServiceUrl}}"
-                          ],
-                          "path": [
-                            "orders",
-                            "1"
-                          ]
-                        }
+							"raw": "{{orderServiceUrl}}/orders/1",
+							"host": [
+								"{{orderServiceUrl}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -612,16 +612,16 @@
 							}
 						],
 						"url": {
-                          "raw": "{{orderServiceUrl}}/orders/1/detail",
-                          "host": [
-                            "{{orderServiceUrl}}"
-                          ],
-                          "path": [
-                            "orders",
-                            "1",
-                            "detail"
-                          ]
-                        }
+							"raw": "{{orderServiceUrl}}/orders/1/detail",
+							"host": [
+								"{{orderServiceUrl}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"detail"
+							]
+						}
 					},
 					"response": []
 				},
@@ -650,61 +650,16 @@
 							}
 						],
 						"url": {
-                          "raw": "{{orderServiceUrl}}/orders/ofCustomer/1",
-                          "host": [
-                            "{{orderServiceUrl}}"
-                          ],
-                          "path": [
-                            "orders",
-                            "ofCustomer",
-                            "1"
-                          ]
-                        }
-					},
-					"response": []
-				},
-				{
-					"name": "add order",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
+							"raw": "{{orderServiceUrl}}/orders/ofCustomer/1",
+							"host": [
+								"{{orderServiceUrl}}"
+							],
+							"path": [
+								"orders",
+								"ofCustomer",
+								"1"
+							]
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"status\": \"Crashed\",\n    \"customerId\": 2,\n    \"paymentId\": 3\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-                          "raw": "{{orderServiceUrl}}/orders",
-                          "host": [
-                            "{{orderServiceUrl}}"
-                          ],
-                          "path": [
-                            "orders"
-                          ]
-                        }
 					},
 					"response": []
 				}
@@ -725,11 +680,11 @@
 							}
 						],
 						"url": {
-                          "raw": "{{paymentServiceUrl}}",
-                          "host": [
-                            "{{paymentServiceUrl}}"
-                          ]
-                        }
+							"raw": "{{paymentServiceUrl}}",
+							"host": [
+								"{{paymentServiceUrl}}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -758,14 +713,14 @@
 							}
 						],
 						"url": {
-                          "raw": "{{paymentServiceUrl}}/payments",
-                          "host": [
-                            "{{paymentServiceUrl}}"
-                          ],
-                          "path": [
-                            "payments"
-                          ]
-                        }
+							"raw": "{{paymentServiceUrl}}/payments",
+							"host": [
+								"{{paymentServiceUrl}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
 					},
 					"response": []
 				},
@@ -794,15 +749,15 @@
 							}
 						],
 						"url": {
-                          "raw": "{{paymentServiceUrl}}/payments/1",
-                          "host": [
-                            "{{paymentServiceUrl}}"
-                          ],
-                          "path": [
-                            "payments",
-                            "1"
-                          ]
-                        }
+							"raw": "{{paymentServiceUrl}}/payments/1",
+							"host": [
+								"{{paymentServiceUrl}}"
+							],
+							"path": [
+								"payments",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -831,16 +786,16 @@
 							}
 						],
 						"url": {
-                          "raw": "{{paymentServiceUrl}}/payments/1/detail",
-                          "host": [
-                            "{{paymentServiceUrl}}"
-                          ],
-                          "path": [
-                            "payments",
-                            "1",
-                            "detail"
-                          ]
-                        }
+							"raw": "{{paymentServiceUrl}}/payments/1/detail",
+							"host": [
+								"{{paymentServiceUrl}}"
+							],
+							"path": [
+								"payments",
+								"1",
+								"detail"
+							]
+						}
 					},
 					"response": []
 				},
@@ -869,16 +824,16 @@
 							}
 						],
 						"url": {
-                          "raw": "{{paymentServiceUrl}}/payments/ofCustomer/1",
-                          "host": [
-                            "{{paymentServiceUrl}}"
-                          ],
-                          "path": [
-                            "payments",
-                            "ofCustomer",
-                            "1"
-                          ]
-                        }
+							"raw": "{{paymentServiceUrl}}/payments/ofCustomer/1",
+							"host": [
+								"{{paymentServiceUrl}}"
+							],
+							"path": [
+								"payments",
+								"ofCustomer",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -908,7 +863,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"payment\": {\n        \"totalCharge\": 120.8,\n        \"customerId\": 3\n    },\n    \"productIds\": [7,8]\n}",
+							"raw": "{\n    \"totalCharge\": 120.8,\n    \"customerId\": 3,\n    \"productIds\": [7,8]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -916,14 +871,14 @@
 							}
 						},
 						"url": {
-                          "raw": "{{paymentServiceUrl}}/payments",
-                          "host": [
-                            "{{paymentServiceUrl}}"
-                          ],
-                          "path": [
-                            "payments"
-                          ]
-                        }
+							"raw": "{{paymentServiceUrl}}/payments",
+							"host": [
+								"{{paymentServiceUrl}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
 					},
 					"response": []
 				}
