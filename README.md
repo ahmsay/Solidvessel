@@ -5,25 +5,26 @@ microservices, so I kept the domain part as simple as possible. The project is a
 shopping application.
 
 ## Architecture
-### Production
+### Development
 (image will be added)
 
 ### Test
 ![image](https://user-images.githubusercontent.com/22731894/159353041-7dd9dd6c-ae8e-448b-978e-9b59c6464332.svg)
 This is the whole application that lives in a Kubernetes cluster.
 
-### Development
+### Production
 (image will be added)
 
 ## Topics
 - <a href=".docs/syncronous-communication.md">Synchronous Communication<a/>
-- Asynchronous Communication
-- Circuit Breaking
-- Horizontal Scaling
-- Load Balancing
-- Traffic Routing
-- Authentication
-- Shared Module
+- <a href=".docs/hexagonal-architecture.md">Hexagonal Architecture<a/>
+- <a href=".docs/authentication.md">Authentication<a/>
+- <a href=".docs/asyncronous-communication.md">Asynchronous Communication<a/>
+- <a href=".docs/circuit-breaking.md">Circuit Breaking<a/>
+- <a href=".docs/horizontal-scaling.md">Horizontal Scaling<a/>
+- <a href=".docs/load-balancing.md">Load Balancing<a/>
+- <a href=".docs/traffic-routing.md">Traffic Routing<a/>
+- <a href=".docs/shared-module.md">Shared Module<a/>
 
 ## Run Options
 
