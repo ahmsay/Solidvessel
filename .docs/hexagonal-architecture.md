@@ -1,5 +1,5 @@
 ## Hexagonal Architecture
 
-![hexagonal](https://user-images.githubusercontent.com/22731894/224127335-5cbdecbf-07be-4ca8-b4fe-290670242bb7.svg)
+![hexagonal](https://user-images.githubusercontent.com/22731894/224128265-0006ac03-2b10-4220-8b26-423b3cc4f87b.svg)
 
 details will be added later
