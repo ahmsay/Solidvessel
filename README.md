@@ -7,6 +7,8 @@ shopping application.
 ## Architecture
 ### Development
 ![development](https://user-images.githubusercontent.com/22731894/224507703-0ea4e588-9751-4dd4-9e45-7ca29d131e1c.svg)
+In development mode, microservices are running as separate processes on your computer. Databases, RabbitMQ and Redis run
+as Docker containers.
 
 ### Test
 ![image](https://user-images.githubusercontent.com/22731894/159353041-7dd9dd6c-ae8e-448b-978e-9b59c6464332.svg)
