@@ -29,6 +29,8 @@ called ingress. There are routing rules defined in ingress, and it forwards the 
 microservice.
 
 ### Production
+![prod](https://user-images.githubusercontent.com/22731894/224817604-6ff0ac21-ccb5-45a6-8de5-b74a2316e344.svg)
+
 (details will be added)
 
 ## Topics
