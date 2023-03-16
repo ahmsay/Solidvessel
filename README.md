@@ -54,7 +54,7 @@ that does a network address translation (NAT), making our nodes to access the in
 they are fully managed by AWS.
 - Worker Nodes: These are where our applications run. The Kubernetes cluster drawn in the test environment is spanned across
 the worker nodes here.
-- CloudFormation: The whole infrastructure (nodes, subnets, ALB, NAT gateway etc.) is built on AWS CloudFormation. This service
+- CloudFormation: The whole infrastructure (nodes, subnets, ALB, NAT gateway etc.) is built on CloudFormation. This service
 provides a way to manage AWS resources easier using declarative approaches.
 
 
