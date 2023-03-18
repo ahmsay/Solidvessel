@@ -1,6 +1,6 @@
 ## Synchronous Communication
 
-![image](https://user-images.githubusercontent.com/22731894/159354677-8fb0a2fd-2a42-464a-9b09-6b76d630dfd5.svg)
+![synchronous_communication](https://user-images.githubusercontent.com/22731894/226122615-a35e5790-031b-4c93-ac6f-d1441350f1cb.svg)
 
 Let's say we want to retrieve all products that are related to a payment, along with the payment information. Payment
 information is in Payment DB and product information is in Inventory DB. To retrieve product information, we need to

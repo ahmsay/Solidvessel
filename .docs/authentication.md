@@ -1,6 +1,6 @@
 ## Authentication
 
-![image](https://user-images.githubusercontent.com/22731894/159349145-ed6a99d6-90a2-4d73-96e4-e5db6f0714ff.svg)
+![authentication](https://user-images.githubusercontent.com/22731894/226122649-ed57b893-0c05-4dcf-a515-e3231a8c0790.svg)
 
 We can use Redis for both caching domain related content and authentication. In this project, all microservices have a
 security filter and don't allow a request if it does not contain an authentication info.
