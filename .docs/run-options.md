@@ -30,7 +30,7 @@ Follow these steps to run this application:
 curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.4/docs/install/iam_policy.json
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
 ```
-3. Create a CodeBuild project containing the pipeline at <a href=".ci/zero-2-prod/buildspec.yaml">.ci/zero-2-prod/buildspec.yaml<a/>. You can set the environment variables according
+3. Create a CodeBuild project containing the pipeline at <a href="../.ci/zero-2-prod/buildspec.yaml">.ci/zero-2-prod/buildspec.yaml<a/>. You can set the environment variables according
 to your own needs.
 4. Use your own domain name to create DNS records in dns-records.json file. You also need to update hostnames in ingress 
 resource files in .kubernetes folder as well.
