@@ -68,9 +68,9 @@ provides a way to manage AWS resources easier using declarative approaches.
 - <a href=".docs/load-balancing.md">Load Balancing<a/>
 - <a href=".docs/traffic-routing.md">Traffic Routing<a/>
 - <a href=".docs/shared-module.md">Shared Module<a/>
-- Infrastructure as Code
-- GitOps
-- Going live in minutes
+- <a href=".docs/infrastructure-as-code.md">Infrastructure as Code<a/>
+- <a href=".docs/gitops.md">GitOps<a/>
+- <a href=".docs/zero-2-prod.md">From Zero to Prod In Minutes<a/>
 
 ## Roadmap
 ~~- Hexagonal architecture~~
