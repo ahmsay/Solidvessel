@@ -10,11 +10,13 @@ import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.payment.infra.adapter.payment.rest.request.AddPaymentRequest;
 import com.solidvessel.shared.infra.rest.Response;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/payments")
 public class PaymentController {
 
@@ -22,13 +24,6 @@ public class PaymentController {
     private final PaymentCommandService paymentCommandService;
     private final CustomerPort customerPort;
     private final ProductPort productPort;
-
-    public PaymentController(PaymentPort paymentPort, PaymentCommandService paymentCommandService, CustomerPort customerPort, ProductPort productPort) {
-        this.paymentPort = paymentPort;
-        this.paymentCommandService = paymentCommandService;
-        this.customerPort = customerPort;
-        this.productPort = productPort;
-    }
 
     @GetMapping()
     public Response<List<PaymentDataModel>> getAll() {

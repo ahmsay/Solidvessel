@@ -2,6 +2,7 @@ package com.solidvessel.auth.infra.configuration.security;
 
 import com.solidvessel.auth.infra.adapter.login.security.LoginToken;
 import com.solidvessel.shared.infra.security.LoggedInToken;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -9,13 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class AppUserAuthenticationProvider implements AuthenticationProvider {
 
     private final AppUserDetailsService userDetailsService;
-
-    public AppUserAuthenticationProvider(AppUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
 
     @Override
     public Authentication authenticate(final Authentication authentication) throws AuthenticationException {

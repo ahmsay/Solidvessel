@@ -7,8 +7,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class ProductJpaEntity {
 
     @Id
@@ -29,33 +35,6 @@ public class ProductJpaEntity {
         this.name = name;
         this.price = price;
         this.category = category;
-        this.paymentId = paymentId;
-    }
-
-    public ProductJpaEntity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public Long getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(Long paymentId) {
         this.paymentId = paymentId;
     }
 

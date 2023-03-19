@@ -3,18 +3,16 @@ package com.solidvessel.order.infra.adapter.payment.event;
 import com.solidvessel.order.domain.order.model.Order;
 import com.solidvessel.order.domain.order.service.OrderCommandService;
 import com.solidvessel.order.domain.payment.event.PaymentSavedEvent;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class PaymentEventConsumer {
 
     private final OrderCommandService orderCommandService;
-
-    public PaymentEventConsumer(OrderCommandService orderCommandService) {
-        this.orderCommandService = orderCommandService;
-    }
 
     @RabbitListener(queues = "${queues.order}")
     void handlePaymentSaved(final PaymentSavedEvent event) {

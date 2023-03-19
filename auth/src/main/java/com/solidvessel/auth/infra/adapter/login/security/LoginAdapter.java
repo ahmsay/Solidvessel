@@ -1,6 +1,7 @@
 package com.solidvessel.auth.infra.adapter.login.security;
 
 import com.solidvessel.auth.domain.login.port.LoginPort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,15 +11,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Component
+@RequiredArgsConstructor
 public class LoginAdapter implements LoginPort {
 
     private final AuthenticationManager authenticationManager;
     private final SecurityContextRepository securityContextRepository;
-
-    public LoginAdapter(AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository) {
-        this.authenticationManager = authenticationManager;
-        this.securityContextRepository = securityContextRepository;
-    }
 
     @Override
     public void login(String appUserId) {

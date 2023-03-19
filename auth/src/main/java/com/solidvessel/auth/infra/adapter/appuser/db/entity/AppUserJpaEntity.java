@@ -6,8 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class AppUserJpaEntity {
 
     @Id
@@ -20,24 +26,9 @@ public class AppUserJpaEntity {
     @NotNull
     private String password;
 
-    public AppUserJpaEntity() {
-    }
-
     public AppUserJpaEntity(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public AppUser toDomainModel() {

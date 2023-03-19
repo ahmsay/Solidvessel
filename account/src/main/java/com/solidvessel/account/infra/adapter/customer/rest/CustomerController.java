@@ -8,6 +8,7 @@ import com.solidvessel.account.domain.order.port.OrderPort;
 import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.domain.payment.port.PaymentPort;
 import com.solidvessel.shared.infra.rest.Response;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/customers")
 public class CustomerController {
 
     private final CustomerPort customerPort;
     private final OrderPort orderPort;
     private final PaymentPort paymentPort;
-
-    public CustomerController(CustomerPort customerPort, OrderPort orderPort, PaymentPort paymentPort) {
-        this.customerPort = customerPort;
-        this.orderPort = orderPort;
-        this.paymentPort = paymentPort;
-    }
 
     @GetMapping()
     public Response<List<CustomerDataModel>> getAll() {

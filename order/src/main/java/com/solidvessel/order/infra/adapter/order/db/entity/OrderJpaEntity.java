@@ -7,8 +7,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class OrderJpaEntity {
 
     @Id
@@ -24,29 +30,10 @@ public class OrderJpaEntity {
     @NotNull
     private Long paymentId;
 
-    public OrderJpaEntity() {
-    }
-
     public OrderJpaEntity(final String status, final Long customerId, final Long paymentId) {
         this.status = status;
         this.customerId = customerId;
         this.paymentId = paymentId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public Long getPaymentId() {
-        return paymentId;
     }
 
     public OrderDataModel toDataModel() {

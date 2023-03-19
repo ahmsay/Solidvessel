@@ -6,18 +6,16 @@ import com.solidvessel.account.domain.customer.port.CustomerPort;
 import com.solidvessel.account.infra.adapter.customer.db.entity.CustomerJpaEntity;
 import com.solidvessel.account.infra.adapter.customer.db.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class CustomerDBAdapter implements CustomerPort {
 
     private final CustomerRepository customerRepository;
-
-    public CustomerDBAdapter(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     @Override
     public List<CustomerDataModel> getAll() {

@@ -6,18 +6,16 @@ import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.infra.adapter.product.db.entity.ProductJpaEntity;
 import com.solidvessel.inventory.infra.adapter.product.db.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class ProductDBAdapter implements ProductPort {
 
     private final ProductRepository productRepository;
-
-    public ProductDBAdapter(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     @Override
     public List<ProductDataModel> getAll() {

@@ -1,5 +1,6 @@
 package com.solidvessel.auth.infra.configuration.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,13 +14,10 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityFilterConfig {
 
     private final AuthenticationManager authenticationManager;
-
-    public SecurityFilterConfig(final AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
 
     @Bean
     public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {

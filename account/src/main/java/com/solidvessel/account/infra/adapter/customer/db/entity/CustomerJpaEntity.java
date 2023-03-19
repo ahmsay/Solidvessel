@@ -5,8 +5,14 @@ import com.solidvessel.account.domain.customer.model.Customer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class CustomerJpaEntity {
 
     @Id
@@ -17,27 +23,6 @@ public class CustomerJpaEntity {
 
     @NotNull
     private String lastName;
-
-    public CustomerJpaEntity() {
-    }
-
-    public CustomerJpaEntity(final Long id, final String firstName, final String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
     public CustomerDataModel toDataModel() {
         return new CustomerDataModel(id, firstName, lastName);

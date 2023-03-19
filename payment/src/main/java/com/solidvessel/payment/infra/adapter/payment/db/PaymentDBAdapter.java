@@ -6,18 +6,16 @@ import com.solidvessel.payment.domain.payment.port.PaymentPort;
 import com.solidvessel.payment.infra.adapter.payment.db.entity.PaymentJpaEntity;
 import com.solidvessel.payment.infra.adapter.payment.db.repository.PaymentRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class PaymentDBAdapter implements PaymentPort {
 
     private final PaymentRepository paymentRepository;
-
-    public PaymentDBAdapter(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
 
     @Override
     public List<PaymentDataModel> getAll() {
