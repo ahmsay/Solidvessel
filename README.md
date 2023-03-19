@@ -82,3 +82,4 @@ provides a way to manage AWS resources easier using declarative approaches.
 - Security improvements
 - Building images on CI environment
 - CQRS
+- Monitoring
