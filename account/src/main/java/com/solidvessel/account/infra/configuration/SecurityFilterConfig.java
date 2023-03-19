@@ -8,7 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
-public class SecurityConfig {
+public class SecurityFilterConfig {
 
     @Bean
     public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
