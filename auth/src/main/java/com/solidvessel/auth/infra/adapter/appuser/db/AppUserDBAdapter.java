@@ -21,9 +21,14 @@ public class AppUserDBAdapter implements AppUserPort {
     }
 
     @Override
-    public AppUser getByUsername(final String userName) {
-        AppUserJpaEntity appUserJpaEntity = appUserRepository.findByUsername(userName).orElseThrow(() -> new RuntimeException("User not found!"));
+    public AppUser getByEmail(final String email) {
+        AppUserJpaEntity appUserJpaEntity = appUserRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("User not found!"));
         return appUserJpaEntity.toDomainModel();
+    }
+
+    @Override
+    public boolean isEmailRegistered(String email) {
+        return appUserRepository.existsByEmail(email);
     }
 
     @Override

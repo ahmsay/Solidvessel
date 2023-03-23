@@ -4,9 +4,11 @@ import com.solidvessel.auth.domain.appuser.model.AppUser;
 
 public interface AppUserPort {
 
-    AppUser getById(final Long id);
+    AppUser getById(Long id);
 
-    AppUser getByUsername(final String userName);
+    AppUser getByEmail(String email);
+
+    boolean isEmailRegistered(String email);
 
     Long add(final AppUser appUser);
 }

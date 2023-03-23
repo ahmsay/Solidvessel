@@ -5,7 +5,7 @@
 We can use Redis for both caching domain related content and authentication. In this project, all microservices have a
 security filter and don't allow a request if it does not contain an authentication info.
 
-To authenticate, user must send a request with username and password info. This request will be received by the
+To authenticate, user must send a request with email and password info. This request will be received by the
 authentication microservice. If credentials are correct, the user session will be saved in Redis. The session also will
 be returned as a cookie.
 
