@@ -16,6 +16,6 @@ public class LogoutController {
     @GetMapping("/logout")
     public OperationResult logout() {
         logoutPort.logout();
-        return new OperationResult("Logout successful", ResultType.SUCCESS);
+        return new OperationResult("Logout successful.", ResultType.SUCCESS);
     }
 }
