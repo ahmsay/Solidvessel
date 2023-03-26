@@ -18,7 +18,7 @@ public class CustomerRestAdapter implements CustomerPort {
     public CustomerDataModel getCustomerOfPayment(Long customerId) {
         String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("customerCircuitBreaker")
-                .run(() -> customerRestClient.getById(customerId, session).data(),
+                .run(() -> customerRestClient.getById(customerId, session),
                         throwable -> null);
     }
 }

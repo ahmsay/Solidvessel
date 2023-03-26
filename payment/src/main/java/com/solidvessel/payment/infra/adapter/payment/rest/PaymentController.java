@@ -9,7 +9,6 @@ import com.solidvessel.payment.domain.payment.service.PaymentCommandService;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.payment.infra.adapter.payment.rest.request.AddPaymentRequest;
-import com.solidvessel.shared.infra.rest.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,26 +25,26 @@ public class PaymentController {
     private final ProductPort productPort;
 
     @GetMapping()
-    public Response<List<PaymentDataModel>> getAll() {
-        return new Response<>(paymentPort.getAll());
+    public List<PaymentDataModel> getAll() {
+        return paymentPort.getAll();
     }
 
     @GetMapping("/{id}")
-    public Response<PaymentDataModel> getById(@PathVariable final Long id) {
-        return new Response<>(paymentPort.getById(id));
+    public PaymentDataModel getById(@PathVariable final Long id) {
+        return paymentPort.getById(id);
     }
 
     @GetMapping("/{id}/detail")
-    public Response<PaymentDetailDataModel> getDetailById(@PathVariable final Long id) {
+    public PaymentDetailDataModel getDetailById(@PathVariable final Long id) {
         PaymentDataModel payment = paymentPort.getById(id);
         CustomerDataModel customer = customerPort.getCustomerOfPayment(payment.customerId());
         List<ProductDataModel> products = productPort.getProductsOfPayment(payment.id());
-        return new Response<>(PaymentDetailDataModel.from(payment, customer, products));
+        return PaymentDetailDataModel.from(payment, customer, products);
     }
 
     @GetMapping("/ofCustomer/{customerId}")
-    public Response<List<PaymentDataModel>> getByCustomerId(@PathVariable final Long customerId) {
-        return new Response<>(paymentPort.getByCustomerId(customerId));
+    public List<PaymentDataModel> getByCustomerId(@PathVariable final Long customerId) {
+        return paymentPort.getByCustomerId(customerId);
     }
 
     @PostMapping()

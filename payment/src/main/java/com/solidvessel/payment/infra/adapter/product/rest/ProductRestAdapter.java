@@ -21,7 +21,7 @@ public class ProductRestAdapter implements ProductPort {
     public List<ProductDataModel> getProductsOfPayment(Long paymentId) {
         String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> productRestClient.getByPaymentId(paymentId, session).data(),
+                .run(() -> productRestClient.getByPaymentId(paymentId, session),
                         throwable -> new ArrayList<>());
     }
 }

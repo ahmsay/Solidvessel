@@ -7,7 +7,6 @@ import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.account.domain.order.port.OrderPort;
 import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.domain.payment.port.PaymentPort;
-import com.solidvessel.shared.infra.rest.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,20 +25,20 @@ public class CustomerController {
     private final PaymentPort paymentPort;
 
     @GetMapping()
-    public Response<List<CustomerDataModel>> getAll() {
-        return new Response<>(customerPort.getAll());
+    public List<CustomerDataModel> getAll() {
+        return customerPort.getAll();
     }
 
     @GetMapping("/{id}")
-    public Response<CustomerDataModel> getById(@PathVariable final Long id) {
-        return new Response<>(customerPort.getById(id));
+    public CustomerDataModel getById(@PathVariable final Long id) {
+        return customerPort.getById(id);
     }
 
     @GetMapping("/{id}/detail")
-    public Response<CustomerDetailDataModel> getDetailById(@PathVariable final Long id) {
+    public CustomerDetailDataModel getDetailById(@PathVariable final Long id) {
         CustomerDataModel customer = customerPort.getById(id);
         List<OrderDataModel> orders = orderPort.getOrdersOfCustomer(id);
         List<PaymentDataModel> payments = paymentPort.getPaymentsOfCustomer(id);
-        return new Response<>(CustomerDetailDataModel.from(customer, orders, payments));
+        return CustomerDetailDataModel.from(customer, orders, payments);
     }
 }

@@ -4,7 +4,6 @@ import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.domain.product.service.ProductCommandService;
 import com.solidvessel.inventory.infra.adapter.product.rest.request.AddProductRequest;
-import com.solidvessel.shared.infra.rest.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,18 +18,18 @@ public class ProductController {
     private final ProductCommandService productCommandService;
 
     @GetMapping()
-    public Response<List<ProductDataModel>> getAll() {
-        return new Response<>(productPort.getAll());
+    public List<ProductDataModel> getAll() {
+        return productPort.getAll();
     }
 
     @GetMapping("/{id}")
-    public Response<ProductDataModel> getById(@PathVariable final Long id) {
-        return new Response<>(productPort.getById(id));
+    public ProductDataModel getById(@PathVariable final Long id) {
+        return productPort.getById(id);
     }
 
     @GetMapping("/ofPayment/{paymentId}")
-    Response<List<ProductDataModel>> getByPaymentId(@PathVariable final Long paymentId) {
-        return new Response<>(productPort.getByPaymentId(paymentId));
+    public List<ProductDataModel> getByPaymentId(@PathVariable final Long paymentId) {
+        return productPort.getByPaymentId(paymentId);
     }
 
     @PostMapping()

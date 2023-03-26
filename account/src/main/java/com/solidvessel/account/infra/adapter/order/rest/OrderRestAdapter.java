@@ -20,7 +20,7 @@ public class OrderRestAdapter implements OrderPort {
     public List<OrderDataModel> getOrdersOfCustomer(final Long customerId) {
         String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("orderCircuitBreaker")
-                .run(() -> orderRestClient.getByCustomerId(customerId, session).data(),
+                .run(() -> orderRestClient.getByCustomerId(customerId, session),
                         throwable -> new ArrayList<>());
     }
 }

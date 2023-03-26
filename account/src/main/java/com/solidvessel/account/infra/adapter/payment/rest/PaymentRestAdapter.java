@@ -20,7 +20,7 @@ public class PaymentRestAdapter implements PaymentPort {
     public List<PaymentDataModel> getPaymentsOfCustomer(final Long customerId) {
         String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("paymentCircuitBreaker")
-                .run(() -> paymentRestClient.getByCustomerId(customerId, session).data(),
+                .run(() -> paymentRestClient.getByCustomerId(customerId, session),
                         throwable -> new ArrayList<>());
     }
 }
