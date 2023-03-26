@@ -24,7 +24,7 @@ public class SignUpCommandService implements CommandService<SignUpCommand> {
             return new OperationResult("Email is already registered.", ResultType.ERROR);
         }
         Long userId = appUserPort.add(AppUser.newAppUser(command.email(), command.password()));
-        userSavedPort.sendUserSavedEvent(new UserSavedEvent(userId, command.firstName(), command.lastName(), command.email()));
+        userSavedPort.sendUserSavedEvent(new UserSavedEvent(userId, command.firstName(), command.lastName(), command.email(), command.birthDate(), command.phoneNumber()));
         return new OperationResult("Your registration is successful.", ResultType.SUCCESS);
     }
 }
