@@ -73,14 +73,14 @@ provides a way to manage AWS resources easier using declarative approaches.
 - <a href=".docs/zero-2-prod.md">From Zero to Prod In Minutes<a/>
 
 ## Roadmap
-~~- Hexagonal architecture~~
+- ~~Hexagonal architecture~~
 - Domain enrichment
 - Data enrichment
 - Persistence
 - Authorization
 - Migration to Kafka
 - Security improvements
-- Building images on CI environment
+- ~~Building images on CI environment~~
 - CQRS
 - Monitoring
 - Testing
