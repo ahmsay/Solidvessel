@@ -2,6 +2,9 @@ version: 0.2
 env:
   shell: bash
 phases:
+  pre_build:
+    commands:
+    - mvn clean install -f ./shared/pom.xml
   build:
     commands:
     - mvn clean compile jib:build -f ./auth/pom.xml
