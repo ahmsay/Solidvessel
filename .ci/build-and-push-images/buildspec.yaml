@@ -5,6 +5,7 @@ phases:
   pre_build:
     commands:
     - mvn clean install -f ./shared/pom.xml
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   build:
     commands:
     - mvn clean compile jib:build -f ./auth/pom.xml
