@@ -17,7 +17,7 @@ public class AppUserEventConsumer {
     @RabbitListener(queues = "${queues.customer}")
     void consumeUserSavedEvent(final UserSavedEvent event) {
         try {
-            customerService.add(new Customer(event.userId(), event.firstName(), event.lastName()));
+            customerService.add(Customer.newCustomer(event.userId(), event.firstName(), event.lastName(), event.birthDate(), event.email(), event.phoneNumber()));
         } catch (final Exception ex) {
             throw new AmqpRejectAndDontRequeueException(ex);
         }

@@ -1,4 +1,7 @@
 package com.solidvessel.account.domain.appuser.event;
 
-public record UserSavedEvent(Long userId, String firstName, String lastName) {
+import java.time.LocalDate;
+
+public record UserSavedEvent(Long userId, String firstName, String lastName, String email, LocalDate birthDate,
+                             String phoneNumber) {
 }

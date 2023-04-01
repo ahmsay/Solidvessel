@@ -6,15 +6,17 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
+
 @Configuration
 public class DatabaseConfig {
 
     @Bean
     InitializingBean seedDatabase(final CustomerRepository customerRepository) {
         return () -> {
-            customerRepository.save(new CustomerJpaEntity(1L, "Anakin", "Skywalker"));
-            customerRepository.save(new CustomerJpaEntity(2L, "Lorne", "Malvo"));
-            customerRepository.save(new CustomerJpaEntity(3L, "Thomas", "Shelby"));
+            customerRepository.save(new CustomerJpaEntity(1L, "Anakin", "Skywalker", LocalDate.now(), "vader_666@mail.com", "123"));
+            customerRepository.save(new CustomerJpaEntity(2L, "Lorne", "Malvo", LocalDate.now(), "malvo_lrn@mail.com", "456"));
+            customerRepository.save(new CustomerJpaEntity(3L, "Thomas", "Shelby", LocalDate.now(), "peaky_blinder@mail.com", "789"));
         };
     }
 }
