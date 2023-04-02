@@ -1,6 +1,7 @@
 package com.solidvessel.shared.infra.util;
 
 import jakarta.servlet.http.Cookie;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -16,5 +17,10 @@ public class SessionUtil {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Session not found!"));
         return "SESSION=" + sessionCookie.getValue();
+    }
+
+    public static Long getCurrentUserId() {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        return Long.parseLong(userName);
     }
 }
