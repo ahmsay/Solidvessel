@@ -1,8 +1,8 @@
 package com.solidvessel.account.infra.adapter.appuser.event;
 
 import com.solidvessel.account.domain.appuser.event.UserSavedEvent;
-import com.solidvessel.account.domain.customer.model.Customer;
-import com.solidvessel.account.domain.customer.service.CustomerService;
+import com.solidvessel.account.domain.customer.service.command.AddCustomerCommand;
+import com.solidvessel.shared.domain.service.CommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AppUserEventConsumer {
 
-    private final CustomerService customerService;
+    private final CommandService<AddCustomerCommand> addCustomerCommandService;
 
     @RabbitListener(queues = "${queues.customer}")
     void consumeUserSavedEvent(final UserSavedEvent event) {
         try {
-            customerService.add(Customer.newCustomer(event.userId(), event.firstName(), event.lastName(), event.birthDate(), event.email(), event.phoneNumber()));
+            addCustomerCommandService.execute(event.toCommand());
         } catch (final Exception ex) {
             throw new AmqpRejectAndDontRequeueException(ex);
         }
