@@ -7,11 +7,11 @@ import com.solidvessel.account.infra.adapter.customer.db.entity.CustomerJpaEntit
 import com.solidvessel.account.infra.adapter.customer.db.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class CustomerDBAdapter implements CustomerPort {
 
@@ -31,5 +31,9 @@ public class CustomerDBAdapter implements CustomerPort {
     @Override
     public void add(Customer customer) {
         customerRepository.save(CustomerJpaEntity.from(customer));
+    }
+
+    CustomerJpaEntity getCustomerById(Long id) {
+        return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
     }
 }

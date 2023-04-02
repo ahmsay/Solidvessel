@@ -2,15 +2,15 @@ package com.solidvessel.account.infra.adapter.customer.db.entity;
 
 import com.solidvessel.account.domain.customer.datamodel.CustomerDataModel;
 import com.solidvessel.account.domain.customer.model.Customer;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -35,11 +35,23 @@ public class CustomerJpaEntity {
 
     private String phoneNumber;
 
+    @ElementCollection
+    @CollectionTable(name = "address", joinColumns = @JoinColumn(name = "customer_id"))
+    private List<AddressEmbeddable> addresses = new ArrayList<>();
+
     public CustomerDataModel toDataModel() {
         return new CustomerDataModel(id, firstName, lastName, birthDate, email, phoneNumber);
     }
 
     public static CustomerJpaEntity from(final Customer customer) {
-        return new CustomerJpaEntity(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getBirthDate(), customer.getEmail(), customer.getPhoneNumber());
+        return new CustomerJpaEntity(customer.getId(), customer.getFirstName(), customer.getLastName(), customer.getBirthDate(), customer.getEmail(), customer.getPhoneNumber(), new ArrayList<>());
+    }
+
+    public void addAddress(AddressEmbeddable address) {
+        addresses.add(address);
+    }
+
+    public void removeAddress(String addressName) {
+        addresses.removeIf(address -> address.getName().equals(addressName));
     }
 }
