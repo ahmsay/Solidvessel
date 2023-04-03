@@ -13,5 +13,7 @@ public interface AddressPort {
 
     void removeAddress(Long customerId, String name);
 
+    void updateAddress(Long customerId, Address address);
+
     boolean isAddressRegistered(Long customerId, String name);
 }

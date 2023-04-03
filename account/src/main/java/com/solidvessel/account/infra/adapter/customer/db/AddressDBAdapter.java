@@ -41,6 +41,14 @@ public class AddressDBAdapter implements AddressPort {
     }
 
     @Override
+    public void updateAddress(Long customerId, Address address) {
+        CustomerJpaEntity customer = customerDBAdapter.getCustomerById(customerId);
+        customer.removeAddress(address.getName());
+        customer.addAddress(AddressEmbeddable.from(address));
+        customerRepository.save(customer);
+    }
+
+    @Override
     public boolean isAddressRegistered(Long customerId, String addressName) {
         CustomerJpaEntity customer = customerDBAdapter.getCustomerById(customerId);
         return customer.getAddresses().stream().anyMatch(address -> address.getName().equals(addressName));
