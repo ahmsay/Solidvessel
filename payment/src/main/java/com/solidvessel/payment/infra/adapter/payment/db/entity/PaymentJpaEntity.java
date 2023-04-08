@@ -2,19 +2,20 @@ package com.solidvessel.payment.infra.adapter.payment.db.entity;
 
 import com.solidvessel.payment.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.domain.payment.model.Payment;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Table(name = "payment")
 public class PaymentJpaEntity {
 
     @Id
@@ -22,21 +23,26 @@ public class PaymentJpaEntity {
     private Long id;
 
     @NotNull
-    private Double totalCharge;
-
-    @NotNull
     private Long customerId;
 
-    public PaymentJpaEntity(final Double totalCharge, final Long customerId) {
-        this.totalCharge = totalCharge;
+    private boolean accepted;
+
+    @ElementCollection
+    @CollectionTable(name = "payment_product", joinColumns = @JoinColumn(name = "payment_id"))
+    private List<ProductEmbeddable> products = new ArrayList<>();
+
+    public PaymentJpaEntity(Long customerId, boolean accepted) {
         this.customerId = customerId;
+        this.accepted = accepted;
     }
 
     public PaymentDataModel toDataModel() {
-        return new PaymentDataModel(id, totalCharge, customerId);
+        return new PaymentDataModel(id, customerId);
     }
 
     public static PaymentJpaEntity from(Payment payment) {
         return new PaymentJpaEntity(payment.getTotalCharge(), payment.getCustomerId());
     }
+
+
 }
