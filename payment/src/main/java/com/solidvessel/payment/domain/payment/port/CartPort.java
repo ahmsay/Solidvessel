@@ -2,9 +2,11 @@ package com.solidvessel.payment.domain.payment.port;
 
 import com.solidvessel.payment.domain.payment.model.Payment;
 
+import java.util.Optional;
+
 public interface CartPort {
 
-    boolean doesCartExist(Long customerId);
+    Optional<Payment> getByCustomerId(Long customerId);
 
-    Payment getByCustomerId(Long customerId);
+    void save(Payment cart);
 }
