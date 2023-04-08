@@ -6,7 +6,7 @@ import com.solidvessel.payment.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.domain.payment.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
-import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.payment.domain.product.port.ProductsPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +22,7 @@ public class PaymentController {
 
     private final PaymentPort paymentPort;
     private final CustomerPort customerPort;
-    private final ProductPort productPort;
+    private final ProductsPort productsPort;
 
     @GetMapping()
     public List<PaymentDataModel> getAll() {
@@ -38,7 +38,7 @@ public class PaymentController {
     public PaymentDetailDataModel getDetailById(@PathVariable final Long id) {
         PaymentDataModel payment = paymentPort.getById(id);
         CustomerDataModel customer = customerPort.getCustomerOfPayment(payment.customerId());
-        List<ProductDataModel> products = productPort.getProductsOfPayment(payment.id());
+        List<ProductDataModel> products = productsPort.getProductsOfPayment(payment.id());
         return PaymentDetailDataModel.from(payment, customer, products);
     }
 
