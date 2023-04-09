@@ -24,7 +24,7 @@ public class CustomerDBAdapter implements CustomerPort {
 
     @Override
     public CustomerDataModel getById(Long id) {
-        CustomerJpaEntity customerJpaEntity = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
+        CustomerJpaEntity customerJpaEntity = getCustomerById(id);
         return customerJpaEntity.toDataModel();
     }
 
