@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PaymentEventConsumer {
+public class PaymentSavedEventConsumer {
 
     private final OrderCommandService orderCommandService;
 
     @RabbitListener(queues = "${queues.order}")
-    void handlePaymentSaved(final PaymentSavedEvent event) {
+    void consume(final PaymentSavedEvent event) {
         try {
             orderCommandService.add(new Order("Preparing", event.customerId(), event.paymentId()));
         } catch (final Exception ex) {
