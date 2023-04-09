@@ -1,10 +1,12 @@
 package com.solidvessel.payment.domain.product.port;
 
-import com.solidvessel.payment.domain.product.model.Product;
+import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface ProductPort {
 
-    Optional<Product> getById(Long productId);
+    List<ProductDataModel> getProductsOfPayment(Long paymentId);
+
+    boolean isAvailable(Long productId);
 }

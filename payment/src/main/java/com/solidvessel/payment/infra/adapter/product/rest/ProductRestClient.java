@@ -13,4 +13,7 @@ public interface ProductRestClient {
 
     @GetMapping("/products/ofPayment/{paymentId}")
     List<ProductDataModel> getByPaymentId(@PathVariable final Long paymentId, @RequestHeader("Cookie") String session);
+
+    @GetMapping("/products/{id}/available")
+    boolean isAvailable(@PathVariable final Long id, @RequestHeader("Cookie") String session);
 }
