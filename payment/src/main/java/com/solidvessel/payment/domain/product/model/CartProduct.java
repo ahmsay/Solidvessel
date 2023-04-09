@@ -5,10 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class Product {
+public class CartProduct {
 
     Long id;
     int quantity;
-    Double discount;
-    Double price;
 }
