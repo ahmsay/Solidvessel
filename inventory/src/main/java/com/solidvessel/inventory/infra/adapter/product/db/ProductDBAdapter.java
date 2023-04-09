@@ -37,4 +37,9 @@ public class ProductDBAdapter implements ProductPort {
     public void add(Product product) {
         productRepository.save(ProductJpaEntity.from(product));
     }
+
+    @Override
+    public boolean isAvailable(Long id) {
+        return productRepository.existsById(id);
+    }
 }

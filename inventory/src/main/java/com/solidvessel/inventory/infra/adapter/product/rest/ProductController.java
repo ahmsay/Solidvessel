@@ -36,4 +36,9 @@ public class ProductController {
     public void add(@RequestBody final AddProductRequest request) {
         productCommandService.add(request.toCommand());
     }
+
+    @GetMapping("/products/{id}/available")
+    public boolean isAvailable(@PathVariable final Long id) {
+        return productPort.isAvailable(id);
+    }
 }

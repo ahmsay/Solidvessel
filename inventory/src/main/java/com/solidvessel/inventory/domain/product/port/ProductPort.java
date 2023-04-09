@@ -14,4 +14,6 @@ public interface ProductPort {
     List<ProductDataModel> getByPaymentId(Long paymentId);
 
     void add(Product product);
+
+    boolean isAvailable(Long id);
 }
