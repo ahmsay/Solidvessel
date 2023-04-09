@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class AppUserEventConsumer {
+public class UserSavedEventConsumer {
 
     private final CommandService<AddCustomerCommand> addCustomerCommandService;
 
     @RabbitListener(queues = "${queues.customer}")
-    void consumeUserSavedEvent(final UserSavedEvent event) {
+    void consume(final UserSavedEvent event) {
         try {
             addCustomerCommandService.execute(event.toCommand());
         } catch (final Exception ex) {
