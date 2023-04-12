@@ -1,7 +1,7 @@
 package com.solidvessel.payment.infra.adapter.product.rest;
 
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
-import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.payment.domain.product.port.ProductRestPort;
 import com.solidvessel.shared.infra.util.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -9,19 +9,20 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
-public class ProductRestAdapter implements ProductPort {
+public class ProductRestAdapter implements ProductRestPort {
 
     private final CircuitBreakerFactory circuitBreakerFactory;
     private final ProductRestClient productRestClient;
 
     @Override
-    public List<ProductDataModel> getProductsOfPayment(Long paymentId) {
+    public List<ProductDataModel> getProductsOfCart(Set<Long> productIds) {
         String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> productRestClient.getByPaymentId(paymentId, session),
+                .run(() -> productRestClient.getByIds(productIds, session),
                         throwable -> new ArrayList<>());
     }
 
