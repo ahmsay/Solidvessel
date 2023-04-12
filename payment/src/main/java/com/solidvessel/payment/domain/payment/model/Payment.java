@@ -1,6 +1,6 @@
 package com.solidvessel.payment.domain.payment.model;
 
-import com.solidvessel.payment.domain.product.model.Product;
+import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,14 +12,9 @@ public class Payment {
 
     private Long id;
     private Long customerId;
-    private List<Product> products;
-    private boolean accepted;
+    private List<ProductDataModel> products;
 
-    public static Payment newPayment(Product product, Long customerId) {
-        return new Payment(null, customerId, List.of(product), false);
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
+    public static Payment newPayment(Long customerId, List<ProductDataModel> products) {
+        return new Payment(null, customerId, products);
     }
 }

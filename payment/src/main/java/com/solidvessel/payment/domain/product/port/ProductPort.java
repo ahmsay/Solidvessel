@@ -7,6 +7,4 @@ import java.util.List;
 public interface ProductPort {
 
     List<ProductDataModel> getProductsOfPayment(Long paymentId);
-
-    boolean isAvailable(Long productId);
 }

@@ -3,7 +3,7 @@ package com.solidvessel.payment.domain.cart.service;
 import com.solidvessel.payment.domain.cart.model.Cart;
 import com.solidvessel.payment.domain.cart.port.CartPort;
 import com.solidvessel.payment.domain.cart.service.command.AddToCartCommand;
-import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.payment.domain.product.port.ProductRestPort;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class AddToCartCommandService implements CommandService<AddToCartCommand> {
 
     private final CartPort cartPort;
-    private final ProductPort productPort;
+    private final ProductRestPort productPort;
 
     public OperationResult execute(AddToCartCommand command) {
         Long productId = command.productId();

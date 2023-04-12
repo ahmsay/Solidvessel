@@ -5,13 +5,13 @@ import com.solidvessel.payment.domain.customer.port.CustomerPort;
 import com.solidvessel.payment.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.domain.payment.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
+import com.solidvessel.payment.domain.payment.service.AcceptPaymentCommand;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.OperationResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class PaymentController {
     private final PaymentPort paymentPort;
     private final CustomerPort customerPort;
     private final ProductPort productPort;
+    private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
 
     @GetMapping()
     public List<PaymentDataModel> getAll() {
@@ -45,5 +46,10 @@ public class PaymentController {
     @GetMapping("/ofCustomer/{customerId}")
     public List<PaymentDataModel> getByCustomerId(@PathVariable final Long customerId) {
         return paymentPort.getByCustomerId(customerId);
+    }
+
+    @PostMapping
+    public OperationResult acceptPayment(final AcceptPaymentRequest request) {
+        return acceptPaymentCommandService.execute(request.toCommand());
     }
 }

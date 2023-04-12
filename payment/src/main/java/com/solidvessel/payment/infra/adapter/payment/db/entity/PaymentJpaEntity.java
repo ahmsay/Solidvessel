@@ -25,24 +25,19 @@ public class PaymentJpaEntity {
     @NotNull
     private Long customerId;
 
-    private boolean accepted;
-
     @ElementCollection
     @CollectionTable(name = "payment_product", joinColumns = @JoinColumn(name = "payment_id"))
     private List<ProductEmbeddable> products = new ArrayList<>();
 
-    public PaymentJpaEntity(Long customerId, boolean accepted) {
-        this.customerId = customerId;
-        this.accepted = accepted;
-    }
-
     public PaymentDataModel toDataModel() {
-        return new PaymentDataModel(id, customerId);
+        return new PaymentDataModel(id, customerId, products.stream().map(ProductEmbeddable::toDataModel).toList());
     }
 
     public static PaymentJpaEntity from(Payment payment) {
-        return new PaymentJpaEntity(payment.getTotalCharge(), payment.getCustomerId());
+        return new PaymentJpaEntity(
+                payment.getId(),
+                payment.getCustomerId(),
+                payment.getProducts().stream().map(ProductEmbeddable::from).toList()
+        );
     }
-
-
 }

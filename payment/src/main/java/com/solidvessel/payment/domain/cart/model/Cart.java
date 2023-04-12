@@ -33,4 +33,12 @@ public class Cart {
     public void removeProduct(Long productId) {
         products.put(productId, products.get(productId) - 1);
     }
+
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+
+    public void empty() {
+        products = new HashMap<>();
+    }
 }

@@ -34,8 +34,7 @@ public class PaymentDBAdapter implements PaymentPort {
     }
 
     @Override
-    public Long add(Payment payment) {
-        PaymentJpaEntity paymentJpaEntity = paymentRepository.save(PaymentJpaEntity.from(payment));
-        return paymentJpaEntity.getId();
+    public void save(Payment payment) {
+        paymentRepository.save(PaymentJpaEntity.from(payment));
     }
 }
