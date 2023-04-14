@@ -13,7 +13,7 @@ import java.util.Set;
 @FeignClient(name = "productPort", url = "${inventory.url}")
 public interface ProductRestClient {
 
-    @GetMapping("/products/ofCart")
+    @GetMapping("/products/ids")
     List<ProductDataModel> getByIds(@RequestParam final Set<Long> ids, @RequestHeader("Cookie") String session);
 
     @GetMapping("/products/{id}/available")

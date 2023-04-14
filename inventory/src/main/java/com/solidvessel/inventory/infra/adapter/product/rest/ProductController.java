@@ -27,9 +27,9 @@ public class ProductController {
         return productPort.getById(id);
     }
 
-    @GetMapping("/ofPayment/{paymentId}")
-    public List<ProductDataModel> getByPaymentId(@PathVariable final Long paymentId) {
-        return productPort.getByPaymentId(paymentId);
+    @GetMapping("/ids")
+    public List<ProductDataModel> getByIds(@RequestParam final List<Long> ids) {
+        return productPort.getByIds(ids);
     }
 
     @PostMapping()

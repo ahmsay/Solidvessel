@@ -29,8 +29,8 @@ public class ProductDBAdapter implements ProductPort {
     }
 
     @Override
-    public List<ProductDataModel> getByPaymentId(Long paymentId) {
-        return productRepository.findByPaymentId(paymentId).stream().map(ProductJpaEntity::toDataModel).toList();
+    public List<ProductDataModel> getByIds(List<Long> ids) {
+        return productRepository.findAllById(ids).stream().map(ProductJpaEntity::toDataModel).toList();
     }
 
     @Override

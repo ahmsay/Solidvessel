@@ -11,7 +11,7 @@ public interface ProductPort {
 
     ProductDataModel getById(Long id);
 
-    List<ProductDataModel> getByPaymentId(Long paymentId);
+    List<ProductDataModel> getByIds(List<Long> ids);
 
     void add(Product product);
 
