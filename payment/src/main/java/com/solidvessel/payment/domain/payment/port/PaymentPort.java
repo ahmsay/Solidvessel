@@ -13,5 +13,5 @@ public interface PaymentPort {
 
     List<PaymentDataModel> getByCustomerId(Long customerId);
 
-    void save(Payment payment);
+    Long save(Payment payment);
 }
