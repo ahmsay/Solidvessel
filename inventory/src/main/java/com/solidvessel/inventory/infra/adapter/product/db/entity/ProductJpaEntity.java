@@ -29,20 +29,11 @@ public class ProductJpaEntity {
 
     private String category;
 
-    private Long paymentId;
-
-    public ProductJpaEntity(final String name, final Double price, final String category, final Long paymentId) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.paymentId = paymentId;
-    }
-
     public ProductDataModel toDataModel() {
-        return new ProductDataModel(id, name, price, category, paymentId);
+        return new ProductDataModel(id, name, price, category);
     }
 
     public static ProductJpaEntity from(Product product) {
-        return new ProductJpaEntity(product.getName(), product.getPrice(), product.getCategory(), product.getPaymentId());
+        return new ProductJpaEntity(product.getId(), product.getName(), product.getPrice(), product.getCategory());
     }
 }

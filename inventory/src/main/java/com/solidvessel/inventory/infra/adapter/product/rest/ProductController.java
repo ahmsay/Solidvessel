@@ -2,8 +2,9 @@ package com.solidvessel.inventory.infra.adapter.product.rest;
 
 import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.port.ProductPort;
-import com.solidvessel.inventory.domain.product.service.ProductCommandService;
+import com.solidvessel.inventory.domain.product.service.command.AddProductCommand;
 import com.solidvessel.inventory.infra.adapter.product.rest.request.AddProductRequest;
+import com.solidvessel.shared.domain.service.CommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductPort productPort;
-    private final ProductCommandService productCommandService;
+    private final CommandService<AddProductCommand> addProductCommandService;
 
     @GetMapping()
     public List<ProductDataModel> getAll() {
@@ -34,7 +35,7 @@ public class ProductController {
 
     @PostMapping()
     public void add(@RequestBody final AddProductRequest request) {
-        productCommandService.add(request.toCommand());
+        addProductCommandService.execute(request.toCommand());
     }
 
     @GetMapping("/products/{id}/available")
