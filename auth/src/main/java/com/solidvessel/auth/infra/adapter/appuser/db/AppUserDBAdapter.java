@@ -32,7 +32,7 @@ public class AppUserDBAdapter implements AppUserPort {
     }
 
     @Override
-    public Long add(final AppUser appUser) {
+    public Long save(final AppUser appUser) {
         AppUserJpaEntity appUserJpaEntity = appUserRepository.save(AppUserJpaEntity.from(appUser));
         return appUserJpaEntity.getId();
     }

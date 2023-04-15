@@ -34,7 +34,7 @@ public class ProductDBAdapter implements ProductPort {
     }
 
     @Override
-    public void add(Product product) {
+    public void save(Product product) {
         productRepository.save(ProductJpaEntity.from(product));
     }
 

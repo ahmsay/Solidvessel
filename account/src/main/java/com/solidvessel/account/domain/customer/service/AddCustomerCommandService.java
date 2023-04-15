@@ -16,7 +16,7 @@ public class AddCustomerCommandService implements CommandService<AddCustomerComm
 
     @Override
     public OperationResult execute(AddCustomerCommand command) {
-        customerPort.add(command.toDomainModel());
+        customerPort.save(command.toDomainModel());
         return new OperationResult("Customer is added.", ResultType.SUCCESS);
     }
 }

@@ -11,5 +11,5 @@ public interface CustomerPort {
 
     CustomerDataModel getById(Long id);
 
-    void add(Customer customer);
+    void save(Customer customer);
 }

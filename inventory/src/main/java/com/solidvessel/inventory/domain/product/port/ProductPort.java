@@ -13,7 +13,7 @@ public interface ProductPort {
 
     List<ProductDataModel> getByIds(List<Long> ids);
 
-    void add(Product product);
+    void save(Product product);
 
     boolean isAvailable(Long id);
 }

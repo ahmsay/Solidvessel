@@ -29,7 +29,7 @@ public class CustomerDBAdapter implements CustomerPort {
     }
 
     @Override
-    public void add(Customer customer) {
+    public void save(Customer customer) {
         customerRepository.save(CustomerJpaEntity.from(customer));
     }
 

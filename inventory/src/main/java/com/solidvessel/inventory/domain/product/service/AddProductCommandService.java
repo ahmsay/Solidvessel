@@ -17,7 +17,7 @@ public class AddProductCommandService implements CommandService<AddProductComman
 
     @Override
     public OperationResult execute(AddProductCommand command) {
-        productPort.add(Product.newProduct(command.name(), command.price(), command.category()));
+        productPort.save(Product.newProduct(command.name(), command.price(), command.category()));
         return new OperationResult("Product is added.", ResultType.SUCCESS);
     }
 }

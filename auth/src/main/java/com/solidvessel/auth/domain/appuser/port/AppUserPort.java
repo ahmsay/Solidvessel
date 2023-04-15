@@ -10,5 +10,5 @@ public interface AppUserPort {
 
     boolean isEmailRegistered(String email);
 
-    Long add(final AppUser appUser);
+    Long save(final AppUser appUser);
 }
