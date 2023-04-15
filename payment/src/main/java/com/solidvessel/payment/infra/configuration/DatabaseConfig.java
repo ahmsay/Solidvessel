@@ -1,10 +1,13 @@
 package com.solidvessel.payment.infra.configuration;
 
 import com.solidvessel.payment.infra.adapter.payment.db.entity.PaymentJpaEntity;
+import com.solidvessel.payment.infra.adapter.payment.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.infra.adapter.payment.db.repository.PaymentRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class DatabaseConfig {
@@ -12,9 +15,9 @@ public class DatabaseConfig {
     @Bean
     InitializingBean seedDatabase(final PaymentRepository paymentRepository) {
         return () -> {
-            paymentRepository.save(new PaymentJpaEntity(10.5D, 1L));
-            paymentRepository.save(new PaymentJpaEntity(200D, 2L));
-            paymentRepository.save(new PaymentJpaEntity(999.99D, 2L));
+            paymentRepository.save(new PaymentJpaEntity(null, 1L, List.of(new ProductEmbeddable(1L, 1, "Lol", 25D))));
+            paymentRepository.save(new PaymentJpaEntity(null, 2L, List.of(new ProductEmbeddable(2L, 1, "asd", 3D))));
+            paymentRepository.save(new PaymentJpaEntity(null, 3L, List.of(new ProductEmbeddable(2l, 3, "zxc", 23.4D))));
         };
     }
 }
