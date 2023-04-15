@@ -30,17 +30,11 @@ public class OrderJpaEntity {
     @NotNull
     private Long paymentId;
 
-    public OrderJpaEntity(final String status, final Long customerId, final Long paymentId) {
-        this.status = status;
-        this.customerId = customerId;
-        this.paymentId = paymentId;
-    }
-
     public OrderDataModel toDataModel() {
         return new OrderDataModel(id, status, customerId, paymentId);
     }
 
     public static OrderJpaEntity from(Order order) {
-        return new OrderJpaEntity(order.getStatus(), order.getCustomerId(), order.getPaymentId());
+        return new OrderJpaEntity(order.getId(), order.getStatus(), order.getCustomerId(), order.getPaymentId());
     }
 }

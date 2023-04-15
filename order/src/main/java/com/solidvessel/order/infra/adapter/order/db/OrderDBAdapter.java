@@ -34,7 +34,7 @@ public class OrderDBAdapter implements OrderPort {
     }
 
     @Override
-    public void add(Order order) {
+    public void save(Order order) {
         orderRepository.save(OrderJpaEntity.from(order));
     }
 }

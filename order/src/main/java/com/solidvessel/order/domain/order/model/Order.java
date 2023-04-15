@@ -12,9 +12,7 @@ public class Order {
     private Long customerId;
     private Long paymentId;
 
-    public Order(String status, Long customerId, Long paymentId) {
-        this.status = status;
-        this.customerId = customerId;
-        this.paymentId = paymentId;
+    public static Order newOrder(Long customerId, Long paymentId) {
+        return new Order(null, "Preparing", customerId, paymentId);
     }
 }

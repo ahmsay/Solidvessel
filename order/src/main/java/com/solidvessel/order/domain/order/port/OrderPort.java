@@ -13,5 +13,5 @@ public interface OrderPort {
 
     List<OrderDataModel> getByCustomerId(Long customerId);
 
-    void add(Order order);
+    void save(Order order);
 }
