@@ -1,4 +1,6 @@
 package com.solidvessel.order.domain.order.datamodel;
 
-public record OrderDataModel(Long id, String status, Long customerId, Long paymentId) {
+import com.solidvessel.order.domain.order.model.OrderStatus;
+
+public record OrderDataModel(Long id, OrderStatus status, Long customerId, Long paymentId) {
 }

@@ -8,11 +8,11 @@ import lombok.Getter;
 public class Order {
 
     private Long id;
-    private String status;
+    private OrderStatus status;
     private Long customerId;
     private Long paymentId;
 
     public static Order newOrder(Long customerId, Long paymentId) {
-        return new Order(null, "Preparing", customerId, paymentId);
+        return new Order(null, OrderStatus.PREPARING, customerId, paymentId);
     }
 }

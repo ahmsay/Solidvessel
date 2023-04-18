@@ -2,6 +2,7 @@ package com.solidvessel.order.infra.adapter.order.db.entity;
 
 import com.solidvessel.order.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.order.domain.order.model.Order;
+import com.solidvessel.order.domain.order.model.OrderStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class OrderJpaEntity {
     private Long id;
 
     @NotNull
-    private String status;
+    private OrderStatus status;
 
     @NotNull
     private Long customerId;
