@@ -10,9 +10,9 @@ public class Product {
     private Long id;
     private String name;
     private Double price;
-    private String category;
+    private ProductCategory category;
 
-    public static Product newProduct(String name, Double price, String category) {
+    public static Product newProduct(String name, Double price, ProductCategory category) {
         return new Product(null, name, price, category);
     }
 }

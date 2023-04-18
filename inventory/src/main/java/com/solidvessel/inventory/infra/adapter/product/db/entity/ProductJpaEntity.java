@@ -2,6 +2,7 @@ package com.solidvessel.inventory.infra.adapter.product.db.entity;
 
 import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.model.Product;
+import com.solidvessel.inventory.domain.product.model.ProductCategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class ProductJpaEntity {
     @NotNull
     private Double price;
 
-    private String category;
+    private ProductCategory category;
 
     public ProductDataModel toDataModel() {
         return new ProductDataModel(id, name, price, category);

@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.infra.configuration;
 
+import com.solidvessel.inventory.domain.product.model.ProductCategory;
 import com.solidvessel.inventory.infra.adapter.product.db.entity.ProductJpaEntity;
 import com.solidvessel.inventory.infra.adapter.product.db.repository.ProductRepository;
 import org.springframework.beans.factory.InitializingBean;
@@ -12,14 +13,14 @@ public class DatabaseConfig {
     @Bean
     InitializingBean seedDatabase(final ProductRepository productRepository) {
         return () -> {
-            productRepository.save(new ProductJpaEntity("Clipper", 2.5D, "Tool", 1L));
-            productRepository.save(new ProductJpaEntity("Laptop", 3D, "Electronics", 1L));
-            productRepository.save(new ProductJpaEntity("Phone", 5D, "Electronics", 1L));
-            productRepository.save(new ProductJpaEntity("Car", 200D, "Vehicle", 2L));
-            productRepository.save(new ProductJpaEntity("Spaceship", 500D, "Vehicle", 3L));
-            productRepository.save(new ProductJpaEntity("Apple", 499.99D, "Fruit", 3L));
-            productRepository.save(new ProductJpaEntity("Ice Pick", 53D, "Tool", null));
-            productRepository.save(new ProductJpaEntity("Desk", 25D, "Furniture", null));
+            productRepository.save(new ProductJpaEntity(null, "Clipper", 2.5D, ProductCategory.TOOL));
+            productRepository.save(new ProductJpaEntity(null, "Laptop", 3000D, ProductCategory.ELECTRONICS));
+            productRepository.save(new ProductJpaEntity(null, "Phone", 5D, ProductCategory.ELECTRONICS));
+            productRepository.save(new ProductJpaEntity(null, "Skirt", 20D, ProductCategory.CLOTHING));
+            productRepository.save(new ProductJpaEntity(null, "Pants", 500D, ProductCategory.CLOTHING));
+            productRepository.save(new ProductJpaEntity(null, "Apple", 499.99D, ProductCategory.ELECTRONICS));
+            productRepository.save(new ProductJpaEntity(null, "Ice Pick", 53D, ProductCategory.TOOL));
+            productRepository.save(new ProductJpaEntity(null, "Desk", 25D, ProductCategory.FURNITURE));
         };
     }
 }

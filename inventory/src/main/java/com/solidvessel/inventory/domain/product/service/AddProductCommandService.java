@@ -1,6 +1,5 @@
 package com.solidvessel.inventory.domain.product.service;
 
-import com.solidvessel.inventory.domain.product.model.Product;
 import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.domain.product.service.command.AddProductCommand;
 import com.solidvessel.shared.domain.service.CommandService;
@@ -17,7 +16,7 @@ public class AddProductCommandService implements CommandService<AddProductComman
 
     @Override
     public OperationResult execute(AddProductCommand command) {
-        productPort.save(Product.newProduct(command.name(), command.price(), command.category()));
+        productPort.save(command.toDomainModel());
         return new OperationResult("Product is added.", ResultType.SUCCESS);
     }
 }

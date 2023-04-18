@@ -1,10 +1,6 @@
 package com.solidvessel.inventory.domain.product.datamodel;
 
-import com.solidvessel.inventory.domain.product.model.Product;
+import com.solidvessel.inventory.domain.product.model.ProductCategory;
 
-public record ProductDataModel(Long id, String name, Double price, String category) {
-
-    public Product toDomainModel() {
-        return new Product(id, name, price, category);
-    }
+public record ProductDataModel(Long id, String name, Double price, ProductCategory category) {
 }
