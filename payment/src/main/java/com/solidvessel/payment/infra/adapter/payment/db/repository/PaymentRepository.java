@@ -8,6 +8,4 @@ import java.util.List;
 public interface PaymentRepository extends JpaRepository<PaymentJpaEntity, Long> {
 
     List<PaymentJpaEntity> findByCustomerId(Long customerId);
-
-    PaymentJpaEntity findByCustomerIdAndAccepted(Long customerId, boolean accepted);
 }

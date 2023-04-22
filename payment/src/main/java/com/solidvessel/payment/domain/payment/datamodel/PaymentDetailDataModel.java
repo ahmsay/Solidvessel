@@ -5,13 +5,12 @@ import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 
 import java.util.List;
 
-public record PaymentDetailDataModel(Long id, Double totalCharge, CustomerDataModel customer,
+public record PaymentDetailDataModel(Long id, CustomerDataModel customer,
                                      List<ProductDataModel> products) {
 
     public static PaymentDetailDataModel from(PaymentDataModel payment, CustomerDataModel customer, List<ProductDataModel> products) {
         return new PaymentDetailDataModel(
                 payment.id(),
-                payment.totalCharge(),
                 customer,
                 products
         );

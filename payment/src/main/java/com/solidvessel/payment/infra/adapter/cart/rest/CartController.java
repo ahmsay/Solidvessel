@@ -8,10 +8,7 @@ import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +23,7 @@ public class CartController {
         return addToCartCommandService.execute(request.toCommand());
     }
 
-    @PostMapping()
+    @DeleteMapping()
     public OperationResult removeFromCart(@RequestBody @Valid final RemoveFromCartRequest request) {
         return removeFromCartCommandService.execute(request.toCommand());
     }

@@ -6,7 +6,7 @@ import com.solidvessel.payment.domain.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.domain.payment.model.Payment;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
-import com.solidvessel.payment.domain.product.port.ProductRestPort;
+import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.shared.domain.event.EventPublisher;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
@@ -22,7 +22,7 @@ import java.util.Set;
 public class AcceptPaymentCommandService implements CommandService<AcceptPaymentCommand> {
 
     private final CartPort cartPort;
-    private final ProductRestPort productPort;
+    private final ProductPort productPort;
     private final PaymentPort paymentPort;
     private final EventPublisher<PaymentSavedEvent> paymentSavedEventPublisher;
 

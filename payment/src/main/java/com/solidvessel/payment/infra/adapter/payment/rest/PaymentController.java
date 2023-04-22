@@ -7,7 +7,6 @@ import com.solidvessel.payment.domain.payment.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
 import com.solidvessel.payment.domain.payment.service.AcceptPaymentCommand;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
-import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ public class PaymentController {
 
     private final PaymentPort paymentPort;
     private final CustomerPort customerPort;
-    private final ProductPort productPort;
     private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
 
     @GetMapping()
@@ -39,7 +37,7 @@ public class PaymentController {
     public PaymentDetailDataModel getDetailById(@PathVariable final Long id) {
         PaymentDataModel payment = paymentPort.getById(id);
         CustomerDataModel customer = customerPort.getCustomerOfPayment(payment.customerId());
-        List<ProductDataModel> products = productPort.getProductsOfPayment(payment.id());
+        List<ProductDataModel> products = paymentPort.getProductsOfPayment(payment.id());
         return PaymentDetailDataModel.from(payment, customer, products);
     }
 
