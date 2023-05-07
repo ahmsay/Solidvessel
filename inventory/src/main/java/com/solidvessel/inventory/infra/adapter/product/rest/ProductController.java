@@ -5,6 +5,7 @@ import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.domain.product.service.command.AddProductCommand;
 import com.solidvessel.inventory.infra.adapter.product.rest.request.AddProductRequest;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.OperationResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,11 +35,11 @@ public class ProductController {
     }
 
     @PostMapping()
-    public void add(@RequestBody final AddProductRequest request) {
-        addProductCommandService.execute(request.toCommand());
+    public OperationResult add(@RequestBody final AddProductRequest request) {
+        return addProductCommandService.execute(request.toCommand());
     }
 
-    @GetMapping("/products/{id}/available")
+    @GetMapping("/{id}/available")
     public boolean isAvailable(@PathVariable final Long id) {
         return productPort.isAvailable(id);
     }
