@@ -30,7 +30,12 @@ public class PaymentJpaEntity {
     private List<ProductEmbeddable> products = new ArrayList<>();
 
     public PaymentDataModel toDataModel() {
-        return new PaymentDataModel(id, customerId, products.stream().map(ProductEmbeddable::toDataModel).toList());
+        return new PaymentDataModel(
+                id,
+                customerId,
+                products.stream().map(ProductEmbeddable::toDataModel).toList(),
+                products.stream().map(ProductEmbeddable::getPrice).reduce(0D, Double::sum)
+        );
     }
 
     public static PaymentJpaEntity from(Payment payment) {

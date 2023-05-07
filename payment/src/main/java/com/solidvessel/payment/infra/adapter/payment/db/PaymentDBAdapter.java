@@ -3,9 +3,7 @@ package com.solidvessel.payment.infra.adapter.payment.db;
 import com.solidvessel.payment.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.domain.payment.model.Payment;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
-import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.infra.adapter.payment.db.entity.PaymentJpaEntity;
-import com.solidvessel.payment.infra.adapter.payment.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.infra.adapter.payment.db.repository.PaymentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +24,7 @@ public class PaymentDBAdapter implements PaymentPort {
 
     @Override
     public PaymentDataModel getById(Long id) {
-        PaymentJpaEntity paymentJpaEntity = getJpaEntityById(id);
+        PaymentJpaEntity paymentJpaEntity = paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
         return paymentJpaEntity.toDataModel();
     }
 
@@ -39,15 +37,5 @@ public class PaymentDBAdapter implements PaymentPort {
     public Long save(Payment payment) {
         PaymentJpaEntity paymentJpaEntity = paymentRepository.save(PaymentJpaEntity.from(payment));
         return paymentJpaEntity.getId();
-    }
-
-    @Override
-    public List<ProductDataModel> getProductsOfPayment(Long paymentId) {
-        PaymentJpaEntity paymentJpaEntity = getJpaEntityById(paymentId);
-        return paymentJpaEntity.getProducts().stream().map(ProductEmbeddable::toDataModel).toList();
-    }
-
-    private PaymentJpaEntity getJpaEntityById(Long id) {
-        return paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
     }
 }
