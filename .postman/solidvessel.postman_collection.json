@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Ezio\",\r\n    \"lastName\": \"Auditore\",\r\n    \"username\": \"assassin_guy\",\r\n    \"password\": \"requiescat_in_pace\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Ezio\",\r\n    \"lastName\": \"Auditore\",\r\n    \"email\": \"assassin_guy@mail.com\",\r\n    \"password\": \"requiescat_in_pace\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"vader_666\",\r\n    \"password\": \"i_hate_sand\"\r\n}",
+							"raw": "{\r\n    \"email\": \"vader_666@mail.com\",\r\n    \"password\": \"i_hate_sand\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -222,6 +222,51 @@
 					"response": []
 				},
 				{
+					"name": "get my addresses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "SESSION={{session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{accountServiceUrl}}/address",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get customer by id",
 					"event": [
 						{
@@ -291,6 +336,84 @@
 								"customers",
 								"1",
 								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"home\",\n    \"country\": \"turkey\",\n    \"city\": \"eskişehir\",\n    \"zipcode\": \"26000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accountServiceUrl}}/address",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"home\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accountServiceUrl}}/address",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accountServiceUrl}}/address",
+							"host": [
+								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"address"
 							]
 						}
 					},
@@ -395,7 +518,7 @@
 					"response": []
 				},
 				{
-					"name": "get products of payment",
+					"name": "get by ids",
 					"event": [
 						{
 							"listen": "test",
@@ -431,14 +554,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/products/ofPayment/1",
+							"raw": "{{inventoryServiceUrl}}/products/ids?ids=1,2,3",
 							"host": [
 								"{{inventoryServiceUrl}}"
 							],
 							"path": [
 								"products",
-								"ofPayment",
-								"1"
+								"ids"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,3"
+								}
 							]
 						}
 					},
@@ -470,7 +598,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Light Saber\",\n    \"price\": 13,\n    \"category\": \"Electronics\"\n}",
+							"raw": "{\n    \"name\": \"Light Saber\",\n    \"price\": 13,\n    \"category\": \"ELECTRONICS\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -484,6 +612,25 @@
 							],
 							"path": [
 								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "is product available",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{inventoryServiceUrl}}/products/1/available",
+							"host": [
+								"{{inventoryServiceUrl}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"available"
 							]
 						}
 					},
@@ -669,218 +816,280 @@
 			"name": "payment service",
 			"item": [
 				{
-					"name": "ping",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{paymentServiceUrl}}",
-							"host": [
-								"{{paymentServiceUrl}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get all payments",
-					"event": [
+					"name": "cart",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{paymentServiceUrl}}/payments",
-							"host": [
-								"{{paymentServiceUrl}}"
-							],
-							"path": [
-								"payments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get payment by id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{paymentServiceUrl}}/payments/1",
-							"host": [
-								"{{paymentServiceUrl}}"
-							],
-							"path": [
-								"payments",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get payment by id - detailed",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{paymentServiceUrl}}/payments/1/detail",
-							"host": [
-								"{{paymentServiceUrl}}"
-							],
-							"path": [
-								"payments",
-								"1",
-								"detail"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get payments of customer",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{paymentServiceUrl}}/payments/ofCustomer/1",
-							"host": [
-								"{{paymentServiceUrl}}"
-							],
-							"path": [
-								"payments",
-								"ofCustomer",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add payment",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"totalCharge\": 120.8,\n    \"customerId\": 3,\n    \"productIds\": [7,8]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "add to cart",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{paymentServiceUrl}}/cart",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"cart"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{paymentServiceUrl}}/payments",
-							"host": [
-								"{{paymentServiceUrl}}"
-							],
-							"path": [
-								"payments"
-							]
+						{
+							"name": "remove from cart",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{paymentServiceUrl}}/cart",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "payment",
+					"item": [
+						{
+							"name": "ping",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{paymentServiceUrl}}",
+									"host": [
+										"{{paymentServiceUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{paymentServiceUrl}}/payments",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get payment by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{paymentServiceUrl}}/payments/1",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"payments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get payment by id - detailed",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{paymentServiceUrl}}/payments/1/detail",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"payments",
+										"1",
+										"detail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get payments of customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{paymentServiceUrl}}/payments/ofCustomer/1",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"payments",
+										"ofCustomer",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accept payment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{paymentServiceUrl}}/payments",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
