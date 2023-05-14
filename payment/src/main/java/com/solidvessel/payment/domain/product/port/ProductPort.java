@@ -9,5 +9,5 @@ public interface ProductPort {
 
     List<ProductDataModel> getProductsOfCart(Set<Long> productIds);
 
-    boolean isAvailable(Long productId);
+    boolean isAvailable(Long productId, int quantity);
 }

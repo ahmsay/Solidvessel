@@ -27,10 +27,10 @@ public class ProductRestAdapter implements ProductPort {
     }
 
     @Override
-    public boolean isAvailable(Long productId) {
+    public boolean isAvailable(Long productId, int quantity) {
         String session = SessionUtil.getCurrentUserSession();
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> productRestClient.isAvailable(productId, session),
+                .run(() -> productRestClient.isAvailable(productId, quantity, session),
                         throwable -> false);
     }
 }

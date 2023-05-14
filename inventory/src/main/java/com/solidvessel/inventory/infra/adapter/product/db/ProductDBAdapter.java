@@ -39,7 +39,7 @@ public class ProductDBAdapter implements ProductPort {
     }
 
     @Override
-    public boolean isAvailable(Long id) {
-        return productRepository.existsById(id);
+    public boolean isAvailable(Long id, int quantity) {
+        return productRepository.findByIdAndQuantityGreaterThanEqual(id, quantity).isPresent();
     }
 }

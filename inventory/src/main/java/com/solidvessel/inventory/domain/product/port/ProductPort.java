@@ -15,5 +15,5 @@ public interface ProductPort {
 
     void save(Product product);
 
-    boolean isAvailable(Long id);
+    boolean isAvailable(Long id, int quantity);
 }

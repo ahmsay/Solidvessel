@@ -40,8 +40,8 @@ public class ProductController {
         return addProductCommandService.execute(request.toCommand());
     }
 
-    @GetMapping("/{id}/available")
-    public boolean isAvailable(@PathVariable final Long id) {
-        return productPort.isAvailable(id);
+    @GetMapping("/available")
+    public boolean isAvailable(@RequestParam final Long id, @RequestParam int quantity) {
+        return productPort.isAvailable(id, quantity);
     }
 }

@@ -3,5 +3,9 @@ package com.solidvessel.inventory.infra.adapter.product.db.repository;
 import com.solidvessel.inventory.infra.adapter.product.db.entity.ProductJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface ProductRepository extends JpaRepository<ProductJpaEntity, Long> {
+
+    Optional<ProductJpaEntity> findByIdAndQuantityGreaterThanEqual(Long id, int quantity);
 }
