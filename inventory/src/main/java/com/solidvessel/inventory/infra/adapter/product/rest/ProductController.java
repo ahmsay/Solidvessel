@@ -6,6 +6,7 @@ import com.solidvessel.inventory.domain.product.service.command.AddProductComman
 import com.solidvessel.inventory.infra.adapter.product.rest.request.AddProductRequest;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    public OperationResult add(@RequestBody final AddProductRequest request) {
+    public OperationResult add(@RequestBody @Valid final AddProductRequest request) {
         return addProductCommandService.execute(request.toCommand());
     }
 

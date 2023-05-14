@@ -11,8 +11,9 @@ public class Product {
     private String name;
     private Double price;
     private ProductCategory category;
+    private int quantity;
 
-    public static Product newProduct(String name, Double price, ProductCategory category) {
-        return new Product(null, name, price, category);
+    public static Product newProduct(String name, Double price, ProductCategory category, int quantity) {
+        return new Product(null, name, price, category, quantity);
     }
 }

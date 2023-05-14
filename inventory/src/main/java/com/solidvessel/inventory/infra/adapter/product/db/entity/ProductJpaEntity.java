@@ -30,11 +30,13 @@ public class ProductJpaEntity {
 
     private ProductCategory category;
 
+    private int quantity;
+
     public ProductDataModel toDataModel() {
-        return new ProductDataModel(id, name, price, category);
+        return new ProductDataModel(id, name, price, category, quantity);
     }
 
     public static ProductJpaEntity from(Product product) {
-        return new ProductJpaEntity(product.getId(), product.getName(), product.getPrice(), product.getCategory());
+        return new ProductJpaEntity(product.getId(), product.getName(), product.getPrice(), product.getCategory(), product.getQuantity());
     }
 }
