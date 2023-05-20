@@ -24,7 +24,7 @@ public class AddToCartCommandService implements CommandService<AddToCartCommand>
             return new OperationResult("The product is not available in stocks.", ResultType.ERROR);
         }
         Cart cart = cartPort.getByCustomerId(command.customerId());
-        cart.addProduct(productId);
+        cart.addProduct(productId, command.quantity());
         cartPort.save(cart);
         return new OperationResult("Product is added to the cart.", ResultType.SUCCESS);
     }

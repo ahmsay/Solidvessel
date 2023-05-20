@@ -18,11 +18,11 @@ public class Cart {
         return new Cart(null, customerId, new HashMap<>());
     }
 
-    public void addProduct(Long productId) {
+    public void addProduct(Long productId, int quantity) {
         if (products.containsKey(productId)) {
-            products.put(productId, products.get(productId) + 1);
+            products.put(productId, products.get(productId) + quantity);
         } else {
-            products.put(productId, 1);
+            products.put(productId, quantity);
         }
     }
 
@@ -31,7 +31,11 @@ public class Cart {
     }
 
     public void removeProduct(Long productId) {
-        products.put(productId, products.get(productId) - 1);
+        if (products.get(productId) == 1) {
+            products.remove(productId);
+        } else {
+            products.put(productId, products.get(productId) - 1);
+        }
     }
 
     public boolean isEmpty() {

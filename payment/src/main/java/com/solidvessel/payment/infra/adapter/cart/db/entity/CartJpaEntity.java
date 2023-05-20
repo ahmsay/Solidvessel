@@ -50,13 +50,7 @@ public class CartJpaEntity {
 
     private Map<Long, Integer> productListToMap(List<CartProductEmbeddable> products) {
         Map<Long, Integer> productsMap = new HashMap<>();
-        products.forEach(product -> {
-            if (productsMap.containsKey(product.getProductId())) {
-                productsMap.put(product.getProductId(), productsMap.get(product.getProductId()) + 1);
-            } else {
-                productsMap.put(product.getProductId(), 1);
-            }
-        });
+        products.forEach(product -> productsMap.put(product.getProductId(), product.getQuantity()));
         return productsMap;
     }
 }
