@@ -825,7 +825,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productId\": 1\n}",
+									"raw": "{\n    \"productId\": 1,\n    \"quantity\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
