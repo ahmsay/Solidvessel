@@ -18,9 +18,9 @@ public class DatabaseConfig {
     @Bean
     InitializingBean seedDatabase(final PaymentRepository paymentRepository, final CartRepository cartRepository) {
         return () -> {
-            paymentRepository.save(new PaymentJpaEntity(null, 1L, List.of(new ProductEmbeddable(1L, 1, "Lol", 25D))));
-            paymentRepository.save(new PaymentJpaEntity(null, 2L, List.of(new ProductEmbeddable(2L, 1, "asd", 3D))));
-            paymentRepository.save(new PaymentJpaEntity(null, 3L, List.of(new ProductEmbeddable(2l, 3, "zxc", 23.4D))));
+            paymentRepository.save(new PaymentJpaEntity(null, 1L, List.of(new ProductEmbeddable(1L, 1, "Lol", 25D)), 250D));
+            paymentRepository.save(new PaymentJpaEntity(null, 2L, List.of(new ProductEmbeddable(2L, 1, "asd", 3D)), 3D));
+            paymentRepository.save(new PaymentJpaEntity(null, 3L, List.of(new ProductEmbeddable(2l, 3, "zxc", 23.4D)), 70.2D));
 
             cartRepository.save(new CartJpaEntity(null, 1L, new ArrayList<>()));
             cartRepository.save(new CartJpaEntity(null, 2L, new ArrayList<>()));

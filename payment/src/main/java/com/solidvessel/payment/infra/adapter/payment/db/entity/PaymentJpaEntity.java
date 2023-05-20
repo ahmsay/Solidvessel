@@ -29,12 +29,15 @@ public class PaymentJpaEntity {
     @CollectionTable(name = "payment_product", joinColumns = @JoinColumn(name = "payment_id"))
     private List<ProductEmbeddable> products = new ArrayList<>();
 
+    @NotNull
+    private Double totalPrice;
+
     public PaymentDataModel toDataModel() {
         return new PaymentDataModel(
                 id,
                 customerId,
                 products.stream().map(ProductEmbeddable::toDataModel).toList(),
-                products.stream().map(ProductEmbeddable::getPrice).reduce(0D, Double::sum)
+                totalPrice
         );
     }
 
@@ -42,7 +45,8 @@ public class PaymentJpaEntity {
         return new PaymentJpaEntity(
                 payment.getId(),
                 payment.getCustomerId(),
-                payment.getProducts().stream().map(ProductEmbeddable::from).toList()
+                payment.getProducts().stream().map(ProductEmbeddable::from).toList(),
+                payment.getTotalPrice()
         );
     }
 }
