@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class CartProductEmbeddable {
 
-    private Long id;
+    private Long productId;
     private int quantity;
 }
