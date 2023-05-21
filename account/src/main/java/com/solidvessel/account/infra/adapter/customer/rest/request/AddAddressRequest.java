@@ -1,6 +1,7 @@
 package com.solidvessel.account.infra.adapter.customer.rest.request;
 
 import com.solidvessel.account.domain.customer.service.command.AddAddressCommand;
+import com.solidvessel.shared.infra.util.SessionUtil;
 import jakarta.validation.constraints.NotNull;
 
 public record AddAddressRequest(
@@ -11,6 +12,6 @@ public record AddAddressRequest(
 ) {
 
     public AddAddressCommand toCommand() {
-        return new AddAddressCommand(name, country, city, zipcode);
+        return new AddAddressCommand(name, country, city, zipcode, SessionUtil.getCurrentUserId());
     }
 }

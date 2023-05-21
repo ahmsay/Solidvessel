@@ -1,6 +1,7 @@
 package com.solidvessel.account.infra.adapter.customer.rest.request;
 
 import com.solidvessel.account.domain.customer.service.command.UpdateAddressCommand;
+import com.solidvessel.shared.infra.util.SessionUtil;
 import jakarta.validation.constraints.NotNull;
 
 public record UpdateAddressRequest(
@@ -10,6 +11,6 @@ public record UpdateAddressRequest(
         String zipcode
 ) {
     public UpdateAddressCommand toCommand() {
-        return new UpdateAddressCommand(name, country, city, zipcode);
+        return new UpdateAddressCommand(name, country, city, zipcode, SessionUtil.getCurrentUserId());
     }
 }

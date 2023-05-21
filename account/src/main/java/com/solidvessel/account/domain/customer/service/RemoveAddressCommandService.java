@@ -5,7 +5,6 @@ import com.solidvessel.account.domain.customer.service.command.RemoveAddressComm
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
-import com.solidvessel.shared.infra.util.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ public class RemoveAddressCommandService implements CommandService<RemoveAddress
 
     @Override
     public OperationResult execute(RemoveAddressCommand command) {
-        Long customerId = SessionUtil.getCurrentUserId();
+        Long customerId = command.customerId();
         addressPort.removeAddress(customerId, command.name());
         return new OperationResult("Address is removed.", ResultType.SUCCESS);
     }
