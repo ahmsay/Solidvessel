@@ -3,10 +3,7 @@ package com.solidvessel.order.infra.adapter.order.db.entity;
 import com.solidvessel.order.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.order.domain.order.model.Order;
 import com.solidvessel.order.domain.order.model.OrderStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Table(name = "orders")
 public class OrderJpaEntity {
 
     @Id

@@ -3,10 +3,7 @@ package com.solidvessel.inventory.infra.adapter.product.db.entity;
 import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.model.Product;
 import com.solidvessel.inventory.domain.product.model.ProductCategory;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Table(name = "product")
 public class ProductJpaEntity {
 
     @Id
