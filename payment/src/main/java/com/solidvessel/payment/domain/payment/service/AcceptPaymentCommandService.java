@@ -24,6 +24,7 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
     private final CartPort cartPort;
     private final ProductPort productPort;
     private final PaymentPort paymentPort;
+    private final ProductQuantityDomainService productQuantityDomainService;
     private final EventPublisher<PaymentSavedEvent> paymentSavedEventPublisher;
 
     @Override
@@ -34,8 +35,11 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
             return new OperationResult("Your cart is empty.", ResultType.ERROR);
         }
         Set<Long> productIds = cart.getProducts().keySet();
-        List<ProductDataModel> products = productPort.getProductsOfCart(productIds);
-        Payment payment = Payment.newPayment(customerId, products);
+        List<ProductDataModel> productsFromInventory = productPort.getProductsOfCart(productIds);
+        if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProducts(), productsFromInventory)) {
+            return new OperationResult("Selected products are not available with specified quantity.", ResultType.ERROR);
+        }
+        Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProducts());
         Long paymentId = paymentPort.save(payment);
         cart.empty();
         cartPort.save(cart);
