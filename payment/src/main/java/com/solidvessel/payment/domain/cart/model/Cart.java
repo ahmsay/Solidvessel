@@ -12,37 +12,37 @@ public class Cart {
 
     private Long id;
     private Long customerId;
-    private Map<Long, Integer> products;
+    private Map<Long, Integer> productQuantities;
 
     public static Cart newCart(Long customerId) {
         return new Cart(null, customerId, new HashMap<>());
     }
 
     public void addProduct(Long productId, int quantity) {
-        if (products.containsKey(productId)) {
-            products.put(productId, products.get(productId) + quantity);
+        if (productQuantities.containsKey(productId)) {
+            productQuantities.put(productId, productQuantities.get(productId) + quantity);
         } else {
-            products.put(productId, quantity);
+            productQuantities.put(productId, quantity);
         }
     }
 
     public boolean doesProductExist(Long productId) {
-        return products.containsKey(productId);
+        return productQuantities.containsKey(productId);
     }
 
     public void removeProduct(Long productId) {
-        if (products.get(productId) == 1) {
-            products.remove(productId);
+        if (productQuantities.get(productId) == 1) {
+            productQuantities.remove(productId);
         } else {
-            products.put(productId, products.get(productId) - 1);
+            productQuantities.put(productId, productQuantities.get(productId) - 1);
         }
     }
 
     public boolean isEmpty() {
-        return products.isEmpty();
+        return productQuantities.isEmpty();
     }
 
     public void empty() {
-        products = new HashMap<>();
+        productQuantities = new HashMap<>();
     }
 }

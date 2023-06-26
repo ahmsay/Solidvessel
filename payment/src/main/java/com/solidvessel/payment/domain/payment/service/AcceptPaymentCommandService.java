@@ -34,12 +34,12 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         if (cart.isEmpty()) {
             return new OperationResult("Your cart is empty.", ResultType.ERROR);
         }
-        Set<Long> productIds = cart.getProducts().keySet();
+        Set<Long> productIds = cart.getProductQuantities().keySet();
         List<ProductDataModel> productsFromInventory = productPort.getProductsOfCart(productIds);
-        if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProducts(), productsFromInventory)) {
+        if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProductQuantities(), productsFromInventory)) {
             return new OperationResult("Selected products are not available with specified quantity.", ResultType.ERROR);
         }
-        Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProducts());
+        Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProductQuantities());
         Long paymentId = paymentPort.save(payment);
         cart.empty();
         cartPort.save(cart);

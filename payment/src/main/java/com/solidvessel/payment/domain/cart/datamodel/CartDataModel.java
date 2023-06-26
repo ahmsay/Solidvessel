@@ -9,7 +9,7 @@ import java.util.Map;
 public record CartDataModel(Long id, Long customerId, List<ProductDataModel> products) {
 
     public static CartDataModel from(Cart cart, List<ProductDataModel> products) {
-        Map<Long, Integer> productQuantities = cart.getProducts();
+        Map<Long, Integer> productQuantities = cart.getProductQuantities();
         List<ProductDataModel> productsWithQuantitiesInCart = products.stream()
                 .map(product -> new ProductDataModel(product.id(), productQuantities.get(product.id()), product.name(), product.price()))
                 .toList();

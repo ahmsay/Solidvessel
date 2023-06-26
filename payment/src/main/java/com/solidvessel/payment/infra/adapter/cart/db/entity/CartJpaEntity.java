@@ -34,7 +34,7 @@ public class CartJpaEntity {
         return new CartJpaEntity(
                 cart.getId(),
                 cart.getCustomerId(),
-                productMapToList(cart.getProducts())
+                productMapToList(cart.getProductQuantities())
         );
     }
 
