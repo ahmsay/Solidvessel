@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: postgres
-      image: postgres:15.0
+      image: postgres:15.3
       env:
         - name: POSTGRES_DB
           value: auth

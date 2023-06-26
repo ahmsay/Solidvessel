@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: rabbitmq
-      image: rabbitmq:3.11.1-management
+      image: rabbitmq:3.12.0-management
       ports:
         - containerPort: 5672
         - containerPort: 15672
