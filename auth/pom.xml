@@ -15,7 +15,7 @@
     <description>Authentication Service for Shopping Application</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>20</java.version>
     </properties>
 
     <dependencies>
@@ -89,7 +89,7 @@
                 <version>3.3.2</version>
                 <configuration>
                     <from>
-                        <image>eclipse-temurin:17.0.5_8-jre-jammy</image>
+                        <image>eclipse-temurin:20.0.1_9-jre-jammy</image>
                         <platforms>
                             <platform>
                                 <os>linux</os>
