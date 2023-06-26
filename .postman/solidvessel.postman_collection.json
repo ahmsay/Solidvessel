@@ -819,6 +819,23 @@
 					"name": "cart",
 					"item": [
 						{
+							"name": "get cart",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{paymentServiceUrl}}/cart",
+									"host": [
+										"{{paymentServiceUrl}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "add to cart",
 							"request": {
 								"method": "POST",
