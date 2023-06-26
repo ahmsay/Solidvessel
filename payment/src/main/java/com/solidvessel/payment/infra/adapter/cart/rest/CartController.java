@@ -37,7 +37,7 @@ public class CartController {
     public CartDataModel listCart() {
         Cart cart = cartPort.getByCustomerId(SessionUtil.getCurrentUserId());
         List<ProductDataModel> products = productPort.getProductsOfCart(cart.getProducts().keySet());
-        return new CartDataModel(cart.getId(), cart.getCustomerId(), products);
+        return CartDataModel.from(cart, products);
     }
 
     @DeleteMapping()
