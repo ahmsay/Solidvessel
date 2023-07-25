@@ -1,10 +1,10 @@
 package com.solidvessel.payment.infra.configuration;
 
-import com.solidvessel.payment.infra.adapter.cart.db.entity.CartJpaEntity;
-import com.solidvessel.payment.infra.adapter.cart.db.repository.CartRepository;
-import com.solidvessel.payment.infra.adapter.payment.db.entity.PaymentJpaEntity;
-import com.solidvessel.payment.infra.adapter.payment.db.entity.ProductEmbeddable;
-import com.solidvessel.payment.infra.adapter.payment.db.repository.PaymentRepository;
+import com.solidvessel.payment.infra.adapter.out.cart.db.entity.CartJpaEntity;
+import com.solidvessel.payment.infra.adapter.out.cart.db.repository.CartRepository;
+import com.solidvessel.payment.infra.adapter.out.payment.db.entity.PaymentJpaEntity;
+import com.solidvessel.payment.infra.adapter.out.payment.db.entity.ProductEmbeddable;
+import com.solidvessel.payment.infra.adapter.out.payment.db.repository.PaymentRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
