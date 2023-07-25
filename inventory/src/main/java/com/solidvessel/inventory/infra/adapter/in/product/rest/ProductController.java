@@ -1,9 +1,9 @@
-package com.solidvessel.inventory.infra.adapter.product.rest;
+package com.solidvessel.inventory.infra.adapter.in.product.rest;
 
 import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.domain.product.service.command.AddProductCommand;
-import com.solidvessel.inventory.infra.adapter.product.rest.request.AddProductRequest;
+import com.solidvessel.inventory.infra.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.infra.adapter.ping.rest;
+package com.solidvessel.inventory.infra.adapter.in.ping.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

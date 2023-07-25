@@ -1,10 +1,10 @@
-package com.solidvessel.inventory.infra.adapter.product.db;
+package com.solidvessel.inventory.infra.adapter.out.product.db;
 
 import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.model.Product;
 import com.solidvessel.inventory.domain.product.port.ProductPort;
-import com.solidvessel.inventory.infra.adapter.product.db.entity.ProductJpaEntity;
-import com.solidvessel.inventory.infra.adapter.product.db.repository.ProductRepository;
+import com.solidvessel.inventory.infra.adapter.out.product.db.entity.ProductJpaEntity;
+import com.solidvessel.inventory.infra.adapter.out.product.db.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
 package com.solidvessel.inventory.infra.configuration;
 
 import com.solidvessel.inventory.domain.product.model.ProductCategory;
-import com.solidvessel.inventory.infra.adapter.product.db.entity.ProductJpaEntity;
-import com.solidvessel.inventory.infra.adapter.product.db.repository.ProductRepository;
+import com.solidvessel.inventory.infra.adapter.out.product.db.entity.ProductJpaEntity;
+import com.solidvessel.inventory.infra.adapter.out.product.db.repository.ProductRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.infra.adapter.product.db.entity;
+package com.solidvessel.inventory.infra.adapter.out.product.db.entity;
 
 import com.solidvessel.inventory.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.domain.product.model.Product;

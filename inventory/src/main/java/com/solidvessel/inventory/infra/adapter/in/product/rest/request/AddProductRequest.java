@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.infra.adapter.product.rest.request;
+package com.solidvessel.inventory.infra.adapter.in.product.rest.request;
 
 import com.solidvessel.inventory.domain.product.model.ProductCategory;
 import com.solidvessel.inventory.domain.product.service.command.AddProductCommand;
