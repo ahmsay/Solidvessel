@@ -1,4 +1,4 @@
-package com.solidvessel.order.infra.adapter.payment.event;
+package com.solidvessel.order.infra.adapter.in.payment.event;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

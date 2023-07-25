@@ -1,10 +1,10 @@
-package com.solidvessel.order.infra.adapter.order.db;
+package com.solidvessel.order.infra.adapter.out.order.db;
 
 import com.solidvessel.order.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.order.domain.order.model.Order;
 import com.solidvessel.order.domain.order.port.OrderPort;
-import com.solidvessel.order.infra.adapter.order.db.entity.OrderJpaEntity;
-import com.solidvessel.order.infra.adapter.order.db.repository.OrderRepository;
+import com.solidvessel.order.infra.adapter.out.order.db.entity.OrderJpaEntity;
+import com.solidvessel.order.infra.adapter.out.order.db.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

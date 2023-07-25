@@ -1,6 +1,6 @@
-package com.solidvessel.order.infra.adapter.order.db.repository;
+package com.solidvessel.order.infra.adapter.out.order.db.repository;
 
-import com.solidvessel.order.infra.adapter.order.db.entity.OrderJpaEntity;
+import com.solidvessel.order.infra.adapter.out.order.db.entity.OrderJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

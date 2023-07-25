@@ -1,4 +1,4 @@
-package com.solidvessel.order.infra.adapter.payment.event;
+package com.solidvessel.order.infra.adapter.in.payment.event;
 
 import com.solidvessel.order.domain.order.service.command.AddOrderCommand;
 import com.solidvessel.order.domain.payment.event.PaymentSavedEvent;

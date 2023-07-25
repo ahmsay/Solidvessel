@@ -1,4 +1,4 @@
-package com.solidvessel.order.infra.adapter.order.db.entity;
+package com.solidvessel.order.infra.adapter.out.order.db.entity;
 
 import com.solidvessel.order.domain.order.datamodel.OrderDataModel;
 import com.solidvessel.order.domain.order.model.Order;

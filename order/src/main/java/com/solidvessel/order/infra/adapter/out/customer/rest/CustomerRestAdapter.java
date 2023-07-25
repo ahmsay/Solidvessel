@@ -1,4 +1,4 @@
-package com.solidvessel.order.infra.adapter.customer.rest;
+package com.solidvessel.order.infra.adapter.out.customer.rest;
 
 import com.solidvessel.order.domain.customer.datamodel.CustomerDataModel;
 import com.solidvessel.order.domain.customer.port.CustomerPort;

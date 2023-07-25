@@ -1,4 +1,4 @@
-package com.solidvessel.order.infra.adapter.payment.rest;
+package com.solidvessel.order.infra.adapter.out.payment.rest;
 
 import com.solidvessel.order.domain.payment.datamodel.PaymentDataModel;
 import com.solidvessel.order.domain.payment.port.PaymentPort;

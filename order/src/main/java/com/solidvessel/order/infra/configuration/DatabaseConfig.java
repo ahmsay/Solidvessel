@@ -1,8 +1,8 @@
 package com.solidvessel.order.infra.configuration;
 
 import com.solidvessel.order.domain.order.model.OrderStatus;
-import com.solidvessel.order.infra.adapter.order.db.entity.OrderJpaEntity;
-import com.solidvessel.order.infra.adapter.order.db.repository.OrderRepository;
+import com.solidvessel.order.infra.adapter.out.order.db.entity.OrderJpaEntity;
+import com.solidvessel.order.infra.adapter.out.order.db.repository.OrderRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
