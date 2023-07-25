@@ -1,9 +1,9 @@
 package com.solidvessel.auth.infra.configuration;
 
 
-import com.solidvessel.auth.infra.adapter.appuser.db.entity.ActivityEmbeddable;
-import com.solidvessel.auth.infra.adapter.appuser.db.entity.AppUserJpaEntity;
-import com.solidvessel.auth.infra.adapter.appuser.db.repository.AppUserRepository;
+import com.solidvessel.auth.infra.adapter.out.appuser.db.entity.ActivityEmbeddable;
+import com.solidvessel.auth.infra.adapter.out.appuser.db.entity.AppUserJpaEntity;
+import com.solidvessel.auth.infra.adapter.out.appuser.db.repository.AppUserRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
