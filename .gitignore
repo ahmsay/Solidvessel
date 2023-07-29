@@ -10,24 +10,18 @@
 
 !/account/src/**
 !/account/pom.xml
-!/account/build.gradle
 
 !/auth/src/**
 !/auth/pom.xml
-!/auth/build.gradle
 
 !/inventory/src/**
 !/inventory/pom.xml
-!/inventory/build.gradle
 
 !/order/src/**
 !/order/pom.xml
-!/order/build.gradle
 
 !/payment/src/**
 !/payment/pom.xml
-!/payment/build.gradle
 
 !/shared/src/**
 !/shared/pom.xml
-!/shared/build.gradle
