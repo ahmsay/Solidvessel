@@ -38,7 +38,6 @@ dependencies {
 group = 'com.solidvessel'
 version = '0.0.1-SNAPSHOT'
 description = 'Inventory Service'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
     publications {
