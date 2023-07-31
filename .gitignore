@@ -9,19 +9,25 @@
 !.ci/**
 
 !/account/src/**
+!/account/build.gradle
 !/account/pom.xml
 
 !/auth/src/**
+!/auth/build.gradle
 !/auth/pom.xml
 
 !/inventory/src/**
+!/inventory/build.gradle
 !/inventory/pom.xml
 
 !/order/src/**
+!/order/build.gradle
 !/order/pom.xml
 
 !/payment/src/**
+!/payment/build.gradle
 !/payment/pom.xml
 
 !/shared/src/**
+!/shared/build.gradle
 !/shared/pom.xml
