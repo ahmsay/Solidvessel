@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -21,17 +22,16 @@ public class SecurityFilterConfig {
 
     @Bean
     public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests()
-                .requestMatchers(antMatcher("/")).permitAll()
-                .requestMatchers(antMatcher("/login")).permitAll()
-                .requestMatchers(antMatcher("/signUp")).permitAll()
-                .anyRequest().authenticated()
-                .and()
+        return httpSecurity.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(antMatcher("/")).permitAll()
+                        .requestMatchers(antMatcher("/login")).permitAll()
+                        .requestMatchers(antMatcher("/signUp")).permitAll()
+                        .anyRequest().authenticated())
                 .authenticationManager(authenticationManager)
-                .logout().disable()
-                .formLogin().disable()
-                .csrf().disable();
-        return httpSecurity.build();
+                .logout(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
+                .build();
     }
 
     public Customizer<CsrfConfigurer<HttpSecurity>> configureCsrf() { // would be needed later
