@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'com.google.cloud.tools.jib' version '3.3.2'
 }
 
 repositories {
@@ -37,3 +38,22 @@ dependencies {
 group = 'com.solidvessel'
 version = '0.0.1-SNAPSHOT'
 description = 'Account Service'
+
+jib {
+    from {
+        image = "eclipse-temurin:20.0.1_9-jre-jammy"
+        platforms {
+            platform {
+                os = "linux"
+                architecture = "amd64"
+            }
+            platform {
+                os = "linux"
+                architecture = "arm64"
+            }
+        }
+    }
+    to {
+        image = "docker.io/ahmsay/solidvessel-account"
+    }
+}
