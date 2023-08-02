@@ -1,6 +1,5 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
     id 'com.google.cloud.tools.jib' version '3.3.2'
 }
 
@@ -9,14 +8,13 @@ repositories {
     maven {
         url = uri('https://repo.spring.io/milestone')
     }
-
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
 }
 
 dependencies {
-    api 'com.solidvessel:shared:0.0.1-SNAPSHOT'
+    implementation 'com.solidvessel:shared:0.0.1-SNAPSHOT'
     api 'org.springframework.boot:spring-boot-starter-web:3.1.1'
     api 'org.springframework.boot:spring-boot-starter-actuator:3.1.1'
     api 'org.springframework.boot:spring-boot-starter-data-jpa:3.1.1'
