@@ -8,7 +8,7 @@ repositories {
         url = uri('https://repo.spring.io/milestone')
     }
     maven {
-        url = uri('./local-repo')
+        url = uri('file://${rootDir}/local-repo')
     }
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
