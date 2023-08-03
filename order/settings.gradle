@@ -1,0 +1,3 @@
+rootProject.name = 'order'
+include ':shared'
+project(':shared').projectDir = new File("../shared")

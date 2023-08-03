@@ -1,0 +1,61 @@
+plugins {
+    id 'java-library'
+    id 'com.google.cloud.tools.jib' version '3.3.2'
+    id 'java'
+}
+
+repositories {
+    maven {
+        url = uri('https://repo.spring.io/milestone')
+    }
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    implementation project(':shared')
+    api 'org.springframework.boot:spring-boot-starter-web:3.1.1'
+    api 'org.springframework.boot:spring-boot-starter-actuator:3.1.1'
+    api 'org.springframework.boot:spring-boot-starter-data-jpa:3.1.1'
+    api 'org.springframework.boot:spring-boot-starter-validation:3.1.1'
+    api 'org.postgresql:postgresql:42.6.0'
+    api 'org.springframework.boot:spring-boot-starter-amqp:3.1.1'
+    api 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.3'
+    api 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:3.0.2'
+    api 'org.springframework.boot:spring-boot-starter-data-redis:3.1.1'
+    api 'org.springframework.session:spring-session-data-redis:3.1.1'
+    api 'org.springframework.boot:spring-boot-starter-security:3.1.1'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.1'
+}
+
+group = 'com.solidvessel'
+version = '0.0.1-SNAPSHOT'
+description = 'Account Service'
+
+jib {
+    from {
+        image = "eclipse-temurin:20.0.1_9-jre-jammy"
+        platforms {
+            platform {
+                os = "linux"
+                architecture = "amd64"
+            }
+            platform {
+                os = "linux"
+                architecture = "arm64"
+            }
+        }
+    }
+    to {
+        image = "docker.io/ahmsay/solidvessel-account"
+    }
+}
+
+compileJava {
+    options.compilerArgs << '-parameters'
+}
