@@ -5,3 +5,5 @@
  */
 
 rootProject.name = 'auth'
+include ':shared'
+project(':shared').projectDir = new File("../shared")
