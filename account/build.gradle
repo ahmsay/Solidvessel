@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'com.google.cloud.tools.jib' version '3.3.2'
+    id 'java'
 }
 
 repositories {
@@ -53,4 +54,8 @@ jib {
     to {
         image = "docker.io/ahmsay/solidvessel-account"
     }
+}
+
+compileJava {
+    options.compilerArgs << '-parameters'
 }
