@@ -12,8 +12,4 @@ phases:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   build:
     commands:
-    - cd ./auth && gradle jib && cd ..
-    - cd ./account && gradle jib && cd ..
-    - cd ./inventory && gradle jib && cd ..
-    - cd ./order && gradle jib && cd ..
-    - cd ./payment && gradle jib && cd ..
+    - gradle jib --parallel
