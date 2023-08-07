@@ -2,18 +2,9 @@ plugins {
     id 'java-library'
 }
 
-repositories {
-    maven {
-        url = uri('https://repo.spring.io/milestone')
-    }
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
-}
-
 dependencies {
-    api 'org.springframework.boot:spring-boot-starter-security:3.1.1'
-    api 'org.springframework.boot:spring-boot-starter-web:3.1.1'
+    api "org.springframework.boot:spring-boot-starter-web:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-security:$rootProject.springBootVersion"
 }
 
 group = 'com.solidvessel'
