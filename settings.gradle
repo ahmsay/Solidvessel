@@ -1,0 +1,8 @@
+rootProject.name = 'solidvessel'
+
+include ':account'
+include ':auth'
+include ':inventory'
+include ':order'
+include ':payment'
+include ':shared'

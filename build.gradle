@@ -1,0 +1,11 @@
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/config/repositories.gradle", to: buildscript
+    apply from: "$rootProject.projectDir/gradle/config/dependencies-plugins.gradle", to: buildscript
+}
+
+group = 'com.solidvessel'
+
+allprojects {
+    apply from: "$rootProject.projectDir/gradle/config/repositories.gradle"
+    apply from: "$rootProject.projectDir/gradle/config/dependencies.gradle"
+}
