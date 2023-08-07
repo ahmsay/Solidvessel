@@ -4,15 +4,6 @@ plugins {
     id 'java'
 }
 
-repositories {
-    maven {
-        url = uri('https://repo.spring.io/milestone')
-    }
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
-}
-
 dependencies {
     implementation project(':shared')
     api 'org.springframework.boot:spring-boot-starter-web:3.1.1'
