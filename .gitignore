@@ -14,3 +14,6 @@
 !/order/src/**
 !/payment/src/**
 !/shared/src/**
+!gradlew
+!gradlew.bat
+!gradle/**
