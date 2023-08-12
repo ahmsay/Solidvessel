@@ -1,19 +1,28 @@
+# Actually this is more like a git include file, all the contents below are added to git.
 *
 !*/
-!.gitignore
-!**/**/*.md
-!.kubernetes/**
-!.postman/**
-!docker-compose.yaml
-!**/**/settings.gradle
-!**/**/build.gradle
-!.ci/**
+
+# source code
 !/account/src/**
 !/auth/src/**
 !/inventory/src/**
 !/order/src/**
 !/payment/src/**
 !/shared/src/**
+
+# gradle files
+!**/**/settings.gradle
+!**/**/build.gradle
 !gradlew
 !gradlew.bat
 !gradle/**
+
+# devops
+!.kubernetes/**
+!docker-compose.yaml
+!.ci/**
+
+# other files
+!.gitignore
+!**/**/*.md
+!.postman/**
