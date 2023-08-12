@@ -35,27 +35,38 @@ Production environment is logically the same with the test environment. This mea
 <b>still runs on a Kubernetes cluster</b>. However, the cluster is on remote servers now, just like a real world production environment. 
 I used AWS as a cloud provider for this environment. <b>Please note that I'm not keeping the production environment up 7/24, that would be very costly.</b> 
 Let's explain each component shown in the diagram one by one:
-- ALB: The ingress resource we defined for the K8S cluster is converted to an ALB (Application Load Balancer). AWS reads 
-the routing rules, services and the SSL configuration we defined in the ingress file and applies all of them in the ALB.
-Each ingress defined in K8S has a correspondence in ALB.
-- Target Groups: These are subcomponents of the ALB. A target group is solely responsible for load balancing. For example if
-the inventory service has 3 replicas, it's the target group of the inventory service's responsibility to distribute the traffic across the replicas. Each Kubernetes service
-defined in the ingress file is converted to a target group on ALB.
-- Route 53: This service is responsible for managing DNS in AWS. Each microservice has a DNS record, and they are forwarded through the ALB.
-When the client types a url, such as inventory.solidvessel.com , it should be resolved to the url of the ALB.
-This process is done by Route 53.
-- Private Subnet: Giving nodes (servers) of the cluster public IP addresses poses a security risk. Anyone could see the nodes and
-try to exploit them. To prevent this, all servers are inside a private network, making them invisible from the outside world.
-- Public Subnet: This is where servers are publicly visible. We need ALB to be public to access our application. We also need
-NAT Gateway to be public to give internet access to our nodes. The security of these two are handled by AWS.
-- NAT Gateway: Since our nodes don't have a public IP address, they can't directly access to the internet. We need a server
-that does a network address translation (NAT), making our nodes to access the internet in a more secure way.
-- Master Nodes: These are responsible for managing worker nodes. We don't really have any control over master nodes, 
-they are fully managed by AWS.
-- Worker Nodes: These are where our applications run. The Kubernetes cluster drawn in the test environment is spanned across
-the worker nodes here.
-- CloudFormation: The whole infrastructure (nodes, subnets, ALB, NAT gateway etc.) is built on CloudFormation. This service
-provides a way to manage AWS resources easier using declarative approaches.
+- **ALB**: The ingress resource we defined for the K8S cluster is converted to an ALB (Application Load Balancer). AWS
+  reads
+  the routing rules, services and the SSL configuration we defined in the ingress file and applies all of them in the
+  ALB.
+  Each ingress defined in K8S has a correspondence in ALB.
+- **Target Groups**: These are subcomponents of the ALB. A target group is solely responsible for load balancing. For
+  example if
+  the inventory service has 3 replicas, it's the target group of the inventory service's responsibility to distribute
+  the traffic across the replicas. Each Kubernetes service
+  defined in the ingress file is converted to a target group on ALB.
+- **Route 53**: This service is responsible for managing DNS in AWS. Each microservice has a DNS record, and they are
+  forwarded through the ALB.
+  When the client types a url, such as inventory.solidvessel.com , it should be resolved to the url of the ALB.
+  This process is done by Route 53.
+- **Private Subnet**: Giving nodes (servers) of the cluster public IP addresses poses a security risk. Anyone could see
+  the nodes and
+  try to exploit them. To prevent this, all servers are inside a private network, making them invisible from the outside
+  world.
+- **Public Subnet**: This is where servers are publicly visible. We need ALB to be public to access our application. We
+  also need
+  NAT Gateway to be public to give internet access to our nodes. The security of these two are handled by AWS.
+- **NAT Gateway**: Since our nodes don't have a public IP address, they can't directly access to the internet. We need a
+  server
+  that does a network address translation (NAT), making our nodes to access the internet in a more secure way.
+- **Master Nodes**: These are responsible for managing worker nodes. We don't really have any control over master nodes,
+  they are fully managed by AWS.
+- **Worker Nodes**: These are where our applications run. The Kubernetes cluster drawn in the test environment is
+  spanned across
+  the worker nodes here.
+- **CloudFormation**: The whole infrastructure (nodes, subnets, ALB, NAT gateway etc.) is built on CloudFormation. This
+  service
+  provides a way to manage AWS resources easier using declarative approaches.
 
 ## Topics
 - <a href=".docs/run-options.md">Run options<a/>
