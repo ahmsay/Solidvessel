@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @AllArgsConstructor
 @Getter
@@ -44,5 +45,9 @@ public class Cart {
 
     public void empty() {
         productQuantities = new HashMap<>();
+    }
+
+    public Set<Long> getProductIds() {
+        return productQuantities.keySet();
     }
 }

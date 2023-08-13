@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -31,19 +30,34 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
     public OperationResult execute(AcceptPaymentCommand command) {
         Long customerId = command.customerId();
         Cart cart = cartPort.getByCustomerId(customerId);
-        if (cart.isEmpty()) {
-            return new OperationResult("Your cart is empty.", ResultType.ERROR);
-        }
-        Set<Long> productIds = cart.getProductQuantities().keySet();
-        List<ProductDataModel> productsFromInventory = productPort.getProductsOfCart(productIds);
-        if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProductQuantities(), productsFromInventory)) {
-            return new OperationResult("Selected products are not available with specified quantity.", ResultType.ERROR);
-        }
-        Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProductQuantities());
-        Long paymentId = paymentPort.save(payment);
-        cart.empty();
-        cartPort.save(cart);
+        checkIfTheCartIsEmpty(cart);
+        List<ProductDataModel> productsFromInventory = productPort.getProductsOfCart(cart.getProductIds());
+        checkIfProductsAreAvailable(cart, productsFromInventory);
+        Long paymentId = savePayment(customerId, productsFromInventory, cart);
+        saveCart(cart);
         paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId));
         return new OperationResult("Payment is accepted.", ResultType.SUCCESS);
+    }
+
+    private void checkIfTheCartIsEmpty(Cart cart) {
+        if (cart.isEmpty()) {
+            throw new RuntimeException("Your cart is empty.");
+        }
+    }
+
+    private void checkIfProductsAreAvailable(Cart cart, List<ProductDataModel> productsFromInventory) {
+        if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProductQuantities(), productsFromInventory)) {
+            throw new RuntimeException("Selected products are not available with specified quantity.");
+        }
+    }
+
+    private Long savePayment(Long customerId, List<ProductDataModel> productsFromInventory, Cart cart) {
+        Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProductQuantities());
+        return paymentPort.save(payment);
+    }
+
+    private void saveCart(Cart cart) {
+        cart.empty();
+        cartPort.save(cart);
     }
 }
