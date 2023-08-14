@@ -95,4 +95,4 @@ Let's explain each component shown in the diagram one by one:
 - CQRS
 - Monitoring
 - Testing
-- Exception handling
+- ~~Exception handling~~
