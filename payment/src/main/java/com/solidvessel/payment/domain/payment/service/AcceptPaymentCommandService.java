@@ -7,6 +7,7 @@ import com.solidvessel.payment.domain.payment.model.Payment;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.payment.domain.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.domain.event.EventPublisher;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;

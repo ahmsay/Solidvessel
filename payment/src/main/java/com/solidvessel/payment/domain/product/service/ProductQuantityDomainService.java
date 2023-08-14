@@ -1,4 +1,4 @@
-package com.solidvessel.payment.domain.payment.service;
+package com.solidvessel.payment.domain.product.service;
 
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import lombok.RequiredArgsConstructor;
