@@ -3,6 +3,7 @@ package com.solidvessel.payment.domain.cart.service;
 import com.solidvessel.payment.domain.cart.model.Cart;
 import com.solidvessel.payment.domain.cart.port.CartPort;
 import com.solidvessel.payment.domain.cart.service.command.RemoveFromCartCommand;
+import com.solidvessel.payment.domain.common.exception.PaymentDomainException;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
@@ -27,7 +28,7 @@ public class RemoveFromCartCommandService implements CommandService<RemoveFromCa
 
     private void checkIfProductIsInCart(Cart cart, Long productId) {
         if (!cart.doesProductExist(productId)) {
-            throw new RuntimeException("Product is not available in the cart.");
+            throw new PaymentDomainException("Product is not available in the cart.");
         }
     }
 }

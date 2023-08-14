@@ -3,6 +3,7 @@ package com.solidvessel.payment.domain.cart.service;
 import com.solidvessel.payment.domain.cart.model.Cart;
 import com.solidvessel.payment.domain.cart.port.CartPort;
 import com.solidvessel.payment.domain.cart.service.command.AddToCartCommand;
+import com.solidvessel.payment.domain.common.exception.PaymentDomainException;
 import com.solidvessel.payment.domain.product.port.ProductPort;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
@@ -28,7 +29,7 @@ public class AddToCartCommandService implements CommandService<AddToCartCommand>
     private void checkProductAvailability(AddToCartCommand command) {
         boolean available = productPort.isAvailable(command.productId(), command.quantity());
         if (!available) {
-            throw new RuntimeException("The product is not available in stocks.");
+            throw new PaymentDomainException("The product is not available in stocks.");
         }
     }
 }

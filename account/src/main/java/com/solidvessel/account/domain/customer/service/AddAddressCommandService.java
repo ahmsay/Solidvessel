@@ -1,5 +1,6 @@
 package com.solidvessel.account.domain.customer.service;
 
+import com.solidvessel.account.domain.common.exception.AccountDomainException;
 import com.solidvessel.account.domain.customer.port.AddressPort;
 import com.solidvessel.account.domain.customer.service.command.AddAddressCommand;
 import com.solidvessel.shared.domain.service.CommandService;
@@ -23,7 +24,7 @@ public class AddAddressCommandService implements CommandService<AddAddressComman
 
     private void checkIfAddressIsAlreadyRegistered(AddAddressCommand command) {
         if (addressPort.isAddressRegistered(command.customerId(), command.name())) {
-            throw new RuntimeException("The address with the same name is already added.");
+            throw new AccountDomainException("The address with the same name is already added.");
         }
     }
 }

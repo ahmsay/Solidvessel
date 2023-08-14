@@ -1,5 +1,6 @@
 package com.solidvessel.account.infra.configuration;
 
+import com.solidvessel.account.domain.common.exception.AccountDomainException;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import org.springframework.http.HttpStatus;
@@ -12,13 +13,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<OperationResult> handleAllUncaughtException(
-            RuntimeException exception
-    ) {
+    @ExceptionHandler(AccountDomainException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<OperationResult> handleAllUncaughtException(AccountDomainException exception) {
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(new OperationResult(exception.getMessage(), ResultType.ERROR));
     }
 }

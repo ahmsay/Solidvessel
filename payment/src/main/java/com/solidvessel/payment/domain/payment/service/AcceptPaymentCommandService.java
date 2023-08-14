@@ -2,6 +2,7 @@ package com.solidvessel.payment.domain.payment.service;
 
 import com.solidvessel.payment.domain.cart.model.Cart;
 import com.solidvessel.payment.domain.cart.port.CartPort;
+import com.solidvessel.payment.domain.common.exception.PaymentDomainException;
 import com.solidvessel.payment.domain.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.domain.payment.model.Payment;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
@@ -42,13 +43,13 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
 
     private void checkIfTheCartIsEmpty(Cart cart) {
         if (cart.isEmpty()) {
-            throw new RuntimeException("Your cart is empty.");
+            throw new PaymentDomainException("Your cart is empty.");
         }
     }
 
     private void checkIfProductsAreAvailable(Cart cart, List<ProductDataModel> productsFromInventory) {
         if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProductQuantities(), productsFromInventory)) {
-            throw new RuntimeException("Selected products are not available with specified quantity.");
+            throw new PaymentDomainException("Selected products are not available with specified quantity.");
         }
     }
 

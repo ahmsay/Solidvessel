@@ -2,6 +2,7 @@ package com.solidvessel.auth.domain.login.service;
 
 import com.solidvessel.auth.domain.appuser.model.AppUser;
 import com.solidvessel.auth.domain.appuser.port.AppUserPort;
+import com.solidvessel.auth.domain.common.exception.AuthDomainException;
 import com.solidvessel.auth.domain.login.port.LoginPort;
 import com.solidvessel.auth.domain.login.service.command.LoginCommand;
 import com.solidvessel.shared.domain.service.CommandService;
@@ -27,7 +28,7 @@ public class LoginCommandService implements CommandService<LoginCommand> {
 
     private void checkCredentials(AppUser appUser, LoginCommand command) {
         if (!appUser.getPassword().equals(command.password())) {
-            throw new RuntimeException("Invalid email or password!");
+            throw new AuthDomainException("Invalid email or password!");
         }
     }
 }

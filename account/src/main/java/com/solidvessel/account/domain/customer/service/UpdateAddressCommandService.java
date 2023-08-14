@@ -1,5 +1,6 @@
 package com.solidvessel.account.domain.customer.service;
 
+import com.solidvessel.account.domain.common.exception.AccountDomainException;
 import com.solidvessel.account.domain.customer.port.AddressPort;
 import com.solidvessel.account.domain.customer.service.command.UpdateAddressCommand;
 import com.solidvessel.shared.domain.service.CommandService;
@@ -23,7 +24,7 @@ public class UpdateAddressCommandService implements CommandService<UpdateAddress
 
     private void checkIfAddressIsRegistered(UpdateAddressCommand command) {
         if (!addressPort.isAddressRegistered(command.customerId(), command.name())) {
-            throw new RuntimeException("Address is not registered.");
+            throw new AccountDomainException("Address is not registered.");
         }
     }
 }
