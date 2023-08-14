@@ -157,6 +157,259 @@
 			"name": "account service",
 			"item": [
 				{
+					"name": "customer",
+					"item": [
+						{
+							"name": "get all customers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{accountServiceUrl}}/customers",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get customer by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{accountServiceUrl}}/customers/1",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get customer by id - detailed",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{accountServiceUrl}}/customers/1/detail",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"customers",
+										"1",
+										"detail"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "address",
+					"item": [
+						{
+							"name": "get my addresses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{accountServiceUrl}}/address",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add address",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"turkey\",\n    \"city\": \"eskişehir\",\n    \"zipcode\": \"26000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{accountServiceUrl}}/address",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update address",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{accountServiceUrl}}/address",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete address",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"home\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{accountServiceUrl}}/address",
+									"host": [
+										"{{accountServiceUrl}}"
+									],
+									"path": [
+										"address"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "ping",
 					"request": {
 						"method": "GET",
@@ -171,249 +424,6 @@
 							"raw": "{{accountServiceUrl}}",
 							"host": [
 								"{{accountServiceUrl}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get all customers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{accountServiceUrl}}/customers",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"customers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get my addresses",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{accountServiceUrl}}/address",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"address"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get customer by id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{accountServiceUrl}}/customers/1",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"customers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get customer by id - detailed",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{accountServiceUrl}}/customers/1/detail",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"customers",
-								"1",
-								"detail"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add address",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"home\",\n    \"country\": \"turkey\",\n    \"city\": \"eskişehir\",\n    \"zipcode\": \"26000\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{accountServiceUrl}}/address",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"address"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete address",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"home\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{accountServiceUrl}}/address",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"address"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update address",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{accountServiceUrl}}/address",
-							"host": [
-								"{{accountServiceUrl}}"
-							],
-							"path": [
-								"address"
 							]
 						}
 					},
@@ -893,26 +903,6 @@
 					"name": "payment",
 					"item": [
 						{
-							"name": "ping",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{paymentServiceUrl}}",
-									"host": [
-										"{{paymentServiceUrl}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "get all payments",
 							"event": [
 								{
@@ -1107,6 +1097,26 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "ping",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "SESSION={{session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{paymentServiceUrl}}",
+							"host": [
+								"{{paymentServiceUrl}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
