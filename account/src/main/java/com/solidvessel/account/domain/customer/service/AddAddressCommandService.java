@@ -16,11 +16,14 @@ public class AddAddressCommandService implements CommandService<AddAddressComman
 
     @Override
     public OperationResult execute(AddAddressCommand command) {
-        Long customerId = command.customerId();
-        if (addressPort.isAddressRegistered(customerId, command.name())) {
-            return new OperationResult("The address with the same name is already added.", ResultType.ERROR);
-        }
-        addressPort.addAddress(customerId, command.toDomainModel());
+        checkIfAddressIsAlreadyRegistered(command);
+        addressPort.addAddress(command.customerId(), command.toDomainModel());
         return new OperationResult("Address is added.", ResultType.SUCCESS);
+    }
+
+    private void checkIfAddressIsAlreadyRegistered(AddAddressCommand command) {
+        if (addressPort.isAddressRegistered(command.customerId(), command.name())) {
+            throw new RuntimeException("The address with the same name is already added.");
+        }
     }
 }

@@ -20,11 +20,15 @@ public class SignUpCommandService implements CommandService<SignUpCommand> {
 
     @Override
     public OperationResult execute(SignUpCommand command) {
-        if (appUserPort.isEmailRegistered(command.email())) {
-            return new OperationResult("Email is already registered.", ResultType.ERROR);
-        }
+        checkIfEmailIsAlreadyRegistered(command.email());
         Long userId = appUserPort.save(AppUser.newAppUser(command.email(), command.password()));
         userSavedEventPublisher.publish(new UserSavedEvent(userId, command.firstName(), command.lastName(), command.email(), command.birthDate(), command.phoneNumber()));
         return new OperationResult("Your registration is successful.", ResultType.SUCCESS);
+    }
+
+    private void checkIfEmailIsAlreadyRegistered(String email) {
+        if (appUserPort.isEmailRegistered(email)) {
+            throw new RuntimeException("Email is already registered.");
+        }
     }
 }

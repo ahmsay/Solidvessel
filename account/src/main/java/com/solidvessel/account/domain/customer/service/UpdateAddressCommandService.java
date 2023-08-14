@@ -16,11 +16,14 @@ public class UpdateAddressCommandService implements CommandService<UpdateAddress
 
     @Override
     public OperationResult execute(UpdateAddressCommand command) {
-        Long customerId = command.customerId();
-        if (!addressPort.isAddressRegistered(customerId, command.name())) {
-            return new OperationResult("Address is not registered.", ResultType.ERROR);
-        }
-        addressPort.updateAddress(customerId, command.toDomainModel());
+        checkIfAddressIsRegistered(command);
+        addressPort.updateAddress(command.customerId(), command.toDomainModel());
         return new OperationResult("Address is updated.", ResultType.SUCCESS);
+    }
+
+    private void checkIfAddressIsRegistered(UpdateAddressCommand command) {
+        if (!addressPort.isAddressRegistered(command.customerId(), command.name())) {
+            throw new RuntimeException("Address is not registered.");
+        }
     }
 }

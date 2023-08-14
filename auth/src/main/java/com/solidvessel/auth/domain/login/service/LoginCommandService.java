@@ -20,10 +20,14 @@ public class LoginCommandService implements CommandService<LoginCommand> {
     @Override
     public OperationResult execute(LoginCommand command) {
         AppUser appUser = appUserPort.getByEmail(command.email());
-        if (!appUser.getPassword().equals(command.password())) {
-            return new OperationResult("Invalid email or password!", ResultType.ERROR);
-        }
+        checkCredentials(appUser, command);
         loginPort.login(appUser.getId().toString());
         return new OperationResult("Login successful.", ResultType.SUCCESS);
+    }
+
+    private void checkCredentials(AppUser appUser, LoginCommand command) {
+        if (!appUser.getPassword().equals(command.password())) {
+            throw new RuntimeException("Invalid email or password!");
+        }
     }
 }
