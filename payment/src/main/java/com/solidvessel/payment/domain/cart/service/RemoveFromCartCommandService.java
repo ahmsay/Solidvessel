@@ -19,11 +19,15 @@ public class RemoveFromCartCommandService implements CommandService<RemoveFromCa
     public OperationResult execute(RemoveFromCartCommand command) {
         Cart cart = cartPort.getByCustomerId(command.customerId());
         Long productId = command.productId();
-        if (!cart.doesProductExist(productId)) {
-            return new OperationResult("Product is not available in the cart.", ResultType.ERROR);
-        }
+        checkIfProductIsInCart(cart, productId);
         cart.removeProduct(productId);
         cartPort.save(cart);
         return new OperationResult("Product is removed from the cart.", ResultType.SUCCESS);
+    }
+
+    private void checkIfProductIsInCart(Cart cart, Long productId) {
+        if (!cart.doesProductExist(productId)) {
+            throw new RuntimeException("Product is not available in the cart.");
+        }
     }
 }
