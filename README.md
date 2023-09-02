@@ -96,3 +96,4 @@ Let's explain each component shown in the diagram one by one:
 - Monitoring
 - Testing
 - ~~Exception handling~~
+- API gateway
