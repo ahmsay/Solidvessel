@@ -16,4 +16,8 @@ public class Product {
     public static Product newProduct(String name, Double price, ProductCategory category, int quantity) {
         return new Product(null, name, price, category, quantity);
     }
+
+    public void decreaseQuantity(int boughQuantity) {
+        quantity = quantity - boughQuantity;
+    }
 }

@@ -30,6 +30,10 @@ public class ProductJpaEntity {
 
     private int quantity;
 
+    public Product toDomainModel() {
+        return new Product(id, name, price, category, quantity);
+    }
+
     public ProductDataModel toDataModel() {
         return new ProductDataModel(id, name, price, category, quantity);
     }

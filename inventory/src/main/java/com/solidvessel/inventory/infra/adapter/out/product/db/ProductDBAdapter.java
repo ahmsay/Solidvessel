@@ -9,7 +9,9 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -41,5 +43,17 @@ public class ProductDBAdapter implements ProductPort {
     @Override
     public boolean isAvailable(Long id, int quantity) {
         return productRepository.findByIdAndQuantityGreaterThanEqual(id, quantity).isPresent();
+    }
+
+    @Override
+    public List<Product> getByIds(Set<Long> ids) {
+        return productRepository.findAllById(ids).stream().map(ProductJpaEntity::toDomainModel).toList();
+    }
+
+    @Override
+    public void saveProducts(List<Product> products) {
+        List<ProductJpaEntity> productJpaEntities = new ArrayList<>();
+        products.forEach(product -> productJpaEntities.add(ProductJpaEntity.from(product)));
+        productRepository.saveAll(productJpaEntities);
     }
 }
