@@ -36,8 +36,9 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         List<ProductDataModel> productsFromInventory = productPort.getProductsOfCart(cart.getProductIds());
         checkIfProductsAreAvailable(cart, productsFromInventory);
         Long paymentId = savePayment(customerId, productsFromInventory, cart);
+        var productQuantities = cart.getProductQuantities();
         saveCart(cart);
-        paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, cart.getProductQuantities()));
+        paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, productQuantities));
         return new OperationResult("Payment is accepted.", ResultType.SUCCESS);
     }
 
