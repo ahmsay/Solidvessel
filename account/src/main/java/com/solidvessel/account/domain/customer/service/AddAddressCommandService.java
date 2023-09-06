@@ -2,6 +2,7 @@ package com.solidvessel.account.domain.customer.service;
 
 import com.solidvessel.account.domain.common.exception.AccountDomainException;
 import com.solidvessel.account.domain.customer.port.AddressPort;
+import com.solidvessel.account.domain.customer.port.AddressQueryPort;
 import com.solidvessel.account.domain.customer.service.command.AddAddressCommand;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class AddAddressCommandService implements CommandService<AddAddressCommand> {
 
     private final AddressPort addressPort;
+    private final AddressQueryPort addressQueryPort;
 
     @Override
     public OperationResult execute(AddAddressCommand command) {
@@ -23,7 +25,7 @@ public class AddAddressCommandService implements CommandService<AddAddressComman
     }
 
     private void checkIfAddressIsAlreadyRegistered(AddAddressCommand command) {
-        if (addressPort.isAddressRegistered(command.customerId(), command.name())) {
+        if (addressQueryPort.isAddressRegistered(command.customerId(), command.name())) {
             throw new AccountDomainException("The address with the same name is already added.");
         }
     }

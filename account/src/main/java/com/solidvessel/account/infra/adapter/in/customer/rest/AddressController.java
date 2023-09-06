@@ -1,7 +1,7 @@
 package com.solidvessel.account.infra.adapter.in.customer.rest;
 
 import com.solidvessel.account.domain.customer.datamodel.AddressDataModel;
-import com.solidvessel.account.domain.customer.port.AddressPort;
+import com.solidvessel.account.domain.customer.port.AddressQueryPort;
 import com.solidvessel.account.domain.customer.service.command.AddAddressCommand;
 import com.solidvessel.account.domain.customer.service.command.RemoveAddressCommand;
 import com.solidvessel.account.domain.customer.service.command.UpdateAddressCommand;
@@ -21,14 +21,14 @@ import java.util.List;
 @RequestMapping("/address")
 public class AddressController {
 
-    private final AddressPort addressPort;
+    private final AddressQueryPort addressQueryPort;
     private final CommandService<AddAddressCommand> addAddressCommandService;
     private final CommandService<RemoveAddressCommand> removeAddressCommandService;
     private final CommandService<UpdateAddressCommand> updateAddressCommandService;
 
     @GetMapping()
     public List<AddressDataModel> getAddresses() {
-        return addressPort.getAddresses();
+        return addressQueryPort.getAddresses();
     }
 
     @PostMapping()

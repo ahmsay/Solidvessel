@@ -1,7 +1,7 @@
 package com.solidvessel.account.infra.adapter.out.order.rest;
 
 import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
-import com.solidvessel.account.domain.order.port.OrderPort;
+import com.solidvessel.account.domain.order.port.OrderQueryPort;
 import com.solidvessel.shared.infra.util.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class OrderRestAdapter implements OrderPort {
+public class OrderRestAdapter implements OrderQueryPort {
 
     private final CircuitBreakerFactory circuitBreakerFactory;
     private final OrderRestClient orderRestClient;

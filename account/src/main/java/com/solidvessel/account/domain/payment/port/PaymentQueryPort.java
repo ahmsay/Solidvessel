@@ -4,7 +4,7 @@ import com.solidvessel.account.domain.payment.datamodel.PaymentDataModel;
 
 import java.util.List;
 
-public interface PaymentPort {
+public interface PaymentQueryPort {
 
     List<PaymentDataModel> getPaymentsOfCustomer(Long customerId);
 }

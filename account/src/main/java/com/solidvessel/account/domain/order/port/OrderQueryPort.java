@@ -4,7 +4,7 @@ import com.solidvessel.account.domain.order.datamodel.OrderDataModel;
 
 import java.util.List;
 
-public interface OrderPort {
+public interface OrderQueryPort {
 
     List<OrderDataModel> getOrdersOfCustomer(Long customerId);
 }
