@@ -3,6 +3,7 @@ package com.solidvessel.auth.domain.signup.service;
 import com.solidvessel.auth.domain.appuser.event.UserSavedEvent;
 import com.solidvessel.auth.domain.appuser.model.AppUser;
 import com.solidvessel.auth.domain.appuser.port.AppUserPort;
+import com.solidvessel.auth.domain.appuser.port.AppUserQueryPort;
 import com.solidvessel.auth.domain.common.exception.AuthDomainException;
 import com.solidvessel.auth.domain.signup.service.command.SignUpCommand;
 import com.solidvessel.shared.domain.event.EventPublisher;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class SignUpCommandService implements CommandService<SignUpCommand> {
 
     private final AppUserPort appUserPort;
+    private final AppUserQueryPort appUserQueryPort;
     private final EventPublisher<UserSavedEvent> userSavedEventPublisher;
 
     @Override
@@ -28,7 +30,7 @@ public class SignUpCommandService implements CommandService<SignUpCommand> {
     }
 
     private void checkIfEmailIsAlreadyRegistered(String email) {
-        if (appUserPort.isEmailRegistered(email)) {
+        if (appUserQueryPort.isEmailRegistered(email)) {
             throw new AuthDomainException("Email is already registered.");
         }
     }

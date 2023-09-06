@@ -1,7 +1,7 @@
 package com.solidvessel.auth.domain.login.service;
 
 import com.solidvessel.auth.domain.appuser.model.AppUser;
-import com.solidvessel.auth.domain.appuser.port.AppUserPort;
+import com.solidvessel.auth.domain.appuser.port.AppUserQueryPort;
 import com.solidvessel.auth.domain.common.exception.AuthDomainException;
 import com.solidvessel.auth.domain.login.port.LoginPort;
 import com.solidvessel.auth.domain.login.service.command.LoginCommand;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LoginCommandService implements CommandService<LoginCommand> {
 
-    private final AppUserPort appUserPort;
+    private final AppUserQueryPort appUserQueryPort;
     private final LoginPort loginPort;
 
     @Override
     public OperationResult execute(LoginCommand command) {
-        AppUser appUser = appUserPort.getByEmail(command.email());
+        AppUser appUser = appUserQueryPort.getByEmail(command.email());
         checkCredentials(appUser, command);
         loginPort.login(appUser.getId().toString());
         return new OperationResult("Login successful.", ResultType.SUCCESS);
