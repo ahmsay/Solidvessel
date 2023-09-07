@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class AppUserQueryDBAdapter implements AppUserQueryPort {
+public class AppUserDBQueryAdapter implements AppUserQueryPort {
 
     private final AppUserRepository appUserRepository;
 
