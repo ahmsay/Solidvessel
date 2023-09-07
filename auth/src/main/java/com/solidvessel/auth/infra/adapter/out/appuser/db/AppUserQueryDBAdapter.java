@@ -6,9 +6,9 @@ import com.solidvessel.auth.infra.adapter.out.appuser.db.entity.AppUserJpaEntity
 import com.solidvessel.auth.infra.adapter.out.appuser.db.repository.AppUserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class AppUserQueryDBAdapter implements AppUserQueryPort {
 

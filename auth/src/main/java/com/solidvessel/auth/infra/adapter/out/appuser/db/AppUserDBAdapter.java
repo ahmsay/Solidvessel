@@ -5,9 +5,9 @@ import com.solidvessel.auth.domain.appuser.port.AppUserPort;
 import com.solidvessel.auth.infra.adapter.out.appuser.db.entity.AppUserJpaEntity;
 import com.solidvessel.auth.infra.adapter.out.appuser.db.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class AppUserDBAdapter implements AppUserPort {
 

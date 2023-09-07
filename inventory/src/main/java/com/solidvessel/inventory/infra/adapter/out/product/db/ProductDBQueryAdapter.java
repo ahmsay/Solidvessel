@@ -7,12 +7,12 @@ import com.solidvessel.inventory.infra.adapter.out.product.db.entity.ProductJpaE
 import com.solidvessel.inventory.infra.adapter.out.product.db.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class ProductDBQueryAdapter implements ProductQueryPort {
 

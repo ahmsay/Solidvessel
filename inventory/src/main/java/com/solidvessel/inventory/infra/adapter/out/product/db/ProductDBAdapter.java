@@ -5,12 +5,12 @@ import com.solidvessel.inventory.domain.product.port.ProductPort;
 import com.solidvessel.inventory.infra.adapter.out.product.db.entity.ProductJpaEntity;
 import com.solidvessel.inventory.infra.adapter.out.product.db.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class ProductDBAdapter implements ProductPort {
 

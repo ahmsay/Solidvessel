@@ -6,11 +6,11 @@ import com.solidvessel.order.infra.adapter.out.order.db.entity.OrderJpaEntity;
 import com.solidvessel.order.infra.adapter.out.order.db.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class OrderDBQueryAdapter implements OrderQueryPort {
 

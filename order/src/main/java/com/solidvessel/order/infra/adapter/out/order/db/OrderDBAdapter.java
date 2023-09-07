@@ -5,9 +5,9 @@ import com.solidvessel.order.domain.order.port.OrderPort;
 import com.solidvessel.order.infra.adapter.out.order.db.entity.OrderJpaEntity;
 import com.solidvessel.order.infra.adapter.out.order.db.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class OrderDBAdapter implements OrderPort {
 
