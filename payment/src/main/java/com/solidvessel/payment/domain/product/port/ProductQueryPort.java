@@ -5,7 +5,7 @@ import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
 import java.util.List;
 import java.util.Set;
 
-public interface ProductPort {
+public interface ProductQueryPort {
 
     List<ProductDataModel> getProductsOfCart(Set<Long> productIds);
 

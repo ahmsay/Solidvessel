@@ -2,12 +2,13 @@ package com.solidvessel.payment.domain.payment.service;
 
 import com.solidvessel.payment.domain.cart.model.Cart;
 import com.solidvessel.payment.domain.cart.port.CartPort;
+import com.solidvessel.payment.domain.cart.port.CartQueryPort;
 import com.solidvessel.payment.domain.common.exception.PaymentDomainException;
 import com.solidvessel.payment.domain.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.domain.payment.model.Payment;
 import com.solidvessel.payment.domain.payment.port.PaymentPort;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
-import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.payment.domain.product.port.ProductQueryPort;
 import com.solidvessel.payment.domain.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.domain.event.EventPublisher;
 import com.solidvessel.shared.domain.service.CommandService;
@@ -23,7 +24,8 @@ import java.util.List;
 public class AcceptPaymentCommandService implements CommandService<AcceptPaymentCommand> {
 
     private final CartPort cartPort;
-    private final ProductPort productPort;
+    private final CartQueryPort cartQueryPort;
+    private final ProductQueryPort productQueryPort;
     private final PaymentPort paymentPort;
     private final ProductQuantityDomainService productQuantityDomainService;
     private final EventPublisher<PaymentSavedEvent> paymentSavedEventPublisher;
@@ -31,9 +33,9 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
     @Override
     public OperationResult execute(AcceptPaymentCommand command) {
         Long customerId = command.customerId();
-        Cart cart = cartPort.getByCustomerId(customerId);
+        Cart cart = cartQueryPort.getByCustomerId(customerId);
         checkIfTheCartIsEmpty(cart);
-        List<ProductDataModel> productsFromInventory = productPort.getProductsOfCart(cart.getProductIds());
+        List<ProductDataModel> productsFromInventory = productQueryPort.getProductsOfCart(cart.getProductIds());
         checkIfProductsAreAvailable(cart, productsFromInventory);
         Long paymentId = savePayment(customerId, productsFromInventory, cart);
         var productQuantities = cart.getProductQuantities();

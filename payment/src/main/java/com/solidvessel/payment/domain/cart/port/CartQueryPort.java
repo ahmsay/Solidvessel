@@ -2,7 +2,7 @@ package com.solidvessel.payment.domain.cart.port;
 
 import com.solidvessel.payment.domain.cart.model.Cart;
 
-public interface CartPort {
+public interface CartQueryPort {
 
-    void save(Cart cart);
+    Cart getByCustomerId(Long customerId);
 }

@@ -2,11 +2,11 @@ package com.solidvessel.payment.infra.adapter.in.cart.rest;
 
 import com.solidvessel.payment.domain.cart.datamodel.CartDataModel;
 import com.solidvessel.payment.domain.cart.model.Cart;
-import com.solidvessel.payment.domain.cart.port.CartPort;
+import com.solidvessel.payment.domain.cart.port.CartQueryPort;
 import com.solidvessel.payment.domain.cart.service.command.AddToCartCommand;
 import com.solidvessel.payment.domain.cart.service.command.RemoveFromCartCommand;
 import com.solidvessel.payment.domain.product.datamodel.ProductDataModel;
-import com.solidvessel.payment.domain.product.port.ProductPort;
+import com.solidvessel.payment.domain.product.port.ProductQueryPort;
 import com.solidvessel.payment.infra.adapter.in.cart.rest.request.AddToCartRequest;
 import com.solidvessel.payment.infra.adapter.in.cart.rest.request.RemoveFromCartRequest;
 import com.solidvessel.shared.domain.service.CommandService;
@@ -25,8 +25,8 @@ public class CartController {
 
     private final CommandService<AddToCartCommand> addToCartCommandService;
     private final CommandService<RemoveFromCartCommand> removeFromCartCommandService;
-    private final CartPort cartPort;
-    private final ProductPort productPort;
+    private final CartQueryPort cartQueryPort;
+    private final ProductQueryPort productQueryPort;
 
     @PostMapping()
     public OperationResult addToCart(@RequestBody @Valid final AddToCartRequest request) {
@@ -35,8 +35,8 @@ public class CartController {
 
     @GetMapping
     public CartDataModel listCart() {
-        Cart cart = cartPort.getByCustomerId(SessionUtil.getCurrentUserId());
-        List<ProductDataModel> products = productPort.getProductsOfCart(cart.getProductQuantities().keySet());
+        Cart cart = cartQueryPort.getByCustomerId(SessionUtil.getCurrentUserId());
+        List<ProductDataModel> products = productQueryPort.getProductsOfCart(cart.getProductQuantities().keySet());
         return CartDataModel.from(cart, products);
     }
 
