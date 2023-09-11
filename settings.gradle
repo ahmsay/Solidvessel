@@ -1,6 +1,9 @@
 rootProject.name = 'solidvessel'
 
 include ':account'
+include ':account:domain'
+include ':account:infra'
+
 include ':auth'
 include ':inventory'
 include ':order'
