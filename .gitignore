@@ -3,7 +3,10 @@
 !*/
 
 # source code
-!/account/src/**
+!/account/domain/src/**
+!/account/domain/build.gradle
+!/account/infra/src/**
+!/account/infra/build.gradle
 !/auth/src/**
 !/inventory/src/**
 !/order/src/**
