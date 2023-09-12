@@ -9,6 +9,9 @@ include ':auth:domain'
 include ':auth:infra'
 
 include ':inventory'
+include ':inventory:domain'
+include ':inventory:infra'
+
 include ':order'
 include ':payment'
 include ':shared'

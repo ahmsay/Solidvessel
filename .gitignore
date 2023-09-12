@@ -13,7 +13,11 @@
 !/auth/infra/src/**
 !/auth/infra/build.gradle
 
-!/inventory/src/**
+!/inventory/domain/src/**
+!/inventory/domain/build.gradle
+!/inventory/infra/src/**
+!/inventory/infra/build.gradle
+
 !/order/src/**
 !/payment/src/**
 !/shared/src/**
