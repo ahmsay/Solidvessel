@@ -5,6 +5,9 @@ include ':account:domain'
 include ':account:infra'
 
 include ':auth'
+include ':auth:domain'
+include ':auth:infra'
+
 include ':inventory'
 include ':order'
 include ':payment'

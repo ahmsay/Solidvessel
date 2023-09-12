@@ -7,7 +7,12 @@
 !/account/domain/build.gradle
 !/account/infra/src/**
 !/account/infra/build.gradle
-!/auth/src/**
+
+!/auth/domain/src/**
+!/auth/domain/build.gradle
+!/auth/infra/src/**
+!/auth/infra/build.gradle
+
 !/inventory/src/**
 !/order/src/**
 !/payment/src/**
