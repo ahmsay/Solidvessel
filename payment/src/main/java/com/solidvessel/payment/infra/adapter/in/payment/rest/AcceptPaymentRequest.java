@@ -1,7 +1,7 @@
 package com.solidvessel.payment.infra.adapter.in.payment.rest;
 
 import com.solidvessel.payment.domain.payment.service.AcceptPaymentCommand;
-import com.solidvessel.shared.infra.util.SessionUtil;
+import com.solidvessel.shared.infra.security.SessionUtil;
 
 public record AcceptPaymentRequest() {
 

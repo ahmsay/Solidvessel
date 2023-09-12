@@ -1,4 +1,4 @@
-package com.solidvessel.shared.infra.util;
+package com.solidvessel.shared.infra.security;
 
 import jakarta.servlet.http.Cookie;
 import org.springframework.security.core.context.SecurityContextHolder;

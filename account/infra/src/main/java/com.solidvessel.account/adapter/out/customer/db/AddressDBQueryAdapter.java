@@ -4,7 +4,7 @@ import com.solidvessel.account.adapter.out.customer.db.entity.AddressEmbeddable;
 import com.solidvessel.account.adapter.out.customer.db.entity.CustomerJpaEntity;
 import com.solidvessel.account.customer.datamodel.AddressDataModel;
 import com.solidvessel.account.customer.port.AddressQueryPort;
-import com.solidvessel.shared.infra.util.SessionUtil;
+import com.solidvessel.shared.infra.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

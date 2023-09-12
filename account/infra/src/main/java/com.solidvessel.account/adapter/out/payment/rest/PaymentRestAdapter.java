@@ -2,7 +2,7 @@ package com.solidvessel.account.adapter.out.payment.rest;
 
 import com.solidvessel.account.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.payment.port.PaymentQueryPort;
-import com.solidvessel.shared.infra.util.SessionUtil;
+import com.solidvessel.shared.infra.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;

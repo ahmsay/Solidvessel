@@ -11,7 +11,7 @@ import com.solidvessel.payment.infra.adapter.in.cart.rest.request.AddToCartReque
 import com.solidvessel.payment.infra.adapter.in.cart.rest.request.RemoveFromCartRequest;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.infra.util.SessionUtil;
+import com.solidvessel.shared.infra.security.SessionUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
