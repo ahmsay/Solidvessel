@@ -18,7 +18,11 @@
 !/inventory/infra/src/**
 !/inventory/infra/build.gradle
 
-!/order/src/**
+!/order/domain/src/**
+!/order/domain/build.gradle
+!/order/infra/src/**
+!/order/infra/build.gradle
+
 !/payment/src/**
 !/shared/src/**
 

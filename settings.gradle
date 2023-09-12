@@ -13,6 +13,9 @@ include ':inventory:domain'
 include ':inventory:infra'
 
 include ':order'
+include ':order:domain'
+include ':order:infra'
+
 include ':payment'
 include ':shared'
 
