@@ -1,5 +1,6 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
+import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
 import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
 import com.solidvessel.payment.payment.datamodel.PaymentDataModel;

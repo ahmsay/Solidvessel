@@ -1,4 +1,4 @@
-package com.solidvessel.payment.adapter.in.payment.rest;
+package com.solidvessel.payment.adapter.in.payment.rest.request;
 
 import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
 import com.solidvessel.shared.infra.security.SessionUtil;
