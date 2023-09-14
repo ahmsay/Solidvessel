@@ -10,6 +10,7 @@ import com.solidvessel.account.customer.service.command.RemoveAddressCommand;
 import com.solidvessel.account.customer.service.command.UpdateAddressCommand;
 import com.solidvessel.shared.domain.service.CommandService;
 import com.solidvessel.shared.domain.service.OperationResult;
+import com.solidvessel.shared.infra.security.SessionUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class AddressController {
 
     @GetMapping()
     public List<AddressDataModel> getAddresses() {
-        return addressQueryPort.getAddresses();
+        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId());
     }
 
     @PostMapping()
