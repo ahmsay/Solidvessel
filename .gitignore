@@ -23,7 +23,11 @@
 !/order/infra/src/**
 !/order/infra/build.gradle
 
-!/payment/src/**
+!/payment/domain/src/**
+!/payment/domain/build.gradle
+!/payment/infra/src/**
+!/payment/infra/build.gradle
+
 !/shared/src/**
 
 # gradle files

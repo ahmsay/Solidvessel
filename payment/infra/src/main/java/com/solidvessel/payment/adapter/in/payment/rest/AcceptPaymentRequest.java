@@ -1,0 +1,11 @@
+package com.solidvessel.payment.adapter.in.payment.rest;
+
+import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
+import com.solidvessel.shared.infra.security.SessionUtil;
+
+public record AcceptPaymentRequest() {
+
+    public AcceptPaymentCommand toCommand() {
+        return new AcceptPaymentCommand(SessionUtil.getCurrentUserId());
+    }
+}

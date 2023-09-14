@@ -17,6 +17,9 @@ include ':order:domain'
 include ':order:infra'
 
 include ':payment'
+include ':payment:domain'
+include ':payment:infra'
+
 include ':shared'
 
 dependencyResolutionManagement {

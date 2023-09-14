@@ -1,0 +1,53 @@
+plugins {
+    id 'java-library'
+    id 'com.google.cloud.tools.jib' version '3.3.2'
+    id 'java'
+}
+
+dependencies {
+    implementation project(':shared')
+    implementation project.parent.project("domain")
+    api "org.springframework.boot:spring-boot-starter-web:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-actuator:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-data-jpa:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-validation:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-amqp:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-data-redis:$rootProject.springBootVersion"
+    api "org.springframework.session:spring-session-data-redis:$rootProject.springBootVersion"
+    api "org.springframework.boot:spring-boot-starter-security:$rootProject.springBootVersion"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$rootProject.springBootVersion"
+    api "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
+    api "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
+    api "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$rootProject.circuitBreakerVersion"
+    compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
+    testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
+}
+
+group = 'com.solidvessel'
+version = '0.0.1-SNAPSHOT'
+description = 'Payment Service'
+
+jib {
+    from {
+        image = "eclipse-temurin:20.0.1_9-jre-jammy"
+        platforms {
+            platform {
+                os = "linux"
+                architecture = "amd64"
+            }
+            platform {
+                os = "linux"
+                architecture = "arm64"
+            }
+        }
+    }
+    to {
+        image = "docker.io/ahmsay/solidvessel-payment"
+    }
+}
+
+compileJava {
+    options.compilerArgs << '-parameters'
+}
