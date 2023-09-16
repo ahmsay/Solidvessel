@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation project(':shared')
+    implementation project(':shared:domain')
     compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
     testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"

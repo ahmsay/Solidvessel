@@ -4,7 +4,8 @@ plugins {
 }
 
 dependencies {
-    implementation project(':shared')
+    implementation project(':shared:domain')
+    implementation project(':shared:infra')
     implementation project.parent.project("domain")
     api "org.springframework.boot:spring-boot-starter-web:$rootProject.springBootVersion"
     api "org.springframework.boot:spring-boot-starter-actuator:$rootProject.springBootVersion"
