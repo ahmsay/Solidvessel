@@ -1,6 +1,6 @@
 package com.solidvessel.auth.configuration.security;
 
-import com.solidvessel.shared.infra.security.LoggedInToken;
+import com.solidvessel.shared.security.LoggedInToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;

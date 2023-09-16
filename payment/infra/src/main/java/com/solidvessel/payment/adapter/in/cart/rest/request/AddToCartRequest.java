@@ -1,7 +1,7 @@
 package com.solidvessel.payment.adapter.in.cart.rest.request;
 
 import com.solidvessel.payment.cart.service.command.AddToCartCommand;
-import com.solidvessel.shared.infra.security.SessionUtil;
+import com.solidvessel.shared.security.SessionUtil;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 

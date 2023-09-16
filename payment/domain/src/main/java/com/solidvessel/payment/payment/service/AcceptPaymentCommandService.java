@@ -10,11 +10,11 @@ import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.payment.product.service.ProductQuantityDomainService;
-import com.solidvessel.shared.domain.event.EventPublisher;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.event.EventPublisher;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

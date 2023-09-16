@@ -1,7 +1,7 @@
 package com.solidvessel.payment.product.service;
 
 import com.solidvessel.payment.product.datamodel.ProductDataModel;
-import com.solidvessel.shared.domain.service.DomainComponent;
+import com.solidvessel.shared.service.DomainComponent;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

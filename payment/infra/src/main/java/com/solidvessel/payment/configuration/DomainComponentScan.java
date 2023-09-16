@@ -1,6 +1,6 @@
 package com.solidvessel.payment.configuration;
 
-import com.solidvessel.shared.domain.service.DomainComponent;
+import com.solidvessel.shared.service.DomainComponent;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;

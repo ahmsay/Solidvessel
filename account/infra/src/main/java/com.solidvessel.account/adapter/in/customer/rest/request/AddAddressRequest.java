@@ -1,7 +1,7 @@
 package com.solidvessel.account.adapter.in.customer.rest.request;
 
 import com.solidvessel.account.customer.service.command.AddAddressCommand;
-import com.solidvessel.shared.infra.security.SessionUtil;
+import com.solidvessel.shared.security.SessionUtil;
 import jakarta.validation.constraints.NotNull;
 
 public record AddAddressRequest(

@@ -1,8 +1,8 @@
 package com.solidvessel.auth.adapter.in.logout.rest;
 
 import com.solidvessel.auth.logout.port.LogoutPort;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

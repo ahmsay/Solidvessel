@@ -7,8 +7,8 @@ import com.solidvessel.payment.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.payment.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.OperationResult;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

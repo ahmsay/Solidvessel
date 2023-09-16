@@ -5,10 +5,10 @@ import com.solidvessel.auth.appuser.port.AppUserQueryPort;
 import com.solidvessel.auth.common.exception.AuthDomainException;
 import com.solidvessel.auth.login.port.LoginPort;
 import com.solidvessel.auth.login.service.command.LoginCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent

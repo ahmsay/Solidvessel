@@ -2,8 +2,8 @@ package com.solidvessel.auth.adapter.in.signup.rest;
 
 import com.solidvessel.auth.adapter.in.signup.rest.request.SignUpRequest;
 import com.solidvessel.auth.signup.service.command.SignUpCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.OperationResult;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

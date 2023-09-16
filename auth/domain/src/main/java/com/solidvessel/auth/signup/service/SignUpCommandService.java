@@ -6,11 +6,11 @@ import com.solidvessel.auth.appuser.port.AppUserPort;
 import com.solidvessel.auth.appuser.port.AppUserQueryPort;
 import com.solidvessel.auth.common.exception.AuthDomainException;
 import com.solidvessel.auth.signup.service.command.SignUpCommand;
-import com.solidvessel.shared.domain.event.EventPublisher;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.event.EventPublisher;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent

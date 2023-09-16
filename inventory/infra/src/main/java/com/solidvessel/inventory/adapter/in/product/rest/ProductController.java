@@ -4,8 +4,8 @@ import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductReque
 import com.solidvessel.inventory.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.AddProductCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.OperationResult;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.solidvessel.auth.adapter.out.appuser.event;
 
 import com.solidvessel.auth.appuser.event.UserSavedEvent;
-import com.solidvessel.shared.domain.event.EventPublisher;
+import com.solidvessel.shared.event.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;

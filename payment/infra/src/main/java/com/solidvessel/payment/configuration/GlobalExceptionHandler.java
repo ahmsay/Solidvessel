@@ -1,8 +1,8 @@
 package com.solidvessel.payment.configuration;
 
 import com.solidvessel.payment.common.exception.PaymentDomainException;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

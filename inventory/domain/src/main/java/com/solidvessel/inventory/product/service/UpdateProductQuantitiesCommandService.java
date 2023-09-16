@@ -4,10 +4,10 @@ import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.UpdateProductQuantitiesCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

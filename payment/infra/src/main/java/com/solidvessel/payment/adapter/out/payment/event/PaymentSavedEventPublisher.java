@@ -1,7 +1,7 @@
 package com.solidvessel.payment.adapter.out.payment.event;
 
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
-import com.solidvessel.shared.domain.event.EventPublisher;
+import com.solidvessel.shared.event.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;

@@ -4,10 +4,10 @@ import com.solidvessel.account.common.exception.AccountDomainException;
 import com.solidvessel.account.customer.port.AddressPort;
 import com.solidvessel.account.customer.port.AddressQueryPort;
 import com.solidvessel.account.customer.service.command.AddAddressCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent

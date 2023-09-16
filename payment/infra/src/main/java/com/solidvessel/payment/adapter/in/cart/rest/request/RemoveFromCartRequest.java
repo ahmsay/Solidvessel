@@ -1,7 +1,7 @@
 package com.solidvessel.payment.adapter.in.cart.rest.request;
 
 import com.solidvessel.payment.cart.service.command.RemoveFromCartCommand;
-import com.solidvessel.shared.infra.security.SessionUtil;
+import com.solidvessel.shared.security.SessionUtil;
 import jakarta.validation.constraints.NotNull;
 
 public record RemoveFromCartRequest(@NotNull Long productId) {

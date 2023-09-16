@@ -3,10 +3,10 @@ package com.solidvessel.order.order.service;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
 import com.solidvessel.order.order.service.command.AddOrderCommand;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent

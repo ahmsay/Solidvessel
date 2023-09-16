@@ -2,7 +2,7 @@ package com.solidvessel.account.adapter.in.appuser.event;
 
 import com.solidvessel.account.appuser.event.UserSavedEvent;
 import com.solidvessel.account.customer.service.command.AddCustomerCommand;
-import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.service.CommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

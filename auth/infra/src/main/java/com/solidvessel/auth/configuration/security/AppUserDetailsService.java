@@ -2,7 +2,7 @@ package com.solidvessel.auth.configuration.security;
 
 import com.solidvessel.auth.appuser.model.AppUser;
 import com.solidvessel.auth.appuser.port.AppUserQueryPort;
-import com.solidvessel.shared.infra.security.AppUserDetails;
+import com.solidvessel.shared.security.AppUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -2,7 +2,7 @@ package com.solidvessel.order.adapter.out.customer.rest;
 
 import com.solidvessel.order.customer.datamodel.CustomerDataModel;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
-import com.solidvessel.shared.infra.security.SessionUtil;
+import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;

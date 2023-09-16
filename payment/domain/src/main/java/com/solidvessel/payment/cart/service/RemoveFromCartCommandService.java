@@ -5,10 +5,10 @@ import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.RemoveFromCartCommand;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
-import com.solidvessel.shared.domain.service.CommandService;
-import com.solidvessel.shared.domain.service.DomainComponent;
-import com.solidvessel.shared.domain.service.OperationResult;
-import com.solidvessel.shared.domain.service.ResultType;
+import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent
