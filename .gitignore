@@ -3,12 +3,7 @@
 !*/
 
 # source code
-!/account/src/**
-!/auth/src/**
-!/inventory/src/**
-!/order/src/**
-!/payment/src/**
-!/shared/src/**
+!**/src/**
 
 # gradle files
 !**/**/settings.gradle
@@ -24,5 +19,5 @@
 
 # other files
 !.gitignore
-!**/**/*.md
+!**/*.md
 !.postman/**

@@ -1,11 +1,28 @@
 rootProject.name = 'solidvessel'
 
 include ':account'
+include ':account:domain'
+include ':account:infra'
+
 include ':auth'
+include ':auth:domain'
+include ':auth:infra'
+
 include ':inventory'
+include ':inventory:domain'
+include ':inventory:infra'
+
 include ':order'
+include ':order:domain'
+include ':order:infra'
+
 include ':payment'
+include ':payment:domain'
+include ':payment:infra'
+
 include ':shared'
+include ':shared:domain'
+include ':shared:infra'
 
 dependencyResolutionManagement {
     repositories {

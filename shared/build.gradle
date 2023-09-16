@@ -3,10 +3,5 @@ plugins {
 }
 
 dependencies {
-    api "org.springframework.boot:spring-boot-starter-web:$rootProject.springBootVersion"
-    api "org.springframework.boot:spring-boot-starter-security:$rootProject.springBootVersion"
+    implementation project(':auth:infra')
 }
-
-group = 'com.solidvessel'
-version = '0.0.1-SNAPSHOT'
-description = 'shared'
