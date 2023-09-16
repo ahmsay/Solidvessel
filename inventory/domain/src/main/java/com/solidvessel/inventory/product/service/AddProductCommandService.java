@@ -3,12 +3,12 @@ package com.solidvessel.inventory.product.service;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.service.command.AddProductCommand;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class AddProductCommandService implements CommandService<AddProductCommand> {
 

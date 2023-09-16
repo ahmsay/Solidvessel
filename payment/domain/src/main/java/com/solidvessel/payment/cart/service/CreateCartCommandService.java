@@ -4,12 +4,12 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.service.command.CreateCartCommand;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class CreateCartCommandService implements CommandService<CreateCartCommand> {
 

@@ -3,12 +3,12 @@ package com.solidvessel.account.customer.service;
 import com.solidvessel.account.customer.port.AddressPort;
 import com.solidvessel.account.customer.service.command.RemoveAddressCommand;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class RemoveAddressCommandService implements CommandService<RemoveAddressCommand> {
 

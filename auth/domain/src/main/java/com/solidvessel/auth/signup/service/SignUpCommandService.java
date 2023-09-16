@@ -8,12 +8,12 @@ import com.solidvessel.auth.common.exception.AuthDomainException;
 import com.solidvessel.auth.signup.service.command.SignUpCommand;
 import com.solidvessel.shared.domain.event.EventPublisher;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class SignUpCommandService implements CommandService<SignUpCommand> {
 

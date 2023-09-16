@@ -12,14 +12,14 @@ import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.payment.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.domain.event.EventPublisher;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class AcceptPaymentCommandService implements CommandService<AcceptPaymentCommand> {
 

@@ -1,13 +1,13 @@
 package com.solidvessel.payment.product.service;
 
 import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class ProductQuantityDomainService {
 

@@ -3,12 +3,12 @@ package com.solidvessel.account.customer.service;
 import com.solidvessel.account.customer.port.CustomerPort;
 import com.solidvessel.account.customer.service.command.AddCustomerCommand;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class AddCustomerCommandService implements CommandService<AddCustomerCommand> {
 

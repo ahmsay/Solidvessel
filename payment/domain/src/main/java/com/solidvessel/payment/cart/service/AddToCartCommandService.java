@@ -7,12 +7,12 @@ import com.solidvessel.payment.cart.service.command.AddToCartCommand;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class AddToCartCommandService implements CommandService<AddToCartCommand> {
 

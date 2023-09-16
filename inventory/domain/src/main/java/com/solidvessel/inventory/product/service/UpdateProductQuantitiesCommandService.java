@@ -5,14 +5,14 @@ import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.UpdateProductQuantitiesCommand;
 import com.solidvessel.shared.domain.service.CommandService;
+import com.solidvessel.shared.domain.service.DomainComponent;
 import com.solidvessel.shared.domain.service.OperationResult;
 import com.solidvessel.shared.domain.service.ResultType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class UpdateProductQuantitiesCommandService implements CommandService<UpdateProductQuantitiesCommand> {
 
