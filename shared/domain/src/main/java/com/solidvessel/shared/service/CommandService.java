@@ -1,4 +1,4 @@
-package com.solidvessel.shared.domain.service;
+package com.solidvessel.shared.service;
 
 public interface CommandService<T> {
 

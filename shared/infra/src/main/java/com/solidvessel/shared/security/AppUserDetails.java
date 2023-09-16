@@ -1,4 +1,4 @@
-package com.solidvessel.shared.infra.security;
+package com.solidvessel.shared.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

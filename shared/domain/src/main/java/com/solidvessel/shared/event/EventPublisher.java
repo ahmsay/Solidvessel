@@ -1,4 +1,4 @@
-package com.solidvessel.shared.domain.event;
+package com.solidvessel.shared.event;
 
 public interface EventPublisher<T> {
 
