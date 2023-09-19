@@ -85,7 +85,7 @@ Let's explain each component shown in the diagram one by one:
 
 ## Roadmap
 - ~~Hexagonal architecture~~
-- Domain enrichment
+- ~~Domain enrichment~~
 - Data enrichment
 - Persistence
 - Authorization
