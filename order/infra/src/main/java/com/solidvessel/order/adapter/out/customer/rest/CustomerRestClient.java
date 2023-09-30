@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(value = "customerRestClient", url = "${account.url}")
 public interface CustomerRestClient {
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/account/customer/{id}")
     CustomerDataModel getById(@PathVariable Long id, @RequestHeader("Cookie") String session);
 }

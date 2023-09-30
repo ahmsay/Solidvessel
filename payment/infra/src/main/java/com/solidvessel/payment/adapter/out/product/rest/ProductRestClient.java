@@ -12,9 +12,9 @@ import java.util.Set;
 @FeignClient(name = "productPort", url = "${inventory.url}")
 public interface ProductRestClient {
 
-    @GetMapping("/product/ids")
+    @GetMapping("/inventory/product/ids")
     List<ProductDataModel> getByIds(@RequestParam final Set<Long> ids, @RequestHeader("Cookie") String session);
 
-    @GetMapping("/product/isAvailable")
+    @GetMapping("/inventory/product/isAvailable")
     boolean isAvailable(@RequestParam Long id, @RequestParam int quantity, @RequestHeader("Cookie") String session);
 }

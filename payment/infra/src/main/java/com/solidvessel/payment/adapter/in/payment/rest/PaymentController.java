@@ -47,7 +47,7 @@ public class PaymentController {
         return paymentQueryPort.getByCustomerId(customerId);
     }
 
-    @PostMapping
+    @PostMapping("/accept")
     public OperationResult acceptPayment(final AcceptPaymentRequest request) {
         return acceptPaymentCommandService.execute(request.toCommand());
     }
