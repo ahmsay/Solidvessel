@@ -40,7 +40,7 @@ public class ProductController {
         return addProductCommandService.execute(request.toCommand());
     }
 
-    @GetMapping("/available")
+    @GetMapping("/isAvailable")
     public boolean isAvailable(@RequestParam final Long id, @RequestParam int quantity) {
         return productQueryPort.isAvailable(id, quantity);
     }

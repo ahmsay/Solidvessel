@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(name = "paymentRestClient", url = "${payment.url}")
 public interface PaymentRestClient {
 
-    @GetMapping("/payments/{id}")
+    @GetMapping("/payment/{id}")
     PaymentDataModel getById(@PathVariable Long id, @RequestHeader("Cookie") String session);
 }
