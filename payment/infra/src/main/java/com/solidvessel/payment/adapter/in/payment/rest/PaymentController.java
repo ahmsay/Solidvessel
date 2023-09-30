@@ -10,13 +10,15 @@ import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/payments")
 public class PaymentController {
 
     private final PaymentQueryPort paymentQueryPort;
