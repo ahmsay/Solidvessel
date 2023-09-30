@@ -14,7 +14,7 @@ public class SecurityFilterConfig {
     @Bean
     public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher("/")).permitAll()
+                        .requestMatchers(antMatcher("/ping")).permitAll()
                         .anyRequest().authenticated())
                 .logout(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
