@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1801718a-a6e2-46ac-a72c-bff9bb34a358",
+		"_postman_id": "bfdb25be-3484-48f6-a9bc-38ee73113e6f",
 		"name": "solidvessel",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4703595"
 	},
 	"item": [
 		{
@@ -14,9 +15,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{authServiceUrl}}",
+							"raw": "{{authServiceUrl}}/auth/ping",
 							"host": [
 								"{{authServiceUrl}}"
+							],
+							"path": [
+								"auth",
+								"ping"
 							]
 						}
 					},
@@ -53,11 +58,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{authServiceUrl}}/signUp",
+							"raw": "{{authServiceUrl}}/auth/signUp",
 							"host": [
 								"{{authServiceUrl}}"
 							],
 							"path": [
+								"auth",
 								"signUp"
 							]
 						}
@@ -96,11 +102,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{authServiceUrl}}/login",
+							"raw": "{{authServiceUrl}}/auth/login",
 							"host": [
 								"{{authServiceUrl}}"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -140,11 +147,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{authServiceUrl}}/logout",
+							"raw": "{{authServiceUrl}}/auth/logout",
 							"host": [
 								"{{authServiceUrl}}"
 							],
 							"path": [
+								"auth",
 								"logout"
 							]
 						}
@@ -193,12 +201,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/customers",
+									"raw": "{{accountServiceUrl}}/account/customer",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
-										"customers"
+										"account",
+										"customer"
 									]
 								}
 							},
@@ -229,12 +238,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/customers/1",
+									"raw": "{{accountServiceUrl}}/account/customer/1",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
-										"customers",
+										"account",
+										"customer",
 										"1"
 									]
 								}
@@ -266,12 +276,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/customers/1/detail",
+									"raw": "{{accountServiceUrl}}/account/customer/1/detail",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
-										"customers",
+										"account",
+										"customer",
 										"1",
 										"detail"
 									]
@@ -318,11 +329,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/address",
+									"raw": "{{accountServiceUrl}}/account/address",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
+										"account",
 										"address"
 									]
 								}
@@ -333,7 +345,13 @@
 							"name": "add address",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"turkey\",\n    \"city\": \"eskişehir\",\n    \"zipcode\": \"26000\"\n}",
@@ -344,11 +362,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{accountServiceUrl}}/address",
+									"raw": "{{accountServiceUrl}}/account/address",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
+										"account",
 										"address"
 									]
 								}
@@ -359,7 +378,13 @@
 							"name": "update address",
 							"request": {
 								"method": "PUT",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
@@ -370,11 +395,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{accountServiceUrl}}/address",
+									"raw": "{{accountServiceUrl}}/account/address",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
+										"account",
 										"address"
 									]
 								}
@@ -385,7 +411,13 @@
 							"name": "delete address",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"name\": \"home\"\n}",
@@ -396,12 +428,20 @@
 									}
 								},
 								"url": {
-									"raw": "{{accountServiceUrl}}/address",
+									"raw": "{{accountServiceUrl}}/account/address",
 									"host": [
 										"{{accountServiceUrl}}"
 									],
 									"path": [
+										"account",
 										"address"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -421,9 +461,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{accountServiceUrl}}",
+							"raw": "{{accountServiceUrl}}/account/ping",
 							"host": [
 								"{{accountServiceUrl}}"
+							],
+							"path": [
+								"account",
+								"ping"
 							]
 						}
 					},
@@ -446,9 +490,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}",
+							"raw": "{{inventoryServiceUrl}}/inventory/ping",
 							"host": [
 								"{{inventoryServiceUrl}}"
+							],
+							"path": [
+								"inventory",
+								"ping"
 							]
 						}
 					},
@@ -479,12 +527,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/products",
+							"raw": "{{inventoryServiceUrl}}/inventory/product",
 							"host": [
 								"{{inventoryServiceUrl}}"
 							],
 							"path": [
-								"products"
+								"inventory",
+								"product"
 							]
 						}
 					},
@@ -515,12 +564,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/products/1",
+							"raw": "{{inventoryServiceUrl}}/inventory/product/1",
 							"host": [
 								"{{inventoryServiceUrl}}"
 							],
 							"path": [
-								"products",
+								"inventory",
+								"product",
 								"1"
 							]
 						}
@@ -564,12 +614,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/products/ids?ids=1,2,3",
+							"raw": "{{inventoryServiceUrl}}/inventory/product/ids?ids=1,2,3",
 							"host": [
 								"{{inventoryServiceUrl}}"
 							],
 							"path": [
-								"products",
+								"inventory",
+								"product",
 								"ids"
 							],
 							"query": [
@@ -616,12 +667,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/products",
+							"raw": "{{inventoryServiceUrl}}/inventory/product",
 							"host": [
 								"{{inventoryServiceUrl}}"
 							],
 							"path": [
-								"products"
+								"inventory",
+								"product"
 							]
 						}
 					},
@@ -631,16 +683,32 @@
 					"name": "is product available",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "SESSION={{session}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/products/1/available",
+							"raw": "{{inventoryServiceUrl}}/inventory/product/isAvailable?id=1&quantity=1",
 							"host": [
 								"{{inventoryServiceUrl}}"
 							],
 							"path": [
-								"products",
-								"1",
-								"available"
+								"inventory",
+								"product",
+								"isAvailable"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "quantity",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -663,9 +731,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}",
+							"raw": "{{orderServiceUrl}}/order/ping",
 							"host": [
 								"{{orderServiceUrl}}"
+							],
+							"path": [
+								"order",
+								"ping"
 							]
 						}
 					},
@@ -696,12 +768,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/orders",
+							"raw": "{{orderServiceUrl}}/order",
 							"host": [
 								"{{orderServiceUrl}}"
 							],
 							"path": [
-								"orders"
+								"order"
 							]
 						}
 					},
@@ -732,12 +804,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/orders/1",
+							"raw": "{{orderServiceUrl}}/order/1",
 							"host": [
 								"{{orderServiceUrl}}"
 							],
 							"path": [
-								"orders",
+								"order",
 								"1"
 							]
 						}
@@ -769,12 +841,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/orders/1/detail",
+							"raw": "{{orderServiceUrl}}/order/1/detail",
 							"host": [
 								"{{orderServiceUrl}}"
 							],
 							"path": [
-								"orders",
+								"order",
 								"1",
 								"detail"
 							]
@@ -807,12 +879,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/orders/ofCustomer/1",
+							"raw": "{{orderServiceUrl}}/order/ofCustomer/1",
 							"host": [
 								"{{orderServiceUrl}}"
 							],
 							"path": [
-								"orders",
+								"order",
 								"ofCustomer",
 								"1"
 							]
@@ -832,13 +904,20 @@
 							"name": "get cart",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/cart",
+									"raw": "{{paymentServiceUrl}}/payment/cart",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
+										"payment",
 										"cart"
 									]
 								}
@@ -849,7 +928,13 @@
 							"name": "add to cart",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"productId\": 1,\n    \"quantity\": 1\n}",
@@ -860,11 +945,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{paymentServiceUrl}}/cart",
+									"raw": "{{paymentServiceUrl}}/payment/cart",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
+										"payment",
 										"cart"
 									]
 								}
@@ -875,7 +961,13 @@
 							"name": "remove from cart",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "SESSION={{session}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"productId\": 1\n}",
@@ -886,11 +978,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{paymentServiceUrl}}/cart",
+									"raw": "{{paymentServiceUrl}}/payment/cart",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
+										"payment",
 										"cart"
 									]
 								}
@@ -927,12 +1020,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payments",
+									"raw": "{{paymentServiceUrl}}/payment",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
-										"payments"
+										"payment"
 									]
 								}
 							},
@@ -963,12 +1056,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payments/1",
+									"raw": "{{paymentServiceUrl}}/payment/1",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
-										"payments",
+										"payment",
 										"1"
 									]
 								}
@@ -1000,12 +1093,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payments/1/detail",
+									"raw": "{{paymentServiceUrl}}/payment/1/detail",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
-										"payments",
+										"payment",
 										"1",
 										"detail"
 									]
@@ -1038,12 +1131,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payments/ofCustomer/1",
+									"raw": "{{paymentServiceUrl}}/payment/ofCustomer/1",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
-										"payments",
+										"payment",
 										"ofCustomer",
 										"1"
 									]
@@ -1085,12 +1178,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payments",
+									"raw": "{{paymentServiceUrl}}/payment/accept",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
-										"payments"
+										"payment",
+										"accept"
 									]
 								}
 							},
@@ -1110,9 +1204,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{paymentServiceUrl}}",
+							"raw": "{{paymentServiceUrl}}/payment/ping",
 							"host": [
 								"{{paymentServiceUrl}}"
+							],
+							"path": [
+								"payment",
+								"ping"
 							]
 						}
 					},
