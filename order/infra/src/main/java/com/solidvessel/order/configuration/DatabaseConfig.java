@@ -13,8 +13,8 @@ public class DatabaseConfig {
     @Bean
     InitializingBean seedDatabase(final OrderRepository orderRepository) {
         return () -> {
-            orderRepository.save(new OrderJpaEntity(null, OrderStatus.DELIVERED, 1L, 1L));
-            orderRepository.save(new OrderJpaEntity(null, OrderStatus.ON_THE_WAY, 2L, 2L));
+            orderRepository.save(new OrderJpaEntity(1L, OrderStatus.DELIVERED, 1L, 1L));
+            orderRepository.save(new OrderJpaEntity(2L, OrderStatus.ON_THE_WAY, 2L, 2L));
         };
     }
 }
