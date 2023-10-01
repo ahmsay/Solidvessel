@@ -8,38 +8,38 @@ spec:
   rules:
     - http:
         paths:
-          - path: /auth(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: auth
-                port:
-                  number: 8080
-          - path: /account(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: account
-                port:
-                  number: 8080
-          - path: /inventory(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: inventory
-                port:
-                  number: 8080
-          - path: /order(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: order
-                port:
-                  number: 8080
-          - path: /payment(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: payment
-                port:
-                  number: 8080
+        - path: /auth
+          pathType: Prefix
+          backend:
+            service:
+              name: auth
+              port:
+                number: 8080
+        - path: /account
+          pathType: Prefix
+          backend:
+            service:
+              name: account
+              port:
+                number: 8080
+        - path: /inventory
+          pathType: Prefix
+          backend:
+            service:
+              name: inventory
+              port:
+                number: 8080
+        - path: /order
+          pathType: Prefix
+          backend:
+            service:
+              name: order
+              port:
+                number: 8080
+        - path: /payment
+          pathType: Prefix
+          backend:
+            service:
+              name: payment
+              port:
+                number: 8080
