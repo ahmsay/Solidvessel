@@ -11,6 +11,6 @@ import java.util.List;
 @FeignClient(value = "orderRestClient", url = "${order.url}")
 public interface OrderRestClient {
 
-    @GetMapping("/order/ofCustomer/{customerId}")
+    @GetMapping("/ofCustomer/{customerId}")
     List<OrderDataModel> getByCustomerId(@PathVariable final Long customerId, @RequestHeader("Cookie") String session);
 }
