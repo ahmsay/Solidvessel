@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="ahmsay" id="solidvessel-data-1">
+        <sql>
+            insert into payment(id, customer_id, total_price)
+            values (1, 1, 250),
+                   (2, 2, 3),
+                   (3, 3, 70.2);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
