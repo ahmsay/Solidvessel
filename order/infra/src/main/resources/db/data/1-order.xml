@@ -1,0 +1,12 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="ahmsay" id="solidvessel-data-1">
+        <sql>
+            insert into orders(id, status, customer_id, payment_id)
+            values (1, 'DELIVERED', 1, 1),
+                   (2, 'ON_THE_WAY', 2, 2);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
