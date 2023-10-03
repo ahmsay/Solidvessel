@@ -15,6 +15,7 @@ dependencies {
     api "org.springframework.boot:spring-boot-starter-data-redis:$rootProject.springBootVersion"
     api "org.springframework.session:spring-session-data-redis:$rootProject.springBootVersion"
     api "org.springframework.boot:spring-boot-starter-security:$rootProject.springBootVersion"
+    api "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
     testImplementation "org.springframework.boot:spring-boot-starter-test:$rootProject.springBootVersion"
     api "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
     compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"

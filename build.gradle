@@ -6,4 +6,5 @@ ext {
     feignVersion = "4.0.3"
     circuitBreakerVersion = "3.0.2"
     lombokVersion = "1.18.28"
+    liquibaseVersion = "4.23.2"
 }
