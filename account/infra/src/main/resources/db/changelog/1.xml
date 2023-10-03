@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="ahmsay" id="solidvessel-changeset-1">
+        <sql>
+            create table customer
+            (
+                id           serial primary key,
+                first_name   varchar(100) not null,
+                last_name    varchar(100) not null,
+                birth_date   date,
+                email        varchar(100) not null unique,
+                phone_number varchar(13)
+            );
+
+            create table address
+            (
+                customer_id serial references customer,
+                name        varchar(100) not null unique,
+                country     varchar(50)  not null,
+                city        varchar(100) not null,
+                zipcode     varchar(10)  not null
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
