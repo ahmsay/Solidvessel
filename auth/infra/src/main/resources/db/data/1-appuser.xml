@@ -5,9 +5,9 @@
     <changeSet author="ahmsay" id="solidvessel-data-1">
         <sql>
             insert into app_user(id, email, password, is_active, deactivation_reason)
-            values (1, 'vader_666@mail.com', 'i_hate_sand', true, null),
-                   (2, 'malvo_lrn@mail.com', 'sioux_falls', true, null),
-                   (3, 'peaky_blinder@mail.com', 'garrison_1918', true, null);
+            values (nextval('app_user_seq'), 'vader_666@mail.com', 'i_hate_sand', true, null),
+                   (nextval('app_user_seq'), 'malvo_lrn@mail.com', 'sioux_falls', true, null),
+                   (nextval('app_user_seq'), 'peaky_blinder@mail.com', 'garrison_1918', true, null);
         </sql>
     </changeSet>
 </databaseChangeLog>

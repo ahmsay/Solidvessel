@@ -5,14 +5,14 @@
     <changeSet author="ahmsay" id="solidvessel-data-1">
         <sql>
             insert into product(id, name, price, category, quantity)
-            values (1, 'Clipper', 2.5, 'TOOL', 1),
-                   (2, 'Laptop', 3000, 'ELECTRONICS', 5),
-                   (3, 'Phone', 5, 'ELECTRONICS', 6),
-                   (4, 'Skirt', 20, 'CLOTHING', 3),
-                   (5, 'Pants', 500, 'CLOTHING', 7),
-                   (6, 'Apple', 499.99, 'ELECTRONICS', 4),
-                   (7, 'Ice Pick', 53, 'TOOL', 12),
-                   (8, 'Desk', 25, 'FURNITURE', 3);
+            values (nextval('product_seq'), 'Clipper', 2.5, 'TOOL', 1),
+                   (nextval('product_seq'), 'Laptop', 3000, 'ELECTRONICS', 5),
+                   (nextval('product_seq'), 'Phone', 5, 'ELECTRONICS', 6),
+                   (nextval('product_seq'), 'Skirt', 20, 'CLOTHING', 3),
+                   (nextval('product_seq'), 'Pants', 500, 'CLOTHING', 7),
+                   (nextval('product_seq'), 'Apple', 499.99, 'ELECTRONICS', 4),
+                   (nextval('product_seq'), 'Ice Pick', 53, 'TOOL', 12),
+                   (nextval('product_seq'), 'Desk', 25, 'FURNITURE', 3);
         </sql>
     </changeSet>
 </databaseChangeLog>

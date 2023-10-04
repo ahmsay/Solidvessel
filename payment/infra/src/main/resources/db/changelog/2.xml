@@ -4,15 +4,16 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="ahmsay" id="solidvessel-changeset-2">
         <sql>
+            create sequence cart_seq start 1 increment 1;
             create table cart
             (
-                id          serial primary key,
+                id          bigint primary key,
                 customer_id bigint not null
             );
 
             create table cart_product
             (
-                cart_id    serial references cart,
+                cart_id    bigint references cart,
                 product_id bigint not null,
                 quantity   int    not null
             );

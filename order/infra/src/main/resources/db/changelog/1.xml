@@ -4,9 +4,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="ahmsay" id="solidvessel-changeset-1">
         <sql>
+            create sequence orders_seq start 1 increment 1;
             create table orders
             (
-                id          serial primary key,
+                id          bigint primary key,
                 status      varchar(50) not null,
                 customer_id bigint      not null,
                 payment_id  bigint      not null

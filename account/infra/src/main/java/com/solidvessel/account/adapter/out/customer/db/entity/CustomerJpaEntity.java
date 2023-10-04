@@ -20,6 +20,7 @@ import java.util.List;
 public class CustomerJpaEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull

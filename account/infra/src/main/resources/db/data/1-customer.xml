@@ -5,9 +5,9 @@
     <changeSet author="ahmsay" id="solidvessel-data-1">
         <sql>
             insert into customer(id, first_name, last_name, birth_date, email, phone_number)
-            values (1, 'Anakin', 'Skywalker', '1990-06-23', 'vader_666@mail.com', '9593848593'),
-                   (2, 'Lorne', 'Malvo', '1985-03-12', 'malvo_lrn@mail.com', '583969841'),
-                   (3, 'Thomas', 'Shelby', '1995-02-14', 'peaky_blinder@mail.com', '205938682');
+            values (nextval('customer_seq'), 'Anakin', 'Skywalker', '1990-06-23', 'vader_666@mail.com', '9593848593'),
+                   (nextval('customer_seq'), 'Lorne', 'Malvo', '1985-03-12', 'malvo_lrn@mail.com', '583969841'),
+                   (nextval('customer_seq'), 'Thomas', 'Shelby', '1995-02-14', 'peaky_blinder@mail.com', '205938682');
         </sql>
     </changeSet>
 </databaseChangeLog>

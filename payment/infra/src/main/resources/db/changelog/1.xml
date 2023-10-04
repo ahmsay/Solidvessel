@@ -4,16 +4,17 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="ahmsay" id="solidvessel-changeset-1">
         <sql>
+            create sequence payment_seq start 1 increment 1;
             create table payment
             (
-                id          serial primary key,
+                id          bigint primary key,
                 customer_id bigint         not null,
                 total_price numeric(12, 2) not null
             );
 
             create table payment_product
             (
-                payment_id serial references payment,
+                payment_id bigint references payment,
                 product_id bigint         not null,
                 quantity   int            not null,
                 name       varchar(150)   not null,

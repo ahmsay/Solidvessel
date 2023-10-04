@@ -5,9 +5,9 @@
     <changeSet author="ahmsay" id="solidvessel-data-1">
         <sql>
             insert into payment(id, customer_id, total_price)
-            values (1, 1, 250),
-                   (2, 2, 3),
-                   (3, 3, 70.2);
+            values (nextval('payment_seq'), 1, 250),
+                   (nextval('payment_seq'), 2, 3),
+                   (nextval('payment_seq'), 3, 70.2);
         </sql>
     </changeSet>
 </databaseChangeLog>
