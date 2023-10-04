@@ -7,7 +7,7 @@
             create sequence product_seq start 1 increment 1;
             create table product
             (
-                id       bigint primary key,
+                id       bigint         not null default nextval('product_seq'::regclass) primary key,
                 name     varchar(150)   not null unique,
                 price    numeric(10, 2) not null,
                 category varchar(50)    not null,

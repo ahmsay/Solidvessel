@@ -7,7 +7,7 @@
             create sequence payment_seq start 1 increment 1;
             create table payment
             (
-                id          bigint primary key,
+                id          bigint         not null default nextval('payment_seq'::regclass) primary key,
                 customer_id bigint         not null,
                 total_price numeric(12, 2) not null
             );

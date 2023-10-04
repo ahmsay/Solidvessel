@@ -7,7 +7,7 @@
             create sequence app_user_seq start 1 increment 1;
             create table app_user
             (
-                id                  bigint primary key,
+                id                  bigint       not null default nextval('app_user_seq'::regclass) primary key,
                 email               varchar(100) not null unique,
                 password            varchar(50)  not null,
                 is_active           boolean      not null,

@@ -7,7 +7,7 @@
             create sequence customer_seq start 1 increment 1;
             create table customer
             (
-                id           bigint primary key,
+                id           bigint       not null default nextval('customer_seq'::regclass) primary key,
                 first_name   varchar(100) not null,
                 last_name    varchar(100) not null,
                 birth_date   date,
