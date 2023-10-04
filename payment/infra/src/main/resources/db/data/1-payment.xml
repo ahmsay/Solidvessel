@@ -8,6 +8,11 @@
             values (nextval('payment_seq'), 1, 250),
                    (nextval('payment_seq'), 2, 3),
                    (nextval('payment_seq'), 3, 70.2);
+
+            insert into payment_product(payment_id, product_id, quantity, name, price)
+            values (1, 1, 1, 'Lol', 25),
+                   (2, 2, 1, 'asd', 3),
+                   (3, 2, 3, 'zxc', 23.4);
         </sql>
     </changeSet>
 </databaseChangeLog>

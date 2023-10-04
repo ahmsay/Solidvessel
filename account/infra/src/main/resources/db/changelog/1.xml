@@ -18,7 +18,7 @@
             create table address
             (
                 customer_id bigint references customer,
-                name        varchar(100) not null unique,
+                name        varchar(100) not null,
                 country     varchar(50)  not null,
                 city        varchar(100) not null,
                 zipcode     varchar(10)  not null
