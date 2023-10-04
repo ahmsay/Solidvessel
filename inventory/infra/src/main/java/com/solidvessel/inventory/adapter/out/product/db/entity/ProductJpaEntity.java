@@ -26,8 +26,11 @@ public class ProductJpaEntity {
     @NotNull
     private Double price;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
+    @NotNull
     private int quantity;
 
     public Product toDomainModel() {
