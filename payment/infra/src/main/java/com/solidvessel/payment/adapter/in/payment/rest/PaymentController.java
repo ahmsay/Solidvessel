@@ -25,7 +25,7 @@ public class PaymentController {
     private final CustomerQueryPort customerQueryPort;
     private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
 
-    @GetMapping()
+    @GetMapping("/")
     public List<PaymentDataModel> getAll() {
         return paymentQueryPort.getAll();
     }

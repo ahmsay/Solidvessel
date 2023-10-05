@@ -22,7 +22,7 @@ public class OrderController {
     private final CustomerQueryPort customerQueryPort;
     private final PaymentQueryPort paymentQueryPort;
 
-    @GetMapping()
+    @GetMapping("/")
     public List<OrderDataModel> getAll() {
         return orderQueryPort.getAll();
     }
