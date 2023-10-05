@@ -11,50 +11,38 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: auth.solidvessel.com
+  - host: www.solidvessel.com
     http:
       paths:
-      - path: /
+      - path: /auth
         pathType: Prefix
         backend:
           service:
             name: auth
             port:
               number: 8080
-  - host: account.solidvessel.com
-    http:
-      paths:
-      - path: /
+      - path: /account
         pathType: Prefix
         backend:
           service:
             name: account
             port:
               number: 8080
-  - host: inventory.solidvessel.com
-    http:
-      paths:
-      - path: /
+      - path: /inventory
         pathType: Prefix
         backend:
           service:
             name: inventory
             port:
               number: 8080
-  - host: order.solidvessel.com
-    http:
-      paths:
-      - path: /
+      - path: /order
         pathType: Prefix
         backend:
           service:
             name: order
             port:
               number: 8080
-  - host: payment.solidvessel.com
-    http:
-      paths:
-      - path: /
+      - path: /payment
         pathType: Prefix
         backend:
           service:
