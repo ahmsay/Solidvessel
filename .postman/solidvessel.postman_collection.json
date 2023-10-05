@@ -768,12 +768,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/order",
+							"raw": "{{orderServiceUrl}}/order/",
 							"host": [
 								"{{orderServiceUrl}}"
 							],
 							"path": [
-								"order"
+								"order",
+								""
 							]
 						}
 					},
@@ -1020,12 +1021,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment",
+									"raw": "{{paymentServiceUrl}}/payment/",
 									"host": [
 										"{{paymentServiceUrl}}"
 									],
 									"path": [
-										"payment"
+										"payment",
+										""
 									]
 								}
 							},
