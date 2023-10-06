@@ -13,8 +13,8 @@
 !gradle/**
 
 # devops
+!.docker/**
 !.kubernetes/**
-!docker-compose.yaml
 !.ci/**
 
 # other files
