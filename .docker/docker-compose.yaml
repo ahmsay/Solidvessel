@@ -39,13 +39,21 @@ services:
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
     ports:
-      - "6004:5432"
+    - "6004:5432"
   redis:
     image: redis:7.2-rc2
     ports:
-      - "6379:6379"
+    - "6379:6379"
   rabbitmq:
     image: rabbitmq:3.12.0-management
     ports:
-      - "5672:5672"
-      - "15672:15672"
+    - "5672:5672"
+    - "15672:15672"
+  apisix:
+    container_name: apache-apisix
+    image: apache/apisix
+    environment:
+      APISIX_STAND_ALONE: "true"
+    volumes:
+    - ./apisix-conf.yaml:/usr/local/apisix/conf/apisix.yaml
+    network_mode: host
