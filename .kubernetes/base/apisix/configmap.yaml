@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apisix-conf
+  namespace: solidvessel
+data:
+  apisix.yaml: |
+    routes:
+    - id: auth
+      uri: /auth/*
+      upstream:
+        nodes:
+          "auth:8080": 1
+        type: roundrobin
+    - id: account
+      uri: /account/*
+      upstream:
+        nodes:
+          "account:8080": 1
+        type: roundrobin
+    - id: inventory
+      uri: /inventory/*
+      upstream:
+        nodes:
+          "inventory:8080": 1
+        type: roundrobin
+    - id: order
+      uri: /order/*
+      upstream:
+        nodes:
+          "order:8080": 1
+        type: roundrobin
+    - id: payment
+      uri: /payment/*
+      upstream:
+        nodes:
+          "payment:8080": 1
+        type: roundrobin
+    #END
