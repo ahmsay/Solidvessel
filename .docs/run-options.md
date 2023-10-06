@@ -6,7 +6,7 @@ This mode will start the databases, Redis and RabbitMQ as containers in Docker. 
 IDE.
 
 ```shell
-docker-compose up -d
+docker-compose -f .docker/docker-compose.yaml up -d
 ```
 
 ### Test
