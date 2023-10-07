@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apisix
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: apisix
+    targetRevision: 2.1.3
+    helm:
+      values: |
+        controlPlane:
+          enabled: false
+        ingressController:
+          enabled: false
+        etcd:
+          enabled: false
+        dataPlane:
+          extraConfig:
+            deployment:
+              role_data_plane:
+                config_provider: yaml
+          extraVolumes:
+          - name: routes
+            configMap:
+              name: apisix-conf
+          extraVolumeMounts:
+          - name: routes
+            mountPath: /opt/bitnami/apisix/conf/apisix.yaml
+            subPath: apisix.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: solidvessel
+  syncPolicy:
+    automated:
+      prune: true

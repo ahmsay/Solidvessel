@@ -14,38 +14,10 @@ spec:
   - host: www.solidvessel.com
     http:
       paths:
-      - path: /auth
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: auth
+            name: apisix
             port:
-              number: 8080
-      - path: /account
-        pathType: Prefix
-        backend:
-          service:
-            name: account
-            port:
-              number: 8080
-      - path: /inventory
-        pathType: Prefix
-        backend:
-          service:
-            name: inventory
-            port:
-              number: 8080
-      - path: /order
-        pathType: Prefix
-        backend:
-          service:
-            name: order
-            port:
-              number: 8080
-      - path: /payment
-        pathType: Prefix
-        backend:
-          service:
-            name: payment
-            port:
-              number: 8080
+              number: 9080
