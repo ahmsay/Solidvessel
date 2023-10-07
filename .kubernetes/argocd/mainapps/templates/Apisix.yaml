@@ -13,9 +13,13 @@ spec:
       values: |
         controlPlane:
           enabled: false
+          tls:
+            enabled: false
         ingressController:
           enabled: false
         etcd:
+          enabled: false
+        dashboard:
           enabled: false
         dataPlane:
           extraConfig:
