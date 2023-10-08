@@ -1,0 +1,4 @@
+resources:
+- apisix.yaml
+- token-secret.yaml
+- ../../../base/apisix/config

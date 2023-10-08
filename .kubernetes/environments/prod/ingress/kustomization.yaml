@@ -1,4 +1,3 @@
 resources:
 - solidvessel-ingress-resource.yaml
 - argocd-ingress.resource.yaml
-- ../../../base/apisix/config

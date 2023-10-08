@@ -15,8 +15,6 @@ spec:
           enabled: false
           tls:
             enabled: false
-          apiTokenAdmin: edd1c9f034435f136f87ad84b625c8f1
-          apiTokenViewer: edd1c9f034435f136f87ad84b625c8f1
         ingressController:
           enabled: false
         etcd:
