@@ -15,9 +15,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{authServiceUrl}}/auth/ping",
+							"raw": "{{baseUrl}}/auth/ping",
 							"host": [
-								"{{authServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"auth",
@@ -58,9 +58,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{authServiceUrl}}/auth/signUp",
+							"raw": "{{baseUrl}}/auth/signUp",
 							"host": [
-								"{{authServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"auth",
@@ -102,9 +102,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{authServiceUrl}}/auth/login",
+							"raw": "{{baseUrl}}/auth/login",
 							"host": [
-								"{{authServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"auth",
@@ -147,9 +147,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{authServiceUrl}}/auth/logout",
+							"raw": "{{baseUrl}}/auth/logout",
 							"host": [
-								"{{authServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"auth",
@@ -201,9 +201,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/customer",
+									"raw": "{{baseUrl}}/account/customer",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -238,9 +238,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/customer/1",
+									"raw": "{{baseUrl}}/account/customer/1",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -276,9 +276,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/customer/1/detail",
+									"raw": "{{baseUrl}}/account/customer/1/detail",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -329,9 +329,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/address",
+									"raw": "{{baseUrl}}/account/address",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -362,9 +362,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/address",
+									"raw": "{{baseUrl}}/account/address",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -395,9 +395,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/address",
+									"raw": "{{baseUrl}}/account/address",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -428,9 +428,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{accountServiceUrl}}/account/address",
+									"raw": "{{baseUrl}}/account/address",
 									"host": [
-										"{{accountServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
@@ -461,9 +461,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{accountServiceUrl}}/account/ping",
+							"raw": "{{baseUrl}}/account/ping",
 							"host": [
-								"{{accountServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"account",
@@ -490,9 +490,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/inventory/ping",
+							"raw": "{{baseUrl}}/inventory/ping",
 							"host": [
-								"{{inventoryServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
@@ -527,9 +527,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/inventory/product",
+							"raw": "{{baseUrl}}/inventory/product",
 							"host": [
-								"{{inventoryServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
@@ -564,9 +564,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/inventory/product/1",
+							"raw": "{{baseUrl}}/inventory/product/1",
 							"host": [
-								"{{inventoryServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
@@ -614,9 +614,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/inventory/product/ids?ids=1,2,3",
+							"raw": "{{baseUrl}}/inventory/product/ids?ids=1,2,3",
 							"host": [
-								"{{inventoryServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
@@ -667,9 +667,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/inventory/product",
+							"raw": "{{baseUrl}}/inventory/product",
 							"host": [
-								"{{inventoryServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
@@ -691,9 +691,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{inventoryServiceUrl}}/inventory/product/isAvailable?id=1&quantity=1",
+							"raw": "{{baseUrl}}/inventory/product/isAvailable?id=1&quantity=1",
 							"host": [
-								"{{inventoryServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
@@ -731,9 +731,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/order/ping",
+							"raw": "{{baseUrl}}/order/ping",
 							"host": [
-								"{{orderServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
@@ -768,9 +768,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/order/",
+							"raw": "{{baseUrl}}/order/",
 							"host": [
-								"{{orderServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
@@ -805,9 +805,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/order/1",
+							"raw": "{{baseUrl}}/order/1",
 							"host": [
-								"{{orderServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
@@ -842,9 +842,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/order/1/detail",
+							"raw": "{{baseUrl}}/order/1/detail",
 							"host": [
-								"{{orderServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
@@ -880,9 +880,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{orderServiceUrl}}/order/ofCustomer/1",
+							"raw": "{{baseUrl}}/order/ofCustomer/1",
 							"host": [
-								"{{orderServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
@@ -913,9 +913,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/cart",
+									"raw": "{{baseUrl}}/payment/cart",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -946,9 +946,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/cart",
+									"raw": "{{baseUrl}}/payment/cart",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -979,9 +979,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/cart",
+									"raw": "{{baseUrl}}/payment/cart",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -1021,9 +1021,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/",
+									"raw": "{{baseUrl}}/payment/",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -1058,9 +1058,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/1",
+									"raw": "{{baseUrl}}/payment/1",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -1095,9 +1095,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/1/detail",
+									"raw": "{{baseUrl}}/payment/1/detail",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -1133,9 +1133,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/ofCustomer/1",
+									"raw": "{{baseUrl}}/payment/ofCustomer/1",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -1180,9 +1180,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{paymentServiceUrl}}/payment/accept",
+									"raw": "{{baseUrl}}/payment/accept",
 									"host": [
-										"{{paymentServiceUrl}}"
+										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
@@ -1206,9 +1206,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{paymentServiceUrl}}/payment/ping",
+							"raw": "{{baseUrl}}/payment/ping",
 							"host": [
-								"{{paymentServiceUrl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"payment",
