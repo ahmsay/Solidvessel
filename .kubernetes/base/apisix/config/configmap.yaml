@@ -6,6 +6,13 @@ metadata:
 data:
   apisix.yaml: |
     routes:
+    - id: root
+      uri: /
+      upstream:
+        nodes:
+          "127.0.0.1:80": 1
+        type: roundrobin
+      plugin_config_id: 1
     - id: auth
       uri: /auth/*
       upstream:
@@ -36,4 +43,10 @@ data:
         nodes:
           "payment:8080": 1
         type: roundrobin
+    plugin_configs:
+    - id: 1
+      plugins:
+        response-rewrite:
+          body: "I'm alive!!!\n"
+      desc: "response-rewrite"
     #END
