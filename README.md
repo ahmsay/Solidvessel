@@ -78,7 +78,6 @@ Let's explain each component shown in the diagram one by one:
 - <a href=".docs/authentication.md">Authentication<a/>
 - <a href=".docs/horizontal-scaling.md">Horizontal Scaling<a/>
 - <a href=".docs/load-balancing.md">Load Balancing<a/>
-- <a href=".docs/traffic-routing.md">Traffic Routing<a/>
 - <a href=".docs/shared-module.md">Shared Module<a/>
 - <a href=".docs/infrastructure-as-code.md">Infrastructure as Code<a/>
 - <a href=".docs/gitops.md">GitOps<a/>
