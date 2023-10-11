@@ -11,9 +11,6 @@ spec:
     targetRevision: 2.1.3
     helm:
       values: |
-        diagnosticMode:
-          enabled: true
-          command: sleep 3600
         controlPlane:
           enabled: false
           tls:
@@ -23,8 +20,9 @@ spec:
         etcd:
           enabled: false
         dashboard:
-          image:
-            debug: true
+          diagnosticMode:
+            enabled: true
+            command: sleep 3600
         dataPlane:
           service:
             type: ClusterIP
