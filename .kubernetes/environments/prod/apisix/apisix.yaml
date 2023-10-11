@@ -11,6 +11,9 @@ spec:
     targetRevision: 2.1.3
     helm:
       values: |
+        diagnosticMode:
+          enabled: true
+          command: sleep 3600
         controlPlane:
           enabled: false
           tls:
