@@ -22,6 +22,8 @@ spec:
         dashboard:
           enabled: false
         dataPlane:
+          service:
+            type: ClusterIP
           extraConfig:
             deployment:
               role_data_plane:
