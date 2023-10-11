@@ -19,8 +19,6 @@ spec:
           enabled: false
         etcd:
           enabled: false
-        dashboard:
-          enabled: false
         dataPlane:
           service:
             type: ClusterIP
