@@ -20,9 +20,7 @@ spec:
         etcd:
           enabled: false
         dashboard:
-          diagnosticMode:
-            enabled: true
-            command: sleep 3600
+          enabled: false
         dataPlane:
           service:
             type: ClusterIP
