@@ -2,7 +2,7 @@ server:
   port: 8084
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:6004/payment
+    url: jdbc:postgresql://localhost:5432/payment
   data:
     redis:
       host: localhost

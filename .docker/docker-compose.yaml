@@ -1,45 +1,14 @@
 version: "3"
 services:
-  auth-db:
+  postgres:
     image: postgres:15.3
     environment:
-      - POSTGRES_DB=auth
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
     ports:
-      - "6000:5432"
-  account-db:
-    image: postgres:15.3
-    environment:
-      - POSTGRES_DB=account
-      - POSTGRES_USER=nihilus
-      - POSTGRES_PASSWORD=nihilus
-    ports:
-      - "6001:5432"
-  inventory-db:
-    image: postgres:15.3
-    environment:
-      - POSTGRES_DB=inventory
-      - POSTGRES_USER=nihilus
-      - POSTGRES_PASSWORD=nihilus
-    ports:
-      - "6002:5432"
-  order-db:
-    image: postgres:15.3
-    environment:
-      - POSTGRES_DB=order_db
-      - POSTGRES_USER=nihilus
-      - POSTGRES_PASSWORD=nihilus
-    ports:
-      - "6003:5432"
-  payment-db:
-    image: postgres:15.3
-    environment:
-      - POSTGRES_DB=payment
-      - POSTGRES_USER=nihilus
-      - POSTGRES_PASSWORD=nihilus
-    ports:
-    - "6004:5432"
+      - "5432:5432"
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   redis:
     image: redis:7.2-rc2
     ports:

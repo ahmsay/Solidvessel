@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:6002/inventory
+    url: jdbc:postgresql://localhost:5432/inventory
   data:
     redis:
       host: localhost

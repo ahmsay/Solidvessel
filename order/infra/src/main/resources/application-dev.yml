@@ -2,7 +2,7 @@ server:
   port: 8083
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:6003/order_db
+    url: jdbc:postgresql://localhost:5432/order_db
   data:
     redis:
       host: localhost

@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:6001/account
+    url: jdbc:postgresql://localhost:5432/account
   data:
     redis:
       host: localhost

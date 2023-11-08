@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:6000/auth
+    url: jdbc:postgresql://localhost:5432/auth
   data:
     redis:
       host: localhost
