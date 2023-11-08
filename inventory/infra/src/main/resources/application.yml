@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: inventory
+  datasource:
+    username: nihilus
+    password: nihilus
+  session:
+    store-type: redis
+  data:
+    redis:
+      timeout: 30000
+  liquibase:
+    change-log: classpath:/db/master.yaml
+server:
+  servlet:
+    context-path: /inventory
+exchanges:
+  payment: payment.topic
+queues:
+  product: product.queue
+routing-keys:
+  payment:
+    saved: payment.saved

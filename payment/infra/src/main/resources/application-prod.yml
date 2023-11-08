@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://payment-db-postgresql:5432/payment
+  data:
+    redis:
+      host: redis-master
+      port: 6379
+      password: nihilus
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    password: nihilus
+account:
+  url: http://account:8080/account
+inventory:
+  url: http://inventory:8080/inventory
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *

@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:6001/account
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  rabbitmq:
+    host: localhost
+    port: 5672
+order:
+  url: http://localhost:8083/order
+payment:
+  url: http://localhost:8084/payment
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *

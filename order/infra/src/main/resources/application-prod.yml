@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://order-db-postgresql:5432/order_db
+  data:
+    redis:
+      host: redis-master
+      port: 6379
+      password: nihilus
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    password: nihilus
+account:
+  url: http://account:8080/account
+payment:
+  url: http://payment:8080/payment
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *

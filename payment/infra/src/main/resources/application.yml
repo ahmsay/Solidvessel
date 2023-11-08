@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: payment
+  datasource:
+    username: nihilus
+    password: nihilus
+  session:
+    store-type: redis
+  data:
+    redis:
+      timeout: 30000
+  liquibase:
+    change-log: classpath:/db/master.yaml
+server:
+  servlet:
+    context-path: /payment
+exchanges:
+  payment: payment.topic
+  signUp: signup.topic
+queues:
+  cart: cart.queue
+routing-keys:
+  payment:
+    saved: payment.saved
+  user:
+    saved: user.saved
