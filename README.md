@@ -6,13 +6,14 @@ microservices, so I kept the domain part as simple as possible. The project is a
 
 ## Architecture
 ### Development
-![development](https://github.com/ahmsay/Solidvessel/assets/22731894/790cf8c2-88db-44df-8512-be3fdc5397a8)
+![development](https://github.com/ahmsay/Solidvessel/assets/22731894/60f62c83-0388-4e3e-8103-b2bca60fd62f)
 
 In development mode, microservices are running as separate processes on your computer. The API Gateway, databases,
 RabbitMQ and Redis run
 as Docker containers. Since all microservices run on the same device, they should expose a different port. The
 communication between client
-and microservices is done through the API Gateway.
+and microservices is done through the API Gateway. Databases are in the same instance for the sake of simplicity in this
+environment.
 
 ### Test
 
