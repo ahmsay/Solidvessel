@@ -8,7 +8,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    - ./postgres:/docker-entrypoint-initdb.d
   redis:
     image: redis:7.2-rc2
     ports:
@@ -24,5 +24,5 @@ services:
     environment:
       APISIX_STAND_ALONE: "true"
     volumes:
-    - ./apisix-conf.yaml:/usr/local/apisix/conf/apisix.yaml
+    - ./apisix/apisix-conf.yaml:/usr/local/apisix/conf/apisix.yaml
     network_mode: host
