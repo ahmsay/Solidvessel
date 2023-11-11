@@ -1,0 +1,69 @@
+{
+  "realm": "solidvessel",
+  "users": [
+    {
+      "username": "lorne",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "",
+      "lastName": "",
+      "email": "malvo_lrn@mail.com",
+      "credentials": [
+        {
+          "type": "password",
+          "userLabel": "My password",
+          "secretData": "{\"value\":\"A55y2biFlKvOvz54dgiLEdna+PFOcbz1CbfQVH1Oq00=\",\"salt\":\"Moh7JU8a/G9+2A96jriIrw==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "realmRoles": [
+        "CUSTOMER",
+        "default-roles-solidvessel"
+      ]
+    },
+    {
+      "username": "tommy",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "",
+      "lastName": "",
+      "email": "peaky_blinder@mail.com",
+      "credentials": [
+        {
+          "type": "password",
+          "userLabel": "My password",
+          "secretData": "{\"value\":\"gMYmZi2HDq/vbYGO77FABfsLlkZtn/BQjIYW1gDjpUg=\",\"salt\":\"h0EhA74Nx1rz+oSpHvPU5w==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "realmRoles": [
+        "CUSTOMER",
+        "default-roles-solidvessel"
+      ]
+    },
+    {
+      "username": "vader",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "",
+      "lastName": "",
+      "email": "vader_666@mail.com",
+      "credentials": [
+        {
+          "type": "password",
+          "userLabel": "My password",
+          "secretData": "{\"value\":\"GatJyR5Abe16OzqSbjsv0eF+UjbW0B8CAe7ZCV/9zxI=\",\"salt\":\"DmEuDzMYqBdx2XppavSqeQ==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "realmRoles": [
+        "ADMIN",
+        "CUSTOMER",
+        "default-roles-solidvessel"
+      ]
+    }
+  ]
+}

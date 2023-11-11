@@ -29,3 +29,15 @@ services:
     volumes:
     - ./apisix/apisix-conf.yaml:/usr/local/apisix/conf/apisix.yaml
     network_mode: host
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:22.0.4
+    environment:
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
+    ports:
+    - "9876:8080"
+    command:
+    - start-dev --import-realm
+    volumes:
+    - ./keycloak:/opt/keycloak/data/import

@@ -1,0 +1,48 @@
+{
+  "realm": "solidvessel",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "ADMIN",
+        "description": ""
+      },
+      {
+        "name": "CUSTOMER",
+        "description": ""
+      }
+    ]
+  },
+  "requiredCredentials": [
+    "password"
+  ],
+  "clients": [
+    {
+      "clientId": "solidvessel-auth",
+      "name": "",
+      "description": "",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
+      "redirectUris": [
+        "http://127.0.0.1:9080/*"
+      ],
+      "webOrigins": [],
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect"
+    }
+  ],
+  "keycloakVersion": "22.0.4"
+}
