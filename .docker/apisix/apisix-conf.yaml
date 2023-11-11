@@ -1,4 +1,11 @@
 routes:
+- id: root
+  uri: /
+  upstream:
+    nodes:
+      "127.0.0.1:80": 1
+    type: roundrobin
+  plugin_config_id: 1
 - id: auth
   uri: /auth/*
   upstream:
@@ -11,22 +18,50 @@ routes:
     nodes:
       "localhost:8081": 1
     type: roundrobin
+  plugin_config_id: 2
 - id: inventory
   uri: /inventory/*
   upstream:
     nodes:
       "localhost:8082": 1
     type: roundrobin
+  plugin_config_id: 2
 - id: order
   uri: /order/*
   upstream:
     nodes:
       "localhost:8083": 1
     type: roundrobin
+  plugin_config_id: 2
 - id: payment
   uri: /payment/*
   upstream:
     nodes:
       "localhost:8084": 1
     type: roundrobin
+  plugin_config_id: 2
+plugin_configs:
+- id: 1
+  plugins:
+    response-rewrite:
+      body: "I'm alive!!!\n"
+  desc: "response-rewrite"
+- id: 2
+  plugins:
+    openid-connect:
+      client_id: "solidvessel-auth"
+      client_secret: "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
+      discovery: "http://127.0.0.1:9876/realms/solidvessel/.well-known/openid-configuration"
+      scope: "openid profile"
+      bearer_only: false
+      realm: "solidvessel"
+      redirect_uri: "http://127.0.0.1:9080/"
+      logout_path: "/logout"
+      access_token_in_authorization_header: true
+    proxy-rewrite:
+      headers:
+        remove:
+        - "x-id-token"
+        - "x-userinfo"
+  desc: "oidc"
 #END
