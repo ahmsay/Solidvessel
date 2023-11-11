@@ -1,6 +1,7 @@
 version: "3"
 services:
   postgres:
+    container_name: postgres
     image: postgres:15.3
     environment:
       - POSTGRES_USER=nihilus
@@ -10,16 +11,18 @@ services:
     volumes:
     - ./postgres:/docker-entrypoint-initdb.d
   redis:
+    container_name: redis
     image: redis:7.2-rc2
     ports:
     - "6379:6379"
   rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3.12.0-management
     ports:
     - "5672:5672"
     - "15672:15672"
   apisix:
-    container_name: apache-apisix
+    container_name: apisix
     image: apache/apisix
     environment:
       APISIX_STAND_ALONE: "true"
