@@ -53,10 +53,19 @@ plugin_configs:
       redirect_uri: "http://127.0.0.1:9080/login/callback"
       logout_path: "/logout"
       access_token_in_authorization_header: true
+      set_id_token_header: false
+      set_userinfo_header: false
     proxy-rewrite:
       headers:
         remove:
-        - "x-id-token"
-        - "x-userinfo"
+        - "sec-fetch-site"
+        - "sec-fetch-mode"
+        - "sec-fetch-user"
+        - "sec-fetch-dest"
+        - "sec-ch-ua"
+        - "sec-ch-ua-mobile"
+        - "sec-ch-ua-platform"
+        - "accept-language"
+        - "upgrade-insecure-requests"
   desc: "oidc"
 #END
