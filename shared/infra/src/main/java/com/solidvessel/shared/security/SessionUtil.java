@@ -11,8 +11,7 @@ public class SessionUtil {
         return requestAttributes.getRequest().getHeader("authorization");
     }
 
-    public static Long getCurrentUserId() {
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        return Long.parseLong(userName);
+    public static String getCurrentUserId() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
