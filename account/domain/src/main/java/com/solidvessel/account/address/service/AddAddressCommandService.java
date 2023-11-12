@@ -1,9 +1,9 @@
-package com.solidvessel.account.customer.service;
+package com.solidvessel.account.address.service;
 
+import com.solidvessel.account.address.port.AddressPort;
+import com.solidvessel.account.address.port.AddressQueryPort;
+import com.solidvessel.account.address.service.command.AddAddressCommand;
 import com.solidvessel.account.common.exception.AccountDomainException;
-import com.solidvessel.account.customer.port.AddressPort;
-import com.solidvessel.account.customer.port.AddressQueryPort;
-import com.solidvessel.account.customer.service.command.AddAddressCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
 import com.solidvessel.shared.service.OperationResult;
@@ -20,7 +20,7 @@ public class AddAddressCommandService implements CommandService<AddAddressComman
     @Override
     public OperationResult execute(AddAddressCommand command) {
         checkIfAddressIsAlreadyRegistered(command);
-        addressPort.addAddress(command.customerId(), command.toDomainModel());
+        addressPort.save(command.toDomainModel(command.customerId()));
         return new OperationResult("Address is added.", ResultType.SUCCESS);
     }
 

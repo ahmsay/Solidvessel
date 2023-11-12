@@ -1,13 +1,13 @@
-package com.solidvessel.account.adapter.in.customer.rest;
+package com.solidvessel.account.adapter.in.address.rest;
 
-import com.solidvessel.account.adapter.in.customer.rest.request.AddAddressRequest;
-import com.solidvessel.account.adapter.in.customer.rest.request.RemoveAddressRequest;
-import com.solidvessel.account.adapter.in.customer.rest.request.UpdateAddressRequest;
-import com.solidvessel.account.customer.datamodel.AddressDataModel;
-import com.solidvessel.account.customer.port.AddressQueryPort;
-import com.solidvessel.account.customer.service.command.AddAddressCommand;
-import com.solidvessel.account.customer.service.command.RemoveAddressCommand;
-import com.solidvessel.account.customer.service.command.UpdateAddressCommand;
+import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
+import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequest;
+import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
+import com.solidvessel.account.address.datamodel.AddressDataModel;
+import com.solidvessel.account.address.port.AddressQueryPort;
+import com.solidvessel.account.address.service.command.AddAddressCommand;
+import com.solidvessel.account.address.service.command.RemoveAddressCommand;
+import com.solidvessel.account.address.service.command.UpdateAddressCommand;
 import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;

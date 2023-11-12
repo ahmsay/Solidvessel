@@ -1,9 +1,10 @@
-package com.solidvessel.account.customer.service;
+package com.solidvessel.account.address.service;
 
+import com.solidvessel.account.address.model.Address;
+import com.solidvessel.account.address.port.AddressPort;
+import com.solidvessel.account.address.port.AddressQueryPort;
+import com.solidvessel.account.address.service.command.UpdateAddressCommand;
 import com.solidvessel.account.common.exception.AccountDomainException;
-import com.solidvessel.account.customer.port.AddressPort;
-import com.solidvessel.account.customer.port.AddressQueryPort;
-import com.solidvessel.account.customer.service.command.UpdateAddressCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
 import com.solidvessel.shared.service.OperationResult;
@@ -20,7 +21,9 @@ public class UpdateAddressCommandService implements CommandService<UpdateAddress
     @Override
     public OperationResult execute(UpdateAddressCommand command) {
         checkIfAddressIsRegistered(command);
-        addressPort.updateAddress(command.customerId(), command.toDomainModel());
+        Address currentAddress = addressQueryPort.getByIdAndCustomerId(command.id(), command.customerId());
+        currentAddress.update(command);
+        addressPort.save(currentAddress);
         return new OperationResult("Address is updated.", ResultType.SUCCESS);
     }
 

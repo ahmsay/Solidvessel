@@ -1,7 +1,7 @@
-package com.solidvessel.account.customer.service;
+package com.solidvessel.account.address.service;
 
-import com.solidvessel.account.customer.port.AddressPort;
-import com.solidvessel.account.customer.service.command.RemoveAddressCommand;
+import com.solidvessel.account.address.port.AddressPort;
+import com.solidvessel.account.address.service.command.RemoveAddressCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
 import com.solidvessel.shared.service.OperationResult;
@@ -16,8 +16,7 @@ public class RemoveAddressCommandService implements CommandService<RemoveAddress
 
     @Override
     public OperationResult execute(RemoveAddressCommand command) {
-        String customerId = command.customerId();
-        addressPort.removeAddress(customerId, command.name());
+        addressPort.delete(command.id(), command.customerId());
         return new OperationResult("Address is removed.", ResultType.SUCCESS);
     }
 }
