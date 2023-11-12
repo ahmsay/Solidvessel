@@ -41,7 +41,7 @@ public class OrderController {
     }
 
     @GetMapping("/ofCustomer/{customerId}")
-    public List<OrderDataModel> getByCustomerId(@PathVariable final Long customerId) {
+    public List<OrderDataModel> getByCustomerId(@PathVariable final String customerId) {
         return orderQueryPort.getByCustomerId(customerId);
     }
 }

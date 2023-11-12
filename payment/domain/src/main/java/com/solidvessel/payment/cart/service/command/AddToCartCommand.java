@@ -1,4 +1,4 @@
 package com.solidvessel.payment.cart.service.command;
 
-public record AddToCartCommand(Long customerId, Long productId, int quantity) {
+public record AddToCartCommand(String customerId, Long productId, int quantity) {
 }

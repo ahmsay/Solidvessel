@@ -1,4 +1,4 @@
 package com.solidvessel.payment.cart.service.command;
 
-public record CreateCartCommand(Long customerId) {
+public record CreateCartCommand(String customerId) {
 }

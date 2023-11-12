@@ -10,5 +10,5 @@ public interface OrderQueryPort {
 
     OrderDataModel getById(Long id);
 
-    List<OrderDataModel> getByCustomerId(Long customerId);
+    List<OrderDataModel> getByCustomerId(String customerId);
 }

@@ -4,5 +4,5 @@ import com.solidvessel.payment.cart.model.Cart;
 
 public interface CartQueryPort {
 
-    Cart getByCustomerId(Long customerId);
+    Cart getByCustomerId(String customerId);
 }

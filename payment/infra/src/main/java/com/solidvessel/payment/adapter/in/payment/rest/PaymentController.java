@@ -43,7 +43,7 @@ public class PaymentController {
     }
 
     @GetMapping("/ofCustomer/{customerId}")
-    public List<PaymentDataModel> getByCustomerId(@PathVariable final Long customerId) {
+    public List<PaymentDataModel> getByCustomerId(@PathVariable final String customerId) {
         return paymentQueryPort.getByCustomerId(customerId);
     }
 

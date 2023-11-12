@@ -15,7 +15,7 @@ public class CartDBQueryAdapter implements CartQueryPort {
     private final CartRepository cartRepository;
 
     @Override
-    public Cart getByCustomerId(Long customerId) {
+    public Cart getByCustomerId(String customerId) {
         CartJpaEntity cart = cartRepository.findByCustomerId(customerId).orElseThrow(() -> new EntityNotFoundException("Cart is not found."));
         return cart.toDomainModel();
     }

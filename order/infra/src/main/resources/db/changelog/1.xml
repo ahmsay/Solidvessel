@@ -9,7 +9,7 @@
             (
                 id          bigint      not null default nextval('orders_seq'::regclass) primary key,
                 status      varchar(50) not null,
-                customer_id bigint      not null,
+                customer_id varchar(36) not null,
                 payment_id  bigint      not null
             );
         </sql>

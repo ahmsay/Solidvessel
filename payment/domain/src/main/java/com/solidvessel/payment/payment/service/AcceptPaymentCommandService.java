@@ -32,7 +32,7 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
 
     @Override
     public OperationResult execute(AcceptPaymentCommand command) {
-        Long customerId = command.customerId();
+        String customerId = command.customerId();
         Cart cart = cartQueryPort.getByCustomerId(customerId);
         checkIfTheCartIsEmpty(cart);
         List<ProductDataModel> productsFromInventory = productQueryPort.getProductsOfCart(cart.getProductIds());
@@ -56,7 +56,7 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         }
     }
 
-    private Long savePayment(Long customerId, List<ProductDataModel> productsFromInventory, Cart cart) {
+    private Long savePayment(String customerId, List<ProductDataModel> productsFromInventory, Cart cart) {
         Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProductQuantities());
         return paymentPort.save(payment);
     }

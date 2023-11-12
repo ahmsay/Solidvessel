@@ -4,7 +4,7 @@ import com.solidvessel.inventory.product.service.command.UpdateProductQuantities
 
 import java.util.Map;
 
-public record PaymentSavedEvent(Long paymentId, Long customerId, Map<Long, Integer> productQuantities) {
+public record PaymentSavedEvent(Long paymentId, String customerId, Map<Long, Integer> productQuantities) {
 
     public UpdateProductQuantitiesCommand toCommand() {
         return new UpdateProductQuantitiesCommand(productQuantities);

@@ -25,7 +25,7 @@ public class OrderJpaEntity {
     private OrderStatus status;
 
     @NotNull
-    private Long customerId;
+    private String customerId;
 
     @NotNull
     private Long paymentId;

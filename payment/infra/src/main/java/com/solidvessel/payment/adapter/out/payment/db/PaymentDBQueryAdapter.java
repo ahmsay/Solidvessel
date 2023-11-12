@@ -28,7 +28,7 @@ public class PaymentDBQueryAdapter implements PaymentQueryPort {
     }
 
     @Override
-    public List<PaymentDataModel> getByCustomerId(Long customerId) {
+    public List<PaymentDataModel> getByCustomerId(String customerId) {
         return paymentRepository.findByCustomerId(customerId).stream().map(PaymentJpaEntity::toDataModel).toList();
     }
 }

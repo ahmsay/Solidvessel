@@ -12,10 +12,10 @@ import java.util.Set;
 public class Cart {
 
     private Long id;
-    private Long customerId;
+    private String customerId;
     private Map<Long, Integer> productQuantities;
 
-    public static Cart newCart(Long customerId) {
+    public static Cart newCart(String customerId) {
         return new Cart(null, customerId, new HashMap<>());
     }
 

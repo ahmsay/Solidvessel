@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface CustomerRestClient {
 
     @GetMapping("/customer/{id}")
-    CustomerDataModel getById(@PathVariable Long id, @RequestHeader("authorization") String token);
+    CustomerDataModel getById(@PathVariable String id, @RequestHeader("authorization") String token);
 }
