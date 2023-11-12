@@ -5,7 +5,7 @@
     <changeSet author="ahmsay" id="solidvessel-data-2">
         <sql>
             insert into address(customer_id, name, country, city, zipcode)
-            values (3, 'home', 'uk', 'birmingham', '26593');
+            values ('c908ce9d-faec-4570-b84d-71a4e77f2f4a', 'home', 'uk', 'birmingham', '26593');
         </sql>
     </changeSet>
 </databaseChangeLog>
