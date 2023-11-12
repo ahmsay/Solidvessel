@@ -20,17 +20,17 @@ public class ProductRestAdapter implements ProductQueryPort {
 
     @Override
     public List<ProductDataModel> getProductsOfCart(Set<Long> productIds) {
-        String session = SessionUtil.getCurrentUserSession();
+        String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> productRestClient.getByIds(productIds, session),
+                .run(() -> productRestClient.getByIds(productIds, token),
                         throwable -> new ArrayList<>());
     }
 
     @Override
     public boolean isAvailable(Long productId, int quantity) {
-        String session = SessionUtil.getCurrentUserSession();
+        String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> productRestClient.isAvailable(productId, quantity, session),
+                .run(() -> productRestClient.isAvailable(productId, quantity, token),
                         throwable -> false);
     }
 }

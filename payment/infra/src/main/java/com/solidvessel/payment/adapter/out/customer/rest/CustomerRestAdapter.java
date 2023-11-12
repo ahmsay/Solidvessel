@@ -16,9 +16,9 @@ public class CustomerRestAdapter implements CustomerQueryPort {
 
     @Override
     public CustomerDataModel getCustomerOfPayment(Long customerId) {
-        String session = SessionUtil.getCurrentUserSession();
+        String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("customerCircuitBreaker")
-                .run(() -> customerRestClient.getById(customerId, session),
+                .run(() -> customerRestClient.getById(customerId, token),
                         throwable -> null);
     }
 }

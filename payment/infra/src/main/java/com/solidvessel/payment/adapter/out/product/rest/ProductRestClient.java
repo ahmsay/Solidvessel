@@ -13,8 +13,8 @@ import java.util.Set;
 public interface ProductRestClient {
 
     @GetMapping("/product/ids")
-    List<ProductDataModel> getByIds(@RequestParam final Set<Long> ids, @RequestHeader("Cookie") String session);
+    List<ProductDataModel> getByIds(@RequestParam final Set<Long> ids, @RequestHeader("authorization") String token);
 
     @GetMapping("/product/isAvailable")
-    boolean isAvailable(@RequestParam Long id, @RequestParam int quantity, @RequestHeader("Cookie") String session);
+    boolean isAvailable(@RequestParam Long id, @RequestParam int quantity, @RequestHeader("authorization") String token);
 }
