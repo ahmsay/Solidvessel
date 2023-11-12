@@ -2,6 +2,7 @@
   "realm": "solidvessel",
   "users": [
     {
+      "id": "37a2191e-85a0-4bad-a853-1f29559c3092",
       "username": "lorne",
       "enabled": true,
       "totp": false,
@@ -11,8 +12,10 @@
       "email": "malvo_lrn@mail.com",
       "credentials": [
         {
+          "id": "7607d0ce-ac26-43c5-a27d-bc607221f2b3",
           "type": "password",
           "userLabel": "My password",
+          "createdDate": 1699778882298,
           "secretData": "{\"value\":\"A55y2biFlKvOvz54dgiLEdna+PFOcbz1CbfQVH1Oq00=\",\"salt\":\"Moh7JU8a/G9+2A96jriIrw==\",\"additionalParameters\":{}}",
           "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
         }
@@ -23,6 +26,7 @@
       ]
     },
     {
+      "id": "c908ce9d-faec-4570-b84d-71a4e77f2f4a",
       "username": "tommy",
       "enabled": true,
       "totp": false,
@@ -32,8 +36,10 @@
       "email": "peaky_blinder@mail.com",
       "credentials": [
         {
+          "id": "f1339641-dcbf-4b77-a2e3-5cd9a6ff2925",
           "type": "password",
           "userLabel": "My password",
+          "createdDate": 1699778882309,
           "secretData": "{\"value\":\"gMYmZi2HDq/vbYGO77FABfsLlkZtn/BQjIYW1gDjpUg=\",\"salt\":\"h0EhA74Nx1rz+oSpHvPU5w==\",\"additionalParameters\":{}}",
           "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
         }
@@ -44,6 +50,7 @@
       ]
     },
     {
+      "id": "47ac2317-2da2-457a-90d6-48d5a0f9739a",
       "username": "vader",
       "enabled": true,
       "totp": false,
@@ -53,8 +60,10 @@
       "email": "vader_666@mail.com",
       "credentials": [
         {
+          "id": "1e07c2e0-c752-40ff-9679-74fd92ecb1b8",
           "type": "password",
           "userLabel": "My password",
+          "createdDate": 1699778882313,
           "secretData": "{\"value\":\"GatJyR5Abe16OzqSbjsv0eF+UjbW0B8CAe7ZCV/9zxI=\",\"salt\":\"DmEuDzMYqBdx2XppavSqeQ==\",\"additionalParameters\":{}}",
           "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
         }
