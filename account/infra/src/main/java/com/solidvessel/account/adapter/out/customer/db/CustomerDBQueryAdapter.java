@@ -22,12 +22,12 @@ public class CustomerDBQueryAdapter implements CustomerQueryPort {
     }
 
     @Override
-    public CustomerDataModel getById(Long id) {
+    public CustomerDataModel getById(String id) {
         CustomerJpaEntity customerJpaEntity = getCustomerById(id);
         return customerJpaEntity.toDataModel();
     }
 
-    CustomerJpaEntity getCustomerById(Long id) {
+    CustomerJpaEntity getCustomerById(String id) {
         return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found!"));
     }
 }

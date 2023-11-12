@@ -6,7 +6,7 @@ import com.solidvessel.account.payment.datamodel.PaymentDataModel;
 import java.time.LocalDate;
 import java.util.List;
 
-public record CustomerDetailDataModel(Long id, String firstName, String lastName, LocalDate birthDate,
+public record CustomerDetailDataModel(String id, String firstName, String lastName, LocalDate birthDate,
                                       String email, String phoneNumber, List<OrderDataModel> orders,
                                       List<PaymentDataModel> payments) {
 

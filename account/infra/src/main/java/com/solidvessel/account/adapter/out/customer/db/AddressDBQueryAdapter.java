@@ -16,13 +16,13 @@ public class AddressDBQueryAdapter implements AddressQueryPort {
     private final CustomerDBQueryAdapter customerDBQueryAdapter;
 
     @Override
-    public List<AddressDataModel> getAddresses(Long customerId) {
+    public List<AddressDataModel> getAddresses(String customerId) {
         CustomerJpaEntity customer = customerDBQueryAdapter.getCustomerById(customerId);
         return customer.getAddresses().stream().map(AddressEmbeddable::toDataModel).toList();
     }
 
     @Override
-    public boolean isAddressRegistered(Long customerId, String addressName) {
+    public boolean isAddressRegistered(String customerId, String addressName) {
         CustomerJpaEntity customer = customerDBQueryAdapter.getCustomerById(customerId);
         return customer.getAddresses().stream().anyMatch(address -> address.getName().equals(addressName));
     }

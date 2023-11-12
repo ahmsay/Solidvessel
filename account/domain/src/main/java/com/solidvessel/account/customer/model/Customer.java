@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 public class Customer {
 
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
@@ -18,7 +18,7 @@ public class Customer {
     private String phoneNumber;
     private List<Address> addresses;
 
-    public static Customer newCustomer(Long id, String firstName, String lastName, LocalDate birthDate, String email, String phoneNumber) {
+    public static Customer newCustomer(String id, String firstName, String lastName, LocalDate birthDate, String email, String phoneNumber) {
         return new Customer(id, firstName, lastName, birthDate, email, phoneNumber, null);
     }
 }

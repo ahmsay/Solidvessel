@@ -16,7 +16,7 @@ public class RemoveAddressCommandService implements CommandService<RemoveAddress
 
     @Override
     public OperationResult execute(RemoveAddressCommand command) {
-        Long customerId = command.customerId();
+        String customerId = command.customerId();
         addressPort.removeAddress(customerId, command.name());
         return new OperationResult("Address is removed.", ResultType.SUCCESS);
     }

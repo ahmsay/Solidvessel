@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PaymentQueryPort {
 
-    List<PaymentDataModel> getPaymentsOfCustomer(Long customerId);
+    List<PaymentDataModel> getPaymentsOfCustomer(String customerId);
 }

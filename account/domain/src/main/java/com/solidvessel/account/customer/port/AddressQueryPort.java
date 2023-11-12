@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AddressQueryPort {
 
-    List<AddressDataModel> getAddresses(Long customerId);
+    List<AddressDataModel> getAddresses(String customerId);
 
-    boolean isAddressRegistered(Long customerId, String name);
+    boolean isAddressRegistered(String customerId, String name);
 }

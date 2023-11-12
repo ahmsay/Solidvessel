@@ -12,5 +12,5 @@ import java.util.List;
 public interface PaymentRestClient {
 
     @GetMapping("/ofCustomer/{customerId}")
-    List<PaymentDataModel> getByCustomerId(@PathVariable final Long customerId, @RequestHeader("authorization") String token);
+    List<PaymentDataModel> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 }

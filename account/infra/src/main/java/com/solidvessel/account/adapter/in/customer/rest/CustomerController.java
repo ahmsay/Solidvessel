@@ -30,12 +30,12 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public CustomerDataModel getById(@PathVariable final Long id) {
+    public CustomerDataModel getById(@PathVariable final String id) {
         return customerQueryPort.getById(id);
     }
 
     @GetMapping("/{id}/detail")
-    public CustomerDetailDataModel getDetailById(@PathVariable final Long id) {
+    public CustomerDetailDataModel getDetailById(@PathVariable final String id) {
         CustomerDataModel customer = customerQueryPort.getById(id);
         List<OrderDataModel> orders = orderQueryPort.getOrdersOfCustomer(id);
         List<PaymentDataModel> payments = paymentQueryPort.getPaymentsOfCustomer(id);

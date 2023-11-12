@@ -1,4 +1,4 @@
 package com.solidvessel.account.customer.service.command;
 
-public record RemoveAddressCommand(String name, Long customerId) {
+public record RemoveAddressCommand(String name, String customerId) {
 }

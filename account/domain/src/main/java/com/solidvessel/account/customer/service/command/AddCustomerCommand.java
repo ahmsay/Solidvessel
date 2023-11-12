@@ -4,7 +4,7 @@ import com.solidvessel.account.customer.model.Customer;
 
 import java.time.LocalDate;
 
-public record AddCustomerCommand(Long id, String firstName, String lastName, LocalDate birthDate, String email,
+public record AddCustomerCommand(String id, String firstName, String lastName, LocalDate birthDate, String email,
                                  String phoneNumber) {
 
     public Customer toDomainModel() {

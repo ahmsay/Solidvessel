@@ -4,9 +4,9 @@ import com.solidvessel.account.customer.model.Address;
 
 public interface AddressPort {
 
-    void addAddress(Long customerId, Address address);
+    void addAddress(String customerId, Address address);
 
-    void removeAddress(Long customerId, String name);
+    void removeAddress(String customerId, String name);
 
-    void updateAddress(Long customerId, Address address);
+    void updateAddress(String customerId, Address address);
 }

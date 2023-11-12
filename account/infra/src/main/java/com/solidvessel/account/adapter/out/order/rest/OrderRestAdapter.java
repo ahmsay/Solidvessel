@@ -17,7 +17,7 @@ public class OrderRestAdapter implements OrderQueryPort {
     private final CircuitBreakerFactory circuitBreakerFactory;
     private final OrderRestClient orderRestClient;
 
-    public List<OrderDataModel> getOrdersOfCustomer(final Long customerId) {
+    public List<OrderDataModel> getOrdersOfCustomer(final String customerId) {
         String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("orderCircuitBreaker")
                 .run(() -> orderRestClient.getByCustomerId(customerId, token),
