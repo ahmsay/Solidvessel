@@ -26,6 +26,36 @@
       ]
     },
     {
+      "id": "59bf96a0-5d63-4557-964c-c52538c1830c",
+      "username": "solidvessel-admin",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "firstName": "Solidvessel Realm Admin",
+      "lastName": "",
+      "email": "",
+      "credentials": [
+        {
+          "id": "5830fd83-e3dd-4d95-9757-4278f66ef0dc",
+          "type": "password",
+          "userLabel": "My password",
+          "createdDate": 1699891429579,
+          "secretData": "{\"value\":\"YvT7xmzmTPzHLftWoUL+lcLOBhYyKOX9rKLEvixfQzc=\",\"salt\":\"aGJoJiyXfC7Lc0AEJuwkYg==\",\"additionalParameters\":{}}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+        }
+      ],
+      "realmRoles": [
+        "default-roles-solidvessel"
+      ],
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "view-realm",
+          "query-users"
+        ]
+      }
+    },
+    {
       "id": "c908ce9d-faec-4570-b84d-71a4e77f2f4a",
       "username": "tommy",
       "enabled": true,
@@ -34,6 +64,11 @@
       "firstName": "Thomas",
       "lastName": "Shelby",
       "email": "peaky_blinder@mail.com",
+      "attributes": {
+        "birthDate": [
+          "1890-01-12"
+        ]
+      },
       "credentials": [
         {
           "id": "f1339641-dcbf-4b77-a2e3-5cd9a6ff2925",
@@ -58,6 +93,14 @@
       "firstName": "Anakin",
       "lastName": "Skywalker",
       "email": "vader_666@mail.com",
+      "attributes": {
+        "birthDate": [
+          "1980-10-23"
+        ],
+        "phoneNumber": [
+          "5738593748"
+        ]
+      },
       "credentials": [
         {
           "id": "1e07c2e0-c752-40ff-9679-74fd92ecb1b8",
