@@ -3,6 +3,7 @@ package com.solidvessel.account.configuration;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,8 +30,8 @@ public class KeycloakConfig {
     private String password;
 
     @Bean
-    public Keycloak keycloak() {
-        return KeycloakBuilder.builder()
+    public RealmResource realm() {
+        Keycloak keycloak = KeycloakBuilder.builder()
                 .serverUrl(serverUrl)
                 .realm(realm)
                 .clientId(clientId)
@@ -39,5 +40,6 @@ public class KeycloakConfig {
                 .username(username)
                 .password(password)
                 .build();
+        return keycloak.realm(realm);
     }
 }
