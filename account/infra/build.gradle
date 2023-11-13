@@ -21,6 +21,7 @@ dependencies {
     api "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
     api "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
     api "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$rootProject.circuitBreakerVersion"
+    api "org.keycloak:keycloak-admin-client:$rootProject.keycloakVersion"
     compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
     testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
