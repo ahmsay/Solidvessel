@@ -3,6 +3,7 @@
   "users": [
     {
       "id": "37a2191e-85a0-4bad-a853-1f29559c3092",
+      "createdTimestamp": 1699891405590,
       "username": "lorne",
       "enabled": true,
       "totp": false,
@@ -27,6 +28,7 @@
     },
     {
       "id": "59bf96a0-5d63-4557-964c-c52538c1830c",
+      "createdTimestamp": 1699891405591,
       "username": "solidvessel-admin",
       "enabled": true,
       "totp": false,
@@ -57,6 +59,7 @@
     },
     {
       "id": "c908ce9d-faec-4570-b84d-71a4e77f2f4a",
+      "createdTimestamp": 1699891405592,
       "username": "tommy",
       "enabled": true,
       "totp": false,
@@ -86,6 +89,7 @@
     },
     {
       "id": "47ac2317-2da2-457a-90d6-48d5a0f9739a",
+      "createdTimestamp": 1699891405593,
       "username": "vader",
       "enabled": true,
       "totp": false,
