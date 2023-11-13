@@ -7,8 +7,8 @@
       "enabled": true,
       "totp": false,
       "emailVerified": false,
-      "firstName": "",
-      "lastName": "",
+      "firstName": "Lorne",
+      "lastName": "Malvo",
       "email": "malvo_lrn@mail.com",
       "credentials": [
         {
@@ -31,8 +31,8 @@
       "enabled": true,
       "totp": false,
       "emailVerified": false,
-      "firstName": "",
-      "lastName": "",
+      "firstName": "Thomas",
+      "lastName": "Shelby",
       "email": "peaky_blinder@mail.com",
       "credentials": [
         {
@@ -55,8 +55,8 @@
       "enabled": true,
       "totp": false,
       "emailVerified": false,
-      "firstName": "",
-      "lastName": "",
+      "firstName": "Anakin",
+      "lastName": "Skywalker",
       "email": "vader_666@mail.com",
       "credentials": [
         {
