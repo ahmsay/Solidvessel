@@ -89,6 +89,7 @@ Let's explain each component shown in the diagram one by one:
 - ~~Domain enrichment~~
 - Data enrichment
 - Persistence
+- Authentication With Keycloak
 - Authorization
 - Migration to Kafka
 - Security improvements
