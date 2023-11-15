@@ -10,6 +10,11 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9876/realms/solidvessel/protocol/openid-connect/certs
 account:
   url: http://localhost:8081/account
 inventory:
