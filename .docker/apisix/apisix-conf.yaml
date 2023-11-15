@@ -67,5 +67,6 @@ plugin_configs:
         - "sec-ch-ua-platform"
         - "accept-language"
         - "upgrade-insecure-requests"
+        - "cookie"
   desc: "oidc"
 #END
