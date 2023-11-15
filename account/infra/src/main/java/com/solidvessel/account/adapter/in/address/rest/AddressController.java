@@ -17,7 +17,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +30,7 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
-    public List<AddressDataModel> getAddresses(@RequestHeader Map<String, String> headers) {
+    public List<AddressDataModel> getAddresses() {
         return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId());
     }
 
