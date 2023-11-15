@@ -13,9 +13,11 @@ import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,21 +29,25 @@ public class AddressController {
     private final CommandService<RemoveAddressCommand> removeAddressCommandService;
     private final CommandService<UpdateAddressCommand> updateAddressCommandService;
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
-    public List<AddressDataModel> getAddresses() {
+    public List<AddressDataModel> getAddresses(@RequestHeader Map<String, String> headers) {
         return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId());
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @PostMapping()
     public OperationResult addAddress(@RequestBody @Valid AddAddressRequest request) {
         return addAddressCommandService.execute(request.toCommand());
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @DeleteMapping()
     public OperationResult removeAddress(@RequestBody @Valid RemoveAddressRequest request) {
         return removeAddressCommandService.execute(request.toCommand());
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @PutMapping()
     public OperationResult updateAddress(@RequestBody @Valid UpdateAddressRequest request) {
         return updateAddressCommandService.execute(request.toCommand());
