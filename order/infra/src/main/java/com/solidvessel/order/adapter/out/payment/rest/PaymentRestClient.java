@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface PaymentRestClient {
 
     @GetMapping("/{id}")
-    PaymentDataModel getById(@PathVariable Long id, @RequestHeader("Cookie") String session);
+    PaymentDataModel getById(@PathVariable Long id, @RequestHeader("authorization") String session);
 }
