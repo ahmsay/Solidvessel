@@ -24,3 +24,5 @@ management:
     web:
       exposure:
         include: '*'
+keycloak:
+  server-url: http://localhost:9876

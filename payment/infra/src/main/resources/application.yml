@@ -24,3 +24,9 @@ routing-keys:
     saved: payment.saved
   user:
     saved: user.saved
+keycloak:
+  realm: solidvessel
+  client-id: solidvessel-auth
+  client-secret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
+  username: solidvessel-admin
+  password: svadmin
