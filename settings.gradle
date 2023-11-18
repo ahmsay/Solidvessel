@@ -4,10 +4,6 @@ include ':account'
 include ':account:domain'
 include ':account:infra'
 
-include ':auth'
-include ':auth:domain'
-include ':auth:infra'
-
 include ':inventory'
 include ':inventory:domain'
 include ':inventory:infra'

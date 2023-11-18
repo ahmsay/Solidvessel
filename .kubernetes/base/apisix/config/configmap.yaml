@@ -13,12 +13,6 @@ data:
           "127.0.0.1:80": 1
         type: roundrobin
       plugin_config_id: 1
-    - id: auth
-      uri: /auth/*
-      upstream:
-        nodes:
-          "auth:8080": 1
-        type: roundrobin
     - id: account
       uri: /account/*
       upstream:

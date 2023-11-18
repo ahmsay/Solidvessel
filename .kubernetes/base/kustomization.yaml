@@ -1,6 +1,5 @@
 resources:
 - account
-- auth
 - inventory
 - order
 - payment
