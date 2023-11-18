@@ -6,10 +6,6 @@ spring:
       host: redis-master
       port: 6379
       password: nihilus
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
-    password: nihilus
 order:
   url: http://order:8080/order
 payment:

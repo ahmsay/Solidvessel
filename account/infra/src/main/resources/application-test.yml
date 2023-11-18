@@ -5,9 +5,6 @@ spring:
     redis:
       host: redis-master
       port: 6379
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
 order:
   url: http://order:8080/order
 payment:
