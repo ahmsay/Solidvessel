@@ -14,13 +14,6 @@ spring:
 server:
   servlet:
     context-path: /account
-exchanges:
-  signUp: signup.topic
-queues:
-  customer: customer.queue
-routing-keys:
-  user:
-    saved: user.saved
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth

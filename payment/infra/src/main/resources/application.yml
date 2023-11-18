@@ -16,14 +16,9 @@ server:
     context-path: /payment
 exchanges:
   payment: payment.topic
-  signUp: signup.topic
-queues:
-  cart: cart.queue
 routing-keys:
   payment:
     saved: payment.saved
-  user:
-    saved: user.saved
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth
