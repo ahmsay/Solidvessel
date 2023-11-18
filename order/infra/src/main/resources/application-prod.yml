@@ -10,8 +10,6 @@ spring:
     host: rabbitmq
     port: 5672
     password: nihilus
-account:
-  url: http://account:8080/account
 payment:
   url: http://payment:8080/payment
 management:

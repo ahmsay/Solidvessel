@@ -15,8 +15,6 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:9876/realms/solidvessel/protocol/openid-connect/certs
-account:
-  url: http://localhost:8081/account
 inventory:
   url: http://localhost:8082/inventory
 management:

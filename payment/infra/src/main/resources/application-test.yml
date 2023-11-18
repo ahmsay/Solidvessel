@@ -8,8 +8,6 @@ spring:
   rabbitmq:
     host: rabbitmq
     port: 5672
-account:
-  url: http://account:8080/account
 inventory:
   url: http://inventory:8080/inventory
 management:
