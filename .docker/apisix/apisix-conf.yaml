@@ -1,6 +1,6 @@
 routes:
-- id: login
-  uri: /login/*
+- id: auth
+  uri: /auth/*
   upstream:
     nodes:
       "127.0.0.1:80": 1
@@ -44,8 +44,8 @@ plugin_configs:
       scope: "openid profile"
       bearer_only: false
       realm: "solidvessel"
-      redirect_uri: "http://127.0.0.1:9080/login/callback"
-      logout_path: "/logout"
+      redirect_uri: "http://127.0.0.1:9080/auth/callback"
+      logout_path: "/auth/logout"
       access_token_in_authorization_header: true
       set_id_token_header: false
       set_userinfo_header: false
