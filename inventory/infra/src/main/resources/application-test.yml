@@ -8,8 +8,13 @@ spring:
   rabbitmq:
     host: rabbitmq
     port: 5672
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
 management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: '*'
