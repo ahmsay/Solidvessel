@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: solidvessel
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+      - name: keycloak
+        image: quay.io/keycloak/keycloak:22.0.4
+        args: [ "start-dev", "--import-realm" ]
+        env:
+        - name: KEYCLOAK_ADMIN
+          value: "admin"
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          value: "admin"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: keycloak-realm-volume
+          mountPath: /opt/keycloak/data/import/solidvessel-realm.json
+          subPath: solidvessel-realm.json
+        - name: keycloak-users-volume
+          mountPath: /opt/keycloak/data/import/solidvessel-users-0.json
+          subPath: solidvessel-users-0.json
+      volumes:
+      - name: keycloak-realm-volume
+        configMap:
+          name: keycloak-realm
+      - name: keycloak-users-volume
+        configMap:
+          name: keycloak-users

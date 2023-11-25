@@ -6,3 +6,4 @@ resources:
 - rabbitmq
 - redis
 - apisix
+- keycloak

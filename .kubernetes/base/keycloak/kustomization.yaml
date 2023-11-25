@@ -1,0 +1,4 @@
+resources:
+- keycloak-deployment.yaml
+- keycloak-service.yaml
+- config
