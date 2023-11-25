@@ -42,7 +42,7 @@ plugin_configs:
       client_secret: "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
       discovery: "http://127.0.0.1:9876/realms/solidvessel/.well-known/openid-configuration"
       scope: "openid profile"
-      bearer_only: false
+      bearer_only: true
       realm: "solidvessel"
       redirect_uri: "http://127.0.0.1:9080/auth/callback"
       logout_path: "/auth/logout"
