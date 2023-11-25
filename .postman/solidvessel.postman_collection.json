@@ -7,69 +7,8 @@
 	},
 	"item": [
 		{
-			"name": "auth service",
+			"name": "auth",
 			"item": [
-				{
-					"name": "ping",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/auth/ping",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"ping"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "sign up",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Ezio\",\r\n    \"lastName\": \"Auditore\",\r\n    \"email\": \"assassin_guy@mail.com\",\r\n    \"password\": \"requiescat_in_pace\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/signUp",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signUp"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "login",
 					"event": [
@@ -80,7 +19,8 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									"pm.globals.set('session', pm.cookies.get('SESSION'))"
+									"const jsonResponse = pm.response.json();\r",
+									"pm.globals.set(\"access_token\", jsonResponse.access_token);"
 								],
 								"type": "text/javascript"
 							}
@@ -93,67 +33,51 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"vader_666@mail.com\",\r\n    \"password\": \"i_hate_sand\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "solidvessel-auth",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "vader",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "i_hate_sand",
+									"type": "text"
 								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/login",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"login"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "logout",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/auth/logout",
+							"raw": "http://127.0.0.1:9876/realms/solidvessel/protocol/openid-connect/token",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "9876",
 							"path": [
-								"auth",
-								"logout"
+								"realms",
+								"solidvessel",
+								"protocol",
+								"openid-connect",
+								"token"
 							]
 						}
 					},
@@ -162,7 +86,7 @@
 			]
 		},
 		{
-			"name": "account service",
+			"name": "account",
 			"item": [
 				{
 					"name": "customer",
@@ -195,8 +119,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -232,20 +156,20 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/account/customer/1",
+									"raw": "{{baseUrl}}/account/customer/47ac2317-2da2-457a-90d6-48d5a0f9739a",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
 										"customer",
-										"1"
+										"47ac2317-2da2-457a-90d6-48d5a0f9739a"
 									]
 								}
 							},
@@ -270,20 +194,20 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/account/customer/1/detail",
+									"raw": "{{baseUrl}}/account/customer/47ac2317-2da2-457a-90d6-48d5a0f9739a/detail",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
 										"customer",
-										"1",
+										"47ac2317-2da2-457a-90d6-48d5a0f9739a",
 										"detail"
 									]
 								}
@@ -323,8 +247,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -347,8 +271,8 @@
 								"method": "POST",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -380,14 +304,14 @@
 								"method": "PUT",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
+									"raw": "{\n    \"id\": \"2\",\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -455,8 +379,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -476,7 +400,7 @@
 			]
 		},
 		{
-			"name": "inventory service",
+			"name": "inventory",
 			"item": [
 				{
 					"name": "ping",
@@ -484,8 +408,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -521,8 +445,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -558,8 +482,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -599,8 +523,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -652,8 +576,8 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -685,8 +609,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -717,7 +641,7 @@
 			]
 		},
 		{
-			"name": "order service",
+			"name": "order",
 			"item": [
 				{
 					"name": "ping",
@@ -725,8 +649,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -762,8 +686,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -799,8 +723,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -836,8 +760,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
@@ -874,20 +798,20 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/order/ofCustomer/1",
+							"raw": "{{baseUrl}}/order/ofCustomer/47ac2317-2da2-457a-90d6-48d5a0f9739a",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
 								"ofCustomer",
-								"1"
+								"47ac2317-2da2-457a-90d6-48d5a0f9739a"
 							]
 						}
 					},
@@ -896,7 +820,7 @@
 			]
 		},
 		{
-			"name": "payment service",
+			"name": "payment",
 			"item": [
 				{
 					"name": "cart",
@@ -907,8 +831,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -931,8 +855,8 @@
 								"method": "POST",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -964,8 +888,8 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -1015,8 +939,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -1052,8 +976,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -1089,8 +1013,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -1127,20 +1051,20 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/payment/ofCustomer/1",
+									"raw": "{{baseUrl}}/payment/ofCustomer/47ac2317-2da2-457a-90d6-48d5a0f9739a",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
 										"ofCustomer",
-										"1"
+										"47ac2317-2da2-457a-90d6-48d5a0f9739a"
 									]
 								}
 							},
@@ -1165,8 +1089,8 @@
 								"method": "POST",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
@@ -1200,8 +1124,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cookie",
-								"value": "SESSION={{session}}",
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
 								"type": "text"
 							}
 						],
