@@ -22,7 +22,6 @@
         }
       ],
       "realmRoles": [
-        "CUSTOMER",
         "default-roles-solidvessel"
       ]
     },
@@ -83,7 +82,6 @@
         }
       ],
       "realmRoles": [
-        "CUSTOMER",
         "default-roles-solidvessel"
       ]
     },
@@ -117,7 +115,6 @@
       ],
       "realmRoles": [
         "ADMIN",
-        "CUSTOMER",
         "default-roles-solidvessel"
       ]
     }

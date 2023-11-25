@@ -1,6 +1,10 @@
 {
   "realm": "solidvessel",
   "enabled": true,
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": false,
+  "rememberMe": true,
+  "loginWithEmailAllowed": true,
   "roles": {
     "realm": [
       {
