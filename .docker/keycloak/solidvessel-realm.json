@@ -14,8 +14,40 @@
       {
         "name": "CUSTOMER",
         "description": ""
+      },
+      {
+        "id": "ec49d7e5-2efb-4f1c-9984-6e305b80a30a",
+        "name": "default-roles-solidvessel",
+        "description": "${role_default-roles}",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "offline_access",
+            "uma_authorization",
+            "CUSTOMER"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "5a337032-6061-4c4a-80d0-3150a728aabd",
+        "attributes": {}
+      },
+      {
+        "name": "uma_authorization",
+        "description": "${role_uma_authorization}"
+      },
+      {
+        "name": "offline_access",
+        "description": "${role_offline-access}"
       }
     ]
+  },
+  "defaultRole": {
+    "id": "ec49d7e5-2efb-4f1c-9984-6e305b80a30a",
+    "name": "default-roles-solidvessel",
+    "description": "${role_default-roles}",
+    "composite": true,
+    "clientRole": false,
+    "containerId": "5a337032-6061-4c4a-80d0-3150a728aabd"
   },
   "requiredCredentials": [
     "password"
