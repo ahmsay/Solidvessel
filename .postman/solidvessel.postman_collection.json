@@ -20,7 +20,8 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"const jsonResponse = pm.response.json();\r",
-									"pm.globals.set(\"access_token\", jsonResponse.access_token);"
+									"pm.globals.set(\"access_token\", jsonResponse.access_token);\r",
+									"pm.globals.set(\"refresh_token\", jsonResponse.refresh_token);"
 								],
 								"type": "text/javascript"
 							}
@@ -63,15 +64,75 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:9876/realms/solidvessel/protocol/openid-connect/token",
-							"protocol": "http",
+							"raw": "{{keycloakUrl}}/realms/solidvessel/protocol/openid-connect/token",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{keycloakUrl}}"
 							],
-							"port": "9876",
+							"path": [
+								"realms",
+								"solidvessel",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonResponse = pm.response.json();\r",
+									"pm.globals.set(\"access_token\", jsonResponse.access_token);\r",
+									"pm.globals.set(\"refresh_token\", jsonResponse.refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "solidvessel-auth",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloakUrl}}/realms/solidvessel/protocol/openid-connect/token",
+							"host": [
+								"{{keycloakUrl}}"
+							],
 							"path": [
 								"realms",
 								"solidvessel",
@@ -337,14 +398,14 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"key": "Cookie",
-										"value": "SESSION={{session}}",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"home\"\n}",
+									"raw": "{\n    \"id\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
