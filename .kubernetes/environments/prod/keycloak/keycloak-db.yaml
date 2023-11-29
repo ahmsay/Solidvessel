@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak-db
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: 13.2.21
+    helm:
+      values: |
+        global:
+          postgresql:
+            auth:
+              database: keycloak
+              username: nihilus
+              password: nihilus
+        primary:
+          persistence:
+            enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: solidvessel
+  syncPolicy:
+    automated:
+      prune: true
