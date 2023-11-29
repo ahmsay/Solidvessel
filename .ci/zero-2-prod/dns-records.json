@@ -24,6 +24,18 @@
           "HostedZoneId": "<load-balancer-hosted-zone-id>"
         }
       }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "keycloak.solidvessel.com.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "<load-balancer-dns-name>",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "<load-balancer-hosted-zone-id>"
+        }
+      }
     }
   ]
 }
