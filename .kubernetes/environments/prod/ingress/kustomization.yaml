@@ -1,3 +1,4 @@
 resources:
 - solidvessel-ingress-resource.yaml
 - argocd-ingress.resource.yaml
+- keycloak-ingress.resource.yaml
