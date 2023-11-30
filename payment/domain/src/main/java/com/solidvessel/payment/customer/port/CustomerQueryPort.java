@@ -4,5 +4,5 @@ import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
 
 public interface CustomerQueryPort {
 
-    CustomerDataModel getCustomerOfPayment(Long customerId);
+    CustomerDataModel getCustomerOfPayment(String customerId);
 }

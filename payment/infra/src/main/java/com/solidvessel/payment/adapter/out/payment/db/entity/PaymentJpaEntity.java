@@ -23,7 +23,7 @@ public class PaymentJpaEntity {
     private Long id;
 
     @NotNull
-    private Long customerId;
+    private String customerId;
 
     @ElementCollection
     @CollectionTable(name = "payment_product", joinColumns = @JoinColumn(name = "payment_id"))

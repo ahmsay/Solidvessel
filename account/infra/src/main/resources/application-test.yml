@@ -5,9 +5,11 @@ spring:
     redis:
       host: redis-master
       port: 6379
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
 order:
   url: http://order:8080/order
 payment:
@@ -16,4 +18,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: '*'
+keycloak:
+  server-url: http://keycloak:8080

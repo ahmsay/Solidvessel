@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: keycloak
+    targetRevision: 17.3.4
+    helm:
+      values: |
+        production: true
+        proxy: edge
+        auth:
+          adminUser: admin
+          adminPassword: admin
+        postgresql:
+          enabled: false
+        externalDatabase:
+          host: keycloak-db-postgresql
+          database: keycloak
+          user: nihilus
+          password: nihilus
+        extraVolumes:
+        - name: keycloak-realm-volume
+          configMap:
+            name: keycloak-realm
+        - name: keycloak-users-volume
+          configMap:
+            name: keycloak-users
+        extraVolumeMounts:
+        - name: keycloak-realm-volume
+          mountPath: /opt/bitnami/keycloak/data/import/solidvessel-realm.json
+          subPath: solidvessel-realm.json
+        - name: keycloak-users-volume
+          mountPath: /opt/bitnami/keycloak/data/import/solidvessel-users-0.json
+          subPath: solidvessel-users-0.json
+        extraStartupArgs: "--import-realm"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: solidvessel
+  syncPolicy:
+    automated:
+      prune: true

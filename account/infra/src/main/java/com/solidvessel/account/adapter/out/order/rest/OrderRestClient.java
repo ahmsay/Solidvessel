@@ -12,5 +12,5 @@ import java.util.List;
 public interface OrderRestClient {
 
     @GetMapping("/ofCustomer/{customerId}")
-    List<OrderDataModel> getByCustomerId(@PathVariable final Long customerId, @RequestHeader("Cookie") String session);
+    List<OrderDataModel> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 }

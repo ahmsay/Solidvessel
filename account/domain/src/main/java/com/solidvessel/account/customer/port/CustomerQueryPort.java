@@ -8,5 +8,5 @@ public interface CustomerQueryPort {
 
     List<CustomerDataModel> getAll();
 
-    CustomerDataModel getById(Long id);
+    CustomerDataModel getById(String id);
 }

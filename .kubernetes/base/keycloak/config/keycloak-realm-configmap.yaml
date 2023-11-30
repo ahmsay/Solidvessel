@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-realm
+  namespace: solidvessel
+data:
+  solidvessel-realm.json: |
+    {
+      "realm": "solidvessel",
+      "enabled": true,
+      "registrationAllowed": true,
+      "registrationEmailAsUsername": false,
+      "rememberMe": true,
+      "loginWithEmailAllowed": true,
+      "roles": {
+        "realm": [
+          {
+            "name": "ADMIN",
+            "description": ""
+          },
+          {
+            "name": "CUSTOMER",
+            "description": ""
+          },
+          {
+            "id": "ec49d7e5-2efb-4f1c-9984-6e305b80a30a",
+            "name": "default-roles-solidvessel",
+            "description": "${role_default-roles}",
+            "composite": true,
+            "composites": {
+              "realm": [
+                "offline_access",
+                "uma_authorization",
+                "CUSTOMER"
+              ]
+            },
+            "clientRole": false,
+            "containerId": "5a337032-6061-4c4a-80d0-3150a728aabd",
+            "attributes": {}
+          },
+          {
+            "name": "uma_authorization",
+            "description": "${role_uma_authorization}"
+          },
+          {
+            "name": "offline_access",
+            "description": "${role_offline-access}"
+          }
+        ]
+      },
+      "defaultRole": {
+        "id": "ec49d7e5-2efb-4f1c-9984-6e305b80a30a",
+        "name": "default-roles-solidvessel",
+        "description": "${role_default-roles}",
+        "composite": true,
+        "clientRole": false,
+        "containerId": "5a337032-6061-4c4a-80d0-3150a728aabd"
+      },
+      "requiredCredentials": [
+        "password"
+      ],
+      "clients": [
+        {
+          "clientId": "solidvessel-auth",
+          "name": "",
+          "description": "",
+          "rootUrl": "",
+          "adminUrl": "",
+          "baseUrl": "",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "secret": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
+          "redirectUris": [
+            "http://127.0.0.1:9080/*"
+          ],
+          "webOrigins": [],
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": true,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": true,
+          "protocol": "openid-connect"
+        }
+      ],
+      "keycloakVersion": "22.0.4"
+    }

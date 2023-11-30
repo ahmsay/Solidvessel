@@ -10,8 +10,13 @@ spring:
     host: rabbitmq
     port: 5672
     password: nihilus
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:80/realms/solidvessel/protocol/openid-connect/certs
 management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: '*'

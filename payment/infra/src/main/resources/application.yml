@@ -6,8 +6,6 @@ spring:
   datasource:
     username: nihilus
     password: nihilus
-  session:
-    store-type: redis
   data:
     redis:
       timeout: 30000
@@ -18,11 +16,12 @@ server:
     context-path: /payment
 exchanges:
   payment: payment.topic
-  signUp: signup.topic
-queues:
-  cart: cart.queue
 routing-keys:
   payment:
     saved: payment.saved
-  user:
-    saved: user.saved
+keycloak:
+  realm: solidvessel
+  client-id: solidvessel-auth
+  client-secret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
+  username: solidvessel-admin
+  password: svadmin

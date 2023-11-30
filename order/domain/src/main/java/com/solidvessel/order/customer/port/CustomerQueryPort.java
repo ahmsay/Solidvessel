@@ -4,5 +4,5 @@ import com.solidvessel.order.customer.datamodel.CustomerDataModel;
 
 public interface CustomerQueryPort {
 
-    CustomerDataModel getCustomerOfOrder(Long customerId);
+    CustomerDataModel getCustomerOfOrder(String customerId);
 }

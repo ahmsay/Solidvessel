@@ -10,5 +10,5 @@ public interface PaymentQueryPort {
 
     PaymentDataModel getById(Long id);
 
-    List<PaymentDataModel> getByCustomerId(Long customerId);
+    List<PaymentDataModel> getByCustomerId(String customerId);
 }

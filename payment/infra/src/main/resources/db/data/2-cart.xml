@@ -5,9 +5,9 @@
     <changeSet author="ahmsay" id="solidvessel-data-2">
         <sql>
             insert into cart(id, customer_id)
-            values (nextval('cart_seq'), 1),
-                   (nextval('cart_seq'), 2),
-                   (nextval('cart_seq'), 3);
+            values (nextval('cart_seq'), '47ac2317-2da2-457a-90d6-48d5a0f9739a'),
+                   (nextval('cart_seq'), 'c908ce9d-faec-4570-b84d-71a4e77f2f4a'),
+                   (nextval('cart_seq'), '37a2191e-85a0-4bad-a853-1f29559c3092');
         </sql>
     </changeSet>
 </databaseChangeLog>

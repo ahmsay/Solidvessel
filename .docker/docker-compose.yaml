@@ -1,6 +1,7 @@
 version: "3"
 services:
   postgres:
+    container_name: postgres
     image: postgres:15.3
     environment:
       - POSTGRES_USER=nihilus
@@ -10,19 +11,33 @@ services:
     volumes:
     - ./postgres:/docker-entrypoint-initdb.d
   redis:
+    container_name: redis
     image: redis:7.2-rc2
     ports:
     - "6379:6379"
   rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3.12.0-management
     ports:
     - "5672:5672"
     - "15672:15672"
   apisix:
-    container_name: apache-apisix
+    container_name: apisix
     image: apache/apisix
     environment:
       APISIX_STAND_ALONE: "true"
     volumes:
     - ./apisix/apisix-conf.yaml:/usr/local/apisix/conf/apisix.yaml
     network_mode: host
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:22.0.4
+    environment:
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
+    ports:
+    - "9876:8080"
+    command:
+    - start-dev --import-realm
+    volumes:
+    - ./keycloak:/opt/keycloak/data/import

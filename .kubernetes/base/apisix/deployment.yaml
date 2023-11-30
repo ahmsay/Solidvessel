@@ -45,3 +45,5 @@ spec:
       - name: apisix-conf-volume
         configMap:
           name: apisix-conf
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet

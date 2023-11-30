@@ -6,10 +6,11 @@ spring:
       host: redis-master
       port: 6379
       password: nihilus
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
-    password: nihilus
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:80/realms/solidvessel/protocol/openid-connect/certs
 order:
   url: http://order:8080/order
 payment:
@@ -18,4 +19,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: '*'
+keycloak:
+  server-url: http://keycloak:80

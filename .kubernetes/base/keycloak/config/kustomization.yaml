@@ -1,0 +1,3 @@
+resources:
+- keycloak-realm-configmap.yaml
+- keycloak-users-configmap.yaml

@@ -16,9 +16,9 @@ public class PaymentRestAdapter implements PaymentQueryPort {
 
     @Override
     public PaymentDataModel getPaymentOfOrder(Long paymentId) {
-        String session = SessionUtil.getCurrentUserSession();
+        String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("paymentCircuitBreaker")
-                .run(() -> paymentRestClient.getById(paymentId, session),
+                .run(() -> paymentRestClient.getById(paymentId, token),
                         throwable -> null);
     }
 }

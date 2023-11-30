@@ -8,6 +8,7 @@ import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,26 +21,31 @@ public class ProductController {
     private final ProductQueryPort productQueryPort;
     private final CommandService<AddProductCommand> addProductCommandService;
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
     public List<ProductDataModel> getAll() {
         return productQueryPort.getAll();
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/{id}")
     public ProductDataModel getById(@PathVariable final Long id) {
         return productQueryPort.getById(id);
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ids")
     public List<ProductDataModel> getByIds(@RequestParam final List<Long> ids) {
         return productQueryPort.getByIds(ids);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping()
     public OperationResult add(@RequestBody @Valid final AddProductRequest request) {
         return addProductCommandService.execute(request.toCommand());
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/isAvailable")
     public boolean isAvailable(@RequestParam final Long id, @RequestParam int quantity) {
         return productQueryPort.isAvailable(id, quantity);

@@ -5,8 +5,8 @@
     <changeSet author="ahmsay" id="solidvessel-data-1">
         <sql>
             insert into orders(id, status, customer_id, payment_id)
-            values (nextval('orders_seq'), 'DELIVERED', 1, 1),
-                   (nextval('orders_seq'), 'ON_THE_WAY', 2, 2);
+            values (nextval('orders_seq'), 'DELIVERED', '47ac2317-2da2-457a-90d6-48d5a0f9739a', 1),
+                   (nextval('orders_seq'), 'ON_THE_WAY', 'c908ce9d-faec-4570-b84d-71a4e77f2f4a', 2);
         </sql>
     </changeSet>
 </databaseChangeLog>

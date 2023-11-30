@@ -1,4 +1,4 @@
 package com.solidvessel.payment.payment.service;
 
-public record AcceptPaymentCommand(Long customerId) {
+public record AcceptPaymentCommand(String customerId) {
 }

@@ -24,7 +24,7 @@ public class CartJpaEntity {
     private Long id;
 
     @NotNull
-    private Long customerId;
+    private String customerId;
 
     @ElementCollection
     @CollectionTable(name = "cart_product", joinColumns = @JoinColumn(name = "cart_id"))

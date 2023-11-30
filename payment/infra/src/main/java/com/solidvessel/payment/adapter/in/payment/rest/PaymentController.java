@@ -10,6 +10,7 @@ import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,16 +26,19 @@ public class PaymentController {
     private final CustomerQueryPort customerQueryPort;
     private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/")
     public List<PaymentDataModel> getAll() {
         return paymentQueryPort.getAll();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public PaymentDataModel getById(@PathVariable final Long id) {
         return paymentQueryPort.getById(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}/detail")
     public PaymentDetailDataModel getDetailById(@PathVariable final Long id) {
         PaymentDataModel payment = paymentQueryPort.getById(id);
@@ -42,11 +46,13 @@ public class PaymentController {
         return PaymentDetailDataModel.from(payment, customer);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/ofCustomer/{customerId}")
-    public List<PaymentDataModel> getByCustomerId(@PathVariable final Long customerId) {
+    public List<PaymentDataModel> getByCustomerId(@PathVariable final String customerId) {
         return paymentQueryPort.getByCustomerId(customerId);
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @PostMapping("/accept")
     public OperationResult acceptPayment(final AcceptPaymentRequest request) {
         return acceptPaymentCommandService.execute(request.toCommand());

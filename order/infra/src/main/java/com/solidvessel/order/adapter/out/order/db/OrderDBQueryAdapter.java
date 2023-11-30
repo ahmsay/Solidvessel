@@ -28,7 +28,7 @@ public class OrderDBQueryAdapter implements OrderQueryPort {
     }
 
     @Override
-    public List<OrderDataModel> getByCustomerId(Long customerId) {
+    public List<OrderDataModel> getByCustomerId(String customerId) {
         return orderRepository.findByCustomerId(customerId).stream().map(OrderJpaEntity::toDataModel).toList();
     }
 }

@@ -6,7 +6,7 @@ import com.solidvessel.payment.product.datamodel.ProductDataModel;
 import java.util.List;
 import java.util.Map;
 
-public record CartDataModel(Long id, Long customerId, List<ProductDataModel> products) {
+public record CartDataModel(Long id, String customerId, List<ProductDataModel> products) {
 
     public static CartDataModel from(Cart cart, List<ProductDataModel> products) {
         Map<Long, Integer> productQuantities = cart.getProductQuantities();

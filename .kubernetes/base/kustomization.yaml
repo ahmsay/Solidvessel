@@ -1,9 +1,9 @@
 resources:
 - account
-- auth
 - inventory
 - order
 - payment
 - rabbitmq
 - redis
 - apisix
+- keycloak

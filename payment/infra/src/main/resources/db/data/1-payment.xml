@@ -5,9 +5,9 @@
     <changeSet author="ahmsay" id="solidvessel-data-1">
         <sql>
             insert into payment(id, customer_id, total_price)
-            values (nextval('payment_seq'), 1, 250),
-                   (nextval('payment_seq'), 2, 3),
-                   (nextval('payment_seq'), 3, 70.2);
+            values (nextval('payment_seq'), '47ac2317-2da2-457a-90d6-48d5a0f9739a', 250),
+                   (nextval('payment_seq'), 'c908ce9d-faec-4570-b84d-71a4e77f2f4a', 3),
+                   (nextval('payment_seq'), '37a2191e-85a0-4bad-a853-1f29559c3092', 70.2);
 
             insert into payment_product(payment_id, product_id, quantity, name, price)
             values (1, 1, 1, 'Lol', 25),

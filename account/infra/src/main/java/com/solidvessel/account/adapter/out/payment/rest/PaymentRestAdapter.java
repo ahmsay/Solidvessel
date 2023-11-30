@@ -17,10 +17,10 @@ public class PaymentRestAdapter implements PaymentQueryPort {
     private final CircuitBreakerFactory circuitBreakerFactory;
     private final PaymentRestClient paymentRestClient;
 
-    public List<PaymentDataModel> getPaymentsOfCustomer(final Long customerId) {
-        String session = SessionUtil.getCurrentUserSession();
+    public List<PaymentDataModel> getPaymentsOfCustomer(final String customerId) {
+        String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("paymentCircuitBreaker")
-                .run(() -> paymentRestClient.getByCustomerId(customerId, session),
+                .run(() -> paymentRestClient.getByCustomerId(customerId, token),
                         throwable -> new ArrayList<>());
     }
 }

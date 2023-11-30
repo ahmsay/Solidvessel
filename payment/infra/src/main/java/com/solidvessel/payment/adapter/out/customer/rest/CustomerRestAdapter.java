@@ -2,8 +2,9 @@ package com.solidvessel.payment.adapter.out.customer.rest;
 
 import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
-import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
+import org.keycloak.admin.client.resource.RealmResource;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +13,14 @@ import org.springframework.stereotype.Component;
 public class CustomerRestAdapter implements CustomerQueryPort {
 
     private final CircuitBreakerFactory circuitBreakerFactory;
-    private final CustomerRestClient customerRestClient;
+    private final RealmResource realm;
 
     @Override
-    public CustomerDataModel getCustomerOfPayment(Long customerId) {
-        String session = SessionUtil.getCurrentUserSession();
+    public CustomerDataModel getCustomerOfPayment(String customerId) {
         return circuitBreakerFactory.create("customerCircuitBreaker")
-                .run(() -> customerRestClient.getById(customerId, session),
-                        throwable -> null);
+                .run(() -> {
+                    UserRepresentation user = realm.users().get(customerId).toRepresentation();
+                    return UserMapper.mapToCustomer(user);
+                }, throwable -> null);
     }
 }

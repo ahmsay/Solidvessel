@@ -10,8 +10,11 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-account:
-  url: http://localhost:8081/account
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9876/realms/solidvessel/protocol/openid-connect/certs
 payment:
   url: http://localhost:8084/payment
 management:
@@ -19,3 +22,5 @@ management:
     web:
       exposure:
         include: '*'
+keycloak:
+  server-url: http://localhost:9876

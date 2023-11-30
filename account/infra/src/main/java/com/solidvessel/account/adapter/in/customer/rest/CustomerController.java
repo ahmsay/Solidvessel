@@ -8,6 +8,7 @@ import com.solidvessel.account.order.port.OrderQueryPort;
 import com.solidvessel.account.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.payment.port.PaymentQueryPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,18 +25,21 @@ public class CustomerController {
     private final OrderQueryPort orderQueryPort;
     private final PaymentQueryPort paymentQueryPort;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping()
     public List<CustomerDataModel> getAll() {
         return customerQueryPort.getAll();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public CustomerDataModel getById(@PathVariable final Long id) {
+    public CustomerDataModel getById(@PathVariable final String id) {
         return customerQueryPort.getById(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}/detail")
-    public CustomerDetailDataModel getDetailById(@PathVariable final Long id) {
+    public CustomerDetailDataModel getDetailById(@PathVariable final String id) {
         CustomerDataModel customer = customerQueryPort.getById(id);
         List<OrderDataModel> orders = orderQueryPort.getOrdersOfCustomer(id);
         List<PaymentDataModel> payments = paymentQueryPort.getPaymentsOfCustomer(id);

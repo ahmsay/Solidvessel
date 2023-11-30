@@ -16,13 +16,16 @@ spec:
         app: order
     spec:
       initContainers:
-        - name: wait-for-db
-          image: busybox
-          command: [ 'sh', '-c', "until nslookup order-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
+      - name: wait-for-db
+        image: busybox
+        command: [ 'sh', '-c', "until nslookup order-db-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
+      - name: wait-for-keycloak
+        image: busybox
+        command: [ 'sh', '-c', "until nslookup keycloak.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for keycloak; sleep 1; done" ]
       containers:
-        - name: order-app
-          image: ahmsay/solidvessel-order
-          imagePullPolicy: Always
-          args: [ "--spring.profiles.active=test" ]
-          ports:
-            - containerPort: 8080
+      - name: order-app
+        image: ahmsay/solidvessel-order
+        imagePullPolicy: Always
+        args: [ "--spring.profiles.active=test" ]
+        ports:
+        - containerPort: 8080

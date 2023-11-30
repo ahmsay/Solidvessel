@@ -14,6 +14,7 @@ import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +29,13 @@ public class CartController {
     private final CartQueryPort cartQueryPort;
     private final ProductQueryPort productQueryPort;
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @PostMapping()
     public OperationResult addToCart(@RequestBody @Valid final AddToCartRequest request) {
         return addToCartCommandService.execute(request.toCommand());
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping
     public CartDataModel listCart() {
         Cart cart = cartQueryPort.getByCustomerId(SessionUtil.getCurrentUserId());
@@ -40,6 +43,7 @@ public class CartController {
         return CartDataModel.from(cart, products);
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     @DeleteMapping()
     public OperationResult removeFromCart(@RequestBody @Valid final RemoveFromCartRequest request) {
         return removeFromCartCommandService.execute(request.toCommand());

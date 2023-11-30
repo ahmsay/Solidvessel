@@ -1,4 +1,4 @@
 package com.solidvessel.order.order.service.command;
 
-public record AddOrderCommand(Long customerId, Long paymentId) {
+public record AddOrderCommand(String customerId, Long paymentId) {
 }
