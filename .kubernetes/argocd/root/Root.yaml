@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ahmsay/Solidvessel.git
-    targetRevision: keycloak
+    targetRevision: master
     path: .kubernetes/argocd/mainapps
   destination:
     server: https://kubernetes.default.svc
