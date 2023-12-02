@@ -1,15 +1,15 @@
 # Solidvessel
 
 This is a shopping application designed with microservices architecture. My main goal is to learn about
-microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a shopping application.
+devops and microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a shopping application.
 <a href=".docs/run-options.md">Check here to see how to run.<a/>
 
 ## Architecture
 ### Development
-![development](https://github.com/ahmsay/Solidvessel/assets/22731894/60f62c83-0388-4e3e-8103-b2bca60fd62f)
+![development](https://github.com/ahmsay/Solidvessel/assets/22731894/f7a539d5-7dd3-4163-9f1e-5425c0a10b70)
 
-In development mode, microservices are running as separate processes on your computer. The API Gateway, databases,
-RabbitMQ and Redis run
+In development mode, microservices are running as separate processes on your computer. The API Gateway, database,
+RabbitMQ, Redis and Keycloak run
 as Docker containers. Since all microservices run on the same device, they should expose a different port. The
 communication between client
 and microservices is done through the API Gateway. Databases are in the same instance for the sake of simplicity in this
@@ -17,10 +17,10 @@ environment.
 
 ### Test
 
-![test](https://github.com/ahmsay/Solidvessel/assets/22731894/24dc7b65-b19d-4632-9c26-ec67064f2fc5)
+![test](https://github.com/ahmsay/Solidvessel/assets/22731894/1f459962-f987-4de7-96ea-c1757d602e23)
 
 In test mode, the whole application lives in a Kubernetes cluster which runs on your computer. Microservices, API
-Gateway, databases, Redis, and RabbitMQ now
+Gateway, databases, Redis, RabbitMQ and Keycloak now
 run as Kubernetes deployments or statefulsets.
 
 The communication between components is done through services (another Kubernetes
@@ -46,8 +46,7 @@ Let's explain each component shown in the diagram one by one:
   This process is done by Route 53.
 - **ALB**: The ingress resource defined for the K8S cluster is converted to an ALB (Application Load Balancer). AWS
   reads the routing rules, services and the SSL configuration we defined in the ingress file and applies all of them in
-  the
-  ALB which will route the traffic to the cluster. Each ingress defined in K8S has a correspondence in ALB.
+  the ALB which will route the traffic to the cluster. Each ingress defined in K8S has a correspondence in ALB.
 - **Target Groups**: These are subcomponents of the ALB. A target group is solely responsible for load balancing. For
   example if a deployment has 3 replicas, it's the target groups responsibility to distribute
   the traffic across the replicas. Each Kubernetes service
@@ -77,6 +76,7 @@ Let's explain each component shown in the diagram one by one:
 - <a href=".docs/asyncronous-communication.md">Asynchronous Communication<a/>
 - <a href=".docs/api-gateway.md">API Gateway<a/>
 - <a href=".docs/authentication.md">Authentication<a/>
+- <a href=".docs/authorization.md">Authorization<a/>
 - <a href=".docs/horizontal-scaling.md">Horizontal Scaling<a/>
 - <a href=".docs/load-balancing.md">Load Balancing<a/>
 - <a href=".docs/shared-module.md">Shared Module<a/>
@@ -89,8 +89,8 @@ Let's explain each component shown in the diagram one by one:
 - ~~Domain enrichment~~
 - Data enrichment
 - Persistence
-- Authentication With Keycloak
-- Authorization
+- ~~Authentication With Keycloak~~
+- ~~Authorization~~
 - Migration to Kafka
 - Security improvements
 - ~~Building images on CI environment~~

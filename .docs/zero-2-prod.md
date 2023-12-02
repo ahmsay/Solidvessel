@@ -1,4 +1,4 @@
-## From Zero to Prod In Minutes
+# From Zero to Prod In Minutes
 
 To create the production environment we need:
 

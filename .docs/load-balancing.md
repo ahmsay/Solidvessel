@@ -1,4 +1,4 @@
-## Load Balancing
+# Load Balancing
 
 ![load_balancing](https://user-images.githubusercontent.com/22731894/226122887-2722726e-ba25-4e37-975f-62ca493ee45f.svg)
 

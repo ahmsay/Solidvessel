@@ -1,4 +1,4 @@
-## GitOps
+# GitOps
 
 The aim of GitOps is to manage your configuration using a Git repository. In the production environment
 there are a lot of Kubernetes resources. Managing them with kubectl or Kubernetes Dashboard doesn't guarantee that

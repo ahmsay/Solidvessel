@@ -1,4 +1,4 @@
-## Asynchronous Communication
+# Asynchronous Communication
 
 ![asynchronous_communication](https://user-images.githubusercontent.com/22731894/226122673-ba6ad927-3413-4e5f-b1fe-e1415930c7fc.svg)
 

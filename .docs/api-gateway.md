@@ -1,4 +1,4 @@
-## API Gateway
+# API Gateway - WILL BE UPDATED
 
 The main idea of using an API Gateway in a microservices architecture is to serve the clients from a single
 endpoint. This approach overcomes the challenge of dealing with different urls of
@@ -14,7 +14,7 @@ and routes the traffic according to those rules. For example, when the url inclu
 request
 to the order microservice.
 
-### Note for the Development Environment
+## Note for the Development Environment
 
 APISIX not only works in a K8S cluster, it also works as a standalone Docker container. In the development mode, the
 configuration

@@ -1,6 +1,6 @@
-## Run Options
+# Run Options
 
-### Development
+## Development
 
 This mode will start the databases, Redis and RabbitMQ as containers in Docker. You can start the microservices with your
 IDE.
@@ -9,7 +9,7 @@ IDE.
 docker-compose -f .docker/docker-compose.yaml up -d
 ```
 
-### Test
+## Test
 
 This mode will start the whole application in K8S cluster. You can test it on your own computer if you enable Kubernetes
 on Docker Desktop.
@@ -19,7 +19,7 @@ kubectl create ns solidvessel
 kubectl apply -k ./.kubernetes/base
 ```
 
-### Production
+## Production
 This mode will start the entire application on AWS. Everything will be created from the scratch (including servers).
 Follow these steps to run this application:
 1. Create an AWS account.
@@ -36,7 +36,7 @@ resource files in .kubernetes folder as well.
 Route 53 services. This may seem a lot, but if you encounter an error, AWS will tell you about which permission you are missing.
 6. Run the pipeline. The environment will be ready in approximately 25 minutes.
 
-**NOTE**
+## NOTE
 
 - The steps above are need to be done **only once** (except the last step, obviously). After that, you can create the whole environment with a single click.
 - To delete the environment, you need to delete the related Cloudformation stacks, or use ``eksctl delete cluster`` command.

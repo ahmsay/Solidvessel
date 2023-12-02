@@ -1,4 +1,4 @@
-## Infrastructure as Code (IaC)
+# Infrastructure as Code (IaC)
 
 This approach relies on managing your environment using a declarative approach. You use configuration files
 instead of shell scripts to keep track your environment easier. 

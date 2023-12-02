@@ -1,4 +1,4 @@
-## Shared Module
+# Shared Module
 
 Microservices can share a module with common dependencies instead of re-writing same dependencies in all of them. This
 might oppose the idea of microservices being fully independent, but it's also useful when you are sure that the shared

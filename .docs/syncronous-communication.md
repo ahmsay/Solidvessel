@@ -1,4 +1,4 @@
-## Synchronous Communication
+# Synchronous Communication - WILL BE UPDATED
 
 ![synchronous_communication](https://user-images.githubusercontent.com/22731894/226122615-a35e5790-031b-4c93-ac6f-d1441350f1cb.svg)
 
