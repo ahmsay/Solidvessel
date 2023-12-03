@@ -1,18 +1,14 @@
-# Authentication - WILL BE UPDATED
+# Authentication
 
-![authentication](https://user-images.githubusercontent.com/22731894/226122649-ed57b893-0c05-4dcf-a515-e3231a8c0790.svg)
+![authentication](https://github.com/ahmsay/Solidvessel/assets/22731894/5158f601-c9fe-4627-b636-46fdd9a76029)
 
-We can use Redis for both caching domain related content and authentication. In this project, all microservices have a
-security filter and don't allow a request if it does not contain an authentication info.
+The diagram above shows the complete picture of both authentication and authorization. The API gateway is responsible 
+for authentication whereas the microservice is responsible for authorization. The authentication part is the
+first 5 steps.
 
-To authenticate, user must send a request with email and password info. This request will be received by the
-authentication microservice. If credentials are correct, the user session will be saved in Redis. The session also will
-be returned as a cookie.
-
-Now we can use this cookie to use the application. For example, when the account microservice receives the request, it
-reads the session id from the cookie and tries to find it in Redis. If the session id is stored in Redis and is valid,
-then access is granted.
-
-Note: There are Spring Security related token classes in the shared module, and they are used by all microservices in
-background, for serialization process. Since I couldn't configure the Redis serializer for Spring Security, I decided to
-put those classes in the shared module and made them have a common package.
+1. Client sends a login request to Keycloak with client and user info.
+2. Keycloak validates the request and returns a JWT which contains the user info.
+3. Client sends a new request containing the JWT to APISIX, the API gateway.
+4. APISIX validates the JWT by using the openid-connect plugin. The plugin makes APISIX connect to Keycloak and perform 
+necessary validations.
+5. If the JWT is valid, the request is ready to be forwarded.

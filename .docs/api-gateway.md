@@ -1,4 +1,4 @@
-# API Gateway - WILL BE UPDATED
+# API Gateway
 
 The main idea of using an API Gateway in a microservices architecture is to serve the clients from a single
 endpoint. This approach overcomes the challenge of dealing with different urls of
@@ -6,7 +6,7 @@ microservices. Furthermore, API Gateways have more capabilities such as rate lim
 authentication.
 The API Gateway used in this project is Apache APISIX.
 
-![api_gateway](https://github.com/ahmsay/Solidvessel/assets/22731894/5707e2de-298a-45b4-8c50-808d9d3a94dd)
+![api_gateway](https://github.com/ahmsay/Solidvessel/assets/22731894/8a1c98c8-1c57-4689-8f17-68c180b82934)
 
 The diagram above shows how the traffic routing works. APISIX reads from a configuration file where the routing rules
 are written,
@@ -14,13 +14,18 @@ and routes the traffic according to those rules. For example, when the url inclu
 request
 to the order microservice.
 
-## Note for the Development Environment
+## Note for Development and Test Environments
 
-APISIX not only works in a K8S cluster, it also works as a standalone Docker container. In the development mode, the
-configuration
-is pretty much the same, except one important difference: <b>the container must run in the host network</b>. This is
-because
-when you start microservices with your IDE, they run in the host network (your own network). So in order to route the
-traffic
-to the microservices, APISIX must be in the same network as well. (This just informative, everything is already
+In development and test environments, <b>the container must run in the host network</b>. This is
+because;
+
+<b>For development environment:</b> When you start microservices with your IDE, they run in the host network (your own network). So in order to route the
+traffic to the microservices, APISIX must be in the same network as well.
+
+<b>For test environment:</b> When APISIX needs to send a request to Keycloak for authentication, the url of Keycloak must be both accessible
+within the container and from the browser. That's why the url of Keycloak is localhost and not the ClusterIp service address. However when the
+url is localhost, APISIX thinks it is the localhost of the container, not the host machine. To resolve this, I needed APISIX to run in
+host network.
+
+(This just informative, everything is already
 configured properly.)
