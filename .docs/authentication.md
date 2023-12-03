@@ -12,3 +12,7 @@ first 5 steps.
 4. APISIX validates the JWT by using the openid-connect plugin. The plugin makes APISIX connect to Keycloak and perform 
 necessary validations.
 5. If the JWT is valid, the request is ready to be forwarded.
+
+## Note
+With this setup, your microservices doesn't have to be written with the same framework. You can use any framework or
+programming language. Because authentication doesn't depend on your framework or language.
