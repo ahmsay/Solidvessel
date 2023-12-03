@@ -1,5 +1,5 @@
 plugins {
-    id 'java-library'
+    id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
 }
@@ -10,7 +10,7 @@ bootJar {
 
 dependencies {
     implementation project.parent.project("domain")
-    api "org.springframework.boot:spring-boot-starter-web"
-    api "org.springframework.boot:spring-boot-starter-security"
-    api "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 }
