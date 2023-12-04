@@ -4,12 +4,14 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
+archivesBaseName = 'shared-infra'
+
 bootJar {
     enabled = false
 }
 
 dependencies {
-    api project(':shared:common-domain')
+    api project(':shared:domain')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'

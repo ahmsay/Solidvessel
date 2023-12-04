@@ -5,8 +5,10 @@ plugins {
     id 'com.google.cloud.tools.jib' version '3.3.2'
 }
 
+archivesBaseName = 'order-infra'
+
 dependencies {
-    implementation project(':shared:common-infra')
+    implementation project(':shared:infra')
     implementation project(':order:domain')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -27,10 +29,6 @@ dependencies {
     testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
     testAnnotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
 }
-
-group = 'com.solidvessel'
-version = '0.0.1-SNAPSHOT'
-description = 'Order Service'
 
 jib {
     from {

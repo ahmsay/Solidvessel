@@ -2,8 +2,10 @@ plugins {
     id 'java'
 }
 
+archivesBaseName = 'account-domain'
+
 dependencies {
-    implementation project(':shared:common-domain')
+    implementation project(':shared:domain')
     compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
     testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
