@@ -1,25 +1,29 @@
 plugins {
-    id 'java-library'
+    id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
     id 'com.google.cloud.tools.jib' version '3.3.2'
+}
+
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 dependencies {
     implementation project(':shared:domain')
     implementation project(':shared:infra')
     implementation project.parent.project("domain")
-    api "org.springframework.boot:spring-boot-starter-web"
-    api "org.springframework.boot:spring-boot-starter-actuator"
-    api "org.springframework.boot:spring-boot-starter-data-jpa"
-    api "org.springframework.boot:spring-boot-starter-validation"
-    api "org.springframework.boot:spring-boot-starter-amqp"
-    api "org.springframework.boot:spring-boot-starter-data-redis"
-    api "org.springframework.boot:spring-boot-starter-security"
-    api "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-    api "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
-    api "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
+    implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
     compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
     testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
