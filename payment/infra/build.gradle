@@ -10,8 +10,8 @@ bootJar {
 }
 
 dependencies {
-    implementation project(':shared:domain')
-    implementation project(':shared:infra')
+    implementation project(':shared:common-domain')
+    implementation project(':shared:common-infra')
     implementation project.parent.project("domain")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'

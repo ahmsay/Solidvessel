@@ -9,7 +9,7 @@ bootJar {
 }
 
 dependencies {
-    implementation project.parent.project("domain")
+    implementation project.parent.project("common-domain")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
