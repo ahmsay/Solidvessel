@@ -1,13 +1,10 @@
 plugins {
     id 'java'
+    id 'io.freefair.lombok' version '8.4'
 }
 
 archivesBaseName = 'account-domain'
 
 dependencies {
     implementation project(':shared:domain')
-    compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
-    annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
-    testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
-    testAnnotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
 }

@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
     id 'com.google.cloud.tools.jib' version '3.3.2'
+    id 'io.freefair.lombok' version '8.4'
 }
 
 archivesBaseName = 'inventory-infra'
@@ -21,10 +22,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
     implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
-    compileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
-    annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
-    testCompileOnly "org.projectlombok:lombok:$rootProject.lombokVersion"
-    testAnnotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
 }
 
 jib {
