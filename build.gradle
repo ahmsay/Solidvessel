@@ -4,6 +4,5 @@ ext {
     postgresDriverVersion = "42.6.0"
     feignVersion = "4.0.3"
     circuitBreakerVersion = "3.0.2"
-    liquibaseVersion = "4.23.2"
     keycloakVersion = "22.0.4"
 }
