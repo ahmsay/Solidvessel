@@ -38,6 +38,7 @@ services:
     ports:
     - "9876:8080"
     command:
-    - start-dev --import-realm
+    - start-dev
+    - --import-realm
     volumes:
     - ./keycloak:/opt/keycloak/data/import

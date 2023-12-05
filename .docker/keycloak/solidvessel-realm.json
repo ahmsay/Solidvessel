@@ -80,5 +80,5 @@
       "protocol": "openid-connect"
     }
   ],
-  "keycloakVersion": "22.0.4"
+  "keycloakVersion": "23.0.1"
 }
