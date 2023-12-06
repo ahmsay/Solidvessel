@@ -10,7 +10,7 @@ data:
       uri: /auth/*
       upstream:
         nodes:
-          "127.0.0.1:80": 1
+          "localhost:80": 1
         type: roundrobin
       plugin_config_id: 1
     - id: account

@@ -10,7 +10,7 @@ data:
       uri: /auth/*
       upstream:
         nodes:
-          "127.0.0.1:80": 1
+          "localhost:80": 1
         type: roundrobin
       plugin_config_id: 1
     - id: account
@@ -51,7 +51,7 @@ data:
           scope: "openid profile"
           bearer_only: true
           realm: "solidvessel"
-          redirect_uri: "http://127.0.0.1:9080/auth/callback"
+          redirect_uri: "http://localhost:9080/auth/callback"
           logout_path: "/auth/logout"
           access_token_in_authorization_header: true
           set_id_token_header: false

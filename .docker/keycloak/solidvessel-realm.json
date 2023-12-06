@@ -66,7 +66,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
       "redirectUris": [
-        "http://127.0.0.1:9080/*"
+        "http://localhost:9080/*"
       ],
       "webOrigins": [],
       "bearerOnly": false,
@@ -79,6 +79,5 @@
       "frontchannelLogout": true,
       "protocol": "openid-connect"
     }
-  ],
-  "keycloakVersion": "23.0.1"
+  ]
 }
