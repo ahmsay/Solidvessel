@@ -1,4 +1,4 @@
 resources:
 - ../../../base/payment/app
 patchesStrategicMerge:
-- deployment-prod.yaml
+- payment-deployment-prod.yaml

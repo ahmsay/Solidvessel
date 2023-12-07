@@ -1,4 +1,4 @@
 resources:
 - ../../../base/order/app
 patchesStrategicMerge:
-- deployment-prod.yaml
+- order-deployment-prod.yaml
