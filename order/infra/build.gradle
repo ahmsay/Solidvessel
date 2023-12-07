@@ -8,6 +8,8 @@ plugins {
 
 archivesBaseName = 'order-infra'
 
+sourceCompatibility = JavaVersion.VERSION_21
+
 dependencies {
     implementation project(':shared:infra')
     implementation project(':order:domain')
@@ -29,7 +31,7 @@ dependencies {
 
 jib {
     from {
-        image = "eclipse-temurin:20.0.1_9-jre-jammy"
+        image = "eclipse-temurin:21.0.1_12-jre-jammy"
         platforms {
             platform {
                 os = "linux"
