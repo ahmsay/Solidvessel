@@ -6,7 +6,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    redis: redis
+    app: redis
   ports:
     - name: app
       protocol: TCP

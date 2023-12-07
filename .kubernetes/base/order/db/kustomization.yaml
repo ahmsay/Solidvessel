@@ -1,3 +1,3 @@
 resources:
-- pod.yaml
-- service.yaml
+- order-db-deployment.yaml
+- order-db-service.yaml

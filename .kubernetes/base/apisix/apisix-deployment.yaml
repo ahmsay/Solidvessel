@@ -26,7 +26,7 @@ spec:
           mountPath: /etc/pre-install
       containers:
       - name: apache-apisix
-        image: apache/apisix
+        image: apache/apisix:3.7.0-debian
         lifecycle:
           postStart:
             exec:

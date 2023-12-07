@@ -1,2 +1,2 @@
 resources:
-- configmap.yaml
+- apisix-configmap.yaml

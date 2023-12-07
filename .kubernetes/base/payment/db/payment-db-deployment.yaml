@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-db
+  namespace: solidvessel
+  labels:
+    app: payment-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-db
+  template:
+    metadata:
+      labels:
+        db: payment
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:16.1
+        env:
+        - name: POSTGRES_DB
+          value: payment
+        - name: POSTGRES_USER
+          value: nihilus
+        - name: POSTGRES_PASSWORD
+          value: nihilus
+        ports:
+        - containerPort: 5432

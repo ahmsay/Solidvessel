@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-db
+  namespace: solidvessel
+  labels:
+    app: order-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-db
+  template:
+    metadata:
+      labels:
+        db: order
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:16.1
+        env:
+        - name: POSTGRES_DB
+          value: order
+        - name: POSTGRES_USER
+          value: nihilus
+        - name: POSTGRES_PASSWORD
+          value: nihilus
+        ports:
+        - containerPort: 5432

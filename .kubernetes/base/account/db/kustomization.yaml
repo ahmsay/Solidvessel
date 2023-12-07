@@ -1,3 +1,3 @@
 resources:
-- pod.yaml
-- service.yaml
+- account-db-deployment.yaml
+- account-db-service.yaml
