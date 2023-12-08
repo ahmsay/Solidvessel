@@ -2,7 +2,7 @@
 
 ## Development
 
-This mode will start the databases, Redis and RabbitMQ as containers in Docker. You can start the microservices with your
+This mode will start Postgres, Redis, RabbitMQ, APISIX and Keycloak as containers in Docker. You can start the microservices with your
 IDE.
 
 ```shell

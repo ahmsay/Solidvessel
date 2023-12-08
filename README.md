@@ -2,11 +2,11 @@
 
 This is a shopping application designed with microservices architecture. My main goal is to learn about
 devops and microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a shopping application.
-<a href=".docs/run-options.md">Check here to see how to run.<a/>
+<a href=".docs/run-options.md">Check to see how to run.<a/>
 
 ## Architecture
 ### Development
-![development](https://github.com/ahmsay/Solidvessel/assets/22731894/f7a539d5-7dd3-4163-9f1e-5425c0a10b70)
+![development](https://github.com/ahmsay/Solidvessel/assets/22731894/6b70af30-2090-4b8e-bd10-dbd3d4058e11)
 
 In development mode, microservices are running as separate processes on your computer. The API Gateway, database,
 RabbitMQ, Redis and Keycloak run
@@ -17,7 +17,7 @@ environment.
 
 ### Test
 
-![test](https://github.com/ahmsay/Solidvessel/assets/22731894/1f459962-f987-4de7-96ea-c1757d602e23)
+![test](https://github.com/ahmsay/Solidvessel/assets/22731894/f0a32cb2-6228-44cd-91c0-8e9d9243d0df)
 
 In test mode, the whole application lives in a Kubernetes cluster which runs on your computer. Microservices, API
 Gateway, databases, Redis, RabbitMQ and Keycloak now
@@ -79,23 +79,18 @@ Let's explain each component shown in the diagram one by one:
 - <a href=".docs/authorization.md">Authorization<a/>
 - <a href=".docs/horizontal-scaling.md">Horizontal Scaling<a/>
 - <a href=".docs/load-balancing.md">Load Balancing<a/>
+- <a href=".docs/entity-relations.md">Entity Relations<a/>
 - <a href=".docs/shared-module.md">Shared Module<a/>
 - <a href=".docs/infrastructure-as-code.md">Infrastructure as Code<a/>
 - <a href=".docs/gitops.md">GitOps<a/>
 - <a href=".docs/zero-2-prod.md">From Zero to Prod In Minutes<a/>
+- <a href=".docs/testing.md">Testing<a/>
 
 ## Roadmap
-- ~~Hexagonal architecture~~
-- ~~Domain enrichment~~
-- Data enrichment
-- Persistence
-- ~~Authentication With Keycloak~~
-- ~~Authorization~~
-- Migration to Kafka
-- Security improvements
-- ~~Building images on CI environment~~
-- CQRS
-- Monitoring
 - Testing
-- ~~Exception handling~~
-- ~~API gateway~~
+- Persistence
+- Data enrichment
+- Security improvements
+- Monitoring
+- CQRS
+- Migration to Kafka
