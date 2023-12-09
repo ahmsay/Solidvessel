@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://account-db-postgresql:5432/account
+    url: jdbc:postgresql://account-db:5432/account
   data:
     redis:
       host: redis-master

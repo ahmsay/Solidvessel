@@ -11,6 +11,7 @@ spec:
     targetRevision: 13.2.24
     helm:
       values: |
+        fullnameOverride: payment-db
         global:
           postgresql:
             auth:

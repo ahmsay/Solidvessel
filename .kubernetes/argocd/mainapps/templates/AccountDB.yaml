@@ -11,6 +11,7 @@ spec:
     targetRevision: 13.2.24
     helm:
       values: |
+        fullnameOverride: account-db
         global:
           postgresql:
             auth:
