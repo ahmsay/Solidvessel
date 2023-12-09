@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        db: payment
+        app: payment-db
     spec:
       containers:
       - name: postgres

@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        db: account
+        app: account-db
     spec:
       containers:
       - name: postgres

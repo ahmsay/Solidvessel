@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://payment-db-postgresql:5432/payment
+    url: jdbc:postgresql://payment-db:5432/payment
   data:
     redis:
       host: redis-master

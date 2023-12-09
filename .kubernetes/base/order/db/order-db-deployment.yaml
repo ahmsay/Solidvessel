@@ -13,14 +13,14 @@ spec:
   template:
     metadata:
       labels:
-        db: order
+        app: order-db
     spec:
       containers:
       - name: postgres
         image: postgres:16.1
         env:
         - name: POSTGRES_DB
-          value: order
+          value: order_db
         - name: POSTGRES_USER
           value: nihilus
         - name: POSTGRES_PASSWORD

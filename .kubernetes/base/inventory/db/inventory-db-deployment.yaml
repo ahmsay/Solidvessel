@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        db: inventory
+        app: inventory-db
     spec:
       containers:
       - name: postgres
