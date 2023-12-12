@@ -89,6 +89,7 @@ Let's explain each component shown in the diagram one by one:
 ## Roadmap
 - Testing
 - Persistence
+- Caching
 - Data enrichment
 - Security improvements
 - Monitoring
