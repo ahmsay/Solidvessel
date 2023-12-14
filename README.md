@@ -75,8 +75,7 @@ Let's explain each component shown in the diagram one by one:
 - <a href=".docs/circuit-breaking.md">Circuit Breaking<a/>
 - <a href=".docs/asyncronous-communication.md">Asynchronous Communication<a/>
 - <a href=".docs/api-gateway.md">API Gateway<a/>
-- <a href=".docs/authentication.md">Authentication<a/>
-- <a href=".docs/authorization.md">Authorization<a/>
+- <a href=".docs/authentication-authorization.md">Authentication & Authorization<a/>
 - <a href=".docs/horizontal-scaling.md">Horizontal Scaling<a/>
 - <a href=".docs/load-balancing.md">Load Balancing<a/>
 - <a href=".docs/entity-relations.md">Entity Relations<a/>
