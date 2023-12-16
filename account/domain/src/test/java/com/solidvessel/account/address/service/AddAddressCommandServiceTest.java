@@ -30,7 +30,7 @@ public class AddAddressCommandServiceTest {
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(false);
         var operationResult = commandService.execute(command);
-        assertEquals(operationResult.resultType(), ResultType.SUCCESS);
+        assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
     @Test

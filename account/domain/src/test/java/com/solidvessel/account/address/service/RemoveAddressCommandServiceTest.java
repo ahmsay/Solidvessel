@@ -21,6 +21,6 @@ public class RemoveAddressCommandServiceTest {
         var command = new RemoveAddressCommand(1L, "123");
         var commandService = new RemoveAddressCommandService(addressPort);
         var operationResult = commandService.execute(command);
-        assertEquals(operationResult.resultType(), ResultType.SUCCESS);
+        assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 }

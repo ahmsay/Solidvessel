@@ -32,7 +32,7 @@ public class UpdateAddressCommandServiceTest {
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(new Address(1L, "home", "123", "turkey", "eskisehir", "26200"));
         when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(true);
         var operationResult = commandService.execute(command);
-        assertEquals(operationResult.resultType(), ResultType.SUCCESS);
+        assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
     @Test
