@@ -17,7 +17,7 @@ public class Product {
         return new Product(null, name, price, category, quantity);
     }
 
-    public void decreaseQuantity(int boughQuantity) {
-        quantity = quantity - boughQuantity;
+    public void decreaseQuantity(int boughtQuantity) {
+        quantity = quantity - boughtQuantity;
     }
 }

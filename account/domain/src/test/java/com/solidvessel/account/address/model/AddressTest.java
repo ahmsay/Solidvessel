@@ -9,8 +9,8 @@ public class AddressTest {
 
     @Test
     void updateAddress() {
-        Address address = new Address(1L, "123", "home", "norway", "oslo", "473");
-        UpdateAddressCommand command = new UpdateAddressCommand(1L, "work", "turkey", "eskisehir", "26200", "123");
+        var address = new Address(1L, "123", "home", "norway", "oslo", "473");
+        var command = new UpdateAddressCommand(1L, "work", "turkey", "eskisehir", "26200", "123");
         address.update(command);
         assertEquals(command.id(), address.getId());
         assertEquals(command.name(), address.getName());
