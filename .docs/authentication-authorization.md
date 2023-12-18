@@ -2,7 +2,7 @@
 
 ![authentication-authorization](https://github.com/ahmsay/Solidvessel/assets/22731894/5158f601-c9fe-4627-b636-46fdd9a76029)
 
-The diagram above shows the complete picture of both authentication and authorization. The API gateway is responsible 
+The diagram above shows the complete picture of authentication and authorization. The API gateway is responsible 
 for authentication whereas the microservice is responsible for authorization.
 
 1. Client sends a login request to Keycloak with client and user info.
