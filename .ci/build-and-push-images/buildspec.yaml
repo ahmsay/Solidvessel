@@ -10,6 +10,9 @@ phases:
     - export JAVA_HOME=/opt/jdk-21.0.1+12
     - export PATH=$PATH:$JAVA_HOME/bin
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - curl -Os https://uploader.codecov.io/latest/linux/codecov
+    - chmod +x codecov
+    - ./codecov
   build:
     commands:
     - gradle jib --parallel
