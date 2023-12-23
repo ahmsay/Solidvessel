@@ -14,7 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AddToCartCommandServiceTest {
@@ -35,6 +36,7 @@ public class AddToCartCommandServiceTest {
         when(productQueryPort.isAvailable(1L, 3)).thenReturn(true);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(Cart.newCart("123"));
         var operationResult = commandService.execute(command);
+        verify(cartPort).save(any(Cart.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
@@ -44,5 +46,6 @@ public class AddToCartCommandServiceTest {
         var commandService = new AddToCartCommandService(cartPort, cartQueryPort, productQueryPort);
         when(productQueryPort.isAvailable(1L, 3)).thenReturn(false);
         assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
+        verifyNoInteractions(cartPort);
     }
 }

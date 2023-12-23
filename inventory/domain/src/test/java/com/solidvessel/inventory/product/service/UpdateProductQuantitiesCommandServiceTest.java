@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,6 +42,7 @@ public class UpdateProductQuantitiesCommandServiceTest {
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort);
         when(productQueryPort.getByIds(Set.of(1L, 3L))).thenReturn(retrieveProducts());
         var operationResult = commandService.execute(command);
+        verify(productPort).saveProducts(List.of(product1, product2));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(1, product1.getQuantity());
         assertEquals(2, product2.getQuantity());

@@ -13,8 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UpdateAddressCommandServiceTest {
@@ -32,6 +33,7 @@ public class UpdateAddressCommandServiceTest {
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(new Address(1L, "home", "123", "turkey", "eskisehir", "26200"));
         when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(true);
         var operationResult = commandService.execute(command);
+        verify(addressPort).save(any(Address.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
@@ -41,5 +43,6 @@ public class UpdateAddressCommandServiceTest {
         var commandService = new UpdateAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(false);
         assertThrows(AccountDomainException.class, () -> commandService.execute(command));
+        verifyNoInteractions(addressPort);
     }
 }

@@ -16,7 +16,8 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class RemoveFromCartCommandServiceTest {
@@ -37,6 +38,7 @@ public class RemoveFromCartCommandServiceTest {
         Cart cart = new Cart(1L, "123", productQuantities);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
         var operationResult = commandService.execute(command);
+        verify(cartPort).save(any(Cart.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(6, cart.getProductQuantities().get(3L));
     }
@@ -47,5 +49,6 @@ public class RemoveFromCartCommandServiceTest {
         var commandService = new RemoveFromCartCommandService(cartPort, cartQueryPort);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(Cart.newCart("123"));
         assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
+        verifyNoInteractions(cartPort);
     }
 }

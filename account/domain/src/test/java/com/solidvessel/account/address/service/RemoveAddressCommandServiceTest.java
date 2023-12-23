@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class RemoveAddressCommandServiceTest {
@@ -21,6 +22,7 @@ public class RemoveAddressCommandServiceTest {
         var command = new RemoveAddressCommand(1L, "123");
         var commandService = new RemoveAddressCommandService(addressPort);
         var operationResult = commandService.execute(command);
+        verify(addressPort).delete(1L, "123");
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 }

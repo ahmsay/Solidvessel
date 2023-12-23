@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.product.service;
 
+import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.service.command.AddProductCommand;
@@ -10,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class AddProductCommandServiceTest {
@@ -22,6 +25,7 @@ public class AddProductCommandServiceTest {
         var command = new AddProductCommand("macbook", 1200D, ProductCategory.ELECTRONICS, 3);
         var commandService = new AddProductCommandService(productPort);
         var operationResult = commandService.execute(command);
+        verify(productPort).save(any(Product.class));
         assertEquals(operationResult.resultType(), ResultType.SUCCESS);
     }
 }

@@ -5,6 +5,7 @@ import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
+import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.product.datamodel.ProductDataModel;
 import com.solidvessel.payment.product.port.ProductQueryPort;
@@ -24,7 +25,8 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AcceptPaymentCommandServiceTest {
@@ -71,6 +73,9 @@ public class AcceptPaymentCommandServiceTest {
         when(productQueryPort.getProductsOfCart(cart.getProductIds())).thenReturn(productsFromInventory);
 
         var operationResult = commandService.execute(command);
+        verify(cartPort).save(any(Cart.class));
+        verify(paymentPort).save(any(Payment.class));
+        verify(paymentSavedEventPublisher).publish(any(PaymentSavedEvent.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
@@ -78,6 +83,7 @@ public class AcceptPaymentCommandServiceTest {
     void cartIsEmpty() {
         when(cartQueryPort.getByCustomerId("123")).thenReturn(Cart.newCart("123"));
         assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
+        verifyNoInteractions(cartPort, paymentPort, paymentSavedEventPublisher);
     }
 
     @Test
@@ -92,6 +98,7 @@ public class AcceptPaymentCommandServiceTest {
             add(new ProductDataModel(1L, 5, "laptop", 234D));
         }};
         when(productQueryPort.getProductsOfCart(cart.getProductIds())).thenReturn(productsFromInventory);
+        verifyNoInteractions(cartPort, paymentPort, paymentSavedEventPublisher);
         assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
     }
 }

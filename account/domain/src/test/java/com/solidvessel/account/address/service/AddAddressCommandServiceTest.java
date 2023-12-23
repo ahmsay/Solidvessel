@@ -1,5 +1,6 @@
 package com.solidvessel.account.address.service;
 
+import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressPort;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.AddAddressCommand;
@@ -12,8 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AddAddressCommandServiceTest {
@@ -30,6 +32,7 @@ public class AddAddressCommandServiceTest {
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(false);
         var operationResult = commandService.execute(command);
+        verify(addressPort).save(any(Address.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
@@ -39,5 +42,6 @@ public class AddAddressCommandServiceTest {
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(true);
         assertThrows(AccountDomainException.class, () -> commandService.execute(command));
+        verifyNoInteractions(addressPort);
     }
 }
