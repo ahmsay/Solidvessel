@@ -12,11 +12,10 @@ import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.payment.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.ResultType;
+import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,8 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-public class AcceptPaymentCommandServiceTest {
+public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
 
     @Mock
     private CartPort cartPort;

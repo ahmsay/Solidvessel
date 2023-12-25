@@ -2,4 +2,11 @@ plugins {
     id 'java'
 }
 
+dependencies {
+    implementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
+    runtimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
+    implementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    implementation "org.mockito:mockito-junit-jupiter:$rootProject.mockitoVersion"
+}
+
 archivesBaseName = 'shared-domain'

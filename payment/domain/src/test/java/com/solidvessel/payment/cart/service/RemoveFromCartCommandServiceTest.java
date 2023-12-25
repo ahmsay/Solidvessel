@@ -6,10 +6,9 @@ import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.RemoveFromCartCommand;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.shared.service.ResultType;
+import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-public class RemoveFromCartCommandServiceTest {
+public class RemoveFromCartCommandServiceTest extends BaseUnitTest {
 
     @Mock
     private CartPort cartPort;

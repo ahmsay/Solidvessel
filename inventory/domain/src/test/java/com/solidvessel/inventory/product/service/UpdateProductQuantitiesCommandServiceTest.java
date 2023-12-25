@@ -6,10 +6,9 @@ import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.UpdateProductQuantitiesCommand;
 import com.solidvessel.shared.service.ResultType;
+import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-public class UpdateProductQuantitiesCommandServiceTest {
+public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
 
     @Mock
     private ProductPort productPort;

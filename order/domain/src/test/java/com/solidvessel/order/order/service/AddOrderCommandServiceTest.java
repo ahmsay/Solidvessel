@@ -4,17 +4,15 @@ import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
 import com.solidvessel.order.order.service.command.AddOrderCommand;
 import com.solidvessel.shared.service.ResultType;
+import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(MockitoExtension.class)
-public class AddOrderCommandServiceTest {
+public class AddOrderCommandServiceTest extends BaseUnitTest {
 
     @Mock
     private OrderPort orderPort;

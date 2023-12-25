@@ -6,10 +6,9 @@ import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.UpdateAddressCommand;
 import com.solidvessel.account.common.exception.AccountDomainException;
 import com.solidvessel.shared.service.ResultType;
+import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,8 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-public class UpdateAddressCommandServiceTest {
+public class UpdateAddressCommandServiceTest extends BaseUnitTest {
 
     @Mock
     private AddressPort addressPort;
