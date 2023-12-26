@@ -8,4 +8,5 @@ ext {
     keycloakVersion = "23.0.1"
     junitVersion = "5.10.1"
     mockitoVersion = "5.8.0"
+    set('testContainers.version', "1.19.3")
 }
