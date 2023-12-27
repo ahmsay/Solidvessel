@@ -1,6 +1,7 @@
 package com.solidvessel.order.integrationtest;
 
 import com.solidvessel.shared.Profiles;
+import com.solidvessel.shared.test.TestEntityHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,7 +18,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Repository.class}))
 @AutoConfigureTestDatabase(replace = NONE)
 @ActiveProfiles(Profiles.INTEGRATION_TEST)
-public class BaseDatabaseTest {
+public class BaseDatabaseTest extends TestEntityHelper {
 
     public static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:16.1")
             .withDatabaseName("order")
