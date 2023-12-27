@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="ahmsay" id="solidvessel-changeset-1">
+    <changeSet author="ahmsay" id="solidvessel-sql-1" context="sql">
         <sql>
             create sequence address_seq start 1 increment 1;
             create table address

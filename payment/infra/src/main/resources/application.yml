@@ -11,6 +11,7 @@ spring:
       timeout: 30000
   liquibase:
     change-log: classpath:/db/master.yaml
+    contexts: sql,data
 server:
   servlet:
     context-path: /payment

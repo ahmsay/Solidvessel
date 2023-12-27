@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="ahmsay" id="solidvessel-data-2">
+    <changeSet author="ahmsay" id="solidvessel-data-1" context="data">
         <sql>
             insert into address(customer_id, name, country, city, zipcode)
             values ('c908ce9d-faec-4570-b84d-71a4e77f2f4a', 'home', 'uk', 'birmingham', '26593');
