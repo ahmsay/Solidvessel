@@ -1,0 +1,6 @@
+ignore:
+- "account/infra/src/main/java/com/solidvessel/account/configuration"
+- "inventory/infra/src/main/java/com/solidvessel/account/configuration"
+- "order/infra/src/main/java/com/solidvessel/account/configuration"
+- "payment/infra/src/main/java/com/solidvessel/account/configuration"
+- "*Application.java"
