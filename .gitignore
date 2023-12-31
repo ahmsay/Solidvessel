@@ -21,3 +21,4 @@
 !.gitignore
 !**/*.md
 !.postman/**
+!codecov.yml
