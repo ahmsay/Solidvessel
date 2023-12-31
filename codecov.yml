@@ -3,4 +3,4 @@ ignore:
 - "inventory/infra/src/main/java/com/solidvessel/inventory/configuration"
 - "order/infra/src/main/java/com/solidvessel/order/configuration"
 - "payment/infra/src/main/java/com/solidvessel/payment/configuration"
-- "*Application.java"
+- "**/*Application.java"
