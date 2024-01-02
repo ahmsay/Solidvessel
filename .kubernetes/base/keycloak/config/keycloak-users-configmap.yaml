@@ -121,7 +121,7 @@ data:
             }
           ],
           "realmRoles": [
-            "ADMIN",
+            "MANAGER",
             "default-roles-solidvessel"
           ]
         }

@@ -23,19 +23,19 @@ public class OrderController {
     private final CustomerQueryPort customerQueryPort;
     private final PaymentQueryPort paymentQueryPort;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
     public List<OrderDataModel> getAll() {
         return orderQueryPort.getAll();
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public OrderDataModel getById(@PathVariable final Long id) {
         return orderQueryPort.getById(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public OrderDetailDataModel getDetailById(@PathVariable final Long id) {
         OrderDataModel order = orderQueryPort.getById(id);
@@ -44,7 +44,7 @@ public class OrderController {
         return OrderDetailDataModel.from(order, customer, payment);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
     public List<OrderDataModel> getByCustomerId(@PathVariable final String customerId) {
         return orderQueryPort.getByCustomerId(customerId);

@@ -26,19 +26,19 @@ public class PaymentController {
     private final CustomerQueryPort customerQueryPort;
     private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
     public List<PaymentDataModel> getAll() {
         return paymentQueryPort.getAll();
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public PaymentDataModel getById(@PathVariable final Long id) {
         return paymentQueryPort.getById(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public PaymentDetailDataModel getDetailById(@PathVariable final Long id) {
         PaymentDataModel payment = paymentQueryPort.getById(id);
@@ -46,7 +46,7 @@ public class PaymentController {
         return PaymentDetailDataModel.from(payment, customer);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
     public List<PaymentDataModel> getByCustomerId(@PathVariable final String customerId) {
         return paymentQueryPort.getByCustomerId(customerId);

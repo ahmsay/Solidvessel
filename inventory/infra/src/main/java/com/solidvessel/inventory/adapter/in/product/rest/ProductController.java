@@ -39,7 +39,7 @@ public class ProductController {
         return productQueryPort.getByIds(ids);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping()
     public OperationResult add(@RequestBody @Valid final AddProductRequest request) {
         return addProductCommandService.execute(request.toCommand());

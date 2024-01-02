@@ -8,7 +8,7 @@
   "roles": {
     "realm": [
       {
-        "name": "ADMIN",
+        "name": "MANAGER",
         "description": ""
       },
       {

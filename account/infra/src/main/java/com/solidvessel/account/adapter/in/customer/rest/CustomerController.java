@@ -25,19 +25,19 @@ public class CustomerController {
     private final OrderQueryPort orderQueryPort;
     private final PaymentQueryPort paymentQueryPort;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
     public List<CustomerDataModel> getAll() {
         return customerQueryPort.getAll();
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerDataModel getById(@PathVariable final String id) {
         return customerQueryPort.getById(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public CustomerDetailDataModel getDetailById(@PathVariable final String id) {
         CustomerDataModel customer = customerQueryPort.getById(id);
