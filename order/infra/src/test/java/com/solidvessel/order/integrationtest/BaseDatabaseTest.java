@@ -1,7 +1,7 @@
 package com.solidvessel.order.integrationtest;
 
 import com.solidvessel.shared.Profiles;
-import com.solidvessel.shared.test.TestEntityHelper;
+import com.solidvessel.shared.test.database.TestEntityHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
