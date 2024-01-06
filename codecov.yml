@@ -2,3 +2,4 @@ ignore:
 - "**/configuration"
 - "**/*Application.java"
 - "**/RootController.java"
+- "**/*EventConfig.java"
