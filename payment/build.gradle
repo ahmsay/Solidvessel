@@ -1,7 +1,19 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 dependencies {
     implementation project(':payment:infra')
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }
