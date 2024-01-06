@@ -2,7 +2,10 @@ package com.solidvessel.shared.test.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.solidvessel.shared.Profiles;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MvcResult;
@@ -14,7 +17,14 @@ import java.nio.charset.StandardCharsets;
 @Import(TestSecurityFilterConfig.class)
 public class BaseControllerTest {
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper;
+
+    @PostConstruct
+    public void configureObjectMapper() {
+        objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
 
     public String bodyOf(final MvcResult mvcResult) {
         try {
