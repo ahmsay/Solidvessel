@@ -1,6 +1,6 @@
 package com.solidvessel.payment.product.service;
 
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.shared.service.DomainComponent;
 import lombok.RequiredArgsConstructor;
 
@@ -11,8 +11,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ProductQuantityDomainService {
 
-    public boolean areQuantitiesAvailable(Map<Long, Integer> productsInCart, List<ProductDataModel> productsFromInventory) {
+    public boolean areQuantitiesAvailable(Map<Long, Integer> productsInCart, List<Product> productsFromInventory) {
         return productsFromInventory.stream()
-                .noneMatch(productFromInventory -> productsInCart.get(productFromInventory.id()) > productFromInventory.quantity());
+                .noneMatch(productFromInventory -> productsInCart.get(productFromInventory.getId()) > productFromInventory.getQuantity());
     }
 }

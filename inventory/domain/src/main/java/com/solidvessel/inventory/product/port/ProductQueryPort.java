@@ -1,20 +1,16 @@
 package com.solidvessel.inventory.product.port;
 
-import com.solidvessel.inventory.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.product.model.Product;
 
 import java.util.List;
-import java.util.Set;
 
 public interface ProductQueryPort {
 
-    List<ProductDataModel> getAll();
+    List<Product> getAll();
 
-    ProductDataModel getById(Long id);
+    Product getById(Long id);
 
-    List<ProductDataModel> getByIds(List<Long> ids);
-
-    List<Product> getByIds(Set<Long> ids);
+    List<Product> getByIds(List<Long> ids);
 
     boolean isAvailable(Long id, int quantity);
 }

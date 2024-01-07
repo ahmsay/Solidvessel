@@ -1,6 +1,6 @@
 package com.solidvessel.payment.adapter.out.customer.rest;
 
-import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
+import com.solidvessel.payment.customer.model.Customer;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -16,7 +16,7 @@ public class CustomerRestAdapter implements CustomerQueryPort {
     private final RealmResource realm;
 
     @Override
-    public CustomerDataModel getCustomerOfPayment(String customerId) {
+    public Customer getCustomerOfPayment(String customerId) {
         return circuitBreakerFactory.create("customerCircuitBreaker")
                 .run(() -> {
                     UserRepresentation user = realm.users().get(customerId).toRepresentation();

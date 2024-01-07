@@ -24,8 +24,8 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
         persistEntity(payment1);
         persistEntity(payment2);
         var payments = paymentDBQueryAdapter.getAll();
-        assertEquals(60D, payments.getFirst().totalCharge());
-        assertEquals("scissors", payments.get(1).products().getFirst().name());
+        assertEquals(60D, payments.getFirst().getTotalPrice());
+        assertEquals("scissors", payments.get(1).getProducts().getFirst().getName());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
         var product = new ProductEmbeddable(1L, 2, "phone", 500D);
         var payment = new PaymentJpaEntity(null, "123", List.of(product), 1000D);
         persistEntity(payment);
-        assertEquals("123", paymentDBQueryAdapter.getById(payment.getId()).customerId());
+        assertEquals("123", paymentDBQueryAdapter.getById(payment.getId()).getCustomerId());
     }
 
     @Test
@@ -42,6 +42,6 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
         var payment = new PaymentJpaEntity(null, "789", List.of(product), 9D);
         persistEntity(payment);
         var payments = paymentDBQueryAdapter.getByCustomerId("789");
-        assertEquals(3, payments.getFirst().products().getFirst().quantity());
+        assertEquals(3, payments.getFirst().getProducts().getFirst().getQuantity());
     }
 }

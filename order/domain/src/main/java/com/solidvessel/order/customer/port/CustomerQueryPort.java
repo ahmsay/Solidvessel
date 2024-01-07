@@ -1,8 +1,8 @@
 package com.solidvessel.order.customer.port;
 
-import com.solidvessel.order.customer.datamodel.CustomerDataModel;
+import com.solidvessel.order.customer.model.Customer;
 
 public interface CustomerQueryPort {
 
-    CustomerDataModel getCustomerOfOrder(String customerId);
+    Customer getCustomerOfOrder(String customerId);
 }

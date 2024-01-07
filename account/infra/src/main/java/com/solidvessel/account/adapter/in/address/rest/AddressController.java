@@ -31,7 +31,7 @@ public class AddressController {
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
     public List<AddressDataModel> getAddresses() {
-        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId());
+        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId()).stream().map(AddressDataModel::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

@@ -2,6 +2,7 @@ package com.solidvessel.inventory.adapter.in.product.rest;
 
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.product.datamodel.ProductDataModel;
+import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
@@ -40,33 +41,33 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getAllProducts() throws Exception {
-        var products = List.of(new ProductDataModel(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10));
+        var products = List.of(new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10));
         when(productQueryPort.getAll()).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products), bodyOf(mvcResult));
+        assertEquals(bodyOf(products.stream().map(ProductDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockCustomer
     public void getProductById() throws Exception {
-        var product = new ProductDataModel(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10);
+        var product = new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10);
         when(productQueryPort.getById(1L)).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(product), bodyOf(mvcResult));
+        assertEquals(bodyOf(ProductDataModel.from(product)), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockCustomer
     public void getProductsByIds() throws Exception {
         var products = List.of(
-                new ProductDataModel(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10),
-                new ProductDataModel(2L, "shirt", 20D, ProductCategory.CLOTHING, 5)
+                new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10),
+                new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 5)
         );
         when(productQueryPort.getByIds(List.of(1L, 2L))).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
@@ -74,7 +75,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .queryParam("ids", "1", "2")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products), bodyOf(mvcResult));
+        assertEquals(bodyOf(products.stream().map(ProductDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test

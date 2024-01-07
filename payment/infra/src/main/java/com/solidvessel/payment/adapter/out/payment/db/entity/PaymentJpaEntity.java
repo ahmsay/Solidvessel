@@ -1,6 +1,5 @@
 package com.solidvessel.payment.adapter.out.payment.db.entity;
 
-import com.solidvessel.payment.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.payment.model.Payment;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -32,11 +31,11 @@ public class PaymentJpaEntity {
     @NotNull
     private Double totalPrice;
 
-    public PaymentDataModel toDataModel() {
-        return new PaymentDataModel(
+    public Payment toDomainModel() {
+        return new Payment(
                 id,
                 customerId,
-                products.stream().map(ProductEmbeddable::toDataModel).toList(),
+                products.stream().map(ProductEmbeddable::toDomainModel).toList(),
                 totalPrice
         );
     }

@@ -7,7 +7,7 @@ import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.payment.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.event.EventPublisher;
@@ -64,9 +64,9 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
         Cart cart = new Cart(1L, "123", productQuantities);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
 
-        List<ProductDataModel> productsFromInventory = new ArrayList<>() {{
-            add(new ProductDataModel(1L, 5, "laptop", 234D));
-            add(new ProductDataModel(4L, 9, "knife", 5D));
+        List<Product> productsFromInventory = new ArrayList<>() {{
+            add(new Product(1L, 5, "laptop", 234D));
+            add(new Product(4L, 9, "knife", 5D));
         }};
         when(productQueryPort.getProductsOfCart(cart.getProductIds())).thenReturn(productsFromInventory);
 
@@ -92,8 +92,8 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
         Cart cart = new Cart(1L, "123", productQuantities);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
 
-        List<ProductDataModel> productsFromInventory = new ArrayList<>() {{
-            add(new ProductDataModel(1L, 5, "laptop", 234D));
+        List<Product> productsFromInventory = new ArrayList<>() {{
+            add(new Product(1L, 5, "laptop", 234D));
         }};
         when(productQueryPort.getProductsOfCart(cart.getProductIds())).thenReturn(productsFromInventory);
         verifyNoInteractions(cartPort, paymentPort, paymentSavedEventPublisher);

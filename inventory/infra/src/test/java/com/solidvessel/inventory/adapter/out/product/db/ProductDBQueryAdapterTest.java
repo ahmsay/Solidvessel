@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,22 +19,22 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
     public void getAll() {
         persistEntity(new ProductJpaEntity(null, "macbook", 1200D, ProductCategory.ELECTRONICS, 3));
         var products = productDBQueryAdapter.getAll();
-        assertEquals("macbook", products.getFirst().name());
+        assertEquals("macbook", products.getFirst().getName());
     }
 
     @Test
     public void getById() {
         var productJpaEntity = persistEntity(new ProductJpaEntity(null, "macbook", 1200D, ProductCategory.ELECTRONICS, 3));
         var product = productDBQueryAdapter.getById(productJpaEntity.getId());
-        assertEquals("macbook", product.name());
+        assertEquals("macbook", product.getName());
     }
 
     @Test
-    public void getDataModelsByIds() {
+    public void getByIds() {
         var productJpaEntity1 = persistEntity(new ProductJpaEntity(null, "macbook", 1200D, ProductCategory.ELECTRONICS, 3));
         var productJpaEntity2 = persistEntity(new ProductJpaEntity(null, "shorts", 50D, ProductCategory.CLOTHING, 5));
         var productJpaEntity3 = persistEntity(new ProductJpaEntity(null, "chair", 120D, ProductCategory.FURNITURE, 2));
-        var products = productDBQueryAdapter.getByIds(Set.of(productJpaEntity1.getId(), productJpaEntity2.getId(), productJpaEntity3.getId()));
+        var products = productDBQueryAdapter.getByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId(), productJpaEntity3.getId()));
         assertEquals(5, products.get(1).getQuantity());
     }
 
@@ -52,6 +51,6 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
         var productJpaEntity2 = persistEntity(new ProductJpaEntity(null, "shorts", 50D, ProductCategory.CLOTHING, 5));
         var productJpaEntity3 = persistEntity(new ProductJpaEntity(null, "chair", 120D, ProductCategory.FURNITURE, 2));
         var products = productDBQueryAdapter.getByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId(), productJpaEntity3.getId()));
-        assertEquals(5, products.get(1).quantity());
+        assertEquals(5, products.get(1).getQuantity());
     }
 }

@@ -2,7 +2,6 @@ package com.solidvessel.account.adapter.out.address.db;
 
 import com.solidvessel.account.adapter.out.address.db.entity.AddressJpaEntity;
 import com.solidvessel.account.adapter.out.address.db.repository.AddressRepository;
-import com.solidvessel.account.address.datamodel.AddressDataModel;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,8 +17,8 @@ public class AddressDBQueryAdapter implements AddressQueryPort {
     private final AddressRepository addressRepository;
 
     @Override
-    public List<AddressDataModel> getAddresses(String customerId) {
-        return addressRepository.findByCustomerId(customerId).stream().map(AddressJpaEntity::toDataModel).toList();
+    public List<Address> getAddresses(String customerId) {
+        return addressRepository.findByCustomerId(customerId).stream().map(AddressJpaEntity::toDomainModel).toList();
     }
 
     @Override

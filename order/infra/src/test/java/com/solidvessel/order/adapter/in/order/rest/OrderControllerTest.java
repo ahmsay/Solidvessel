@@ -1,12 +1,13 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
-import com.solidvessel.order.customer.datamodel.CustomerDataModel;
+import com.solidvessel.order.customer.model.Customer;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
 import com.solidvessel.order.order.datamodel.OrderDataModel;
 import com.solidvessel.order.order.datamodel.OrderDetailDataModel;
+import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
-import com.solidvessel.order.payment.datamodel.PaymentDataModel;
+import com.solidvessel.order.payment.model.Payment;
 import com.solidvessel.order.payment.port.PaymentQueryPort;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
@@ -43,33 +44,33 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getAllOrders() throws Exception {
-        var orders = List.of(new OrderDataModel(1L, OrderStatus.DELIVERED, "123", 1L));
+        var orders = List.of(new Order(1L, OrderStatus.DELIVERED, "123", 1L));
         when(orderQueryPort.getAll()).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(OrderDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getOrderById() throws Exception {
-        var order = new OrderDataModel(1L, OrderStatus.DELIVERED, "123", 1L);
+        var order = new Order(1L, OrderStatus.DELIVERED, "123", 1L);
         when(orderQueryPort.getById(1L)).thenReturn(order);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(order), bodyOf(mvcResult));
+        assertEquals(bodyOf(OrderDataModel.from(order)), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getOrderDetailById() throws Exception {
-        var order = new OrderDataModel(1L, OrderStatus.DELIVERED, "123", 1L);
-        var customer = new CustomerDataModel("123", "lorne", "malvo");
-        var payment = new PaymentDataModel(1L, 105D);
+        var order = new Order(1L, OrderStatus.DELIVERED, "123", 1L);
+        var customer = new Customer("123", "lorne", "malvo");
+        var payment = new Payment(1L, 105D);
         var orderDetail = OrderDetailDataModel.from(order, customer, payment);
         when(orderQueryPort.getById(1L)).thenReturn(order);
         when(customerQueryPort.getCustomerOfOrder("123")).thenReturn(customer);
@@ -84,12 +85,12 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getOrderByCustomerId() throws Exception {
-        var orders = List.of(new OrderDataModel(1L, OrderStatus.DELIVERED, "123", 1L));
+        var orders = List.of(new Order(1L, OrderStatus.DELIVERED, "123", 1L));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(OrderDataModel::from).toList()), bodyOf(mvcResult));
     }
 }

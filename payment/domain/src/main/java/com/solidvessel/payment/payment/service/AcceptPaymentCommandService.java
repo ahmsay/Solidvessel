@@ -7,7 +7,7 @@ import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.payment.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.event.EventPublisher;
@@ -35,7 +35,7 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         String customerId = command.customerId();
         Cart cart = cartQueryPort.getByCustomerId(customerId);
         checkIfTheCartIsEmpty(cart);
-        List<ProductDataModel> productsFromInventory = productQueryPort.getProductsOfCart(cart.getProductIds());
+        List<Product> productsFromInventory = productQueryPort.getProductsOfCart(cart.getProductIds());
         checkIfProductsAreAvailable(cart, productsFromInventory);
         Long paymentId = savePayment(customerId, productsFromInventory, cart);
         var productQuantities = cart.getProductQuantities();
@@ -50,13 +50,13 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         }
     }
 
-    private void checkIfProductsAreAvailable(Cart cart, List<ProductDataModel> productsFromInventory) {
+    private void checkIfProductsAreAvailable(Cart cart, List<Product> productsFromInventory) {
         if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProductQuantities(), productsFromInventory)) {
             throw new PaymentDomainException("Selected products are not available with specified quantity.");
         }
     }
 
-    private Long savePayment(String customerId, List<ProductDataModel> productsFromInventory, Cart cart) {
+    private Long savePayment(String customerId, List<Product> productsFromInventory, Cart cart) {
         Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProductQuantities());
         return paymentPort.save(payment);
     }

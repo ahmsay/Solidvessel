@@ -22,7 +22,7 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Upd
     @Override
     public OperationResult execute(UpdateProductQuantitiesCommand command) {
         var productQuantities = command.productQuantities();
-        List<Product> products = productQueryPort.getByIds(productQuantities.keySet());
+        List<Product> products = productQueryPort.getByIds(productQuantities.keySet().stream().toList());
         products.forEach(product -> {
             int boughtQuantity = productQuantities.get(product.getId());
             product.decreaseQuantity(boughtQuantity);

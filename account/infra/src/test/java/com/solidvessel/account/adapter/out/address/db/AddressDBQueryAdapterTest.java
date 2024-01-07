@@ -18,8 +18,8 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
         persistEntity(new AddressJpaEntity(null, "123", "home", "norway", "oslo", "5843"));
         persistEntity(new AddressJpaEntity(null, "123", "work", "finland", "helsinki", "4757"));
         var addresses = addressDBQueryAdapter.getAddresses("123");
-        assertEquals(addresses.getFirst().name(), "home");
-        assertEquals(addresses.get(1).name(), "work");
+        assertEquals(addresses.getFirst().getName(), "home");
+        assertEquals(addresses.get(1).getName(), "work");
     }
 
     @Test

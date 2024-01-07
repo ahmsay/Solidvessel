@@ -1,6 +1,5 @@
 package com.solidvessel.order.adapter.out.order.db.entity;
 
-import com.solidvessel.order.order.datamodel.OrderDataModel;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import jakarta.persistence.*;
@@ -30,8 +29,8 @@ public class OrderJpaEntity {
     @NotNull
     private Long paymentId;
 
-    public OrderDataModel toDataModel() {
-        return new OrderDataModel(id, status, customerId, paymentId);
+    public Order toDomainModel() {
+        return new Order(id, status, customerId, paymentId);
     }
 
     public static OrderJpaEntity from(Order order) {

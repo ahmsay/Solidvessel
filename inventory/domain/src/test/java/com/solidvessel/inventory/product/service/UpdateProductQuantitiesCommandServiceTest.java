@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -38,7 +37,7 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         productQuantities.put(3L, 2);
         var command = new UpdateProductQuantitiesCommand(productQuantities);
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort);
-        when(productQueryPort.getByIds(Set.of(1L, 3L))).thenReturn(retrieveProducts());
+        when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
         var operationResult = commandService.execute(command);
         verify(productPort).saveProducts(List.of(product1, product2));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());

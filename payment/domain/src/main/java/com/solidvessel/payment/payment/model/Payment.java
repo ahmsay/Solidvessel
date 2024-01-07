@@ -1,6 +1,6 @@
 package com.solidvessel.payment.payment.model;
 
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,17 +13,17 @@ public class Payment {
 
     private Long id;
     private String customerId;
-    private List<ProductDataModel> products;
+    private List<Product> products;
     private Double totalPrice;
 
-    public static Payment newPayment(String customerId, List<ProductDataModel> productsFromInventory, Map<Long, Integer> productsInCart) {
-        List<ProductDataModel> soldProducts = productsFromInventory.stream()
-                .map(product -> new ProductDataModel(product.id(), productsInCart.get(product.id()), product.name(), product.price())).toList();
+    public static Payment newPayment(String customerId, List<Product> productsFromInventory, Map<Long, Integer> productsInCart) {
+        List<Product> soldProducts = productsFromInventory.stream()
+                .map(product -> new Product(product.getId(), productsInCart.get(product.getId()), product.getName(), product.getPrice())).toList();
         return new Payment(
                 null,
                 customerId,
                 soldProducts,
-                soldProducts.stream().map(product -> product.price() * product.quantity()).reduce(0D, Double::sum)
+                soldProducts.stream().map(product -> product.getPrice() * product.getQuantity()).reduce(0D, Double::sum)
         );
     }
 }

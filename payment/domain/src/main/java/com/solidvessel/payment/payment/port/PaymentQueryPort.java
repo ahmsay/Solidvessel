@@ -1,14 +1,14 @@
 package com.solidvessel.payment.payment.port;
 
-import com.solidvessel.payment.payment.datamodel.PaymentDataModel;
+import com.solidvessel.payment.payment.model.Payment;
 
 import java.util.List;
 
 public interface PaymentQueryPort {
 
-    List<PaymentDataModel> getAll();
+    List<Payment> getAll();
 
-    PaymentDataModel getById(Long id);
+    Payment getById(Long id);
 
-    List<PaymentDataModel> getByCustomerId(String customerId);
+    List<Payment> getByCustomerId(String customerId);
 }

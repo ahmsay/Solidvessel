@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.customer.rest;
 
-import com.solidvessel.account.customer.datamodel.CustomerDataModel;
+import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -19,7 +19,7 @@ public class CustomerRestAdapter implements CustomerQueryPort {
     private final RealmResource realm;
 
     @Override
-    public List<CustomerDataModel> getAll() {
+    public List<Customer> getAll() {
         return circuitBreakerFactory.create("customerCircuitBreaker")
                 .run(() -> {
                     List<UserRepresentation> users = realm.users().list();
@@ -28,7 +28,7 @@ public class CustomerRestAdapter implements CustomerQueryPort {
     }
 
     @Override
-    public CustomerDataModel getById(String id) {
+    public Customer getById(String id) {
         return circuitBreakerFactory.create("customerCircuitBreaker")
                 .run(() -> {
                     UserRepresentation user = realm.users().get(id).toRepresentation();

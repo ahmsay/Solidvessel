@@ -1,13 +1,13 @@
 package com.solidvessel.account.adapter.out.customer.rest;
 
-import com.solidvessel.account.customer.datamodel.CustomerDataModel;
+import com.solidvessel.account.customer.model.Customer;
 import org.keycloak.representations.idm.UserRepresentation;
 
 import java.time.LocalDate;
 
 public class UserMapper {
 
-    public static CustomerDataModel mapToCustomer(UserRepresentation user) {
+    public static Customer mapToCustomer(UserRepresentation user) {
         var attributes = user.getAttributes();
         LocalDate birthDate = null;
         String phoneNumber = null;
@@ -22,7 +22,7 @@ public class UserMapper {
             }
         }
 
-        return new CustomerDataModel(
+        return new Customer(
                 user.getId(),
                 user.getFirstName(),
                 user.getLastName(),

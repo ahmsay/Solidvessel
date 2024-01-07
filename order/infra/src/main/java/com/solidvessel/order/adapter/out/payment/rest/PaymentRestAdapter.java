@@ -1,6 +1,6 @@
 package com.solidvessel.order.adapter.out.payment.rest;
 
-import com.solidvessel.order.payment.datamodel.PaymentDataModel;
+import com.solidvessel.order.payment.model.Payment;
 import com.solidvessel.order.payment.port.PaymentQueryPort;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +15,10 @@ public class PaymentRestAdapter implements PaymentQueryPort {
     private final PaymentRestClient paymentRestClient;
 
     @Override
-    public PaymentDataModel getPaymentOfOrder(Long paymentId) {
+    public Payment getPaymentOfOrder(Long paymentId) {
         String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("paymentCircuitBreaker")
-                .run(() -> paymentRestClient.getById(paymentId, token),
+                .run(() -> paymentRestClient.getById(paymentId, token).toDomainModel(),
                         throwable -> null);
     }
 }

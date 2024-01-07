@@ -2,10 +2,11 @@ package com.solidvessel.account.adapter.in.customer.rest;
 
 import com.solidvessel.account.customer.datamodel.CustomerDataModel;
 import com.solidvessel.account.customer.datamodel.CustomerDetailDataModel;
+import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
-import com.solidvessel.account.order.datamodel.OrderDataModel;
+import com.solidvessel.account.order.model.Order;
 import com.solidvessel.account.order.port.OrderQueryPort;
-import com.solidvessel.account.payment.datamodel.PaymentDataModel;
+import com.solidvessel.account.payment.model.Payment;
 import com.solidvessel.account.payment.port.PaymentQueryPort;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
@@ -43,33 +44,33 @@ public class CustomerControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getAllCustomers() throws Exception {
-        var customers = List.of(new CustomerDataModel("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274"));
+        var customers = List.of(new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274"));
         when(customerQueryPort.getAll()).thenReturn(customers);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(customers), bodyOf(mvcResult));
+        assertEquals(bodyOf(customers.stream().map(CustomerDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getCustomerById() throws Exception {
-        var customer = new CustomerDataModel("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
+        var customer = new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
         when(customerQueryPort.getById("123")).thenReturn(customer);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(customer), bodyOf(mvcResult));
+        assertEquals(bodyOf(CustomerDataModel.from(customer)), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getCustomerDetailById() throws Exception {
-        var customer = new CustomerDataModel("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
-        var orders = List.of(new OrderDataModel(1L, "DELIVERED", 5L));
-        var payments = List.of(new PaymentDataModel(5L, 260D));
+        var customer = new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
+        var orders = List.of(new Order(1L, "DELIVERED", 5L));
+        var payments = List.of(new Payment(5L, 260D));
         var customerDetail = CustomerDetailDataModel.from(customer, orders, payments);
         when(customerQueryPort.getById("123")).thenReturn(customer);
         when(orderQueryPort.getOrdersOfCustomer("123")).thenReturn(orders);

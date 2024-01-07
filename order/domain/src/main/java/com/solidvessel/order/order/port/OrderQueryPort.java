@@ -1,14 +1,14 @@
 package com.solidvessel.order.order.port;
 
-import com.solidvessel.order.order.datamodel.OrderDataModel;
+import com.solidvessel.order.order.model.Order;
 
 import java.util.List;
 
 public interface OrderQueryPort {
 
-    List<OrderDataModel> getAll();
+    List<Order> getAll();
 
-    OrderDataModel getById(Long id);
+    Order getById(Long id);
 
-    List<OrderDataModel> getByCustomerId(String customerId);
+    List<Order> getByCustomerId(String customerId);
 }

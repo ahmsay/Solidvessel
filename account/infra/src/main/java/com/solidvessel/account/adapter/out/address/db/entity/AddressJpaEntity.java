@@ -1,6 +1,5 @@
 package com.solidvessel.account.adapter.out.address.db.entity;
 
-import com.solidvessel.account.address.datamodel.AddressDataModel;
 import com.solidvessel.account.address.model.Address;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -33,10 +32,6 @@ public class AddressJpaEntity {
 
     @NotNull
     private String zipcode;
-
-    public AddressDataModel toDataModel() {
-        return new AddressDataModel(name, country, city, zipcode);
-    }
 
     public Address toDomainModel() {
         return new Address(id, customerId, name, country, city, zipcode);

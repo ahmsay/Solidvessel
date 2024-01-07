@@ -2,10 +2,11 @@ package com.solidvessel.account.adapter.in.customer.rest;
 
 import com.solidvessel.account.customer.datamodel.CustomerDataModel;
 import com.solidvessel.account.customer.datamodel.CustomerDetailDataModel;
+import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
-import com.solidvessel.account.order.datamodel.OrderDataModel;
+import com.solidvessel.account.order.model.Order;
 import com.solidvessel.account.order.port.OrderQueryPort;
-import com.solidvessel.account.payment.datamodel.PaymentDataModel;
+import com.solidvessel.account.payment.model.Payment;
 import com.solidvessel.account.payment.port.PaymentQueryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,21 +29,21 @@ public class CustomerController {
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
     public List<CustomerDataModel> getAll() {
-        return customerQueryPort.getAll();
+        return customerQueryPort.getAll().stream().map(CustomerDataModel::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerDataModel getById(@PathVariable final String id) {
-        return customerQueryPort.getById(id);
+        return CustomerDataModel.from(customerQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public CustomerDetailDataModel getDetailById(@PathVariable final String id) {
-        CustomerDataModel customer = customerQueryPort.getById(id);
-        List<OrderDataModel> orders = orderQueryPort.getOrdersOfCustomer(id);
-        List<PaymentDataModel> payments = paymentQueryPort.getPaymentsOfCustomer(id);
+        Customer customer = customerQueryPort.getById(id);
+        List<Order> orders = orderQueryPort.getOrdersOfCustomer(id);
+        List<Payment> payments = paymentQueryPort.getPaymentsOfCustomer(id);
         return CustomerDetailDataModel.from(customer, orders, payments);
     }
 }

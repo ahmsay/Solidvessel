@@ -1,8 +1,8 @@
 package com.solidvessel.order.payment.port;
 
-import com.solidvessel.order.payment.datamodel.PaymentDataModel;
+import com.solidvessel.order.payment.model.Payment;
 
 public interface PaymentQueryPort {
 
-    PaymentDataModel getPaymentOfOrder(Long paymentId);
+    Payment getPaymentOfOrder(Long paymentId);
 }

@@ -4,6 +4,7 @@ import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest
 import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
 import com.solidvessel.account.address.datamodel.AddressDataModel;
+import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
 import com.solidvessel.account.address.service.RemoveAddressCommandService;
@@ -48,13 +49,13 @@ public class AddressControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getAddresses() throws Exception {
-        var addresses = List.of(new AddressDataModel("home", "turkey", "eskisehir", "26200"));
+        var addresses = List.of(new Address(1L, "123", "home", "turkey", "eskisehir", "26200"));
         when(addressQueryPort.getAddresses(anyString())).thenReturn(addresses);
         MvcResult mvcResult = mockMvc.perform(
                 get("/address")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(addresses), bodyOf(mvcResult));
+        assertEquals(bodyOf(addresses.stream().map(AddressDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test

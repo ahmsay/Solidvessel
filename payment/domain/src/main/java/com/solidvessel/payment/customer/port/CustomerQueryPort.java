@@ -1,8 +1,8 @@
 package com.solidvessel.payment.customer.port;
 
-import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
+import com.solidvessel.payment.customer.model.Customer;
 
 public interface CustomerQueryPort {
 
-    CustomerDataModel getCustomerOfPayment(String customerId);
+    Customer getCustomerOfPayment(String customerId);
 }

@@ -7,7 +7,7 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.AddToCartCommandService;
 import com.solidvessel.payment.cart.service.RemoveFromCartCommandService;
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
@@ -67,8 +67,8 @@ public class CartControllerTest extends BaseControllerTest {
         var productQuantities = Map.of(1L, 3, 2L, 5);
         var cart = new Cart(1L, "123", productQuantities);
         var products = List.of(
-                new ProductDataModel(1L, 3, "macbook", 1200D),
-                new ProductDataModel(2L, 2, "shirt", 20D)
+                new Product(1L, 3, "macbook", 1200D),
+                new Product(2L, 2, "shirt", 20D)
         );
         var cartDataModel = CartDataModel.from(cart, products);
         when(cartQueryPort.getByCustomerId(anyString())).thenReturn(cart);

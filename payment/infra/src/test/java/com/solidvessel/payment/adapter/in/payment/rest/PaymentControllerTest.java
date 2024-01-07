@@ -1,13 +1,14 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
-import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
+import com.solidvessel.payment.customer.model.Customer;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
 import com.solidvessel.payment.payment.datamodel.PaymentDataModel;
 import com.solidvessel.payment.payment.datamodel.PaymentDetailDataModel;
+import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -46,35 +47,35 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getAllPayments() throws Exception {
-        var products = List.of(new ProductDataModel(1L, 3, "table", 35D));
-        var payments = List.of(new PaymentDataModel(1L, "123", products, 105D));
+        var products = List.of(new Product(1L, 3, "table", 35D));
+        var payments = List.of(new Payment(1L, "123", products, 105D));
         when(paymentQueryPort.getAll()).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(PaymentDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getPaymentById() throws Exception {
-        var products = List.of(new ProductDataModel(1L, 3, "table", 35D));
-        var payment = new PaymentDataModel(1L, "123", products, 105D);
+        var products = List.of(new Product(1L, 3, "table", 35D));
+        var payment = new Payment(1L, "123", products, 105D);
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payment), bodyOf(mvcResult));
+        assertEquals(bodyOf(PaymentDataModel.from(payment)), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getPaymentDetailById() throws Exception {
-        var products = List.of(new ProductDataModel(1L, 3, "table", 35D));
-        var payment = new PaymentDataModel(1L, "123", products, 105D);
-        var customer = new CustomerDataModel("123", "lorne", "malvo");
+        var products = List.of(new Product(1L, 3, "table", 35D));
+        var payment = new Payment(1L, "123", products, 105D);
+        var customer = new Customer("123", "lorne", "malvo");
         var paymentDetail = PaymentDetailDataModel.from(payment, customer);
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         when(customerQueryPort.getCustomerOfPayment("123")).thenReturn(customer);
@@ -87,15 +88,15 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getPaymentByCustomerId() throws Exception {
-        var products = List.of(new ProductDataModel(1L, 3, "table", 35D));
-        var payments = List.of(new PaymentDataModel(1L, "123", products, 105D));
+    public void getPaymentsByCustomerId() throws Exception {
+        var products = List.of(new Product(1L, 3, "table", 35D));
+        var payments = List.of(new Payment(1L, "123", products, 105D));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(PaymentDataModel::from).toList()), bodyOf(mvcResult));
     }
 
     @Test

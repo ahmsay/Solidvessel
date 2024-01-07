@@ -1,6 +1,7 @@
 package com.solidvessel.payment.adapter.out.product.rest;
 
 import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,10 @@ public class ProductRestAdapter implements ProductQueryPort {
     private final ProductRestClient productRestClient;
 
     @Override
-    public List<ProductDataModel> getProductsOfCart(Set<Long> productIds) {
+    public List<Product> getProductsOfCart(Set<Long> productIds) {
         String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("productCircuitBreaker")
-                .run(() -> productRestClient.getByIds(productIds, token),
+                .run(() -> productRestClient.getByIds(productIds, token).stream().map(ProductDataModel::toDomainModel).toList(),
                         throwable -> new ArrayList<>());
     }
 

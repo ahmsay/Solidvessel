@@ -24,19 +24,19 @@ public class ProductController {
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
     public List<ProductDataModel> getAll() {
-        return productQueryPort.getAll();
+        return productQueryPort.getAll().stream().map(ProductDataModel::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/{id}")
     public ProductDataModel getById(@PathVariable final Long id) {
-        return productQueryPort.getById(id);
+        return ProductDataModel.from(productQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ids")
     public List<ProductDataModel> getByIds(@RequestParam final List<Long> ids) {
-        return productQueryPort.getByIds(ids);
+        return productQueryPort.getByIds(ids).stream().map(ProductDataModel::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

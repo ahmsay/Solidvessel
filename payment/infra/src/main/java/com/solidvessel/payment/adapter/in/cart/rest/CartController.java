@@ -7,7 +7,7 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.AddToCartCommand;
 import com.solidvessel.payment.cart.service.command.RemoveFromCartCommand;
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.CommandService;
@@ -39,7 +39,7 @@ public class CartController {
     @GetMapping
     public CartDataModel listCart() {
         Cart cart = cartQueryPort.getByCustomerId(SessionUtil.getCurrentUserId());
-        List<ProductDataModel> products = productQueryPort.getProductsOfCart(cart.getProductQuantities().keySet());
+        List<Product> products = productQueryPort.getProductsOfCart(cart.getProductQuantities().keySet());
         return CartDataModel.from(cart, products);
     }
 
