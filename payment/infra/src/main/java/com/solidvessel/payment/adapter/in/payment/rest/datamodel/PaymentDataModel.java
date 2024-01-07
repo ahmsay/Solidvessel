@@ -1,7 +1,7 @@
-package com.solidvessel.payment.payment.datamodel;
+package com.solidvessel.payment.adapter.in.payment.rest.datamodel;
 
+import com.solidvessel.payment.adapter.out.product.rest.datamodel.ProductDataModel;
 import com.solidvessel.payment.payment.model.Payment;
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
 
 import java.util.List;
 

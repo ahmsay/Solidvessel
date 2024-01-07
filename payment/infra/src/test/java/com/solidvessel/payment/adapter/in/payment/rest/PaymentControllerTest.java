@@ -1,10 +1,10 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
+import com.solidvessel.payment.adapter.in.payment.rest.datamodel.PaymentDataModel;
+import com.solidvessel.payment.adapter.in.payment.rest.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
 import com.solidvessel.payment.customer.model.Customer;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
-import com.solidvessel.payment.payment.datamodel.PaymentDataModel;
-import com.solidvessel.payment.payment.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;

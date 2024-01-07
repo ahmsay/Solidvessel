@@ -1,9 +1,9 @@
-package com.solidvessel.account.customer.datamodel;
+package com.solidvessel.account.adapter.in.customer.rest.datamodel;
 
+import com.solidvessel.account.adapter.out.order.rest.datamodel.OrderDataModel;
+import com.solidvessel.account.adapter.out.payment.rest.datamodel.PaymentDataModel;
 import com.solidvessel.account.customer.model.Customer;
-import com.solidvessel.account.order.datamodel.OrderDataModel;
 import com.solidvessel.account.order.model.Order;
-import com.solidvessel.account.payment.datamodel.PaymentDataModel;
 import com.solidvessel.account.payment.model.Payment;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.order.rest;
 
-import com.solidvessel.account.order.datamodel.OrderDataModel;
+import com.solidvessel.account.adapter.out.order.rest.datamodel.OrderDataModel;
 import com.solidvessel.shared.Profiles;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Profile;

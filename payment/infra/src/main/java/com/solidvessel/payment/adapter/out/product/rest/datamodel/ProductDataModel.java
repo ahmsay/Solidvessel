@@ -1,4 +1,4 @@
-package com.solidvessel.payment.product.datamodel;
+package com.solidvessel.payment.adapter.out.product.rest.datamodel;
 
 import com.solidvessel.payment.product.model.Product;
 

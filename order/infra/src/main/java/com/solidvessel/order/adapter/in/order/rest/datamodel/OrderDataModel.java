@@ -1,4 +1,4 @@
-package com.solidvessel.order.order.datamodel;
+package com.solidvessel.order.adapter.in.order.rest.datamodel;
 
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;

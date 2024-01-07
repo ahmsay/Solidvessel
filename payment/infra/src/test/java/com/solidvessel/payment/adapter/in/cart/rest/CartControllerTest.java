@@ -1,8 +1,8 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
+import com.solidvessel.payment.adapter.in.cart.rest.datamodel.CartDataModel;
 import com.solidvessel.payment.adapter.in.cart.rest.request.AddToCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
-import com.solidvessel.payment.cart.datamodel.CartDataModel;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.AddToCartCommandService;

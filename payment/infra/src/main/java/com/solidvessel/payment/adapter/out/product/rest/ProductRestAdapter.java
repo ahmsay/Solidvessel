@@ -1,6 +1,6 @@
 package com.solidvessel.payment.adapter.out.product.rest;
 
-import com.solidvessel.payment.product.datamodel.ProductDataModel;
+import com.solidvessel.payment.adapter.out.product.rest.datamodel.ProductDataModel;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
 import com.solidvessel.shared.security.SessionUtil;

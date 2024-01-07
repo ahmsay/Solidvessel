@@ -1,4 +1,4 @@
-package com.solidvessel.account.address.datamodel;
+package com.solidvessel.account.adapter.in.address.rest.datamodel;
 
 import com.solidvessel.account.address.model.Address;
 

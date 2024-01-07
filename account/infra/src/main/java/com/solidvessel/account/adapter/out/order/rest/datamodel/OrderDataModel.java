@@ -1,4 +1,4 @@
-package com.solidvessel.account.order.datamodel;
+package com.solidvessel.account.adapter.out.order.rest.datamodel;
 
 import com.solidvessel.account.order.model.Order;
 

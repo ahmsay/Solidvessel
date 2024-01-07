@@ -1,7 +1,7 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
+import com.solidvessel.inventory.adapter.in.product.rest.datamodel.ProductDataModel;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
-import com.solidvessel.inventory.product.datamodel.ProductDataModel;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;

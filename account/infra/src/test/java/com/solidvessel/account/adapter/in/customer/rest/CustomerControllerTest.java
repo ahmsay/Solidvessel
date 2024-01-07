@@ -1,7 +1,7 @@
 package com.solidvessel.account.adapter.in.customer.rest;
 
-import com.solidvessel.account.customer.datamodel.CustomerDataModel;
-import com.solidvessel.account.customer.datamodel.CustomerDetailDataModel;
+import com.solidvessel.account.adapter.in.customer.rest.datamodel.CustomerDataModel;
+import com.solidvessel.account.adapter.in.customer.rest.datamodel.CustomerDetailDataModel;
 import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
 import com.solidvessel.account.order.model.Order;

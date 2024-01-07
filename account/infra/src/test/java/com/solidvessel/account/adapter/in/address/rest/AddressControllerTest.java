@@ -1,9 +1,9 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
+import com.solidvessel.account.adapter.in.address.rest.datamodel.AddressDataModel;
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
-import com.solidvessel.account.address.datamodel.AddressDataModel;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;

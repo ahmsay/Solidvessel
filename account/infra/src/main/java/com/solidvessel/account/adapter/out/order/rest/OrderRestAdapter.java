@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.order.rest;
 
-import com.solidvessel.account.order.datamodel.OrderDataModel;
+import com.solidvessel.account.adapter.out.order.rest.datamodel.OrderDataModel;
 import com.solidvessel.account.order.model.Order;
 import com.solidvessel.account.order.port.OrderQueryPort;
 import com.solidvessel.shared.security.SessionUtil;

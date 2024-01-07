@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.payment.rest;
 
-import com.solidvessel.account.payment.datamodel.PaymentDataModel;
+import com.solidvessel.account.adapter.out.payment.rest.datamodel.PaymentDataModel;
 import com.solidvessel.shared.Profiles;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Profile;

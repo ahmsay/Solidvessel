@@ -1,6 +1,6 @@
-package com.solidvessel.payment.payment.datamodel;
+package com.solidvessel.payment.adapter.in.payment.rest.datamodel;
 
-import com.solidvessel.payment.customer.datamodel.CustomerDataModel;
+import com.solidvessel.payment.adapter.out.customer.rest.datamodel.CustomerDataModel;
 import com.solidvessel.payment.customer.model.Customer;
 import com.solidvessel.payment.payment.model.Payment;
 

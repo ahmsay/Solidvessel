@@ -1,6 +1,6 @@
-package com.solidvessel.payment.customer.datamodel;
+package com.solidvessel.order.adapter.out.customer.rest.datamodel;
 
-import com.solidvessel.payment.customer.model.Customer;
+import com.solidvessel.order.customer.model.Customer;
 
 public record CustomerDataModel(String id, String firstName, String lastName) {
 

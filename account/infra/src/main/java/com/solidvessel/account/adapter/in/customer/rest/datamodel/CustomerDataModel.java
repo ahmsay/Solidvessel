@@ -1,4 +1,4 @@
-package com.solidvessel.account.customer.datamodel;
+package com.solidvessel.account.adapter.in.customer.rest.datamodel;
 
 import com.solidvessel.account.customer.model.Customer;
 

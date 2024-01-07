@@ -1,9 +1,9 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.in.order.rest.datamodel.OrderDataModel;
+import com.solidvessel.order.adapter.in.order.rest.datamodel.OrderDetailDataModel;
 import com.solidvessel.order.customer.model.Customer;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
-import com.solidvessel.order.order.datamodel.OrderDataModel;
-import com.solidvessel.order.order.datamodel.OrderDetailDataModel;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.payment.model.Payment;
