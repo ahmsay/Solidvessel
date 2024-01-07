@@ -26,7 +26,11 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
     public void getById() {
         var productJpaEntity = persistEntity(new ProductJpaEntity(null, "macbook", 1200D, ProductCategory.ELECTRONICS, 3));
         var product = productDBQueryAdapter.getById(productJpaEntity.getId());
-        assertEquals("macbook", product.getName());
+        assertEquals(productJpaEntity.getId(), product.getId());
+        assertEquals(productJpaEntity.getName(), product.getName());
+        assertEquals(productJpaEntity.getQuantity(), product.getQuantity());
+        assertEquals(productJpaEntity.getCategory(), product.getCategory());
+        assertEquals(productJpaEntity.getPrice(), product.getPrice());
     }
 
     @Test

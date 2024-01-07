@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CartDBQueryAdapterTest extends BaseDatabaseTest {
 
@@ -17,10 +17,20 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getByCustomerId() {
-        var cartProduct = new CartProductEmbeddable(1L, 4);
-        var cartJpaEntity = new CartJpaEntity(null, "123", List.of(cartProduct));
-        persistEntity(cartJpaEntity);
+        var cartProductEmbeddable = new CartProductEmbeddable(1L, 4);
+        var cartJpaEntity = persistEntity(new CartJpaEntity(null, "123", List.of(cartProductEmbeddable)));
+        var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
+        assertEquals(cartJpaEntity.getId(), cart.getId());
+        assertEquals(cartJpaEntity.getCustomerId(), cart.getCustomerId());
+        var productQuantity = cart.getProductQuantities().get(cartProductEmbeddable.getProductId());
+        assertEquals(cartProductEmbeddable.getQuantity(), productQuantity);
+    }
+
+    @Test
+    public void getByCustomerIdEmptyCart() {
         var cart = cartDBQueryAdapter.getByCustomerId("123");
-        assertEquals(4, cart.getProductQuantities().get(1L));
+        assertNull(cart.getId());
+        assertEquals("123", cart.getCustomerId());
+        assertTrue(cart.isEmpty());
     }
 }

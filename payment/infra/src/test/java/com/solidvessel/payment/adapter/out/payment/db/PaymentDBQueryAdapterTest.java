@@ -30,10 +30,17 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getById() {
-        var product = new ProductEmbeddable(1L, 2, "phone", 500D);
-        var payment = new PaymentJpaEntity(null, "123", List.of(product), 1000D);
-        persistEntity(payment);
-        assertEquals("123", paymentDBQueryAdapter.getById(payment.getId()).getCustomerId());
+        var productEmbeddable = new ProductEmbeddable(1L, 2, "phone", 500D);
+        var paymentJpaEntity = persistEntity(new PaymentJpaEntity(null, "123", List.of(productEmbeddable), 1000D));
+        var payment = paymentDBQueryAdapter.getById(paymentJpaEntity.getId());
+        assertEquals(paymentJpaEntity.getId(), payment.getId());
+        assertEquals(paymentJpaEntity.getCustomerId(), payment.getCustomerId());
+        assertEquals(paymentJpaEntity.getTotalPrice(), payment.getTotalPrice());
+        var product = payment.getProducts().getFirst();
+        assertEquals(productEmbeddable.getProductId(), product.getId());
+        assertEquals(productEmbeddable.getName(), product.getName());
+        assertEquals(productEmbeddable.getPrice(), product.getPrice());
+        assertEquals(productEmbeddable.getQuantity(), product.getQuantity());
     }
 
     @Test

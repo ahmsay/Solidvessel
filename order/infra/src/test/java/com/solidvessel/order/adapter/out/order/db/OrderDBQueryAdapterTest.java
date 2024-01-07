@@ -24,8 +24,12 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getById() {
-        var order = persistEntity(new OrderJpaEntity(null, OrderStatus.DELIVERED, "123", 12L));
-        assertEquals(12L, orderDBQueryAdapter.getById(order.getId()).getPaymentId());
+        var orderJpaEntity = persistEntity(new OrderJpaEntity(null, OrderStatus.DELIVERED, "123", 12L));
+        var order = orderDBQueryAdapter.getById(orderJpaEntity.getId());
+        assertEquals(orderJpaEntity.getId(), order.getId());
+        assertEquals(orderJpaEntity.getCustomerId(), order.getCustomerId());
+        assertEquals(orderJpaEntity.getStatus(), order.getStatus());
+        assertEquals(orderJpaEntity.getPaymentId(), order.getPaymentId());
     }
 
     @Test
