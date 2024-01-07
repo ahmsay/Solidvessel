@@ -1,7 +1,7 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
-import com.solidvessel.order.adapter.in.order.rest.datamodel.OrderDataModel;
-import com.solidvessel.order.adapter.in.order.rest.datamodel.OrderDetailDataModel;
+import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
+import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.customer.model.Customer;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
 import com.solidvessel.order.order.model.Order;
@@ -50,7 +50,7 @@ public class OrderControllerTest extends BaseControllerTest {
                 get("/")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders.stream().map(OrderDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class OrderControllerTest extends BaseControllerTest {
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(OrderDataModel.from(order)), bodyOf(mvcResult));
+        assertEquals(bodyOf(OrderResponse.from(order)), bodyOf(mvcResult));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class OrderControllerTest extends BaseControllerTest {
         var order = new Order(1L, OrderStatus.DELIVERED, "123", 1L);
         var customer = new Customer("123", "lorne", "malvo");
         var payment = new Payment(1L, 105D);
-        var orderDetail = OrderDetailDataModel.from(order, customer, payment);
+        var orderDetail = OrderDetailResponse.from(order, customer, payment);
         when(orderQueryPort.getById(1L)).thenReturn(order);
         when(customerQueryPort.getCustomerOfOrder("123")).thenReturn(customer);
         when(paymentQueryPort.getPaymentOfOrder(1L)).thenReturn(payment);
@@ -91,6 +91,6 @@ public class OrderControllerTest extends BaseControllerTest {
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders.stream().map(OrderDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
     }
 }

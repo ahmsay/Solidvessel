@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.payment.rest;
 
-import com.solidvessel.account.adapter.out.payment.rest.datamodel.PaymentDataModel;
+import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.shared.Profiles;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Profile;
@@ -15,5 +15,5 @@ import java.util.List;
 public interface PaymentRestClient {
 
     @GetMapping("/ofCustomer/{customerId}")
-    List<PaymentDataModel> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
+    List<PaymentResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 }

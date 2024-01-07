@@ -1,8 +1,8 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
-import com.solidvessel.payment.adapter.in.cart.rest.datamodel.CartDataModel;
 import com.solidvessel.payment.adapter.in.cart.rest.request.AddToCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
+import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.AddToCartCommandService;
@@ -70,14 +70,14 @@ public class CartControllerTest extends BaseControllerTest {
                 new Product(1L, 3, "macbook", 1200D),
                 new Product(2L, 2, "shirt", 20D)
         );
-        var cartDataModel = CartDataModel.from(cart, products);
+        var cartResponse = CartResponse.from(cart, products);
         when(cartQueryPort.getByCustomerId(anyString())).thenReturn(cart);
         when(productQueryPort.getProductsOfCart(Set.of(1L, 2L))).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/cart")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(cartDataModel), bodyOf(mvcResult));
+        assertEquals(bodyOf(cartResponse), bodyOf(mvcResult));
     }
 
     @Test

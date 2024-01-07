@@ -1,7 +1,7 @@
 package com.solidvessel.account.adapter.in.customer.rest;
 
-import com.solidvessel.account.adapter.in.customer.rest.datamodel.CustomerDataModel;
-import com.solidvessel.account.adapter.in.customer.rest.datamodel.CustomerDetailDataModel;
+import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailResponse;
+import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;
 import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
 import com.solidvessel.account.order.model.Order;
@@ -50,7 +50,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                 get("/customer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(customers.stream().map(CustomerDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(customers.stream().map(CustomerResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                 get("/customer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(CustomerDataModel.from(customer)), bodyOf(mvcResult));
+        assertEquals(bodyOf(CustomerResponse.from(customer)), bodyOf(mvcResult));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CustomerControllerTest extends BaseControllerTest {
         var customer = new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
         var orders = List.of(new Order(1L, "DELIVERED", 5L));
         var payments = List.of(new Payment(5L, 260D));
-        var customerDetail = CustomerDetailDataModel.from(customer, orders, payments);
+        var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
         when(customerQueryPort.getById("123")).thenReturn(customer);
         when(orderQueryPort.getOrdersOfCustomer("123")).thenReturn(orders);
         when(paymentQueryPort.getPaymentsOfCustomer("123")).thenReturn(payments);

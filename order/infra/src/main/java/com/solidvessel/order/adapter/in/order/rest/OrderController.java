@@ -1,7 +1,7 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
-import com.solidvessel.order.adapter.in.order.rest.datamodel.OrderDataModel;
-import com.solidvessel.order.adapter.in.order.rest.datamodel.OrderDetailDataModel;
+import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
+import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.customer.model.Customer;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
 import com.solidvessel.order.order.model.Order;
@@ -26,28 +26,28 @@ public class OrderController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
-    public List<OrderDataModel> getAll() {
-        return orderQueryPort.getAll().stream().map(OrderDataModel::from).toList();
+    public List<OrderResponse> getAll() {
+        return orderQueryPort.getAll().stream().map(OrderResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
-    public OrderDataModel getById(@PathVariable final Long id) {
-        return OrderDataModel.from(orderQueryPort.getById(id));
+    public OrderResponse getById(@PathVariable final Long id) {
+        return OrderResponse.from(orderQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
-    public OrderDetailDataModel getDetailById(@PathVariable final Long id) {
+    public OrderDetailResponse getDetailById(@PathVariable final Long id) {
         Order order = orderQueryPort.getById(id);
         Customer customer = customerQueryPort.getCustomerOfOrder(order.getCustomerId());
         Payment payment = paymentQueryPort.getPaymentOfOrder(order.getPaymentId());
-        return OrderDetailDataModel.from(order, customer, payment);
+        return OrderDetailResponse.from(order, customer, payment);
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
-    public List<OrderDataModel> getByCustomerId(@PathVariable final String customerId) {
-        return orderQueryPort.getByCustomerId(customerId).stream().map(OrderDataModel::from).toList();
+    public List<OrderResponse> getByCustomerId(@PathVariable final String customerId) {
+        return orderQueryPort.getByCustomerId(customerId).stream().map(OrderResponse::from).toList();
     }
 }

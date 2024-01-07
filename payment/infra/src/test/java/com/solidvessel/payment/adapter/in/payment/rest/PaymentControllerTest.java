@@ -1,8 +1,8 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
-import com.solidvessel.payment.adapter.in.payment.rest.datamodel.PaymentDataModel;
-import com.solidvessel.payment.adapter.in.payment.rest.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
+import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentDetailResponse;
+import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
 import com.solidvessel.payment.customer.model.Customer;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
 import com.solidvessel.payment.payment.model.Payment;
@@ -54,7 +54,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(PaymentDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(PaymentDataModel.from(payment)), bodyOf(mvcResult));
+        assertEquals(bodyOf(PaymentResponse.from(payment)), bodyOf(mvcResult));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class PaymentControllerTest extends BaseControllerTest {
         var products = List.of(new Product(1L, 3, "table", 35D));
         var payment = new Payment(1L, "123", products, 105D);
         var customer = new Customer("123", "lorne", "malvo");
-        var paymentDetail = PaymentDetailDataModel.from(payment, customer);
+        var paymentDetail = PaymentDetailResponse.from(payment, customer);
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         when(customerQueryPort.getCustomerOfPayment("123")).thenReturn(customer);
         MvcResult mvcResult = mockMvc.perform(
@@ -96,7 +96,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(PaymentDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test

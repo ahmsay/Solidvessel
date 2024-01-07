@@ -1,12 +1,12 @@
-package com.solidvessel.inventory.adapter.in.product.rest.datamodel;
+package com.solidvessel.inventory.adapter.in.product.rest.response;
 
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 
-public record ProductDataModel(Long id, String name, Double price, ProductCategory category, int quantity) {
+public record ProductResponse(Long id, String name, Double price, ProductCategory category, int quantity) {
 
-    public static ProductDataModel from(Product product) {
-        return new ProductDataModel(
+    public static ProductResponse from(Product product) {
+        return new ProductResponse(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),

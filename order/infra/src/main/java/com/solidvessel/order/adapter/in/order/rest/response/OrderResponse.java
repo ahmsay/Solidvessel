@@ -1,0 +1,11 @@
+package com.solidvessel.order.adapter.in.order.rest.response;
+
+import com.solidvessel.order.order.model.Order;
+import com.solidvessel.order.order.model.OrderStatus;
+
+public record OrderResponse(Long id, OrderStatus status, String customerId, Long paymentId) {
+
+    public static OrderResponse from(Order order) {
+        return new OrderResponse(order.getId(), order.getStatus(), order.getCustomerId(), order.getPaymentId());
+    }
+}

@@ -1,9 +1,9 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
-import com.solidvessel.account.adapter.in.address.rest.datamodel.AddressDataModel;
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
+import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.AddAddressCommand;
 import com.solidvessel.account.address.service.command.RemoveAddressCommand;
@@ -30,8 +30,8 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
-    public List<AddressDataModel> getAddresses() {
-        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId()).stream().map(AddressDataModel::from).toList();
+    public List<AddressResponse> getAddresses() {
+        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId()).stream().map(AddressResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

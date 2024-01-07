@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.order.rest;
 
-import com.solidvessel.account.adapter.out.order.rest.datamodel.OrderDataModel;
+import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.shared.Profiles;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Profile;
@@ -15,5 +15,5 @@ import java.util.List;
 public interface OrderRestClient {
 
     @GetMapping("/ofCustomer/{customerId}")
-    List<OrderDataModel> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
+    List<OrderResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 }

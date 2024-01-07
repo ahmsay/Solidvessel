@@ -1,7 +1,7 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
-import com.solidvessel.inventory.adapter.in.product.rest.datamodel.ProductDataModel;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
@@ -47,7 +47,7 @@ public class ProductControllerTest extends BaseControllerTest {
                 get("/product")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(ProductDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(products.stream().map(ProductResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ProductControllerTest extends BaseControllerTest {
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(ProductDataModel.from(product)), bodyOf(mvcResult));
+        assertEquals(bodyOf(ProductResponse.from(product)), bodyOf(mvcResult));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .queryParam("ids", "1", "2")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(ProductDataModel::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(products.stream().map(ProductResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test

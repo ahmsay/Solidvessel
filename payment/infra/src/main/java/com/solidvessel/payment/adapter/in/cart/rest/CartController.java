@@ -1,8 +1,8 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
-import com.solidvessel.payment.adapter.in.cart.rest.datamodel.CartDataModel;
 import com.solidvessel.payment.adapter.in.cart.rest.request.AddToCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
+import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.AddToCartCommand;
@@ -37,10 +37,10 @@ public class CartController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping
-    public CartDataModel listCart() {
+    public CartResponse listCart() {
         Cart cart = cartQueryPort.getByCustomerId(SessionUtil.getCurrentUserId());
         List<Product> products = productQueryPort.getProductsOfCart(cart.getProductQuantities().keySet());
-        return CartDataModel.from(cart, products);
+        return CartResponse.from(cart, products);
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.order.rest;
 
-import com.solidvessel.account.adapter.out.order.rest.datamodel.OrderDataModel;
+import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.order.model.Order;
 import com.solidvessel.account.order.port.OrderQueryPort;
 import com.solidvessel.shared.security.SessionUtil;
@@ -21,7 +21,7 @@ public class OrderRestAdapter implements OrderQueryPort {
     public List<Order> getOrdersOfCustomer(final String customerId) {
         String token = SessionUtil.getCurrentUserToken();
         return circuitBreakerFactory.create("orderCircuitBreaker")
-                .run(() -> orderRestClient.getByCustomerId(customerId, token).stream().map(OrderDataModel::toDomainModel).toList(),
+                .run(() -> orderRestClient.getByCustomerId(customerId, token).stream().map(OrderResponse::toDomainModel).toList(),
                         throwable -> new ArrayList<>());
     }
 }

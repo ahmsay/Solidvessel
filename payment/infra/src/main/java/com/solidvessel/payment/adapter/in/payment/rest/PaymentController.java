@@ -1,8 +1,8 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
-import com.solidvessel.payment.adapter.in.payment.rest.datamodel.PaymentDataModel;
-import com.solidvessel.payment.adapter.in.payment.rest.datamodel.PaymentDetailDataModel;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
+import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentDetailResponse;
+import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
 import com.solidvessel.payment.customer.model.Customer;
 import com.solidvessel.payment.customer.port.CustomerQueryPort;
 import com.solidvessel.payment.payment.model.Payment;
@@ -29,28 +29,28 @@ public class PaymentController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
-    public List<PaymentDataModel> getAll() {
-        return paymentQueryPort.getAll().stream().map(PaymentDataModel::from).toList();
+    public List<PaymentResponse> getAll() {
+        return paymentQueryPort.getAll().stream().map(PaymentResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
-    public PaymentDataModel getById(@PathVariable final Long id) {
-        return PaymentDataModel.from(paymentQueryPort.getById(id));
+    public PaymentResponse getById(@PathVariable final Long id) {
+        return PaymentResponse.from(paymentQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
-    public PaymentDetailDataModel getDetailById(@PathVariable final Long id) {
+    public PaymentDetailResponse getDetailById(@PathVariable final Long id) {
         Payment payment = paymentQueryPort.getById(id);
         Customer customer = customerQueryPort.getCustomerOfPayment(payment.getCustomerId());
-        return PaymentDetailDataModel.from(payment, customer);
+        return PaymentDetailResponse.from(payment, customer);
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
-    public List<PaymentDataModel> getByCustomerId(@PathVariable final String customerId) {
-        return paymentQueryPort.getByCustomerId(customerId).stream().map(PaymentDataModel::from).toList();
+    public List<PaymentResponse> getByCustomerId(@PathVariable final String customerId) {
+        return paymentQueryPort.getByCustomerId(customerId).stream().map(PaymentResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

@@ -1,7 +1,7 @@
 package com.solidvessel.account.adapter.in.customer.rest;
 
-import com.solidvessel.account.adapter.in.customer.rest.datamodel.CustomerDataModel;
-import com.solidvessel.account.adapter.in.customer.rest.datamodel.CustomerDetailDataModel;
+import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailResponse;
+import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;
 import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
 import com.solidvessel.account.order.model.Order;
@@ -28,22 +28,22 @@ public class CustomerController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
-    public List<CustomerDataModel> getAll() {
-        return customerQueryPort.getAll().stream().map(CustomerDataModel::from).toList();
+    public List<CustomerResponse> getAll() {
+        return customerQueryPort.getAll().stream().map(CustomerResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
-    public CustomerDataModel getById(@PathVariable final String id) {
-        return CustomerDataModel.from(customerQueryPort.getById(id));
+    public CustomerResponse getById(@PathVariable final String id) {
+        return CustomerResponse.from(customerQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
-    public CustomerDetailDataModel getDetailById(@PathVariable final String id) {
+    public CustomerDetailResponse getDetailById(@PathVariable final String id) {
         Customer customer = customerQueryPort.getById(id);
         List<Order> orders = orderQueryPort.getOrdersOfCustomer(id);
         List<Payment> payments = paymentQueryPort.getPaymentsOfCustomer(id);
-        return CustomerDetailDataModel.from(customer, orders, payments);
+        return CustomerDetailResponse.from(customer, orders, payments);
     }
 }

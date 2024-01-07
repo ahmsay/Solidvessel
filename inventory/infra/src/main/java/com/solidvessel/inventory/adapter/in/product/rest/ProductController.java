@@ -1,7 +1,7 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
-import com.solidvessel.inventory.adapter.in.product.rest.datamodel.ProductDataModel;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.AddProductCommand;
 import com.solidvessel.shared.service.CommandService;
@@ -23,20 +23,20 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
-    public List<ProductDataModel> getAll() {
-        return productQueryPort.getAll().stream().map(ProductDataModel::from).toList();
+    public List<ProductResponse> getAll() {
+        return productQueryPort.getAll().stream().map(ProductResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/{id}")
-    public ProductDataModel getById(@PathVariable final Long id) {
-        return ProductDataModel.from(productQueryPort.getById(id));
+    public ProductResponse getById(@PathVariable final Long id) {
+        return ProductResponse.from(productQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ids")
-    public List<ProductDataModel> getByIds(@RequestParam final List<Long> ids) {
-        return productQueryPort.getByIds(ids).stream().map(ProductDataModel::from).toList();
+    public List<ProductResponse> getByIds(@RequestParam final List<Long> ids) {
+        return productQueryPort.getByIds(ids).stream().map(ProductResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
