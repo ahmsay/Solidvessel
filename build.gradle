@@ -9,4 +9,5 @@ ext {
     junitVersion = "5.10.1"
     mockitoVersion = "5.8.0"
     set('testContainers.version', "1.19.3")
+    springCloudContractVersion = "4.1.0"
 }
