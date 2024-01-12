@@ -65,3 +65,15 @@ jacocoTestReport {
         xml.required = true
     }
 }
+
+contracts {
+    contractsDslDir = file("src/test/resources/contracts")
+    packageWithBaseClasses = 'com.solidvessel.order.adapter.in.order.rest'
+    baseClassMappings {
+        baseClassMapping("order", "com.solidvessel.order.adapter.in.order.rest.OrderProducerContractTest")
+    }
+}
+
+contractTest {
+    useJUnitPlatform()
+}
