@@ -68,7 +68,7 @@ jacocoTestReport {
 
 contracts {
     contractsDslDir = file("src/test/resources/contracts")
-    packageWithBaseClasses = 'com.solidvessel.order.adapter.in.order.rest'
+    packageWithBaseClasses = 'com.solidvessel.order.adapter.in'
     baseClassMappings {
         baseClassMapping("order", "com.solidvessel.order.adapter.in.order.rest.OrderProducerContractTest")
     }
