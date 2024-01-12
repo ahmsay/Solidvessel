@@ -15,6 +15,22 @@ Contract.make {
         headers {
             contentType applicationJson()
         }
-        body('[{"id":1,"status":"DELIVERED","customerId":"123","paymentId":5},{"id":2,"status":"ON_THE_WAY","customerId":"123","paymentId":6}]')
+        body("""
+            [
+                {
+                    "id": 1,
+                    "status": "DELIVERED",
+                    "customerId": "123",
+                    "paymentId": 5
+                },
+                {
+                    "id": 2,
+                    "status": "ON_THE_WAY",
+                    "customerId": "123",
+                    "paymentId": 6
+                }
+            ]
+        """.replaceAll("\\s", "")
+        )
     }
 }
