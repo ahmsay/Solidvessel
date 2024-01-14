@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.solidvessel")
 @Profile("!" + Profiles.INTEGRATION_TEST)
 public class FeignClientsConfig {
 }
