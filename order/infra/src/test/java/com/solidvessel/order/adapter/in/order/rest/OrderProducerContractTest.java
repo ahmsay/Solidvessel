@@ -16,7 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(controllers = {OrderController.class})
-public class OrderContractTest extends BaseProducerContractTest {
+public class OrderProducerContractTest extends BaseProducerContractTest {
 
     @MockBean
     private OrderQueryPort orderQueryPort;
