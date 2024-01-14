@@ -1,0 +1,4 @@
+order:
+  url: http://localhost:8083
+payment:
+  url: http://localhost:8084

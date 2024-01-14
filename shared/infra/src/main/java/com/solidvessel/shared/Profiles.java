@@ -6,4 +6,5 @@ public interface Profiles {
     String TEST = "test";
     String PROD = "prod";
     String INTEGRATION_TEST = "integrationtest";
+    String CONTRACT_TEST = "contracttest";
 }
