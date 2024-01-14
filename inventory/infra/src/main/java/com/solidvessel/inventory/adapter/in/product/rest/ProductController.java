@@ -1,9 +1,11 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.AddProductCommand;
+import com.solidvessel.inventory.product.service.command.AddProductToCartCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
@@ -20,6 +22,7 @@ public class ProductController {
 
     private final ProductQueryPort productQueryPort;
     private final CommandService<AddProductCommand> addProductCommandService;
+    private final CommandService<AddProductToCartCommand> addProductToCartCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
@@ -49,5 +52,11 @@ public class ProductController {
     @GetMapping("/isAvailable")
     public boolean isAvailable(@RequestParam final Long id, @RequestParam int quantity) {
         return productQueryPort.isAvailable(id, quantity);
+    }
+
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    @PostMapping("/{id}/addToCart")
+    public OperationResult addToCart(@PathVariable final Long id, @RequestBody @Valid final AddProductToCartRequest request) {
+        return addProductToCartCommandService.execute(request.toCommand(id));
     }
 }

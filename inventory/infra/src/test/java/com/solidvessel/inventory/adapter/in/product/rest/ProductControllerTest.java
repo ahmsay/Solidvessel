@@ -1,11 +1,13 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
+import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -37,6 +39,9 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @MockBean
     private AddProductCommandService addProductCommandService;
+
+    @MockBean
+    private AddProductToCartCommandService addProductToCartCommandService;
 
     @Test
     @WithMockCustomer
@@ -102,5 +107,18 @@ public class ProductControllerTest extends BaseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(true), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    public void addProductToCart() throws Exception {
+        var request = new AddProductToCartRequest(3);
+        when(addProductToCartCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                post("/product/1/addToCart")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
     }
 }

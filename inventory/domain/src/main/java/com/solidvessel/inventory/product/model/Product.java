@@ -20,4 +20,8 @@ public class Product {
     public void decreaseQuantity(int boughtQuantity) {
         quantity = quantity - boughtQuantity;
     }
+
+    public boolean isAvailable(int desiredQuantity) {
+        return quantity >= desiredQuantity;
+    }
 }

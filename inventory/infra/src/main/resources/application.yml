@@ -17,8 +17,11 @@ server:
     context-path: /inventory
 exchanges:
   payment: payment.topic
+  product: product.topic
 queues:
   product: product.queue
 routing-keys:
   payment:
     saved: payment.saved
+  product:
+    available: product.available

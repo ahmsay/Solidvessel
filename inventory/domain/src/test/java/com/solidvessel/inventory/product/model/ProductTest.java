@@ -2,8 +2,7 @@ package com.solidvessel.inventory.product.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductTest {
 
@@ -22,5 +21,13 @@ public class ProductTest {
         var product = new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 5);
         product.decreaseQuantity(2);
         assertEquals(3, product.getQuantity());
+    }
+
+    @Test
+    void isAvailable() {
+        var product = new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 5);
+        assertTrue(product.isAvailable(3));
+        assertTrue(product.isAvailable(5));
+        assertFalse(product.isAvailable(10));
     }
 }
