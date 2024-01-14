@@ -5,7 +5,7 @@ import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.payment.port.PaymentQueryPort;
-import com.solidvessel.shared.test.contract.BaseContractTest;
+import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,7 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(controllers = {OrderController.class})
-public class OrderProducerContractTest extends BaseContractTest {
+public class OrderContractTest extends BaseProducerContractTest {
 
     @MockBean
     private OrderQueryPort orderQueryPort;
