@@ -15,13 +15,13 @@ public class PaymentTest {
     @Test
     void createNewPayment() {
         Map<Long, Product> products = new HashMap<>();
-        products.put(1L, new Product(1L, "sickle", 9D, ProductCategory.TOOL, 4));
-        products.put(4L, new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 2));
+        products.put(1L, new Product(1L, "sickle", 234D, ProductCategory.TOOL, 5));
+        products.put(4L, new Product(4L, "chair", 5D, ProductCategory.FURNITURE, 9));
         var payment = Payment.newPayment("123", products);
         assertNull(payment.getId());
         assertEquals("123", payment.getCustomerId());
-        assertEquals(4, payment.getProducts().getFirst().getQuantity());
-        assertEquals(2, payment.getProducts().get(1).getQuantity());
-        assertEquals(946D, payment.getTotalPrice());
+        assertEquals(5, payment.getProducts().getFirst().getQuantity());
+        assertEquals(9, payment.getProducts().get(1).getQuantity());
+        assertEquals(1215D, payment.getTotalPrice());
     }
 }
