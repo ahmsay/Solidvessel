@@ -25,7 +25,7 @@ public class AddProductToCartCommandService implements CommandService<AddProduct
         if (!product.isAvailable(command.quantity())) {
             throw new InventoryDomainException("The product is not available in stocks with your desired quantity.");
         }
-        productAvailableEventEventPublisher.publish(ProductAvailableEvent.from(product, command.quantity()));
+        productAvailableEventEventPublisher.publish(ProductAvailableEvent.from(product, command.quantity(), command.customerId()));
         return new OperationResult("Product is added to the cart.", ResultType.SUCCESS);
     }
 }

@@ -26,18 +26,18 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addProductToCart() {
-        var command = new AddProductToCartCommand(1L, 4);
+        var command = new AddProductToCartCommand(1L, 4, "123");
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
         var product = new Product(1L, "sickle", 5D, ProductCategory.TOOL, 10);
         when(productQueryPort.getById(1L)).thenReturn(product);
         var operationResult = commandService.execute(command);
-        verify(productAvailableEventEventPublisher).publish(ProductAvailableEvent.from(product, command.quantity()));
+        verify(productAvailableEventEventPublisher).publish(ProductAvailableEvent.from(product, command.quantity(), "123"));
         assertEquals(operationResult.resultType(), ResultType.SUCCESS);
     }
 
     @Test
     void productNotAvailable() {
-        var command = new AddProductToCartCommand(1L, 4);
+        var command = new AddProductToCartCommand(1L, 4, "123");
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
         var product = new Product(1L, "sickle", 5D, ProductCategory.TOOL, 1);
         when(productQueryPort.getById(1L)).thenReturn(product);
