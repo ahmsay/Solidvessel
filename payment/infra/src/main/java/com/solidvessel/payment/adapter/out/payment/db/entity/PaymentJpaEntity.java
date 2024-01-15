@@ -1,5 +1,6 @@
 package com.solidvessel.payment.adapter.out.payment.db.entity;
 
+import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.payment.model.Payment;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

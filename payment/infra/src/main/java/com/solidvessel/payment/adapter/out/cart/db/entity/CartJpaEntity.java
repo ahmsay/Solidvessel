@@ -1,5 +1,6 @@
 package com.solidvessel.payment.adapter.out.cart.db.entity;
 
+import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.product.model.Product;
 import jakarta.persistence.*;
@@ -29,7 +30,7 @@ public class CartJpaEntity {
 
     @ElementCollection
     @CollectionTable(name = "cart_product", joinColumns = @JoinColumn(name = "cart_id"))
-    private List<CartProductEmbeddable> products = new ArrayList<>();
+    private List<ProductEmbeddable> products = new ArrayList<>();
 
     public static CartJpaEntity from(Cart cart) {
         return new CartJpaEntity(
@@ -43,13 +44,13 @@ public class CartJpaEntity {
         return new Cart(id, customerId, productListToMap(products));
     }
 
-    private static List<CartProductEmbeddable> productMapToList(Map<Long, Product> products) {
-        List<CartProductEmbeddable> productList = new ArrayList<>();
-        products.values().forEach(product -> productList.add(CartProductEmbeddable.from(product)));
+    private static List<ProductEmbeddable> productMapToList(Map<Long, Product> products) {
+        List<ProductEmbeddable> productList = new ArrayList<>();
+        products.values().forEach(product -> productList.add(ProductEmbeddable.from(product)));
         return productList;
     }
 
-    private Map<Long, Product> productListToMap(List<CartProductEmbeddable> products) {
+    private Map<Long, Product> productListToMap(List<ProductEmbeddable> products) {
         Map<Long, Product> productsMap = new HashMap<>();
         products.forEach(product -> productsMap.put(product.getProductId(), product.toDomainModel()));
         return productsMap;

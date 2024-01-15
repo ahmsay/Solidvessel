@@ -1,6 +1,7 @@
-package com.solidvessel.payment.adapter.out.payment.db.entity;
+package com.solidvessel.payment.adapter.out.product.db.entity;
 
 import com.solidvessel.payment.product.model.Product;
+import com.solidvessel.payment.product.model.ProductCategory;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,15 +14,16 @@ import lombok.NoArgsConstructor;
 public class ProductEmbeddable {
 
     private Long productId;
-    private int quantity;
     private String name;
     private Double price;
+    private ProductCategory category;
+    private int quantity;
 
     public static ProductEmbeddable from(Product product) {
-        return new ProductEmbeddable(product.getId(), product.getQuantity(), product.getName(), product.getPrice());
+        return new ProductEmbeddable(product.getId(), product.getName(), product.getPrice(), product.getCategory(), product.getQuantity());
     }
 
     public Product toDomainModel() {
-        return new Product(productId, quantity, name, price);
+        return new Product(productId, name, price, category, quantity);
     }
 }

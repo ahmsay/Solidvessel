@@ -1,8 +1,9 @@
 package com.solidvessel.payment.adapter.out.payment.db;
 
 import com.solidvessel.payment.adapter.out.payment.db.entity.PaymentJpaEntity;
-import com.solidvessel.payment.adapter.out.payment.db.entity.ProductEmbeddable;
+import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.integrationtest.BaseDatabaseTest;
+import com.solidvessel.payment.product.model.ProductCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,9 +18,9 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getAll() {
-        var product1 = new ProductEmbeddable(1L, 6, "pillow", 10D);
+        var product1 = new ProductEmbeddable(1L, "pillow", 10D, ProductCategory.CLOTHING, 6);
         var payment1 = new PaymentJpaEntity(null, "123", List.of(product1), 60D);
-        var product2 = new ProductEmbeddable(2L, 3, "scissors", 5D);
+        var product2 = new ProductEmbeddable(2L, "scissors", 5D, ProductCategory.TOOL, 3);
         var payment2 = new PaymentJpaEntity(null, "456", List.of(product2), 15D);
         persistEntity(payment1);
         persistEntity(payment2);
@@ -30,7 +31,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getById() {
-        var productEmbeddable = new ProductEmbeddable(1L, 2, "phone", 500D);
+        var productEmbeddable = new ProductEmbeddable(1L, "phone", 500D, ProductCategory.ELECTRONICS, 2);
         var paymentJpaEntity = persistEntity(new PaymentJpaEntity(null, "123", List.of(productEmbeddable), 1000D));
         var payment = paymentDBQueryAdapter.getById(paymentJpaEntity.getId());
         assertEquals(paymentJpaEntity.getId(), payment.getId());
@@ -45,7 +46,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getByCustomerId() {
-        var product = new ProductEmbeddable(1L, 3, "apple", 3D);
+        var product = new ProductEmbeddable(1L, "apple", 3D, ProductCategory.FURNITURE, 3);
         var payment = new PaymentJpaEntity(null, "789", List.of(product), 9D);
         persistEntity(payment);
         var payments = paymentDBQueryAdapter.getByCustomerId("789");
