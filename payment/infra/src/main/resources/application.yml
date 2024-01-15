@@ -17,9 +17,14 @@ server:
     context-path: /payment
 exchanges:
   payment: payment.topic
+  product: product.topic
+queues:
+  payment: payment.queue
 routing-keys:
   payment:
     saved: payment.saved
+  product:
+    available: product.available
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth
