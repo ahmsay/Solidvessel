@@ -1,6 +1,6 @@
 package com.solidvessel.payment.adapter.in.payment.rest.response;
 
-import com.solidvessel.payment.adapter.out.product.rest.response.ProductResponse;
+import com.solidvessel.payment.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.payment.payment.model.Payment;
 
 import java.util.List;

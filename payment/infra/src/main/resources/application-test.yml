@@ -13,8 +13,6 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
-inventory:
-  url: http://inventory:8080/inventory
 management:
   endpoints:
     web:
