@@ -1,11 +1,9 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
-import com.solidvessel.payment.adapter.in.cart.rest.request.AddToCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
-import com.solidvessel.payment.cart.service.command.AddToCartCommand;
 import com.solidvessel.payment.cart.service.command.RemoveFromCartCommand;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.port.ProductQueryPort;
@@ -24,16 +22,9 @@ import java.util.List;
 @RequestMapping("/cart")
 public class CartController {
 
-    private final CommandService<AddToCartCommand> addToCartCommandService;
     private final CommandService<RemoveFromCartCommand> removeFromCartCommandService;
     private final CartQueryPort cartQueryPort;
     private final ProductQueryPort productQueryPort;
-
-    @PreAuthorize("hasAuthority('CUSTOMER')")
-    @PostMapping()
-    public OperationResult addToCart(@RequestBody @Valid final AddToCartRequest request) {
-        return addToCartCommandService.execute(request.toCommand());
-    }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping

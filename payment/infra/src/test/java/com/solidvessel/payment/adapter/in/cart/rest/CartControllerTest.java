@@ -1,6 +1,5 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
-import com.solidvessel.payment.adapter.in.cart.rest.request.AddToCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
@@ -27,7 +26,8 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {CartController.class})
@@ -47,19 +47,6 @@ public class CartControllerTest extends BaseControllerTest {
 
     @MockBean
     private ProductQueryPort productQueryPort;
-
-    @Test
-    @WithMockCustomer
-    public void addToCart() throws Exception {
-        var request = new AddToCartRequest(1L, 3);
-        when(addToCartCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
-        MvcResult mvcResult = mockMvc.perform(
-                post("/cart")
-                        .content(bodyOf(request))
-                        .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
-    }
 
     @Test
     @WithMockCustomer
