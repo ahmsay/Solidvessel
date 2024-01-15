@@ -16,14 +16,12 @@ public class Payment {
     private List<Product> products;
     private Double totalPrice;
 
-    public static Payment newPayment(String customerId, List<Product> productsFromInventory, Map<Long, Integer> productsInCart) {
-        List<Product> soldProducts = productsFromInventory.stream()
-                .map(product -> new Product(product.getId(), productsInCart.get(product.getId()), product.getName(), product.getPrice())).toList();
+    public static Payment newPayment(String customerId, Map<Long, Product> products) {
         return new Payment(
                 null,
                 customerId,
-                soldProducts,
-                soldProducts.stream().map(product -> product.getPrice() * product.getQuantity()).reduce(0D, Double::sum)
+                products.values().stream().toList(),
+                products.values().stream().map(product -> product.getPrice() * product.getQuantity()).reduce(0D, Double::sum)
         );
     }
 }

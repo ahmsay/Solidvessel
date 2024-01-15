@@ -9,6 +9,7 @@ import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.payment.product.model.Product;
+import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -47,7 +48,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getAllPayments() throws Exception {
-        var products = List.of(new Product(1L, 3, "table", 35D));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payments = List.of(new Payment(1L, "123", products, 105D));
         when(paymentQueryPort.getAll()).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
@@ -60,7 +61,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getPaymentById() throws Exception {
-        var products = List.of(new Product(1L, 3, "table", 35D));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payment = new Payment(1L, "123", products, 105D);
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
@@ -73,7 +74,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getPaymentDetailById() throws Exception {
-        var products = List.of(new Product(1L, 3, "table", 35D));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payment = new Payment(1L, "123", products, 105D);
         var customer = new Customer("123", "lorne", "malvo");
         var paymentDetail = PaymentDetailResponse.from(payment, customer);
@@ -89,7 +90,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getPaymentsByCustomerId() throws Exception {
-        var products = List.of(new Product(1L, 3, "table", 35D));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payments = List.of(new Payment(1L, "123", products, 105D));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(

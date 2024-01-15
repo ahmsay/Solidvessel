@@ -7,9 +7,6 @@ import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
-import com.solidvessel.payment.product.model.Product;
-import com.solidvessel.payment.product.port.ProductQueryPort;
-import com.solidvessel.payment.product.service.ProductQuantityDomainService;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
@@ -17,7 +14,8 @@ import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @DomainComponent
 @RequiredArgsConstructor
@@ -25,9 +23,7 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
 
     private final CartPort cartPort;
     private final CartQueryPort cartQueryPort;
-    private final ProductQueryPort productQueryPort;
     private final PaymentPort paymentPort;
-    private final ProductQuantityDomainService productQuantityDomainService;
     private final EventPublisher<PaymentSavedEvent> paymentSavedEventPublisher;
 
     @Override
@@ -35,10 +31,8 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         String customerId = command.customerId();
         Cart cart = cartQueryPort.getByCustomerId(customerId);
         checkIfTheCartIsEmpty(cart);
-        List<Product> productsFromInventory = productQueryPort.getProductsOfCart(cart.getProductIds());
-        checkIfProductsAreAvailable(cart, productsFromInventory);
-        Long paymentId = savePayment(customerId, productsFromInventory, cart);
-        var productQuantities = cart.getProductQuantities();
+        Long paymentId = savePayment(customerId, cart);
+        var productQuantities = cart.getProducts().entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().getQuantity()));
         saveCart(cart);
         paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, productQuantities));
         return new OperationResult("Payment is accepted.", ResultType.SUCCESS);
@@ -50,15 +44,8 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         }
     }
 
-    private void checkIfProductsAreAvailable(Cart cart, List<Product> productsFromInventory) {
-        if (!productQuantityDomainService.areQuantitiesAvailable(cart.getProductQuantities(), productsFromInventory)) {
-            throw new PaymentDomainException("Selected products are not available with specified quantity.");
-        }
-    }
-
-    private Long savePayment(String customerId, List<Product> productsFromInventory, Cart cart) {
-        Payment payment = Payment.newPayment(customerId, productsFromInventory, cart.getProductQuantities());
-        return paymentPort.save(payment);
+    private Long savePayment(String customerId, Cart cart) {
+        return paymentPort.save(Payment.newPayment(customerId, cart.getProducts()));
     }
 
     private void saveCart(Cart cart) {

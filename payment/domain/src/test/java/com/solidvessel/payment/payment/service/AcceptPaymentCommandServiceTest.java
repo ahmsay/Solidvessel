@@ -8,8 +8,7 @@ import com.solidvessel.payment.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.product.model.Product;
-import com.solidvessel.payment.product.port.ProductQueryPort;
-import com.solidvessel.payment.product.service.ProductQuantityDomainService;
+import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
@@ -17,9 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,9 +33,6 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
     private CartQueryPort cartQueryPort;
 
     @Mock
-    private ProductQueryPort productQueryPort;
-
-    @Mock
     private PaymentPort paymentPort;
 
     @Mock
@@ -51,24 +45,17 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
     @BeforeEach
     void init() {
         command = new AcceptPaymentCommand("123");
-        ProductQuantityDomainService productQuantityDomainService = new ProductQuantityDomainService();
-        commandService = new AcceptPaymentCommandService(cartPort, cartQueryPort, productQueryPort, paymentPort, productQuantityDomainService, paymentSavedEventPublisher);
+        commandService = new AcceptPaymentCommandService(cartPort, cartQueryPort, paymentPort, paymentSavedEventPublisher);
     }
 
     @Test
     void acceptPayment() {
-        Map<Long, Integer> productQuantities = new HashMap<>() {{
-            put(1L, 1);
-            put(4L, 3);
+        Map<Long, Product> products = new HashMap<>() {{
+            put(1L, new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
+            put(4L, new Product(4L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
         }};
-        Cart cart = new Cart(1L, "123", productQuantities);
+        Cart cart = new Cart(1L, "123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
-
-        List<Product> productsFromInventory = new ArrayList<>() {{
-            add(new Product(1L, 5, "laptop", 234D));
-            add(new Product(4L, 9, "knife", 5D));
-        }};
-        when(productQueryPort.getProductsOfCart(cart.getProductIds())).thenReturn(productsFromInventory);
 
         var operationResult = commandService.execute(command);
         verify(cartPort).save(any(Cart.class));
@@ -82,21 +69,5 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
         when(cartQueryPort.getByCustomerId("123")).thenReturn(Cart.newCart("123"));
         assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(cartPort, paymentPort, paymentSavedEventPublisher);
-    }
-
-    @Test
-    void productsAreNotAvailable() {
-        Map<Long, Integer> productQuantities = new HashMap<>() {{
-            put(1L, 10);
-        }};
-        Cart cart = new Cart(1L, "123", productQuantities);
-        when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
-
-        List<Product> productsFromInventory = new ArrayList<>() {{
-            add(new Product(1L, 5, "laptop", 234D));
-        }};
-        when(productQueryPort.getProductsOfCart(cart.getProductIds())).thenReturn(productsFromInventory);
-        verifyNoInteractions(cartPort, paymentPort, paymentSavedEventPublisher);
-        assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
     }
 }
