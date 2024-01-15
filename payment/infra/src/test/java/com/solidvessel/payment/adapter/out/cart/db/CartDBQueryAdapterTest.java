@@ -3,6 +3,7 @@ package com.solidvessel.payment.adapter.out.cart.db;
 import com.solidvessel.payment.adapter.out.cart.db.entity.CartJpaEntity;
 import com.solidvessel.payment.adapter.out.cart.db.entity.CartProductEmbeddable;
 import com.solidvessel.payment.integrationtest.BaseDatabaseTest;
+import com.solidvessel.payment.product.model.ProductCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,13 +18,13 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getByCustomerId() {
-        var cartProductEmbeddable = new CartProductEmbeddable(1L, 4);
+        var cartProductEmbeddable = new CartProductEmbeddable(1L, "desk", 20D, ProductCategory.FURNITURE, 4);
         var cartJpaEntity = persistEntity(new CartJpaEntity(null, "123", List.of(cartProductEmbeddable)));
         var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
         assertEquals(cartJpaEntity.getId(), cart.getId());
         assertEquals(cartJpaEntity.getCustomerId(), cart.getCustomerId());
-        var productQuantity = cart.getProductQuantities().get(cartProductEmbeddable.getProductId());
-        assertEquals(cartProductEmbeddable.getQuantity(), productQuantity);
+        var product = cart.getProducts().get(cartProductEmbeddable.getProductId());
+        assertEquals(cartProductEmbeddable.getQuantity(), product.getQuantity());
     }
 
     @Test

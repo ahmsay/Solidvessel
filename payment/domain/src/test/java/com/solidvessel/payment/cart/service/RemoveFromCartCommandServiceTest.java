@@ -5,6 +5,8 @@ import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.RemoveFromCartCommand;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
+import com.solidvessel.payment.product.model.Product;
+import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
@@ -30,15 +32,15 @@ public class RemoveFromCartCommandServiceTest extends BaseUnitTest {
     void removeFromCart() {
         var command = new RemoveFromCartCommand("123", 3L);
         var commandService = new RemoveFromCartCommandService(cartPort, cartQueryPort);
-        Map<Long, Integer> productQuantities = new HashMap<>() {{
-            put(3L, 7);
+        Map<Long, Product> products = new HashMap<>() {{
+            put(3L, new Product(3L, "table", 5D, ProductCategory.FURNITURE, 7));
         }};
-        Cart cart = new Cart(1L, "123", productQuantities);
+        Cart cart = new Cart(1L, "123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
         var operationResult = commandService.execute(command);
         verify(cartPort).save(any(Cart.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
-        assertEquals(6, cart.getProductQuantities().get(3L));
+        assertEquals(6, cart.getProducts().get(3L).getQuantity());
     }
 
     @Test

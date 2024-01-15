@@ -1,5 +1,6 @@
 package com.solidvessel.payment.cart.model;
 
+import com.solidvessel.payment.product.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,41 +14,42 @@ public class Cart {
 
     private Long id;
     private String customerId;
-    private Map<Long, Integer> productQuantities;
+    private Map<Long, Product> products;
 
     public static Cart newCart(String customerId) {
         return new Cart(null, customerId, new HashMap<>());
     }
 
-    public void addProduct(Long productId, int quantity) {
-        if (productQuantities.containsKey(productId)) {
-            productQuantities.put(productId, productQuantities.get(productId) + quantity);
+    public void addProduct(Product product) {
+        Long id = product.getId();
+        if (doesProductExist(id)) {
+            products.get(id).increaseQuantity(product.getQuantity());
         } else {
-            productQuantities.put(productId, quantity);
+            products.put(id, product);
         }
     }
 
     public boolean doesProductExist(Long productId) {
-        return productQuantities.containsKey(productId);
+        return products.containsKey(productId);
     }
 
     public void removeProduct(Long productId) {
-        if (productQuantities.get(productId) == 1) {
-            productQuantities.remove(productId);
+        if (products.get(productId).getQuantity() == 1) {
+            products.remove(productId);
         } else {
-            productQuantities.put(productId, productQuantities.get(productId) - 1);
+            products.get(productId).decreaseQuantity();
         }
     }
 
     public boolean isEmpty() {
-        return productQuantities.isEmpty();
+        return products.isEmpty();
     }
 
     public void empty() {
-        productQuantities = new HashMap<>();
+        products = new HashMap<>();
     }
 
     public Set<Long> getProductIds() {
-        return productQuantities.keySet();
+        return products.keySet();
     }
 }

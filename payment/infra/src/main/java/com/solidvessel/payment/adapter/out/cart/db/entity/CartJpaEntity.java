@@ -1,6 +1,7 @@
 package com.solidvessel.payment.adapter.out.cart.db.entity;
 
 import com.solidvessel.payment.cart.model.Cart;
+import com.solidvessel.payment.product.model.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,7 @@ public class CartJpaEntity {
         return new CartJpaEntity(
                 cart.getId(),
                 cart.getCustomerId(),
-                productMapToList(cart.getProductQuantities())
+                productMapToList(cart.getProducts())
         );
     }
 
@@ -42,15 +43,15 @@ public class CartJpaEntity {
         return new Cart(id, customerId, productListToMap(products));
     }
 
-    private static List<CartProductEmbeddable> productMapToList(Map<Long, Integer> products) {
-        return products.entrySet().stream()
-                .map(entry -> new CartProductEmbeddable(entry.getKey(), entry.getValue()))
-                .toList();
+    private static List<CartProductEmbeddable> productMapToList(Map<Long, Product> products) {
+        List<CartProductEmbeddable> productList = new ArrayList<>();
+        products.values().forEach(product -> productList.add(CartProductEmbeddable.from(product)));
+        return productList;
     }
 
-    private Map<Long, Integer> productListToMap(List<CartProductEmbeddable> products) {
-        Map<Long, Integer> productsMap = new HashMap<>();
-        products.forEach(product -> productsMap.put(product.getProductId(), product.getQuantity()));
+    private Map<Long, Product> productListToMap(List<CartProductEmbeddable> products) {
+        Map<Long, Product> productsMap = new HashMap<>();
+        products.forEach(product -> productsMap.put(product.getProductId(), product.toDomainModel()));
         return productsMap;
     }
 }

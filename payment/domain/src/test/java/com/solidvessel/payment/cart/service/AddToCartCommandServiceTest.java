@@ -4,17 +4,16 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.AddToCartCommand;
-import com.solidvessel.payment.common.exception.PaymentDomainException;
-import com.solidvessel.payment.product.port.ProductQueryPort;
+import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class AddToCartCommandServiceTest extends BaseUnitTest {
 
@@ -24,26 +23,13 @@ public class AddToCartCommandServiceTest extends BaseUnitTest {
     @Mock
     private CartQueryPort cartQueryPort;
 
-    @Mock
-    private ProductQueryPort productQueryPort;
-
     @Test
     void addToCart() {
-        var command = new AddToCartCommand("123", 1L, 3);
-        var commandService = new AddToCartCommandService(cartPort, cartQueryPort, productQueryPort);
-        when(productQueryPort.isAvailable(1L, 3)).thenReturn(true);
-        when(cartQueryPort.getByCustomerId("123")).thenReturn(Cart.newCart("123"));
+        var command = new AddToCartCommand(1L, "cellphone", 530D, ProductCategory.ELECTRONICS, 3, "123");
+        var commandService = new AddToCartCommandService(cartPort, cartQueryPort);
+        when(cartQueryPort.getByCustomerId(command.customerId())).thenReturn(Cart.newCart("123"));
         var operationResult = commandService.execute(command);
         verify(cartPort).save(any(Cart.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
-    }
-
-    @Test
-    void productIsNotAvailable() {
-        var command = new AddToCartCommand("123", 1L, 3);
-        var commandService = new AddToCartCommandService(cartPort, cartQueryPort, productQueryPort);
-        when(productQueryPort.isAvailable(1L, 3)).thenReturn(false);
-        assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
-        verifyNoInteractions(cartPort);
     }
 }
