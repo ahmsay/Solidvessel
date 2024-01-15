@@ -4,10 +4,9 @@ import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartReques
 import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
-import com.solidvessel.payment.cart.service.AddToCartCommandService;
 import com.solidvessel.payment.cart.service.RemoveFromCartCommandService;
 import com.solidvessel.payment.product.model.Product;
-import com.solidvessel.payment.product.port.ProductQueryPort;
+import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -19,9 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -37,29 +34,21 @@ public class CartControllerTest extends BaseControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private AddToCartCommandService addToCartCommandService;
-
-    @MockBean
     private RemoveFromCartCommandService removeFromCartCommandService;
 
     @MockBean
     private CartQueryPort cartQueryPort;
 
-    @MockBean
-    private ProductQueryPort productQueryPort;
-
     @Test
     @WithMockCustomer
     public void listCart() throws Exception {
-        var productQuantities = Map.of(1L, 3, 2L, 5);
-        var cart = new Cart(1L, "123", productQuantities);
-        var products = List.of(
-                new Product(1L, 3, "macbook", 1200D),
-                new Product(2L, 2, "shirt", 20D)
+        var products = Map.of(
+                1L, new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 3),
+                2L, new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 2)
         );
-        var cartResponse = CartResponse.from(cart, products);
+        var cart = new Cart(1L, "123", products);
+        var cartResponse = CartResponse.from(cart);
         when(cartQueryPort.getByCustomerId(anyString())).thenReturn(cart);
-        when(productQueryPort.getProductsOfCart(Set.of(1L, 2L))).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/cart")
                         .contentType(MediaType.APPLICATION_JSON)
