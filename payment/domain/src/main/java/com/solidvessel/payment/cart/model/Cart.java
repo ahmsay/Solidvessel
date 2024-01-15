@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,5 +52,13 @@ public class Cart {
 
     public Set<Long> getProductIds() {
         return products.keySet();
+    }
+
+    public List<Product> getProductList() {
+        return products.values().stream().toList();
+    }
+
+    public Double getTotalPrice() {
+        return products.values().stream().map(product -> product.getPrice() * product.getQuantity()).reduce(0D, Double::sum);
     }
 }

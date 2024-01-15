@@ -5,6 +5,7 @@ import com.solidvessel.payment.product.model.ProductCategory;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,6 +70,24 @@ public class CartTest {
         cart.addProduct(createProduct(1L, 2));
         cart.addProduct(createProduct(5L, 10));
         assertEquals(Set.of(1L, 5L), cart.getProductIds());
+    }
+
+    @Test
+    void getProductList() {
+        var cart = Cart.newCart("123");
+        var product1 = createProduct(1L, 2);
+        var product2 = createProduct(5L, 10);
+        cart.addProduct(product1);
+        cart.addProduct(product2);
+        assertEquals(List.of(product1, product2), cart.getProductList());
+    }
+
+    @Test
+    void getTotalPrice() {
+        var cart = Cart.newCart("123");
+        cart.addProduct(createProduct(1L, 2));
+        cart.addProduct(createProduct(5L, 10));
+        assertEquals(60D, cart.getTotalPrice());
     }
 
     private Product createProduct(Long id, int quantity) {

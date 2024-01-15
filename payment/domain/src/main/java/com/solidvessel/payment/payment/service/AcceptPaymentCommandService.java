@@ -45,7 +45,7 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
     }
 
     private Long savePayment(String customerId, Cart cart) {
-        return paymentPort.save(Payment.newPayment(customerId, cart.getProducts()));
+        return paymentPort.save(Payment.newPayment(customerId, cart));
     }
 
     private void saveCart(Cart cart) {
