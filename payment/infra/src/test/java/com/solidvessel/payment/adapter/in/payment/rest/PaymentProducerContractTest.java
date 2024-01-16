@@ -33,6 +33,7 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
     public void setup() {
         RestAssuredMockMvc.standaloneSetup(new PaymentController(paymentQueryPort, customerQueryPort, acceptPaymentCommandService));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(createPayments());
+        when(paymentQueryPort.getById(1L)).thenReturn(createPayment());
     }
 
     private List<Payment> createPayments() {
@@ -48,5 +49,13 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
                 new Payment(1L, "123", products1, 150D),
                 new Payment(2L, "123", products2, 1300D)
         );
+    }
+
+    private Payment createPayment() {
+        var products = List.of(
+                new Product(4L, "slippers", 12D, ProductCategory.CLOTHING, 2),
+                new Product(5L, "chair", 50D, ProductCategory.FURNITURE, 3)
+        );
+        return new Payment(1L, "123", products, 174D);
     }
 }
