@@ -16,9 +16,10 @@
             (
                 payment_id bigint references payment,
                 product_id bigint         not null,
-                quantity   int            not null,
                 name       varchar(150)   not null,
-                price      numeric(10, 2) not null
+                price    numeric(10, 2) not null,
+                category varchar(50)    not null,
+                quantity int            not null
             );
         </sql>
     </changeSet>

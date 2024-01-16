@@ -14,8 +14,11 @@
             create table cart_product
             (
                 cart_id    bigint references cart,
-                product_id bigint not null,
-                quantity   int    not null
+                product_id bigint         not null,
+                name       varchar(150)   not null,
+                price      numeric(10, 2) not null,
+                category   varchar(50)    not null,
+                quantity   int            not null
             );
         </sql>
     </changeSet>
