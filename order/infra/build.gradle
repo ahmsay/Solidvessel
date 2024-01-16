@@ -34,7 +34,13 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
     testImplementation 'org.testcontainers:postgresql'
     testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:$rootProject.springCloudContractVersion"
+    testImplementation "org.springframework.cloud:spring-cloud-contract-stub-runner:4.1.0"
+    testImplementation files(
+            "${project.rootDir}/payment/infra/build/libs/infra-stubs.jar"
+    )
 }
+
+tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('payment:infra:verifierStubsJar')
 
 jib {
     from {
