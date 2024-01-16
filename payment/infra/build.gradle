@@ -5,6 +5,7 @@ plugins {
     id 'com.google.cloud.tools.jib' version '3.4.0'
     id 'io.freefair.lombok' version '8.4'
     id 'jacoco'
+    id 'org.springframework.cloud.contract' version '4.1.0'
 }
 
 archivesBaseName = 'payment-infra'
@@ -32,6 +33,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
     testImplementation 'org.testcontainers:postgresql'
+    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:$rootProject.springCloudContractVersion"
 }
 
 jib {
@@ -62,4 +64,16 @@ jacocoTestReport {
     reports {
         xml.required = true
     }
+}
+
+contracts {
+    contractsDslDir = file("src/test/resources/contracts")
+    packageWithBaseClasses = 'com.solidvessel.payment.adapter.in'
+    baseClassMappings {
+        baseClassMapping("payment", "com.solidvessel.payment.adapter.in.payment.rest.PaymentProducerContractTest")
+    }
+}
+
+contractTest {
+    useJUnitPlatform()
 }
