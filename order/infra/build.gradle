@@ -41,6 +41,7 @@ dependencies {
 }
 
 tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('payment:infra:verifierStubsJar')
+tasks.copyContracts.dependsOn rootProject.tasks.findByPath('payment:infra:verifierStubsJar')
 
 jib {
     from {

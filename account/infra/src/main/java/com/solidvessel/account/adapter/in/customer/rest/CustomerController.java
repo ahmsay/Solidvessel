@@ -2,12 +2,13 @@ package com.solidvessel.account.adapter.in.customer.rest;
 
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailResponse;
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;
+import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
+import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
+import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
+import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.account.customer.model.Customer;
 import com.solidvessel.account.customer.port.CustomerQueryPort;
-import com.solidvessel.account.order.model.Order;
-import com.solidvessel.account.order.port.OrderQueryPort;
-import com.solidvessel.account.payment.model.Payment;
-import com.solidvessel.account.payment.port.PaymentQueryPort;
+import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +24,8 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerQueryPort customerQueryPort;
-    private final OrderQueryPort orderQueryPort;
-    private final PaymentQueryPort paymentQueryPort;
+    private final OrderRestClient orderRestClient;
+    private final PaymentRestClient paymentRestClient;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
@@ -41,9 +42,10 @@ public class CustomerController {
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public CustomerDetailResponse getDetailById(@PathVariable final String id) {
+        String token = SessionUtil.getCurrentUserToken();
         Customer customer = customerQueryPort.getById(id);
-        List<Order> orders = orderQueryPort.getOrdersOfCustomer(id);
-        List<Payment> payments = paymentQueryPort.getPaymentsOfCustomer(id);
+        List<OrderResponse> orders = orderRestClient.getByCustomerId(id, token);
+        List<PaymentResponse> payments = paymentRestClient.getByCustomerId(id, token);
         return CustomerDetailResponse.from(customer, orders, payments);
     }
 }

@@ -1,10 +1,10 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
-import com.solidvessel.order.payment.port.PaymentQueryPort;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +25,7 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
     private CustomerQueryPort customerQueryPort;
 
     @MockBean
-    private PaymentQueryPort paymentQueryPort;
+    private PaymentRestClient paymentRestClient;
 
     @BeforeEach
     public void setup() {
@@ -33,7 +33,7 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
                 new Order(1L, OrderStatus.DELIVERED, "123", 5L),
                 new Order(2L, OrderStatus.ON_THE_WAY, "123", 6L)
         );
-        RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, customerQueryPort, paymentQueryPort));
+        RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, customerQueryPort, paymentRestClient));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
     }
 }

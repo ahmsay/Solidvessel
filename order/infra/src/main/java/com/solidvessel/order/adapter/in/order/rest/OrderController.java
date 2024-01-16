@@ -2,12 +2,13 @@ package com.solidvessel.order.adapter.in.order.rest;
 
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
+import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
+import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.customer.model.Customer;
 import com.solidvessel.order.customer.port.CustomerQueryPort;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
-import com.solidvessel.order.payment.model.Payment;
-import com.solidvessel.order.payment.port.PaymentQueryPort;
+import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class OrderController {
 
     private final OrderQueryPort orderQueryPort;
     private final CustomerQueryPort customerQueryPort;
-    private final PaymentQueryPort paymentQueryPort;
+    private final PaymentRestClient paymentRestClient;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
@@ -41,7 +42,7 @@ public class OrderController {
     public OrderDetailResponse getDetailById(@PathVariable final Long id) {
         Order order = orderQueryPort.getById(id);
         Customer customer = customerQueryPort.getCustomerOfOrder(order.getCustomerId());
-        Payment payment = paymentQueryPort.getPaymentOfOrder(order.getPaymentId());
+        PaymentResponse payment = paymentRestClient.getById(order.getPaymentId(), SessionUtil.getCurrentUserToken());
         return OrderDetailResponse.from(order, customer, payment);
     }
 
