@@ -2,7 +2,6 @@ package com.solidvessel.account.adapter.in.customer.rest.response;
 
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
-import com.solidvessel.account.customer.model.Customer;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,15 +10,15 @@ public record CustomerDetailResponse(String id, String firstName, String lastNam
                                      String email, String phoneNumber, List<OrderResponse> orders,
                                      List<PaymentResponse> payments) {
 
-    public static CustomerDetailResponse from(Customer customer, List<OrderResponse> orders,
+    public static CustomerDetailResponse from(CustomerResponse customer, List<OrderResponse> orders,
                                               List<PaymentResponse> payments) {
         return new CustomerDetailResponse(
-                customer.getId(),
-                customer.getFirstName(),
-                customer.getLastName(),
-                customer.getBirthDate(),
-                customer.getEmail(),
-                customer.getPhoneNumber(),
+                customer.id(),
+                customer.firstName(),
+                customer.lastName(),
+                customer.birthDate(),
+                customer.email(),
+                customer.phoneNumber(),
                 orders,
                 payments
         );

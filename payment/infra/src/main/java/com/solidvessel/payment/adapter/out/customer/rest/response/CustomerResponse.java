@@ -1,10 +1,10 @@
 package com.solidvessel.payment.adapter.out.customer.rest.response;
 
-import com.solidvessel.payment.customer.model.Customer;
+import org.keycloak.representations.idm.UserRepresentation;
 
 public record CustomerResponse(String id, String firstName, String lastName) {
 
-    public static CustomerResponse from(Customer customer) {
-        return new CustomerResponse(customer.getId(), customer.getFirstName(), customer.getLastName());
+    public static CustomerResponse from(UserRepresentation user) {
+        return new CustomerResponse(user.getId(), user.getFirstName(), user.getLastName());
     }
 }

@@ -6,11 +6,14 @@ import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
-import com.solidvessel.account.customer.model.Customer;
-import com.solidvessel.account.customer.port.CustomerQueryPort;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.keycloak.admin.client.resource.RealmResource;
+import org.keycloak.admin.client.resource.UserResource;
+import org.keycloak.admin.client.resource.UsersResource;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,8 +23,11 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +39,7 @@ public class CustomerControllerTest extends BaseControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CustomerQueryPort customerQueryPort;
+    private RealmResource keycloakRealm;
 
     @MockBean
     private OrderRestClient orderRestClient;
@@ -41,38 +47,45 @@ public class CustomerControllerTest extends BaseControllerTest {
     @MockBean
     private PaymentRestClient paymentRestClient;
 
+    @BeforeEach
+    public void init() {
+        when(keycloakRealm.users()).thenReturn(mock(UsersResource.class));
+        when(keycloakRealm.users().get(anyString())).thenReturn(mock(UserResource.class));
+    }
+
     @Test
     @WithMockManager
     public void getAllCustomers() throws Exception {
-        var customers = List.of(new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274"));
-        when(customerQueryPort.getAll()).thenReturn(customers);
+        var users = List.of(createUser());
+        when(keycloakRealm.users().list()).thenReturn(users);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(customers.stream().map(CustomerResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(users.stream().map(CustomerResponse::from).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getCustomerById() throws Exception {
-        var customer = new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
-        when(customerQueryPort.getById("123")).thenReturn(customer);
+        var user = createUser();
+        when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(user);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(CustomerResponse.from(customer)), bodyOf(mvcResult));
+        assertEquals(bodyOf(CustomerResponse.from(user)), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     public void getCustomerDetailById() throws Exception {
-        var customer = new Customer("123", "lorne", "malvo", LocalDate.of(1980, 4, 23), "lorne@mail.com", "+90475274");
+        var user = createUser();
+        var customer = CustomerResponse.from(user);
         var orders = List.of(new OrderResponse(1L, "DELIVERED", 5L));
         var payments = List.of(new PaymentResponse(5L, 260D));
         var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
-        when(customerQueryPort.getById("123")).thenReturn(customer);
+        when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(user);
         when(orderRestClient.getByCustomerId("123", "abc")).thenReturn(orders);
         when(paymentRestClient.getByCustomerId("123", "abc")).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
@@ -81,5 +94,17 @@ public class CustomerControllerTest extends BaseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(customerDetail), bodyOf(mvcResult));
+    }
+
+    private UserRepresentation createUser() {
+        var user = new UserRepresentation();
+        user.setId("123");
+        user.setFirstName("lorne");
+        user.setLastName("malvo");
+        user.setEmail("lorne@mail.com");
+        var birthDate = List.of(LocalDate.of(1980, 4, 23).toString());
+        var phoneNumber = List.of("+90475274");
+        user.setAttributes(Map.of("birthDate", birthDate, "phoneNumber", phoneNumber));
+        return user;
     }
 }

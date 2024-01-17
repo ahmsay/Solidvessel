@@ -3,14 +3,14 @@ package com.solidvessel.payment.adapter.in.payment.rest;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
 import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentDetailResponse;
 import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
-import com.solidvessel.payment.customer.model.Customer;
-import com.solidvessel.payment.customer.port.CustomerQueryPort;
+import com.solidvessel.payment.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
+import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +24,7 @@ import java.util.List;
 public class PaymentController {
 
     private final PaymentQueryPort paymentQueryPort;
-    private final CustomerQueryPort customerQueryPort;
+    private final RealmResource keycloakRealm;
     private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
@@ -43,7 +43,7 @@ public class PaymentController {
     @GetMapping("/{id}/detail")
     public PaymentDetailResponse getDetailById(@PathVariable final Long id) {
         Payment payment = paymentQueryPort.getById(id);
-        Customer customer = customerQueryPort.getCustomerOfPayment(payment.getCustomerId());
+        CustomerResponse customer = CustomerResponse.from(keycloakRealm.users().get(payment.getCustomerId()).toRepresentation());
         return PaymentDetailResponse.from(payment, customer);
     }
 

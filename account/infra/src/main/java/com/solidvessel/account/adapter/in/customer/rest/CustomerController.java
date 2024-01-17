@@ -6,10 +6,10 @@ import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
-import com.solidvessel.account.customer.model.Customer;
-import com.solidvessel.account.customer.port.CustomerQueryPort;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
+import org.keycloak.admin.client.resource.RealmResource;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,27 +23,28 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private final CustomerQueryPort customerQueryPort;
+    private final RealmResource keycloakRealm;
     private final OrderRestClient orderRestClient;
     private final PaymentRestClient paymentRestClient;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
     public List<CustomerResponse> getAll() {
-        return customerQueryPort.getAll().stream().map(CustomerResponse::from).toList();
+        List<UserRepresentation> users = keycloakRealm.users().list();
+        return users.stream().map(CustomerResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerResponse getById(@PathVariable final String id) {
-        return CustomerResponse.from(customerQueryPort.getById(id));
+        return CustomerResponse.from(keycloakRealm.users().get(id).toRepresentation());
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public CustomerDetailResponse getDetailById(@PathVariable final String id) {
         String token = SessionUtil.getCurrentUserToken();
-        Customer customer = customerQueryPort.getById(id);
+        CustomerResponse customer = getById(id);
         List<OrderResponse> orders = orderRestClient.getByCustomerId(id, token);
         List<PaymentResponse> payments = paymentRestClient.getByCustomerId(id, token);
         return CustomerDetailResponse.from(customer, orders, payments);
