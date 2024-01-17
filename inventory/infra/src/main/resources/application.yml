@@ -18,6 +18,7 @@ server:
 exchanges:
   payment: payment.topic
   product: product.topic
+  inventory: inventory.topic
 queues:
   product: product.queue
 routing-keys:
@@ -25,3 +26,5 @@ routing-keys:
     saved: payment.saved
   product:
     available: product.available
+  inventory:
+    checked: inventory.checked

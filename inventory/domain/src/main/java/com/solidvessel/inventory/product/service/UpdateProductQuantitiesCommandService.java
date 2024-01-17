@@ -1,9 +1,12 @@
 package com.solidvessel.inventory.product.service;
 
+import com.solidvessel.inventory.common.exception.InventoryDomainException;
+import com.solidvessel.inventory.product.event.InventoryCheckedEvent;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.UpdateProductQuantitiesCommand;
+import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
 import com.solidvessel.shared.service.OperationResult;
@@ -18,6 +21,7 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Upd
 
     private final ProductPort productPort;
     private final ProductQueryPort productQueryPort;
+    private final EventPublisher<InventoryCheckedEvent> inventoryCheckedEventPublisher;
 
     @Override
     public OperationResult execute(UpdateProductQuantitiesCommand command) {
@@ -25,9 +29,15 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Upd
         List<Product> products = productQueryPort.getByIds(productQuantities.keySet().stream().toList());
         products.forEach(product -> {
             int boughtQuantity = productQuantities.get(product.getId());
-            product.decreaseQuantity(boughtQuantity);
+            if (product.isAvailable(boughtQuantity)) {
+                product.decreaseQuantity(boughtQuantity);
+            } else {
+                inventoryCheckedEventPublisher.publish(new InventoryCheckedEvent(command.paymentId(), false));
+                throw new InventoryDomainException("Products are not available in stocks.");
+            }
         });
         productPort.saveProducts(products);
+        inventoryCheckedEventPublisher.publish(new InventoryCheckedEvent(command.paymentId(), true));
         return new OperationResult("Product quantities are updated.", ResultType.SUCCESS);
     }
 }
