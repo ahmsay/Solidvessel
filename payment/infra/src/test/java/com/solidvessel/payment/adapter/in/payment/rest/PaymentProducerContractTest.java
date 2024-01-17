@@ -1,6 +1,7 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
 import com.solidvessel.payment.payment.model.Payment;
+import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
 import com.solidvessel.payment.product.model.Product;
@@ -46,8 +47,8 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
                 new Product(8L, "shirt", 50D, ProductCategory.CLOTHING, 2)
         );
         return List.of(
-                new Payment(1L, "123", products1, 150D),
-                new Payment(2L, "123", products2, 1300D)
+                new Payment(1L, "123", products1, 150D, PaymentStatus.APPROVED),
+                new Payment(2L, "123", products2, 1300D, PaymentStatus.APPROVED)
         );
     }
 
@@ -56,6 +57,6 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
                 new Product(4L, "slippers", 12D, ProductCategory.CLOTHING, 2),
                 new Product(5L, "chair", 50D, ProductCategory.FURNITURE, 3)
         );
-        return new Payment(1L, "123", products, 174D);
+        return new Payment(1L, "123", products, 174D, PaymentStatus.APPROVED);
     }
 }

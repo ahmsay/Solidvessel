@@ -25,5 +25,6 @@ public class PaymentTest {
         assertEquals(5, payment.getProducts().getFirst().getQuantity());
         assertEquals(9, payment.getProducts().get(1).getQuantity());
         assertEquals(1215D, payment.getTotalPrice());
+        assertEquals(PaymentStatus.PENDING, payment.getStatus());
     }
 }

@@ -35,7 +35,8 @@ Contract.make {
                         "quantity": 3
                     }
                 ],
-                "totalCharge": 174
+                "totalCharge": 174,
+                "status": "APPROVED"
             }
         """.replaceAll("\\s", "")
         )

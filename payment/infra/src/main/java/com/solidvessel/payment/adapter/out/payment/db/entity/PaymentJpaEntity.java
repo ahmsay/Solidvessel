@@ -2,6 +2,7 @@ package com.solidvessel.payment.adapter.out.payment.db.entity;
 
 import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.payment.model.Payment;
+import com.solidvessel.payment.payment.model.PaymentStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -32,12 +33,16 @@ public class PaymentJpaEntity {
     @NotNull
     private Double totalPrice;
 
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
+
     public Payment toDomainModel() {
         return new Payment(
                 id,
                 customerId,
                 products.stream().map(ProductEmbeddable::toDomainModel).toList(),
-                totalPrice
+                totalPrice,
+                status
         );
     }
 
@@ -46,7 +51,8 @@ public class PaymentJpaEntity {
                 payment.getId(),
                 payment.getCustomerId(),
                 payment.getProducts().stream().map(ProductEmbeddable::from).toList(),
-                payment.getTotalPrice()
+                payment.getTotalPrice(),
+                payment.getStatus()
         );
     }
 }

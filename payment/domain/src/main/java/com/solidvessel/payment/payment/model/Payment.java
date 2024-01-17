@@ -15,13 +15,15 @@ public class Payment {
     private String customerId;
     private List<Product> products;
     private Double totalPrice;
+    private PaymentStatus status;
 
     public static Payment newPayment(String customerId, Cart cart) {
         return new Payment(
                 null,
                 customerId,
                 cart.getProductList(),
-                cart.getTotalPrice()
+                cart.getTotalPrice(),
+                PaymentStatus.PENDING
         );
     }
 }
