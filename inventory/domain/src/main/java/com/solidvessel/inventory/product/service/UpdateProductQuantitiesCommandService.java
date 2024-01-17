@@ -1,7 +1,7 @@
 package com.solidvessel.inventory.product.service;
 
 import com.solidvessel.inventory.common.exception.InventoryDomainException;
-import com.solidvessel.inventory.product.event.InventoryCheckedEvent;
+import com.solidvessel.inventory.product.event.ProductsCheckedEvent;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
@@ -21,7 +21,7 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Upd
 
     private final ProductPort productPort;
     private final ProductQueryPort productQueryPort;
-    private final EventPublisher<InventoryCheckedEvent> inventoryCheckedEventPublisher;
+    private final EventPublisher<ProductsCheckedEvent> productsCheckedEventPublisher;
 
     @Override
     public OperationResult execute(UpdateProductQuantitiesCommand command) {
@@ -32,12 +32,12 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Upd
             if (product.isAvailable(boughtQuantity)) {
                 product.decreaseQuantity(boughtQuantity);
             } else {
-                inventoryCheckedEventPublisher.publish(new InventoryCheckedEvent(command.paymentId(), false));
+                productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), false));
                 throw new InventoryDomainException("Products are not available in stocks.");
             }
         });
         productPort.saveProducts(products);
-        inventoryCheckedEventPublisher.publish(new InventoryCheckedEvent(command.paymentId(), true));
+        productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), true));
         return new OperationResult("Product quantities are updated.", ResultType.SUCCESS);
     }
 }

@@ -1,7 +1,7 @@
 package com.solidvessel.inventory.product.service;
 
 import com.solidvessel.inventory.common.exception.InventoryDomainException;
-import com.solidvessel.inventory.product.event.InventoryCheckedEvent;
+import com.solidvessel.inventory.product.event.ProductsCheckedEvent;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductPort;
@@ -30,7 +30,7 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
     private ProductQueryPort productQueryPort;
 
     @Mock
-    private EventPublisher<InventoryCheckedEvent> inventoryCheckedEventPublisher;
+    private EventPublisher<ProductsCheckedEvent> productsCheckedEventPublisher;
 
     Product product1;
 
@@ -42,11 +42,11 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         productQuantities.put(1L, 5);
         productQuantities.put(3L, 2);
         var command = new UpdateProductQuantitiesCommand(1L, productQuantities);
-        var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, inventoryCheckedEventPublisher);
+        var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
         when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
         var operationResult = commandService.execute(command);
         verify(productPort).saveProducts(List.of(product1, product2));
-        verify(inventoryCheckedEventPublisher).publish(new InventoryCheckedEvent(1L, true));
+        verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, true));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(1, product1.getQuantity());
         assertEquals(2, product2.getQuantity());
@@ -58,10 +58,10 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         productQuantities.put(1L, 10);
         productQuantities.put(3L, 15);
         var command = new UpdateProductQuantitiesCommand(1L, productQuantities);
-        var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, inventoryCheckedEventPublisher);
+        var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
         when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
         assertThrows(InventoryDomainException.class, () -> commandService.execute(command));
-        verify(inventoryCheckedEventPublisher).publish(new InventoryCheckedEvent(1L, false));
+        verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, false));
         verifyNoInteractions(productPort);
     }
 
