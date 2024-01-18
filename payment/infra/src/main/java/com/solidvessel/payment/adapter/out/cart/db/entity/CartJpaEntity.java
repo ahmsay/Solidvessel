@@ -26,7 +26,7 @@ public class CartJpaEntity {
     @NotNull
     private String customerId;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "cart_product", joinColumns = @JoinColumn(name = "cart_id"))
     private List<ProductEmbeddable> products = new ArrayList<>();
 

@@ -26,7 +26,7 @@ public class PaymentJpaEntity {
     @NotNull
     private String customerId;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "payment_product", joinColumns = @JoinColumn(name = "payment_id"))
     private List<ProductEmbeddable> products = new ArrayList<>();
 
