@@ -26,4 +26,12 @@ public class Payment {
                 PaymentStatus.PENDING
         );
     }
+
+    public void approve() {
+        this.status = PaymentStatus.APPROVED;
+    }
+
+    public void cancel() {
+        this.status = PaymentStatus.CANCELLED;
+    }
 }

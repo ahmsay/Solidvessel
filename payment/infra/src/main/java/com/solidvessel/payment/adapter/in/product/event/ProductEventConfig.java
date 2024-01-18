@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ProductAvailableEventConfig {
+public class ProductEventConfig {
 
     @Value("${exchanges.product}")
     private String productTopicName;
@@ -19,6 +19,9 @@ public class ProductAvailableEventConfig {
 
     @Value("${routing-keys.product.available}")
     private String productAvailableRoutingKey;
+
+    @Value("${routing-keys.product.checked}")
+    private String productsCheckedRoutingKey;
 
     @Bean
     public TopicExchange productTopic() {
@@ -33,5 +36,10 @@ public class ProductAvailableEventConfig {
     @Bean
     Binding productAvailableBinding() {
         return BindingBuilder.bind(paymentQueue()).to(productTopic()).with(productAvailableRoutingKey);
+    }
+
+    @Bean
+    Binding productsCheckedBinding() {
+        return BindingBuilder.bind(paymentQueue()).to(productTopic()).with(productsCheckedRoutingKey);
     }
 }
