@@ -665,6 +665,54 @@
 					"response": []
 				},
 				{
+					"name": "add product to cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inventory/product/2/addToCart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"product",
+								"2",
+								"addToCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "is product available",
 					"request": {
 						"method": "GET",
@@ -897,39 +945,6 @@
 										"type": "text"
 									}
 								],
-								"url": {
-									"raw": "{{baseUrl}}/payment/cart",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"payment",
-										"cart"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "add to cart",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{access_token}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"productId\": 1,\n    \"quantity\": 1\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseUrl}}/payment/cart",
 									"host": [
