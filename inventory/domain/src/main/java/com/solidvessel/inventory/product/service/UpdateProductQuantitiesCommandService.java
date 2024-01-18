@@ -32,12 +32,12 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Upd
             if (product.isAvailable(boughtQuantity)) {
                 product.decreaseQuantity(boughtQuantity);
             } else {
-                productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), false));
+                productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), false, command.customerId()));
                 throw new InventoryDomainException("Products are not available in stocks.");
             }
         });
         productPort.saveProducts(products);
-        productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), true));
+        productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), true, command.customerId()));
         return new OperationResult("Product quantities are updated.", ResultType.SUCCESS);
     }
 }

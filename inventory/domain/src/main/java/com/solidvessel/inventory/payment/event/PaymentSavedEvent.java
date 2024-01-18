@@ -7,6 +7,6 @@ import java.util.Map;
 public record PaymentSavedEvent(Long paymentId, String customerId, Map<Long, Integer> productQuantities) {
 
     public UpdateProductQuantitiesCommand toCommand() {
-        return new UpdateProductQuantitiesCommand(paymentId, productQuantities);
+        return new UpdateProductQuantitiesCommand(paymentId, productQuantities, customerId);
     }
 }

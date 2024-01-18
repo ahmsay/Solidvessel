@@ -41,12 +41,12 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         var productQuantities = new HashMap<Long, Integer>();
         productQuantities.put(1L, 5);
         productQuantities.put(3L, 2);
-        var command = new UpdateProductQuantitiesCommand(1L, productQuantities);
+        var command = new UpdateProductQuantitiesCommand(1L, productQuantities, "123");
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
         when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
         var operationResult = commandService.execute(command);
         verify(productPort).saveProducts(List.of(product1, product2));
-        verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, true));
+        verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, true, "123"));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(1, product1.getQuantity());
         assertEquals(2, product2.getQuantity());
@@ -57,11 +57,11 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         var productQuantities = new HashMap<Long, Integer>();
         productQuantities.put(1L, 10);
         productQuantities.put(3L, 15);
-        var command = new UpdateProductQuantitiesCommand(1L, productQuantities);
+        var command = new UpdateProductQuantitiesCommand(1L, productQuantities, "123");
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
         when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
         assertThrows(InventoryDomainException.class, () -> commandService.execute(command));
-        verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, false));
+        verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, false, "123"));
         verifyNoInteractions(productPort);
     }
 
