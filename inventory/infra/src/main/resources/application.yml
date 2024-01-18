@@ -19,7 +19,8 @@ exchanges:
   payment: payment.topic
   product: product.topic
 queues:
-  product: product.queue
+  payment:
+    saved: payment.saved
 routing-keys:
   payment:
     saved: payment.saved

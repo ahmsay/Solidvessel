@@ -22,7 +22,8 @@ server:
 exchanges:
   payment: payment.topic
 queues:
-  order: order.queue
+  payment:
+    approved: payment.approved
 routing-keys:
   payment:
     approved: payment.approved
