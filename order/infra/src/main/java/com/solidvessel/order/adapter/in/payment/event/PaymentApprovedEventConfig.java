@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class PaymentSavedEventConfig {
+public class PaymentApprovedEventConfig {
 
     @Value("${exchanges.payment}")
     private String paymentTopicName;
@@ -17,8 +17,8 @@ public class PaymentSavedEventConfig {
     @Value("${queues.order}")
     private String orderQueueName;
 
-    @Value("${routing-keys.payment.saved}")
-    private String paymentSavedRoutingKey;
+    @Value("${routing-keys.payment.approved}")
+    private String paymentApprovedRoutingKey;
 
     @Bean
     public TopicExchange paymentTopic() {
@@ -31,7 +31,7 @@ public class PaymentSavedEventConfig {
     }
 
     @Bean
-    Binding paymentSavedBinding() {
-        return BindingBuilder.bind(orderQueue()).to(paymentTopic()).with(paymentSavedRoutingKey);
+    Binding paymentApprovedBinding() {
+        return BindingBuilder.bind(orderQueue()).to(paymentTopic()).with(paymentApprovedRoutingKey);
     }
 }

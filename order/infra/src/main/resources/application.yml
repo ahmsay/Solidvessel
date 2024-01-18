@@ -25,7 +25,7 @@ queues:
   order: order.queue
 routing-keys:
   payment:
-    saved: payment.saved
+    approved: payment.approved
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth
