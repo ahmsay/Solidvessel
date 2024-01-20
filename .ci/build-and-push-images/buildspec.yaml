@@ -20,4 +20,4 @@ phases:
 reports:
   test-results:
     files:
-    - '**/test/index.html'
+    - '**/test-results/**.xml'
