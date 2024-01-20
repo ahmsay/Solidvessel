@@ -4,7 +4,6 @@ import com.solidvessel.payment.cart.service.command.AddToCartCommand;
 import com.solidvessel.payment.product.event.ProductAvailableEvent;
 import com.solidvessel.shared.service.CommandService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -23,10 +22,6 @@ public class ProductAvailableEventConsumer {
             key = "${routing-keys.product.available}")
     )
     void consume(final ProductAvailableEvent event) {
-        try {
-            addToCartCommandService.execute(event.toCommand());
-        } catch (final Exception ex) {
-            throw new AmqpRejectAndDontRequeueException(ex);
-        }
+        addToCartCommandService.execute(event.toCommand());
     }
 }

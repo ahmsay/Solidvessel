@@ -4,7 +4,6 @@ import com.solidvessel.order.order.service.command.AddOrderCommand;
 import com.solidvessel.order.payment.event.PaymentApprovedEvent;
 import com.solidvessel.shared.service.CommandService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -23,10 +22,6 @@ public class PaymentApprovedEventConsumer {
             key = "${routing-keys.payment.approved}")
     )
     void consume(final PaymentApprovedEvent event) {
-        try {
-            addOrderCommandService.execute(event.toCommand());
-        } catch (final Exception ex) {
-            throw new AmqpRejectAndDontRequeueException(ex);
-        }
+        addOrderCommandService.execute(event.toCommand());
     }
 }
