@@ -19,7 +19,6 @@ public class PaymentApprovedEventPublisher implements EventPublisher<PaymentAppr
     @Value("${routing-keys.payment.approved}")
     private String paymentApprovedRoutingKey;
 
-
     @Override
     public void publish(PaymentApprovedEvent event) {
         rabbitTemplate.convertAndSend(paymentExchange, paymentApprovedRoutingKey, event);
