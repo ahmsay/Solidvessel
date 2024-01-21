@@ -19,6 +19,8 @@ public class PaymentTest {
         assertNull(payment.getId());
         assertEquals("123", payment.getCustomerId());
         assertEquals(PaymentStatus.PENDING, payment.getStatus());
+        assertEquals(2, payment.getProducts().size());
+        assertEquals(1215D, payment.getTotalPrice());
 
         var product1 = payment.getProducts().getFirst();
         assertEquals(1L, product1.getId());
