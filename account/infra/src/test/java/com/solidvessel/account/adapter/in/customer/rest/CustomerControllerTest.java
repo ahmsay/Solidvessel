@@ -56,7 +56,7 @@ public class CustomerControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getAllCustomers() throws Exception {
-        var users = List.of(createUser());
+        var users = List.of(createUser(), createUserWithNoPhone(), createUserWithNoBirthDate(), createUserWithNoPhoneAndBirthdate());
         when(keycloakRealm.users().list()).thenReturn(users);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer")
@@ -105,6 +105,37 @@ public class CustomerControllerTest extends BaseControllerTest {
         var birthDate = List.of(LocalDate.of(1980, 4, 23).toString());
         var phoneNumber = List.of("+90475274");
         user.setAttributes(Map.of("birthDate", birthDate, "phoneNumber", phoneNumber));
+        return user;
+    }
+
+    private UserRepresentation createUserWithNoPhone() {
+        var user = new UserRepresentation();
+        user.setId("456");
+        user.setFirstName("darth");
+        user.setLastName("vader");
+        user.setEmail("vader@mail.com");
+        var birthDate = List.of(LocalDate.of(1970, 2, 12).toString());
+        user.setAttributes(Map.of("birthDate", birthDate));
+        return user;
+    }
+
+    private UserRepresentation createUserWithNoBirthDate() {
+        var user = new UserRepresentation();
+        user.setId("789");
+        user.setFirstName("tommy");
+        user.setLastName("shelby");
+        user.setEmail("garrison@mail.com");
+        var phoneNumber = List.of("+47573926");
+        user.setAttributes(Map.of("phoneNumber", phoneNumber));
+        return user;
+    }
+
+    private UserRepresentation createUserWithNoPhoneAndBirthdate() {
+        var user = new UserRepresentation();
+        user.setId("012");
+        user.setFirstName("mike");
+        user.setLastName("ehrmantrout");
+        user.setEmail("mike@mail.com");
         return user;
     }
 }
