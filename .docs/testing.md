@@ -52,7 +52,7 @@ is
 directing your request to the correct destination.
 
 1. Create a
-   <a href="../shared/infra/src/main/java/com/solidvessel/test/controller/BaseControllerTest.java">
+   <a href="../shared/infra/src/main/java/com/solidvessel/shared/test/controller/BaseControllerTest.java">
    BaseControllerTest<a/>
    class to setup common configurations. I also imported a TestSecurityFilterConfig in that class to do two things:
     - I didn't include the OAuth2 part and disabled csrf (unlike in the actual security filter) since I'm not testing
