@@ -25,8 +25,21 @@ public class CartTest {
         var cart = Cart.newCart("123");
         cart.addProduct(createProduct(1L, 2));
         cart.addProduct(createProduct(5L, 10));
-        assertEquals(2, cart.getProducts().get(1L).getQuantity());
-        assertEquals(10, cart.getProducts().get(5L).getQuantity());
+        cart.addProduct(createProduct(5L, 3));
+
+        var product1 = cart.getProducts().get(1L);
+        assertEquals(1L, product1.getId());
+        assertEquals("table", product1.getName());
+        assertEquals(5D, product1.getPrice());
+        assertEquals(ProductCategory.FURNITURE, product1.getCategory());
+        assertEquals(2, product1.getQuantity());
+
+        var product2 = cart.getProducts().get(5L);
+        assertEquals(5L, product2.getId());
+        assertEquals("table", product2.getName());
+        assertEquals(5D, product2.getPrice());
+        assertEquals(ProductCategory.FURNITURE, product2.getCategory());
+        assertEquals(13, product2.getQuantity());
     }
 
     @Test

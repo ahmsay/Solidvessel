@@ -23,7 +23,12 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
         var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
         assertEquals(cartJpaEntity.getId(), cart.getId());
         assertEquals(cartJpaEntity.getCustomerId(), cart.getCustomerId());
+        assertEquals(cartJpaEntity.getProducts().size(), cart.getProductList().size());
         var product = cart.getProducts().get(productEmbeddable.getProductId());
+        assertEquals(productEmbeddable.getProductId(), product.getId());
+        assertEquals(productEmbeddable.getName(), product.getName());
+        assertEquals(productEmbeddable.getPrice(), product.getPrice());
+        assertEquals(productEmbeddable.getCategory(), product.getCategory());
         assertEquals(productEmbeddable.getQuantity(), product.getQuantity());
     }
 

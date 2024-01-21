@@ -38,6 +38,8 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
         assertEquals(paymentJpaEntity.getId(), payment.getId());
         assertEquals(paymentJpaEntity.getCustomerId(), payment.getCustomerId());
         assertEquals(paymentJpaEntity.getTotalPrice(), payment.getTotalPrice());
+        assertEquals(paymentJpaEntity.getProducts().size(), payment.getProducts().size());
+        assertEquals(paymentJpaEntity.getStatus(), PaymentStatus.APPROVED);
         var product = payment.getProducts().getFirst();
         assertEquals(productEmbeddable.getProductId(), product.getId());
         assertEquals(productEmbeddable.getName(), product.getName());

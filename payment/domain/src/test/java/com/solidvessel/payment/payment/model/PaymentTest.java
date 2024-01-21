@@ -18,10 +18,21 @@ public class PaymentTest {
         var payment = Payment.newPayment("123", createCart());
         assertNull(payment.getId());
         assertEquals("123", payment.getCustomerId());
-        assertEquals(5, payment.getProducts().getFirst().getQuantity());
-        assertEquals(9, payment.getProducts().get(1).getQuantity());
-        assertEquals(1215D, payment.getTotalPrice());
         assertEquals(PaymentStatus.PENDING, payment.getStatus());
+
+        var product1 = payment.getProducts().getFirst();
+        assertEquals(1L, product1.getId());
+        assertEquals("sickle", product1.getName());
+        assertEquals(234D, product1.getPrice());
+        assertEquals(ProductCategory.TOOL, product1.getCategory());
+        assertEquals(5, product1.getQuantity());
+
+        var product2 = payment.getProducts().get(1);
+        assertEquals(4L, product2.getId());
+        assertEquals("chair", product2.getName());
+        assertEquals(5D, product2.getPrice());
+        assertEquals(ProductCategory.FURNITURE, product2.getCategory());
+        assertEquals(9, product2.getQuantity());
     }
 
     @Test
