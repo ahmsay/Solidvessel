@@ -89,7 +89,6 @@ Let's explain each component shown in the diagram one by one:
 - <a href=".docs/testing.md">Testing<a/>
 
 ## Roadmap
-- Testing
 - Persistence
 - Caching
 - Data enrichment
