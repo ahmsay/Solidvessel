@@ -1,6 +1,5 @@
 package com.solidvessel.payment.adapter.in.product.event;
 
-import com.solidvessel.payment.cart.service.command.AddToCartCommand;
 import com.solidvessel.payment.product.event.ProductAvailableEvent;
 import com.solidvessel.shared.service.CommandService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ProductAvailableEventConsumer {
 
-    private final CommandService<AddToCartCommand> addToCartCommandService;
+    private final CommandService<ProductAvailableEvent> addToCartCommandService;
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "${queues.product.available}"),
@@ -22,6 +21,6 @@ public class ProductAvailableEventConsumer {
             key = "${routing-keys.product.available}")
     )
     void consume(final ProductAvailableEvent event) {
-        addToCartCommandService.execute(event.toCommand());
+        addToCartCommandService.execute(event);
     }
 }

@@ -1,6 +1,5 @@
 package com.solidvessel.order.adapter.in.payment.event;
 
-import com.solidvessel.order.order.service.command.AddOrderCommand;
 import com.solidvessel.order.payment.event.PaymentApprovedEvent;
 import com.solidvessel.shared.service.CommandService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PaymentApprovedEventConsumer {
 
-    private final CommandService<AddOrderCommand> addOrderCommandService;
+    private final CommandService<PaymentApprovedEvent> addOrderCommandService;
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "${queues.payment.approved}"),
@@ -22,6 +21,6 @@ public class PaymentApprovedEventConsumer {
             key = "${routing-keys.payment.approved}")
     )
     void consume(final PaymentApprovedEvent event) {
-        addOrderCommandService.execute(event.toCommand());
+        addOrderCommandService.execute(event);
     }
 }

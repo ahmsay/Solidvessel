@@ -1,6 +1,5 @@
 package com.solidvessel.payment.adapter.in.product.event;
 
-import com.solidvessel.payment.payment.service.UpdatePaymentStatusCommand;
 import com.solidvessel.payment.product.event.ProductsCheckedEvent;
 import com.solidvessel.shared.service.CommandService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ProductsCheckedEventConsumer {
 
-    private final CommandService<UpdatePaymentStatusCommand> updatePaymentStatusCommandService;
+    private final CommandService<ProductsCheckedEvent> updatePaymentStatusCommandService;
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "${queues.product.checked}"),
@@ -22,6 +21,6 @@ public class ProductsCheckedEventConsumer {
             key = "${routing-keys.product.checked}")
     )
     void consume(final ProductsCheckedEvent event) {
-        updatePaymentStatusCommandService.execute(event.toCommand());
+        updatePaymentStatusCommandService.execute(event);
     }
 }

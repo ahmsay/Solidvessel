@@ -6,7 +6,6 @@ import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
 public class ProductsCheckedEventConsumerTest extends BaseUnitTest {
@@ -19,10 +18,6 @@ public class ProductsCheckedEventConsumerTest extends BaseUnitTest {
         var event = new ProductsCheckedEvent(1L, false, "123");
         var eventConsumer = new ProductsCheckedEventConsumer(updatePaymentStatusCommandService);
         eventConsumer.consume(event);
-        var command = event.toCommand();
-        assertEquals(command.paymentId(), event.paymentId());
-        assertEquals(command.areProductsAvailable(), event.areProductsAvailable());
-        assertEquals(command.customerId(), event.customerId());
-        verify(updatePaymentStatusCommandService).execute(command);
+        verify(updatePaymentStatusCommandService).execute(event);
     }
 }

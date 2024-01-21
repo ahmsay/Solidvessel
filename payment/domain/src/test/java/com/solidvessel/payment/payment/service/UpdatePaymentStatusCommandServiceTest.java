@@ -5,6 +5,7 @@ import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
+import com.solidvessel.payment.product.event.ProductsCheckedEvent;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.event.EventPublisher;
@@ -33,11 +34,11 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
 
     @Test
     void approvePayment() {
-        var command = new UpdatePaymentStatusCommand(1L, true, "123");
+        var event = new ProductsCheckedEvent(1L, true, "123");
         var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher);
         var payment = createPayment();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
-        var operationResult = commandService.execute(command);
+        var operationResult = commandService.execute(event);
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(PaymentStatus.APPROVED, payment.getStatus());
         verify(paymentPort).save(payment);
@@ -46,11 +47,11 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
 
     @Test
     void cancelPayment() {
-        var command = new UpdatePaymentStatusCommand(1L, false, "123");
+        var event = new ProductsCheckedEvent(1L, false, "123");
         var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher);
         var payment = createPayment();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
-        var operationResult = commandService.execute(command);
+        var operationResult = commandService.execute(event);
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(PaymentStatus.CANCELLED, payment.getStatus());
         verifyNoInteractions(paymentApprovedEventPublisher);
