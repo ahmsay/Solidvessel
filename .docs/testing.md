@@ -136,7 +136,7 @@ contracts {
    class. This is only for specifying the Spring profile the tests will run.
 5. Create your
    <a href="../payment/infra/src/test/resources/contracts/payment/payment_by_id.groovy">
-   contract.</a>
+   contract</a>.
    In this file, you need to specify the actual response you require.
 6. Write your
    <a href="../payment/infra/src/test/java/com/solidvessel/payment/adapter/in/payment/rest/PaymentProducerContractTest.java">
