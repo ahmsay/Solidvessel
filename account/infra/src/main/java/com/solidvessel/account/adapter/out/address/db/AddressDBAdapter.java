@@ -19,7 +19,7 @@ public class AddressDBAdapter implements AddressPort {
     }
 
     @Override
-    public void delete(Long id, String customerId) {
-        addressRepository.deleteByIdAndCustomerId(id, customerId);
+    public void delete(Long id) {
+        addressRepository.deleteById(id);
     }
 }

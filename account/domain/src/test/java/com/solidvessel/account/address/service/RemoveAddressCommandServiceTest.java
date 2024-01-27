@@ -27,7 +27,7 @@ public class RemoveAddressCommandServiceTest extends BaseUnitTest {
         var commandService = new RemoveAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(command.id(), command.customerId())).thenReturn(true);
         var operationResult = commandService.execute(command);
-        verify(addressPort).delete(1L, "123");
+        verify(addressPort).delete(1L);
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
