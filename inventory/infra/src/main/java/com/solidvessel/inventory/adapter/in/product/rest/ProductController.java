@@ -4,9 +4,8 @@ import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductReque
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
-import com.solidvessel.inventory.product.service.command.AddProductCommand;
-import com.solidvessel.inventory.product.service.command.AddProductToCartCommand;
-import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.inventory.product.service.AddProductCommandService;
+import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +20,8 @@ import java.util.List;
 public class ProductController {
 
     private final ProductQueryPort productQueryPort;
-    private final CommandService<AddProductCommand> addProductCommandService;
-    private final CommandService<AddProductToCartCommand> addProductToCartCommandService;
+    private final AddProductCommandService addProductCommandService;
+    private final AddProductToCartCommandService addProductToCartCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()

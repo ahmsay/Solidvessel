@@ -5,11 +5,10 @@ import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequ
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.port.AddressQueryPort;
-import com.solidvessel.account.address.service.command.AddAddressCommand;
-import com.solidvessel.account.address.service.command.RemoveAddressCommand;
-import com.solidvessel.account.address.service.command.UpdateAddressCommand;
+import com.solidvessel.account.address.service.AddAddressCommandService;
+import com.solidvessel.account.address.service.RemoveAddressCommandService;
+import com.solidvessel.account.address.service.UpdateAddressCommandService;
 import com.solidvessel.shared.security.SessionUtil;
-import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +23,9 @@ import java.util.List;
 public class AddressController {
 
     private final AddressQueryPort addressQueryPort;
-    private final CommandService<AddAddressCommand> addAddressCommandService;
-    private final CommandService<RemoveAddressCommand> removeAddressCommandService;
-    private final CommandService<UpdateAddressCommand> updateAddressCommandService;
+    private final AddAddressCommandService addAddressCommandService;
+    private final RemoveAddressCommandService removeAddressCommandService;
+    private final UpdateAddressCommandService updateAddressCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()

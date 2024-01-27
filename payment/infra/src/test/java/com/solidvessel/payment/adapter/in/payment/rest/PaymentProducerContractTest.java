@@ -3,10 +3,9 @@ package com.solidvessel.payment.adapter.in.payment.rest;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
-import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
+import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
-import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +27,7 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
     private RealmResource keycloakRealm;
 
     @MockBean
-    private CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
+    private AcceptPaymentCommandService acceptPaymentCommandService;
 
     @BeforeEach
     public void setup() {

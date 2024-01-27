@@ -1,7 +1,7 @@
 package com.solidvessel.inventory.adapter.in.payment.event;
 
 import com.solidvessel.inventory.payment.event.PaymentSavedEvent;
-import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.inventory.product.service.UpdateProductQuantitiesCommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PaymentSavedEventConsumer {
 
-    private final CommandService<PaymentSavedEvent> updateProductQuantitiesCommandService;
+    private final UpdateProductQuantitiesCommandService updateProductQuantitiesCommandService;
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "${queues.payment.saved}"),

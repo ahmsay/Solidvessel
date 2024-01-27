@@ -6,8 +6,7 @@ import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
 import com.solidvessel.payment.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
-import com.solidvessel.payment.payment.service.AcceptPaymentCommand;
-import com.solidvessel.shared.service.CommandService;
+import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -25,7 +24,7 @@ public class PaymentController {
 
     private final PaymentQueryPort paymentQueryPort;
     private final RealmResource keycloakRealm;
-    private final CommandService<AcceptPaymentCommand> acceptPaymentCommandService;
+    private final AcceptPaymentCommandService acceptPaymentCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
