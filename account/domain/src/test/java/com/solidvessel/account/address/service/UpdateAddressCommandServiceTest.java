@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 public class UpdateAddressCommandServiceTest extends BaseUnitTest {
@@ -28,8 +27,8 @@ public class UpdateAddressCommandServiceTest extends BaseUnitTest {
     void updateAddress() {
         var command = new UpdateAddressCommand(1L, "home", "norway", "oslo", "245", "123");
         var commandService = new UpdateAddressCommandService(addressPort, addressQueryPort);
+        when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(new Address(1L, "home", "123", "turkey", "eskisehir", "26200"));
-        when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(true);
         var operationResult = commandService.execute(command);
         verify(addressPort).save(any(Address.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
@@ -39,7 +38,7 @@ public class UpdateAddressCommandServiceTest extends BaseUnitTest {
     void addressIsAlreadyRegistered() {
         var command = new UpdateAddressCommand(1L, "home", "norway", "oslo", "245", "123");
         var commandService = new UpdateAddressCommandService(addressPort, addressQueryPort);
-        when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(false);
+        when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
         assertThrows(AccountDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(addressPort);
     }

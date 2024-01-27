@@ -10,7 +10,9 @@ public interface AddressRepository extends JpaRepository<AddressJpaEntity, Long>
 
     List<AddressJpaEntity> findByCustomerId(String customerId);
 
-    boolean existsByCustomerIdAndName(String customerId, String name);
+    boolean existsByIdAndCustomerId(Long id, String customerId);
+
+    boolean existsByNameAndCustomerId(String name, String customerId);
 
     void deleteByIdAndCustomerId(Long id, String customerId);
 

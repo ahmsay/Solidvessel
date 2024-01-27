@@ -36,9 +36,16 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void isAddressRegistered() {
-        persistEntity(new AddressJpaEntity(null, "123", "home", "norway", "oslo", "5843"));
-        var isAddressAlreadyRegistered = addressDBQueryAdapter.isAddressRegistered("123", "home");
+    public void isAddressRegisteredWithIdAndCustomerId() {
+        var address = persistEntity(new AddressJpaEntity(null, "123", "home", "norway", "oslo", "5843"));
+        var isAddressAlreadyRegistered = addressDBQueryAdapter.isAddressRegistered(address.getId(), address.getCustomerId());
+        assertTrue(isAddressAlreadyRegistered);
+    }
+
+    @Test
+    public void isAddressRegisteredWithNameAndCustomerId() {
+        var address = persistEntity(new AddressJpaEntity(null, "123", "home", "norway", "oslo", "5843"));
+        var isAddressAlreadyRegistered = addressDBQueryAdapter.isAddressRegistered(address.getCustomerId(), address.getName());
         assertTrue(isAddressAlreadyRegistered);
     }
 }

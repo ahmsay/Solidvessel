@@ -8,6 +8,8 @@ public interface AddressQueryPort {
 
     List<Address> getAddresses(String customerId);
 
+    boolean isAddressRegistered(Long id, String customerId);
+
     boolean isAddressRegistered(String customerId, String name);
 
     Address getByIdAndCustomerId(Long id, String customerId);

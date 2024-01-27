@@ -22,8 +22,13 @@ public class AddressDBQueryAdapter implements AddressQueryPort {
     }
 
     @Override
-    public boolean isAddressRegistered(String customerId, String addressName) {
-        return addressRepository.existsByCustomerIdAndName(customerId, addressName);
+    public boolean isAddressRegistered(Long id, String customerId) {
+        return addressRepository.existsByIdAndCustomerId(id, customerId);
+    }
+
+    @Override
+    public boolean isAddressRegistered(String customerId, String name) {
+        return addressRepository.existsByNameAndCustomerId(name, customerId);
     }
 
     @Override

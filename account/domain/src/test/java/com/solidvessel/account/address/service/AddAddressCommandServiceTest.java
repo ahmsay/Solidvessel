@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 public class AddAddressCommandServiceTest extends BaseUnitTest {
@@ -28,7 +27,7 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
     void addAddress() {
         var command = new AddAddressCommand("home", "norway", "oslo", "245", "123");
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
-        when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(false);
+        when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
         var operationResult = commandService.execute(command);
         verify(addressPort).save(any(Address.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
@@ -38,7 +37,7 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
     void addressIsAlreadyRegistered() {
         var command = new AddAddressCommand("home", "norway", "oslo", "245", "123");
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
-        when(addressQueryPort.isAddressRegistered(anyString(), anyString())).thenReturn(true);
+        when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
         assertThrows(AccountDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(addressPort);
     }
