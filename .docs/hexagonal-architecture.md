@@ -1,6 +1,6 @@
 # Hexagonal Architecture
 
-![hexagonal](https://user-images.githubusercontent.com/22731894/224128847-7ec7c2a5-4eb8-4b64-babc-8c5154414d57.png)
+![hexagonal](https://github.com/ahmsay/Solidvessel/assets/22731894/ebeb6423-519e-4338-bdaf-c56de36045c4)
 
 Hexagonal architecture aims to separate the domain and infra part of the application. This makes your
 domain independent of the framework you use and your framework easier to change. In the diagram above, the blue
