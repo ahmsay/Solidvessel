@@ -24,11 +24,25 @@ public class BaseEntity implements Serializable {
     private Long id;
 
     @CreatedDate
+    @Column(name = "created_date", updatable = false, nullable = false)
     private LocalDateTime createdDate;
 
     @LastModifiedDate
+    @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
 
     @Version
     private Integer version;
+
+    @PrePersist
+    private void onCreate() {
+        createdDate = LocalDateTime.now();
+        version = 0;
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        lastModifiedDate = LocalDateTime.now();
+        version++;
+    }
 }
