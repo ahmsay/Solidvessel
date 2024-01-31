@@ -7,12 +7,15 @@
             create sequence address_seq start 1 increment 1;
             create table address
             (
-                id          bigint       not null default nextval('address_seq'::regclass) primary key,
-                customer_id varchar(36)  not null,
-                name        varchar(100) not null,
-                country     varchar(50)  not null,
-                city        varchar(100) not null,
-                zipcode     varchar(10)  not null
+                id                 bigint       not null default nextval('address_seq'::regclass) primary key,
+                created_date       timestamp    not null default now(),
+                last_modified_date timestamp,
+                version            int          not null default 0,
+                customer_id        varchar(36)  not null,
+                name               varchar(100) not null,
+                country            varchar(50)  not null,
+                city               varchar(100) not null,
+                zipcode            varchar(10)  not null
             );
         </sql>
     </changeSet>

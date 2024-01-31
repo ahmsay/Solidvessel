@@ -1,14 +1,16 @@
 package com.solidvessel.account.address.model;
 
 import com.solidvessel.account.address.service.command.UpdateAddressCommand;
+import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @Getter
-public class Address {
+@SuperBuilder
+public class Address extends DomainModel {
 
-    private Long id;
     private String customerId;
     private String name;
     private String country;
