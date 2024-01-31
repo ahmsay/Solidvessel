@@ -49,7 +49,7 @@ public class AddressControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getAddresses() throws Exception {
-        var addresses = List.of(new Address(1L, "123", "home", "turkey", "eskisehir", "26200"));
+        var addresses = List.of(new Address("123", "home", "turkey", "eskisehir", "26200"));
         when(addressQueryPort.getAddresses(anyString())).thenReturn(addresses);
         MvcResult mvcResult = mockMvc.perform(
                 get("/address")

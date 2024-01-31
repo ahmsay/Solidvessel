@@ -28,7 +28,7 @@ public class UpdateAddressCommandServiceTest extends BaseUnitTest {
         var command = new UpdateAddressCommand(1L, "home", "norway", "oslo", "245", "123");
         var commandService = new UpdateAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
-        when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(new Address(1L, "home", "123", "turkey", "eskisehir", "26200"));
+        when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(new Address("home", "123", "turkey", "eskisehir", "26200"));
         var operationResult = commandService.execute(command);
         verify(addressPort).save(any(Address.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());

@@ -13,13 +13,13 @@ public class AddressDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void saveAddress() {
-        var address = new Address(null, "123", "home", "turkey", "eskisehir", "26000");
+        var address = new Address("123", "home", "turkey", "eskisehir", "26000");
         addressDBAdapter.save(address);
     }
 
     @Test
     public void deleteAddress() {
-        var address = persistEntity(new AddressJpaEntity(null, "123", "home", "norway", "oslo", "5843"));
+        var address = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843"));
         addressDBAdapter.delete(address.getId());
     }
 }

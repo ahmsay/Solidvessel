@@ -9,7 +9,7 @@ public class AddressTest {
 
     @Test
     void updateAddress() {
-        var address = new Address(1L, "123", "home", "norway", "oslo", "473");
+        var address = Address.builder().id(1L).customerId("123").name("home").country("norway").city("oslo").zipCode("473").build();
         var command = new UpdateAddressCommand(1L, "work", "turkey", "eskisehir", "26200", "123");
         address.update(command);
         assertEquals(command.id(), address.getId());
