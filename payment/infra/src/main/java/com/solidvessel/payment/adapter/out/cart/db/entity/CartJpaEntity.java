@@ -6,6 +6,7 @@ import com.solidvessel.shared.persistence.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -25,6 +26,7 @@ public class CartJpaEntity extends BaseEntity {
     @NotNull
     private String customerId;
 
+    @Builder.Default
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "cart_product", joinColumns = @JoinColumn(name = "cart_id"))
     private List<ProductEmbeddable> products = new ArrayList<>();
