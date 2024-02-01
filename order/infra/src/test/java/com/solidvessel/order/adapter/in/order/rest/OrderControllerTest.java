@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -50,7 +51,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getAllOrders() throws Exception {
-        var orders = List.of(new Order(1L, OrderStatus.DELIVERED, "123", 1L));
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
         when(orderQueryPort.getAll()).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
@@ -62,8 +63,8 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getOrderById() throws Exception {
-        var order = new Order(1L, OrderStatus.DELIVERED, "123", 1L);
-        when(orderQueryPort.getById(1L)).thenReturn(order);
+        var order = new Order(OrderStatus.DELIVERED, "123", 1L);
+        when(orderQueryPort.getById(anyLong())).thenReturn(order);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -74,11 +75,11 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getOrderDetailById() throws Exception {
-        var order = new Order(1L, OrderStatus.DELIVERED, "123", 1L);
+        var order = new Order(OrderStatus.DELIVERED, "123", 1L);
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var payment = new PaymentResponse(1L, 105D);
         var orderDetail = OrderDetailResponse.from(order, customer, payment);
-        when(orderQueryPort.getById(1L)).thenReturn(order);
+        when(orderQueryPort.getById(anyLong())).thenReturn(order);
         when(keycloakRealm.users()).thenReturn(mock(UsersResource.class));
         when(keycloakRealm.users().get("123")).thenReturn(mock(UserResource.class));
         when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(createUser());
@@ -94,7 +95,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     public void getOrderByCustomerId() throws Exception {
-        var orders = List.of(new Order(1L, OrderStatus.DELIVERED, "123", 1L));
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCustomer/123")

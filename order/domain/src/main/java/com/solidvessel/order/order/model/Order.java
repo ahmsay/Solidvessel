@@ -1,18 +1,20 @@
 package com.solidvessel.order.order.model;
 
+import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @Getter
-public class Order {
+@SuperBuilder
+public class Order extends DomainModel {
 
-    private Long id;
     private OrderStatus status;
     private String customerId;
     private Long paymentId;
 
     public static Order newOrder(String customerId, Long paymentId) {
-        return new Order(null, OrderStatus.PREPARING, customerId, paymentId);
+        return new Order(OrderStatus.PREPARING, customerId, paymentId);
     }
 }

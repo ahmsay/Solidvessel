@@ -7,10 +7,13 @@
             create sequence orders_seq start 1 increment 1;
             create table orders
             (
-                id          bigint      not null default nextval('orders_seq'::regclass) primary key,
-                status      varchar(50) not null,
-                customer_id varchar(36) not null,
-                payment_id  bigint      not null
+                id                 bigint      not null default nextval('orders_seq'::regclass) primary key,
+                created_date       timestamp   not null default now(),
+                last_modified_date timestamp,
+                version            int         not null default 0,
+                status             varchar(50) not null,
+                customer_id        varchar(36) not null,
+                payment_id         bigint      not null
             );
         </sql>
     </changeSet>

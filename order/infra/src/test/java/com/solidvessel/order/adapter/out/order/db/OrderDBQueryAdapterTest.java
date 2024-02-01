@@ -15,8 +15,8 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getAll() {
-        persistEntity(new OrderJpaEntity(null, OrderStatus.DELIVERED, "123", 1L));
-        persistEntity(new OrderJpaEntity(null, OrderStatus.ON_THE_WAY, "456", 5L));
+        persistEntity(new OrderJpaEntity(OrderStatus.DELIVERED, "123", 1L));
+        persistEntity(new OrderJpaEntity(OrderStatus.ON_THE_WAY, "456", 5L));
         var orders = orderDBQueryAdapter.getAll();
         assertEquals(OrderStatus.DELIVERED, orders.getFirst().getStatus());
         assertEquals(OrderStatus.ON_THE_WAY, orders.get(1).getStatus());
@@ -24,7 +24,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getById() {
-        var orderJpaEntity = persistEntity(new OrderJpaEntity(null, OrderStatus.DELIVERED, "123", 12L));
+        var orderJpaEntity = persistEntity(new OrderJpaEntity(OrderStatus.DELIVERED, "123", 12L));
         var order = orderDBQueryAdapter.getById(orderJpaEntity.getId());
         assertEquals(orderJpaEntity.getId(), order.getId());
         assertEquals(orderJpaEntity.getCustomerId(), order.getCustomerId());
@@ -34,7 +34,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getCustomerId() {
-        persistEntity(new OrderJpaEntity(null, OrderStatus.PREPARING, "123", 12L));
+        persistEntity(new OrderJpaEntity(OrderStatus.PREPARING, "123", 12L));
         var ordersOfCustomer = orderDBQueryAdapter.getByCustomerId("123");
         assertEquals(OrderStatus.PREPARING, ordersOfCustomer.getFirst().getStatus());
     }
