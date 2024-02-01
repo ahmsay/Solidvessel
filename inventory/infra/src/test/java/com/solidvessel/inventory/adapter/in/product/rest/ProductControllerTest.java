@@ -23,6 +23,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -46,7 +48,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getAllProducts() throws Exception {
-        var products = List.of(new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10));
+        var products = List.of(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10));
         when(productQueryPort.getAll()).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
@@ -58,8 +60,8 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getProductById() throws Exception {
-        var product = new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10);
-        when(productQueryPort.getById(1L)).thenReturn(product);
+        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10);
+        when(productQueryPort.getById(anyLong())).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -71,10 +73,10 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     public void getProductsByIds() throws Exception {
         var products = List.of(
-                new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 10),
-                new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 5)
+                new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10),
+                new Product("shirt", 20D, ProductCategory.CLOTHING, 5)
         );
-        when(productQueryPort.getByIds(List.of(1L, 2L))).thenReturn(products);
+        when(productQueryPort.getByIds(anyList())).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/ids")
                         .queryParam("ids", "1", "2")

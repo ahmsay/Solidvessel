@@ -66,8 +66,8 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
     }
 
     private List<Product> retrieveProducts() {
-        product1 = new Product(1L, "shirt", 5D, ProductCategory.CLOTHING, 6);
-        product2 = new Product(3L, "pants", 10D, ProductCategory.CLOTHING, 4);
+        product1 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).build();
+        product2 = Product.builder().id(3L).name("pants").price(10D).category(ProductCategory.CLOTHING).quantity(4).build();
         var products = new ArrayList<Product>();
         products.add(product1);
         products.add(product2);
