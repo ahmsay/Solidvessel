@@ -46,8 +46,8 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
                 new Product(8L, "shirt", 50D, ProductCategory.CLOTHING, 2)
         );
         return List.of(
-                new Payment(1L, "123", products1, 150D, PaymentStatus.APPROVED),
-                new Payment(2L, "123", products2, 1300D, PaymentStatus.APPROVED)
+                Payment.builder().id(1L).customerId("123").products(products1).totalPrice(150D).status(PaymentStatus.APPROVED).build(),
+                Payment.builder().id(2L).customerId("123").products(products2).totalPrice(1300D).status(PaymentStatus.APPROVED).build()
         );
     }
 
@@ -56,6 +56,6 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
                 new Product(4L, "slippers", 12D, ProductCategory.CLOTHING, 2),
                 new Product(5L, "chair", 50D, ProductCategory.FURNITURE, 3)
         );
-        return new Payment(1L, "123", products, 174D, PaymentStatus.APPROVED);
+        return Payment.builder().id(1L).customerId("123").products(products).totalPrice(174D).status(PaymentStatus.APPROVED).build();
     }
 }

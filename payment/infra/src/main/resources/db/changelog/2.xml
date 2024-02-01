@@ -7,8 +7,11 @@
             create sequence cart_seq start 1 increment 1;
             create table cart
             (
-                id          bigint      not null default nextval('cart_seq'::regclass) primary key,
-                customer_id varchar(36) not null
+                id                 bigint      not null default nextval('cart_seq'::regclass) primary key,
+                created_date       timestamp   not null default now(),
+                last_modified_date timestamp,
+                version            int         not null default 0,
+                customer_id        varchar(36) not null
             );
 
             create table cart_product

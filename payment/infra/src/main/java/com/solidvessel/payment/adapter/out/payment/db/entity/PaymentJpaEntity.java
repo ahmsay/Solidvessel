@@ -3,11 +3,13 @@ package com.solidvessel.payment.adapter.out.payment.db.entity;
 import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
+import com.solidvessel.shared.persistence.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@SuperBuilder
 @Table(name = "payment")
-public class PaymentJpaEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class PaymentJpaEntity extends BaseEntity {
 
     @NotNull
     private String customerId;
@@ -37,22 +36,28 @@ public class PaymentJpaEntity {
     private PaymentStatus status;
 
     public Payment toDomainModel() {
-        return new Payment(
-                id,
-                customerId,
-                products.stream().map(ProductEmbeddable::toDomainModel).toList(),
-                totalPrice,
-                status
-        );
+        return Payment.builder()
+                .id(getId())
+                .createdDate(getCreatedDate())
+                .lastModifiedDate(getLastModifiedDate())
+                .version(getVersion())
+                .customerId(customerId)
+                .products(products.stream().map(ProductEmbeddable::toDomainModel).toList())
+                .totalPrice(totalPrice)
+                .status(status)
+                .build();
     }
 
     public static PaymentJpaEntity from(Payment payment) {
-        return new PaymentJpaEntity(
-                payment.getId(),
-                payment.getCustomerId(),
-                payment.getProducts().stream().map(ProductEmbeddable::from).toList(),
-                payment.getTotalPrice(),
-                payment.getStatus()
-        );
+        return PaymentJpaEntity.builder()
+                .id(payment.getId())
+                .createdDate(payment.getCreatedDate())
+                .lastModifiedDate(payment.getLastModifiedDate())
+                .version(payment.getVersion())
+                .customerId(payment.getCustomerId())
+                .products(payment.getProducts().stream().map(ProductEmbeddable::from).toList())
+                .totalPrice(payment.getTotalPrice())
+                .status(payment.getStatus())
+                .build();
     }
 }

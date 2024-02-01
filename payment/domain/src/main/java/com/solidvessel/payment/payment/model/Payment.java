@@ -2,16 +2,18 @@ package com.solidvessel.payment.payment.model;
 
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.product.model.Product;
+import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Getter
-public class Payment {
+@SuperBuilder
+public class Payment extends DomainModel {
 
-    private Long id;
     private String customerId;
     private List<Product> products;
     private Double totalPrice;
@@ -19,7 +21,6 @@ public class Payment {
 
     public static Payment newPayment(String customerId, Cart cart) {
         return new Payment(
-                null,
                 customerId,
                 cart.getProductList(),
                 cart.getTotalPrice(),

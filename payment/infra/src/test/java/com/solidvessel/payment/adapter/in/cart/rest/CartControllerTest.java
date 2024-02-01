@@ -46,7 +46,7 @@ public class CartControllerTest extends BaseControllerTest {
                 1L, new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 3),
                 2L, new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 2)
         );
-        var cart = new Cart(1L, "123", products);
+        var cart = new Cart("123", products);
         var cartResponse = CartResponse.from(cart);
         when(cartQueryPort.getByCustomerId(anyString())).thenReturn(cart);
         MvcResult mvcResult = mockMvc.perform(

@@ -1,8 +1,10 @@
 package com.solidvessel.payment.cart.model;
 
 import com.solidvessel.payment.product.model.Product;
+import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,14 +13,14 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Getter
-public class Cart {
+@SuperBuilder
+public class Cart extends DomainModel {
 
-    private Long id;
     private String customerId;
     private Map<Long, Product> products;
 
     public static Cart newCart(String customerId) {
-        return new Cart(null, customerId, new HashMap<>());
+        return new Cart(customerId, new HashMap<>());
     }
 
     public void addProduct(Product product) {

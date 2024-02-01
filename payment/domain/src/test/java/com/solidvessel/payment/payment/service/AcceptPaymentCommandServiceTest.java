@@ -54,7 +54,7 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
             put(1L, new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
             put(4L, new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
         }};
-        Cart cart = new Cart(1L, "123", products);
+        Cart cart = new Cart("123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
 
         var operationResult = commandService.execute(command);

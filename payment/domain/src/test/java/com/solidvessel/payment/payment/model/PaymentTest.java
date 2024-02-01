@@ -55,6 +55,6 @@ public class PaymentTest {
         Map<Long, Product> products = new HashMap<>();
         products.put(1L, new Product(1L, "sickle", 234D, ProductCategory.TOOL, 5));
         products.put(4L, new Product(4L, "chair", 5D, ProductCategory.FURNITURE, 9));
-        return new Cart(1L, "123", products);
+        return new Cart("123", products);
     }
 }

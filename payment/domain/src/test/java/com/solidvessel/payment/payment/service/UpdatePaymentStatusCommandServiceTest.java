@@ -62,6 +62,6 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
             add(new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
             add(new Product(1L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
         }};
-        return new Payment(1L, "123", products, 24D, PaymentStatus.PENDING);
+        return new Payment("123", products, 24D, PaymentStatus.PENDING);
     }
 }

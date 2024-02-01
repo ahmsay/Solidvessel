@@ -19,7 +19,7 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
     @Test
     public void getByCustomerId() {
         var productEmbeddable = new ProductEmbeddable(1L, "desk", 20D, ProductCategory.FURNITURE, 4);
-        var cartJpaEntity = persistEntity(new CartJpaEntity(null, "123", List.of(productEmbeddable)));
+        var cartJpaEntity = persistEntity(new CartJpaEntity("123", List.of(productEmbeddable)));
         var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
         assertEquals(cartJpaEntity.getId(), cart.getId());
         assertEquals(cartJpaEntity.getCustomerId(), cart.getCustomerId());

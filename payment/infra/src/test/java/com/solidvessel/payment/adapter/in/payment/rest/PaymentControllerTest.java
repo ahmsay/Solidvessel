@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -56,7 +57,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getAllPayments() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payments = List.of(new Payment(1L, "123", products, 105D, PaymentStatus.APPROVED));
+        var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getAll()).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
@@ -69,8 +70,8 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getPaymentById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payment = new Payment(1L, "123", products, 105D, PaymentStatus.CANCELLED);
-        when(paymentQueryPort.getById(1L)).thenReturn(payment);
+        var payment = new Payment("123", products, 105D, PaymentStatus.CANCELLED);
+        when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -82,10 +83,10 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getPaymentDetailById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payment = new Payment(1L, "123", products, 105D, PaymentStatus.APPROVED);
+        var payment = new Payment("123", products, 105D, PaymentStatus.APPROVED);
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var paymentDetail = PaymentDetailResponse.from(payment, customer);
-        when(paymentQueryPort.getById(1L)).thenReturn(payment);
+        when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
         when(keycloakRealm.users()).thenReturn(mock(UsersResource.class));
         when(keycloakRealm.users().get("123")).thenReturn(mock(UserResource.class));
         when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(createUser());
@@ -100,7 +101,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getPaymentsByCustomerId() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payments = List.of(new Payment(1L, "123", products, 105D, PaymentStatus.APPROVED));
+        var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCustomer/123")

@@ -35,7 +35,7 @@ public class RemoveFromCartCommandServiceTest extends BaseUnitTest {
         Map<Long, Product> products = new HashMap<>() {{
             put(3L, new Product(3L, "table", 5D, ProductCategory.FURNITURE, 7));
         }};
-        Cart cart = new Cart(1L, "123", products);
+        Cart cart = new Cart("123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
         var operationResult = commandService.execute(command);
         verify(cartPort).save(any(Cart.class));
