@@ -2,7 +2,7 @@ package com.solidvessel.order.adapter.out.order.db.entity;
 
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
-import com.solidvessel.shared.persistence.BaseEntity;
+import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

@@ -2,7 +2,7 @@ package com.solidvessel.payment.adapter.out.cart.db.entity;
 
 import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.cart.model.Cart;
-import com.solidvessel.shared.persistence.BaseEntity;
+import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

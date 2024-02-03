@@ -1,7 +1,7 @@
 package com.solidvessel.account.adapter.out.address.db.entity;
 
 import com.solidvessel.account.address.model.Address;
-import com.solidvessel.shared.persistence.BaseEntity;
+import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;

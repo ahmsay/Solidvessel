@@ -2,7 +2,7 @@ package com.solidvessel.inventory.adapter.out.product.db.entity;
 
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
-import com.solidvessel.shared.persistence.BaseEntity;
+import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

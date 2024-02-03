@@ -1,4 +1,4 @@
-package com.solidvessel.shared.persistence;
+package com.solidvessel.shared.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
