@@ -55,11 +55,13 @@ public class CustomerControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getAllCustomers() throws Exception {
+    public void getCustomers() throws Exception {
         var users = List.of(createUser(), createUserWithNoPhone(), createUserWithNoBirthDate(), createUserWithNoPhoneAndBirthdate());
-        when(keycloakRealm.users().list()).thenReturn(users);
+        when(keycloakRealm.users().list(0, 100)).thenReturn(users);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer")
+                        .param("start", "0")
+                        .param("end", "100")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(users.stream().map(CustomerResponse::from).toList()), bodyOf(mvcResult));

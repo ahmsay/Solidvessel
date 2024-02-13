@@ -11,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,8 +26,8 @@ public class CustomerController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
-    public List<CustomerResponse> getAll() {
-        List<UserRepresentation> users = keycloakRealm.users().list();
+    public List<CustomerResponse> getUsers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
+        List<UserRepresentation> users = keycloakRealm.users().list(start, end);
         return users.stream().map(CustomerResponse::from).toList();
     }
 
