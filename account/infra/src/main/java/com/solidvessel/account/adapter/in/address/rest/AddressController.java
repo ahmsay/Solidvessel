@@ -8,6 +8,7 @@ import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
 import com.solidvessel.account.address.service.RemoveAddressCommandService;
 import com.solidvessel.account.address.service.UpdateAddressCommandService;
+import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
@@ -29,8 +30,8 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
-    public List<AddressResponse> getAddresses() {
-        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId()).stream().map(AddressResponse::from).toList();
+    public List<AddressResponse> getAddresses(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
+        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), QueryOptions.of(pageNumber, pageSize)).stream().map(AddressResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

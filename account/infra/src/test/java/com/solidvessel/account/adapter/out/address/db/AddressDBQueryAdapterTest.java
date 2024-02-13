@@ -2,6 +2,7 @@ package com.solidvessel.account.adapter.out.address.db;
 
 import com.solidvessel.account.adapter.out.address.db.entity.AddressJpaEntity;
 import com.solidvessel.account.integrationtest.BaseDatabaseTest;
+import com.solidvessel.shared.query.QueryOptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,7 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
     public void getAddresses() {
         persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843"));
         persistEntity(new AddressJpaEntity("123", "work", "finland", "helsinki", "4757"));
-        var addresses = addressDBQueryAdapter.getAddresses("123");
+        var addresses = addressDBQueryAdapter.getAddresses("123", new QueryOptions(0));
         assertEquals(addresses.getFirst().getName(), "home");
         assertEquals(addresses.get(1).getName(), "work");
     }

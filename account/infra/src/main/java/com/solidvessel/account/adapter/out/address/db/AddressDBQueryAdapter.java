@@ -4,11 +4,14 @@ import com.solidvessel.account.adapter.out.address.db.entity.AddressJpaEntity;
 import com.solidvessel.account.adapter.out.address.db.repository.AddressRepository;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
+import com.solidvessel.shared.query.QueryOptions;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import static com.solidvessel.shared.jpa.query.PageUtil.withPage;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,8 +20,8 @@ public class AddressDBQueryAdapter implements AddressQueryPort {
     private final AddressRepository addressRepository;
 
     @Override
-    public List<Address> getAddresses(String customerId) {
-        return addressRepository.findByCustomerId(customerId).stream().map(AddressJpaEntity::toDomainModel).toList();
+    public List<Address> getAddresses(String customerId, QueryOptions queryOptions) {
+        return addressRepository.findByCustomerId(customerId, withPage(queryOptions)).stream().map(AddressJpaEntity::toDomainModel).toList();
     }
 
     @Override

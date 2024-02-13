@@ -9,6 +9,8 @@ import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
 import com.solidvessel.account.address.service.RemoveAddressCommandService;
 import com.solidvessel.account.address.service.UpdateAddressCommandService;
+import com.solidvessel.shared.query.QueryOptions;
+import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -23,7 +25,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,10 +50,12 @@ public class AddressControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getAddresses() throws Exception {
+        var queryOptions = new QueryOptions(0);
         var addresses = List.of(new Address("123", "home", "turkey", "eskisehir", "26200"));
-        when(addressQueryPort.getAddresses(anyString())).thenReturn(addresses);
+        when(addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), queryOptions)).thenReturn(addresses);
         MvcResult mvcResult = mockMvc.perform(
                 get("/address")
+                        .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(addresses.stream().map(AddressResponse::from).toList()), bodyOf(mvcResult));
