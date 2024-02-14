@@ -19,7 +19,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
     private PaymentDBQueryAdapter paymentDBQueryAdapter;
 
     @Test
-    public void getAll() {
+    public void getProducts() {
         var product1 = new ProductEmbeddable(1L, "pillow", 10D, ProductCategory.CLOTHING, 6);
         var payment1 = new PaymentJpaEntity("123", List.of(product1), 60D, PaymentStatus.APPROVED);
         var product2 = new ProductEmbeddable(2L, "scissors", 5D, ProductCategory.TOOL, 3);
