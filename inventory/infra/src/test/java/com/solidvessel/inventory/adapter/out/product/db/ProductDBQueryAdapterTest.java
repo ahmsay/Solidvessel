@@ -3,6 +3,7 @@ package com.solidvessel.inventory.adapter.out.product.db;
 import com.solidvessel.inventory.adapter.out.product.db.entity.ProductJpaEntity;
 import com.solidvessel.inventory.integrationtest.BaseDatabaseTest;
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.shared.query.QueryOptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,9 +17,9 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
     private ProductDBQueryAdapter productDBQueryAdapter;
 
     @Test
-    public void getAll() {
+    public void getProducts() {
         persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3));
-        var products = productDBQueryAdapter.getAll();
+        var products = productDBQueryAdapter.getProducts(new QueryOptions(0));
         assertEquals("macbook", products.getFirst().getName());
     }
 

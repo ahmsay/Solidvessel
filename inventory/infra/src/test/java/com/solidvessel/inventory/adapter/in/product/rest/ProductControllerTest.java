@@ -8,6 +8,7 @@ import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
+import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -47,11 +48,13 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getAllProducts() throws Exception {
+    public void getProducts() throws Exception {
+        var queryOptions = new QueryOptions(0);
         var products = List.of(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10));
-        when(productQueryPort.getAll()).thenReturn(products);
+        when(productQueryPort.getProducts(queryOptions)).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
+                        .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(products.stream().map(ProductResponse::from).toList()), bodyOf(mvcResult));

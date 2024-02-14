@@ -6,6 +6,7 @@ import com.solidvessel.inventory.adapter.in.product.rest.response.ProductRespons
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
+import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,8 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
-    public List<ProductResponse> getAll() {
-        return productQueryPort.getAll().stream().map(ProductResponse::from).toList();
+    public List<ProductResponse> getProducts(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
+        return productQueryPort.getProducts(QueryOptions.of(pageNumber, pageSize)).stream().map(ProductResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
