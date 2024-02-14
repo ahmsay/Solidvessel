@@ -7,12 +7,14 @@ import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,8 +29,8 @@ public class OrderController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
-    public List<OrderResponse> getAll() {
-        return orderQueryPort.getAll().stream().map(OrderResponse::from).toList();
+    public List<OrderResponse> getOrders(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
+        return orderQueryPort.getOrders(QueryOptions.of(pageNumber, pageSize)).stream().map(OrderResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

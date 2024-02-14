@@ -8,6 +8,7 @@ import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
 import org.junit.jupiter.api.Test;
@@ -50,11 +51,13 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getAllOrders() throws Exception {
+    public void getOrders() throws Exception {
+        var queryOptions = new QueryOptions(0);
         var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
-        when(orderQueryPort.getAll()).thenReturn(orders);
+        when(orderQueryPort.getOrders(queryOptions)).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
+                        .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));

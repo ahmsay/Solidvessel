@@ -3,6 +3,7 @@ package com.solidvessel.order.adapter.out.order.db;
 import com.solidvessel.order.adapter.out.order.db.entity.OrderJpaEntity;
 import com.solidvessel.order.integrationtest.BaseDatabaseTest;
 import com.solidvessel.order.order.model.OrderStatus;
+import com.solidvessel.shared.query.QueryOptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
     public void getAll() {
         persistEntity(new OrderJpaEntity(OrderStatus.DELIVERED, "123", 1L));
         persistEntity(new OrderJpaEntity(OrderStatus.ON_THE_WAY, "456", 5L));
-        var orders = orderDBQueryAdapter.getAll();
+        var orders = orderDBQueryAdapter.getOrders(new QueryOptions(0));
         assertEquals(OrderStatus.DELIVERED, orders.getFirst().getStatus());
         assertEquals(OrderStatus.ON_THE_WAY, orders.get(1).getStatus());
     }

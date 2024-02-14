@@ -4,11 +4,14 @@ import com.solidvessel.order.adapter.out.order.db.entity.OrderJpaEntity;
 import com.solidvessel.order.adapter.out.order.db.repository.OrderRepository;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.shared.query.QueryOptions;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import static com.solidvessel.shared.jpa.query.PageUtil.withPage;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,8 +20,8 @@ public class OrderDBQueryAdapter implements OrderQueryPort {
     private final OrderRepository orderRepository;
 
     @Override
-    public List<Order> getAll() {
-        return orderRepository.findAll().stream().map(OrderJpaEntity::toDomainModel).toList();
+    public List<Order> getOrders(QueryOptions queryOptions) {
+        return orderRepository.findAll(withPage(queryOptions)).stream().map(OrderJpaEntity::toDomainModel).toList();
     }
 
     @Override
