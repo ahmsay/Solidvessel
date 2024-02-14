@@ -5,6 +5,7 @@ import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.integrationtest.BaseDatabaseTest;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.shared.query.QueryOptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,7 +26,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
         var payment2 = new PaymentJpaEntity("456", List.of(product2), 15D, PaymentStatus.PENDING);
         persistEntity(payment1);
         persistEntity(payment2);
-        var payments = paymentDBQueryAdapter.getAll();
+        var payments = paymentDBQueryAdapter.getPayments(new QueryOptions(0));
         assertEquals(60D, payments.getFirst().getTotalPrice());
         assertEquals("scissors", payments.get(1).getProducts().getFirst().getName());
     }

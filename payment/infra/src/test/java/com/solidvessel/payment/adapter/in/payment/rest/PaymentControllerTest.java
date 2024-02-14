@@ -10,6 +10,7 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -55,12 +56,14 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getAllPayments() throws Exception {
+    public void getPayments() throws Exception {
+        var queryOptions = new QueryOptions(0);
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
-        when(paymentQueryPort.getAll()).thenReturn(payments);
+        when(paymentQueryPort.getPayments(queryOptions)).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
+                        .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
