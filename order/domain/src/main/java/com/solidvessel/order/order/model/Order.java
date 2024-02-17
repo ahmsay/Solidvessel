@@ -15,6 +15,10 @@ public class Order extends DomainModel {
     private Long paymentId;
 
     public static Order newOrder(String customerId, Long paymentId) {
-        return new Order(OrderStatus.PREPARING, customerId, paymentId);
+        return Order.builder()
+                .status(OrderStatus.PREPARING)
+                .customerId(customerId)
+                .paymentId(paymentId)
+                .build();
     }
 }

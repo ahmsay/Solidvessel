@@ -20,12 +20,12 @@ public class Payment extends DomainModel {
     private PaymentStatus status;
 
     public static Payment newPayment(String customerId, Cart cart) {
-        return new Payment(
-                customerId,
-                cart.getProductList(),
-                cart.getTotalPrice(),
-                PaymentStatus.PENDING
-        );
+        return Payment.builder()
+                .customerId(customerId)
+                .products(cart.getProductList())
+                .totalPrice(cart.getTotalPrice())
+                .status(PaymentStatus.PENDING)
+                .build();
     }
 
     public void approve() {
