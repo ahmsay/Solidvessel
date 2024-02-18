@@ -9,10 +9,16 @@ public class OrderTest {
 
     @Test
     void createNewOrder() {
-        var order = Order.newOrder("123", 1L);
-        assertNull(order.getId());
-        assertEquals(OrderStatus.PREPARING, order.getStatus());
-        assertEquals("123", order.getCustomerId());
-        assertEquals(1L, order.getPaymentId());
+        var order1 = Order.newOrder("123", 1L);
+        assertNull(order1.getId());
+        assertEquals(OrderStatus.PREPARING, order1.getStatus());
+        assertEquals("123", order1.getCustomerId());
+        assertEquals(1L, order1.getPaymentId());
+
+        var order2 = new Order(OrderStatus.DELIVERED, "456", 2L);
+        assertNull(order2.getId());
+        assertEquals(OrderStatus.DELIVERED, order2.getStatus());
+        assertEquals("456", order2.getCustomerId());
+        assertEquals(2L, order2.getPaymentId());
     }
 }
