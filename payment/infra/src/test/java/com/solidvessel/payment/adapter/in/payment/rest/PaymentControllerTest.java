@@ -73,7 +73,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getPaymentById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payment = new Payment("123", products, 105D, PaymentStatus.CANCELLED);
+        var payment = Payment.builder().customerId("123").products(products).totalPrice(105D).status(PaymentStatus.CANCELLED).build();
         when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
@@ -86,7 +86,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getPaymentDetailById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payment = new Payment("123", products, 105D, PaymentStatus.APPROVED);
+        var payment = Payment.builder().customerId("123").products(products).totalPrice(105D).status(PaymentStatus.APPROVED).build();
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var paymentDetail = PaymentDetailResponse.from(payment, customer);
         when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
