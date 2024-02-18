@@ -7,12 +7,10 @@ import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,10 +24,9 @@ public class PaymentJpaEntity extends BaseEntity {
     @NotNull
     private String customerId;
 
-    @Builder.Default
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "payment_product", joinColumns = @JoinColumn(name = "payment_id"))
-    private List<ProductEmbeddable> products = new ArrayList<>();
+    private List<ProductEmbeddable> products;
 
     @NotNull
     private Double totalPrice;
