@@ -53,7 +53,8 @@ public class OrderControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getOrders() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
+        var order = Order.builder().customerId("123").paymentId(1L).status(OrderStatus.DELIVERED).build();
+        var orders = List.of(order);
         when(orderQueryPort.getOrders(queryOptions)).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/")

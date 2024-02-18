@@ -44,7 +44,7 @@ public class CartTest {
 
     @Test
     void doesProductExist() {
-        var cart = Cart.newCart("123");
+        var cart = Cart.builder().id(1L).customerId("123").products(new HashMap<>()).build();
         cart.addProduct(createProduct(1L, 2));
         assertTrue(cart.doesProductExist(1L));
         assertFalse(cart.doesProductExist(3L));
