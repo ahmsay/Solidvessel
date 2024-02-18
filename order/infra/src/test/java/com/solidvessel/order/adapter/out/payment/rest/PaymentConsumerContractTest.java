@@ -10,7 +10,7 @@ import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @AutoConfigureStubRunner(
-        ids = "solidvessel.payment:infra:+:stubs:8084",
+        ids = "solidvessel.payment:infra:+:stubs:8085",
         stubsMode = StubRunnerProperties.StubsMode.CLASSPATH
 )
 public class PaymentConsumerContractTest extends BaseConsumerContractTest {
