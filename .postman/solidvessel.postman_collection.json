@@ -153,7 +153,7 @@
 					"name": "customer",
 					"item": [
 						{
-							"name": "get all customers",
+							"name": "get customers",
 							"event": [
 								{
 									"listen": "test",
@@ -186,13 +186,24 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/account/customer",
+									"raw": "{{baseUrl}}/account/customer?start=0",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
 										"customer"
+									],
+									"query": [
+										{
+											"key": "start",
+											"value": "0"
+										},
+										{
+											"key": "end",
+											"value": "100",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -304,6 +315,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [
@@ -313,14 +327,34 @@
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "{{baseUrl}}/account/address",
+									"raw": "{{baseUrl}}/account/address?pageNumber=0",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
 										"address"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "0"
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -405,7 +439,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": 1\n}",
+									"raw": "{\n    \"id\": 2\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -488,7 +522,7 @@
 					"response": []
 				},
 				{
-					"name": "get all products",
+					"name": "get products",
 					"event": [
 						{
 							"listen": "test",
@@ -512,13 +546,24 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/inventory/product",
+							"raw": "{{baseUrl}}/inventory/product?pageNumber=0",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
 								"product"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -777,7 +822,7 @@
 					"response": []
 				},
 				{
-					"name": "get all orders",
+					"name": "get orders",
 					"event": [
 						{
 							"listen": "test",
@@ -801,13 +846,24 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/order/",
+							"raw": "{{baseUrl}}/order/?pageNumber=0",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"order",
 								""
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -971,7 +1027,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productId\": 1\n}",
+									"raw": "{\n    \"productId\": 2\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1021,13 +1077,24 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/payment/",
+									"raw": "{{baseUrl}}/payment/?pageNumber=0",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"payment",
 										""
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "0"
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"disabled": true
+										}
 									]
 								}
 							},
