@@ -1,6 +1,6 @@
 package com.solidvessel.shared.service;
 
-public interface CommandService<T> {
+public interface CommandService<T, K> {
 
-    OperationResult execute(T executable);
+    K execute(T executable);
 }
