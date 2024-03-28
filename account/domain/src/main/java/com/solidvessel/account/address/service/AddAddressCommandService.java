@@ -19,7 +19,7 @@ public class AddAddressCommandService implements CommandService<AddAddressComman
     @Override
     public Address execute(AddAddressCommand command) {
         checkIfAddressIsAlreadyRegistered(command);
-        return addressPort.save(command.toDomainModel(command.customerId()));
+        return addressPort.save(command.toDomainModel());
     }
 
     private void checkIfAddressIsAlreadyRegistered(AddAddressCommand command) {
