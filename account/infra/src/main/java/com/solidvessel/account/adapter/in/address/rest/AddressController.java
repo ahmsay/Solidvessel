@@ -36,8 +36,8 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @PostMapping()
-    public OperationResult addAddress(@RequestBody @Valid AddAddressRequest request) {
-        return addAddressCommandService.execute(request.toCommand());
+    public AddressResponse addAddress(@RequestBody @Valid AddAddressRequest request) {
+        return AddressResponse.from(addAddressCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
@@ -48,7 +48,7 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @PutMapping()
-    public OperationResult updateAddress(@RequestBody @Valid UpdateAddressRequest request) {
-        return updateAddressCommandService.execute(request.toCommand());
+    public AddressResponse updateAddress(@RequestBody @Valid UpdateAddressRequest request) {
+        return AddressResponse.from(updateAddressCommandService.execute(request.toCommand()));
     }
 }

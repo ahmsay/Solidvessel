@@ -7,24 +7,21 @@ import com.solidvessel.account.address.service.command.UpdateAddressCommand;
 import com.solidvessel.account.common.exception.AccountDomainException;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
-import com.solidvessel.shared.service.OperationResult;
-import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class UpdateAddressCommandService implements CommandService<UpdateAddressCommand> {
+public class UpdateAddressCommandService implements CommandService<UpdateAddressCommand, Address> {
 
     private final AddressPort addressPort;
     private final AddressQueryPort addressQueryPort;
 
     @Override
-    public OperationResult execute(UpdateAddressCommand command) {
+    public Address execute(UpdateAddressCommand command) {
         checkIfAddressIsRegistered(command);
         Address currentAddress = addressQueryPort.getByIdAndCustomerId(command.id(), command.customerId());
         currentAddress.update(command);
-        addressPort.save(currentAddress);
-        return new OperationResult("Address is updated.", ResultType.SUCCESS);
+        return addressPort.save(currentAddress);
     }
 
     private void checkIfAddressIsRegistered(UpdateAddressCommand command) {

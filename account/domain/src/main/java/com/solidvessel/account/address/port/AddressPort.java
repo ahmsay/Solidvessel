@@ -4,7 +4,7 @@ import com.solidvessel.account.address.model.Address;
 
 public interface AddressPort {
 
-    void save(Address address);
+    Address save(Address address);
 
     void delete(Long id);
 }

@@ -14,8 +14,8 @@ public class AddressDBAdapter implements AddressPort {
     private final AddressRepository addressRepository;
 
     @Override
-    public void save(Address address) {
-        addressRepository.save(AddressJpaEntity.from(address));
+    public Address save(Address address) {
+        return addressRepository.save(AddressJpaEntity.from(address)).toDomainModel();
     }
 
     @Override

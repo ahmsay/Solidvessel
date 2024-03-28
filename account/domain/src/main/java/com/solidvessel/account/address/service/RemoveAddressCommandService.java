@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class RemoveAddressCommandService implements CommandService<RemoveAddressCommand> {
+public class RemoveAddressCommandService implements CommandService<RemoveAddressCommand, OperationResult> {
 
     private final AddressPort addressPort;
     private final AddressQueryPort addressQueryPort;
