@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class RemoveFromCartCommandService implements CommandService<RemoveFromCartCommand> {
+public class RemoveFromCartCommandService implements CommandService<RemoveFromCartCommand, OperationResult> {
 
     private final CartPort cartPort;
     private final CartQueryPort cartQueryPort;

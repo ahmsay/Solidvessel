@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class AcceptPaymentCommandService implements CommandService<AcceptPaymentCommand> {
+public class AcceptPaymentCommandService implements CommandService<AcceptPaymentCommand, OperationResult> {
 
     private final CartPort cartPort;
     private final CartQueryPort cartQueryPort;
