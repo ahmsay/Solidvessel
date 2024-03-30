@@ -9,7 +9,6 @@ import com.solidvessel.payment.product.event.ProductsCheckedEvent;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.event.EventPublisher;
-import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -38,8 +37,7 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
         var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher);
         var payment = createPayment();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
-        var operationResult = commandService.execute(event);
-        assertEquals(ResultType.SUCCESS, operationResult.resultType());
+        commandService.execute(event);
         assertEquals(PaymentStatus.APPROVED, payment.getStatus());
         verify(paymentPort).save(payment);
         verify(paymentApprovedEventPublisher).publish(any(PaymentApprovedEvent.class));
@@ -51,8 +49,7 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
         var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher);
         var payment = createPayment();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
-        var operationResult = commandService.execute(event);
-        assertEquals(ResultType.SUCCESS, operationResult.resultType());
+        commandService.execute(event);
         assertEquals(PaymentStatus.CANCELLED, payment.getStatus());
         verifyNoInteractions(paymentApprovedEventPublisher);
     }

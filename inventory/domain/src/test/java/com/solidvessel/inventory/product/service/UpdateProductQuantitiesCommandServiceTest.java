@@ -8,7 +8,6 @@ import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.shared.event.EventPublisher;
-import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -44,10 +43,9 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         var event = new PaymentSavedEvent(1L, "123", productQuantities);
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
         when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
-        var operationResult = commandService.execute(event);
+        commandService.execute(event);
         verify(productPort).saveProducts(List.of(product1, product2));
         verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, true, "123"));
-        assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertEquals(1, product1.getQuantity());
         assertEquals(2, product2.getQuantity());
     }

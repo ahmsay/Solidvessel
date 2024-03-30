@@ -9,22 +9,20 @@ import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
-import com.solidvessel.shared.service.OperationResult;
-import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class UpdateProductQuantitiesCommandService implements CommandService<PaymentSavedEvent> {
+public class UpdateProductQuantitiesCommandService implements CommandService<PaymentSavedEvent, Void> {
 
     private final ProductPort productPort;
     private final ProductQueryPort productQueryPort;
     private final EventPublisher<ProductsCheckedEvent> productsCheckedEventPublisher;
 
     @Override
-    public OperationResult execute(PaymentSavedEvent command) {
+    public Void execute(PaymentSavedEvent command) {
         var productQuantities = command.productQuantities();
         List<Product> products = productQueryPort.getByIds(productQuantities.keySet().stream().toList());
         products.forEach(product -> {
@@ -38,6 +36,6 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Pay
         });
         productPort.saveProducts(products);
         productsCheckedEventPublisher.publish(new ProductsCheckedEvent(command.paymentId(), true, command.customerId()));
-        return new OperationResult("Product quantities are updated.", ResultType.SUCCESS);
+        return null;
     }
 }
