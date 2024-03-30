@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class AddProductToCartCommandService implements CommandService<AddProductToCartCommand> {
+public class AddProductToCartCommandService implements CommandService<AddProductToCartCommand, OperationResult> {
 
     private final ProductQueryPort productQueryPort;
     private final EventPublisher<ProductAvailableEvent> productAvailableEventEventPublisher;

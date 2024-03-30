@@ -17,8 +17,8 @@ public class ProductDBAdapter implements ProductPort {
     private final ProductRepository productRepository;
 
     @Override
-    public void save(Product product) {
-        productRepository.save(ProductJpaEntity.from(product));
+    public Product save(Product product) {
+        return productRepository.save(ProductJpaEntity.from(product)).toDomainModel();
     }
 
     @Override

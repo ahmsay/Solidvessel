@@ -44,8 +44,8 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping()
-    public OperationResult add(@RequestBody @Valid final AddProductRequest request) {
-        return addProductCommandService.execute(request.toCommand());
+    public ProductResponse add(@RequestBody @Valid final AddProductRequest request) {
+        return ProductResponse.from(addProductCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

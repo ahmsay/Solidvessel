@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductPort {
 
-    void save(Product product);
+    Product save(Product product);
 
     void saveProducts(List<Product> products);
 }

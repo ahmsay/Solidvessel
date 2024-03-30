@@ -92,13 +92,14 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockManager
     public void addProduct() throws Exception {
         var request = new AddProductRequest("desk", 150D, ProductCategory.FURNITURE, 5);
-        when(addProductCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
+        var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
+        when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(
                 post("/product")
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+        assertEquals(bodyOf(ProductResponse.from(savedProduct)), bodyOf(mvcResult));
     }
 
     @Test

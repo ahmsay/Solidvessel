@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ProductDBAdapterTest extends BaseDatabaseTest {
 
     @Autowired
@@ -16,7 +18,8 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
     @Test
     public void saveProduct() {
         var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 4);
-        productDBAdapter.save(product);
+        var jpaEntity = productDBAdapter.save(product);
+        assertEquals("macbook", jpaEntity.getName());
     }
 
     @Test
