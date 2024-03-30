@@ -5,12 +5,10 @@ import com.solidvessel.account.address.port.AddressPort;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.AddAddressCommand;
 import com.solidvessel.account.common.exception.AccountDomainException;
-import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -28,9 +26,8 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
         var command = new AddAddressCommand("home", "norway", "oslo", "245", "123");
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
-        var operationResult = commandService.execute(command);
+        commandService.execute(command);
         verify(addressPort).save(any(Address.class));
-        assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
     @Test

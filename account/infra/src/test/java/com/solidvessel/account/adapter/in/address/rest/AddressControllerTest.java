@@ -65,13 +65,14 @@ public class AddressControllerTest extends BaseControllerTest {
     @WithMockCustomer
     public void addAddress() throws Exception {
         var request = new AddAddressRequest("home", "norway", "oslo", "344");
-        when(addAddressCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
+        var savedAddress = Address.builder().id(1L).customerId("123").name("home").country("norway").city("oslo").zipCode("344").build();
+        when(addAddressCommandService.execute(request.toCommand())).thenReturn(savedAddress);
         MvcResult mvcResult = mockMvc.perform(
                 post("/address")
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+        assertEquals(bodyOf(AddressResponse.from(savedAddress)), bodyOf(mvcResult));
     }
 
     @Test
@@ -91,12 +92,13 @@ public class AddressControllerTest extends BaseControllerTest {
     @WithMockCustomer
     public void updateAddress() throws Exception {
         var request = new UpdateAddressRequest(1L, "home", "finland", "helsinki", "534");
-        when(updateAddressCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
+        var savedAddress = Address.builder().id(1L).customerId("123").name("home").country("finland").city("helsinki").zipCode("534").build();
+        when(updateAddressCommandService.execute(request.toCommand())).thenReturn(savedAddress);
         MvcResult mvcResult = mockMvc.perform(
                 put("/address")
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+        assertEquals(bodyOf(AddressResponse.from(savedAddress)), bodyOf(mvcResult));
     }
 }

@@ -6,6 +6,8 @@ import com.solidvessel.account.integrationtest.BaseDatabaseTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AddressDBAdapterTest extends BaseDatabaseTest {
 
     @Autowired
@@ -14,7 +16,8 @@ public class AddressDBAdapterTest extends BaseDatabaseTest {
     @Test
     public void saveAddress() {
         var address = new Address("123", "home", "turkey", "eskisehir", "26000");
-        addressDBAdapter.save(address);
+        var jpaEntity = addressDBAdapter.save(address);
+        assertEquals("home", jpaEntity.getName());
     }
 
     @Test
