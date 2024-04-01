@@ -7,6 +7,7 @@ import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.shared.query.QueryOptions;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class AddressDBQueryAdapter implements AddressQueryPort {
 
     private final AddressRepository addressRepository;
 
+    @Cacheable(value = "addresses", key = "#customerId")
     @Override
     public List<Address> getAddresses(String customerId, QueryOptions queryOptions) {
         return addressRepository.findByCustomerId(customerId, withPage(queryOptions)).stream().map(AddressJpaEntity::toDomainModel).toList();
