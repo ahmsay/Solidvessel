@@ -6,5 +6,5 @@ public interface AddressPort {
 
     Address save(Address address);
 
-    void delete(Long id);
+    void delete(Long id, String customerId);
 }

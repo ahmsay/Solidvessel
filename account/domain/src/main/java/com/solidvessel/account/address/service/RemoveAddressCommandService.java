@@ -20,7 +20,7 @@ public class RemoveAddressCommandService implements CommandService<RemoveAddress
     @Override
     public OperationResult execute(RemoveAddressCommand command) {
         checkIfAddressIsRegistered(command);
-        addressPort.delete(command.id());
+        addressPort.delete(command.id(), command.customerId());
         return new OperationResult("Address is removed.", ResultType.SUCCESS);
     }
 

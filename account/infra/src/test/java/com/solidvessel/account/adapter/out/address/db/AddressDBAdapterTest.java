@@ -23,6 +23,6 @@ public class AddressDBAdapterTest extends BaseDatabaseTest {
     @Test
     public void deleteAddress() {
         var address = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843"));
-        addressDBAdapter.delete(address.getId());
+        addressDBAdapter.delete(address.getId(), "123");
     }
 }

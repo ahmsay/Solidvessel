@@ -20,8 +20,9 @@ public class AddressDBAdapter implements AddressPort {
         return addressRepository.save(AddressJpaEntity.from(address)).toDomainModel();
     }
 
+    @CacheEvict(value = "addresses", key = "#customerId")
     @Override
-    public void delete(Long id) {
+    public void delete(Long id, String customerId) {
         addressRepository.deleteById(id);
     }
 }
