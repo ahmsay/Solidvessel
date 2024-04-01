@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
 @SuperBuilder
 @NoArgsConstructor
-public class DomainModel {
+public class DomainModel implements Serializable {
 
     private Long id;
     private LocalDateTime createdDate;
