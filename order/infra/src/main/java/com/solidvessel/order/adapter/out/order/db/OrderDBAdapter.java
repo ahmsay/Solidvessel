@@ -5,6 +5,7 @@ import com.solidvessel.order.adapter.out.order.db.repository.OrderRepository;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -13,6 +14,7 @@ public class OrderDBAdapter implements OrderPort {
 
     private final OrderRepository orderRepository;
 
+    @CacheEvict(value = "customerDetail", key = "#order.customerId")
     @Override
     public void save(Order order) {
         orderRepository.save(OrderJpaEntity.from(order));
