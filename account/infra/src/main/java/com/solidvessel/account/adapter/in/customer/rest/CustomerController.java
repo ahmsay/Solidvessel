@@ -33,14 +33,14 @@ public class CustomerController {
         return users.stream().map(CustomerResponse::from).toList();
     }
 
-    @Cacheable(value = "customer", key = "id")
+    @Cacheable(value = "customer", key = "#id")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerResponse getById(@PathVariable final String id) {
         return CustomerResponse.from(keycloakRealm.users().get(id).toRepresentation());
     }
 
-    @Cacheable(value = "customerDetail", key = "id")
+    @Cacheable(value = "customerDetail", key = "#id")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public CustomerDetailResponse getDetailById(@PathVariable final String id) {
