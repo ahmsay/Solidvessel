@@ -2,10 +2,11 @@ package com.solidvessel.account.adapter.in.customer.rest.response;
 
 import org.keycloak.representations.idm.UserRepresentation;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 public record CustomerResponse(String id, String firstName, String lastName, LocalDate birthDate, String email,
-                               String phoneNumber) {
+                               String phoneNumber) implements Serializable {
 
     public static CustomerResponse from(UserRepresentation user) {
         var attributes = user.getAttributes();
