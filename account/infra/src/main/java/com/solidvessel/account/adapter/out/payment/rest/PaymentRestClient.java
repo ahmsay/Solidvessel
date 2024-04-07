@@ -1,6 +1,7 @@
 package com.solidvessel.account.adapter.out.payment.rest;
 
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import java.util.List;
 @FeignClient(name = "paymentRestClient", url = "${payment.url}", fallback = PaymentRestClient.PaymentFallback.class)
 public interface PaymentRestClient {
 
+    @Cacheable(value = "paymentsOfCustomer", key = "#customerId")
     @GetMapping("/ofCustomer/{customerId}")
     List<PaymentResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 

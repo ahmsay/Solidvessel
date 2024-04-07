@@ -40,7 +40,6 @@ public class CustomerController {
         return CustomerResponse.from(keycloakRealm.users().get(id).toRepresentation());
     }
 
-    @Cacheable(value = "customerDetail", key = "#id")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
     public CustomerDetailResponse getDetailById(@PathVariable final String id) {

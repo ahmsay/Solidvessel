@@ -1,6 +1,7 @@
 package com.solidvessel.account.adapter.out.order.rest;
 
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import java.util.List;
 @FeignClient(name = "orderRestClient", url = "${order.url}", fallback = OrderRestClient.OrderFallback.class)
 public interface OrderRestClient {
 
+    @Cacheable(value = "ordersOfCustomer", key = "#customerId")
     @GetMapping("/ofCustomer/{customerId}")
     List<OrderResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 

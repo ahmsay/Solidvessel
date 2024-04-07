@@ -14,7 +14,7 @@ public class OrderDBAdapter implements OrderPort {
 
     private final OrderRepository orderRepository;
 
-    @CacheEvict(value = "customerDetail", key = "#order.customerId")
+    @CacheEvict(value = "ordersOfCustomer", key = "#order.customerId")
     @Override
     public void save(Order order) {
         orderRepository.save(OrderJpaEntity.from(order));

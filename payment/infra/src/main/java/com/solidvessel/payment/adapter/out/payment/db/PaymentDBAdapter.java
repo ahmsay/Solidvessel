@@ -14,7 +14,7 @@ public class PaymentDBAdapter implements PaymentPort {
 
     private final PaymentRepository paymentRepository;
 
-    @CacheEvict(value = "customerDetail", key = "#payment.customerId")
+    @CacheEvict(value = "paymentsOfCustomer", key = "#payment.customerId")
     @Override
     public Long save(Payment payment) {
         PaymentJpaEntity paymentJpaEntity = paymentRepository.save(PaymentJpaEntity.from(payment));
