@@ -1,4 +1,4 @@
-package com.solidvessel.account.configuration;
+package com.solidvessel.shared.idp;
 
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
