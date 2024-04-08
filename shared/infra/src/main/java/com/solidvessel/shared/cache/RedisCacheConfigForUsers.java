@@ -10,10 +10,10 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import java.time.Duration;
 
 @Configuration
-public class RedisCacheConfig {
+public class RedisCacheConfigForUsers {
 
     @Bean
-    public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
+    public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizerForUsers() {
         return (builder) -> builder
                 .withCacheConfiguration("users",
                         RedisCacheConfiguration.defaultCacheConfig()
