@@ -7,10 +7,10 @@ import com.solidvessel.payment.adapter.out.customer.rest.response.CustomerRespon
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
+import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
-import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +21,7 @@ import java.util.List;
 public class PaymentController {
 
     private final PaymentQueryPort paymentQueryPort;
-    private final RealmResource keycloakRealm;
+    private final KeycloakAdapter keycloakAdapter;
     private final AcceptPaymentCommandService acceptPaymentCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
@@ -40,7 +40,7 @@ public class PaymentController {
     @GetMapping("/{id}/detail")
     public PaymentDetailResponse getDetailById(@PathVariable final Long id) {
         Payment payment = paymentQueryPort.getById(id);
-        CustomerResponse customer = CustomerResponse.from(keycloakRealm.users().get(payment.getCustomerId()).toRepresentation());
+        CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(payment.getCustomerId()));
         return PaymentDetailResponse.from(payment, customer);
     }
 

@@ -7,10 +7,10 @@ import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
-import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +24,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderQueryPort orderQueryPort;
-    private final RealmResource keycloakRealm;
+    private final KeycloakAdapter keycloakAdapter;
     private final PaymentRestClient paymentRestClient;
 
     @PreAuthorize("hasAuthority('MANAGER')")
@@ -43,7 +43,7 @@ public class OrderController {
     @GetMapping("/{id}/detail")
     public OrderDetailResponse getDetailById(@PathVariable final Long id) {
         Order order = orderQueryPort.getById(id);
-        CustomerResponse customer = CustomerResponse.from(keycloakRealm.users().get(order.getCustomerId()).toRepresentation());
+        CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(order.getCustomerId()));
         PaymentResponse payment = paymentRestClient.getById(order.getPaymentId(), SessionUtil.getCurrentUserToken());
         return OrderDetailResponse.from(order, customer, payment);
     }

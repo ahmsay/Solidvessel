@@ -8,13 +8,11 @@ import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
 import org.junit.jupiter.api.Test;
-import org.keycloak.admin.client.resource.RealmResource;
-import org.keycloak.admin.client.resource.UserResource;
-import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,7 +27,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,7 +41,7 @@ public class OrderControllerTest extends BaseControllerTest {
     private OrderQueryPort orderQueryPort;
 
     @MockBean
-    private RealmResource keycloakRealm;
+    private KeycloakAdapter keycloakAdapter;
 
     @MockBean
     private PaymentRestClient paymentRestClient;
@@ -84,9 +81,7 @@ public class OrderControllerTest extends BaseControllerTest {
         var payment = new PaymentResponse(1L, 105D);
         var orderDetail = OrderDetailResponse.from(order, customer, payment);
         when(orderQueryPort.getById(anyLong())).thenReturn(order);
-        when(keycloakRealm.users()).thenReturn(mock(UsersResource.class));
-        when(keycloakRealm.users().get("123")).thenReturn(mock(UserResource.class));
-        when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(createUser());
+        when(keycloakAdapter.getUser("123")).thenReturn(createUser());
         when(paymentRestClient.getById(1L, "abc")).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1/detail")
