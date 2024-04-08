@@ -18,3 +18,5 @@ management:
     web:
       exposure:
         include: '*'
+keycloak:
+  server-url: http://keycloak:8080
