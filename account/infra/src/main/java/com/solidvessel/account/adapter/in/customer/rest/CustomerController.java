@@ -10,7 +10,6 @@ import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.idm.UserRepresentation;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +24,6 @@ public class CustomerController {
     private final OrderRestClient orderRestClient;
     private final PaymentRestClient paymentRestClient;
 
-    @Cacheable(value = "customers")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
     public List<CustomerResponse> getUsers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
@@ -33,7 +31,6 @@ public class CustomerController {
         return users.stream().map(CustomerResponse::from).toList();
     }
 
-    @Cacheable(value = "customer", key = "#id")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerResponse getById(@PathVariable final String id) {
