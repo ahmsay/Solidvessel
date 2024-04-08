@@ -6,9 +6,9 @@ import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
+import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.security.SessionUtil;
 import lombok.RequiredArgsConstructor;
-import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private final RealmResource keycloakRealm;
+    private final KeycloakAdapter keycloakAdapter;
     private final OrderRestClient orderRestClient;
     private final PaymentRestClient paymentRestClient;
 
@@ -29,7 +29,7 @@ public class CustomerController {
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping()
     public List<CustomerResponse> getUsers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
-        List<UserRepresentation> users = keycloakRealm.users().list(start, end);
+        List<UserRepresentation> users = keycloakAdapter.getUsers(start, end);
         return users.stream().map(CustomerResponse::from).toList();
     }
 
@@ -37,7 +37,7 @@ public class CustomerController {
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerResponse getById(@PathVariable final String id) {
-        return CustomerResponse.from(keycloakRealm.users().get(id).toRepresentation());
+        return CustomerResponse.from(keycloakAdapter.getUser(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

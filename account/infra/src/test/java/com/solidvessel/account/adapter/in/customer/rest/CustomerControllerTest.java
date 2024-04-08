@@ -6,13 +6,10 @@ import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
+import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.keycloak.admin.client.resource.RealmResource;
-import org.keycloak.admin.client.resource.UserResource;
-import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,8 +23,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,7 +34,7 @@ public class CustomerControllerTest extends BaseControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private RealmResource keycloakRealm;
+    private KeycloakAdapter keycloakAdapter;
 
     @MockBean
     private OrderRestClient orderRestClient;
@@ -47,17 +42,11 @@ public class CustomerControllerTest extends BaseControllerTest {
     @MockBean
     private PaymentRestClient paymentRestClient;
 
-    @BeforeEach
-    public void init() {
-        when(keycloakRealm.users()).thenReturn(mock(UsersResource.class));
-        when(keycloakRealm.users().get(anyString())).thenReturn(mock(UserResource.class));
-    }
-
     @Test
     @WithMockManager
     public void getCustomers() throws Exception {
         var users = List.of(createUser(), createUserWithNoPhone(), createUserWithNoBirthDate(), createUserWithNoPhoneAndBirthdate());
-        when(keycloakRealm.users().list(0, 100)).thenReturn(users);
+        when(keycloakAdapter.getUsers(0, 100)).thenReturn(users);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer")
                         .param("start", "0")
@@ -71,7 +60,7 @@ public class CustomerControllerTest extends BaseControllerTest {
     @WithMockManager
     public void getCustomerById() throws Exception {
         var user = createUser();
-        when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(user);
+        when(keycloakAdapter.getUser("123")).thenReturn(user);
         MvcResult mvcResult = mockMvc.perform(
                 get("/customer/123")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -87,7 +76,7 @@ public class CustomerControllerTest extends BaseControllerTest {
         var orders = List.of(new OrderResponse(1L, "DELIVERED", 5L));
         var payments = List.of(new PaymentResponse(5L, 260D));
         var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
-        when(keycloakRealm.users().get("123").toRepresentation()).thenReturn(user);
+        when(keycloakAdapter.getUser("123")).thenReturn(user);
         when(orderRestClient.getByCustomerId("123", "abc")).thenReturn(orders);
         when(paymentRestClient.getByCustomerId("123", "abc")).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
