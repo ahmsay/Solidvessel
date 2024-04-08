@@ -97,3 +97,5 @@ Let's explain each component shown in the diagram one by one:
 - Monitoring
 - CQRS
 - Migration to Kafka
+- Microservice with different framework
+- Microservice with different programming language
