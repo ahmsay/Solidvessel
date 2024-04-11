@@ -7,6 +7,7 @@ import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.shared.query.QueryOptions;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class ProductDBQueryAdapter implements ProductQueryPort {
         return productRepository.findAll(withPage(queryOptions)).stream().map(ProductJpaEntity::toDomainModel).toList();
     }
 
+    @Cacheable(value = "product", key = "#id")
     @Override
     public Product getById(Long id) {
         ProductJpaEntity productJpaEntity = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
         return productJpaEntity.toDomainModel();
     }
 
+    @Cacheable(value = "product", key = "#ids")
     @Override
     public List<Product> getByIds(List<Long> ids) {
         return productRepository.findAllById(ids).stream().map(ProductJpaEntity::toDomainModel).toList();
