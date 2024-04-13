@@ -7,6 +7,7 @@ import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.shared.query.QueryOptions;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class OrderDBQueryAdapter implements OrderQueryPort {
         return orderRepository.findAll(withPage(queryOptions)).stream().map(OrderJpaEntity::toDomainModel).toList();
     }
 
+    @Cacheable(value = "order", key = "#id")
     @Override
     public Order getById(Long id) {
         OrderJpaEntity orderJpaEntity = orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order not found!"));
