@@ -7,6 +7,7 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.shared.query.QueryOptions;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class PaymentDBQueryAdapter implements PaymentQueryPort {
         return paymentRepository.findAll(withPage(queryOptions)).stream().map(PaymentJpaEntity::toDomainModel).toList();
     }
 
+    @Cacheable(value = "payment", key = "#id")
     @Override
     public Payment getById(Long id) {
         PaymentJpaEntity paymentJpaEntity = paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
