@@ -31,6 +31,7 @@ public class PaymentController {
         return paymentQueryPort.getPayments(QueryOptions.of(pageNumber, pageSize)).stream().map(PaymentResponse::from).toList();
     }
 
+    @Cacheable(value = "payment", key = "#id")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public PaymentResponse getById(@PathVariable final Long id) {
