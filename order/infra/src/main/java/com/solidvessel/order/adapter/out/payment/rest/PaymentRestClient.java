@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(name = "paymentRestClient", url = "${payment.url}", fallback = PaymentRestClient.PaymentFallback.class)
 public interface PaymentRestClient {
 
-    @Cacheable(value = "payment", key = "#id")
+    @Cacheable(value = "payment.rest", key = "#id")
     @GetMapping("/{id}")
     PaymentResponse getById(@PathVariable Long id, @RequestHeader("authorization") String token);
 
