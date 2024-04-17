@@ -6,6 +6,7 @@ import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -14,7 +15,11 @@ public class PaymentDBAdapter implements PaymentPort {
 
     private final PaymentRepository paymentRepository;
 
-    @CacheEvict(value = "paymentsOfCustomer", key = "#payment.customerId")
+    @Caching(evict = {
+            @CacheEvict(value = "paymentsOfCustomer", key = "#payment.customerId"),
+            @CacheEvict(value = "payment", key = "#payment.customerId"),
+            @CacheEvict(value = "payment.rest", key = "#payment.customerId")
+    })
     @Override
     public Long save(Payment payment) {
         PaymentJpaEntity paymentJpaEntity = paymentRepository.save(PaymentJpaEntity.from(payment));
