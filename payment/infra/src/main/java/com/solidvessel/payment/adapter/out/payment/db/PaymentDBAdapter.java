@@ -17,8 +17,8 @@ public class PaymentDBAdapter implements PaymentPort {
 
     @Caching(evict = {
             @CacheEvict(value = "paymentsOfCustomer", key = "#payment.customerId"),
-            @CacheEvict(value = "payment", key = "#payment.customerId"),
-            @CacheEvict(value = "payment.rest", key = "#payment.customerId")
+            @CacheEvict(value = "payment", key = "#payment.id"),
+            @CacheEvict(value = "payment.rest", key = "#payment.id")
     })
     @Override
     public Long save(Payment payment) {
