@@ -22,7 +22,7 @@ public class RedisCacheConfig {
     }
 
     @Bean
-    public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizerForUsers() {
+    public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
         return (builder) -> builder
                 .withCacheConfiguration("order",
                         RedisCacheConfiguration.defaultCacheConfig()
