@@ -14,7 +14,6 @@ public class RedisCacheConfig {
     @Bean
     public RedisCacheConfiguration cacheConfiguration() {
         return RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(10))
-                .disableCachingNullValues();
+                .entryTtl(Duration.ofMinutes(10));
     }
 }
