@@ -16,7 +16,7 @@ import java.util.List;
 @FeignClient(name = "orderRestClient", url = "${order.url}", fallback = OrderRestClient.OrderFallback.class)
 public interface OrderRestClient {
 
-    @Cacheable(value = "ordersOfCustomer", key = "#customerId")
+    @Cacheable(value = "ordersOfCustomer.rest", key = "#customerId")
     @GetMapping("/ofCustomer/{customerId}")
     List<OrderResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 

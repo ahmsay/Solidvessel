@@ -16,7 +16,7 @@ import java.util.List;
 @FeignClient(name = "paymentRestClient", url = "${payment.url}", fallback = PaymentRestClient.PaymentFallback.class)
 public interface PaymentRestClient {
 
-    @Cacheable(value = "paymentsOfCustomer", key = "#customerId")
+    @Cacheable(value = "paymentsOfCustomer.rest", key = "#customerId")
     @GetMapping("/ofCustomer/{customerId}")
     List<PaymentResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
 
