@@ -3,9 +3,11 @@ package com.solidvessel.payment.product.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @Getter
-public class Product {
+public class Product implements Serializable {
 
     private Long id;
     private String name;
