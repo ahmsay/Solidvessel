@@ -90,7 +90,6 @@ Let's explain each component shown in the diagram one by one:
 
 ## Roadmap
 
-- Caching
 - Persistence
 - Data enrichment
 - Security improvements
