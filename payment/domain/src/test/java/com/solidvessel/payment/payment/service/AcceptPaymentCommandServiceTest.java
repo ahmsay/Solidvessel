@@ -59,7 +59,7 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
 
         var operationResult = commandService.execute(command);
         verify(cartPort).save(any(Cart.class));
-        verify(paymentPort).save(any(Payment.class));
+        verify(paymentPort).create(any(Payment.class));
         verify(paymentSavedEventPublisher).publish(any(PaymentSavedEvent.class));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }

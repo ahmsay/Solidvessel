@@ -4,5 +4,7 @@ import com.solidvessel.payment.payment.model.Payment;
 
 public interface PaymentPort {
 
-    Long save(Payment payment);
+    Long create(Payment payment);
+
+    void update(Payment payment);
 }

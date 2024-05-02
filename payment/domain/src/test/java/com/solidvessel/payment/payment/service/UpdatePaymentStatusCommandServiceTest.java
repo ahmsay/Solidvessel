@@ -39,7 +39,7 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         commandService.execute(event);
         assertEquals(PaymentStatus.APPROVED, payment.getStatus());
-        verify(paymentPort).save(payment);
+        verify(paymentPort).update(payment);
         verify(paymentApprovedEventPublisher).publish(any(PaymentApprovedEvent.class));
     }
 

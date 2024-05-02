@@ -23,11 +23,11 @@ public class UpdatePaymentStatusCommandService implements CommandService<Product
         Payment payment = paymentQueryPort.getById(command.paymentId());
         if (command.areProductsAvailable()) {
             payment.approve();
-            paymentPort.save(payment);
+            paymentPort.update(payment);
             paymentApprovedEventPublisher.publish(new PaymentApprovedEvent(command.paymentId(), command.customerId()));
         } else {
             payment.cancel();
-            paymentPort.save(payment);
+            paymentPort.update(payment);
         }
         return null;
     }
