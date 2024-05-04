@@ -15,7 +15,7 @@ public class AddOrderCommandService implements CommandService<PaymentApprovedEve
 
     @Override
     public Void execute(PaymentApprovedEvent event) {
-        orderPort.save(Order.newOrder(event.customerId(), event.paymentId()));
+        orderPort.create(Order.newOrder(event.customerId(), event.paymentId()));
         return null;
     }
 }

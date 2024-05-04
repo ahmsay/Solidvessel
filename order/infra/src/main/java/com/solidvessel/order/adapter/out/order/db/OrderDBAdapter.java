@@ -17,11 +17,10 @@ public class OrderDBAdapter implements OrderPort {
 
     @Caching(evict = {
             @CacheEvict(value = "ordersOfCustomer", key = "#order.customerId"),
-            @CacheEvict(value = "ordersOfCustomer.rest", key = "#order.customerId"),
-            @CacheEvict(value = "order", key = "#order.id")
+            @CacheEvict(value = "ordersOfCustomer.rest", key = "#order.customerId")
     })
     @Override
-    public void save(Order order) {
+    public void create(Order order) {
         orderRepository.save(OrderJpaEntity.from(order));
     }
 }

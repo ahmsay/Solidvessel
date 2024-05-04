@@ -4,5 +4,5 @@ import com.solidvessel.order.order.model.Order;
 
 public interface OrderPort {
 
-    void save(Order order);
+    void create(Order order);
 }
