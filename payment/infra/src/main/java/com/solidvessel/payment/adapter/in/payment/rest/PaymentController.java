@@ -11,7 +11,6 @@ import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +44,6 @@ public class PaymentController {
         return PaymentDetailResponse.from(payment, customer);
     }
 
-    @Cacheable(value = "paymentsOfCustomer", key = "#customerId")
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
     public List<PaymentResponse> getByCustomerId(@PathVariable final String customerId) {

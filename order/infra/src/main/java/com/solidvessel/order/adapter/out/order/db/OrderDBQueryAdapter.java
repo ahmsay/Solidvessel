@@ -32,6 +32,7 @@ public class OrderDBQueryAdapter implements OrderQueryPort {
         return orderJpaEntity.toDomainModel();
     }
 
+    @Cacheable(value = "ordersOfCustomer", key = "#customerId")
     @Override
     public List<Order> getByCustomerId(String customerId) {
         return orderRepository.findByCustomerId(customerId).stream().map(OrderJpaEntity::toDomainModel).toList();

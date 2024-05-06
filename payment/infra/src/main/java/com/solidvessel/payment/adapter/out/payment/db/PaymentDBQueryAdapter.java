@@ -32,6 +32,7 @@ public class PaymentDBQueryAdapter implements PaymentQueryPort {
         return paymentJpaEntity.toDomainModel();
     }
 
+    @Cacheable(value = "paymentsOfCustomer", key = "#customerId")
     @Override
     public List<Payment> getByCustomerId(String customerId) {
         return paymentRepository.findByCustomerId(customerId).stream().map(PaymentJpaEntity::toDomainModel).toList();
