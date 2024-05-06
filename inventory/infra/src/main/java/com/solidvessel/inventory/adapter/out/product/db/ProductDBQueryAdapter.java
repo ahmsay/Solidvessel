@@ -32,7 +32,6 @@ public class ProductDBQueryAdapter implements ProductQueryPort {
         return productJpaEntity.toDomainModel();
     }
 
-    @Cacheable(value = "products", key = "#ids")
     @Override
     public List<Product> getByIds(List<Long> ids) {
         return productRepository.findAllById(ids).stream().map(ProductJpaEntity::toDomainModel).toList();
