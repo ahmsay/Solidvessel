@@ -1,8 +1,8 @@
 package com.solidvessel.account.adapter.out.order.rest;
 
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
+import com.solidvessel.account.adapter.out.order.rest.response.OrderStatus;
 import com.solidvessel.account.contracttest.BaseConsumerContractTest;
-import com.solidvessel.account.order.model.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;

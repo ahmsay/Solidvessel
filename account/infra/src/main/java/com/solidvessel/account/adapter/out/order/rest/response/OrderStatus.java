@@ -1,4 +1,4 @@
-package com.solidvessel.account.order.model;
+package com.solidvessel.account.adapter.out.order.rest.response;
 
 public enum OrderStatus {
 

@@ -4,9 +4,9 @@ import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailR
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;
 import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
+import com.solidvessel.account.adapter.out.order.rest.response.OrderStatus;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
-import com.solidvessel.account.order.model.OrderStatus;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
