@@ -6,6 +6,7 @@ import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
+import com.solidvessel.account.order.model.OrderStatus;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
@@ -73,7 +74,7 @@ public class CustomerControllerTest extends BaseControllerTest {
     public void getCustomerDetailById() throws Exception {
         var user = createUser();
         var customer = CustomerResponse.from(user);
-        var orders = List.of(new OrderResponse(1L, "DELIVERED", 5L));
+        var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L));
         var payments = List.of(new PaymentResponse(5L, 260D));
         var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
         when(keycloakAdapter.getUser("123")).thenReturn(user);

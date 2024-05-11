@@ -16,10 +16,10 @@ public class PaymentDBAdapterTest extends BaseDatabaseTest {
     private PaymentDBAdapter paymentDBAdapter;
 
     @Test
-    public void savePayment() {
+    public void createPayment() {
         var products = Map.of(1L, new Product(1L, "phone", 500D, ProductCategory.ELECTRONICS, 2));
         var cart = new Cart("123", products);
         var payment = Payment.newPayment("123", cart);
-        paymentDBAdapter.save(payment);
+        paymentDBAdapter.create(payment);
     }
 }

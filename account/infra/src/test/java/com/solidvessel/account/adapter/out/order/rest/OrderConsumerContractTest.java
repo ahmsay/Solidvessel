@@ -2,6 +2,7 @@ package com.solidvessel.account.adapter.out.order.rest;
 
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.contracttest.BaseConsumerContractTest;
+import com.solidvessel.account.order.model.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
@@ -22,7 +23,7 @@ public class OrderConsumerContractTest extends BaseConsumerContractTest {
 
     @Test
     public void getOrdersOfCustomers() {
-        var orders = List.of(new OrderResponse(1L, "DELIVERED", 5L), new OrderResponse(2L, "ON_THE_WAY", 6L));
+        var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L), new OrderResponse(2L, OrderStatus.ON_THE_WAY, 6L));
         var response = orderRestClient.getByCustomerId("123", "abc");
         assertEquals(orders, response);
     }

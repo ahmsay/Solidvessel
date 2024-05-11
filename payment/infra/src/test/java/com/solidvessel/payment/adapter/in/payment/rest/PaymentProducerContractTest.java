@@ -6,10 +6,10 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
-import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -24,14 +24,14 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
     private PaymentQueryPort paymentQueryPort;
 
     @MockBean
-    private RealmResource keycloakRealm;
+    private KeycloakAdapter keycloakAdapter;
 
     @MockBean
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
     @BeforeEach
     public void setup() {
-        RestAssuredMockMvc.standaloneSetup(new PaymentController(paymentQueryPort, keycloakRealm, acceptPaymentCommandService));
+        RestAssuredMockMvc.standaloneSetup(new PaymentController(paymentQueryPort, keycloakAdapter, acceptPaymentCommandService));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(createPayments());
         when(paymentQueryPort.getById(1L)).thenReturn(createPayment());
     }
