@@ -82,6 +82,7 @@ Let's explain each component shown in the diagram one by one:
 - <a href=".docs/horizontal-scaling.md">Horizontal Scaling<a/>
 - <a href=".docs/load-balancing.md">Load Balancing<a/>
 - <a href=".docs/entity-relations.md">Entity Relations<a/>
+- <a href=".docs/caching.md">Caching<a/>
 - <a href=".docs/shared-module.md">Shared Module<a/>
 - <a href=".docs/infrastructure-as-code.md">Infrastructure as Code<a/>
 - <a href=".docs/gitops.md">GitOps<a/>
