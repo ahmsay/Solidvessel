@@ -5,7 +5,7 @@ Resources:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBName: account
-      DBInstanceClass: db.m3.large
+      DBInstanceClass: db.t4g.medium
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -15,7 +15,7 @@ Resources:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBName: account
-      DBInstanceClass: db.m3.large
+      DBInstanceClass: db.t4g.medium
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -25,7 +25,7 @@ Resources:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBName: account
-      DBInstanceClass: db.m3.large
+      DBInstanceClass: db.t4g.medium
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -35,7 +35,7 @@ Resources:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBName: account
-      DBInstanceClass: db.m3.large
+      DBInstanceClass: db.t4g.medium
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -45,7 +45,7 @@ Resources:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBName: account
-      DBInstanceClass: db.m3.large
+      DBInstanceClass: db.t4g.medium
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
