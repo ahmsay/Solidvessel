@@ -6,6 +6,7 @@ Resources:
     Properties:
       DBName: account
       DBInstanceClass: db.t4g.medium
+      DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -16,6 +17,7 @@ Resources:
     Properties:
       DBName: account
       DBInstanceClass: db.t4g.medium
+      DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -26,6 +28,7 @@ Resources:
     Properties:
       DBName: account
       DBInstanceClass: db.t4g.medium
+      DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -36,6 +39,7 @@ Resources:
     Properties:
       DBName: account
       DBInstanceClass: db.t4g.medium
+      DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
@@ -46,8 +50,17 @@ Resources:
     Properties:
       DBName: account
       DBInstanceClass: db.t4g.medium
+      DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
       MasterUsername: nihilus
       MasterUserPassword: 5b03574a-fe81-2d65-553a-68e6a3485ea7
+  K8SSubnetGroup:
+    Type: "AWS::RDS::DBSubnetGroup"
+    Properties:
+      DBSubnetGroupDescription: Databases should be in the same VPC with the K8S cluster
+      SubnetIds:
+      - subnet-03d45efa042535b05
+      - subnet-094e5706b0d2b1d18
+      - subnet-0794fea69c85966e1
