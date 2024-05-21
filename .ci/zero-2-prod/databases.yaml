@@ -4,6 +4,7 @@ Resources:
   AccountDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
+      DBInstanceIdentifier: solidvessel-account-db
       DBName: account
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
@@ -15,6 +16,7 @@ Resources:
   InventoryDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
+      DBInstanceIdentifier: solidvessel-inventory-db
       DBName: inventory
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
@@ -26,6 +28,7 @@ Resources:
   OrderDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
+      DBInstanceIdentifier: solidvessel-order-db
       DBName: order_db
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
@@ -37,6 +40,7 @@ Resources:
   PaymentDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
+      DBInstanceIdentifier: solidvessel-payment-db
       DBName: payment
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
@@ -48,6 +52,7 @@ Resources:
   KeycloakDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
+      DBInstanceIdentifier: solidvessel-keycloak-db
       DBName: keycloak
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
