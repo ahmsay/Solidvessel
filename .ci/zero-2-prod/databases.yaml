@@ -15,7 +15,7 @@ Resources:
   InventoryDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
-      DBName: account
+      DBName: inventory
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
@@ -26,7 +26,7 @@ Resources:
   OrderDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
-      DBName: account
+      DBName: order_db
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
@@ -37,7 +37,7 @@ Resources:
   PaymentDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
-      DBName: account
+      DBName: payment
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
@@ -48,7 +48,7 @@ Resources:
   KeycloakDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
-      DBName: account
+      DBName: keycloak
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
@@ -61,6 +61,6 @@ Resources:
     Properties:
       DBSubnetGroupDescription: Databases should be in the same VPC with the K8S cluster
       SubnetIds:
-      - subnet-03d45efa042535b05
-      - subnet-094e5706b0d2b1d18
-      - subnet-0794fea69c85966e1
+      - subnet-07a9d69bf58109368
+      - subnet-03df22179e8a48ef1
+      - subnet-0bbc8a02a547025a3
