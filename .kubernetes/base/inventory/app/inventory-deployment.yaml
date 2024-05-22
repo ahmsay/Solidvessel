@@ -18,10 +18,10 @@ spec:
       initContainers:
       - name: wait-for-db
         image: busybox
-        command: [ 'sh', '-c', "until nslookup inventory-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for database; sleep 1; done" ]
+        command: [ 'sh', '-c', "until nslookup inventory-db.solidvessel; do echo waiting for database; sleep 1; done" ]
       - name: wait-for-keycloak
         image: busybox
-        command: [ 'sh', '-c', "until nslookup keycloak.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for keycloak; sleep 1; done" ]
+        command: [ 'sh', '-c', "until nslookup keycloak.solidvessel; do echo waiting for keycloak; sleep 1; done" ]
       containers:
       - name: inventory-app
         image: ahmsay/solidvessel-inventory
