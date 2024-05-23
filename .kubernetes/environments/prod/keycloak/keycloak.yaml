@@ -19,10 +19,10 @@ spec:
         postgresql:
           enabled: false
         externalDatabase:
-          host: keycloak-db-postgresql
+          host: keycloakdb.solidvessel.com
           database: keycloak
           user: nihilus
-          password: nihilus
+          password: 5b03574a-fe81-2d65-553a-68e6a3485ea7
         extraVolumes:
         - name: keycloak-realm-volume
           configMap:
