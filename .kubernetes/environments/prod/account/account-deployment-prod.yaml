@@ -6,6 +6,13 @@ metadata:
 spec:
   template:
     spec:
+      initContainers:
+      - name: wait-for-db
+        image: busybox
+        command: [ 'sh', '-c', "until nslookup accountdb.solidvessel.com; do echo waiting for database; sleep 1; done" ]
+      - name: wait-for-keycloak
+        image: busybox
+        command: [ 'sh', '-c', "until nslookup keycloak.solidvessel.svc.cluster.local; do echo waiting for keycloak; sleep 1; done" ]
       containers:
       - name: account-app
         args: [ "--spring.profiles.active=prod" ]
