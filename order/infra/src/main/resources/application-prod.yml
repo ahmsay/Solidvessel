@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://order-db:5432/order_db
+    url: jdbc:postgresql://orderdb.solidvessel.com:5432/order_db
   data:
     redis:
       host: redis-master
