@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://account-db:5432/account
+    username: nihilus
+    password: nihilus
   data:
     redis:
       host: redis-master

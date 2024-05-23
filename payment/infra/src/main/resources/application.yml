@@ -3,9 +3,6 @@ spring:
     active: dev
   application:
     name: payment
-  datasource:
-    username: nihilus
-    password: nihilus
   data:
     redis:
       timeout: 30000

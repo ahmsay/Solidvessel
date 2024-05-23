@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://inventory-db:5432/inventory
+    username: nihilus
+    password: nihilus
   data:
     redis:
       host: redis-master

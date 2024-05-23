@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://order-db:5432/order_db
+    username: nihilus
+    password: nihilus
   data:
     redis:
       host: redis-master

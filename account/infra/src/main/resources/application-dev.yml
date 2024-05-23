@@ -3,6 +3,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/account
+    username: nihilus
+    password: nihilus
   data:
     redis:
       host: localhost

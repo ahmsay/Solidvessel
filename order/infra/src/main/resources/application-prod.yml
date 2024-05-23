@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://orderdb.solidvessel.com:5432/order_db
+    username: nihilus
+    password: 5b03574a-fe81-2d65-553a-68e6a3485ea7
   data:
     redis:
       host: redis-master
