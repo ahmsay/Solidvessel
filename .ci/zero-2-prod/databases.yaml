@@ -66,6 +66,6 @@ Resources:
     Properties:
       DBSubnetGroupDescription: Databases should be in the same VPC with the K8S cluster
       SubnetIds:
-      - subnet-07a9d69bf58109368
-      - subnet-03df22179e8a48ef1
-      - subnet-0bbc8a02a547025a3
+      - <subnet-1>
+      - <subnet-2>
+      - <subnet-3>
