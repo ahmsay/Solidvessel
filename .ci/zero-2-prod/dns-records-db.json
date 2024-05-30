@@ -1,0 +1,70 @@
+{
+  "Comment": "Create hosted zones",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "accountdb.solidvessel.com.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "solidvessel-account-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "inventorydb.solidvessel.com.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "solidvessel-inventory-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "orderdb.solidvessel.com.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "solidvessel-order-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "paymentdb.solidvessel.com.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "solidvessel-payment-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "keycloakdb.solidvessel.com.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "solidvessel-keycloak-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com"
+          }
+        ]
+      }
+    }
+  ]
+}
