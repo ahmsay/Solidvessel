@@ -33,3 +33,11 @@ phases:
     - perl -i -pe"s/<load-balancer-hosted-zone-id>/$LOAD_BALANCER_HOSTED_ZONE_ID/g" .ci/zero-2-prod/dns-records.json
     - route_53_dns_hosted_zone_id=$(aws route53 list-hosted-zones --query "HostedZones[?(@.Name=='solidvessel.com.')].Id" --output text | tr -d '/hostedzone/')
     - aws route53 change-resource-record-sets --hosted-zone-id $route_53_dns_hosted_zone_id --change-batch file://.ci/zero-2-prod/dns-records.json
+    - # provision databases
+    - VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=eksctl-solidvessel-cluster/VPC --query "Vpcs[0].VpcId" --output text)
+    - SUBNETS=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=$VPC_ID Name=map-public-ip-on-launch,Values=false --query "Subnets[*].SubnetId" --output text)
+    - read SUBNET_1 SUBNET_2 SUBNET_3 <<< "$SUBNETS"
+    - perl -i -pe"s/<subnet-1>/$SUBNET_1/g" .ci/zero-2-prod/databases.yaml
+    - perl -i -pe"s/<subnet-2>/$SUBNET_2/g" .ci/zero-2-prod/databases.yaml
+    - perl -i -pe"s/<subnet-3>/$SUBNET_3/g" .ci/zero-2-prod/databases.yaml
+    - aws cloudformation deploy --template-file .ci/zero-2-prod/databases.yaml --stack-name solidvessel-databases
