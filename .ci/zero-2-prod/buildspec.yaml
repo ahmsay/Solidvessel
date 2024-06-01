@@ -41,3 +41,7 @@ phases:
     - perl -i -pe"s/<subnet-2>/$SUBNET_2/g" .ci/zero-2-prod/databases.yaml
     - perl -i -pe"s/<subnet-3>/$SUBNET_3/g" .ci/zero-2-prod/databases.yaml
     - aws cloudformation deploy --template-file .ci/zero-2-prod/databases.yaml --stack-name solidvessel-databases
+    - # create dns records for db instances
+    - aws route53 create-hosted-zone --name solidvessel.com --caller-reference $(date +%s) --vpc VPCRegion=$AWS_REGION,VPCId=$VPC_ID
+    - PRIVATE_HOSTED_ZONE_ID=$(aws route53 list-hosted-zones --query "HostedZones[?Name == 'solidvessel.com.' && Config.PrivateZone].Id" --output text | tr -d '/hostedzone/')
+    - aws route53 change-resource-record-sets --hosted-zone-id $PRIVATE_HOSTED_ZONE_ID --change-batch file://.ci/zero-2-prod/dns-records-db.json
