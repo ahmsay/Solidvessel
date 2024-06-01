@@ -4,7 +4,7 @@
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "accountdb.solidvessel.com.",
+        "Name": "account.db.solidvessel.com.",
         "Type": "CNAME",
         "TTL": 300,
         "ResourceRecords": [
@@ -17,7 +17,7 @@
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "inventorydb.solidvessel.com.",
+        "Name": "inventory.db.solidvessel.com.",
         "Type": "CNAME",
         "TTL": 300,
         "ResourceRecords": [
@@ -30,7 +30,7 @@
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "orderdb.solidvessel.com.",
+        "Name": "order.db.solidvessel.com.",
         "Type": "CNAME",
         "TTL": 300,
         "ResourceRecords": [
@@ -43,7 +43,7 @@
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "paymentdb.solidvessel.com.",
+        "Name": "payment.db.solidvessel.com.",
         "Type": "CNAME",
         "TTL": 300,
         "ResourceRecords": [
@@ -56,7 +56,7 @@
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "keycloakdb.solidvessel.com.",
+        "Name": "keycloak.db.solidvessel.com.",
         "Type": "CNAME",
         "TTL": 300,
         "ResourceRecords": [

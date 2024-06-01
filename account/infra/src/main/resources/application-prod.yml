@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://accountdb.solidvessel.com:5432/account
+    url: jdbc:postgresql://account.db.solidvessel.com:5432/account
     username: nihilus
     password: 5b03574a-fe81-2d65-553a-68e6a3485ea7
   data:

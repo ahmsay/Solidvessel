@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://paymentdb.solidvessel.com:5432/payment
+    url: jdbc:postgresql://payment.db.solidvessel.com:5432/payment
     username: nihilus
     password: 5b03574a-fe81-2d65-553a-68e6a3485ea7
   data:
