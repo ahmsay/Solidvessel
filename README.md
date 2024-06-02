@@ -91,10 +91,15 @@ Let's explain each component shown in the diagram one by one:
 
 ## Roadmap
 
-- Persistence
-- Data enrichment
-- Security improvements
-- Monitoring
+- Persistence (prod environment data will always remain)
+- Move application-test and prod files to K8S configmaps
+- Switch from Docker Hub to ECR
+- Security improvements (remove plain text secrets for prod environment)
+- Make the test environment manageable by ArgoCD
+- Create the K8S cluster for production with only Cloudformation
+- Data enrichment (add millions of records for prod environment)
+- Monitoring (Prometheus, Grafana etc)
+- Maybe it's time to create a frontend ??
 - CQRS
 - Migration to Kafka
 - Microservice with different framework
