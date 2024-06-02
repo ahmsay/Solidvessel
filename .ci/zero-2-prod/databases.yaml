@@ -5,62 +5,51 @@ Resources:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBInstanceIdentifier: solidvessel-account-db
-      DBName: account
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      MasterUsername: nihilus
-      MasterUserPassword: 5b03574a-fe81-2d65-553a-68e6a3485ea7
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-y73ejkz7erhp
   InventoryDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBInstanceIdentifier: solidvessel-inventory-db
-      DBName: inventory
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      MasterUsername: nihilus
-      MasterUserPassword: 5b03574a-fe81-2d65-553a-68e6a3485ea7
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-nmbtkagehsr7
   OrderDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBInstanceIdentifier: solidvessel-order-db
-      DBName: order_db
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      MasterUsername: nihilus
-      MasterUserPassword: 5b03574a-fe81-2d65-553a-68e6a3485ea7
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-qyjctutfu48w
   PaymentDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBInstanceIdentifier: solidvessel-payment-db
-      DBName: payment
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      MasterUsername: nihilus
-      MasterUserPassword: 5b03574a-fe81-2d65-553a-68e6a3485ea7
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-0892mbrr3o4f
   KeycloakDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
       DBInstanceIdentifier: solidvessel-keycloak-db
-      DBName: keycloak
       DBInstanceClass: db.t4g.medium
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      MasterUsername: nihilus
-      MasterUserPassword: 5b03574a-fe81-2d65-553a-68e6a3485ea7
   K8SSubnetGroup:
     Type: "AWS::RDS::DBSubnetGroup"
     Properties:
