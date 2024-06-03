@@ -50,6 +50,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-iu2ydpehsaqu
   K8SSubnetGroup:
     Type: "AWS::RDS::DBSubnetGroup"
     Properties:
