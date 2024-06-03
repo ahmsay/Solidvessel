@@ -1,4 +1,3 @@
 resources:
 - keycloak.yaml
 - keycloak-db.yaml
-- ../../../base/keycloak/config

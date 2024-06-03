@@ -23,21 +23,6 @@ spec:
           database: keycloak
           user: nihilus
           password: 5b03574a-fe81-2d65-553a-68e6a3485ea7
-        extraVolumes:
-        - name: keycloak-realm-volume
-          configMap:
-            name: keycloak-realm
-        - name: keycloak-users-volume
-          configMap:
-            name: keycloak-users
-        extraVolumeMounts:
-        - name: keycloak-realm-volume
-          mountPath: /opt/bitnami/keycloak/data/import/solidvessel-realm.json
-          subPath: solidvessel-realm.json
-        - name: keycloak-users-volume
-          mountPath: /opt/bitnami/keycloak/data/import/solidvessel-users-0.json
-          subPath: solidvessel-users-0.json
-        extraStartupArgs: "--import-realm"
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel
