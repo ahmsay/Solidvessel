@@ -1,3 +1,2 @@
 resources:
 - keycloak.yaml
-- keycloak-db.yaml
