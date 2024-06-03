@@ -35,12 +35,13 @@ service can have 3 replicas. Distributing the traffic across the replicas is als
 
 ### Production
 
-![prod](https://github.com/ahmsay/Solidvessel/assets/22731894/988816f4-df39-4ed5-8a3b-d6acd8a69543)
+![prod](https://github.com/ahmsay/Solidvessel/assets/22731894/2ee355bc-5f97-4781-b86f-4d16b77f3831)
 
-Production environment is logically the same with the test environment. This means that the entire application stack
-<b>still runs on a Kubernetes cluster</b>. However, the cluster is on remote servers now, just like a real world
+Production environment is very similar to the test environment. However, the cluster is on remote servers now, just like
+a real world
 production environment.
-I used AWS as a cloud provider for this environment. <b>Please note that I'm not keeping the production environment up
+I used AWS as a cloud provider for this environment. I also provisioned the databases on AWS, not inside Kubernetes. <b>
+Please note that I'm not keeping the production environment up
 7/24, that would be very costly.</b>
 Let's explain each component shown in the diagram one by one:
 
@@ -70,6 +71,11 @@ Let's explain each component shown in the diagram one by one:
 - **CloudFormation**: The whole infrastructure (nodes, subnets, ALB, NAT gateway etc.) is built on CloudFormation. This
   service
   provides a way to manage AWS resources easier using declarative approaches.
+- **RDS**: All databases are provisioned by using RDS (Relational Database Service). The engine is still PostgreSQL but
+  backups,
+  monitoring, high availability and disaster recovery is much easier. When the environment is going up, the databases
+  are
+  provisioned from previous snapshots, so the data is never lost.
 
 ## Topics
 - <a href=".docs/run-options.md">Run options<a/>
@@ -91,7 +97,7 @@ Let's explain each component shown in the diagram one by one:
 
 ## Roadmap
 
-- Persistence (prod environment data will always remain)
+- ~~Persistence (prod environment data will always remain)~~
 - Move application-test and prod files to K8S configmaps
 - Switch from Docker Hub to ECR
 - Security improvements (remove plain text secrets for prod environment)
@@ -100,7 +106,7 @@ Let's explain each component shown in the diagram one by one:
 - Data enrichment (add millions of records for prod environment)
 - Monitoring (Prometheus, Grafana etc)
 - Maybe it's time to create a frontend ??
-- CQRS
-- Migration to Kafka
+- Apply CQRS in one of the microservices
+- Migration from RabbitMQ to Kafka
 - Microservice with different framework
 - Microservice with different programming language
