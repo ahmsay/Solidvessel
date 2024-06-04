@@ -10,4 +10,5 @@ ext {
     mockitoVersion = "5.8.0"
     set('testContainers.version', "1.19.3")
     springCloudContractVersion = "4.1.0"
+    springCloudKubernetesVersion = "3.1.2"
 }
