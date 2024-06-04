@@ -16,3 +16,6 @@ spec:
       containers:
       - name: account-app
         args: [ "--spring.profiles.active=prod" ]
+        envFrom:
+        - configMapRef:
+            name: account-configmap-prod
