@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: order-configmap-prod
+  name: order
   namespace: solidvessel
 data:
   application-prod.yaml: |

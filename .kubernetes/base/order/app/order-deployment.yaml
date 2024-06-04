@@ -31,4 +31,4 @@ spec:
         - containerPort: 8080
         envFrom:
         - configMapRef:
-            name: order-configmap-test
+            name: order

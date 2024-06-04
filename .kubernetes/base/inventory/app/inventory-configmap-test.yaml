@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: inventory-configmap-test
+  name: inventory
   namespace: solidvessel
 data:
   application-test.yaml: |

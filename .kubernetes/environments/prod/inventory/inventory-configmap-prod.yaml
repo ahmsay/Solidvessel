@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: inventory-configmap-prod
+  name: inventory
   namespace: solidvessel
 data:
   application-prod.yaml: |

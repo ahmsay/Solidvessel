@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: payment-configmap-prod
+  name: payment
   namespace: solidvessel
 data:
   application-prod.yaml: |
