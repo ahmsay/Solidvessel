@@ -4,28 +4,14 @@ metadata:
   name: inventory-configmap-test
   namespace: solidvessel
 data:
-  application-test.yaml: |
-    spring:
-      datasource:
-        url: jdbc:postgresql://inventory-db:5432/inventory
-        username: nihilus
-        password: nihilus
-      data:
-        redis:
-          host: redis-master
-          port: 6379
-      rabbitmq:
-        host: rabbitmq
-        port: 5672
-      security:
-        oauth2:
-          resourceserver:
-            jwt:
-              jwk-set-uri: http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
-    management:
-      endpoints:
-        web:
-          exposure:
-            include: '*'
-    keycloak:
-      server-url: http://keycloak:8080
+  JAVA_OPTS: >
+    -Dspring.datasource.url=jdbc:postgresql://inventory-db:5432/inventory
+    -Dspring.datasource.username=nihilus
+    -Dspring.datasource.password=nihilus
+    -Dspring.data.redis.host=redis-master
+    -Dspring.data.redis.port=6379
+    -Dspring.rabbitmq.host=rabbitmq
+    -Dspring.rabbitmq.port=5672
+    -Dspring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
+    -Dmanagement.endpoints.web.exposure.include=*
+    -Dkeycloak.server-url=http://keycloak:8080
