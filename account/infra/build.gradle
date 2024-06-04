@@ -28,7 +28,6 @@ dependencies {
     implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$rootProject.circuitBreakerVersion"
-    implementation "org.springframework.cloud:spring-cloud-kubernetes:$rootProject.springCloudKubernetesVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
     testImplementation 'org.testcontainers:postgresql'
