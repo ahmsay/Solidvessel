@@ -18,4 +18,4 @@ spec:
         args: [ "--spring.profiles.active=prod" ]
         envFrom:
         - configMapRef:
-            name: payment
+            name: payment-configmap-prod

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: payment
+  name: payment-configmap-test
   namespace: solidvessel
 data:
   application-test.yaml: |

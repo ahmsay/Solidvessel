@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: order
+  name: order-configmap-test
   namespace: solidvessel
 data:
   application-test.yaml: |
