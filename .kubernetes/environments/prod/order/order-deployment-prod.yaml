@@ -16,3 +16,6 @@ spec:
       containers:
       - name: order-app
         args: [ "--spring.profiles.active=prod" ]
+        envFrom:
+        - configMapRef:
+            name: order-configmap-prod

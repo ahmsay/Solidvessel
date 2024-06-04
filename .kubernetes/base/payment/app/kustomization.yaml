@@ -1,3 +1,4 @@
 resources:
 - payment-deployment.yaml
 - payment-service.yaml
+- payment-configmap-test.yaml

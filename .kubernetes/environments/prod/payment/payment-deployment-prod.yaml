@@ -16,3 +16,6 @@ spec:
       containers:
       - name: payment-app
         args: [ "--spring.profiles.active=prod" ]
+        envFrom:
+        - configMapRef:
+            name: payment-configmap-prod

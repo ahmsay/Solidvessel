@@ -1,3 +1,4 @@
 resources:
 - order-deployment.yaml
 - order-service.yaml
+- order-configmap-test.yaml
