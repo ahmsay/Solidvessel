@@ -16,6 +16,9 @@ spec:
       containers:
       - name: inventory-app
         args: [ "--spring.profiles.active=prod" ]
-        envFrom:
-        - configMapRef:
-            name: inventory-configmap-prod
+        env:
+        - name: JAVA_OPTS
+          valueFrom:
+            configMapKeyRef:
+              key: JAVA_OPTS
+              name: inventory-configmap-prod
