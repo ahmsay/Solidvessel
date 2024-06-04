@@ -16,7 +16,7 @@ phases:
     commands:
     - gradle test --parallel
     - ./codecov
-    - gradle jib -Pjib.to.auth.username=$DOCKER_USERNAME -Pjib.to.auth.password=$DOCKER_PASSWORD --parallel
+    - gradle jib -Pjib.to.auth.username=$DOCKER_USERNAME -Pjib.to.auth.password=$DOCKER_PASSWORD
 reports:
   test-results:
     files:
