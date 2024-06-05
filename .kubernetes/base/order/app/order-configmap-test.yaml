@@ -4,15 +4,30 @@ metadata:
   name: order-configmap-test
   namespace: solidvessel
 data:
-  JAVA_OPTS: >
-    -Dspring.datasource.url=jdbc:postgresql://order-db:5432/order_db
-    -Dspring.datasource.username=nihilus
-    -Dspring.datasource.password=nihilus
-    -Dspring.data.redis.host=redis-master
-    -Dspring.data.redis.port=6379
-    -Dspring.rabbitmq.host=rabbitmq
-    -Dspring.rabbitmq.port=5672
-    -Dspring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
-    -Dpayment.url=http://payment:8080/payment
-    -Dmanagement.endpoints.web.exposure.include=*
-    -Dkeycloak.server-url=http://keycloak:8080
+  application-test.yaml: |
+    spring:
+      datasource:
+        url: jdbc:postgresql://order-db:5432/order_db
+        username: nihilus
+        password: nihilus
+      data:
+        redis:
+          host: redis-master
+          port: 6379
+      rabbitmq:
+        host: rabbitmq
+        port: 5672
+      security:
+        oauth2:
+          resourceserver:
+            jwt:
+              jwk-set-uri: http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs
+    payment:
+      url: http://payment:8080/payment
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: '*'
+    keycloak:
+      server-url: http://keycloak:8080
