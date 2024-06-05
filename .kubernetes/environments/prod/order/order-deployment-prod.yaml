@@ -15,7 +15,18 @@ spec:
         command: [ 'sh', '-c', "until nslookup keycloak.solidvessel.svc.cluster.local; do echo waiting for keycloak; sleep 1; done" ]
       containers:
       - name: order-app
-        args: [ "--spring.profiles.active=prod" ]
-        envFrom:
-        - configMapRef:
-            name: order-configmap-prod
+        args:
+        - "--spring.profiles.active=prod"
+        - "--spring.datasource.url=jdbc:postgresql://order.db.solidvessel.com:5432/order_db"
+        - "--spring.datasource.username=nihilus"
+        - "--spring.datasource.password=5b03574a-fe81-2d65-553a-68e6a3485ea7"
+        - "--spring.data.redis.host=redis-master"
+        - "--spring.data.redis.port=6379"
+        - "--spring.data.redis.password=nihilus"
+        - "--spring.rabbitmq.host=rabbitmq"
+        - "--spring.rabbitmq.port=5672"
+        - "--spring.rabbitmq.password=nihilus"
+        - "--spring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:80/realms/solidvessel/protocol/openid-connect/certs"
+        - "--payment.url=http://payment:8080/payment"
+        - "--management.endpoints.web.exposure.include=*"
+        - "--keycloak.server-url=http://keycloak:80"
