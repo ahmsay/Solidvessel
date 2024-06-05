@@ -98,7 +98,7 @@ Let's explain each component shown in the diagram one by one:
 ## Roadmap
 
 - ~~Persistence (prod environment data will always remain)~~
-- Move application-test and prod files to K8S configmaps
+- ~~Move application-test and prod files to K8S configmaps~~
 - Switch from Docker Hub to ECR
 - Security improvements (remove plain text secrets for prod environment)
 - Make the test environment manageable by ArgoCD
