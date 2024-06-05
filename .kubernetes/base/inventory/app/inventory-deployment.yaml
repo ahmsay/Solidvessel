@@ -29,9 +29,6 @@ spec:
         args: [ "--spring.profiles.active=test" ]
         ports:
         - containerPort: 8080
-        env:
-        - name: JAVA_OPTS
-          valueFrom:
-            configMapKeyRef:
-              key: JAVA_OPTS
-              name: inventory-configmap-test
+        envFrom:
+        - configMapRef:
+            name: inventory-configmap-test

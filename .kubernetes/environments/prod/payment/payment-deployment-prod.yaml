@@ -16,9 +16,6 @@ spec:
       containers:
       - name: payment-app
         args: [ "--spring.profiles.active=prod" ]
-        env:
-        - name: JAVA_OPTS
-          valueFrom:
-            configMapKeyRef:
-              key: JAVA_OPTS
-              name: payment-configmap-prod
+        envFrom:
+        - configMapRef:
+            name: payment-configmap-prod
