@@ -1,4 +1,3 @@
 resources:
 - inventory-deployment.yaml
 - inventory-service.yaml
-- inventory-configmap-test.yaml

@@ -2,4 +2,3 @@ resources:
 - ../../../base/account/app
 patchesStrategicMerge:
 - account-deployment-prod.yaml
-- account-configmap-prod.yaml

@@ -1,4 +1,3 @@
 resources:
 - account-deployment.yaml
 - account-service.yaml
-- account-configmap-test.yaml

@@ -2,4 +2,3 @@ resources:
 - ../../../base/inventory/app
 patchesStrategicMerge:
 - inventory-deployment-prod.yaml
-- inventory-configmap-prod.yaml
