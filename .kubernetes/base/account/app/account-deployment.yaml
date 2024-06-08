@@ -40,3 +40,14 @@ spec:
         - "--keycloak.server-url=http://keycloak:8080"
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "aws-secrets"
