@@ -11,9 +11,8 @@ spec:
     targetRevision: 18.4.0
     helm:
       values: |
-        global:
-          redis:
-            password: nihilus
+        auth:
+          existingSecret: redis-secret
         master:
           persistence:
             enabled: false

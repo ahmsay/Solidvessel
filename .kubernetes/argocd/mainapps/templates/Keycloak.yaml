@@ -15,14 +15,14 @@ spec:
         proxy: edge
         auth:
           adminUser: admin
-          adminPassword: admin
+          existingSecret: keycloak-secret
         postgresql:
           enabled: false
         externalDatabase:
           host: keycloak.db.solidvessel.com
           database: keycloak
           user: nihilus
-          password: 5b03574a-fe81-2d65-553a-68e6a3485ea7
+          existingSecretPasswordKey: keycloak-secret
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel

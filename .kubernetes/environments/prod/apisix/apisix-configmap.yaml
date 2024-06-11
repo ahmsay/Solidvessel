@@ -46,7 +46,7 @@ data:
       plugins:
         openid-connect:
           client_id: "solidvessel-auth"
-          client_secret: "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
+          client_secret: "${CLIENT_SECRET}"
           discovery: "https://keycloak.solidvessel.com/realms/solidvessel/.well-known/openid-configuration"
           introspection_endpoint: "https://keycloak.solidvessel.com/realms/solidvessel/protocol/openid-connect/token/introspect"
           scope: "openid profile"

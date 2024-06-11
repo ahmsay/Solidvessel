@@ -13,7 +13,7 @@ spec:
       values: |
         auth:
           username: guest
-          password: nihilus
+          existingPasswordSecret: rabbitmq-secret
         persistence:
           enabled: false
   destination:
