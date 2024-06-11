@@ -38,5 +38,7 @@ spec:
         - "--payment.url=http://payment:8080/payment"
         - "--management.endpoints.web.exposure.include=*"
         - "--keycloak.server-url=http://keycloak:8080"
+        - "--keycloak.client-secret=GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
+        - "--keycloak.password=svadmin"
         ports:
         - containerPort: 8080

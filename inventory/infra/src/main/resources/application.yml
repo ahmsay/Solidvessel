@@ -27,6 +27,4 @@ routing-keys:
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth
-  client-secret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
   username: solidvessel-admin
-  password: svadmin

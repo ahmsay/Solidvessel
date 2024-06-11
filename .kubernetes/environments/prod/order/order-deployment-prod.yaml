@@ -30,3 +30,5 @@ spec:
         - "--payment.url=http://payment:8080/payment"
         - "--management.endpoints.web.exposure.include=*"
         - "--keycloak.server-url=http://keycloak:80"
+        - "--keycloak.client-secret=${KEYCLOAK_CLIENT_SECRET}"
+        - "--keycloak.password=${KEYCLOAK_PASSWORD}"

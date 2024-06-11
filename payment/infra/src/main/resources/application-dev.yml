@@ -24,3 +24,5 @@ management:
         include: '*'
 keycloak:
   server-url: http://localhost:9876
+  client-secret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
+  password: svadmin
