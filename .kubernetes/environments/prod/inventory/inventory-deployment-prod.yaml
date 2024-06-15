@@ -31,3 +31,6 @@ spec:
         - "--keycloak.server-url=http://keycloak:80"
         - "--keycloak.client-secret=${KEYCLOAK_CLIENT_SECRET}"
         - "--keycloak.password=${KEYCLOAK_PASSWORD}"
+        envFrom:
+        - secretRef:
+            name: inventory-secret
