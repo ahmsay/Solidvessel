@@ -28,6 +28,7 @@ spec:
             deployment:
               role_data_plane:
                 config_provider: yaml
+          extraEnvVarsSecret: openid-client-secret
           extraVolumes:
           - name: routes
             configMap:
