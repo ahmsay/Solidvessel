@@ -29,3 +29,19 @@ spec:
   syncPolicy:
     automated:
       prune: true
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: keycloak-secret
+  namespace: solidvessel
+spec:
+  encryptedData:
+    adminPassword: AgCh3p/TLcRAxOi+J+LsnrChocCQ7lphdDOYE12awTA4Be2wvh++mdHfH1glfMqvSFzpIp3ENrjZgJfVUc1gqw7E3x1AthjWxKpYA3AVYqyA6wj/0P+T4H7UIfsjI2o0/bNoPJQzvIglepGSZ82/nRZSy9g76+gTdBVV/6SAbif04Q5EOGqL16eOGO6W1ZXnWiZaSG37rCZIBo3te3tnykdrEtr+jtrb/UoDG/U64SP+E7yMyyZPNwi0B4NkZTpC3sPzCXtzXSvO0Lbct9OCRLX3gZd3yuscjOuvyh8aF1SRyNZxXrvKx6PbNUEyMXF1Ee08IrA9aQEqxGyKHL/J98pmuEht6/fN6fOWFM0stW0cW9fJISWvj212eeeJv56kS7EmRm+ifswFuPcbXvQR0OauJAdEllDno54y2Pllkzurt9XGxAU/Glkkhwg4d/LAOs2eXScFGlqBA2qQ3q60DdprfkjAGC0TGRNBk/+0W8+fZw3eTelWuWAArTAjAg+Aef6beJJYaHNdi1UBzRlH/Lnw0mqaFQmb6ObJ5y8vSoHYCwkw9iVYT+XKaWlXLrxm8O/FIKqD22kajLN58Qqrtsm14WUdkL71GCzjzoSEfem2ms440rlovrI3NGXgUlMYalu+mg2+XlaGHRquv7oojqYHh+l4l7kyhL1RleFfpGwT9t36yDc59AQ2688vEt5VhAufwiArZ8xo6Geq8GpbaBvxF1jJLQ==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: keycloak-secret
+      namespace: solidvessel
+    type: Opaque
