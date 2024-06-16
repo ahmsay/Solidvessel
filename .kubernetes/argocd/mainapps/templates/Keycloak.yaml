@@ -29,20 +29,3 @@ spec:
   syncPolicy:
     automated:
       prune: true
----
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: keycloak-secret
-  namespace: solidvessel
-spec:
-  encryptedData:
-    admin-password: AgAiHwE2XyDK/w7OnOQVDA0KdZAQY8N/XcI0bB7sJ1xUJ93hUxioXV4fMYY90AfDexd+y+jyoonhe0r9p2VQEl+U2dS59MnQu/Ys4uLlJ+j6dZN3nMkQx6Q0Ty9ptHVZHLtjX8cixwP1I3raXmZe7EXkPANwWVDR1cmJEWHbJBClRmVXzRt5rnrr+m9+MXCt3rMZU7wvHS6N5UEFbZc3uc6uw/qpoeSyGdXa/baDt/ds7CQrkboByOyBNl+NAYyK4WoiBPbm0PpGjq8sR+Or8dG5ROlds/Eu6Qf1Sg4v9WC+EBjreISKQohVPGfwKB+3iyUSybAmBAN2uZsrAtNm0YCUgZ9fpJVwU5XgEaysUiLKL6Uc817TOyaT0oTZg4XjGWaWDt60rfGbxfrsFmU9gqi+3XRZRLiphMWVO5MPWJtc5XPKXXnHf5oj5GjWW0EL1Lty7Z3LA1GbP0YAE5aMXADyLlqDwtzBoGz7IvQ/R1IY1oaUX4NswcASUQnIXKPTDw3LH1egwnYBspuInA9XwFUNwlIyp3dYLAgQIpaSp3193ILXQyARWDumxpzzwwsIp1ayU/mTDH3N+Bfn1sJOJ+hw+ucfdfGvudXRu5K9sFC1X2bwKPlMcJhcZdLqCJCDgwQin7Z7LnFOSTr/XGI2SmPYm/VxlTWNhuakXB3ZkuhlGYTp+k0hcRnsUbGnsBXjQ1gVGL4oo4hj2B1OpnG6i0HPGXX4cw==
-    postgres-password: AgAZAqE9umKMwv3lmsLGDUpNgO7K4aLRaJcyv1skZMV4s8WdVAs7SUsA3nawCN7pGc1H2kJkucuc7iMWanJQorvps0s+JoUSUJxaiVebfvYSzW2FcRUdo14ec6FED9hytxs0DO5iVj8DN2ghR67O0+5FN3534RiqiUN9MWAlAGEB60cxZWgjwbAUWr6XC8Mu5noZ7wNqmrjBZ1u967Nj1rCGOdy44AHDHqQxP9+duPp2BOT4ErdJw0ysCXaDvcPKCke3gU6Bw5wAcyO58SDJ1xLXh7PbU7YY3sTCBT/MO/LhmzaBcFreM+lM1RqjRCVb6tK5b5oL22Ib5EBrT1LYCDloq3Vycqdxj5Vr9anrtzQ44rViKiCJP8pYttlnTErBFTpuFZrTQViSpXc7e8Htn9nxK7MVhCPdWT3n85aZR+NH3csodjrkBE5nYd3o7lkaWSxQ0N7JDJxpGiBjecjs0l+AuwFvndiwY8L8XyLznn0XWSjVy15CJmFL3bE049gXjsTHu9Uj7QmQksDtunJrioEnaH2dqY+HvTyBko1PHzxNQ+1rqRIFzSJF64rlwKVBZB/UlDD1o3tAQ2+5/bEVP3TGM4vX/KnexC3VyPeWbofnqrTiv9IxAI3al6uuQCdAsvPZf7cuqqmRS4EokMaopyxe7wrX/mZynXriz1dElY6LcCzuqAnJLDdyICUw0cZbm0hSsC99CzeXwkVHAmVxfnXuWNkcEw==
-  template:
-    metadata:
-      creationTimestamp: null
-      name: keycloak-secret
-      namespace: solidvessel
-    type: Opaque
