@@ -1,5 +1,5 @@
 resources:
 - ../../../base/inventory/app
+- inventory-secret.yaml
 patches:
 - path: inventory-deployment-prod.yaml
-- path: inventory-secret.yaml

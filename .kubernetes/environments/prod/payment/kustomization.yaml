@@ -1,5 +1,5 @@
 resources:
 - ../../../base/payment/app
+- payment-secret.yaml
 patches:
 - path: payment-deployment-prod.yaml
-- path: payment-secret.yaml
