@@ -22,7 +22,7 @@ spec:
           host: keycloak.db.solidvessel.com
           database: keycloak
           user: nihilus
-          existingSecretPasswordKey: keycloak-db-secret
+          existingSecret: keycloak-db-secret
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel
