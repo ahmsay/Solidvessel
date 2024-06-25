@@ -23,9 +23,11 @@ phases:
     - kubectl -n argocd patch secret argocd-secret -p '{"stringData":{"admin.password":"'$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$ARGO_CD_PASSWORD', bcrypt.gensalt()).decode())")'","admin.passwordMtime":"'$(date +%FT%T%Z)'"}}'
     - sleep 60
     - # create applications
-    - kubectl create -f .kubernetes/argocd/root/Root.yaml
     - kubectl create ns sealed-secrets
+    - kubectl create -f .kubernetes/argocd/SealedSecrets.yaml
     - aws secretsmanager get-secret-value --secret-id solidvessel-custom-tls --query SecretString --output text | kubectl apply -f -
+    - sleep 30
+    - kubectl create -f .kubernetes/argocd/root/Root.yaml
     - # create route53 dns records
     - load_balancer_arn=None
     - until [[ $load_balancer_arn != 'None' ]]; do echo 'Waiting for load balancer to be generated...'; sleep 10; export load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text); done
