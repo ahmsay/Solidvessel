@@ -1,5 +1,5 @@
 resources:
 - ../../../base/payment/app
-patchesStrategicMerge:
-- payment-deployment-prod.yaml
-- payment-secret.yaml
+patches:
+- path: payment-deployment-prod.yaml
+- path: payment-secret.yaml

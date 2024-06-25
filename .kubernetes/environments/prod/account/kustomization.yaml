@@ -1,5 +1,5 @@
 resources:
 - ../../../base/account/app
-patchesStrategicMerge:
-- account-deployment-prod.yaml
-- account-secret.yaml
+patches:
+- path: account-deployment-prod.yaml
+- path: account-secret.yaml

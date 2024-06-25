@@ -1,5 +1,5 @@
 resources:
 - ../../../base/order/app
-patchesStrategicMerge:
-- order-deployment-prod.yaml
-- order-secret.yaml
+patches:
+- path: order-deployment-prod.yaml
+- path: order-secret.yaml
