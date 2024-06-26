@@ -10,7 +10,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-y73ejkz7erhp
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-qv5om3vd9c9z
   InventoryDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -20,7 +20,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-nmbtkagehsr7
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-bbacgz3tkyzy
   OrderDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -30,7 +30,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-qyjctutfu48w
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-zabnfnlbyz3f
   PaymentDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -40,7 +40,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-0892mbrr3o4f
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-p8m7ibesophi
   KeycloakDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -50,7 +50,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "16.2"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-iu2ydpehsaqu
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-w3rzxioc6fsp
   K8SSubnetGroup:
     Type: "AWS::RDS::DBSubnetGroup"
     Properties:
