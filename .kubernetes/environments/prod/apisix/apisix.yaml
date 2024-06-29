@@ -28,7 +28,9 @@ spec:
             deployment:
               role_data_plane:
                 config_provider: yaml
-          extraEnvVarsSecret: apisix-secret
+          extraEnvVars:
+            - name: CLIENT_SECRET
+              value: "bar"
           extraVolumes:
           - name: routes
             configMap:
