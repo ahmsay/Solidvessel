@@ -29,9 +29,6 @@ spec:
               role_data_plane:
                 config_provider: yaml
           extraEnvVarsSecret: apisix-secret
-          extraEnvVars:
-          - name: ASD
-            value: zxc
           extraVolumes:
           - name: routes
             configMap:
