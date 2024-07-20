@@ -7,10 +7,10 @@ data:
   apisix.yaml: |
     routes:
     - id: test-route
-      uri: /testing/*
+      uri: /anything
       upstream:
         nodes:
-          "www.google.com": 1
+          "httpbin.org:80/anything": 1
         type: roundrobin
     - id: auth
       uri: /auth/*
