@@ -28,6 +28,8 @@ spec:
             deployment:
               role_data_plane:
                 config_provider: yaml
+            # Testing line
+            # new-parameter: "{{ print "{{CLIENT_SECRET}}" }}"
           extraEnvVarsSecret: apisix-secret
           extraVolumes:
           - name: routes
