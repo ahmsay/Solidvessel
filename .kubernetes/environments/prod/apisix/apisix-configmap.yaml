@@ -10,7 +10,7 @@ data:
       uri: /testing/*
       upstream:
         nodes:
-          "www.google.com:80": 1
+          "www.google.com": 1
         type: roundrobin
     - id: auth
       uri: /auth/*
