@@ -6,6 +6,12 @@ metadata:
 data:
   apisix.yaml: |
     routes:
+    - id: test-route
+      uri: /testing/*
+      upstream:
+        nodes:
+          "www.google.com:80": 1
+        type: roundrobin
     - id: auth
       uri: /auth/*
       upstream:
