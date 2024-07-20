@@ -31,7 +31,7 @@ spec:
           extraEnvVarsSecret: apisix-secret
           extraEnvVars:
           - name: NEW_ROUTE
-            value: "testing"
+            value: "anything"
           extraVolumes:
           - name: routes
             configMap:
