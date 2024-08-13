@@ -28,6 +28,10 @@ spec:
             deployment:
               role_data_plane:
                 config_provider: yaml
+          lifecycleHooks:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "apisix reload"]
           extraEnvVarsSecret: apisix-secret
           extraVolumes:
           - name: routes
