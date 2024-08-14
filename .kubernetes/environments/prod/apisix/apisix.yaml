@@ -29,6 +29,10 @@ spec:
               role_data_plane:
                 config_provider: yaml
           extraEnvVarsSecret: apisix-secret
+          lifecycleHooks:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "apisix reload"]
           extraVolumes:
           - name: routes
             configMap:
