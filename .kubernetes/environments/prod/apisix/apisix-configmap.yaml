@@ -6,6 +6,12 @@ metadata:
 data:
   apisix.yaml: |
     routes:
+    - id: test-route
+      uri: /"{{ print "{{NEW_ROUTE}}" }}"
+      upstream:
+        nodes:
+          "httpbin.org:80/anything": 1
+        type: roundrobin
     - id: auth
       uri: /auth/*
       upstream:

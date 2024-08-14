@@ -31,8 +31,11 @@ spec:
           lifecycleHooks:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "sleep 10"]
+                command: ["/bin/sh", "-c", "apisix reload"]
           extraEnvVarsSecret: apisix-secret
+          extraEnvVars:
+          - name: NEW_ROUTE
+            value: "anything"
           extraVolumes:
           - name: routes
             configMap:
