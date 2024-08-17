@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
     id 'com.google.cloud.tools.jib' version '3.4.3'
-    id 'io.freefair.lombok' version '8.4'
+    id 'io.freefair.lombok' version '8.7.1'
     id 'jacoco'
-    id 'org.springframework.cloud.contract' version '4.1.0'
+    id 'org.springframework.cloud.contract' version '4.1.4'
 }
 
 archivesBaseName = 'order-infra'
@@ -33,7 +33,7 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
     testImplementation 'org.testcontainers:postgresql'
     testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:$rootProject.springCloudContractVersion"
-    testImplementation "org.springframework.cloud:spring-cloud-contract-stub-runner:4.1.0"
+    testImplementation "org.springframework.cloud:spring-cloud-contract-stub-runner:$rootProject.springCloudContractVersion"
     testImplementation files(
             "${project.rootDir}/payment/infra/build/libs/infra-stubs.jar"
     )
