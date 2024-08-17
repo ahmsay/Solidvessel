@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: postgres
-    image: postgres:16.1
+    image: postgres:16.4
     environment:
       - POSTGRES_USER=nihilus
       - POSTGRES_PASSWORD=nihilus
@@ -11,18 +11,18 @@ services:
     - ./postgres:/docker-entrypoint-initdb.d
   redis:
     container_name: redis
-    image: redis:7.2.3
+    image: redis:7.4
     ports:
     - "6379:6379"
   rabbitmq:
     container_name: rabbitmq
-    image: rabbitmq:3.12.0-management
+    image: rabbitmq:3.13.6-management-alpine
     ports:
     - "5672:5672"
     - "15672:15672"
   apisix:
     container_name: apisix
-    image: apache/apisix:3.7.0-debian
+    image: apache/apisix:3.9.1-debian
     environment:
       APISIX_STAND_ALONE: "true"
     volumes:
@@ -30,7 +30,7 @@ services:
     network_mode: host
   keycloak:
     container_name: keycloak
-    image: quay.io/keycloak/keycloak:23.0.1
+    image: quay.io/keycloak/keycloak:25.0
     environment:
       KEYCLOAK_ADMIN: "admin"
       KEYCLOAK_ADMIN_PASSWORD: "admin"
