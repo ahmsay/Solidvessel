@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:16.1
+        image: postgres:16.4
         env:
         - name: POSTGRES_DB
           value: payment
