@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: keycloak
-    targetRevision: 17.3.6
+    targetRevision: 22.1.1
     helm:
       values: |
         production: true

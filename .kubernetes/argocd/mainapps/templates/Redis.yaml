@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: redis
-    targetRevision: 18.4.0
+    targetRevision: 20.0.2
     helm:
       values: |
         auth:
