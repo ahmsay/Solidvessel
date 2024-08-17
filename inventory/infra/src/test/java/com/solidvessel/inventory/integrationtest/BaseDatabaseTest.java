@@ -20,7 +20,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @ActiveProfiles(Profiles.INTEGRATION_TEST)
 public class BaseDatabaseTest extends TestEntityHelper {
 
-    public static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:16.1")
+    public static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:16.4")
             .withDatabaseName("inventory")
             .withUsername("nihilus")
             .withPassword("nihilus");
