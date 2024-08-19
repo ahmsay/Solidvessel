@@ -23,7 +23,8 @@
 									"pm.globals.set(\"access_token\", jsonResponse.access_token);\r",
 									"pm.globals.set(\"refresh_token\", jsonResponse.refresh_token);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -43,7 +44,7 @@
 								},
 								{
 									"key": "client_secret",
-									"value": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
+									"value": "{{clientSecret}}",
 									"type": "text"
 								},
 								{
@@ -93,7 +94,8 @@
 									"pm.globals.set(\"access_token\", jsonResponse.access_token);\r",
 									"pm.globals.set(\"refresh_token\", jsonResponse.refresh_token);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -113,7 +115,7 @@
 								},
 								{
 									"key": "client_secret",
-									"value": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
+									"value": "{{clientSecret}}",
 									"type": "text"
 								},
 								{
