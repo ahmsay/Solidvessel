@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: apisix
-    targetRevision: 3.3.0
+    targetRevision: 3.3.10
     helm:
       values: |
         controlPlane:
