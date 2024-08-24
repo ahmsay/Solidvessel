@@ -1,4 +1,3 @@
 resources:
 - apisix.yaml
-- apisix-token-secret.yaml
 - apisix-configmap.yaml
