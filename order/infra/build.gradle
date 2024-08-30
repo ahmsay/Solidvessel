@@ -44,7 +44,7 @@ tasks.copyContracts.dependsOn rootProject.tasks.findByPath('payment:infra:verifi
 
 jib {
     from {
-        image = "eclipse-temurin:21.0.1_12-jre-jammy"
+        image = "public.ecr.aws/s9i7g5t1/solidvessel/java/eclipse-temurin:21.0.1_12-jre-jammy"
         platforms {
             platform {
                 os = "linux"
