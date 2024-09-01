@@ -1,3 +1,0 @@
-resources:
-- inventory-deployment.yaml
-- inventory-service.yaml

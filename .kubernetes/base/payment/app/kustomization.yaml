@@ -1,3 +1,0 @@
-resources:
-- payment-deployment.yaml
-- payment-service.yaml

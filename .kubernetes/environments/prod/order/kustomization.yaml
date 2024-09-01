@@ -1,5 +1,0 @@
-resources:
-- ../../../base/order/app
-- order-secret.yaml
-patches:
-- path: order-deployment-prod.yaml

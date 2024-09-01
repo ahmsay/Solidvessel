@@ -1,5 +1,0 @@
-resources:
-- ../../../base/account/app
-- account-secret.yaml
-patches:
-- path: account-deployment-prod.yaml

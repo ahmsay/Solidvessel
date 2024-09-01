@@ -1,3 +1,0 @@
-resources:
-- order-db-deployment.yaml
-- order-db-service.yaml

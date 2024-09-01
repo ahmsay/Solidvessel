@@ -1,3 +1,0 @@
-resources:
-- order-deployment.yaml
-- order-service.yaml
