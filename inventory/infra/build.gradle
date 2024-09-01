@@ -46,7 +46,7 @@ jib {
         }
     }
     to {
-        image = "docker.io/ahmsay/solidvessel-inventory"
+        image = "public.ecr.aws/s9i7g5t1/solidvessel/inventory:latest"
     }
 }
 

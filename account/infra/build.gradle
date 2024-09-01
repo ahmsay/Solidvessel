@@ -56,7 +56,7 @@ jib {
         }
     }
     to {
-        image = "docker.io/ahmsay/solidvessel-account"
+        image = "public.ecr.aws/s9i7g5t1/solidvessel/account:latest"
     }
 }
 

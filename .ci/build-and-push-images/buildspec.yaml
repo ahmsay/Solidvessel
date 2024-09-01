@@ -9,7 +9,6 @@ phases:
     - sudo mv jdk-21.0.1+12 /opt/
     - export JAVA_HOME=/opt/jdk-21.0.1+12
     - export PATH=$PATH:$JAVA_HOME/bin
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s9i7g5t1
     - curl -Os https://uploader.codecov.io/latest/linux/codecov
     - chmod +x codecov
@@ -17,7 +16,7 @@ phases:
     commands:
     - gradle test --parallel
     - ./codecov
-    - gradle jib -Pjib.to.auth.username=$DOCKER_USERNAME -Pjib.to.auth.password=$DOCKER_PASSWORD
+    - gradle jib
 reports:
   test-results:
     files:

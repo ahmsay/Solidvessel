@@ -49,7 +49,7 @@ jib {
         }
     }
     to {
-        image = "docker.io/ahmsay/solidvessel-payment"
+        image = "public.ecr.aws/s9i7g5t1/solidvessel/payment:latest"
     }
 }
 
