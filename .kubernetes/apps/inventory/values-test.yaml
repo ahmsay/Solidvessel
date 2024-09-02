@@ -1,0 +1,14 @@
+environment: test
+db:
+  hostname: inventory-db.solidvessel.svc.cluster.local
+  url: jdbc:postgresql://inventory-db:5432/inventory
+  password: nihilus
+redis:
+  password: redis
+rabbitmq:
+  password: rabbit
+spring:
+  webExposure: *
+keycloak:
+  clientSecret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
+  password: svadmin
