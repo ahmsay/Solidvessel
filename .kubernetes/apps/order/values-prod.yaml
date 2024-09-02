@@ -1,0 +1,14 @@
+environment: prod
+db:
+  hostname: order.db.solidvessel.com
+  url: postgresql://order.db.solidvessel.com:5432/order_db
+  password: ${DB_PASSWORD}
+redis:
+  password: ${REDIS_PASSWORD}
+rabbitmq:
+  password: ${RABBITMQ_PASSWORD}
+spring:
+  webExposure: health
+keycloak:
+  clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+  password: ${KEYCLOAK_PASSWORD}

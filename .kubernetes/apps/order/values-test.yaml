@@ -1,0 +1,14 @@
+environment: test
+db:
+  hostname: order-db.solidvessel.svc.cluster.local
+  url: jdbc:postgresql://order-db:5432/order_db
+  password: nihilus
+redis:
+  password: redis
+rabbitmq:
+  password: rabbit
+spring:
+  webExposure: *
+keycloak:
+  clientSecret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
+  password: svadmin
