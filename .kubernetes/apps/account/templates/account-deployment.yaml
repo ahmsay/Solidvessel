@@ -18,7 +18,7 @@ spec:
       initContainers:
       - name: wait-for-db
         image: busybox
-        command: [ 'sh', '-c', "until nslookup account-db.solidvessel.svc.cluster.local; do echo waiting for database; sleep 1; done" ]
+        command: [ 'sh', '-c', "until nslookup {{ .Values.db.hostname }}; do echo waiting for database; sleep 1; done" ]
       - name: wait-for-keycloak
         image: busybox
         command: [ 'sh', '-c', "until nslookup keycloak.solidvessel.svc.cluster.local; do echo waiting for keycloak; sleep 1; done" ]
@@ -27,18 +27,24 @@ spec:
         image: ahmsay/solidvessel-account
         imagePullPolicy: Always
         args:
-        - "--spring.profiles.active=test"
-        - "--spring.datasource.url=jdbc:postgresql://account-db:5432/account"
+        - "--spring.profiles.active={{ .Values.environment }}"
+        - "--spring.datasource.url={{ .Values.db.url }}"
         - "--spring.datasource.username=nihilus"
-        - "--spring.datasource.password=nihilus"
+        - "--spring.datasource.password={{ .Values.db.password }}"
         - "--spring.data.redis.host=redis-master"
         - "--spring.data.redis.port=6379"
+        - "--spring.data.redis.password={{ .Values.redis.password }}"
         - "--spring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs"
         - "--order.url=http://order:8080/order"
         - "--payment.url=http://payment:8080/payment"
-        - "--management.endpoints.web.exposure.include=*"
+        - "--management.endpoints.web.exposure.include={{ .Values.spring.webExposure }}"
         - "--keycloak.server-url=http://keycloak:8080"
-        - "--keycloak.client-secret=GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
-        - "--keycloak.password=svadmin"
+        - "--keycloak.client-secret={{ .Values.keycloak.clientSecret }}"
+        - "--keycloak.password={{ .Values.keycloak.password }}"
         ports:
         - containerPort: 8080
+        {{ if .Values.environment "prod" }}
+        envFrom:
+        - secretRef:
+            name: account-secret
+        {{ end }}

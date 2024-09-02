@@ -1,0 +1,12 @@
+environment: test
+db:
+  hostname: account-db.solidvessel.svc.cluster.local
+  url: jdbc:postgresql://account-db:5432/account
+  password: nihilus
+redis:
+  password: redis
+spring:
+  webExposure: *
+keycloak:
+  clientSecret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
+  password: svadmin
