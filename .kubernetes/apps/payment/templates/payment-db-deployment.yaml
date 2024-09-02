@@ -1,3 +1,4 @@
+{{ if .Values.environment "test" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,3 +28,4 @@ spec:
           value: nihilus
         ports:
         - containerPort: 5432
+{{ end }}
