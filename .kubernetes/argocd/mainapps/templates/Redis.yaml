@@ -21,6 +21,10 @@ spec:
         master:
           persistence:
             enabled: false
+          service:
+            type: NodePort
+            nodePorts:
+              redis: 32103
         replica:
           persistence:
             enabled: false
