@@ -1,3 +1,4 @@
+{{ if .Values.environment "test" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -71,3 +72,4 @@ data:
             - "cookie"
       desc: "oidc"
     #END
+{{ end }}

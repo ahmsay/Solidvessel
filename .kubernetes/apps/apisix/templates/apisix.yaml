@@ -22,17 +22,20 @@ spec:
         dashboard:
           enabled: false
         dataPlane:
+          hostNetwork: {{ .Values.useHostNetwork }}
           service:
             type: ClusterIP
           extraConfig:
             deployment:
               role_data_plane:
                 config_provider: yaml
+          {{ if .Values.environment "prod" }}
           extraEnvVarsSecret: apisix-secret
           lifecycleHooks:
             postStart:
               exec:
                 command: ["/bin/sh", "-c", "apisix reload"]
+          {{ end }}
           extraVolumes:
           - name: routes
             configMap:
