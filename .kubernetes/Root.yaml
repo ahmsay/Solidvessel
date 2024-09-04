@@ -8,7 +8,10 @@ spec:
   source:
     repoURL: https://github.com/ahmsay/Solidvessel.git
     targetRevision: master
-    path: .kubernetes/argocd/mainapps
+    path: .kubernetes/mainapps
+    helm:
+      valueFiles:
+      - values-test.yaml # this line will be changed to values-prod.yaml automatically during a production build
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel
