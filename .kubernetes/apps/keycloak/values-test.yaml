@@ -1,0 +1,3 @@
+environment: test
+db:
+  hostname: keycloak-db-postgresql
