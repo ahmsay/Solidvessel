@@ -9,7 +9,7 @@ IDE.
 docker-compose -f .docker/docker-compose.yaml up -d
 ```
 
-## Test
+## Test (NEEDS UPDATE)
 
 This mode will start the whole application in K8S cluster. You can test it on your own computer if you enable Kubernetes
 on Docker Desktop.
