@@ -8,7 +8,10 @@ spec:
   source:
     repoURL: https://github.com/ahmsay/Solidvessel.git
     targetRevision: master
-    path: .kubernetes/environments/prod/account
+    path: .kubernetes/resources/microservices/account
+    helm:
+      valueFiles:
+      - values-{{ .Values.environment }}.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel

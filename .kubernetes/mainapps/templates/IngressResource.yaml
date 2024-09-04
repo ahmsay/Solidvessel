@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/ahmsay/Solidvessel.git
     targetRevision: master
-    path: .kubernetes/environments/prod/ingress
+    path: .kubernetes/resources/ingress
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel

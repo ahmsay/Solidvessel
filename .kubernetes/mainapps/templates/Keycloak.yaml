@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: order-app
+  name: identity-provider
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ahmsay/Solidvessel.git
     targetRevision: master
-    path: .kubernetes/resources/microservices/order
+    path: .kubernetes/resources/keycloak
     helm:
       valueFiles:
       - values-{{ .Values.environment }}.yaml
