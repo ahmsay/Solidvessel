@@ -2,13 +2,5 @@ environment: prod
 db:
   hostname: payment.db.solidvessel.com
   url: postgresql://order.db.solidvessel.com:5432/payment
-  password: ${DB_PASSWORD}
-redis:
-  password: ${REDIS_PASSWORD}
-rabbitmq:
-  password: ${RABBITMQ_PASSWORD}
 spring:
   webExposure: health
-keycloak:
-  clientSecret: ${KEYCLOAK_CLIENT_SECRET}
-  password: ${KEYCLOAK_PASSWORD}

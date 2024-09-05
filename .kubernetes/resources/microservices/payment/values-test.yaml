@@ -2,13 +2,5 @@ environment: test
 db:
   hostname: payment-db.solidvessel.svc.cluster.local
   url: jdbc:postgresql://payment-db:5432/payment
-  password: nihilus
-redis:
-  password: redis
-rabbitmq:
-  password: rabbit
 spring:
   webExposure: *
-keycloak:
-  clientSecret: GJDCy4C7LSeFmggaRtZutSHZHBaTCavE
-  password: svadmin
