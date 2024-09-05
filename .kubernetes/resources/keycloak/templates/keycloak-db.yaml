@@ -21,6 +21,10 @@ spec:
         primary:
           persistence:
             enabled: false
+          service:
+            type: NodePort
+            nodePorts:
+              postgresql: 32000
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel
