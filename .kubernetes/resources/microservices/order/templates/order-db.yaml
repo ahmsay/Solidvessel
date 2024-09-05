@@ -1,0 +1,34 @@
+{{ if .Values.environment "test" }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order-db
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: 15.5.27
+    helm:
+      values: |
+        global:
+          postgresql:
+            auth:
+              database: order_db
+              username: nihilus
+              password: nihilus
+        primary:
+          persistence:
+            enabled: false
+          service:
+            type: NodePort
+            nodePorts:
+              postgresql: 32003
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: solidvessel
+  syncPolicy:
+    automated:
+      prune: true
+{{ end }}
