@@ -30,6 +30,17 @@ spec:
     automated:
       prune: true
 ---
+{{ if .Values.environment "test" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: solidvessel
+type: Opaque
+data:
+  redis-password: cmVkaXMK
+{{ end }}
+---
 {{ if .Values.environment "prod" }}
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
@@ -46,15 +57,4 @@ spec:
       name: redis-secret
       namespace: solidvessel
     type: Opaque
-{{ end }}
----
-{{ if .Values.environment "test" }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: redis-secret
-  namespace: solidvessel
-type: Opaque
-data:
-  redis-password: cmVkaXMK
 {{ end }}

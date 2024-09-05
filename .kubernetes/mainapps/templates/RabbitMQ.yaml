@@ -28,6 +28,17 @@ spec:
     automated:
       prune: true
 ---
+{{ if .Values.environment "test" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbitmq-secret
+  namespace: solidvessel
+type: Opaque
+data:
+  rabbitmq-password: cmFiYml0Cg==
+{{ end }}
+---
 {{ if .Values.environment "prod" }}
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
@@ -44,15 +55,4 @@ spec:
       name: rabbitmq-secret
       namespace: solidvessel
     type: Opaque
-{{ end }}
----
-{{ if .Values.environment "test" }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: rabbitmq-secret
-  namespace: solidvessel
-type: Opaque
-data:
-  rabbitmq-password: cmFiYml0Cg==
 {{ end }}
