@@ -2,11 +2,5 @@ environment: prod
 db:
   hostname: account.db.solidvessel.com
   url: postgresql://account.db.solidvessel.com:5432/account
-  password: ${DB_PASSWORD}
-redis:
-  password: ${REDIS_PASSWORD}
 spring:
   webExposure: health
-keycloak:
-  clientSecret: ${KEYCLOAK_CLIENT_SECRET}
-  password: ${KEYCLOAK_PASSWORD}
