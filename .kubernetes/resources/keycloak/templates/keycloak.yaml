@@ -20,24 +20,14 @@ spec:
             https: 31081
         auth:
           adminUser: admin
-          {{ if .Values.environment "prod" }}
           existingSecret: keycloak-admin-secret
-          {{ end }}
-          {{ if .Values.environment "test" }}
-          adminPassword: admin
-          {{ end }}
         postgresql:
           enabled: false
         externalDatabase:
           host: {{ .Values.db.hostname }}
           database: keycloak
           user: nihilus
-          {{ if .Values.environment "prod" }}
           existingSecret: keycloak-db-secret
-          {{ end }}
-          {{ if .Values.environment "test" }}
-          password: nihilus
-          {{ end }}
         {{ if .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume

@@ -12,12 +12,7 @@ spec:
     helm:
       values: |
         auth:
-          {{ if .Values.environment "prod" }}
           existingSecret: redis-secret
-          {{ end }}
-          {{ if .Values.environment "test" }}
-          password: redis
-          {{ end }}
         master:
           persistence:
             enabled: false
@@ -51,4 +46,15 @@ spec:
       name: redis-secret
       namespace: solidvessel
     type: Opaque
+{{ end }}
+---
+{{ if .Values.environment "test" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: solidvessel
+type: Opaque
+data:
+  redis-password: cmVkaXMK
 {{ end }}

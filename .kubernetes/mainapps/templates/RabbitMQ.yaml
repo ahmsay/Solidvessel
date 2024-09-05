@@ -13,12 +13,7 @@ spec:
       values: |
         auth:
           username: guest
-          {{ if .Values.environment "prod" }}
           existingPasswordSecret: rabbitmq-secret
-          {{ end }}
-          {{ if .Values.environment "test" }}
-          password: rabbit
-          {{ end }}
         persistence:
           enabled: false
         service:
@@ -49,4 +44,15 @@ spec:
       name: rabbitmq-secret
       namespace: solidvessel
     type: Opaque
+{{ end }}
+---
+{{ if .Values.environment "test" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbitmq-secret
+  namespace: solidvessel
+type: Opaque
+data:
+  rabbitmq-password: cmFiYml0Cg==
 {{ end }}
