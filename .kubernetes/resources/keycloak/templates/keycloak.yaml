@@ -28,7 +28,7 @@ spec:
           database: keycloak
           user: nihilus
           existingSecret: keycloak-db-secret
-        {{ if .Values.environment "test" }}
+        {{ if eq .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume
           configMap:

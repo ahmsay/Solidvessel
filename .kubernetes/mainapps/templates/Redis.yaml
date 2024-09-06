@@ -30,7 +30,7 @@ spec:
     automated:
       prune: true
 ---
-{{ if .Values.environment "test" }}
+{{ if eq .Values.environment "test" }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -41,7 +41,7 @@ data:
   redis-password: cmVkaXMK
 {{ end }}
 ---
-{{ if .Values.environment "prod" }}
+{{ if eq .Values.environment "prod" }}
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:

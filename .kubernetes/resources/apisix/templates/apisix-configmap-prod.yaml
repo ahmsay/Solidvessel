@@ -1,4 +1,4 @@
-{{ if .Values.environment "prod" }}
+{{ if eq .Values.environment "prod" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
