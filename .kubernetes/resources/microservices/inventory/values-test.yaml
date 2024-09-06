@@ -1,6 +1,6 @@
 environment: test
 db:
-  hostname: inventory-db-postgresql
+  hostname: inventory-db-postgresql.solidvessel.svc.cluster.local
   url: jdbc:postgresql://inventory-db-postgresql:5432/inventory
 spring:
   webExposure: "*"
