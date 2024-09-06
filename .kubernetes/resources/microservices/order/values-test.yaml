@@ -3,4 +3,4 @@ db:
   hostname: order-db-postgresql
   url: jdbc:postgresql://order-db-postgresql:5432/order_db
 spring:
-  webExposure: *
+  webExposure: "*"

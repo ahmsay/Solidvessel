@@ -3,4 +3,4 @@ db:
   hostname: payment-db-postgresql
   url: jdbc:postgresql://payment-db-postgresql:5432/payment
 spring:
-  webExposure: *
+  webExposure: "*"

@@ -3,4 +3,4 @@ db:
   hostname: inventory-db-postgresql
   url: jdbc:postgresql://inventory-db-postgresql:5432/inventory
 spring:
-  webExposure: *
+  webExposure: "*"

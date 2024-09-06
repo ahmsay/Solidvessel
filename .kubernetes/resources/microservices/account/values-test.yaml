@@ -3,4 +3,4 @@ db:
   hostname: account-db-postgresql
   url: jdbc:postgresql://account-db-postgresql:5432/account
 spring:
-  webExposure: *
+  webExposure: "*"
