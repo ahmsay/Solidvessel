@@ -27,8 +27,8 @@ spec:
         image: public.ecr.aws/s9i7g5t1/solidvessel/inventory:latest
         imagePullPolicy: Always
         args:
-        - --spring.profiles.active={{ .Values.environment }}
-        - --spring.datasource.url={{ .Values.db.url }}
+        - --spring.profiles.active=test
+        - --spring.datasource.url=jdbc:postgresql://inventory-db-postgresql:5432/inventory
         - --spring.datasource.username=nihilus
         - --spring.datasource.password=${DB_PASSWORD}
         - --spring.data.redis.host=redis-master
