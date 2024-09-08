@@ -4,3 +4,4 @@ db:
   url: postgresql://inventory.db.solidvessel.com:5432/inventory
 spring:
   webExposure: health
+replicas: 3
