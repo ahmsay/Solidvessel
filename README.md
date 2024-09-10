@@ -97,7 +97,7 @@ Let's explain each component shown in the diagram one by one:
 
 ## Roadmap
 
-- ~~Make the test environment manageable by ArgoCD~~
+- Make the test environment manageable by ArgoCD
 - Create the K8S cluster for production with only Cloudformation
 - Data enrichment (add millions of records for prod environment)
 - Monitoring (Prometheus, Grafana etc)
