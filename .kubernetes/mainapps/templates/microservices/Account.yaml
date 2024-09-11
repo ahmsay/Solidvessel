@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: account-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ahmsay/Solidvessel.git
+    targetRevision: master
+    path: .kubernetes/resources/microservices/account
+    helm:
+      valueFiles:
+      - values-{{ .Values.environment }}.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: solidvessel
+  syncPolicy:
+    automated:
+      prune: true
