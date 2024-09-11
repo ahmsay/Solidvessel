@@ -1,0 +1,16 @@
+{{ if .Values.environment "test" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-db
+  namespace: solidvessel
+spec:
+  type: NodePort
+  selector:
+    app: account-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+    nodePort: 32001
+{{ end }}
