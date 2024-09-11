@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: account-config
 data:
-  spring.profiles.active: "test"
-  spring.datasource.url: "jdbc:postgresql://account-db-postgresql:5432/account"
+  spring.profiles.active: "{{ .Values.environment }}"
+  spring.datasource.url: "{{ .Values.db.url }}"
   spring.datasource.username: "nihilus"
   spring.datasource.password: "${DB_PASSWORD}"
   spring.data.redis.host: "redis-master"
@@ -13,7 +13,7 @@ data:
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: "http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs"
   order.url: "http://order:8080/order"
   payment.url: "http://payment:8080/payment"
-  management.endpoints.web.exposure.include: "*"
+  management.endpoints.web.exposure.include: "{{ .Values.spring.webExposure }}"
   keycloak.server-url: "http://keycloak:8080"
   keycloak.client-secret: "${KEYCLOAK_CLIENT_SECRET}"
   keycloak.password: "${KEYCLOAK_PASSWORD}"
