@@ -38,7 +38,7 @@ metadata:
   namespace: solidvessel
 type: Opaque
 data:
-  redis-password: cmVkaXMK
+  redis-password: cmVkaXM=
 {{ end }}
 ---
 {{ if eq .Values.environment "prod" }}

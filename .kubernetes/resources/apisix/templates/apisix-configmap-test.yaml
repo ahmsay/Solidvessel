@@ -47,7 +47,7 @@ data:
       plugins:
         openid-connect:
           client_id: "solidvessel-auth"
-          client_secret: "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
+          client_secret: ${{CLIENT_SECRET}}
           discovery: "http://localhost:31080/realms/solidvessel/.well-known/openid-configuration"
           scope: "openid profile"
           bearer_only: true

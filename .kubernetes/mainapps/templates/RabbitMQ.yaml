@@ -36,7 +36,7 @@ metadata:
   namespace: solidvessel
 type: Opaque
 data:
-  rabbitmq-password: cmFiYml0Cg==
+  rabbitmq-password: cmFiYml0
 {{ end }}
 ---
 {{ if eq .Values.environment "prod" }}
