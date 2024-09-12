@@ -23,7 +23,7 @@ spec:
         - "--spring.profiles.active=test"
         - "--spring.datasource.url=jdbc:postgresql://account-db-postgresql:5432/account"
         - "--spring.datasource.username=nihilus"
-        - "--spring.datasource.password=${DB_PASSWORD}"
+        - "--spring.datasource.password=nihilus"
         - "--spring.data.redis.host=redis-master"
         - "--spring.data.redis.port=6379"
         - "--spring.data.redis.password=${REDIS_PASSWORD}"
