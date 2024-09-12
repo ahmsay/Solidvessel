@@ -30,7 +30,7 @@ spec:
         - "--spring.profiles.active={{ .Values.environment }}"
         - "--spring.datasource.url={{ .Values.db.url }}"
         - "--spring.datasource.username=nihilus"
-        - "--spring.datasource.password=${DB_PASSWORD}"
+        - "--spring.datasource.password=nihilus"
         - "--spring.data.redis.host=redis-master"
         - "--spring.data.redis.port=6379"
         - "--spring.data.redis.password=${REDIS_PASSWORD}"
