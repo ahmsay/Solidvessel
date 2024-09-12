@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account
+  namespace: solidvessel
+  labels:
+    app: account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account
+  template:
+    metadata:
+      labels:
+        app: account
+    spec:
+      containers:
+      - name: account-app
+        image: public.ecr.aws/s9i7g5t1/solidvessel/account:latest
+        imagePullPolicy: Always
+        args:
+        - "--spring.profiles.active=test"
+        - "--spring.datasource.url=jdbc:postgresql://account-db-postgresql:5432/account"
+        - "--spring.datasource.username=nihilus"
+        - "--spring.datasource.password=${DB_PASSWORD}"
+        - "--spring.data.redis.host=redis-master"
+        - "--spring.data.redis.port=6379"
+        - "--spring.data.redis.password=${REDIS_PASSWORD}"
+        - "--spring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs"
+        - "--order.url=http://order:8080/order"
+        - "--payment.url=http://payment:8080/payment"
+        - "--management.endpoints.web.exposure.include=*"
+        - "--keycloak.server-url=http://keycloak:8080"
+        - "--keycloak.client-secret=${KEYCLOAK_CLIENT_SECRET}"
+        - "--keycloak.password=${KEYCLOAK_PASSWORD}"
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: account-secret
