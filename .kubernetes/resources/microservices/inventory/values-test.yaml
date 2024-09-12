@@ -4,4 +4,4 @@ db:
   url: jdbc:postgresql://inventory-db-postgresql:5432/inventory
 spring:
   webExposure: "*"
-replicas: 0
+replicas: 2

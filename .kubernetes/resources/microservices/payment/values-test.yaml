@@ -4,4 +4,4 @@ db:
   url: jdbc:postgresql://payment-db-postgresql:5432/payment
 spring:
   webExposure: "*"
-replicas: 0
+replicas: 1
