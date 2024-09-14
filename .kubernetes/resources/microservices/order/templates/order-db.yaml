@@ -39,5 +39,5 @@ metadata:
   namespace: solidvessel
 type: Opaque
 data:
-  postgres-password: bmloaWx1cw==
+  password: bmloaWx1cw==
 {{ end }}
