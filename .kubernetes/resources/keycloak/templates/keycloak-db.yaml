@@ -31,13 +31,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: keycloak-db-secret
-  namespace: solidvessel
-type: Opaque
-data:
-  postgres-password: bmloaWx1cw==
 {{ end }}
