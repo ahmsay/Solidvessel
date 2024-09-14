@@ -40,4 +40,5 @@ metadata:
 type: Opaque
 data:
   password: bmloaWx1cw==
+  postgres-password: bmloaWx1cw==
 {{ end }}
