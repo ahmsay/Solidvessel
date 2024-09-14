@@ -24,7 +24,9 @@ spec:
         dataPlane:
           hostNetwork: {{ .Values.useHostNetwork }}
           service:
-            type: ClusterIP
+            type: NodePort
+            nodePorts:
+              http: 30080
           extraConfig:
             deployment:
               role_data_plane:
