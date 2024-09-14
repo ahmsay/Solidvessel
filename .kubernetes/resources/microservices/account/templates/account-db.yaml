@@ -17,7 +17,7 @@ spec:
             auth:
               database: account
               username: nihilus
-              password: nihilus
+              existingSecret: account-db-secret
         primary:
           persistence:
             enabled: false
@@ -31,4 +31,13 @@ spec:
   syncPolicy:
     automated:
       prune: true
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: account-db-secret
+  namespace: solidvessel
+type: Opaque
+data:
+  postgres-password: bmloaWx1cw==
 {{ end }}

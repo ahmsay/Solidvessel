@@ -17,7 +17,7 @@ spec:
             auth:
               database: payment
               username: nihilus
-              password: nihilus
+              existingSecret: payment-db-secret
         primary:
           persistence:
             enabled: false
@@ -31,4 +31,13 @@ spec:
   syncPolicy:
     automated:
       prune: true
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: payment-db-secret
+  namespace: solidvessel
+type: Opaque
+data:
+  postgres-password: bmloaWx1cw==
 {{ end }}
