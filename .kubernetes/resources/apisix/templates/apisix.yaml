@@ -26,7 +26,7 @@ spec:
           service:
             type: NodePort
             nodePorts:
-              http: 30080
+              http: "30080"
           extraConfig:
             deployment:
               role_data_plane:
