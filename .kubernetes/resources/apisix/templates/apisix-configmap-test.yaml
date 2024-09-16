@@ -8,7 +8,7 @@ data:
   apisix.yaml: |
     routes:
     - id: login
-      uri: /login
+      uri: /login/*
       upstream:
         nodes:
           "keycloak:80": 1
