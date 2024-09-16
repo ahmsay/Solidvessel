@@ -74,7 +74,7 @@ data:
           "clientAuthenticatorType": "client-secret",
           "secret": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
           "redirectUris": [
-            "http://apisix-data-plane:80/*"
+            "http://localhost:9080/*"
           ],
           "webOrigins": [],
           "bearerOnly": false,
