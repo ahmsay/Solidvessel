@@ -9,14 +9,15 @@ IDE.
 docker-compose -f .docker/docker-compose.yaml up -d
 ```
 
-## Test (NEEDS UPDATE)
+## Test
 
 This mode will start the whole application in K8S cluster. You can test it on your own computer if you enable Kubernetes
-on Docker Desktop.
+on Docker Desktop or Orbstack.
+
+Make sure <a href="https://argo-cd.readthedocs.io/en/stable/getting_started/">ArgoCD<a/> is installed on your cluster.
 
 ```shell
-kubectl create ns solidvessel
-kubectl apply -k ./.kubernetes/base
+kubectl create -f ./.kubernetes/Root.yaml
 ```
 
 ## Production
