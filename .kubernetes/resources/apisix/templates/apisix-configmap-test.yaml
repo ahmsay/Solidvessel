@@ -7,6 +7,12 @@ metadata:
 data:
   apisix.yaml: |
     routes:
+    - id: login
+      uri: /realms/solidvessel/protocol/openid-connect/token
+      upstream:
+        nodes:
+          "keycloak:80": 1
+        type: roundrobin
     - id: auth
       uri: /auth/*
       upstream:
@@ -72,4 +78,4 @@ data:
             - "cookie"
       desc: "oidc"
     #END
-{{ end }}
+    {{ end }}
