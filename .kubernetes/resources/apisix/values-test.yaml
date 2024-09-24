@@ -1,2 +1,2 @@
 environment: test
-useHostNetwork: false
+useHostNetwork: true

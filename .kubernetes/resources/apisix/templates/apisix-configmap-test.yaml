@@ -7,12 +7,6 @@ metadata:
 data:
   apisix.yaml: |
     routes:
-    - id: login
-      uri: /realms/solidvessel/protocol/openid-connect/token
-      upstream:
-        nodes:
-          "keycloak:80": 1
-        type: roundrobin
     - id: auth
       uri: /auth/*
       upstream:
@@ -24,28 +18,28 @@ data:
       uri: /account/*
       upstream:
         nodes:
-          "account:8080": 1
+          "localhost:31001": 1
         type: roundrobin
       plugin_config_id: 1
     - id: inventory
       uri: /inventory/*
       upstream:
         nodes:
-          "inventory:8080": 1
+          "localhost:31002": 1
         type: roundrobin
       plugin_config_id: 1
     - id: order
       uri: /order/*
       upstream:
         nodes:
-          "order:8080": 1
+          "localhost:31003": 1
         type: roundrobin
       plugin_config_id: 1
     - id: payment
       uri: /payment/*
       upstream:
         nodes:
-          "payment:8080": 1
+          "localhost:31004": 1
         type: roundrobin
       plugin_config_id: 1
     plugin_configs:
@@ -54,7 +48,7 @@ data:
         openid-connect:
           client_id: "solidvessel-auth"
           client_secret: ${{"{{CLIENT_SECRET}}"}}
-          discovery: "http://keycloak:80/realms/solidvessel/.well-known/openid-configuration"
+          discovery: "http://localhost:31080/realms/solidvessel/.well-known/openid-configuration"
           scope: "openid profile"
           bearer_only: true
           realm: "solidvessel"
