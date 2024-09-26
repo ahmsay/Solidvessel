@@ -22,7 +22,6 @@ spec:
         dashboard:
           enabled: false
         dataPlane:
-          hostNetwork: {{ .Values.useHostNetwork }}
           service:
             type: NodePort
             nodePorts:

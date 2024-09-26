@@ -74,7 +74,7 @@ data:
           "clientAuthenticatorType": "client-secret",
           "secret": "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE",
           "redirectUris": [
-            "http://localhost:9080/*"
+            "http://localhost:30080/*"
           ],
           "webOrigins": [],
           "bearerOnly": false,
