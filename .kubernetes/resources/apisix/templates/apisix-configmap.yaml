@@ -1,4 +1,3 @@
-{{ if eq .Values.environment "test" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -58,7 +57,7 @@ data:
           scope: "openid profile"
           bearer_only: true
           realm: "solidvessel"
-          redirect_uri: "http://localhost:30080/auth/callback"
+          redirect_uri: {{ .Values.redirectUri }}
           logout_path: "/auth/logout"
           access_token_in_authorization_header: true
           set_id_token_header: false
@@ -78,4 +77,3 @@ data:
             - "cookie"
       desc: "oidc"
     #END
-    {{ end }}
