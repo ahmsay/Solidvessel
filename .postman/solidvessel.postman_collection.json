@@ -65,9 +65,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{keycloakUrl}}/realms/solidvessel/protocol/openid-connect/token",
+							"raw": "{{tokenUrl}}/realms/solidvessel/protocol/openid-connect/token",
 							"host": [
-								"{{keycloakUrl}}"
+								"{{tokenUrl}}"
 							],
 							"path": [
 								"realms",
@@ -131,9 +131,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{keycloakUrl}}/realms/solidvessel/protocol/openid-connect/token",
+							"raw": "{{tokenUrl}}/realms/solidvessel/protocol/openid-connect/token",
 							"host": [
-								"{{keycloakUrl}}"
+								"{{tokenUrl}}"
 							],
 							"path": [
 								"realms",
