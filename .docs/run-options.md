@@ -1,5 +1,7 @@
 # Run Options
 
+<b>Note:</b> For all environments, you can use files under the <b>.postman</b> folder to use the application.
+
 ## Development
 
 This mode will start Postgres, Redis, RabbitMQ, APISIX and Keycloak as containers in Docker. You can start the microservices with your
@@ -11,7 +13,8 @@ docker-compose -f .docker/docker-compose.yaml up -d
 
 ## Test
 
-This mode will start the whole application in K8S cluster. You can test it on your own computer if you enable Kubernetes
+This mode will start the whole application in a K8S cluster. You can test it on your own computer if you enable
+Kubernetes
 on Docker Desktop or Orbstack.
 
 Make sure <a href="https://argo-cd.readthedocs.io/en/stable/getting_started/">ArgoCD<a/> is installed on your cluster.
