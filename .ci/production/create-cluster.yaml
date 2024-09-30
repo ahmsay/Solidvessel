@@ -1,0 +1,13 @@
+version: 0.2
+env:
+  shell: bash
+phases:
+  pre_build:
+    commands:
+    - curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+    - sudo mv /tmp/eksctl /usr/local/bin
+  build:
+    commands:
+    - perl -i -pe"s/<aws_account_id>/$AWS_ACCOUNT_ID/" .ci/production/cluster.yaml
+    - eksctl create cluster --config-file=.ci/production/cluster.yaml
+    - eksctl create iamidentitymapping --cluster solidvessel --region $AWS_REGION --arn arn:aws:iam::"$AWS_ACCOUNT_ID":user/"$AWS_USER" --group system:masters --no-duplicate-arns --username admin-user
