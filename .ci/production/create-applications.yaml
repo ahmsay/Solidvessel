@@ -1,0 +1,22 @@
+version: 0.2
+env:
+  shell: bash
+phases:
+  pre_build:
+    commands:
+    - pip install bcrypt
+    - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    - sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  build:
+    commands:
+    - aws eks update-kubeconfig --region $AWS_REGION --name solidvessel
+    - kubectl create namespace argocd
+    - kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    - kubectl -n argocd patch deploy argocd-server --type=json -p='[{ "op":"add", "path":"/spec/template/spec/containers/0/args/-", "value":"--insecure" }]'
+    - kubectl -n argocd patch secret argocd-secret -p '{"stringData":{"admin.password":"'$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$ARGO_CD_PASSWORD', bcrypt.gensalt()).decode())")'","admin.passwordMtime":"'$(date +%FT%T%Z)'"}}'
+    - sleep 60
+    - kubectl create ns sealed-secrets
+    - kubectl create -f .kubernetes/mainapps/templates/SealedSecrets.yaml
+    - aws secretsmanager get-secret-value --secret-id solidvessel-custom-tls --query SecretString --output text | kubectl apply -f -
+    - sleep 30
+    - kubectl create -f .kubernetes/argocd/root/Root.yaml
