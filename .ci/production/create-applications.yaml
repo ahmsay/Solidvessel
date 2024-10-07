@@ -4,14 +4,11 @@ env:
 phases:
   pre_build:
     commands:
-    - curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-    - sudo mv /tmp/eksctl /usr/local/bin
     - pip install bcrypt
     - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     - sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
   build:
     commands:
-    - eksctl create iamidentitymapping --cluster solidvessel --region $AWS_REGION --arn arn:aws:iam::"$AWS_ACCOUNT_ID":role/"$SV_IAM_ROLE" --group system:masters --no-duplicate-arns --username admin-user-codebuild
     - aws eks update-kubeconfig --region $AWS_REGION --name solidvessel
     - kubectl create namespace argocd
     - kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
