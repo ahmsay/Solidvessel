@@ -17,4 +17,5 @@ phases:
     - sleep 60
     - kubectl create ns sealed-secrets
     - aws secretsmanager get-secret-value --secret-id solidvessel-custom-tls --query SecretString --output text | kubectl apply -f -
+    - perl -i -pe"s/values-test/values-prod/" .kubernetes/Root.yaml
     - kubectl create -f .kubernetes/Root.yaml
