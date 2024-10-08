@@ -16,7 +16,5 @@ phases:
     - kubectl -n argocd patch secret argocd-secret -p '{"stringData":{"admin.password":"'$(python3 -c "import bcrypt; print(bcrypt.hashpw(b'$ARGOCD_PASSWORD', bcrypt.gensalt()).decode())")'","admin.passwordMtime":"'$(date +%FT%T%Z)'"}}'
     - sleep 60
     - kubectl create ns sealed-secrets
-    - kubectl create -f .kubernetes/mainapps/templates/SealedSecrets.yaml
     - aws secretsmanager get-secret-value --secret-id solidvessel-custom-tls --query SecretString --output text | kubectl apply -f -
-    - sleep 30
     - kubectl create -f .kubernetes/argocd/root/Root.yaml
