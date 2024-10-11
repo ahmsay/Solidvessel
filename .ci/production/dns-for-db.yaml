@@ -7,4 +7,4 @@ phases:
     - VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=eksctl-solidvessel-cluster/VPC --query "Vpcs[0].VpcId" --output text)
     - aws route53 create-hosted-zone --name db.solidvessel.com --caller-reference $(date +%s) --vpc VPCRegion=$AWS_REGION,VPCId=$VPC_ID
     - PRIVATE_HOSTED_ZONE_ID=$(aws route53 list-hosted-zones --query "HostedZones[?Name == 'db.solidvessel.com.'].Id" --output text | tr -d '/hostedzone/')
-    - aws route53 change-resource-record-sets --hosted-zone-id $PRIVATE_HOSTED_ZONE_ID --change-batch file://.ci/zero-2-prod/dns-records-db.json
+    - aws route53 change-resource-record-sets --hosted-zone-id $PRIVATE_HOSTED_ZONE_ID --change-batch file://.ci/production/dns-records-db.json

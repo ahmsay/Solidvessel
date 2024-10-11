@@ -11,4 +11,4 @@ phases:
     - perl -i -pe"s/<load-balancer-dns-name>/$LOAD_BALANCER_DNS_NAME/g" .ci/zero-2-prod/dns-records.json
     - perl -i -pe"s/<load-balancer-hosted-zone-id>/$LOAD_BALANCER_HOSTED_ZONE_ID/g" .ci/zero-2-prod/dns-records.json
     - route_53_dns_hosted_zone_id=$(aws route53 list-hosted-zones --query "HostedZones[?(@.Name=='solidvessel.com.')].Id" --output text | tr -d '/hostedzone/')
-    - aws route53 change-resource-record-sets --hosted-zone-id $route_53_dns_hosted_zone_id --change-batch file://.ci/zero-2-prod/dns-records.json
+    - aws route53 change-resource-record-sets --hosted-zone-id $route_53_dns_hosted_zone_id --change-batch file://.ci/production/dns-records.json
