@@ -1,0 +1,11 @@
+version: 0.2
+env:
+  shell: bash
+phases:
+  build:
+    commands:
+    - VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=eksctl-solidvessel-cluster/VPC --query "Vpcs[0].VpcId" --output text)
+    - SG_EC2_TO_RDS=$(aws ec2 create-security-group --vpc-id $VPC_ID --group-name ec2-to-rds --description "EC2 allowing to go to RDS" --query "GroupId" --output text)
+    - SG_RDS_FROM_EC2=$(aws ec2 create-security-group --vpc-id $VPC_ID --group-name rds-from-ec2 --description "RDS allowing connection for EC2" --query "GroupId" --output text)
+    - aws ec2 authorize-security-group-egress --group-id $SG_EC2_TO_RDS --ip-permissions IpProtocol=tcp,FromPort=5432,ToPort=5432,UserIdGroupPairs='[{GroupId="'$SG_RDS_FROM_EC2'"}]'
+    - aws ec2 authorize-security-group-ingress --group-id $SG_RDS_FROM_EC2 --protocol tcp --port 5432 --source-group $SG_EC2_TO_RDS
