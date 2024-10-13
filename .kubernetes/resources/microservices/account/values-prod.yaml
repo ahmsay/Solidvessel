@@ -1,7 +1,7 @@
 environment: prod
 db:
   hostname: account.db.solidvessel.com
-  url: postgresql://account.db.solidvessel.com:5432/account
+  url: jdbc:postgresql://account.db.solidvessel.com:5432/account
 spring:
   webExposure: health
 replicas: 1
