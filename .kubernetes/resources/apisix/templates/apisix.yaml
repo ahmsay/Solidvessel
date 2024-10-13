@@ -27,7 +27,7 @@ spec:
             nodePorts:
               http: "30080"
           containerPorts:
-            http: 80
+            http: 9099
           extraConfig:
             deployment:
               role_data_plane:
