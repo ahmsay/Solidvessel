@@ -18,6 +18,8 @@ spec:
           nodePorts:
             http: 31080
             https: 31081
+        containerPorts:
+          http: 9099
         auth:
           adminUser: admin
           existingSecret: keycloak-admin-secret
