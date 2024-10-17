@@ -4,10 +4,4 @@ env:
 phases:
   build:
     commands:
-    - VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=eksctl-solidvessel-cluster/VPC --query "Vpcs[0].VpcId" --output text)
-    - SUBNETS=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=$VPC_ID Name=map-public-ip-on-launch,Values=false --query "Subnets[*].SubnetId" --output text)
-    - read SUBNET_1 SUBNET_2 SUBNET_3 <<< "$SUBNETS"
-    - perl -i -pe"s/<subnet-1>/$SUBNET_1/g" .ci/production/databases.yaml
-    - perl -i -pe"s/<subnet-2>/$SUBNET_2/g" .ci/production/databases.yaml
-    - perl -i -pe"s/<subnet-3>/$SUBNET_3/g" .ci/production/databases.yaml
     - aws cloudformation deploy --template-file .ci/production/databases.yaml --stack-name solidvessel-databases
