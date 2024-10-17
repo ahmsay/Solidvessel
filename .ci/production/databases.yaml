@@ -78,3 +78,12 @@ Resources:
         IpProtocol: tcp
         SourceSecurityGroupId: !ImportValue eksctl-solidvessel-cluster::ClusterSecurityGroupId
       VpcId: !ImportValue eksctl-solidvessel-cluster::VPC
+  CommonEC2SecurityGroupEgressRule:
+    Type: 'AWS::EC2::SecurityGroupEgress'
+    Properties:
+      Description: Allow outgoing DB connections to RDS
+      GroupId: !ImportValue eksctl-solidvessel-cluster::ClusterSecurityGroupId
+      FromPort: 5432
+      ToPort: 5432
+      IpProtocol: tcp
+      DestinationSecurityGroupId: !Ref CommonDBSecurityGroup
