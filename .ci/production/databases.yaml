@@ -11,8 +11,8 @@ Resources:
       Engine: postgres
       EngineVersion: "16.4"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-kmdeh5lrckwz
-      DBSecurityGroups:
-      - Ref: DBSecurityGroup
+      VPCSecurityGroups:
+      - Ref: CommonDBSecurityGroup
   InventoryDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -23,8 +23,8 @@ Resources:
       Engine: postgres
       EngineVersion: "16.4"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-opf2kfvocqrf
-      DBSecurityGroups:
-      - Ref: DBSecurityGroup
+      VPCSecurityGroups:
+      - Ref: CommonDBSecurityGroup
   OrderDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -35,8 +35,8 @@ Resources:
       Engine: postgres
       EngineVersion: "16.4"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-usgtmpuqn5fw
-      DBSecurityGroups:
-      - Ref: DBSecurityGroup
+      VPCSecurityGroups:
+      - Ref: CommonDBSecurityGroup
   PaymentDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -47,8 +47,8 @@ Resources:
       Engine: postgres
       EngineVersion: "16.4"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-umpczzspq9f7
-      DBSecurityGroups:
-      - Ref: DBSecurityGroup
+      VPCSecurityGroups:
+      - Ref: CommonDBSecurityGroup
   KeycloakDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -59,27 +59,21 @@ Resources:
       Engine: postgres
       EngineVersion: "16.4"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-xf2sjwcuamhd
-      DBSecurityGroups:
-      - Ref: DBSecurityGroup
+      VPCSecurityGroups:
+      - Ref: CommonDBSecurityGroup
   K8SSubnetGroup:
     Type: "AWS::RDS::DBSubnetGroup"
     Properties:
       DBSubnetGroupDescription: Databases should be in the same VPC with the K8S cluster
       SubnetIds:
         !Split [ ",", !ImportValue eksctl-solidvessel-cluster::SubnetsPrivate ]
-  DBSecurityGroup:
-    Type: 'AWS::RDS::DBSecurityGroup'
-    Properties:
-      DBSecurityGroupIngress:
-      - EC2SecurityGroupId: !Ref EC2SecurityGroup
-      EC2VpcId: !ImportValue eksctl-solidvessel-cluster::VPC
-  EC2SecurityGroup:
+  CommonDBSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupDescription: Allow DB connection from EC2
-      GroupName: rds-sg
+      GroupDescription: Allow incoming DB connections from EC2
+      GroupName: solidvessel-db-sg
       SecurityGroupIngress:
-        FromPort: 5432
+      - FromPort: 5432
         ToPort: 5432
         IpProtocol: tcp
         SourceSecurityGroupId: !ImportValue eksctl-solidvessel-cluster::ClusterSecurityGroupId
