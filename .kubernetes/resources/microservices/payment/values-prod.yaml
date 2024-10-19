@@ -1,7 +1,7 @@
 environment: prod
 db:
   hostname: payment.db.solidvessel.com
-  url: jdbc:postgresql://order.db.solidvessel.com:5432/payment
+  url: jdbc:postgresql://payment.db.solidvessel.com:5432/payment
 spring:
   webExposure: health
 replicas: 2
