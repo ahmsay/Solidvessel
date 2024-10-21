@@ -10,7 +10,7 @@ data:
       uri: /realms/solidvessel/protocol/openid-connect/token
       upstream:
         nodes:
-          "keycloak:80": 1
+          "keycloak:8080": 1
         type: roundrobin
     - id: auth
       uri: /auth/*
