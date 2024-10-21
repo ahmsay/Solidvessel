@@ -37,7 +37,7 @@ spec:
         - "--spring.rabbitmq.host=rabbitmq"
         - "--spring.rabbitmq.port=5672"
         - "--spring.rabbitmq.password=${RABBITMQ_PASSWORD}"
-        - "--spring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:80/realms/solidvessel/protocol/openid-connect/certs"
+        - "--spring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://keycloak:8080/realms/solidvessel/protocol/openid-connect/certs"
         - "--management.endpoints.web.exposure.include={{ .Values.spring.webExposure }}"
         - "--keycloak.server-url=http://keycloak:8080"
         - "--keycloak.client-secret=${KEYCLOAK_CLIENT_SECRET}"
