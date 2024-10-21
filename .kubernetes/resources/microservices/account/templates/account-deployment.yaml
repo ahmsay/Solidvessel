@@ -38,7 +38,7 @@ spec:
         - "--order.url=http://order:8080/order"
         - "--payment.url=http://payment:8080/payment"
         - "--management.endpoints.web.exposure.include={{ .Values.spring.webExposure }}"
-        - "--keycloak.server-url=http://keycloak:80"
+        - "--keycloak.server-url=http://keycloak:8080"
         - "--keycloak.client-secret=${KEYCLOAK_CLIENT_SECRET}"
         - "--keycloak.password=${KEYCLOAK_PASSWORD}"
         ports:
