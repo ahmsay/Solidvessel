@@ -53,7 +53,7 @@ data:
         openid-connect:
           client_id: "solidvessel-auth"
           client_secret: ${{"{{CLIENT_SECRET}}"}}
-          discovery: "http://keycloak:80/realms/solidvessel/.well-known/openid-configuration"
+          discovery: "http://keycloak:8080/realms/solidvessel/.well-known/openid-configuration"
           scope: "openid profile"
           bearer_only: true
           realm: "solidvessel"

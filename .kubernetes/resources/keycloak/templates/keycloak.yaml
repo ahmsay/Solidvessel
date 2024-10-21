@@ -15,6 +15,9 @@ spec:
         proxy: edge
         service:
           type: NodePort
+          ports:
+            http: 8080
+            https: 8081
           nodePorts:
             http: 31080
             https: 31081
