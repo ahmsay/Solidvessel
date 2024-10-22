@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Solidvessel DNS Records
+Resources:
+  MainDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: www.solidvessel.com.
+      Type: A
+      TTL: 300
+      AliasTarget:
+        DNSName: <load-balancer-dns-name>
+        EvaluateTargetHealth: true
+        HostedZoneId: <load-balancer-hosted-zone-id>
