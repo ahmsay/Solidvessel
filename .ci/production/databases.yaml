@@ -96,3 +96,55 @@ Resources:
       ToPort: 65535
       IpProtocol: -1
       CidrIp: 0.0.0.0/0
+  DBHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: db.solidvessel.com.
+      VPCs:
+      - VPCId: !ImportValue eksctl-solidvessel-cluster::VPC
+        VPCRegion: !Ref AWS::Region
+  AccountDBDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: account.db.solidvessel.com.
+      Type: CNAME
+      TTL: 300
+      HostedZoneId: !Ref DBHostedZone
+      ResourceRecords:
+      - solidvessel-account-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com
+  InventoryDBDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: inventory.db.solidvessel.com.
+      Type: CNAME
+      TTL: 300
+      HostedZoneId: !Ref DBHostedZone
+      ResourceRecords:
+      - solidvessel-inventory-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com
+  OrderDBDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: order.db.solidvessel.com.
+      Type: CNAME
+      TTL: 300
+      HostedZoneId: !Ref DBHostedZone
+      ResourceRecords:
+      - solidvessel-order-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com
+  PaymentDBDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: payment.db.solidvessel.com.
+      Type: CNAME
+      TTL: 300
+      HostedZoneId: !Ref DBHostedZone
+      ResourceRecords:
+      - solidvessel-payment-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com
+  KeycloakDBDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: keycloak.db.solidvessel.com.
+      Type: CNAME
+      TTL: 300
+      HostedZoneId: !Ref DBHostedZone
+      ResourceRecords:
+      - solidvessel-keycloak-db.cxkkzh5ye6cc.eu-central-1.rds.amazonaws.com
