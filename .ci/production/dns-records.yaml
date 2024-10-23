@@ -6,7 +6,7 @@ Resources:
     Properties:
       Name: www.solidvessel.com.
       Type: A
-      TTL: 300
+      HostedZoneId: Z02571401A5P6ZM3Y19Z1
       AliasTarget:
         DNSName: <load-balancer-dns-name>
         EvaluateTargetHealth: true
