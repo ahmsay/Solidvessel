@@ -1,5 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Solidvessel DNS Records
+Parameters:
+  LBDNSName:
+    Type: String
+    Description: DNS Name of the Load Balancer
+  LBHostedZoneId:
+    Type: String
+    Description: Hosted Zone Id of the Load Balancer
 Resources:
   MainDNSRecord:
     Type: AWS::Route53::RecordSet
@@ -8,6 +15,6 @@ Resources:
       Type: A
       HostedZoneId: Z02571401A5P6ZM3Y19Z1
       AliasTarget:
-        DNSName: <load-balancer-dns-name>
+        DNSName: !Ref LBDNSName
         EvaluateTargetHealth: true
-        HostedZoneId: <load-balancer-hosted-zone-id>
+        HostedZoneId: !Ref LBHostedZoneId
