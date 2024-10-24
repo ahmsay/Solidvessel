@@ -29,6 +29,11 @@ iam:
       namespace: kube-system
     attachPolicyARNs:
     - "arn:aws:iam::<aws_account_id>:policy/AWSLoadBalancerControllerIAMPolicy"
+  - metadata:
+      name: external-dns
+      namespace: solidvessel
+    attachPolicyARNs:
+    - "arn:aws:iam::<aws_account_id>:policy/AllowExternalDNSUpdates"
 addons:
 - name: vpc-cni
   version: latest
