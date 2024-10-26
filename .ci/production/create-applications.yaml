@@ -21,8 +21,8 @@ phases:
     - sleep 10
     - perl -i -pe"s/values-test/values-prod/" .kubernetes/Root.yaml
     - kubectl create -f .kubernetes/Root.yaml
-    - load_balancer_arn=None
-    - until [[ $load_balancer_arn != 'None' ]]; do echo 'Waiting for load balancer to be generated...'; sleep 10; export load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text); done
-    - LOAD_BALANCER_DNS_NAME=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
-    - LOAD_BALANCER_HOSTED_ZONE_ID=$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)
-    - aws cloudformation deploy --template-file .ci/production/dns-records.yaml --stack-name solidvessel-dns-records --parameter-overrides LBDNSName=$LOAD_BALANCER_DNS_NAME LBHostedZoneId=$LOAD_BALANCER_HOSTED_ZONE_ID
+#    - load_balancer_arn=None
+#    - until [[ $load_balancer_arn != 'None' ]]; do echo 'Waiting for load balancer to be generated...'; sleep 10; export load_balancer_arn=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=ingress.k8s.aws/resource,Values=LoadBalancer Key=ingress.k8s.aws/stack,Values=common-ingress-group --tags-per-page 100 --query "ResourceTagMappingList[0].ResourceARN" --output text); done
+#    - LOAD_BALANCER_DNS_NAME=dualstack.$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].DNSName" --output text)
+#    - LOAD_BALANCER_HOSTED_ZONE_ID=$(aws elbv2 describe-load-balancers --load-balancer-arns $load_balancer_arn --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)
+#    - aws cloudformation deploy --template-file .ci/production/dns-records.yaml --stack-name solidvessel-dns-records --parameter-overrides LBDNSName=$LOAD_BALANCER_DNS_NAME LBHostedZoneId=$LOAD_BALANCER_HOSTED_ZONE_ID
