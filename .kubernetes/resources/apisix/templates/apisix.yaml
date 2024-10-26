@@ -24,6 +24,9 @@ spec:
         dataPlane:
           service:
             type: NodePort
+            ports:
+              http: 8080
+              metrics: 8081
             nodePorts:
               http: "30080"
           containerPorts:
