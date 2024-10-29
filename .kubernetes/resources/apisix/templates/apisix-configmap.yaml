@@ -6,6 +6,15 @@ metadata:
 data:
   apisix.yaml: |
     routes:
+    - id: home
+      uri: /
+      upstream:
+        nodes:
+          "127.0.0.1:80": 1
+        type: roundrobin
+      plugins:
+        response-rewrite:
+          body: '{"message":"it works!"}'
     - id: token
       uri: /realms/solidvessel/protocol/openid-connect/token
       upstream:
