@@ -14,7 +14,7 @@ data:
         type: roundrobin
       plugins:
         response-rewrite:
-          body: '<h1>Hello there!<h1>'
+          "body": "{\"code\":\"ok\",\"message\":\"new json body\"}",
           vars:
           - - status
             - "=="
