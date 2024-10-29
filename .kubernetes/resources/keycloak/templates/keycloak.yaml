@@ -33,7 +33,7 @@ spec:
           existingSecret: keycloak-db-secret
         extraEnvVars:
         - name: KEYCLOAK_HOSTNAME
-          value: http://keycloak:8080
+          value: keycloak
         {{ if eq .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume
