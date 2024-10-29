@@ -15,8 +15,6 @@ data:
       plugins:
         response-rewrite:
           body: '{\"code\":\"ok\",\"message\":\"new json body\"}'
-          vars:
-          - [ "status","==",200 ]
     - id: token
       uri: /realms/solidvessel/protocol/openid-connect/token
       upstream:
