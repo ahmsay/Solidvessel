@@ -14,7 +14,11 @@ data:
         type: roundrobin
       plugins:
         response-rewrite:
-          body: '{"message":"it works!"}'
+          body: '<h1>Hello there!<h1>'
+          vars:
+          - - status
+            - "=="
+            - 200
     - id: token
       uri: /realms/solidvessel/protocol/openid-connect/token
       upstream:
