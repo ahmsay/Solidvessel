@@ -14,7 +14,7 @@ data:
         type: roundrobin
       plugins:
         response-rewrite:
-          "body": "{\"code\":\"ok\",\"message\":\"new json body\"}",
+          body: '{\"code\":\"ok\",\"message\":\"new json body\"}',
           vars:
           - - status
             - "=="
