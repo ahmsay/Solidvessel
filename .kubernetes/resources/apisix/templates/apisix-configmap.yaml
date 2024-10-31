@@ -12,6 +12,11 @@ data:
         nodes:
           "keycloak:8080": 1
         type: roundrobin
+      plugins:
+        proxy-rewrite:
+          headers:
+            add:
+              X-Forwarded-Proto: http
     - id: auth
       uri: /auth/*
       upstream:
