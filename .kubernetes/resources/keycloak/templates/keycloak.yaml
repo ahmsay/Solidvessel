@@ -31,11 +31,6 @@ spec:
           database: keycloak
           user: nihilus
           existingSecret: keycloak-db-secret
-        extraEnvVars:
-        - name: KEYCLOAK_HOSTNAME
-          value: http://keycloak:8080
-        - name: KC_HTTP_ENABLED
-          value: "true"
         {{ if eq .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume
