@@ -54,3 +54,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
+  ignoreDifferences:
+  - group: policy
+    kind: PodDisruptionBudget
