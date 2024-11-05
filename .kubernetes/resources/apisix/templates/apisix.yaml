@@ -13,14 +13,20 @@ spec:
       values: |
         controlPlane:
           enabled: false
+          pdb:
+            create: false
           tls:
             enabled: false
         ingressController:
           enabled: false
+          pdb:
+            create: false
         etcd:
           enabled: false
         dashboard:
           enabled: false
+          pdb:
+            create: false
         dataPlane:
           service:
             type: NodePort
