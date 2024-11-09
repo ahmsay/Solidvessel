@@ -98,7 +98,7 @@ Let's explain each component shown in the diagram one by one:
 ## Roadmap
 
 - ~~Make the test environment manageable by ArgoCD~~
-- Fully automatize the production environment
+- ~~Fully automatize the production environment~~
 - Data enrichment (add millions of records for prod environment)
 - Monitoring (Prometheus, Grafana etc)
 - Maybe it's time to create a frontend ??
