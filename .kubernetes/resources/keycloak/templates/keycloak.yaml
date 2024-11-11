@@ -34,6 +34,8 @@ spec:
           value: keycloak
         - name: KC_HTTP_ENABLED
           value: "true"
+        - name: KC_PROXY_HEADERS
+          value: forwarded
         {{ if eq .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume
