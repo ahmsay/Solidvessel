@@ -31,7 +31,7 @@ spec:
           existingSecret: keycloak-db-secret
         extraEnvVars:
         - name: KEYCLOAK_HOSTNAME
-          value: keycloak
+          value: http://keycloak:8080
         - name: KC_HTTP_ENABLED
           value: "true"
         - name: KC_PROXY_HEADERS
