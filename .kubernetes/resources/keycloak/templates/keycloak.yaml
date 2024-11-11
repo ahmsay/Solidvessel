@@ -33,7 +33,7 @@ spec:
         - name: KEYCLOAK_HOSTNAME
           value: keycloak
         - name: KC_HTTP_ENABLED
-          value: true
+          value: "true"
         {{ if eq .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume
