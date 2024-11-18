@@ -676,7 +676,8 @@
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -691,7 +692,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Light Saber\",\n    \"price\": 13,\n    \"category\": \"ELECTRONICS\"\n}",
+							"raw": "{\n    \"name\": \"Light Saber\",\n    \"price\": 13,\n    \"category\": \"ELECTRONICS\",\n    \"quantity\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
