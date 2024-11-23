@@ -23,7 +23,7 @@ Make sure <a href="https://argo-cd.readthedocs.io/en/stable/getting_started/">Ar
 kubectl create -f ./.kubernetes/Root.yaml
 ```
 
-## Production
+## Production (Will be updated)
 This mode will start the entire application on AWS. Everything will be created from the scratch (including servers).
 Follow these steps to run this application:
 1. Create an AWS account.
