@@ -873,6 +873,51 @@
 					"response": []
 				},
 				{
+					"name": "get orders of current customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/order/ofCurrentCustomer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order",
+								"ofCurrentCustomer"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get order by id",
 					"event": [
 						{
@@ -1093,6 +1138,51 @@
 											"key": "pageNumber",
 											"value": "0"
 										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get payments of current customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/payment/ofCurrentCustomer",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payment",
+										"ofCurrentCustomer"
+									],
+									"query": [
 										{
 											"key": "pageSize",
 											"value": "10",
