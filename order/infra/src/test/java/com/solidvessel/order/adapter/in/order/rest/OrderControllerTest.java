@@ -10,7 +10,9 @@ import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
+import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
+import com.solidvessel.shared.test.controller.WithMockCustomer;
 import com.solidvessel.shared.test.controller.WithMockManager;
 import org.junit.jupiter.api.Test;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -56,6 +58,18 @@ public class OrderControllerTest extends BaseControllerTest {
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
                         .param("pageNumber", "0")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    public void getOrdersOfCurrentCustomer() throws Exception {
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
+        when(orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(orders);
+        MvcResult mvcResult = mockMvc.perform(
+                get("/ofCurrentCustomer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));

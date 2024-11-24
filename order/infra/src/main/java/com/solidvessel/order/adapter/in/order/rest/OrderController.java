@@ -33,6 +33,12 @@ public class OrderController {
         return orderQueryPort.getOrders(QueryOptions.of(pageNumber, pageSize)).stream().map(OrderResponse::from).toList();
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    @GetMapping("/ofCurrentCustomer")
+    public List<OrderResponse> getOrdersOfCurrentCustomer() {
+        return orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()).stream().map(OrderResponse::from).toList();
+    }
+
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public OrderResponse getById(@PathVariable final Long id) {
