@@ -12,6 +12,7 @@ import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
+import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -61,6 +62,19 @@ public class PaymentControllerTest extends BaseControllerTest {
         MvcResult mvcResult = mockMvc.perform(
                 get("/")
                         .param("pageNumber", "0")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    public void getPaymentsOfCurrentCustomer() throws Exception {
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
+        var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
+        when(paymentQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(payments);
+        MvcResult mvcResult = mockMvc.perform(
+                get("/ofCurrentCustomer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));

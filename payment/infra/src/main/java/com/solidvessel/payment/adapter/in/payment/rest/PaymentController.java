@@ -9,6 +9,7 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
+import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,6 +29,12 @@ public class PaymentController {
     @GetMapping("/")
     public List<PaymentResponse> getPayments(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
         return paymentQueryPort.getPayments(QueryOptions.of(pageNumber, pageSize)).stream().map(PaymentResponse::from).toList();
+    }
+
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    @GetMapping("/ofCurrentCustomer")
+    public List<PaymentResponse> getPaymentsOfCurrentCustomer() {
+        return paymentQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()).stream().map(PaymentResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
