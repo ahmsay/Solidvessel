@@ -1,6 +1,6 @@
 package com.solidvessel.shared.service;
 
-public interface NoCommandService {
+public interface VoidCommandService {
 
     OperationResult execute();
 }
