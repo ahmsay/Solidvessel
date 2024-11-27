@@ -7,7 +7,9 @@ import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
 import com.solidvessel.inventory.product.service.DeleteProductCommandService;
+import com.solidvessel.inventory.product.service.DeleteProductsCommandService;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
+import com.solidvessel.inventory.product.service.command.DeleteProductsCommand;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
@@ -26,6 +28,7 @@ public class ProductController {
     private final AddProductCommandService addProductCommandService;
     private final AddProductToCartCommandService addProductToCartCommandService;
     private final DeleteProductCommandService deleteProductCommandService;
+    private final DeleteProductsCommandService deleteProductsCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
@@ -65,7 +68,13 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @DeleteMapping("/{id}")
-    public OperationResult delete(@PathVariable Long id) {
+    public OperationResult deleteById(@PathVariable Long id) {
         return deleteProductCommandService.execute(new DeleteProductCommand(id));
+    }
+
+    @PreAuthorize("hasAuthority('MANAGER')")
+    @DeleteMapping("/ids")
+    public OperationResult deleteByIds(@RequestParam List<Long> ids) {
+        return deleteProductsCommandService.execute(new DeleteProductsCommand(ids));
     }
 }

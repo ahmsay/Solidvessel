@@ -11,4 +11,6 @@ public interface ProductPort {
     void saveProducts(List<Product> products);
 
     void delete(Long id);
+
+    void deleteByIds(List<Long> ids);
 }

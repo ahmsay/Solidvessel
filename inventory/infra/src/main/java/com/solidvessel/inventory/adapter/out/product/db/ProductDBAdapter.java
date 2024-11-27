@@ -32,4 +32,9 @@ public class ProductDBAdapter implements ProductPort {
     public void delete(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteByIds(List<Long> ids) {
+        productRepository.deleteAllById(ids);
+    }
 }

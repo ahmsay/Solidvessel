@@ -9,7 +9,9 @@ import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
 import com.solidvessel.inventory.product.service.DeleteProductCommandService;
+import com.solidvessel.inventory.product.service.DeleteProductsCommandService;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
+import com.solidvessel.inventory.product.service.command.DeleteProductsCommand;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
@@ -49,6 +51,9 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @MockBean
     private DeleteProductCommandService deleteProductCommandService;
+
+    @MockBean
+    private DeleteProductsCommandService deleteProductsCommandService;
 
     @Test
     @WithMockCustomer
@@ -138,6 +143,18 @@ public class ProductControllerTest extends BaseControllerTest {
         when(deleteProductCommandService.execute(new DeleteProductCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 delete("/product/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    public void deleteProducts() throws Exception {
+        when(deleteProductsCommandService.execute(new DeleteProductsCommand(List.of(1L, 2L)))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                delete("/product/ids")
+                        .queryParam("ids", "1", "2")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
