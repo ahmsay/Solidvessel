@@ -27,4 +27,9 @@ public class ProductDBAdapter implements ProductPort {
         products.forEach(product -> productJpaEntities.add(ProductJpaEntity.from(product)));
         productRepository.saveAll(productJpaEntities);
     }
+
+    @Override
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
 }

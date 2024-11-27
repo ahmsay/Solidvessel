@@ -9,4 +9,6 @@ public interface ProductPort {
     Product save(Product product);
 
     void saveProducts(List<Product> products);
+
+    void delete(Long id);
 }

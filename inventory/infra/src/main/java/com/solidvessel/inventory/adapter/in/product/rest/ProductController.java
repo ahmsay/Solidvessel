@@ -6,6 +6,8 @@ import com.solidvessel.inventory.adapter.in.product.rest.response.ProductRespons
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
+import com.solidvessel.inventory.product.service.DeleteProductCommandService;
+import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import jakarta.validation.Valid;
@@ -23,6 +25,7 @@ public class ProductController {
     private final ProductQueryPort productQueryPort;
     private final AddProductCommandService addProductCommandService;
     private final AddProductToCartCommandService addProductToCartCommandService;
+    private final DeleteProductCommandService deleteProductCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
@@ -58,5 +61,11 @@ public class ProductController {
     @PostMapping("/{id}/addToCart")
     public OperationResult addToCart(@PathVariable final Long id, @RequestBody @Valid final AddProductToCartRequest request) {
         return addProductToCartCommandService.execute(request.toCommand(id));
+    }
+
+    @PreAuthorize("hasAuthority('MANAGER')")
+    @DeleteMapping("/{id}")
+    public OperationResult delete(@PathVariable Long id) {
+        return deleteProductCommandService.execute(new DeleteProductCommand(id));
     }
 }
