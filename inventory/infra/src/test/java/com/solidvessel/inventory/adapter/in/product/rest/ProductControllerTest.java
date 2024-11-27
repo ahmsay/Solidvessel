@@ -8,6 +8,8 @@ import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
+import com.solidvessel.inventory.product.service.DeleteProductCommandService;
+import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
@@ -27,8 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {ProductController.class})
@@ -45,6 +46,9 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @MockBean
     private AddProductToCartCommandService addProductToCartCommandService;
+
+    @MockBean
+    private DeleteProductCommandService deleteProductCommandService;
 
     @Test
     @WithMockCustomer
@@ -123,6 +127,17 @@ public class ProductControllerTest extends BaseControllerTest {
         MvcResult mvcResult = mockMvc.perform(
                 post("/product/1/addToCart")
                         .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    public void deleteProduct() throws Exception {
+        when(deleteProductCommandService.execute(new DeleteProductCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                delete("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
