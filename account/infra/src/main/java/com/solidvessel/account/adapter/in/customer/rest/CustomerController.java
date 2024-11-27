@@ -33,13 +33,13 @@ public class CustomerController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
-    public CustomerResponse getById(@PathVariable final String id) {
+    public CustomerResponse getById(@PathVariable String id) {
         return CustomerResponse.from(keycloakAdapter.getUser(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
-    public CustomerDetailResponse getDetailById(@PathVariable final String id) {
+    public CustomerDetailResponse getDetailById(@PathVariable String id) {
         String token = SessionUtil.getCurrentUserToken();
         CustomerResponse customer = getById(id);
         List<OrderResponse> orders = orderRestClient.getByCustomerId(id, token);

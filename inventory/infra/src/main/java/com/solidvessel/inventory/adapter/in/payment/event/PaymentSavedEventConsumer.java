@@ -20,7 +20,7 @@ public class PaymentSavedEventConsumer {
             exchange = @Exchange(value = "${exchanges.payment}", type = "topic"),
             key = "${routing-keys.payment.saved}")
     )
-    void consume(final PaymentSavedEvent event) {
+    void consume(PaymentSavedEvent event) {
         updateProductQuantitiesCommandService.execute(event);
     }
 }

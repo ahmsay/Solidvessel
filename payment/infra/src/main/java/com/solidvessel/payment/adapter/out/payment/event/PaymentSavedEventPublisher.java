@@ -20,7 +20,7 @@ public class PaymentSavedEventPublisher implements EventPublisher<PaymentSavedEv
     private String paymentSavedRoutingKey;
 
     @Override
-    public void publish(final PaymentSavedEvent event) {
+    public void publish(PaymentSavedEvent event) {
         rabbitTemplate.convertAndSend(paymentExchange, paymentSavedRoutingKey, event);
     }
 }

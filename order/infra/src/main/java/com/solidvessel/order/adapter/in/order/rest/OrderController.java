@@ -41,13 +41,13 @@ public class OrderController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
-    public OrderResponse getById(@PathVariable final Long id) {
+    public OrderResponse getById(@PathVariable Long id) {
         return OrderResponse.from(orderQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
-    public OrderDetailResponse getDetailById(@PathVariable final Long id) {
+    public OrderDetailResponse getDetailById(@PathVariable Long id) {
         Order order = orderQueryPort.getById(id);
         CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(order.getCustomerId()));
         PaymentResponse payment = paymentRestClient.getById(order.getPaymentId(), SessionUtil.getCurrentUserToken());
@@ -56,7 +56,7 @@ public class OrderController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
-    public List<OrderResponse> getByCustomerId(@PathVariable final String customerId) {
+    public List<OrderResponse> getByCustomerId(@PathVariable String customerId) {
         return orderQueryPort.getByCustomerId(customerId).stream().map(OrderResponse::from).toList();
     }
 }

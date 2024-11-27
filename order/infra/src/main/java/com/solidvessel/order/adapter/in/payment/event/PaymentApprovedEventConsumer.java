@@ -20,7 +20,7 @@ public class PaymentApprovedEventConsumer {
             exchange = @Exchange(value = "${exchanges.payment}", type = "topic"),
             key = "${routing-keys.payment.approved}")
     )
-    void consume(final PaymentApprovedEvent event) {
+    void consume(PaymentApprovedEvent event) {
         addOrderCommandService.execute(event);
     }
 }

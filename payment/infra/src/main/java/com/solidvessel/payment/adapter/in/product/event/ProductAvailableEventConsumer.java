@@ -20,7 +20,7 @@ public class ProductAvailableEventConsumer {
             exchange = @Exchange(value = "${exchanges.product}", type = "topic"),
             key = "${routing-keys.product.available}")
     )
-    void consume(final ProductAvailableEvent event) {
+    void consume(ProductAvailableEvent event) {
         addToCartCommandService.execute(event);
     }
 }

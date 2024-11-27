@@ -20,7 +20,7 @@ public class ProductAvailableEventPublisher implements EventPublisher<ProductAva
     private String productAvailableRoutingKey;
 
     @Override
-    public void publish(final ProductAvailableEvent event) {
+    public void publish(ProductAvailableEvent event) {
         rabbitTemplate.convertAndSend(productExchange, productAvailableRoutingKey, event);
     }
 }

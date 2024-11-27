@@ -18,7 +18,7 @@ public interface PaymentRestClient {
 
     @Cacheable(value = "paymentsOfCustomer.rest", key = "#customerId")
     @GetMapping("/ofCustomer/{customerId}")
-    List<PaymentResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
+    List<PaymentResponse> getByCustomerId(@PathVariable String customerId, @RequestHeader("authorization") String token);
 
     @Component
     class PaymentFallback implements PaymentRestClient {

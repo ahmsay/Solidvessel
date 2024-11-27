@@ -18,7 +18,7 @@ public interface OrderRestClient {
 
     @Cacheable(value = "ordersOfCustomer.rest", key = "#customerId")
     @GetMapping("/ofCustomer/{customerId}")
-    List<OrderResponse> getByCustomerId(@PathVariable final String customerId, @RequestHeader("authorization") String token);
+    List<OrderResponse> getByCustomerId(@PathVariable String customerId, @RequestHeader("authorization") String token);
 
     @Component
     class OrderFallback implements OrderRestClient {

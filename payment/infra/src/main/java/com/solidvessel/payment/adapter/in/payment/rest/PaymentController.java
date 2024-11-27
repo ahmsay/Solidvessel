@@ -39,13 +39,13 @@ public class PaymentController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
-    public PaymentResponse getById(@PathVariable final Long id) {
+    public PaymentResponse getById(@PathVariable Long id) {
         return PaymentResponse.from(paymentQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/detail")
-    public PaymentDetailResponse getDetailById(@PathVariable final Long id) {
+    public PaymentDetailResponse getDetailById(@PathVariable Long id) {
         Payment payment = paymentQueryPort.getById(id);
         CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(payment.getCustomerId()));
         return PaymentDetailResponse.from(payment, customer);
@@ -53,13 +53,13 @@ public class PaymentController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
-    public List<PaymentResponse> getByCustomerId(@PathVariable final String customerId) {
+    public List<PaymentResponse> getByCustomerId(@PathVariable String customerId) {
         return paymentQueryPort.getByCustomerId(customerId).stream().map(PaymentResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @PostMapping("/accept")
-    public OperationResult acceptPayment(final AcceptPaymentRequest request) {
+    public OperationResult acceptPayment(AcceptPaymentRequest request) {
         return acceptPaymentCommandService.execute(request.toCommand());
     }
 }

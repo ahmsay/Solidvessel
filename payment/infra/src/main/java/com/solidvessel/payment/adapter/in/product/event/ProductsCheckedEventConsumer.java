@@ -20,7 +20,7 @@ public class ProductsCheckedEventConsumer {
             exchange = @Exchange(value = "${exchanges.product}", type = "topic"),
             key = "${routing-keys.product.checked}")
     )
-    void consume(final ProductsCheckedEvent event) {
+    void consume(ProductsCheckedEvent event) {
         updatePaymentStatusCommandService.execute(event);
     }
 }
