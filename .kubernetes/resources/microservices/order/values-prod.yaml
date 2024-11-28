@@ -4,4 +4,6 @@ db:
   url: jdbc:postgresql://order.db.solidvessel.com:5432/order_db
 spring:
   webExposure: health
+  liquibase:
+    contexts: sql
 replicas: 2

@@ -4,4 +4,6 @@ db:
   url: jdbc:postgresql://account-db-postgresql:5432/account
 spring:
   webExposure: "*"
+  liquibase:
+    contexts: sql,data
 replicas: 1

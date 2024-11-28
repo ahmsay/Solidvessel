@@ -4,4 +4,6 @@ db:
   url: jdbc:postgresql://inventory-db-postgresql:5432/inventory
 spring:
   webExposure: "*"
+  liquibase:
+    contexts: sql,data
 replicas: 2
