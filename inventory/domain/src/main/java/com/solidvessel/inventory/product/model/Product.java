@@ -14,9 +14,10 @@ public class Product extends DomainModel {
     private Double price;
     private ProductCategory category;
     private int quantity;
+    private Boolean isAvailable;
 
     public static Product newProduct(String name, Double price, ProductCategory category, int quantity) {
-        return new Product(name, price, category, quantity);
+        return new Product(name, price, category, quantity, true);
     }
 
     public void decreaseQuantity(int boughtQuantity) {

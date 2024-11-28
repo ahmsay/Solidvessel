@@ -34,6 +34,9 @@ public class ProductJpaEntity extends BaseEntity {
     @NotNull
     private int quantity;
 
+    @NotNull
+    private Boolean isAvailable;
+
     public Product toDomainModel() {
         return Product.builder()
                 .id(getId())
@@ -44,6 +47,7 @@ public class ProductJpaEntity extends BaseEntity {
                 .price(price)
                 .category(category)
                 .quantity(quantity)
+                .isAvailable(isAvailable)
                 .build();
     }
 
@@ -57,6 +61,7 @@ public class ProductJpaEntity extends BaseEntity {
                 .price(product.getPrice())
                 .category(product.getCategory())
                 .quantity(product.getQuantity())
+                .isAvailable(product.getIsAvailable())
                 .build();
     }
 }

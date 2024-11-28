@@ -3,7 +3,8 @@ package com.solidvessel.inventory.adapter.in.product.rest.response;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 
-public record ProductResponse(Long id, String name, Double price, ProductCategory category, int quantity) {
+public record ProductResponse(Long id, String name, Double price, ProductCategory category, int quantity,
+                              Boolean isAvailable) {
 
     public static ProductResponse from(Product product) {
         return new ProductResponse(
@@ -11,7 +12,8 @@ public record ProductResponse(Long id, String name, Double price, ProductCategor
                 product.getName(),
                 product.getPrice(),
                 product.getCategory(),
-                product.getQuantity()
+                product.getQuantity(),
+                product.getIsAvailable()
         );
     }
 }

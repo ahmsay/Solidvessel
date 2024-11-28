@@ -4,15 +4,15 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="ahmsay" id="solidvessel-data-1" context="data">
         <sql>
-            insert into product(id, name, price, category, quantity)
-            values (nextval('product_seq'), 'Clipper', 2.5, 'TOOL', 1),
-                   (nextval('product_seq'), 'Laptop', 3000, 'ELECTRONICS', 5),
-                   (nextval('product_seq'), 'Phone', 5, 'ELECTRONICS', 6),
-                   (nextval('product_seq'), 'Skirt', 20, 'CLOTHING', 3),
-                   (nextval('product_seq'), 'Pants', 500, 'CLOTHING', 7),
-                   (nextval('product_seq'), 'Apple', 499.99, 'ELECTRONICS', 4),
-                   (nextval('product_seq'), 'Ice Pick', 53, 'TOOL', 12),
-                   (nextval('product_seq'), 'Desk', 25, 'FURNITURE', 3);
+            insert into product(id, name, price, category, quantity, is_available)
+            values (nextval('product_seq'), 'Clipper', 2.5, 'TOOL', 1, true),
+                   (nextval('product_seq'), 'Laptop', 3000, 'ELECTRONICS', 5, true),
+                   (nextval('product_seq'), 'Phone', 5, 'ELECTRONICS', 6, true),
+                   (nextval('product_seq'), 'Skirt', 20, 'CLOTHING', 3, true),
+                   (nextval('product_seq'), 'Pants', 500, 'CLOTHING', 7, true),
+                   (nextval('product_seq'), 'Apple', 499.99, 'ELECTRONICS', 4, false),
+                   (nextval('product_seq'), 'Ice Pick', 53, 'TOOL', 12, true),
+                   (nextval('product_seq'), 'Desk', 25, 'FURNITURE', 3, true);
         </sql>
     </changeSet>
 </databaseChangeLog>
