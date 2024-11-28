@@ -666,6 +666,41 @@
 					"response": []
 				},
 				{
+					"name": "is product available",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/inventory/product/isAvailable?id=1&quantity=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"product",
+								"isAvailable"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "quantity",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "add product",
 					"event": [
 						{
@@ -761,9 +796,23 @@
 					"response": []
 				},
 				{
-					"name": "is product available",
+					"name": "delete product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
@@ -772,23 +821,58 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/inventory/product/isAvailable?id=1&quantity=1",
+							"raw": "{{baseUrl}}/inventory/product/1",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
 								"product",
-								"isAvailable"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/inventory/product/?ids=7,8",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"product",
+								""
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1"
-								},
-								{
-									"key": "quantity",
-									"value": "1"
+									"key": "ids",
+									"value": "7,8"
 								}
 							]
 						}
