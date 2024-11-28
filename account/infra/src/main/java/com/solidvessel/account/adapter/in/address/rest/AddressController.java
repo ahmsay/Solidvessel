@@ -1,12 +1,12 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
-import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequest;
+import com.solidvessel.account.adapter.in.address.rest.request.DeleteAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
-import com.solidvessel.account.address.service.RemoveAddressCommandService;
+import com.solidvessel.account.address.service.DeleteAddressCommandService;
 import com.solidvessel.account.address.service.UpdateAddressCommandService;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -25,7 +25,7 @@ public class AddressController {
 
     private final AddressQueryPort addressQueryPort;
     private final AddAddressCommandService addAddressCommandService;
-    private final RemoveAddressCommandService removeAddressCommandService;
+    private final DeleteAddressCommandService deleteAddressCommandService;
     private final UpdateAddressCommandService updateAddressCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
@@ -42,8 +42,8 @@ public class AddressController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @DeleteMapping()
-    public OperationResult removeAddress(@RequestBody @Valid RemoveAddressRequest request) {
-        return removeAddressCommandService.execute(request.toCommand());
+    public OperationResult deleteAddress(@RequestBody @Valid DeleteAddressRequest request) {
+        return deleteAddressCommandService.execute(request.toCommand());
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

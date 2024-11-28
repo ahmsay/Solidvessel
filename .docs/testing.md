@@ -22,7 +22,7 @@ You can also use unit tests if you don't need to test the actual behavior of a b
 To do this, you can mock the bean you want by using Mockito in your test class. Inspect
 <a href="../shared/domain/src/main/java/com/solidvessel/shared/test/BaseUnitTest.java">BaseUnitTest<a/>
 and
-<a href="../account/domain/src/test/java/com/solidvessel/account/address/service/RemoveAddressCommandServiceTest.java">
+<a href="../account/domain/src/test/java/com/solidvessel/account/address/service/DeleteAddressCommandServiceTest.java">
 this example test<a/>
 for more information.
 

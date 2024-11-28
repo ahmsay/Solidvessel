@@ -2,7 +2,7 @@ package com.solidvessel.account.address.service;
 
 import com.solidvessel.account.address.port.AddressPort;
 import com.solidvessel.account.address.port.AddressQueryPort;
-import com.solidvessel.account.address.service.command.RemoveAddressCommand;
+import com.solidvessel.account.address.service.command.DeleteAddressCommand;
 import com.solidvessel.account.common.exception.AccountDomainException;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-public class RemoveAddressCommandServiceTest extends BaseUnitTest {
+public class DeleteAddressCommandServiceTest extends BaseUnitTest {
 
     @Mock
     private AddressPort addressPort;
@@ -22,9 +22,9 @@ public class RemoveAddressCommandServiceTest extends BaseUnitTest {
     private AddressQueryPort addressQueryPort;
 
     @Test
-    void removeAddress() {
-        var command = new RemoveAddressCommand(1L, "123");
-        var commandService = new RemoveAddressCommandService(addressPort, addressQueryPort);
+    void deleteAddress() {
+        var command = new DeleteAddressCommand(1L, "123");
+        var commandService = new DeleteAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(command.id(), command.customerId())).thenReturn(true);
         var operationResult = commandService.execute(command);
         verify(addressPort).delete(1L, "123");
@@ -33,8 +33,8 @@ public class RemoveAddressCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addressIsAlreadyRegistered() {
-        var command = new RemoveAddressCommand(1L, "123");
-        var commandService = new RemoveAddressCommandService(addressPort, addressQueryPort);
+        var command = new DeleteAddressCommand(1L, "123");
+        var commandService = new DeleteAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(command.id(), command.customerId())).thenReturn(false);
         assertThrows(AccountDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(addressPort);

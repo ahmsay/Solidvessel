@@ -1,13 +1,13 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
-import com.solidvessel.account.adapter.in.address.rest.request.RemoveAddressRequest;
+import com.solidvessel.account.adapter.in.address.rest.request.DeleteAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
-import com.solidvessel.account.address.service.RemoveAddressCommandService;
+import com.solidvessel.account.address.service.DeleteAddressCommandService;
 import com.solidvessel.account.address.service.UpdateAddressCommandService;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -42,7 +42,7 @@ public class AddressControllerTest extends BaseControllerTest {
     private AddAddressCommandService addAddressCommandService;
 
     @MockBean
-    private RemoveAddressCommandService removeAddressCommandService;
+    private DeleteAddressCommandService deleteAddressCommandService;
 
     @MockBean
     private UpdateAddressCommandService updateAddressCommandService;
@@ -77,9 +77,9 @@ public class AddressControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void removeAddress() throws Exception {
-        var request = new RemoveAddressRequest(1L);
-        when(removeAddressCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
+    public void deleteAddress() throws Exception {
+        var request = new DeleteAddressRequest(1L);
+        when(deleteAddressCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 delete("/address")
                         .content(bodyOf(request))
