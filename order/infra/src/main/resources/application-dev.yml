@@ -9,6 +9,8 @@ spring:
     redis:
       host: localhost
       port: 6379
+  liquibase:
+    contexts: sql,data
   rabbitmq:
     host: localhost
     port: 5672
