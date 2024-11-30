@@ -47,7 +47,7 @@ public class ProductJpaEntity extends BaseEntity {
                 .price(price)
                 .category(category)
                 .quantity(quantity)
-                .isAvailable(isAvailable)
+                .isAvailableInRegion(isAvailable)
                 .build();
     }
 
@@ -61,7 +61,7 @@ public class ProductJpaEntity extends BaseEntity {
                 .price(product.getPrice())
                 .category(product.getCategory())
                 .quantity(product.getQuantity())
-                .isAvailable(product.getIsAvailable())
+                .isAvailable(product.getIsAvailableInRegion())
                 .build();
     }
 }

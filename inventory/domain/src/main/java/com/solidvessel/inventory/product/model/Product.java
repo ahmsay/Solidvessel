@@ -14,7 +14,7 @@ public class Product extends DomainModel {
     private Double price;
     private ProductCategory category;
     private int quantity;
-    private Boolean isAvailable;
+    private Boolean isAvailableInRegion;
 
     public static Product newProduct(String name, Double price, ProductCategory category, int quantity) {
         return new Product(name, price, category, quantity, true);
@@ -25,7 +25,7 @@ public class Product extends DomainModel {
     }
 
     public ProductAvailability isAvailable(int desiredQuantity) {
-        if (!isAvailable) {
+        if (!isAvailableInRegion) {
             return ProductAvailability.notAvailableInRegion();
         }
         return ProductAvailability.isAvailable(quantity, desiredQuantity);

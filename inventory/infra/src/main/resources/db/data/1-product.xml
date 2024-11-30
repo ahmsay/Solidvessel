@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="ahmsay" id="solidvessel-data-1" context="data">
         <sql>
-            insert into product(id, name, price, category, quantity, is_available)
+            insert into product(id, name, price, category, quantity, is_available_in_region)
             values (nextval('product_seq'), 'Clipper', 2.5, 'TOOL', 1, true),
                    (nextval('product_seq'), 'Laptop', 3000, 'ELECTRONICS', 5, true),
                    (nextval('product_seq'), 'Phone', 5, 'ELECTRONICS', 6, true),

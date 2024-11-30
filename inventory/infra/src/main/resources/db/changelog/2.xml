@@ -5,7 +5,7 @@
     <changeSet author="ahmsay" id="solidvessel-sql-2" context="sql">
         <sql>
             alter table product
-                add column is_available boolean not null default true;
+                add column is_available_in_region boolean not null default true;
         </sql>
     </changeSet>
 </databaseChangeLog>
