@@ -59,7 +59,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     public void getProducts() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var products = List.of(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10));
+        var products = List.of(Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10));
         when(productQueryPort.getProducts(queryOptions)).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
@@ -72,7 +72,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void getProductById() throws Exception {
-        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10);
+        var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10);
         when(productQueryPort.getById(anyLong())).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
@@ -85,8 +85,8 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     public void getProductsByIds() throws Exception {
         var products = List.of(
-                new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 10),
-                new Product("shirt", 20D, ProductCategory.CLOTHING, 5)
+                Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10),
+                Product.newProduct("shirt", 20D, ProductCategory.CLOTHING, 5)
         );
         when(productQueryPort.getByIds(anyList())).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
@@ -114,7 +114,6 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void isProductAvailable() throws Exception {
-        when(productQueryPort.isAvailable(1L, 5)).thenReturn(true);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/isAvailable")
                         .queryParam("id", "1")

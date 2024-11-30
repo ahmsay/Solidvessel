@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
 
@@ -18,14 +18,14 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getProducts() {
-        persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3));
+        persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var products = productDBQueryAdapter.getProducts(new QueryOptions(0));
         assertEquals("macbook", products.getFirst().getName());
     }
 
     @Test
     public void getById() {
-        var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3));
+        var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var product = productDBQueryAdapter.getById(productJpaEntity.getId());
         assertEquals(productJpaEntity.getId(), product.getId());
         assertEquals(productJpaEntity.getName(), product.getName());
@@ -36,25 +36,18 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     public void getByIds() {
-        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3));
-        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5));
-        var productJpaEntity3 = persistEntity(new ProductJpaEntity("chair", 120D, ProductCategory.FURNITURE, 2));
+        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
+        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5, true));
+        var productJpaEntity3 = persistEntity(new ProductJpaEntity("chair", 120D, ProductCategory.FURNITURE, 2, true));
         var products = productDBQueryAdapter.getByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId(), productJpaEntity3.getId()));
         assertEquals(5, products.get(1).getQuantity());
     }
 
     @Test
-    public void isProductAvailableWithQuantity() {
-        var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3));
-        assertTrue(productDBQueryAdapter.isAvailable(productJpaEntity.getId(), 3));
-        assertFalse(productDBQueryAdapter.isAvailable(productJpaEntity.getId(), 5));
-    }
-
-    @Test
     public void getDomainModelsByIds() {
-        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3));
-        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5));
-        var productJpaEntity3 = persistEntity(new ProductJpaEntity("chair", 120D, ProductCategory.FURNITURE, 2));
+        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
+        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5, true));
+        var productJpaEntity3 = persistEntity(new ProductJpaEntity("chair", 120D, ProductCategory.FURNITURE, 2, true));
         var products = productDBQueryAdapter.getByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId(), productJpaEntity3.getId()));
         assertEquals(5, products.get(1).getQuantity());
     }
