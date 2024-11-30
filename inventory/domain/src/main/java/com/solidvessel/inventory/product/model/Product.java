@@ -24,10 +24,17 @@ public class Product extends DomainModel {
         quantity = quantity - boughtQuantity;
     }
 
+    private ProductAvailability isAvailableInStock(int desiredQuantity) {
+        if (desiredQuantity > quantity) {
+            return ProductAvailability.notInStocks();
+        }
+        return ProductAvailability.available();
+    }
+
     public ProductAvailability isAvailable(int desiredQuantity) {
         if (!isAvailableInRegion) {
             return ProductAvailability.notAvailableInRegion();
         }
-        return ProductAvailability.isAvailable(quantity, desiredQuantity);
+        return isAvailableInStock(desiredQuantity);
     }
 }
