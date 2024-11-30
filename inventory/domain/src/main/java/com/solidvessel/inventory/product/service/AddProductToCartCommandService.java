@@ -22,7 +22,7 @@ public class AddProductToCartCommandService implements CommandService<AddProduct
     @Override
     public OperationResult execute(AddProductToCartCommand command) {
         Product product = productQueryPort.getById(command.id());
-        if (!product.isAvailable(command.quantity())) {
+        if (!product.isInStock(command.quantity())) {
             throw new InventoryDomainException("The product is not available in stocks with your desired quantity.");
         }
         productAvailableEventEventPublisher.publish(ProductAvailableEvent.from(product, command.quantity(), command.customerId()));

@@ -18,16 +18,16 @@ public class ProductTest {
 
     @Test
     void decreaseQuantity() {
-        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5);
+        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5, true);
         product.decreaseQuantity(2);
         assertEquals(3, product.getQuantity());
     }
 
     @Test
-    void isAvailable() {
-        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5);
-        assertTrue(product.isAvailable(3));
-        assertTrue(product.isAvailable(5));
-        assertFalse(product.isAvailable(10));
+    void isInStock() {
+        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5, true);
+        assertTrue(product.isInStock(3));
+        assertTrue(product.isInStock(5));
+        assertFalse(product.isInStock(10));
     }
 }

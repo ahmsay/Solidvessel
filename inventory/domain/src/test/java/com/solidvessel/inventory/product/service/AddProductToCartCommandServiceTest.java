@@ -28,7 +28,7 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
     void addProductToCart() {
         var command = new AddProductToCartCommand(1L, 4, "123");
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
-        var product = new Product("sickle", 5D, ProductCategory.TOOL, 10);
+        var product = new Product("sickle", 5D, ProductCategory.TOOL, 10, true);
         when(productQueryPort.getById(1L)).thenReturn(product);
         var operationResult = commandService.execute(command);
         verify(productAvailableEventEventPublisher).publish(ProductAvailableEvent.from(product, command.quantity(), "123"));
@@ -39,7 +39,7 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
     void productNotAvailable() {
         var command = new AddProductToCartCommand(1L, 4, "123");
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
-        var product = new Product("sickle", 5D, ProductCategory.TOOL, 1);
+        var product = new Product("sickle", 5D, ProductCategory.TOOL, 1, true);
         when(productQueryPort.getById(1L)).thenReturn(product);
         assertThrows(InventoryDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(productAvailableEventEventPublisher);

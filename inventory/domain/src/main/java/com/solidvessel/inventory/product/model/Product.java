@@ -24,7 +24,7 @@ public class Product extends DomainModel {
         quantity = quantity - boughtQuantity;
     }
 
-    public boolean isAvailable(int desiredQuantity) {
+    public boolean isInStock(int desiredQuantity) {
         return quantity >= desiredQuantity;
     }
 }
