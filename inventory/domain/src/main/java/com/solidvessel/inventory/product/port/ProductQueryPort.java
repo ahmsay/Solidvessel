@@ -12,6 +12,4 @@ public interface ProductQueryPort {
     Product getById(Long id);
 
     List<Product> getByIds(List<Long> ids);
-
-    boolean isAvailable(Long id, int quantity);
 }

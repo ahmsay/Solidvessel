@@ -36,9 +36,4 @@ public class ProductDBQueryAdapter implements ProductQueryPort {
     public List<Product> getByIds(List<Long> ids) {
         return productRepository.findAllById(ids).stream().map(ProductJpaEntity::toDomainModel).toList();
     }
-
-    @Override
-    public boolean isAvailable(Long id, int quantity) {
-        return productRepository.findByIdAndQuantityGreaterThanEqual(id, quantity).isPresent();
-    }
 }

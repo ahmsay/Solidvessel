@@ -3,6 +3,7 @@ package com.solidvessel.inventory.adapter.in.product.rest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
+import com.solidvessel.inventory.product.model.ProductAvailability;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.AddProductCommandService;
 import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
@@ -56,8 +57,8 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/isAvailable")
-    public boolean isAvailable(@RequestParam Long id, @RequestParam int quantity) {
-        return productQueryPort.isAvailable(id, quantity);
+    public ProductAvailability isAvailable(@RequestParam Long id, @RequestParam int quantity) {
+        return productQueryPort.getById(id).isAvailable(quantity);
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
