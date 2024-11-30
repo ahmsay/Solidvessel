@@ -32,7 +32,7 @@ public class ProductJpaEntity extends BaseEntity {
     private ProductCategory category;
 
     @NotNull
-    private int quantity;
+    private Integer quantity;
 
     @NotNull
     private Boolean isAvailableInRegion;
