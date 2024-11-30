@@ -10,4 +10,9 @@ public enum UnavailableReason {
     UnavailableReason(String reason) {
         this.reason = reason;
     }
+
+    @Override
+    public String toString() {
+        return reason;
+    }
 }
