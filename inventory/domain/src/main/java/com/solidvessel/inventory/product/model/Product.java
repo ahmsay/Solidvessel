@@ -2,6 +2,7 @@ package com.solidvessel.inventory.product.model;
 
 import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -14,7 +15,8 @@ public class Product extends DomainModel {
     private Double price;
     private ProductCategory category;
     private Integer quantity;
-    private Boolean isAvailableInRegion;
+    @Builder.Default
+    private Boolean isAvailableInRegion = true;
 
     public static Product newProduct(String name, Double price, ProductCategory category, Integer quantity) {
         return new Product(name, price, category, quantity, true);
