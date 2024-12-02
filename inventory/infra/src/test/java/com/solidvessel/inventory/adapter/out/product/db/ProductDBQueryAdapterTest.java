@@ -32,6 +32,7 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
         assertEquals(productJpaEntity.getQuantity(), product.getQuantity());
         assertEquals(productJpaEntity.getCategory(), product.getCategory());
         assertEquals(productJpaEntity.getPrice(), product.getPrice());
+        assertEquals(productJpaEntity.getIsAvailableInRegion(), product.getIsAvailableInRegion());
     }
 
     @Test

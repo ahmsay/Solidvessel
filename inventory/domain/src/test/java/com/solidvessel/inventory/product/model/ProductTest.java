@@ -11,9 +11,10 @@ public class ProductTest {
         var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 5);
         assertNull(product.getId());
         assertEquals("macbook", product.getName());
-        assertEquals("macbook", product.getName());
         assertEquals(1200D, product.getPrice());
         assertEquals(ProductCategory.ELECTRONICS, product.getCategory());
+        assertEquals(5, product.getQuantity());
+        assertEquals(true, product.getIsAvailableInRegion());
     }
 
     @Test
@@ -29,5 +30,16 @@ public class ProductTest {
         assertTrue(product.isAvailable(3).getIsAvailable());
         assertTrue(product.isAvailable(5).getIsAvailable());
         assertFalse(product.isAvailable(10).getIsAvailable());
+        assertEquals(product.isAvailable(10).getUnavailableReason(), UnavailableReason.NOT_IN_STOCKS);
+    }
+
+    @Test
+    void isAvailableInRegion() {
+        var product1 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).isAvailableInRegion(true).build();
+        var product2 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).isAvailableInRegion(false).build();
+        assertTrue(product1.isAvailable(3).getIsAvailable());
+        var availability = product2.isAvailable(3);
+        assertFalse(availability.getIsAvailable());
+        assertEquals(availability.getUnavailableReason(), UnavailableReason.NOT_AVAILABLE_IN_REGION);
     }
 }

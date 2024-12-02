@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.adapter.out.product.db;
 
+import com.solidvessel.inventory.adapter.out.product.db.entity.ProductJpaEntity;
 import com.solidvessel.inventory.integrationtest.BaseDatabaseTest;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
@@ -27,5 +28,18 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
         var product1 = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 4);
         var product2 = Product.newProduct("macnovel", 800D, ProductCategory.ELECTRONICS, 2);
         productDBAdapter.saveProducts(List.of(product1, product2));
+    }
+
+    @Test
+    public void delete() {
+        var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
+        productDBAdapter.delete(productJpaEntity.getId());
+    }
+
+    @Test
+    public void deleteByIds() {
+        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
+        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5, true));
+        productDBAdapter.deleteByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId()));
     }
 }
