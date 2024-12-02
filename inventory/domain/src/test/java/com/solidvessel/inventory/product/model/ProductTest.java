@@ -26,8 +26,8 @@ public class ProductTest {
     @Test
     void isInStock() {
         var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5, true);
-        assertTrue(product.isInStock(3));
-        assertTrue(product.isInStock(5));
-        assertFalse(product.isInStock(10));
+        assertTrue(product.isAvailable(3).getIsAvailable());
+        assertTrue(product.isAvailable(5).getIsAvailable());
+        assertFalse(product.isAvailable(10).getIsAvailable());
     }
 }
