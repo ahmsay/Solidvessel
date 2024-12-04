@@ -103,7 +103,7 @@ public class CartTest {
         assertEquals(60D, cart.getTotalPrice());
     }
 
-    private Product createProduct(Long id, int quantity) {
+    private Product createProduct(Long id, Integer quantity) {
         return new Product(id, "table", 5D, ProductCategory.FURNITURE, quantity);
     }
 }

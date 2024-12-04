@@ -20,7 +20,7 @@ public class ProductEmbeddable {
     private Double price;
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
-    private int quantity;
+    private Integer quantity;
 
     public static ProductEmbeddable from(Product product) {
         return new ProductEmbeddable(product.getId(), product.getName(), product.getPrice(), product.getCategory(), product.getQuantity());

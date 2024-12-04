@@ -4,9 +4,9 @@ import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 
 public record ProductAvailableEvent(Long id, String name, Double price, ProductCategory productCategory,
-                                    int desiredQuantity, String customerId) {
+                                    Integer desiredQuantity, String customerId) {
 
-    public static ProductAvailableEvent from(Product product, int desiredQuantity, String customerId) {
+    public static ProductAvailableEvent from(Product product, Integer desiredQuantity, String customerId) {
         return new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(), product.getCategory(), desiredQuantity, customerId);
     }
 }

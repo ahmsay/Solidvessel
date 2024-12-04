@@ -26,7 +26,7 @@ public class UpdateProductQuantitiesCommandService implements CommandService<Pay
         var productQuantities = command.productQuantities();
         List<Product> products = productQueryPort.getByIds(productQuantities.keySet().stream().toList());
         products.forEach(product -> {
-            int boughtQuantity = productQuantities.get(product.getId());
+            var boughtQuantity = productQuantities.get(product.getId());
             var availability = product.isAvailable(boughtQuantity);
             if (availability.getIsAvailable()) {
                 product.decreaseQuantity(boughtQuantity);

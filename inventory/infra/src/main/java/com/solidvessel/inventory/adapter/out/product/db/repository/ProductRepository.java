@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<ProductJpaEntity, Long>, PagingAndSortingRepository<ProductJpaEntity, Long> {
 
-    Optional<ProductJpaEntity> findByIdAndQuantityGreaterThanEqual(Long id, int quantity);
+    Optional<ProductJpaEntity> findByIdAndQuantityGreaterThanEqual(Long id, Integer quantity);
 }

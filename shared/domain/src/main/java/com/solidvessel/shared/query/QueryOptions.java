@@ -1,8 +1,8 @@
 package com.solidvessel.shared.query;
 
-public record QueryOptions(int pageNumber, int pageSize) {
+public record QueryOptions(Integer pageNumber, Integer pageSize) {
 
-    public QueryOptions(int pageNumber) {
+    public QueryOptions(Integer pageNumber) {
         this(pageNumber, 10);
     }
 

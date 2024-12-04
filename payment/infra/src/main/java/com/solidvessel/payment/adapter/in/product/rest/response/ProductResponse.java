@@ -6,7 +6,7 @@ import com.solidvessel.payment.product.model.ProductCategory;
 import java.io.Serializable;
 
 public record ProductResponse(Long id, String name, Double price, ProductCategory category,
-                              int quantity) implements Serializable {
+                              Integer quantity) implements Serializable {
 
     public static ProductResponse from(Product product) {
         return new ProductResponse(product.getId(), product.getName(), product.getPrice(), product.getCategory(), product.getQuantity());
