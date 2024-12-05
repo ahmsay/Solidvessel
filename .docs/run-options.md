@@ -56,10 +56,10 @@ In the final stage ArgoCD is installed and the rest of the applications (microse
 In addition to the applications in the test environment,
 tools like External DNS and AWS Load Balancer Controller also created in this environment. Bitnami Postgres applications
 will
-not be created inside the cluster since RDS Postgres databases are used.
+not be created since RDS Postgres databases are used.
 
 ### Aftermath
 
-After these stages are finished, the production environment is ready to use and microservices will be publicly
+After all stages are finished, the production environment will be ready to use and microservices will be publicly
 accessible.
 Tools like Keycloak and ArgoCD are not publicly accessible, and you should use **kubectl port-forward** for them.
