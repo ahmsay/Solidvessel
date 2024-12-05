@@ -23,24 +23,37 @@ Make sure <a href="https://argo-cd.readthedocs.io/en/stable/getting_started/">Ar
 kubectl create -f ./.kubernetes/Root.yaml
 ```
 
-## Production (Will be updated)
-This mode will start the entire application on AWS. Everything will be created from the scratch (including servers).
-Follow these steps to run this application:
-1. Create an AWS account.
-2. Run this script to create an IAM policy to use the ALB Controller.
-```shell
-curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
-aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
-```
-3. Create a CodeBuild project containing the pipeline at <a href="../.ci/zero-2-prod/buildspec.yaml">.ci/zero-2-prod/buildspec.yaml<a/>. You can set the environment variables according
-to your own needs.
-4. Use your own domain name to create DNS records in dns-records.json file. You also need to update hostnames in ingress 
-resource files in .kubernetes folder as well.
-5. Make sure you gave necessary permissions to role you use to run the pipeline. The pipeline uses CloudFormaiton, EKS, EC2, EBS, VPC, IAM,
-Route 53 services. This may seem a lot, but if you encounter an error, AWS will tell you about which permission you are missing.
-6. Run the pipeline. The environment will be ready in approximately 25 minutes.
+## Production
 
-## NOTE
+This mode will start the entire application on AWS. A Kubernetes cluster will be created from scratch (including network
+and nodes)
+and databases will be created from their previous snapshot.
 
-- The steps above are need to be done **only once** (except the last step, obviously). After that, you can create the whole environment with a single click.
-- To delete the environment, you need to delete the related Cloudformation stacks, or use ``eksctl delete cluster`` command.
+The provisioning of this environment has a pipeline on AWS that consists 3 stages. All configurations are inside
+<a href="../.ci/production">.ci/production<a/> folder.
+
+### 1) Kubernetes Cluster
+
+In the first build stage, <b>create-cluster.yaml</b> and <b>cluster.yaml</b>
+files are used to create the K8S cluster. You can change them according to your own needs. Make sure you have necessary
+IAM permissions.
+
+### 2) Databases
+
+The second build stage is responsible from creating databases by using Cloudformation. In the <b>databases.yaml</b> file
+there are also configurations to handle DNS and firewall rules to establish a connection between worker nodes and
+databases.
+
+The databases are created from snapshots, meaning the data is not lost when the databases are down. If this is your
+first setup, you must
+change the databases inside <b>databases.yaml</b> so they are going to be created from scratch.
+
+### 3) Applications
+
+In the final stage ArgoCD is installed and the rest of the applications (microservices, Redis, RabbitMQ...) are created.
+In addition to the applications in the test environment,
+tools like External DNS and AWS Load Balancer Controller also created in this environment.
+
+After these stages the production environment is ready to use and microservices are publicly accessible. Tools like
+Keycloak and ArgoCD are not publicly accessible
+and you should use **kubectl port-forward** for them.
