@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.product.model;
 
+import com.solidvessel.inventory.product.service.command.UpdateProductCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,5 +42,16 @@ public class ProductTest {
         var availability = product2.isAvailable(3);
         assertFalse(availability.getIsAvailable());
         assertEquals(availability.getUnavailableReason(), UnavailableReason.NOT_AVAILABLE_IN_REGION);
+    }
+
+    @Test
+    void update() {
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).build();
+        product.update(new UpdateProductCommand(1L, "milk", 15D, ProductCategory.FURNITURE, 6));
+        assertEquals("milk", product.getName());
+        assertEquals(15D, product.getPrice());
+        assertEquals(ProductCategory.FURNITURE, product.getCategory());
+        assertEquals(6, product.getQuantity());
+        assertEquals(true, product.getIsAvailableInRegion());
     }
 }

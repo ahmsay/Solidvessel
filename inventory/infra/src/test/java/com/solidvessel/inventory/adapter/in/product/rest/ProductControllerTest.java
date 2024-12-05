@@ -2,15 +2,13 @@ package com.solidvessel.inventory.adapter.in.product.rest;
 
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductAvailability;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
-import com.solidvessel.inventory.product.service.AddProductCommandService;
-import com.solidvessel.inventory.product.service.AddProductToCartCommandService;
-import com.solidvessel.inventory.product.service.DeleteProductCommandService;
-import com.solidvessel.inventory.product.service.DeleteProductsCommandService;
+import com.solidvessel.inventory.product.service.*;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
 import com.solidvessel.inventory.product.service.command.DeleteProductsCommand;
 import com.solidvessel.shared.query.QueryOptions;
@@ -49,6 +47,9 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @MockBean
     private AddProductToCartCommandService addProductToCartCommandService;
+
+    @MockBean
+    private UpdateProductCommandService updateProductCommandService;
 
     @MockBean
     private DeleteProductCommandService deleteProductCommandService;
@@ -137,6 +138,20 @@ public class ProductControllerTest extends BaseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    public void updateProduct() throws Exception {
+        var request = new UpdateProductRequest(1L, "Dark Saber", 15D, ProductCategory.ELECTRONICS, 9);
+        var savedProduct = Product.builder().id(1L).name("Dark Saber").price(15D).category(ProductCategory.ELECTRONICS).quantity(9).build();
+        when(updateProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
+        MvcResult mvcResult = mockMvc.perform(
+                put("/product")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(ProductResponse.from(savedProduct)), bodyOf(mvcResult));
     }
 
     @Test
