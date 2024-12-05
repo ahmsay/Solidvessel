@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.product.model;
 
+import com.solidvessel.inventory.product.service.command.UpdateProductCommand;
 import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,5 +39,12 @@ public class Product extends DomainModel {
             return ProductAvailability.notAvailableInRegion();
         }
         return isAvailableInStock(desiredQuantity);
+    }
+
+    public void update(UpdateProductCommand command) {
+        this.name = command.name();
+        this.price = command.price();
+        this.category = command.category();
+        this.quantity = command.quantity();
     }
 }
