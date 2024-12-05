@@ -5,6 +5,7 @@ import com.solidvessel.inventory.adapter.out.product.db.repository.ProductReposi
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.port.ProductPort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class ProductDBAdapter implements ProductPort {
 
     private final ProductRepository productRepository;
 
+    @CacheEvict(value = "product", key = "#product.id")
     @Override
     public Product save(Product product) {
         return productRepository.save(ProductJpaEntity.from(product)).toDomainModel();
