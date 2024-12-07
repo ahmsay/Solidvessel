@@ -2,6 +2,7 @@ package com.solidvessel.inventory.adapter.in.product.rest;
 
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.ProductAvailability;
@@ -29,6 +30,7 @@ public class ProductController {
     private final DeleteProductCommandService deleteProductCommandService;
     private final DeleteProductsCommandService deleteProductsCommandService;
     private final UpdateProductCommandService updateProductCommandService;
+    private final ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping()
@@ -58,6 +60,12 @@ public class ProductController {
     @GetMapping("/{id}/isAvailable")
     public ProductAvailability isAvailable(@PathVariable Long id, @RequestParam Integer quantity) {
         return productQueryPort.getById(id).isAvailable(quantity);
+    }
+
+    @PreAuthorize("hasAuthority('MANAGER')")
+    @PostMapping("/changeAvailability")
+    public ProductAvailability changeAvailability(@RequestBody @Valid ChangeProductAvailabilityRequest request) {
+        return changeProductAvailabilityCommandService.execute(request.toCommand());
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

@@ -47,4 +47,8 @@ public class Product extends DomainModel {
         this.category = command.category();
         this.quantity = command.quantity();
     }
+
+    public void changeAvailability(Boolean isAvailable) {
+        this.isAvailableInRegion = isAvailable;
+    }
 }
