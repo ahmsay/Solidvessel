@@ -677,20 +677,17 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/inventory/product/isAvailable?id=1&quantity=1",
+							"raw": "{{baseUrl}}/inventory/product/1/isAvailable?quantity=1",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"inventory",
 								"product",
+								"1",
 								"isAvailable"
 							],
 							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								},
 								{
 									"key": "quantity",
 									"value": "1"
@@ -790,6 +787,54 @@
 								"product",
 								"2",
 								"addToCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change availability",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"availability\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inventory/product/changeAvailability",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventory",
+								"product",
+								"changeAvailability"
 							]
 						}
 					},
