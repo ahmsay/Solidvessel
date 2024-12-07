@@ -4,21 +4,20 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.product.event.ProductAvailableEvent;
-import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.VoidCommandService;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class AddToCartCommandService implements CommandService<ProductAvailableEvent, Void> {
+public class AddToCartCommandService implements VoidCommandService<ProductAvailableEvent> {
 
     private final CartPort cartPort;
     private final CartQueryPort cartQueryPort;
 
-    public Void execute(ProductAvailableEvent event) {
+    public void execute(ProductAvailableEvent event) {
         Cart cart = cartQueryPort.getByCustomerId(event.customerId());
         cart.addProduct(event.toDomainModel());
         cartPort.save(cart);
-        return null;
     }
 }

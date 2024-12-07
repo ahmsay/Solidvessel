@@ -6,20 +6,20 @@ import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.product.event.ProductsCheckedEvent;
 import com.solidvessel.shared.event.EventPublisher;
-import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
+import com.solidvessel.shared.service.VoidCommandService;
 import lombok.RequiredArgsConstructor;
 
 @DomainComponent
 @RequiredArgsConstructor
-public class UpdatePaymentStatusCommandService implements CommandService<ProductsCheckedEvent, Void> {
+public class UpdatePaymentStatusCommandService implements VoidCommandService<ProductsCheckedEvent> {
 
     private final PaymentQueryPort paymentQueryPort;
     private final PaymentPort paymentPort;
     private final EventPublisher<PaymentApprovedEvent> paymentApprovedEventPublisher;
 
     @Override
-    public Void execute(ProductsCheckedEvent command) {
+    public void execute(ProductsCheckedEvent command) {
         Payment payment = paymentQueryPort.getById(command.paymentId());
         if (command.areProductsAvailable()) {
             payment.approve();
@@ -29,6 +29,5 @@ public class UpdatePaymentStatusCommandService implements CommandService<Product
             payment.cancel();
             paymentPort.update(payment);
         }
-        return null;
     }
 }
