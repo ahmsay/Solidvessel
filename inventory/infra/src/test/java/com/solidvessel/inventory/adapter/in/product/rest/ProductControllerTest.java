@@ -2,11 +2,13 @@ package com.solidvessel.inventory.adapter.in.product.rest;
 
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductAvailability;
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.inventory.product.model.UnavailableReason;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.*;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
@@ -56,6 +58,9 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @MockBean
     private DeleteProductsCommandService deleteProductsCommandService;
+
+    @MockBean
+    private ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
 
     @Test
     @WithMockCustomer
@@ -124,6 +129,20 @@ public class ProductControllerTest extends BaseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(ProductAvailability.available()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    public void changeProductAvailability() throws Exception {
+        var request = new ChangeProductAvailabilityRequest(1L, false);
+        var availability = new ProductAvailability(false, UnavailableReason.NOT_AVAILABLE_IN_REGION);
+        when(changeProductAvailabilityCommandService.execute(request.toCommand())).thenReturn(availability);
+        MvcResult mvcResult = mockMvc.perform(
+                post("/product/changeAvailability")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(ProductAvailability.notAvailableInRegion()), bodyOf(mvcResult));
     }
 
     @Test

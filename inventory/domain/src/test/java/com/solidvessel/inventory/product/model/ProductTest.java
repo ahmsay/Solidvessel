@@ -54,4 +54,14 @@ public class ProductTest {
         assertEquals(6, product.getQuantity());
         assertEquals(true, product.getIsAvailableInRegion());
     }
+
+    @Test
+    void changeAvailability() {
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).build();
+        product.changeAvailability(false);
+
+        var availability = product.isAvailable(0);
+        assertFalse(availability.getIsAvailable());
+        assertEquals(UnavailableReason.NOT_AVAILABLE_IN_REGION, availability.getUnavailableReason());
+    }
 }
