@@ -55,8 +55,8 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @GetMapping("/isAvailable")
-    public ProductAvailability isAvailable(@RequestParam Long id, @RequestParam Integer quantity) {
+    @GetMapping("/{id}/isAvailable")
+    public ProductAvailability isAvailable(@PathVariable Long id, @RequestParam Integer quantity) {
         return productQueryPort.getById(id).isAvailable(quantity);
     }
 

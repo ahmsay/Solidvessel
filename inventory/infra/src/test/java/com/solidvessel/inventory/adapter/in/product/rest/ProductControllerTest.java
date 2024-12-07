@@ -119,8 +119,7 @@ public class ProductControllerTest extends BaseControllerTest {
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
         when(productQueryPort.getById(1L)).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(
-                get("/product/isAvailable")
-                        .queryParam("id", "1")
+                get("/product/1/isAvailable")
                         .queryParam("quantity", "5")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
