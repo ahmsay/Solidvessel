@@ -1270,6 +1270,40 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "clear cart",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/payment/cart/clear",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payment",
+										"cart",
+										"clear"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
