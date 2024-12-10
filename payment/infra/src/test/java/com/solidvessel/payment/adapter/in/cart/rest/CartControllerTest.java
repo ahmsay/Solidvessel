@@ -4,9 +4,12 @@ import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartReques
 import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
+import com.solidvessel.payment.cart.service.ClearCartCommandService;
 import com.solidvessel.payment.cart.service.RemoveFromCartCommandService;
+import com.solidvessel.payment.cart.service.command.ClearCartCommand;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
@@ -34,10 +37,13 @@ public class CartControllerTest extends BaseControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
+    private CartQueryPort cartQueryPort;
+
+    @MockBean
     private RemoveFromCartCommandService removeFromCartCommandService;
 
     @MockBean
-    private CartQueryPort cartQueryPort;
+    private ClearCartCommandService clearCartCommandService;
 
     @Test
     @WithMockCustomer
@@ -64,6 +70,17 @@ public class CartControllerTest extends BaseControllerTest {
         MvcResult mvcResult = mockMvc.perform(
                 delete("/cart")
                         .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    public void clearCart() throws Exception {
+        when(clearCartCommandService.execute(new ClearCartCommand(SessionUtil.getCurrentUserId()))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                delete("/cart/clear")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
