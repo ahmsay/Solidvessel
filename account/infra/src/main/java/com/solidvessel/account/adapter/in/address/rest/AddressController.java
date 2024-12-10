@@ -29,25 +29,25 @@ public class AddressController {
     private final UpdateAddressCommandService updateAddressCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @GetMapping()
+    @GetMapping
     public List<AddressResponse> getAddresses(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
         return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), QueryOptions.of(pageNumber, pageSize)).stream().map(AddressResponse::from).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @PostMapping()
+    @PostMapping
     public AddressResponse addAddress(@RequestBody @Valid AddAddressRequest request) {
         return AddressResponse.from(addAddressCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @DeleteMapping()
+    @DeleteMapping
     public OperationResult deleteAddress(@RequestBody @Valid DeleteAddressRequest request) {
         return deleteAddressCommandService.execute(request.toCommand());
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @PutMapping()
+    @PutMapping
     public AddressResponse updateAddress(@RequestBody @Valid UpdateAddressRequest request) {
         return AddressResponse.from(updateAddressCommandService.execute(request.toCommand()));
     }

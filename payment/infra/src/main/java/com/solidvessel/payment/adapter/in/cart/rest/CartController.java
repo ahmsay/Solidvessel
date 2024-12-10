@@ -29,7 +29,7 @@ public class CartController {
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @DeleteMapping()
+    @DeleteMapping
     public OperationResult removeFromCart(@RequestBody @Valid RemoveFromCartRequest request) {
         return removeFromCartCommandService.execute(request.toCommand());
     }

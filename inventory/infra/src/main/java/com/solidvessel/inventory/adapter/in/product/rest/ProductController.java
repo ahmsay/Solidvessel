@@ -33,7 +33,7 @@ public class ProductController {
     private final ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @GetMapping()
+    @GetMapping
     public List<ProductResponse> getProducts(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
         return productQueryPort.getProducts(QueryOptions.of(pageNumber, pageSize)).stream().map(ProductResponse::from).toList();
     }
@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
-    @PostMapping()
+    @PostMapping
     public ProductResponse add(@RequestBody @Valid AddProductRequest request) {
         return ProductResponse.from(addProductCommandService.execute(request.toCommand()));
     }
@@ -69,7 +69,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
-    @PutMapping()
+    @PutMapping
     public ProductResponse update(@RequestBody @Valid UpdateProductRequest request) {
         return ProductResponse.from(updateProductCommandService.execute(request.toCommand()));
     }

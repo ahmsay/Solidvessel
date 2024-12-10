@@ -25,7 +25,7 @@ public class CustomerController {
     private final PaymentRestClient paymentRestClient;
 
     @PreAuthorize("hasAuthority('MANAGER')")
-    @GetMapping()
+    @GetMapping
     public List<CustomerResponse> getUsers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
         List<UserRepresentation> users = keycloakAdapter.getUsers(start, end);
         return users.stream().map(CustomerResponse::from).toList();
