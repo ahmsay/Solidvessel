@@ -17,4 +17,6 @@ public interface AddressRepository extends JpaRepository<AddressJpaEntity, Long>
     boolean existsByNameAndCustomerId(String name, String customerId);
 
     Optional<AddressJpaEntity> findByIdAndCustomerId(Long id, String customerId);
+
+    int countByCustomerId(String customerId);
 }

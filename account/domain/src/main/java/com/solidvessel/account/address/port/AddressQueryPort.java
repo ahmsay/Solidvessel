@@ -14,4 +14,6 @@ public interface AddressQueryPort {
     boolean isAddressRegistered(String customerId, String name);
 
     Address getByIdAndCustomerId(Long id, String customerId);
+
+    int getAddressCount(String customerId);
 }

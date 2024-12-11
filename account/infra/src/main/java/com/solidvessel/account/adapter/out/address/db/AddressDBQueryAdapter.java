@@ -40,4 +40,9 @@ public class AddressDBQueryAdapter implements AddressQueryPort {
     public Address getByIdAndCustomerId(Long id, String customerId) {
         return addressRepository.findByIdAndCustomerId(id, customerId).map(AddressJpaEntity::toDomainModel).orElseThrow(() -> new EntityNotFoundException("Address not found!"));
     }
+
+    @Override
+    public int getAddressCount(String customerId) {
+        return addressRepository.countByCustomerId(customerId);
+    }
 }
