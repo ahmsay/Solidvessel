@@ -18,8 +18,12 @@ public class AddAddressCommandService implements CommandService<AddAddressComman
 
     @Override
     public Address execute(AddAddressCommand command) {
+        var address = command.toDomainModel();
+        if (addressQueryPort.getAddressCount(command.customerId()) == 0) {
+            address.setPrimary();
+        }
         checkIfAddressIsAlreadyRegistered(command);
-        return addressPort.save(command.toDomainModel());
+        return addressPort.save(address);
     }
 
     private void checkIfAddressIsAlreadyRegistered(AddAddressCommand command) {
