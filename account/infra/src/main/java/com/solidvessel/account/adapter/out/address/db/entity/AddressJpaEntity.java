@@ -33,6 +33,9 @@ public class AddressJpaEntity extends BaseEntity {
     @NotNull
     private String zipcode;
 
+    @NotNull
+    private Boolean isPrimary;
+
     public Address toDomainModel() {
         return Address.builder()
                 .id(getId())
@@ -44,6 +47,7 @@ public class AddressJpaEntity extends BaseEntity {
                 .country(country)
                 .city(city)
                 .zipCode(zipcode)
+                .isPrimary(isPrimary)
                 .build();
     }
 
@@ -58,6 +62,7 @@ public class AddressJpaEntity extends BaseEntity {
                 .country(address.getCountry())
                 .city(address.getCity())
                 .zipcode(address.getZipCode())
+                .isPrimary(address.getIsPrimary())
                 .build();
     }
 }

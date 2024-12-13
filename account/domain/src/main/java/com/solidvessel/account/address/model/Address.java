@@ -16,11 +16,16 @@ public class Address extends DomainModel {
     private String country;
     private String city;
     private String zipCode;
+    private Boolean isPrimary;
 
     public void update(UpdateAddressCommand command) {
         this.name = command.name();
         this.country = command.country();
         this.city = command.city();
         this.zipCode = command.zipcode();
+    }
+
+    public void setPrimary() {
+        this.isPrimary = true;
     }
 }
