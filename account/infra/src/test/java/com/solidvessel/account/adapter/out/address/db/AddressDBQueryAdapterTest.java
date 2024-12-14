@@ -34,6 +34,7 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
         assertEquals(addressJpaEntity.getCity(), address.getCity());
         assertEquals(addressJpaEntity.getCustomerId(), address.getCustomerId());
         assertEquals(addressJpaEntity.getZipcode(), address.getZipCode());
+        assertEquals(addressJpaEntity.getIsPrimary(), address.getIsPrimary());
     }
 
     @Test
@@ -48,5 +49,12 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
         var address = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         var isAddressAlreadyRegistered = addressDBQueryAdapter.isAddressRegistered(address.getCustomerId(), address.getName());
         assertTrue(isAddressAlreadyRegistered);
+    }
+
+    @Test
+    public void countAddresses() {
+        persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
+        int addressCount = addressDBQueryAdapter.getAddressCount("123");
+        assertEquals(1, addressCount);
     }
 }

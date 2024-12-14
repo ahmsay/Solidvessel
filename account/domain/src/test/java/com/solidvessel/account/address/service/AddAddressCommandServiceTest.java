@@ -22,10 +22,21 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
     private AddressQueryPort addressQueryPort;
 
     @Test
-    void addAddress() {
+    void addFirstAddress() {
         var command = new AddAddressCommand("home", "norway", "oslo", "245", "123");
         var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
+        when(addressQueryPort.getAddressCount(command.customerId())).thenReturn(0);
+        commandService.execute(command);
+        verify(addressPort).save(any(Address.class));
+    }
+
+    @Test
+    void addNonFirstAddress() {
+        var command = new AddAddressCommand("home", "norway", "oslo", "245", "123");
+        var commandService = new AddAddressCommandService(addressPort, addressQueryPort);
+        when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
+        when(addressQueryPort.getAddressCount(command.customerId())).thenReturn(1);
         commandService.execute(command);
         verify(addressPort).save(any(Address.class));
     }
