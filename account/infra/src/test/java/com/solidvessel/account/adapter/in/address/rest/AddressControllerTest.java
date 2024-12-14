@@ -51,7 +51,7 @@ public class AddressControllerTest extends BaseControllerTest {
     @WithMockCustomer
     public void getAddresses() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var addresses = List.of(new Address("123", "home", "turkey", "eskisehir", "26200"));
+        var addresses = List.of(new Address("123", "home", "turkey", "eskisehir", "26200", false));
         when(addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), queryOptions)).thenReturn(addresses);
         MvcResult mvcResult = mockMvc.perform(
                 get("/address")
