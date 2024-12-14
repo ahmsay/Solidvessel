@@ -1,14 +1,15 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
-import com.solidvessel.account.adapter.in.address.rest.request.DeleteAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
 import com.solidvessel.account.address.service.DeleteAddressCommandService;
+import com.solidvessel.account.address.service.SetPrimaryAddressCommandService;
 import com.solidvessel.account.address.service.UpdateAddressCommandService;
+import com.solidvessel.account.address.service.command.DeleteAddressCommand;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
@@ -47,6 +48,9 @@ public class AddressControllerTest extends BaseControllerTest {
     @MockBean
     private UpdateAddressCommandService updateAddressCommandService;
 
+    @MockBean
+    private SetPrimaryAddressCommandService setPrimaryAddressCommandService;
+
     @Test
     @WithMockCustomer
     public void getAddresses() throws Exception {
@@ -78,11 +82,9 @@ public class AddressControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     public void deleteAddress() throws Exception {
-        var request = new DeleteAddressRequest(1L);
-        when(deleteAddressCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
+        when(deleteAddressCommandService.execute(new DeleteAddressCommand(1L, SessionUtil.getCurrentUserId()))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
-                delete("/address")
-                        .content(bodyOf(request))
+                delete("/address/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
