@@ -22,7 +22,7 @@ public class OrderConsumerContractTest extends BaseConsumerContractTest {
     private OrderRestClient orderRestClient;
 
     @Test
-    public void getOrdersOfCustomers() {
+    void getOrdersOfCustomers() {
         var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L), new OrderResponse(2L, OrderStatus.ON_THE_WAY, 6L));
         var response = orderRestClient.getByCustomerId("123", "abc");
         assertEquals(orders, response);

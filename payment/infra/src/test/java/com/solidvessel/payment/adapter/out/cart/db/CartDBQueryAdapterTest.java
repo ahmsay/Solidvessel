@@ -17,7 +17,7 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
     private CartDBQueryAdapter cartDBQueryAdapter;
 
     @Test
-    public void getByCustomerId() {
+    void getByCustomerId() {
         var productEmbeddable = new ProductEmbeddable(1L, "desk", 20D, ProductCategory.FURNITURE, 4);
         var cartJpaEntity = persistEntity(new CartJpaEntity("123", List.of(productEmbeddable)));
         var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
@@ -33,7 +33,7 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getByCustomerIdEmptyCart() {
+    void getByCustomerIdEmptyCart() {
         var cart = cartDBQueryAdapter.getByCustomerId("123");
         assertNull(cart.getId());
         assertEquals("123", cart.getCustomerId());

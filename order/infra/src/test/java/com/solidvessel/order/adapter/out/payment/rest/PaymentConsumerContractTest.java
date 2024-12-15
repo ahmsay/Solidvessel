@@ -19,7 +19,7 @@ public class PaymentConsumerContractTest extends BaseConsumerContractTest {
     private PaymentRestClient paymentRestClient;
 
     @Test
-    public void getPaymentOfOrder() {
+    void getPaymentOfOrder() {
         var payment = new PaymentResponse(1L, 174D);
         var response = paymentRestClient.getById(1L, "abc");
         assertEquals(payment, response);

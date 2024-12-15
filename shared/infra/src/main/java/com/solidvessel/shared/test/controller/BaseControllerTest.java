@@ -20,7 +20,7 @@ public class BaseControllerTest {
     ObjectMapper objectMapper;
 
     @PostConstruct
-    public void configureObjectMapper() {
+    void configureObjectMapper() {
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);

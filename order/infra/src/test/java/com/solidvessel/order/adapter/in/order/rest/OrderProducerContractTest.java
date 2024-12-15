@@ -28,7 +28,7 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
     private PaymentRestClient paymentRestClient;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         var orders = List.of(
                 Order.builder().id(1L).status(OrderStatus.DELIVERED).customerId("123").paymentId(5L).build(),
                 Order.builder().id(2L).status(OrderStatus.ON_THE_WAY).customerId("123").paymentId(6L).build()

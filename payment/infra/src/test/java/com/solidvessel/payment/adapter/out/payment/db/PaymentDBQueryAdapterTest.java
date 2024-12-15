@@ -19,7 +19,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
     private PaymentDBQueryAdapter paymentDBQueryAdapter;
 
     @Test
-    public void getProducts() {
+    void getProducts() {
         var product1 = new ProductEmbeddable(1L, "pillow", 10D, ProductCategory.CLOTHING, 6);
         var payment1 = new PaymentJpaEntity("123", List.of(product1), 60D, PaymentStatus.APPROVED);
         var product2 = new ProductEmbeddable(2L, "scissors", 5D, ProductCategory.TOOL, 3);
@@ -32,7 +32,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getById() {
+    void getById() {
         var productEmbeddable = new ProductEmbeddable(1L, "phone", 500D, ProductCategory.ELECTRONICS, 2);
         var paymentJpaEntity = persistEntity(new PaymentJpaEntity("123", List.of(productEmbeddable), 1000D, PaymentStatus.APPROVED));
         var payment = paymentDBQueryAdapter.getById(paymentJpaEntity.getId());
@@ -50,7 +50,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getByCustomerId() {
+    void getByCustomerId() {
         var product = new ProductEmbeddable(1L, "apple", 3D, ProductCategory.FURNITURE, 3);
         var payment = new PaymentJpaEntity("789", List.of(product), 9D, PaymentStatus.APPROVED);
         persistEntity(payment);

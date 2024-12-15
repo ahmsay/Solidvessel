@@ -17,14 +17,14 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
     private ProductDBQueryAdapter productDBQueryAdapter;
 
     @Test
-    public void getProducts() {
+    void getProducts() {
         persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var products = productDBQueryAdapter.getProducts(new QueryOptions(0));
         assertEquals("macbook", products.getFirst().getName());
     }
 
     @Test
-    public void getById() {
+    void getById() {
         var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var product = productDBQueryAdapter.getById(productJpaEntity.getId());
         assertEquals(productJpaEntity.getId(), product.getId());
@@ -36,7 +36,7 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getByIds() {
+    void getByIds() {
         var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5, true));
         var productJpaEntity3 = persistEntity(new ProductJpaEntity("chair", 120D, ProductCategory.FURNITURE, 2, true));
@@ -45,7 +45,7 @@ public class ProductDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getDomainModelsByIds() {
+    void getDomainModelsByIds() {
         var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5, true));
         var productJpaEntity3 = persistEntity(new ProductJpaEntity("chair", 120D, ProductCategory.FURNITURE, 2, true));

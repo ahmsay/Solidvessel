@@ -45,7 +45,7 @@ public class CustomerControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getCustomers() throws Exception {
+    void getCustomers() throws Exception {
         var users = List.of(createUser(), createUserWithNoPhone(), createUserWithNoBirthDate(), createUserWithNoPhoneAndBirthdate());
         when(keycloakAdapter.getUsers(0, 100)).thenReturn(users);
         MvcResult mvcResult = mockMvc.perform(
@@ -59,7 +59,7 @@ public class CustomerControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getCustomerById() throws Exception {
+    void getCustomerById() throws Exception {
         var user = createUser();
         when(keycloakAdapter.getUser("123")).thenReturn(user);
         MvcResult mvcResult = mockMvc.perform(
@@ -71,7 +71,7 @@ public class CustomerControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getCustomerDetailById() throws Exception {
+    void getCustomerDetailById() throws Exception {
         var user = createUser();
         var customer = CustomerResponse.from(user);
         var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L));

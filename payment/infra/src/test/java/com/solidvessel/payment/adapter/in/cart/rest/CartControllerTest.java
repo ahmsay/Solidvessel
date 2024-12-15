@@ -47,7 +47,7 @@ public class CartControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void listCart() throws Exception {
+    void listCart() throws Exception {
         var products = Map.of(
                 1L, new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 3),
                 2L, new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 2)
@@ -64,7 +64,7 @@ public class CartControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void removeFromCart() throws Exception {
+    void removeFromCart() throws Exception {
         var request = new RemoveFromCartRequest(1L);
         when(removeFromCartCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
@@ -77,7 +77,7 @@ public class CartControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void clearCart() throws Exception {
+    void clearCart() throws Exception {
         when(clearCartCommandService.execute(new ClearCartCommand(SessionUtil.getCurrentUserId()))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 delete("/cart/clear")

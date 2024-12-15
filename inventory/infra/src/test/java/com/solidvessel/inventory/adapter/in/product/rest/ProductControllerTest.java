@@ -64,7 +64,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getProducts() throws Exception {
+    void getProducts() throws Exception {
         var queryOptions = new QueryOptions(0);
         var products = List.of(Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10));
         when(productQueryPort.getProducts(queryOptions)).thenReturn(products);
@@ -78,7 +78,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getProductById() throws Exception {
+    void getProductById() throws Exception {
         var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10);
         when(productQueryPort.getById(anyLong())).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
@@ -90,7 +90,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getProductsByIds() throws Exception {
+    void getProductsByIds() throws Exception {
         var products = List.of(
                 Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10),
                 Product.newProduct("shirt", 20D, ProductCategory.CLOTHING, 5)
@@ -106,7 +106,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void addProduct() throws Exception {
+    void addProduct() throws Exception {
         var request = new AddProductRequest("desk", 150D, ProductCategory.FURNITURE, 5);
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
         when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
@@ -120,7 +120,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void isProductAvailable() throws Exception {
+    void isProductAvailable() throws Exception {
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
         when(productQueryPort.getById(1L)).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(
@@ -133,7 +133,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void changeProductAvailability() throws Exception {
+    void changeProductAvailability() throws Exception {
         var request = new ChangeProductAvailabilityRequest(1L, false);
         var availability = new ProductAvailability(false, UnavailableReason.NOT_AVAILABLE_IN_REGION);
         when(changeProductAvailabilityCommandService.execute(request.toCommand())).thenReturn(availability);
@@ -147,7 +147,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void addProductToCart() throws Exception {
+    void addProductToCart() throws Exception {
         var request = new AddProductToCartRequest(3);
         when(addProductToCartCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
@@ -160,7 +160,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void updateProduct() throws Exception {
+    void updateProduct() throws Exception {
         var request = new UpdateProductRequest(1L, "Dark Saber", 15D, ProductCategory.ELECTRONICS, 9);
         var savedProduct = Product.builder().id(1L).name("Dark Saber").price(15D).category(ProductCategory.ELECTRONICS).quantity(9).build();
         when(updateProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
@@ -174,7 +174,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void deleteProduct() throws Exception {
+    void deleteProduct() throws Exception {
         when(deleteProductCommandService.execute(new DeleteProductCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 delete("/product/1")
@@ -185,7 +185,7 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void deleteProducts() throws Exception {
+    void deleteProducts() throws Exception {
         when(deleteProductsCommandService.execute(new DeleteProductsCommand(List.of(1L, 2L)))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 delete("/product/ids")

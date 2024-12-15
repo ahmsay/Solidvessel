@@ -15,7 +15,7 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
     private AddressDBQueryAdapter addressDBQueryAdapter;
 
     @Test
-    public void getAddresses() {
+    void getAddresses() {
         persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         persistEntity(new AddressJpaEntity("123", "work", "finland", "helsinki", "4757", false));
         var addresses = addressDBQueryAdapter.getAddresses("123", new QueryOptions(0));
@@ -24,7 +24,7 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getByIdAndCustomerId() {
+    void getByIdAndCustomerId() {
         var addressJpaEntity = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         var address = addressDBQueryAdapter.getByIdAndCustomerId(addressJpaEntity.getId(), addressJpaEntity.getCustomerId());
         assertEquals(addressJpaEntity.getId(), address.getId());
@@ -38,28 +38,28 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void isAddressRegisteredWithIdAndCustomerId() {
+    void isAddressRegisteredWithIdAndCustomerId() {
         var address = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         var isAddressAlreadyRegistered = addressDBQueryAdapter.isAddressRegistered(address.getId(), address.getCustomerId());
         assertTrue(isAddressAlreadyRegistered);
     }
 
     @Test
-    public void isAddressRegisteredWithNameAndCustomerId() {
+    void isAddressRegisteredWithNameAndCustomerId() {
         var address = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         var isAddressAlreadyRegistered = addressDBQueryAdapter.isAddressRegistered(address.getCustomerId(), address.getName());
         assertTrue(isAddressAlreadyRegistered);
     }
 
     @Test
-    public void countAddresses() {
+    void countAddresses() {
         persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         int addressCount = addressDBQueryAdapter.getAddressCount("123");
         assertEquals(1, addressCount);
     }
 
     @Test
-    public void getPrimaryAddress() {
+    void getPrimaryAddress() {
         persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", true));
         var address = addressDBQueryAdapter.getPrimaryAddress("123");
         assertEquals(true, address.getIsPrimary());

@@ -30,7 +30,7 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         RestAssuredMockMvc.standaloneSetup(new PaymentController(paymentQueryPort, keycloakAdapter, acceptPaymentCommandService));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(createPayments());
         when(paymentQueryPort.getById(1L)).thenReturn(createPayment());

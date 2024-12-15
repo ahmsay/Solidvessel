@@ -13,7 +13,7 @@ public class CartDBAdapterTest extends BaseDatabaseTest {
     private CartDBAdapter cartDBAdapter;
 
     @Test
-    public void saveCart() {
+    void saveCart() {
         var cart = Cart.newCart("123");
         cart.addProduct(new Product(1L, "table", 5D, ProductCategory.FURNITURE, 5));
         cartDBAdapter.save(cart);

@@ -50,7 +50,7 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getOrders() throws Exception {
+    void getOrders() throws Exception {
         var queryOptions = new QueryOptions(0);
         var order = Order.builder().customerId("123").paymentId(1L).status(OrderStatus.DELIVERED).build();
         var orders = List.of(order);
@@ -65,7 +65,7 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getOrdersOfCurrentCustomer() throws Exception {
+    void getOrdersOfCurrentCustomer() throws Exception {
         var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
         when(orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
@@ -77,7 +77,7 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getOrderById() throws Exception {
+    void getOrderById() throws Exception {
         var order = new Order(OrderStatus.DELIVERED, "123", 1L);
         when(orderQueryPort.getById(anyLong())).thenReturn(order);
         MvcResult mvcResult = mockMvc.perform(
@@ -89,7 +89,7 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getOrderDetailById() throws Exception {
+    void getOrderDetailById() throws Exception {
         var order = new Order(OrderStatus.DELIVERED, "123", 1L);
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var payment = new PaymentResponse(1L, 105D);
@@ -107,7 +107,7 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getOrderByCustomerId() throws Exception {
+    void getOrderByCustomerId() throws Exception {
         var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(

@@ -14,14 +14,14 @@ public class AddressDBAdapterTest extends BaseDatabaseTest {
     private AddressDBAdapter addressDBAdapter;
 
     @Test
-    public void saveAddress() {
+    void saveAddress() {
         var address = new Address("123", "home", "turkey", "eskisehir", "26000", false);
         var jpaEntity = addressDBAdapter.save(address);
         assertEquals("home", jpaEntity.getName());
     }
 
     @Test
-    public void deleteAddress() {
+    void deleteAddress() {
         var address = persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", false));
         addressDBAdapter.delete(address.getId(), "123");
     }

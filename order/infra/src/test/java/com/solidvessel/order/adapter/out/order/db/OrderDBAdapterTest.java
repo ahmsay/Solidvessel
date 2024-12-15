@@ -12,7 +12,7 @@ public class OrderDBAdapterTest extends BaseDatabaseTest {
     private OrderDBAdapter orderDBAdapter;
 
     @Test
-    public void createOrder() {
+    void createOrder() {
         var order = Order.builder().customerId("123").paymentId(1L).status(OrderStatus.PREPARING).build();
         orderDBAdapter.create(order);
     }

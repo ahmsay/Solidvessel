@@ -54,7 +54,7 @@ public class AddressControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getAddresses() throws Exception {
+    void getAddresses() throws Exception {
         var queryOptions = new QueryOptions(0);
         var addresses = List.of(new Address("123", "home", "turkey", "eskisehir", "26200", false));
         when(addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), queryOptions)).thenReturn(addresses);
@@ -68,7 +68,7 @@ public class AddressControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void addAddress() throws Exception {
+    void addAddress() throws Exception {
         var request = new AddAddressRequest("home", "norway", "oslo", "344");
         var savedAddress = Address.builder().id(1L).customerId("123").name("home").country("norway").city("oslo").zipCode("344").build();
         when(addAddressCommandService.execute(request.toCommand())).thenReturn(savedAddress);
@@ -82,7 +82,7 @@ public class AddressControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void deleteAddress() throws Exception {
+    void deleteAddress() throws Exception {
         when(deleteAddressCommandService.execute(new DeleteAddressCommand(1L, SessionUtil.getCurrentUserId()))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 delete("/address/1")
@@ -93,7 +93,7 @@ public class AddressControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void updateAddress() throws Exception {
+    void updateAddress() throws Exception {
         var request = new UpdateAddressRequest(1L, "home", "finland", "helsinki", "534");
         var savedAddress = Address.builder().id(1L).customerId("123").name("home").country("finland").city("helsinki").zipCode("534").build();
         when(updateAddressCommandService.execute(request.toCommand())).thenReturn(savedAddress);
@@ -107,7 +107,7 @@ public class AddressControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void setPrimaryAddress() throws Exception {
+    void setPrimaryAddress() throws Exception {
         when(setPrimaryAddressCommandService.execute(new SetPrimaryAddressCommand(1L, SessionUtil.getCurrentUserId()))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 put("/address/1/setPrimary")

@@ -54,7 +54,7 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getPayments() throws Exception {
+    void getPayments() throws Exception {
         var queryOptions = new QueryOptions(0);
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
@@ -69,7 +69,7 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void getPaymentsOfCurrentCustomer() throws Exception {
+    void getPaymentsOfCurrentCustomer() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(payments);
@@ -82,7 +82,7 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getPaymentById() throws Exception {
+    void getPaymentById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payment = Payment.builder().customerId("123").products(products).totalPrice(105D).status(PaymentStatus.CANCELLED).build();
         when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
@@ -95,7 +95,7 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getPaymentDetailById() throws Exception {
+    void getPaymentDetailById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payment = Payment.builder().customerId("123").products(products).totalPrice(105D).status(PaymentStatus.APPROVED).build();
         var customer = new CustomerResponse("123", "lorne", "malvo");
@@ -111,7 +111,7 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
-    public void getPaymentsByCustomerId() throws Exception {
+    void getPaymentsByCustomerId() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(payments);
@@ -124,7 +124,7 @@ public class PaymentControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
-    public void acceptPayment() throws Exception {
+    void acceptPayment() throws Exception {
         var request = new AcceptPaymentRequest();
         when(acceptPaymentCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(

@@ -15,7 +15,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
     private OrderDBQueryAdapter orderDBQueryAdapter;
 
     @Test
-    public void getProducts() {
+    void getProducts() {
         persistEntity(new OrderJpaEntity(OrderStatus.DELIVERED, "123", 1L));
         persistEntity(new OrderJpaEntity(OrderStatus.ON_THE_WAY, "456", 5L));
         var orders = orderDBQueryAdapter.getOrders(new QueryOptions(0));
@@ -24,7 +24,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getById() {
+    void getById() {
         var orderJpaEntity = persistEntity(new OrderJpaEntity(OrderStatus.DELIVERED, "123", 12L));
         var order = orderDBQueryAdapter.getById(orderJpaEntity.getId());
         assertEquals(orderJpaEntity.getId(), order.getId());
@@ -34,7 +34,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    public void getCustomerId() {
+    void getCustomerId() {
         persistEntity(new OrderJpaEntity(OrderStatus.PREPARING, "123", 12L));
         var ordersOfCustomer = orderDBQueryAdapter.getByCustomerId("123");
         assertEquals(OrderStatus.PREPARING, ordersOfCustomer.getFirst().getStatus());

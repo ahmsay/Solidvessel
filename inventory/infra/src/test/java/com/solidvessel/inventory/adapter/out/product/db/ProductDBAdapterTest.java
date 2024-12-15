@@ -17,27 +17,27 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
     private ProductDBAdapter productDBAdapter;
 
     @Test
-    public void saveProduct() {
+    void saveProduct() {
         var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 4);
         var jpaEntity = productDBAdapter.save(product);
         assertEquals("macbook", jpaEntity.getName());
     }
 
     @Test
-    public void saveProducts() {
+    void saveProducts() {
         var product1 = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 4);
         var product2 = Product.newProduct("macnovel", 800D, ProductCategory.ELECTRONICS, 2);
         productDBAdapter.saveProducts(List.of(product1, product2));
     }
 
     @Test
-    public void delete() {
+    void delete() {
         var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         productDBAdapter.delete(productJpaEntity.getId());
     }
 
     @Test
-    public void deleteByIds() {
+    void deleteByIds() {
         var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
         var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", 50D, ProductCategory.CLOTHING, 5, true));
         productDBAdapter.deleteByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId()));
