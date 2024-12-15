@@ -429,6 +429,41 @@
 							"response": []
 						},
 						{
+							"name": "set primary address",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/address/3/setPrimary",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"address",
+										"3",
+										"setPrimary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "delete address",
 							"request": {
 								"method": "DELETE",
@@ -441,7 +476,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": 2\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -449,13 +484,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/account/address",
+									"raw": "{{baseUrl}}/account/address/2",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"account",
-										"address"
+										"address",
+										"2"
 									],
 									"query": [
 										{
