@@ -16,4 +16,6 @@ public interface AddressQueryPort {
     Address getByIdAndCustomerId(Long id, String customerId);
 
     int getAddressCount(String customerId);
+
+    Address getPrimaryAddress(String customerId);
 }

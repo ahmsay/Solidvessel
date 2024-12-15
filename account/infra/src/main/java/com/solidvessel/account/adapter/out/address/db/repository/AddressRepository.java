@@ -19,4 +19,6 @@ public interface AddressRepository extends JpaRepository<AddressJpaEntity, Long>
     Optional<AddressJpaEntity> findByIdAndCustomerId(Long id, String customerId);
 
     int countByCustomerId(String customerId);
+
+    Optional<AddressJpaEntity> findByCustomerIdAndIsPrimaryIsTrue(String customerId);
 }
