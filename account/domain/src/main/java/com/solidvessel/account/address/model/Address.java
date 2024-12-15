@@ -28,4 +28,8 @@ public class Address extends DomainModel {
     public void setPrimary() {
         this.isPrimary = true;
     }
+
+    public void setNonPrimary() {
+        this.isPrimary = false;
+    }
 }
