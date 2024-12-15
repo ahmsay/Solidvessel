@@ -3,8 +3,7 @@ package com.solidvessel.account.address.model;
 import com.solidvessel.account.address.service.command.UpdateAddressCommand;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddressTest {
 
@@ -26,5 +25,12 @@ public class AddressTest {
         var address = Address.builder().id(1L).customerId("123").isPrimary(false).build();
         address.setPrimary();
         assertTrue(address.getIsPrimary());
+    }
+
+    @Test
+    void setNonPrimary() {
+        var address = Address.builder().id(1L).customerId("123").isPrimary(true).build();
+        address.setNonPrimary();
+        assertFalse(address.getIsPrimary());
     }
 }

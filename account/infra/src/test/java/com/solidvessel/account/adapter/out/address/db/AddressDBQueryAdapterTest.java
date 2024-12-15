@@ -57,4 +57,11 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
         int addressCount = addressDBQueryAdapter.getAddressCount("123");
         assertEquals(1, addressCount);
     }
+
+    @Test
+    public void getPrimaryAddress() {
+        persistEntity(new AddressJpaEntity("123", "home", "norway", "oslo", "5843", true));
+        var address = addressDBQueryAdapter.getPrimaryAddress("123");
+        assertEquals(true, address.getIsPrimary());
+    }
 }

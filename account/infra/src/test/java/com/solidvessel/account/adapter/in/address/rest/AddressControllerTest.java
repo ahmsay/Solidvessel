@@ -10,6 +10,7 @@ import com.solidvessel.account.address.service.DeleteAddressCommandService;
 import com.solidvessel.account.address.service.SetPrimaryAddressCommandService;
 import com.solidvessel.account.address.service.UpdateAddressCommandService;
 import com.solidvessel.account.address.service.command.DeleteAddressCommand;
+import com.solidvessel.account.address.service.command.SetPrimaryAddressCommand;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
@@ -102,5 +103,16 @@ public class AddressControllerTest extends BaseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(AddressResponse.from(savedAddress)), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    public void setPrimaryAddress() throws Exception {
+        when(setPrimaryAddressCommandService.execute(new SetPrimaryAddressCommand(1L, SessionUtil.getCurrentUserId()))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                put("/address/1/setPrimary")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
     }
 }
