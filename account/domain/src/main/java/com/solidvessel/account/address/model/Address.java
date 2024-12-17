@@ -32,4 +32,8 @@ public class Address extends DomainModel {
     public void setNonPrimary() {
         this.isPrimary = false;
     }
+
+    public String getFullAddress() {
+        return "%s %s, %s".formatted(zipCode, city, country);
+    }
 }

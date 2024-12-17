@@ -1,8 +1,10 @@
 package com.solidvessel.account.address.service;
 
+import com.solidvessel.account.address.event.PrimaryAddressSavedEvent;
 import com.solidvessel.account.address.port.AddressPort;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.SetPrimaryAddressCommand;
+import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
 import com.solidvessel.shared.service.OperationResult;
@@ -15,6 +17,7 @@ public class SetPrimaryAddressCommandService implements CommandService<SetPrimar
 
     private final AddressQueryPort addressQueryPort;
     private final AddressPort addressPort;
+    private final EventPublisher<PrimaryAddressSavedEvent> primaryAddressSavedEventPublisher;
 
     @Override
     public OperationResult execute(SetPrimaryAddressCommand command) {
@@ -27,6 +30,7 @@ public class SetPrimaryAddressCommandService implements CommandService<SetPrimar
         newAddress.setPrimary();
         addressPort.save(oldAddress);
         addressPort.save(newAddress);
+        primaryAddressSavedEventPublisher.publish(new PrimaryAddressSavedEvent(newAddress.getCustomerId(), newAddress.getFullAddress()));
         return new OperationResult("Your address %s is set to primary.".formatted(newAddress.getName()), ResultType.SUCCESS);
     }
 }
