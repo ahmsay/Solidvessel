@@ -15,6 +15,11 @@ spring:
 server:
   servlet:
     context-path: /account
+exchanges:
+  address: address.topic
+routing-keys:
+  address:
+    primary-saved: address.primary-saved
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth
