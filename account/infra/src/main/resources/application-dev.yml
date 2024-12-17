@@ -11,6 +11,9 @@ spring:
       port: 6379
   liquibase:
     contexts: sql,data
+  rabbitmq:
+    host: localhost
+    port: 5672
   security:
     oauth2:
       resourceserver:
