@@ -1,13 +1,14 @@
 # Run Options
 
-**Note:** For all environments, you can use files under the **.postman** folder to test the application. Users to login
+**Note:** For all environments, you can use files under the **.postman** folder to test the application. Test users to
+login
 are listed below.
 
-| E-Mail                 | Password      |
-|------------------------|---------------|
-| vader_666@mail.com     | i_hate_sand   |
-| malvo_lrn@mail.com     | sioux_falls   |
-| peaky_blinder@mail.com | garrison_1918 |
+| E-Mail                 | Password      | Role              |
+|------------------------|---------------|-------------------|
+| vader_666@mail.com     | i_hate_sand   | CUSTOMER, MANAGER |
+| malvo_lrn@mail.com     | sioux_falls   | CUSTOMER          |
+| peaky_blinder@mail.com | garrison_1918 | CUSTOMER          |
 
 ## Development
 
