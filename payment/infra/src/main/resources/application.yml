@@ -14,10 +14,13 @@ server:
 exchanges:
   payment: payment.topic
   product: product.topic
+  address: address.topic
 queues:
   product:
     available: product.available
     checked: product.checked
+  address:
+    primary-saved: address.primary-saved
 routing-keys:
   payment:
     saved: payment.saved
@@ -25,6 +28,8 @@ routing-keys:
   product:
     available: product.available
     checked: product.checked
+  address:
+    primary-saved: address.primary-saved
 keycloak:
   realm: solidvessel
   client-id: solidvessel-auth
