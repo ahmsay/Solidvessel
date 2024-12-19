@@ -7,6 +7,7 @@ import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
+import com.solidvessel.payment.payment.service.command.AcceptPaymentCommand;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
