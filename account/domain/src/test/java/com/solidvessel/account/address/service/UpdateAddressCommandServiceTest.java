@@ -27,13 +27,25 @@ public class UpdateAddressCommandServiceTest extends BaseUnitTest {
     private EventPublisher<PrimaryAddressSavedEvent> primaryAddressSavedEventPublisher;
 
     @Test
-    void updateAddress() {
+    void updatePrimaryAddress() {
         var command = new UpdateAddressCommand(1L, "home", "norway", "oslo", "245", "123");
         var commandService = new UpdateAddressCommandService(addressPort, addressQueryPort, primaryAddressSavedEventPublisher);
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).customerId("123").name("home").country("turkey").city("eskisehir").zipCode("26200").isPrimary(true).build());
         commandService.execute(command);
         verify(addressPort).save(any(Address.class));
+        verify(primaryAddressSavedEventPublisher).publish(any(PrimaryAddressSavedEvent.class));
+    }
+
+    @Test
+    void updateNonPrimaryAddress() {
+        var command = new UpdateAddressCommand(1L, "home", "norway", "oslo", "245", "123");
+        var commandService = new UpdateAddressCommandService(addressPort, addressQueryPort, primaryAddressSavedEventPublisher);
+        when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
+        when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).customerId("123").name("home").country("turkey").city("eskisehir").zipCode("26200").isPrimary(false).build());
+        commandService.execute(command);
+        verify(addressPort).save(any(Address.class));
+        verifyNoInteractions(primaryAddressSavedEventPublisher);
     }
 
     @Test
