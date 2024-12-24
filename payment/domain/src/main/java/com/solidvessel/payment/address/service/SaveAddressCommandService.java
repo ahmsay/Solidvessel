@@ -24,7 +24,8 @@ public class SaveAddressCommandService implements VoidCommandService<PrimaryAddr
             var customer = customerOptional.get();
             customer.updateAddress(event.address());
             customerPort.save(customer);
+        } else {
+            customerPort.save(event.toDomainModel());
         }
-        customerPort.save(event.toDomainModel());
     }
 }
