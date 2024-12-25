@@ -29,9 +29,8 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         String customerId = command.customerId();
         Cart cart = cartQueryPort.getByCustomerId(customerId);
         checkIfTheCartIsEmpty(cart);
-        Long paymentId = savePayment(customerId, cart);
+        savePayment(customerId, cart);
         saveCart(cart);
-        paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, cart.getProductQuantities()));
         return new OperationResult("Payment is accepted.", ResultType.SUCCESS);
     }
 
@@ -41,8 +40,9 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         }
     }
 
-    private Long savePayment(String customerId, Cart cart) {
-        return paymentPort.create(Payment.newPayment(customerId, cart));
+    private void savePayment(String customerId, Cart cart) {
+        Long paymentId = paymentPort.create(Payment.newPayment(customerId, cart));
+        paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, cart.getProductQuantities()));
     }
 
     private void saveCart(Cart cart) {
