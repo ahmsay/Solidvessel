@@ -15,9 +15,6 @@ import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Map;
-import java.util.stream.Collectors;
-
 @DomainComponent
 @RequiredArgsConstructor
 public class AcceptPaymentCommandService implements CommandService<AcceptPaymentCommand, OperationResult> {
@@ -33,9 +30,8 @@ public class AcceptPaymentCommandService implements CommandService<AcceptPayment
         Cart cart = cartQueryPort.getByCustomerId(customerId);
         checkIfTheCartIsEmpty(cart);
         Long paymentId = savePayment(customerId, cart);
-        var productQuantities = cart.getProducts().entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().getQuantity()));
         saveCart(cart);
-        paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, productQuantities));
+        paymentSavedEventPublisher.publish(new PaymentSavedEvent(paymentId, customerId, cart.getProductQuantities()));
         return new OperationResult("Payment is accepted.", ResultType.SUCCESS);
     }
 

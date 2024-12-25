@@ -103,6 +103,16 @@ public class CartTest {
         assertEquals(60D, cart.getTotalPrice());
     }
 
+    @Test
+    void getProductQuantities() {
+        var cart = Cart.newCart("123");
+        cart.addProduct(createProduct(1L, 2));
+        cart.addProduct(createProduct(5L, 10));
+        var quantities = cart.getProductQuantities();
+        assertEquals(2, quantities.get(1L));
+        assertEquals(10, quantities.get(5L));
+    }
+
     private Product createProduct(Long id, Integer quantity) {
         return new Product(id, "table", 5D, ProductCategory.FURNITURE, quantity);
     }

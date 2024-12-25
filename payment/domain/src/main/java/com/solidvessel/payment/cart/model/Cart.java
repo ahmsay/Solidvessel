@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
@@ -62,5 +63,9 @@ public class Cart extends DomainModel {
 
     public Double getTotalPrice() {
         return products.values().stream().map(Product::getTotalPrice).reduce(0D, Double::sum);
+    }
+
+    public Map<Long, Integer> getProductQuantities() {
+        return products.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().getQuantity()));
     }
 }
