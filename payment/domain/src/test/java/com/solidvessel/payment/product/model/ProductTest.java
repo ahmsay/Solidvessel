@@ -19,4 +19,10 @@ public class ProductTest {
         product.decreaseQuantity();
         assertEquals(2, product.getQuantity());
     }
+
+    @Test
+    void getTotalPrice() {
+        var product = new Product(2L, "sickle", 5D, ProductCategory.FURNITURE, 3);
+        assertEquals(15D, product.getTotalPrice());
+    }
 }

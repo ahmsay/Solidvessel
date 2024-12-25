@@ -22,4 +22,8 @@ public class Product implements Serializable {
     public void decreaseQuantity() {
         this.quantity--;
     }
+
+    public double getTotalPrice() {
+        return price * quantity;
+    }
 }
