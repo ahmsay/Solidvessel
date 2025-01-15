@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Getter
 @SuperBuilder
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class Order extends DomainModel {
 
     private OrderStatus status;
