@@ -4,7 +4,8 @@
 ![](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiUFlTcHRnNXlIN0tVMm5veE9XU1VZblp2SEwzQ3Q3R3ZmQ3N2enI3cWtENEVZbmtleVFBOFJ2OWpVNy9NSEVrMjhHU0lqODY0U0NiNWh3L0M0VUREMG5NPSIsIml2UGFyYW1ldGVyU3BlYyI6Imw3SHZtNkErV0NPckpWUkQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 This is a shopping application designed with microservices architecture. My main goal is to learn about
-devops and microservices, so I kept the domain part as simple as possible. The project is about recording transactions of a shopping application.
+devops and microservices, but I am also improving the domain part as much as possible. The project is about recording
+transactions of a shopping application.
 <a href=".docs/run-options.md">Check to see how to run.<a/>
 
 ## Architecture
