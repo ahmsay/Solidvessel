@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class SetPrimaryAddressCommandServiceTest extends BaseUnitTest {
@@ -30,12 +29,12 @@ public class SetPrimaryAddressCommandServiceTest extends BaseUnitTest {
     void setPrimaryAddress() {
         var command = new SetPrimaryAddressCommand(1L, "123");
         var commandService = new SetPrimaryAddressCommandService(addressQueryPort, addressPort, primaryAddressSavedEventPublisher);
-        when(addressQueryPort.getPrimaryAddress("123")).thenReturn(Address.builder().id(2L).isPrimary(true).build());
-        when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).isPrimary(false).build());
+        when(addressQueryPort.getPrimaryAddress("123")).thenReturn(Address.builder().id(2L).customerId("123").isPrimary(true).country("germany").city("paris").zipCode("4355").build());
+        when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).customerId("123").isPrimary(false).country("russia").city("moscow").zipCode("5832").build());
         var result = commandService.execute(command);
-        verify(addressPort).save(Address.builder().id(2L).isPrimary(false).build());
-        verify(addressPort).save(Address.builder().id(1L).isPrimary(true).build());
-        verify(primaryAddressSavedEventPublisher).publish(any(PrimaryAddressSavedEvent.class));
+        verify(addressPort).save(Address.builder().id(2L).customerId("123").country("germany").city("paris").zipCode("4355").isPrimary(false).build());
+        verify(addressPort).save(Address.builder().id(1L).customerId("123").country("russia").city("moscow").zipCode("5832").isPrimary(true).build());
+        verify(primaryAddressSavedEventPublisher).publish(new PrimaryAddressSavedEvent("123", "5832 moscow, russia"));
         assertEquals(ResultType.SUCCESS, result.resultType());
     }
 

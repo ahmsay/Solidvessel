@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
@@ -40,7 +39,7 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
         commandService.execute(event);
         assertEquals(PaymentStatus.APPROVED, payment.getStatus());
         verify(paymentPort).update(payment);
-        verify(paymentApprovedEventPublisher).publish(any(PaymentApprovedEvent.class));
+        verify(paymentApprovedEventPublisher).publish(new PaymentApprovedEvent(1L, "123"));
     }
 
     @Test

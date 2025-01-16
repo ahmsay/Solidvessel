@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class AddAddressCommandServiceTest extends BaseUnitTest {
@@ -34,7 +33,7 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
         when(addressQueryPort.getAddressCount(command.customerId())).thenReturn(0);
         commandService.execute(command);
         verify(addressPort).save(new Address("123", "home", "norway", "oslo", "245", true));
-        verify(primaryAddressSavedEventPublisher).publish(any(PrimaryAddressSavedEvent.class));
+        verify(primaryAddressSavedEventPublisher).publish(new PrimaryAddressSavedEvent("123", "245 oslo, norway"));
     }
 
     @Test

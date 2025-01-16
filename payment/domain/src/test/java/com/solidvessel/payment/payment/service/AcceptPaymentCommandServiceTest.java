@@ -52,8 +52,8 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
     @Test
     void acceptPayment() {
         Map<Long, Product> products = new HashMap<>() {{
-            put(1L, new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
-            put(4L, new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
+            put(4L, new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
+            put(5L, new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
         }};
         Cart cart = new Cart("123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
@@ -61,7 +61,7 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
         var operationResult = commandService.execute(command);
         verify(cartPort).save(any(Cart.class));
         verify(paymentPort).create(any(Payment.class));
-        verify(paymentSavedEventPublisher).publish(any(PaymentSavedEvent.class));
+        verify(paymentSavedEventPublisher).publish(new PaymentSavedEvent(0L, "123", Map.of(4L, 1, 5L, 3)));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
