@@ -33,7 +33,7 @@ public class UpdateAddressCommandServiceTest extends BaseUnitTest {
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).customerId("123").name("home").country("turkey").city("eskisehir").zipCode("26200").isPrimary(true).build());
         commandService.execute(command);
-        verify(addressPort).save(any(Address.class));
+        verify(addressPort).save(Address.builder().id(1L).customerId("123").name("home").country("norway").city("oslo").zipCode("245").isPrimary(true).build());
         verify(primaryAddressSavedEventPublisher).publish(any(PrimaryAddressSavedEvent.class));
     }
 
@@ -44,7 +44,7 @@ public class UpdateAddressCommandServiceTest extends BaseUnitTest {
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(true);
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).customerId("123").name("home").country("turkey").city("eskisehir").zipCode("26200").isPrimary(false).build());
         commandService.execute(command);
-        verify(addressPort).save(any(Address.class));
+        verify(addressPort).save(Address.builder().id(1L).customerId("123").name("home").country("norway").city("oslo").zipCode("245").isPrimary(false).build());
         verifyNoInteractions(primaryAddressSavedEventPublisher);
     }
 

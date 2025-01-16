@@ -33,7 +33,8 @@ public class SetPrimaryAddressCommandServiceTest extends BaseUnitTest {
         when(addressQueryPort.getPrimaryAddress("123")).thenReturn(Address.builder().id(2L).isPrimary(true).build());
         when(addressQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(Address.builder().id(1L).isPrimary(false).build());
         var result = commandService.execute(command);
-        verify(addressPort, times(2)).save(any(Address.class));
+        verify(addressPort).save(Address.builder().id(2L).isPrimary(false).build());
+        verify(addressPort).save(Address.builder().id(1L).isPrimary(true).build());
         verify(primaryAddressSavedEventPublisher).publish(any(PrimaryAddressSavedEvent.class));
         assertEquals(ResultType.SUCCESS, result.resultType());
     }

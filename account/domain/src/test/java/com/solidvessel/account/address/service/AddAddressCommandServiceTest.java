@@ -33,7 +33,7 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
         when(addressQueryPort.getAddressCount(command.customerId())).thenReturn(0);
         commandService.execute(command);
-        verify(addressPort).save(any(Address.class));
+        verify(addressPort).save(new Address("123", "home", "norway", "oslo", "245", true));
         verify(primaryAddressSavedEventPublisher).publish(any(PrimaryAddressSavedEvent.class));
     }
 
@@ -44,7 +44,7 @@ public class AddAddressCommandServiceTest extends BaseUnitTest {
         when(addressQueryPort.isAddressRegistered(command.customerId(), command.name())).thenReturn(false);
         when(addressQueryPort.getAddressCount(command.customerId())).thenReturn(1);
         commandService.execute(command);
-        verify(addressPort).save(any(Address.class));
+        verify(addressPort).save(new Address("123", "home", "norway", "oslo", "245", false));
         verifyNoInteractions(primaryAddressSavedEventPublisher);
     }
 

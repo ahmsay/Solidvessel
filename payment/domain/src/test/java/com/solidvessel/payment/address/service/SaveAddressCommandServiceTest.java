@@ -10,7 +10,6 @@ import org.mockito.Mock;
 
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,7 +27,7 @@ public class SaveAddressCommandServiceTest extends BaseUnitTest {
         var commandService = new SaveAddressCommandService(customerPort, customerQueryPort);
         when(customerQueryPort.getById("123")).thenReturn(Optional.empty());
         commandService.execute(event);
-        verify(customerPort).save(any(Customer.class));
+        verify(customerPort).save(new Customer("123", "6493 Oslo, Norway"));
     }
 
     @Test
@@ -37,6 +36,6 @@ public class SaveAddressCommandServiceTest extends BaseUnitTest {
         var commandService = new SaveAddressCommandService(customerPort, customerQueryPort);
         when(customerQueryPort.getById("123")).thenReturn(Optional.of(new Customer("123", "4341 Helsinki, Finland")));
         commandService.execute(event);
-        verify(customerPort).save(any(Customer.class));
+        verify(customerPort).save(new Customer("123", "6493 Oslo, Norway"));
     }
 }

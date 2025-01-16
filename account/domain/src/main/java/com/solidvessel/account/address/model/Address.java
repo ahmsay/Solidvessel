@@ -3,12 +3,14 @@ package com.solidvessel.account.address.model;
 import com.solidvessel.account.address.service.command.UpdateAddressCommand;
 import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @Getter
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 public class Address extends DomainModel {
 
     private String customerId;

@@ -8,7 +8,6 @@ import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 public class AddProductCommandServiceTest extends BaseUnitTest {
@@ -21,6 +20,6 @@ public class AddProductCommandServiceTest extends BaseUnitTest {
         var command = new AddProductCommand("macbook", 1200D, ProductCategory.ELECTRONICS, 3);
         var commandService = new AddProductCommandService(productPort);
         commandService.execute(command);
-        verify(productPort).save(any(Product.class));
+        verify(productPort).save(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
     }
 }

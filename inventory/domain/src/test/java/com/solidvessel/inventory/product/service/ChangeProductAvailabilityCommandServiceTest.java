@@ -12,7 +12,6 @@ import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -31,7 +30,7 @@ public class ChangeProductAvailabilityCommandServiceTest extends BaseUnitTest {
         var product = Product.builder().id(2L).name("Oil").price(250D).category(ProductCategory.CLOTHING).quantity(5).build();
         when(productQueryPort.getById(3L)).thenReturn(product);
         var availability = commandService.execute(command);
-        verify(productPort).save(any(Product.class));
+        verify(productPort).save(Product.builder().id(2L).name("Oil").price(250D).category(ProductCategory.CLOTHING).quantity(5).isAvailableInRegion(false).build());
         assertFalse(availability.getIsAvailable());
         assertEquals(UnavailableReason.NOT_AVAILABLE_IN_REGION, availability.getUnavailableReason());
     }

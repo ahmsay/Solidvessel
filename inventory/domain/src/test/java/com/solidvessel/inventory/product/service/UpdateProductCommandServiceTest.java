@@ -9,7 +9,6 @@ import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,6 +27,6 @@ public class UpdateProductCommandServiceTest extends BaseUnitTest {
         var product = Product.builder().id(2L).name("Oil").price(250D).category(ProductCategory.CLOTHING).quantity(5).build();
         when(productQueryPort.getById(2L)).thenReturn(product);
         commandService.execute(command);
-        verify(productPort).save(any(Product.class));
+        verify(productPort).save(Product.builder().id(2L).name("Dinosaur").price(500D).category(ProductCategory.FURNITURE).quantity(10).build());
     }
 }
