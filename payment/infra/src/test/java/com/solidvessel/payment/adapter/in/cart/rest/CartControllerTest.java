@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -54,7 +53,7 @@ public class CartControllerTest extends BaseControllerTest {
         );
         var cart = new Cart("123", products);
         var cartResponse = CartResponse.from(cart);
-        when(cartQueryPort.getByCustomerId(anyString())).thenReturn(cart);
+        when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
         MvcResult mvcResult = mockMvc.perform(
                 get("/cart")
                         .contentType(MediaType.APPLICATION_JSON)

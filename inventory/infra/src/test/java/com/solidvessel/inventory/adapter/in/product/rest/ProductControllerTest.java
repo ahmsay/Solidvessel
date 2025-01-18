@@ -29,8 +29,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,7 +78,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     void getProductById() throws Exception {
         var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10);
-        when(productQueryPort.getById(anyLong())).thenReturn(product);
+        when(productQueryPort.getById(1L)).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -92,10 +90,10 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     void getProductsByIds() throws Exception {
         var products = List.of(
-                Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10),
-                Product.newProduct("shirt", 20D, ProductCategory.CLOTHING, 5)
+                Product.builder().id(1L).name("macbook").price(1200D).category(ProductCategory.ELECTRONICS).quantity(10).build(),
+                Product.builder().id(2L).name("shirt").price(20D).category(ProductCategory.CLOTHING).quantity(5).build()
         );
-        when(productQueryPort.getByIds(anyList())).thenReturn(products);
+        when(productQueryPort.getByIds(List.of(1L, 2L))).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/ids")
                         .queryParam("ids", "1", "2")

@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -84,8 +83,8 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     void getPaymentById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payment = Payment.builder().customerId("123").products(products).totalPrice(105D).status(PaymentStatus.CANCELLED).build();
-        when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
+        var payment = Payment.builder().id(1L).customerId("123").products(products).totalPrice(105D).status(PaymentStatus.CANCELLED).build();
+        when(paymentQueryPort.getById(1L)).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -97,10 +96,10 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     void getPaymentDetailById() throws Exception {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
-        var payment = Payment.builder().customerId("123").products(products).totalPrice(105D).status(PaymentStatus.APPROVED).build();
+        var payment = Payment.builder().id(1L).customerId("123").products(products).totalPrice(105D).status(PaymentStatus.APPROVED).build();
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var paymentDetail = PaymentDetailResponse.from(payment, customer);
-        when(paymentQueryPort.getById(anyLong())).thenReturn(payment);
+        when(paymentQueryPort.getById(1L)).thenReturn(payment);
         when(keycloakAdapter.getUser("123")).thenReturn(createUser());
         MvcResult mvcResult = mockMvc.perform(
                 get("/1/detail")

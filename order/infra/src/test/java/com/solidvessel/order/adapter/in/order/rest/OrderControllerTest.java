@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -79,7 +78,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @WithMockManager
     void getOrderById() throws Exception {
         var order = new Order(OrderStatus.DELIVERED, "123", 1L);
-        when(orderQueryPort.getById(anyLong())).thenReturn(order);
+        when(orderQueryPort.getById(1L)).thenReturn(order);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +93,7 @@ public class OrderControllerTest extends BaseControllerTest {
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var payment = new PaymentResponse(1L, 105D);
         var orderDetail = OrderDetailResponse.from(order, customer, payment);
-        when(orderQueryPort.getById(anyLong())).thenReturn(order);
+        when(orderQueryPort.getById(1L)).thenReturn(order);
         when(keycloakAdapter.getUser("123")).thenReturn(createUser());
         when(paymentRestClient.getById(1L, "abc")).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
