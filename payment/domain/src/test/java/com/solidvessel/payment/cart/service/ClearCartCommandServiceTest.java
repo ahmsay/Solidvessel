@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class ClearCartCommandServiceTest extends BaseUnitTest {
@@ -37,7 +36,7 @@ public class ClearCartCommandServiceTest extends BaseUnitTest {
         Cart cart = new Cart("123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
         var operationResult = commandService.execute(command);
-        verify(cartPort).save(any(Cart.class));
+        verify(cartPort).save(cart);
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
         assertTrue(cart.isEmpty());
     }

@@ -3,6 +3,7 @@ package com.solidvessel.payment.cart.model;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.shared.model.DomainModel;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Getter
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 public class Cart extends DomainModel {
 
     private String customerId;

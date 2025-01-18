@@ -6,6 +6,7 @@ import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.payment.event.PaymentSavedEvent;
 import com.solidvessel.payment.payment.model.Payment;
+import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.payment.service.command.AcceptPaymentCommand;
 import com.solidvessel.payment.product.model.Product;
@@ -18,11 +19,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
@@ -51,16 +52,18 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
 
     @Test
     void acceptPayment() {
-        Map<Long, Product> products = new HashMap<>() {{
-            put(4L, new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
-            put(5L, new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
+        var product1 = new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1);
+        var product2 = new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3);
+        Map<Long, Product> productMap = new HashMap<>() {{
+            put(4L, product1);
+            put(5L, product2);
         }};
-        Cart cart = new Cart("123", products);
+        Cart cart = new Cart("123", productMap);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
 
         var operationResult = commandService.execute(command);
-        verify(cartPort).save(any(Cart.class));
-        verify(paymentPort).create(any(Payment.class));
+        verify(cartPort).save(cart);
+        verify(paymentPort).create(new Payment("123", List.of(product1, product2), 24D, PaymentStatus.PENDING));
         verify(paymentSavedEventPublisher).publish(new PaymentSavedEvent(0L, "123", Map.of(4L, 1, 5L, 3)));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }

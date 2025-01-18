@@ -9,7 +9,6 @@ import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -25,8 +24,9 @@ public class AddToCartCommandServiceTest extends BaseUnitTest {
     void addToCart() {
         var event = new ProductAvailableEvent(1L, "cellphone", 530D, ProductCategory.ELECTRONICS, 3, "123");
         var commandService = new AddToCartCommandService(cartPort, cartQueryPort);
-        when(cartQueryPort.getByCustomerId(event.customerId())).thenReturn(Cart.newCart("123"));
+        Cart cart = Cart.newCart("123");
+        when(cartQueryPort.getByCustomerId(event.customerId())).thenReturn(cart);
         commandService.execute(event);
-        verify(cartPort).save(any(Cart.class));
+        verify(cartPort).save(cart);
     }
 }

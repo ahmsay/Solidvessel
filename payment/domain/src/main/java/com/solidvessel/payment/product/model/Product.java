@@ -1,12 +1,14 @@
 package com.solidvessel.payment.product.model;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class Product implements Serializable {
 
     private Long id;
