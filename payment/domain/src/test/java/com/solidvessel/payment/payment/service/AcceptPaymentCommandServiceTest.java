@@ -12,6 +12,7 @@ import com.solidvessel.payment.payment.service.command.AcceptPaymentCommand;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.event.EventPublisher;
+import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,19 +53,21 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
 
     @Test
     void acceptPayment() {
-        var product1 = new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1);
-        var product2 = new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3);
+        Product product1 = new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1);
+        Product product2 = new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3);
         Map<Long, Product> productMap = new HashMap<>() {{
             put(4L, product1);
             put(5L, product2);
         }};
         Cart cart = new Cart("123", productMap);
+        Payment payment = new Payment("123", List.of(product1, product2), 24D, PaymentStatus.PENDING);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
+        when(paymentPort.create(payment)).thenReturn(1L);
 
-        var operationResult = commandService.execute(command);
+        OperationResult operationResult = commandService.execute(command);
         verify(cartPort).save(cart);
-        verify(paymentPort).create(new Payment("123", List.of(product1, product2), 24D, PaymentStatus.PENDING));
-        verify(paymentSavedEventPublisher).publish(new PaymentSavedEvent(0L, "123", Map.of(4L, 1, 5L, 3)));
+        verify(paymentPort).create(payment);
+        verify(paymentSavedEventPublisher).publish(new PaymentSavedEvent(1L, "123", Map.of(4L, 1, 5L, 3)));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
