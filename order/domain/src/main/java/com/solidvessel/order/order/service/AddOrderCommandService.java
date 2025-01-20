@@ -15,6 +15,6 @@ public class AddOrderCommandService implements VoidCommandService<PaymentApprove
 
     @Override
     public void execute(PaymentApprovedEvent event) {
-        orderPort.create(Order.newOrder(event.customerId(), event.paymentId()));
+        orderPort.create(Order.newOrder(event.customerId(), event.paymentId(), event.address()));
     }
 }
