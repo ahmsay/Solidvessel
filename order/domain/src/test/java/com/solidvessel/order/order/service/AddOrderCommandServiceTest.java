@@ -17,9 +17,9 @@ public class AddOrderCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addOrder() {
-        var event = new PaymentApprovedEvent(1L, "123");
+        var event = new PaymentApprovedEvent(1L, "123", "494 mexico city, mexico");
         var commandService = new AddOrderCommandService(orderPort);
         commandService.execute(event);
-        verify(orderPort).create(new Order(OrderStatus.PREPARING, "123", 1L));
+        verify(orderPort).create(new Order(OrderStatus.PREPARING, "123", 1L, "494 mexico city, mexico"));
     }
 }

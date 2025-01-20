@@ -65,7 +65,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     void getOrdersOfCurrentCustomer() throws Exception {
-        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan"));
         when(orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCurrentCustomer")
@@ -77,7 +77,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getOrderById() throws Exception {
-        var order = new Order(OrderStatus.DELIVERED, "123", 1L);
+        var order = new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan");
         when(orderQueryPort.getById(1L)).thenReturn(order);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
@@ -89,7 +89,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getOrderDetailById() throws Exception {
-        var order = new Order(OrderStatus.DELIVERED, "123", 1L);
+        var order = new Order(OrderStatus.DELIVERED, "123", 1L, "5284 minnesota, united states");
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var payment = new PaymentResponse(1L, 105D);
         var orderDetail = OrderDetailResponse.from(order, customer, payment);
@@ -107,7 +107,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getOrderByCustomerId() throws Exception {
-        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L));
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan"));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCustomer/123")

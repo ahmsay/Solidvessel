@@ -15,7 +15,7 @@ public class PaymentApprovedEventConsumerTest extends BaseUnitTest {
 
     @Test
     void consumePaymentApprovedEvent() {
-        var event = new PaymentApprovedEvent(1L, "123");
+        var event = new PaymentApprovedEvent(1L, "123", "4913 baku, azerbaijan");
         var eventConsumer = new PaymentApprovedEventConsumer(addOrderCommandService);
         eventConsumer.consume(event);
         verify(addOrderCommandService).execute(event);

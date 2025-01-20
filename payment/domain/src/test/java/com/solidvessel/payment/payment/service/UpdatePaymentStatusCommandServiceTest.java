@@ -1,5 +1,7 @@
 package com.solidvessel.payment.payment.service;
 
+import com.solidvessel.payment.customer.model.Customer;
+import com.solidvessel.payment.customer.port.CustomerQueryPort;
 import com.solidvessel.payment.payment.event.PaymentApprovedEvent;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
@@ -15,6 +17,7 @@ import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -30,22 +33,26 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
     @Mock
     private EventPublisher<PaymentApprovedEvent> paymentApprovedEventPublisher;
 
+    @Mock
+    private CustomerQueryPort customerQueryPort;
+
     @Test
     void approvePayment() {
         var event = new ProductsCheckedEvent(1L, true, "123");
-        var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher);
+        var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher, customerQueryPort);
         var payment = createPayment();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
+        when(customerQueryPort.getById("123")).thenReturn(Optional.of(new Customer("123", "1385 köln, germany")));
         commandService.execute(event);
         assertEquals(PaymentStatus.APPROVED, payment.getStatus());
         verify(paymentPort).update(payment);
-        verify(paymentApprovedEventPublisher).publish(new PaymentApprovedEvent(1L, "123"));
+        verify(paymentApprovedEventPublisher).publish(new PaymentApprovedEvent(1L, "123", "1385 köln, germany"));
     }
 
     @Test
     void cancelPayment() {
         var event = new ProductsCheckedEvent(1L, false, "123");
-        var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher);
+        var commandService = new UpdatePaymentStatusCommandService(paymentQueryPort, paymentPort, paymentApprovedEventPublisher, customerQueryPort);
         var payment = createPayment();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         commandService.execute(event);

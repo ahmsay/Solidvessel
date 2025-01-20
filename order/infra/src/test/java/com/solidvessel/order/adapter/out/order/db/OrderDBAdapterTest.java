@@ -13,7 +13,7 @@ public class OrderDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     void createOrder() {
-        var order = Order.builder().customerId("123").paymentId(1L).status(OrderStatus.PREPARING).build();
+        var order = Order.builder().customerId("123").paymentId(1L).status(OrderStatus.PREPARING).address("481 tokyo, japan").build();
         orderDBAdapter.create(order);
     }
 }
