@@ -31,6 +31,9 @@ public class OrderJpaEntity extends BaseEntity {
     @NotNull
     private Long paymentId;
 
+    @NotNull
+    private String address;
+
     public Order toDomainModel() {
         return Order.builder()
                 .id(getId())
@@ -40,6 +43,7 @@ public class OrderJpaEntity extends BaseEntity {
                 .status(status)
                 .customerId(customerId)
                 .paymentId(paymentId)
+                .address(address)
                 .build();
     }
 
@@ -52,6 +56,7 @@ public class OrderJpaEntity extends BaseEntity {
                 .status(order.getStatus())
                 .customerId(order.getCustomerId())
                 .paymentId(order.getPaymentId())
+                .address(order.getAddress())
                 .build();
     }
 }

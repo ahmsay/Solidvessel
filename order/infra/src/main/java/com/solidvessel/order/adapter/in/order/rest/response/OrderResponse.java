@@ -5,9 +5,10 @@ import com.solidvessel.order.order.model.OrderStatus;
 
 import java.io.Serializable;
 
-public record OrderResponse(Long id, OrderStatus status, String customerId, Long paymentId) implements Serializable {
+public record OrderResponse(Long id, OrderStatus status, String customerId, Long paymentId,
+                            String address) implements Serializable {
 
     public static OrderResponse from(Order order) {
-        return new OrderResponse(order.getId(), order.getStatus(), order.getCustomerId(), order.getPaymentId());
+        return new OrderResponse(order.getId(), order.getStatus(), order.getCustomerId(), order.getPaymentId(), order.getAddress());
     }
 }
