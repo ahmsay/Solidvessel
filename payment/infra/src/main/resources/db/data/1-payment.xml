@@ -6,13 +6,11 @@
         <sql>
             insert into payment(id, customer_id, total_price, status)
             values (nextval('payment_seq'), '47ac2317-2da2-457a-90d6-48d5a0f9739a', 250, 'APPROVED'),
-                   (nextval('payment_seq'), 'c908ce9d-faec-4570-b84d-71a4e77f2f4a', 3, 'APPROVED'),
-                   (nextval('payment_seq'), '37a2191e-85a0-4bad-a853-1f29559c3092', 70.2, 'APPROVED');
+                   (nextval('payment_seq'), 'c908ce9d-faec-4570-b84d-71a4e77f2f4a', 3, 'APPROVED');
 
             insert into payment_product(payment_id, product_id, name, price, category, quantity)
             values (1, 1, 'Lol', 25, 'ELECTRONICS', 1),
-                   (2, 2, 'asd', 3, 'TOOL', 1),
-                   (3, 2, 'zxc', 23.4, 'FURNITURE', 3);
+                   (2, 2, 'asd', 3, 'TOOL', 1);
         </sql>
     </changeSet>
 </databaseChangeLog>

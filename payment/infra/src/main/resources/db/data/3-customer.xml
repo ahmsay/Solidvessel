@@ -5,7 +5,8 @@
     <changeSet author="ahmsay" id="solidvessel-data-3" context="data">
         <sql>
             insert into customer(id, address)
-            values ('c908ce9d-faec-4570-b84d-71a4e77f2f4a', '26593 birmingham, uk');
+            values ('c908ce9d-faec-4570-b84d-71a4e77f2f4a', '26593 birmingham, uk'),
+                   ('47ac2317-2da2-457a-90d6-48d5a0f9739a', '48249 helsinki, finland');
         </sql>
     </changeSet>
 </databaseChangeLog>
