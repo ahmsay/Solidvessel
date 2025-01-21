@@ -12,6 +12,11 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
 server:
   servlet:
     context-path: /account

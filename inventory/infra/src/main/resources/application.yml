@@ -8,6 +8,11 @@ spring:
       timeout: 30000
   liquibase:
     change-log: classpath:/db/master.yaml
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
 server:
   servlet:
     context-path: /inventory
