@@ -74,7 +74,7 @@ public class CustomerControllerTest extends BaseControllerTest {
     void getCustomerDetailById() throws Exception {
         var user = createUser();
         var customer = CustomerResponse.from(user);
-        var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L));
+        var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L, "48249 helsinki, finland"));
         var payments = List.of(new PaymentResponse(5L, 260D));
         var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
         when(keycloakAdapter.getUser("123")).thenReturn(user);
