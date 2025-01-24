@@ -22,14 +22,14 @@ Contract.make {
                     "status": "DELIVERED",
                     "customerId": "123",
                     "paymentId": 5,
-                    "address": "26593 birmingham, uk"
+                    "address": "26593-birmingham,-uk"
                 },
                 {
                     "id": 2,
                     "status": "ON_THE_WAY",
                     "customerId": "123",
                     "paymentId": 6,
-                    "address": "48249 helsinki, finland"
+                    "address": "48249-helsinki,-finland"
                 }
             ]
         """.replaceAll("\\s", "")

@@ -30,8 +30,8 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
     @BeforeEach
     void setup() {
         var orders = List.of(
-                Order.builder().id(1L).status(OrderStatus.DELIVERED).customerId("123").paymentId(5L).address("26593 birmingham, uk").build(),
-                Order.builder().id(2L).status(OrderStatus.ON_THE_WAY).customerId("123").paymentId(6L).address("48249 helsinki, finland").build()
+                Order.builder().id(1L).status(OrderStatus.DELIVERED).customerId("123").paymentId(5L).address("26593-birmingham,-uk").build(),
+                Order.builder().id(2L).status(OrderStatus.ON_THE_WAY).customerId("123").paymentId(6L).address("48249-helsinki,-finland").build()
         );
         RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, keycloakAdapter, paymentRestClient));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
