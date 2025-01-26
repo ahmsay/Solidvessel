@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -30,8 +32,22 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
     @BeforeEach
     void setup() {
         var orders = List.of(
-                Order.builder().id(1L).status(OrderStatus.DELIVERED).customerId("123").paymentId(5L).address("26593-birmingham,-uk").build(),
-                Order.builder().id(2L).status(OrderStatus.ON_THE_WAY).customerId("123").paymentId(6L).address("48249-helsinki,-finland").build()
+                Order.builder()
+                        .id(1L)
+                        .status(OrderStatus.DELIVERED)
+                        .customerId("123")
+                        .paymentId(5L)
+                        .address("26593-birmingham,-uk")
+                        .createdDate(LocalDateTime.of(2025, Month.MARCH, 13, 22, 45, 3, 4831))
+                        .build(),
+                Order.builder()
+                        .id(2L)
+                        .status(OrderStatus.ON_THE_WAY)
+                        .customerId("123")
+                        .paymentId(6L)
+                        .address("48249-helsinki,-finland")
+                        .createdDate(LocalDateTime.of(2023, Month.DECEMBER, 9, 11, 49, 32, 8371))
+                        .build()
         );
         RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, keycloakAdapter, paymentRestClient));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
