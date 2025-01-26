@@ -37,7 +37,8 @@ Contract.make {
                         }
                     ],
                     "totalCharge": 150,
-                    "status": "APPROVED"
+                    "status": "APPROVED",
+                    "creationDate": [2025,1,26,14,16,18,575]
                 },
                 {
                     "id": 2,
@@ -59,7 +60,8 @@ Contract.make {
                         }
                     ],
                     "totalCharge": 1300,
-                    "status": "APPROVED"
+                    "status": "APPROVED",
+                    "creationDate": [2024,8,3,9,56,42,3815]
                 }
             ]
         """.replaceAll("\\s", "")

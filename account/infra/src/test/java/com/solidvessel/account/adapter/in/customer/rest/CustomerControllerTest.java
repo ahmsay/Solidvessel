@@ -7,6 +7,7 @@ import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderStatus;
 import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
+import com.solidvessel.account.adapter.out.payment.rest.response.PaymentStatus;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -75,7 +77,7 @@ public class CustomerControllerTest extends BaseControllerTest {
         var user = createUser();
         var customer = CustomerResponse.from(user);
         var orders = List.of(new OrderResponse(1L, OrderStatus.DELIVERED, 5L, "48249 helsinki, finland"));
-        var payments = List.of(new PaymentResponse(5L, 260D));
+        var payments = List.of(new PaymentResponse(5L, 260D, PaymentStatus.APPROVED, LocalDateTime.now()));
         var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
         when(keycloakAdapter.getUser("123")).thenReturn(user);
         when(orderRestClient.getByCustomerId("123", "abc")).thenReturn(orders);
