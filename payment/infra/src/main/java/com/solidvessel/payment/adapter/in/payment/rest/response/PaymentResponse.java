@@ -5,10 +5,11 @@ import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public record PaymentResponse(Long id, String customerId, List<ProductResponse> products, Double totalCharge,
-                              PaymentStatus status) implements Serializable {
+                              PaymentStatus status, LocalDateTime creationDate) implements Serializable {
 
     public static PaymentResponse from(Payment payment) {
         return new PaymentResponse(
@@ -16,7 +17,8 @@ public record PaymentResponse(Long id, String customerId, List<ProductResponse> 
                 payment.getCustomerId(),
                 payment.getProducts().stream().map(ProductResponse::from).toList(),
                 payment.getTotalPrice(),
-                payment.getStatus()
+                payment.getStatus(),
+                payment.getCreatedDate()
         );
     }
 }
