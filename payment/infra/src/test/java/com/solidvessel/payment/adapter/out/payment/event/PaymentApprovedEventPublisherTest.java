@@ -22,7 +22,7 @@ public class PaymentApprovedEventPublisherTest extends BaseUnitTest {
 
     @Test
     void publishPaymentApprovedEvent() {
-        var event = new PaymentApprovedEvent(1l, "123");
+        var event = new PaymentApprovedEvent(1l, "123", "48249 helsinki, finland");
         var eventPublisher = new PaymentApprovedEventPublisher(rabbitTemplate);
         eventPublisher.publish(event);
         verify(rabbitTemplate).convertAndSend(paymentExchange, paymentApprovedRoutingKey, event);
