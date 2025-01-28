@@ -35,7 +35,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
     }
 
     @Test
-    void getCustomerId() {
+    void getByCustomerId() {
         persistEntity(new OrderJpaEntity(OrderStatus.PREPARING, "123", 12L, "4913 baku, azerbaijan"));
         var ordersOfCustomer = orderDBQueryAdapter.getByCustomerId("123");
         assertEquals(OrderStatus.PREPARING, ordersOfCustomer.getFirst().getStatus());
