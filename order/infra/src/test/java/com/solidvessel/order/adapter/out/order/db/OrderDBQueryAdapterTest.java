@@ -31,6 +31,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
         assertEquals(orderJpaEntity.getCustomerId(), order.getCustomerId());
         assertEquals(orderJpaEntity.getStatus(), order.getStatus());
         assertEquals(orderJpaEntity.getPaymentId(), order.getPaymentId());
+        assertEquals(orderJpaEntity.getAddress(), order.getAddress());
     }
 
     @Test
