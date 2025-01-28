@@ -1,3 +1,5 @@
 ignore:
 - "**/configuration/*.java"
 - "**/*Application.java"
+- ".*equals.*"
+- ".*hashCode.*"
