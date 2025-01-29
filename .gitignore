@@ -22,3 +22,4 @@
 !**/*.md
 !.postman/**
 !codecov.yml
+!**/**/lombok.config
