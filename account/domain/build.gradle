@@ -12,7 +12,6 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation "org.mockito:mockito-junit-jupiter:$rootProject.mockitoVersion"
-    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.18.1'
 }
 
 test {
