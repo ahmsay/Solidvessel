@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ProductTest {
 
     @Test
-    void testEqualsAndHashcode() {
-
-    }
-
-    @Test
     void increaseQuantity() {
         var product = new Product(2L, "sickle", 5D, ProductCategory.FURNITURE, 3);
         product.increaseQuantity(4);
