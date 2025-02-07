@@ -14,6 +14,7 @@ public class OrderTest {
         assertEquals(OrderStatus.PREPARING, order1.getStatus());
         assertEquals("123", order1.getCustomerId());
         assertEquals(1L, order1.getPaymentId());
+        assertEquals("952 baku, azerbaijan", order1.getAddress());
 
         var order2 = new Order(OrderStatus.DELIVERED, "456", 2L, "592 milano, italy");
         assertNull(order2.getId());
