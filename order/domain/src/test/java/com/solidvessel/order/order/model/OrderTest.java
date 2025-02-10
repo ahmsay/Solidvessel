@@ -1,11 +1,32 @@
 package com.solidvessel.order.order.model;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class OrderTest {
+
+    @Test
+    public void equalsContract() {
+        class DummyOrder extends Order {
+            public DummyOrder(OrderStatus status, String customerId, Long paymentId, String address) {
+                super(status, customerId, paymentId, address);
+            }
+
+            @Override
+            public boolean canEqual(Object obj) {
+                return false;
+            }
+        }
+
+        EqualsVerifier.simple()
+                .forClass(Order.class)
+                .withRedefinedSuperclass()
+                .withRedefinedSubclass(DummyOrder.class)
+                .verify();
+    }
 
     @Test
     void createNewOrder() {
