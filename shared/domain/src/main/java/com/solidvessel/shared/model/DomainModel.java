@@ -13,7 +13,7 @@ import java.util.Objects;
 @Getter
 @SuperBuilder
 @NoArgsConstructor
-public abstract class DomainModel implements Serializable {
+public class DomainModel implements Serializable {
 
     private Long id;
     private LocalDateTime createdDate;
