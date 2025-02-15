@@ -27,7 +27,7 @@ public abstract class DomainModel implements Serializable {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         try {
-            for (Field field : this.getClass().getDeclaredFields()) {
+            for (Field field : getAllFields(this.getClass())) {
                 field.setAccessible(true);
                 Object thisValue = field.get(this);
                 Object otherValue = field.get(obj);
@@ -46,10 +46,10 @@ public abstract class DomainModel implements Serializable {
     @Override
     public int hashCode() {
         try {
-            Object[] fieldValues = new Object[this.getClass().getDeclaredFields().length];
+            Object[] fieldValues = new Object[getAllFields(this.getClass()).length];
             int index = 0;
 
-            for (Field field : this.getClass().getDeclaredFields()) {
+            for (Field field : getAllFields(this.getClass())) {
                 field.setAccessible(true);
                 fieldValues[index++] = field.get(this);
             }
@@ -58,5 +58,22 @@ public abstract class DomainModel implements Serializable {
         } catch (IllegalAccessException e) {
             throw new RuntimeException("Error accessing fields in hashCode()", e);
         }
+    }
+
+    @Generated
+    private static Field[] getAllFields(Class<?> clazz) {
+        Field[] declaredFields = clazz.getDeclaredFields();
+        Class<?> superclass = clazz.getSuperclass();
+
+        if (superclass != null && superclass != Object.class) {
+            Field[] parentFields = getAllFields(superclass);
+            Field[] allFields = new Field[declaredFields.length + parentFields.length];
+
+            System.arraycopy(declaredFields, 0, allFields, 0, declaredFields.length);
+            System.arraycopy(parentFields, 0, allFields, declaredFields.length, parentFields.length);
+
+            return allFields;
+        }
+        return declaredFields;
     }
 }
