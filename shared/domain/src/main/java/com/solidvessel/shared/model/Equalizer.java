@@ -7,9 +7,6 @@ import java.util.Objects;
 
 public final class Equalizer {
 
-    private Equalizer() {
-    }
-
     @Generated
     public static boolean equals(Object current, Object other) {
         if (current == other) return true;
