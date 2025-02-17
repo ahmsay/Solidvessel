@@ -5,6 +5,14 @@ import lombok.Generated;
 import java.lang.reflect.Field;
 import java.util.Objects;
 
+/*
+ * The reason I didn't use Lombok's @EqualsAndHashCode annotation is that in the implementation there is a single line
+ * that is extremely difficult to cover. Even with EqualsVerifier there is a lot of work to do to cover that line.
+ * Another option was to add a lombok.config file and exclude Lombok generated code from coverage. But after that
+ * configuration private fields were excluded as well which is not helpful at all. The only working solution to maintain
+ * %100 coverage was to implement my own generic equals and hashcode method.
+ */
+
 public final class Equalizer {
 
     @Generated
