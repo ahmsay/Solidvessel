@@ -77,9 +77,6 @@ data:
           "attributes": {
             "birthDate": [
               "1890-01-12"
-            ],
-            "address": [
-              "26593 birmingham, uk"
             ]
           },
           "credentials": [
@@ -112,9 +109,6 @@ data:
             ],
             "phoneNumber": [
               "5738593748"
-            ],
-            "address": [
-              "48249 helsinki, finland"
             ]
           },
           "credentials": [
