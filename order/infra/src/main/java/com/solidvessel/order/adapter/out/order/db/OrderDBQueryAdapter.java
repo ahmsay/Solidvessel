@@ -37,4 +37,10 @@ public class OrderDBQueryAdapter implements OrderQueryPort {
     public List<Order> getByCustomerId(String customerId) {
         return orderRepository.findByCustomerId(customerId).stream().map(OrderJpaEntity::toDomainModel).toList();
     }
+
+    @Override
+    public Order getByIdAndCustomerId(Long id, String customerId) {
+        OrderJpaEntity orderJpaEntity = orderRepository.findByIdAndCustomerId(id, customerId).orElseThrow(() -> new EntityNotFoundException("Order not found!"));
+        return orderJpaEntity.toDomainModel();
+    }
 }
