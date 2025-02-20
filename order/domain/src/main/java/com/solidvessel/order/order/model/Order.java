@@ -14,6 +14,7 @@ public class Order extends DomainModel {
     private String customerId;
     private Long paymentId;
     private String address;
+    private OrderCancellation cancellation;
 
     public static Order newOrder(String customerId, Long paymentId, String address) {
         return Order.builder()
@@ -22,5 +23,9 @@ public class Order extends DomainModel {
                 .paymentId(paymentId)
                 .address(address)
                 .build();
+    }
+
+    public void cancel(CancellationReason cancellationReason, String explanation) {
+        this.cancellation = new OrderCancellation(cancellationReason, explanation);
     }
 }
