@@ -55,7 +55,13 @@ public class OrderJpaEntity extends BaseEntity {
     }
 
     public static OrderJpaEntity from(Order order) {
+        CancellationReason reason = null;
+        String explanation = null;
         var cancellation = order.getCancellation();
+        if (cancellation != null) {
+            reason = cancellation.cancellationReason();
+            explanation = cancellation.explanation();
+        }
         return OrderJpaEntity.builder()
                 .id(order.getId())
                 .createdDate(order.getCreatedDate())
@@ -65,8 +71,8 @@ public class OrderJpaEntity extends BaseEntity {
                 .customerId(order.getCustomerId())
                 .paymentId(order.getPaymentId())
                 .address(order.getAddress())
-                .cancellationReason(cancellation.cancellationReason())
-                .cancellationExplanation(cancellation.explanation())
+                .cancellationReason(reason)
+                .cancellationExplanation(explanation)
                 .build();
     }
 }
