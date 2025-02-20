@@ -12,4 +12,6 @@ public interface OrderQueryPort {
     Order getById(Long id);
 
     List<Order> getByCustomerId(String customerId);
+
+    Order getByIdAndCustomerId(Long id, String customerId);
 }
