@@ -1,6 +1,8 @@
 package com.solidvessel.order.adapter.out.order.db.entity;
 
+import com.solidvessel.order.order.model.CancellationReason;
 import com.solidvessel.order.order.model.Order;
+import com.solidvessel.order.order.model.OrderCancellation;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
@@ -34,6 +36,10 @@ public class OrderJpaEntity extends BaseEntity {
     @NotNull
     private String address;
 
+    private CancellationReason cancellationReason;
+
+    private String cancellationExplanation;
+
     public Order toDomainModel() {
         return Order.builder()
                 .id(getId())
@@ -44,10 +50,12 @@ public class OrderJpaEntity extends BaseEntity {
                 .customerId(customerId)
                 .paymentId(paymentId)
                 .address(address)
+                .cancellation(new OrderCancellation(cancellationReason, cancellationExplanation))
                 .build();
     }
 
     public static OrderJpaEntity from(Order order) {
+        var cancellation = order.getCancellation();
         return OrderJpaEntity.builder()
                 .id(order.getId())
                 .createdDate(order.getCreatedDate())
@@ -57,6 +65,8 @@ public class OrderJpaEntity extends BaseEntity {
                 .customerId(order.getCustomerId())
                 .paymentId(order.getPaymentId())
                 .address(order.getAddress())
+                .cancellationReason(cancellation.cancellationReason())
+                .cancellationExplanation(cancellation.explanation())
                 .build();
     }
 }
