@@ -1,5 +1,6 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
@@ -7,15 +8,15 @@ import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.order.order.service.CancelOrderCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
+import com.solidvessel.shared.service.OperationResult;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class OrderController {
     private final OrderQueryPort orderQueryPort;
     private final KeycloakAdapter keycloakAdapter;
     private final PaymentRestClient paymentRestClient;
+    private final CancelOrderCommandService cancelOrderCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
@@ -58,5 +60,11 @@ public class OrderController {
     @GetMapping("/ofCustomer/{customerId}")
     public List<OrderResponse> getByCustomerId(@PathVariable String customerId) {
         return orderQueryPort.getByCustomerId(customerId).stream().map(OrderResponse::from).toList();
+    }
+
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    @PostMapping("/{id}/cancel")
+    public OperationResult cancelOrder(@PathVariable Long id, @RequestBody @Valid CancelOrderRequest request) {
+        return cancelOrderCommandService.execute(request.toCommand(id));
     }
 }
