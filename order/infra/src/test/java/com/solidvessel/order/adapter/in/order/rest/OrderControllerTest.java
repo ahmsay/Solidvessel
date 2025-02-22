@@ -1,16 +1,20 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
+import com.solidvessel.order.order.model.CancellationReason;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
+import com.solidvessel.order.order.service.CancelOrderCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
+import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockCustomer;
 import com.solidvessel.shared.test.controller.WithMockManager;
@@ -30,6 +34,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {OrderController.class})
@@ -46,6 +51,9 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @MockBean
     private PaymentRestClient paymentRestClient;
+
+    @MockBean
+    private CancelOrderCommandService cancelOrderCommandService;
 
     @Test
     @WithMockManager
@@ -65,7 +73,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     void getOrdersOfCurrentCustomer() throws Exception {
-        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan"));
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan", null));
         when(orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCurrentCustomer")
@@ -77,7 +85,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getOrderById() throws Exception {
-        var order = new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan");
+        var order = new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan", null);
         when(orderQueryPort.getById(1L)).thenReturn(order);
         MvcResult mvcResult = mockMvc.perform(
                 get("/1")
@@ -89,7 +97,7 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getOrderDetailById() throws Exception {
-        var order = new Order(OrderStatus.DELIVERED, "123", 1L, "5284 minnesota, united states");
+        var order = new Order(OrderStatus.DELIVERED, "123", 1L, "5284 minnesota, united states", null);
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var payment = new PaymentResponse(1L, 105D);
         var orderDetail = OrderDetailResponse.from(order, customer, payment);
@@ -107,13 +115,26 @@ public class OrderControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getOrderByCustomerId() throws Exception {
-        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan"));
+        var orders = List.of(new Order(OrderStatus.DELIVERED, "123", 1L, "4913 baku, azerbaijan", null));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
         MvcResult mvcResult = mockMvc.perform(
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    void cancelOrder() throws Exception {
+        var request = new CancelOrderRequest(CancellationReason.FOUND_BETTER_ALTERNATIVE, "found a better one...");
+        when(cancelOrderCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                put("/1/cancel")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
     }
 
     private UserRepresentation createUser() {

@@ -23,7 +23,8 @@ Contract.make {
                     "customerId": "123",
                     "paymentId": 5,
                     "address": "26593-birmingham,-uk",
-                    "creationDate": [2025,3,13,22,45,3,4831]
+                    "creationDate": [2025,3,13,22,45,3,4831],
+                    "cancellation": null
                 },
                 {
                     "id": 2,
@@ -31,7 +32,8 @@ Contract.make {
                     "customerId": "123",
                     "paymentId": 6,
                     "address": "48249-helsinki,-finland",
-                    "creationDate": [2023,12,9,11,49,32,8371]
+                    "creationDate": [2023,12,9,11,49,32,8371],
+                    "cancellation": null
                 }
             ]
         """.replaceAll("\\s", "")
