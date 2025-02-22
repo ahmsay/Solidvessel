@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Optional;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -55,13 +57,9 @@ public class OrderJpaEntity extends BaseEntity {
     }
 
     public static OrderJpaEntity from(Order order) {
-        CancellationReason reason = null;
-        String explanation = null;
-        var cancellation = order.getCancellation();
-        if (cancellation != null) {
-            reason = cancellation.cancellationReason();
-            explanation = cancellation.explanation();
-        }
+        var cancellation = Optional.ofNullable(order.getCancellation());
+        CancellationReason reason = cancellation.map(OrderCancellation::cancellationReason).orElse(null);
+        String explanation = cancellation.map(OrderCancellation::explanation).orElse(null);
         return OrderJpaEntity.builder()
                 .id(order.getId())
                 .createdDate(order.getCreatedDate())
