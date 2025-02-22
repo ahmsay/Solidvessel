@@ -63,7 +63,7 @@ public class OrderController {
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    @PostMapping("/{id}/cancel")
+    @PutMapping("/{id}/cancel")
     public OperationResult cancelOrder(@PathVariable Long id, @RequestBody @Valid CancelOrderRequest request) {
         return cancelOrderCommandService.execute(request.toCommand(id));
     }
