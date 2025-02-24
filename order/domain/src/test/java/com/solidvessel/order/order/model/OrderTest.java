@@ -28,6 +28,7 @@ public class OrderTest {
     void cancel() {
         var order = Order.newOrder("123", 1L, "952 baku, azerbaijan");
         order.cancel(CancellationReason.DONT_NEED_ANYMORE, "I don't need this thing more.");
+        assertEquals(OrderStatus.CANCELLED, order.getStatus());
         assertEquals(CancellationReason.DONT_NEED_ANYMORE, order.getCancellation().cancellationReason());
     }
 }

@@ -26,6 +26,7 @@ public class Order extends DomainModel {
     }
 
     public void cancel(CancellationReason cancellationReason, String explanation) {
+        this.status = OrderStatus.CANCELLED;
         this.cancellation = new OrderCancellation(cancellationReason, explanation);
     }
 }
