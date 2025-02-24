@@ -1,7 +1,6 @@
 package com.solidvessel.order.order.service;
 
 import com.solidvessel.order.order.model.Order;
-import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderPort;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.order.service.command.CancelOrderCommand;
@@ -21,8 +20,8 @@ public class CancelOrderCommandService implements CommandService<CancelOrderComm
     @Override
     public OperationResult execute(CancelOrderCommand command) {
         Order order = orderQueryPort.getByIdAndCustomerId(command.id(), command.customerId());
-        if (order.getStatus().equals(OrderStatus.DELIVERED)) {
-            return new OperationResult("Your order is already delivered.", ResultType.ERROR);
+        if (!order.canCancel()) {
+            return new OperationResult("Your order must either being prepared or on it's way to cancel.", ResultType.ERROR);
         }
         order.cancel(command.cancellationReason(), command.explanation());
         orderPort.save(order);

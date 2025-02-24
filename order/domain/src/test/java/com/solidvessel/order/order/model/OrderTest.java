@@ -1,9 +1,10 @@
 package com.solidvessel.order.order.model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderTest {
 
@@ -22,6 +23,20 @@ public class OrderTest {
         assertEquals(OrderStatus.DELIVERED, order2.getStatus());
         assertEquals("456", order2.getCustomerId());
         assertEquals(2L, order2.getPaymentId());
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = OrderStatus.class, names = {"PREPARING", "ON_THE_WAY"})
+    void canCancel(OrderStatus status) {
+        var order = Order.builder().id(1L).status(status).build();
+        assertTrue(order.canCancel());
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = OrderStatus.class, names = {"DELIVERED", "CANCELLED"})
+    void canNotCancel(OrderStatus status) {
+        var order = Order.builder().id(1L).status(status).build();
+        assertFalse(order.canCancel());
     }
 
     @Test

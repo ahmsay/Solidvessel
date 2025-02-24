@@ -42,7 +42,7 @@ public class CancelOrderCommandServiceTest extends BaseUnitTest {
         when(orderQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(order);
         var operationResult = commandService.execute(command);
         assertEquals(operationResult.resultType(), ResultType.ERROR);
-        assertEquals(operationResult.message(), "Your order is already delivered.");
+        assertEquals(operationResult.message(), "Your order must either being prepared or on it's way to cancel.");
         assertNull(order.getCancellation());
         verifyNoInteractions(orderPort);
     }

@@ -25,6 +25,10 @@ public class Order extends DomainModel {
                 .build();
     }
 
+    public boolean canCancel() {
+        return status == OrderStatus.PREPARING || status == OrderStatus.ON_THE_WAY;
+    }
+
     public void cancel(CancellationReason cancellationReason, String explanation) {
         this.status = OrderStatus.CANCELLED;
         this.cancellation = new OrderCancellation(cancellationReason, explanation);
