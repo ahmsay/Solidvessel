@@ -16,7 +16,7 @@
 !.docker/**
 !.kubernetes/**
 !.ci/**
-!.github
+!.github/**
 
 # other files
 !.gitignore
