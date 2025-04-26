@@ -20,8 +20,18 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"const jsonResponse = pm.response.json();\r",
-									"pm.globals.set(\"access_token\", jsonResponse.access_token);\r",
-									"pm.globals.set(\"refresh_token\", jsonResponse.refresh_token);"
+									"pm.environment.set(\"access_token\", jsonResponse.access_token);\r",
+									"pm.environment.set(\"refresh_token\", jsonResponse.refresh_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -201,6 +211,120 @@
 											"key": "start",
 											"value": "0"
 										},
+										{
+											"key": "end",
+											"value": "100",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deactivate customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/customer/c908ce9d-faec-4570-b84d-71a4e77f2f4a/deactivate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"customer",
+										"c908ce9d-faec-4570-b84d-71a4e77f2f4a",
+										"deactivate"
+									],
+									"query": [
+										{
+											"key": "end",
+											"value": "100",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "activate customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/customer/c908ce9d-faec-4570-b84d-71a4e77f2f4a/activate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"customer",
+										"c908ce9d-faec-4570-b84d-71a4e77f2f4a",
+										"activate"
+									],
+									"query": [
 										{
 											"key": "end",
 											"value": "100",
