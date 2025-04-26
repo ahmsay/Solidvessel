@@ -50,7 +50,7 @@ public class CustomerController {
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
-    @GetMapping("/{id}/activate")
+    @PutMapping("/{id}/activate")
     public OperationResult activateCustomer(@PathVariable String id) {
         keycloakAdapter.activateUser(id);
         return new OperationResult("Customer %s is activated.".formatted(id), ResultType.SUCCESS);

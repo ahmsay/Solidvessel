@@ -11,6 +11,8 @@ import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentStatus;
 import com.solidvessel.shared.idp.KeycloakAdapter;
+import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
 import com.solidvessel.shared.test.controller.WithMockManager;
 import org.junit.jupiter.api.Test;
@@ -28,8 +30,10 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {CustomerController.class})
@@ -93,6 +97,30 @@ public class CustomerControllerTest extends BaseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
         assertEquals(bodyOf(customerDetail), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    void activateCustomer() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(
+                put("/customer/123/activate")
+                        .header("authorization", "abc")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        verify(keycloakAdapter).activateUser("123");
+        assertEquals(bodyOf(new OperationResult("Customer %s is activated.".formatted("123"), ResultType.SUCCESS)), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    void deactivateCustomer() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(
+                put("/customer/123/deactivate")
+                        .header("authorization", "abc")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        verify(keycloakAdapter).deactivateUser("123");
+        assertEquals(bodyOf(new OperationResult("Customer %s is deactivated.".formatted("123"), ResultType.SUCCESS)), bodyOf(mvcResult));
     }
 
     private UserRepresentation createUser() {
