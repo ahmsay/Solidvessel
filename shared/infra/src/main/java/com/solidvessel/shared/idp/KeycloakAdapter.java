@@ -26,11 +26,15 @@ public class KeycloakAdapter {
 
     @Cacheable(value = "user", key = "#id")
     public void activateUser(String id) {
-        keycloakRealm.users().get(id).toRepresentation().setEnabled(true);
+        var user = keycloakRealm.users().get(id).toRepresentation();
+        user.setEnabled(true);
+        keycloakRealm.users().get(id).update(user);
     }
 
     @Cacheable(value = "user", key = "#id")
     public void deactivateUser(String id) {
-        keycloakRealm.users().get(id).toRepresentation().setEnabled(false);
+        var user = keycloakRealm.users().get(id).toRepresentation();
+        user.setEnabled(false);
+        keycloakRealm.users().get(id).update(user);
     }
 }
