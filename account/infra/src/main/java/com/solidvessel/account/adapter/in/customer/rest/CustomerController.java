@@ -55,4 +55,11 @@ public class CustomerController {
         keycloakAdapter.activateUser(id);
         return new OperationResult("Customer %s is activated.".formatted(id), ResultType.SUCCESS);
     }
+
+    @PreAuthorize("hasAuthority('MANAGER')")
+    @GetMapping("/{id}/deactivate")
+    public OperationResult deactivateCustomer(@PathVariable String id) {
+        keycloakAdapter.deactivateUser(id);
+        return new OperationResult("Customer %s is deactivated.".formatted(id), ResultType.SUCCESS);
+    }
 }

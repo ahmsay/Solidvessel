@@ -27,4 +27,8 @@ public class KeycloakAdapter {
     public void activateUser(String id) {
         keycloakRealm.users().get(id).toRepresentation().setEnabled(true);
     }
+
+    public void deactivateUser(String id) {
+        keycloakRealm.users().get(id).toRepresentation().setEnabled(false);
+    }
 }
