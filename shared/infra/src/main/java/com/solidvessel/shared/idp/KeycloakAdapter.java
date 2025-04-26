@@ -24,10 +24,12 @@ public class KeycloakAdapter {
         return keycloakRealm.users().get(id).toRepresentation();
     }
 
+    @Cacheable(value = "user", key = "#id")
     public void activateUser(String id) {
         keycloakRealm.users().get(id).toRepresentation().setEnabled(true);
     }
 
+    @Cacheable(value = "user", key = "#id")
     public void deactivateUser(String id) {
         keycloakRealm.users().get(id).toRepresentation().setEnabled(false);
     }
