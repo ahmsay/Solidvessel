@@ -26,7 +26,7 @@ public class CustomerController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping
-    public List<CustomerResponse> getUsers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
+    public List<CustomerResponse> getCustomers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
         List<UserRepresentation> users = keycloakAdapter.getUsers(start, end);
         return users.stream().map(CustomerResponse::from).toList();
     }
