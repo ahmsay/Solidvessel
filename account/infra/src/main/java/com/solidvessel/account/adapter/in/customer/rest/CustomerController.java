@@ -8,8 +8,8 @@ import com.solidvessel.account.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.security.SessionUtil;
-import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.OperationResult;
+import com.solidvessel.shared.service.ResultType;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +25,6 @@ public class CustomerController {
     private final KeycloakAdapter keycloakAdapter;
     private final OrderRestClient orderRestClient;
     private final PaymentRestClient paymentRestClient;
-    private final CommandService activateCustomerCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping
@@ -52,7 +51,8 @@ public class CustomerController {
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}/activate")
-    public OperationResult activateCustomer(@PathVariable Long id) {
-        return activateCustomerCommandService.execute(new ActivateCustomerCommand(id));
+    public OperationResult activateCustomer(@PathVariable String id) {
+        keycloakAdapter.activateUser(id);
+        return new OperationResult("Customer %s is activated.".formatted(id), ResultType.SUCCESS);
     }
 }
