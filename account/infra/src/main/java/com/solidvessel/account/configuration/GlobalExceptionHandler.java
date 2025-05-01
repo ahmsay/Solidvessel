@@ -15,7 +15,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(AccountDomainException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<OperationResult> handleAllUncaughtException(AccountDomainException exception) {
+    public ResponseEntity<OperationResult> handleDomainExceptions(AccountDomainException exception) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new OperationResult(exception.getMessage(), ResultType.ERROR));

@@ -15,7 +15,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InventoryDomainException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<OperationResult> handleAllUncaughtException(InventoryDomainException exception) {
+    public ResponseEntity<OperationResult> handleDomainExceptions(InventoryDomainException exception) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new OperationResult(exception.getMessage(), ResultType.ERROR));

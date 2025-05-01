@@ -15,7 +15,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(PaymentDomainException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<OperationResult> handleAllUncaughtException(PaymentDomainException exception) {
+    public ResponseEntity<OperationResult> handleDomainExceptions(PaymentDomainException exception) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new OperationResult(exception.getMessage(), ResultType.ERROR));
