@@ -101,8 +101,8 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"const jsonResponse = pm.response.json();\r",
-									"pm.globals.set(\"access_token\", jsonResponse.access_token);\r",
-									"pm.globals.set(\"refresh_token\", jsonResponse.refresh_token);"
+									"pm.environment.set(\"access_token\", jsonResponse.access_token);\r",
+									"pm.environment.set(\"refresh_token\", jsonResponse.refresh_token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
