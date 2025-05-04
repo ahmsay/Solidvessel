@@ -11,6 +11,7 @@ import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.order.service.CancelOrderCommandService;
+import com.solidvessel.order.order.service.DeliverOrderCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -54,6 +55,9 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @MockBean
     private CancelOrderCommandService cancelOrderCommandService;
+
+    @MockBean
+    DeliverOrderCommandService deliverOrderCommandService;
 
     @Test
     @WithMockManager

@@ -5,6 +5,7 @@ import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.order.service.CancelOrderCommandService;
+import com.solidvessel.order.order.service.DeliverOrderCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -33,6 +34,9 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
     @MockBean
     private CancelOrderCommandService cancelOrderCommandService;
 
+    @MockBean
+    private DeliverOrderCommandService deliverOrderCommandService;
+
     @BeforeEach
     void setup() {
         var orders = List.of(
@@ -53,7 +57,7 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
                         .createdDate(LocalDateTime.of(2023, Month.DECEMBER, 9, 11, 49, 32, 8371))
                         .build()
         );
-        RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, keycloakAdapter, paymentRestClient, cancelOrderCommandService));
+        RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, keycloakAdapter, paymentRestClient, cancelOrderCommandService, deliverOrderCommandService));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
     }
 }
