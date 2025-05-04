@@ -1,6 +1,7 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
 import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
+import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
@@ -9,6 +10,7 @@ import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.order.service.CancelOrderCommandService;
+import com.solidvessel.order.order.service.DeliverOrderCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -28,6 +30,7 @@ public class OrderController {
     private final KeycloakAdapter keycloakAdapter;
     private final PaymentRestClient paymentRestClient;
     private final CancelOrderCommandService cancelOrderCommandService;
+    private final DeliverOrderCommandService deliverOrderCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
@@ -66,5 +69,11 @@ public class OrderController {
     @PutMapping("/{id}/cancel")
     public OperationResult cancelOrder(@PathVariable Long id, @RequestBody @Valid CancelOrderRequest request) {
         return cancelOrderCommandService.execute(request.toCommand(id));
+    }
+
+    @PreAuthorize("hasAuthority('MANAGER')")
+    @PutMapping("/{id}/deliver")
+    public OperationResult deliverOrder(@PathVariable Long id, @RequestBody @Valid DeliverOrderRequest request) {
+        return deliverOrderCommandService.execute(request.toCommand(id));
     }
 }
