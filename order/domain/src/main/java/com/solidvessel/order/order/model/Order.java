@@ -33,4 +33,12 @@ public class Order extends DomainModel {
         this.status = OrderStatus.CANCELLED;
         this.cancellation = new OrderCancellation(cancellationReason, explanation);
     }
+
+    public boolean canDeliver() {
+        return status == OrderStatus.ON_THE_WAY;
+    }
+
+    public void deliver() {
+        this.status = OrderStatus.DELIVERED;
+    }
 }
