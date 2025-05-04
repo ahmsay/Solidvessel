@@ -46,4 +46,24 @@ public class OrderTest {
         assertEquals(OrderStatus.CANCELLED, order.getStatus());
         assertEquals(CancellationReason.DONT_NEED_ANYMORE.toString(), order.getCancellation().cancellationReason().toString());
     }
+
+    @Test
+    void canDeliver() {
+        var order = Order.builder().id(1L).status(OrderStatus.ON_THE_WAY).build();
+        assertTrue(order.canDeliver());
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = OrderStatus.class, names = {"PREPARING", "CANCELLED", "DELIVERED"})
+    void canNotDeliver(OrderStatus status) {
+        var order = Order.builder().id(1L).status(status).build();
+        assertFalse(order.canDeliver());
+    }
+
+    @Test
+    void deliver() {
+        var order = Order.builder().id(1L).status(OrderStatus.ON_THE_WAY).build();
+        order.deliver();
+        assertEquals(OrderStatus.DELIVERED, order.getStatus());
+    }
 }

@@ -1,6 +1,7 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
 import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
+import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
@@ -135,6 +136,19 @@ public class OrderControllerTest extends BaseControllerTest {
         when(cancelOrderCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 put("/1/cancel")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    void deliverOrder() throws Exception {
+        var request = new DeliverOrderRequest("Judge Holden");
+        when(deliverOrderCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                put("/1/deliver")
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
