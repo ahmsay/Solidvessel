@@ -32,7 +32,7 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
         when(productQueryPort.getById(1L)).thenReturn(product);
         var operationResult = commandService.execute(command);
         verify(productAvailableEventEventPublisher).publish(ProductAvailableEvent.from(product, command.quantity(), "123"));
-        assertEquals(operationResult.resultType(), ResultType.SUCCESS);
+        assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
     @Test

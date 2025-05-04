@@ -31,7 +31,7 @@ public class ProductTest {
         assertTrue(product.isAvailable(3).getIsAvailable());
         assertTrue(product.isAvailable(5).getIsAvailable());
         assertFalse(product.isAvailable(10).getIsAvailable());
-        assertEquals(product.isAvailable(10).getUnavailableReason(), UnavailableReason.NOT_IN_STOCKS);
+        assertEquals(UnavailableReason.NOT_IN_STOCKS, product.isAvailable(10).getUnavailableReason());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ProductTest {
         assertTrue(product1.isAvailable(3).getIsAvailable());
         var availability = product2.isAvailable(3);
         assertFalse(availability.getIsAvailable());
-        assertEquals(availability.getUnavailableReason(), UnavailableReason.NOT_AVAILABLE_IN_REGION);
+        assertEquals(UnavailableReason.NOT_AVAILABLE_IN_REGION, availability.getUnavailableReason());
     }
 
     @Test
