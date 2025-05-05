@@ -9,7 +9,8 @@ import com.solidvessel.order.order.model.OrderStatus;
 import java.time.LocalDateTime;
 
 public record OrderDetailResponse(Long id, OrderStatus status, String address, LocalDateTime creationDate,
-                                  OrderCancellation cancellation, CustomerResponse customer, PaymentResponse payment) {
+                                  OrderCancellation cancellation, String recipient, CustomerResponse customer,
+                                  PaymentResponse payment) {
 
     public static OrderDetailResponse from(Order order, CustomerResponse customer, PaymentResponse payment) {
         return new OrderDetailResponse(
@@ -18,6 +19,7 @@ public record OrderDetailResponse(Long id, OrderStatus status, String address, L
                 order.getAddress(),
                 order.getCreatedDate(),
                 order.getCancellation(),
+                order.getRecipient(),
                 customer,
                 payment
         );

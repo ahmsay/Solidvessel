@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 public record OrderResponse(Long id, OrderStatus status, String customerId, Long paymentId,
                             String address, LocalDateTime creationDate,
-                            OrderCancellation cancellation) implements Serializable {
+                            OrderCancellation cancellation, String recipient) implements Serializable {
 
     public static OrderResponse from(Order order) {
         return new OrderResponse(
@@ -19,7 +19,8 @@ public record OrderResponse(Long id, OrderStatus status, String customerId, Long
                 order.getPaymentId(),
                 order.getAddress(),
                 order.getCreatedDate(),
-                order.getCancellation()
+                order.getCancellation(),
+                order.getRecipient()
         );
     }
 }
