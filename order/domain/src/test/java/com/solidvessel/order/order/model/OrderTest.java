@@ -18,7 +18,7 @@ public class OrderTest {
         assertEquals("952 baku, azerbaijan", order1.getAddress());
         assertNull(order1.getCancellation());
 
-        var order2 = new Order(OrderStatus.DELIVERED, "456", 2L, "592 milano, italy", null);
+        var order2 = new Order(OrderStatus.DELIVERED, "456", 2L, "592 milano, italy", null, null);
         assertNull(order2.getId());
         assertEquals(OrderStatus.DELIVERED, order2.getStatus());
         assertEquals("456", order2.getCustomerId());
@@ -63,7 +63,8 @@ public class OrderTest {
     @Test
     void deliver() {
         var order = Order.builder().id(1L).status(OrderStatus.ON_THE_WAY).build();
-        order.deliver();
+        order.deliver("Louis Toadvine");
         assertEquals(OrderStatus.DELIVERED, order.getStatus());
+        assertEquals("Louis Toadvine", order.getRecipient());
     }
 }
