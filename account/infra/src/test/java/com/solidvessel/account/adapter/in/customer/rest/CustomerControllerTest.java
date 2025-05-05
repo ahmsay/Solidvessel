@@ -83,8 +83,8 @@ public class CustomerControllerTest extends BaseControllerTest {
         var user = createUser();
         var customer = CustomerResponse.from(user);
         var orders = List.of(
-                new OrderResponse(1L, OrderStatus.DELIVERED, 5L, "48249 helsinki, finland", LocalDateTime.now(), null),
-                new OrderResponse(2L, OrderStatus.CANCELLED, 3L, "3841 brisbane, australia", LocalDateTime.now(), new OrderCancellation(CancellationReason.FOUND_BETTER_ALTERNATIVE, "."))
+                new OrderResponse(1L, OrderStatus.DELIVERED, 5L, "48249 helsinki, finland", LocalDateTime.now(), null, "The Delawares"),
+                new OrderResponse(2L, OrderStatus.CANCELLED, 3L, "3841 brisbane, australia", LocalDateTime.now(), new OrderCancellation(CancellationReason.FOUND_BETTER_ALTERNATIVE, "."), null)
         );
         var payments = List.of(new PaymentResponse(5L, 260D, PaymentStatus.APPROVED, LocalDateTime.now()));
         var customerDetail = CustomerDetailResponse.from(customer, orders, payments);

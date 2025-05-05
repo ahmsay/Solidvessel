@@ -25,7 +25,7 @@ Contract.make {
                     "address": "26593-birmingham,-uk",
                     "creationDate": [2025,3,13,22,45,3,4831],
                     "cancellation": null,
-                    "recipient": "Judge Holden"
+                    "recipient": "Judge-Holden"
                 },
                 {
                     "id": 2,

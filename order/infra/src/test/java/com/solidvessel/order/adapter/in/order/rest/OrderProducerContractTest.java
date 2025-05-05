@@ -47,6 +47,7 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
                         .paymentId(5L)
                         .address("26593-birmingham,-uk")
                         .createdDate(LocalDateTime.of(2025, Month.MARCH, 13, 22, 45, 3, 4831))
+                        .recipient("Judge-Holden")
                         .build(),
                 Order.builder()
                         .id(2L)
