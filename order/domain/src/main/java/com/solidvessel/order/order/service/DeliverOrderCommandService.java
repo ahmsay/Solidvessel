@@ -23,7 +23,7 @@ public class DeliverOrderCommandService implements CommandService<DeliverOrderCo
         if (!order.canDeliver()) {
             return new OperationResult("The order must be on it's way to deliver.", ResultType.ERROR);
         }
-        order.deliver();
+        order.deliver(command.recipient());
         orderPort.save(order);
         return new OperationResult("The order is delivered to %s".formatted(command.recipient()), ResultType.SUCCESS);
     }

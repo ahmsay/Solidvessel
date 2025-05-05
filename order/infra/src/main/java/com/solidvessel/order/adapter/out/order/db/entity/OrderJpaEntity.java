@@ -42,6 +42,8 @@ public class OrderJpaEntity extends BaseEntity {
 
     private String cancellationExplanation;
 
+    private String recipient;
+
     public Order toDomainModel() {
         return Order.builder()
                 .id(getId())
@@ -53,6 +55,7 @@ public class OrderJpaEntity extends BaseEntity {
                 .paymentId(paymentId)
                 .address(address)
                 .cancellation(new OrderCancellation(cancellationReason, cancellationExplanation))
+                .recipient(recipient)
                 .build();
     }
 
@@ -71,6 +74,7 @@ public class OrderJpaEntity extends BaseEntity {
                 .address(order.getAddress())
                 .cancellationReason(reason)
                 .cancellationExplanation(explanation)
+                .recipient(order.getRecipient())
                 .build();
     }
 }

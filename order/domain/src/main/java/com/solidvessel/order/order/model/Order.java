@@ -15,6 +15,7 @@ public class Order extends DomainModel {
     private Long paymentId;
     private String address;
     private OrderCancellation cancellation;
+    private String recipient;
 
     public static Order newOrder(String customerId, Long paymentId, String address) {
         return Order.builder()
@@ -38,7 +39,8 @@ public class Order extends DomainModel {
         return status == OrderStatus.ON_THE_WAY;
     }
 
-    public void deliver() {
+    public void deliver(String recipient) {
         this.status = OrderStatus.DELIVERED;
+        this.recipient = recipient;
     }
 }
