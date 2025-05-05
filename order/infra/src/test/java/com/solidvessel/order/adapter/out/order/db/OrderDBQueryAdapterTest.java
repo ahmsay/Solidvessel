@@ -16,7 +16,7 @@ public class OrderDBQueryAdapterTest extends BaseDatabaseTest {
     private OrderDBQueryAdapter orderDBQueryAdapter;
 
     @Test
-    void getProducts() {
+    void getOrders() {
         persistEntity(new OrderJpaEntity(OrderStatus.DELIVERED, "123", 1L, "6904 lizbon, portugal", null, null, "Tobin"));
         persistEntity(new OrderJpaEntity(OrderStatus.ON_THE_WAY, "456", 5L, "4814 sao paulo, brazil", null, null, null));
         var orders = orderDBQueryAdapter.getOrders(new QueryOptions(0));
