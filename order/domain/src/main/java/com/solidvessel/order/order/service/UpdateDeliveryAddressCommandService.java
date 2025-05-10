@@ -20,10 +20,10 @@ public class UpdateDeliveryAddressCommandService implements CommandService<Updat
     @Override
     public OperationResult execute(UpdateDeliveryAddressCommand command) {
         Order order = orderQueryPort.getByIdAndCustomerId(command.id(), command.customerId());
-        if (!order.canChangeAddress()) {
+        if (!order.canUpdateAddress()) {
             return new OperationResult("Your order must be in preparation to change the delivery address.", ResultType.ERROR);
         }
-        order.changeAddress(command.address());
+        order.updateAddress(command.address());
         orderPort.save(order);
         return new OperationResult("Your delivery address is updated successfully. New address: %s".formatted(command.address()), ResultType.SUCCESS);
     }

@@ -44,11 +44,11 @@ public class Order extends DomainModel {
         this.recipient = recipient;
     }
 
-    public boolean canChangeAddress() {
+    public boolean canUpdateAddress() {
         return status == OrderStatus.PREPARING;
     }
 
-    public void changeAddress(String address) {
+    public void updateAddress(String address) {
         this.address = address;
     }
 }
