@@ -2,6 +2,7 @@ package com.solidvessel.order.adapter.in.order.rest;
 
 import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
+import com.solidvessel.order.adapter.in.order.rest.request.UpdateDeliveryAddressRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
@@ -13,6 +14,7 @@ import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.order.service.CancelOrderCommandService;
 import com.solidvessel.order.order.service.DeliverOrderCommandService;
+import com.solidvessel.order.order.service.UpdateDeliveryAddressCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -59,6 +61,9 @@ public class OrderControllerTest extends BaseControllerTest {
 
     @MockBean
     DeliverOrderCommandService deliverOrderCommandService;
+
+    @MockBean
+    private UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
 
     @Test
     @WithMockManager
@@ -149,6 +154,19 @@ public class OrderControllerTest extends BaseControllerTest {
         when(deliverOrderCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
         MvcResult mvcResult = mockMvc.perform(
                 put("/1/deliver")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(OperationResult.defaultSuccessResult()), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
+    void updateDeliveryAddress() throws Exception {
+        var request = new UpdateDeliveryAddressRequest("New Mexico");
+        when(updateDeliveryAddressCommandService.execute(request.toCommand(1L))).thenReturn(OperationResult.defaultSuccessResult());
+        MvcResult mvcResult = mockMvc.perform(
+                put("/1/deliveryAddress")
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();

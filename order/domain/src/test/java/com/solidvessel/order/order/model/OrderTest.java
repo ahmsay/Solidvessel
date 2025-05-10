@@ -67,4 +67,24 @@ public class OrderTest {
         assertEquals(OrderStatus.DELIVERED, order.getStatus());
         assertEquals("Louis Toadvine", order.getRecipient());
     }
+
+    @Test
+    void canUpdateAddress() {
+        var order = Order.builder().id(1L).status(OrderStatus.PREPARING).address("Arizona").build();
+        assertTrue(order.canUpdateAddress());
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = OrderStatus.class, names = {"ON_THE_WAY", "CANCELLED", "DELIVERED"})
+    void cannotUpdateAddress(OrderStatus status) {
+        var order = Order.builder().id(1L).status(status).address("Blood Meridian").build();
+        assertFalse(order.canUpdateAddress());
+    }
+
+    @Test
+    void updateAddress() {
+        var order = Order.builder().id(1L).status(OrderStatus.PREPARING).address("Chihuahua City").build();
+        order.updateAddress("Rhodes");
+        assertEquals("Rhodes", order.getAddress());
+    }
 }
