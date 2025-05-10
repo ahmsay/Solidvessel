@@ -2,6 +2,7 @@ package com.solidvessel.order.adapter.in.order.rest;
 
 import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
+import com.solidvessel.order.adapter.in.order.rest.request.UpdateDeliveryAddressRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
@@ -11,6 +12,7 @@ import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderQueryPort;
 import com.solidvessel.order.order.service.CancelOrderCommandService;
 import com.solidvessel.order.order.service.DeliverOrderCommandService;
+import com.solidvessel.order.order.service.UpdateDeliveryAddressCommandService;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -31,6 +33,7 @@ public class OrderController {
     private final PaymentRestClient paymentRestClient;
     private final CancelOrderCommandService cancelOrderCommandService;
     private final DeliverOrderCommandService deliverOrderCommandService;
+    private final UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
@@ -75,5 +78,11 @@ public class OrderController {
     @PutMapping("/{id}/deliver")
     public OperationResult deliverOrder(@PathVariable Long id, @RequestBody @Valid DeliverOrderRequest request) {
         return deliverOrderCommandService.execute(request.toCommand(id));
+    }
+
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    @PutMapping("/{id}/deliveryAddress")
+    public OperationResult updateDeliveryAddress(@PathVariable Long id, @RequestBody @Valid UpdateDeliveryAddressRequest request) {
+        return updateDeliveryAddressCommandService.execute(request.toCommand(id));
     }
 }
