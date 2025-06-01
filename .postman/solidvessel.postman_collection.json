@@ -1893,6 +1893,42 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "docs",
+			"item": [
+				{
+					"name": "query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"body\": \"what is the aim of this project\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kw5uzneejhbujvqypkrcsi4wji0dodqu.lambda-url.eu-central-1.on.aws/ ",
+							"protocol": "https",
+							"host": [
+								"kw5uzneejhbujvqypkrcsi4wji0dodqu",
+								"lambda-url",
+								"eu-central-1",
+								"on",
+								"aws"
+							],
+							"path": [
+								" "
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
