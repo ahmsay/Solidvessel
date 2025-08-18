@@ -42,7 +42,7 @@ plugin_configs:
       client_secret: "GJDCy4C7LSeFmggaRtZutSHZHBaTCavE"
       discovery: "http://localhost:9876/realms/solidvessel/.well-known/openid-configuration"
       scope: "openid profile"
-      bearer_only: true
+      bearer_only: true # set false to enable login from ui
       realm: "solidvessel"
       redirect_uri: "http://localhost:9080/auth/callback"
       logout_path: "/auth/logout"
@@ -51,7 +51,7 @@ plugin_configs:
       set_userinfo_header: false
     proxy-rewrite:
       headers:
-        remove:
+        remove: # these headers are coming only if login from ui is enabled
         - "sec-fetch-site"
         - "sec-fetch-mode"
         - "sec-fetch-user"
