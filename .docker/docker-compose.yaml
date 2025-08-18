@@ -26,7 +26,7 @@ services:
     environment:
       APISIX_STAND_ALONE: "true"
     volumes:
-    - ./apisix/apisix-conf.yaml:/usr/local/apisix/conf/apisix.yaml
+    - ./apisix/apisix.yaml:/usr/local/apisix/conf/apisix.yaml
     network_mode: host
   keycloak:
     container_name: keycloak
