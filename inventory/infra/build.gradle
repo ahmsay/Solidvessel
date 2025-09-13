@@ -26,8 +26,9 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     implementation "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
     implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter:$rootProject.junitVersion"
+    testRuntimeOnly "org.junit.platform:junit-platform-engine:$rootProject.junitPlatformVersion"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:$rootProject.junitPlatformVersion"
     testImplementation 'org.testcontainers:postgresql'
 }
 

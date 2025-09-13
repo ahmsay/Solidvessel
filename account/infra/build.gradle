@@ -29,8 +29,9 @@ dependencies {
     implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$rootProject.circuitBreakerVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter:$rootProject.junitVersion"
+    testRuntimeOnly "org.junit.platform:junit-platform-engine:$rootProject.junitPlatformVersion"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:$rootProject.junitPlatformVersion"
     testImplementation 'org.testcontainers:postgresql'
     testImplementation "org.springframework.cloud:spring-cloud-contract-stub-runner:$rootProject.springCloudContractVersion"
     testImplementation files(
