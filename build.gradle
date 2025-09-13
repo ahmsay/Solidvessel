@@ -6,8 +6,8 @@ ext {
     circuitBreakerVersion = "3.2.2"
     liquibaseVersion = "4.33.0"
     keycloakVersion = "26.0.6"
-    junitVersion = "5.10.3"
-    mockitoVersion = "5.12.0"
-    set('testContainers.version', "1.20.1")
-    springCloudContractVersion = "4.1.4"
+    junitVersion = "5.13.4"
+    mockitoVersion = "5.19.0"
+    set('testContainers.version', "1.21.3")
+    springCloudContractVersion = "4.3.0"
 }
