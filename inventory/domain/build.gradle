@@ -10,7 +10,7 @@ dependencies {
     api project(':shared:domain')
     testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:$rootProject.junitPlatformVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation "org.mockito:mockito-junit-jupiter:$rootProject.mockitoVersion"
 }
