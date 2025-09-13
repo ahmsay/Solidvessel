@@ -2,8 +2,8 @@ group = 'com.solidvessel'
 
 ext {
     postgresDriverVersion = "42.7.7"
-    feignVersion = "4.1.3"
-    circuitBreakerVersion = "3.1.2"
+    feignVersion = "4.3.0"
+    circuitBreakerVersion = "3.2.2"
     liquibaseVersion = "4.33.0"
     keycloakVersion = "26.0.6"
     junitVersion = "5.10.3"
