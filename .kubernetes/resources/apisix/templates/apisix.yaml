@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: apisix
-    targetRevision: 3.3.10
+    targetRevision: 6.0.0
     helm:
       values: |
         controlPlane:
@@ -17,16 +17,13 @@ spec:
             create: false
           tls:
             enabled: false
+          dashboardEnabled: false
         ingressController:
           enabled: false
           pdb:
             create: false
         etcd:
           enabled: false
-        dashboard:
-          enabled: false
-          pdb:
-            create: false
         dataPlane:
           service:
             type: NodePort
@@ -39,6 +36,7 @@ spec:
             http: 8080
           extraConfig:
             deployment:
+              role: data_plane
               role_data_plane:
                 config_provider: yaml
           extraEnvVarsSecret: apisix-secret
