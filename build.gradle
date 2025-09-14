@@ -11,4 +11,5 @@ ext {
     mockitoVersion = "5.19.0"
     set('testContainers.version', "1.21.3")
     springCloudContractVersion = "4.3.0"
+    springCloudBomVersion = "2025.0.0"
 }
