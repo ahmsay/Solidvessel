@@ -19,7 +19,7 @@ spec:
           service:
             type: NodePort
             nodePorts:
-              redis: 32103
+              redis: "32103"
         replica:
           persistence:
             enabled: false
