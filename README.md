@@ -12,7 +12,7 @@ transactions of a shopping application.
 ### Development
 ![development](https://github.com/ahmsay/Solidvessel/assets/22731894/6b70af30-2090-4b8e-bd10-dbd3d4058e11)
 
-In development mode, microservices are running as separate processes on your computer. The API Gateway, database,
+In development environment, microservices are running as separate processes on your computer. The API Gateway, database,
 RabbitMQ, Redis and Keycloak run
 as Docker containers. Since all microservices run on the same device, they should expose a different port. The
 communication between client
@@ -23,7 +23,7 @@ environment.
 
 ![test](https://github.com/ahmsay/Solidvessel/assets/22731894/f0a32cb2-6228-44cd-91c0-8e9d9243d0df)
 
-In test mode, the whole application lives in a Kubernetes cluster which runs on your computer. Microservices, API
+In test environment, the whole application lives in a Kubernetes cluster which runs on your computer. Microservices, API
 Gateway, databases, Redis, RabbitMQ and Keycloak now
 run as Kubernetes deployments or statefulsets.
 
