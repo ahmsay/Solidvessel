@@ -11,7 +11,7 @@ import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -22,13 +22,13 @@ import static org.mockito.Mockito.when;
 @WebMvcTest(controllers = {PaymentController.class})
 public class PaymentProducerContractTest extends BaseProducerContractTest {
 
-    @MockBean
+    @MockitoBean
     private PaymentQueryPort paymentQueryPort;
 
-    @MockBean
+    @MockitoBean
     private KeycloakAdapter keycloakAdapter;
 
-    @MockBean
+    @MockitoBean
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
     @BeforeEach

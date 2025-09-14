@@ -21,8 +21,8 @@ import com.solidvessel.shared.test.controller.WithMockManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -39,25 +39,25 @@ public class ProductControllerTest extends BaseControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private ProductQueryPort productQueryPort;
 
-    @MockBean
+    @MockitoBean
     private AddProductCommandService addProductCommandService;
 
-    @MockBean
+    @MockitoBean
     private AddProductToCartCommandService addProductToCartCommandService;
 
-    @MockBean
+    @MockitoBean
     private UpdateProductCommandService updateProductCommandService;
 
-    @MockBean
+    @MockitoBean
     private DeleteProductCommandService deleteProductCommandService;
 
-    @MockBean
+    @MockitoBean
     private DeleteProductsCommandService deleteProductsCommandService;
 
-    @MockBean
+    @MockitoBean
     private ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
 
     @Test
