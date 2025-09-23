@@ -9,6 +9,7 @@ environment, databases are outside the K8S cluster, and they are provisioned wit
 production-ready scenarios such as creating a read replica, multi-az environment, taking a snapshot, point in time
 recovery are a lot easier.
 
-In these environments the data is not written into any disk, meaning if the database is gone the data will be gone as
+In development and test environments the data is not written into any disk, meaning if the database is gone the data
+will be gone as
 well. This makes it easier to setup since they both run locally. In the production environment on the other hand, all
 the data is loaded from a previously taken snapshot. This way even if the environment is shut down the data is not lost.
