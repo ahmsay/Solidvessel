@@ -4,7 +4,9 @@ plugins {
     id 'jacoco'
 }
 
-archivesBaseName = 'payment-domain'
+base {
+    archivesName = 'payment-domain'
+}
 
 dependencies {
     api project(':shared:domain')

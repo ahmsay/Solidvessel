@@ -3,6 +3,10 @@ plugins {
     id 'io.freefair.lombok' version '8.14.2'
 }
 
+base {
+    archivesName = 'shared-domain'
+}
+
 dependencies {
     implementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
     runtimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
@@ -10,5 +14,3 @@ dependencies {
     implementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     implementation "org.mockito:mockito-junit-jupiter:$rootProject.mockitoVersion"
 }
-
-archivesBaseName = 'shared-domain'

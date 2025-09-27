@@ -5,7 +5,13 @@ plugins {
     id 'io.freefair.lombok' version '8.14.2'
 }
 
-archivesBaseName = 'shared-infra'
+base {
+    archivesName = 'shared-infra'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+}
 
 bootJar {
     enabled = false
