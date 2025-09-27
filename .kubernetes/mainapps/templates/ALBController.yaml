@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://aws.github.io/eks-charts
     chart: aws-load-balancer-controller
-    targetRevision: 1.8.2
+    targetRevision: 1.13.4
     helm:
       releaseName: aws-load-balancer-controller
       values: |
