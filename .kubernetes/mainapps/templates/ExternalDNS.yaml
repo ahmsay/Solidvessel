@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: external-dns
-    targetRevision: 8.3.9
+    targetRevision: 9.0.3
     helm:
       values: |
         provider: aws
