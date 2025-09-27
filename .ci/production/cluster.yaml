@@ -3,7 +3,7 @@ kind: ClusterConfig
 metadata:
   name: solidvessel
   region: eu-central-1
-  version: "1.30"
+  version: "1.33"
 availabilityZones:
 - eu-central-1a
 - eu-central-1b
