@@ -6,55 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: redis
-    targetRevision: 22.0.7
+    repoURL: https://github.com/ahmsay/Solidvessel.git
+    targetRevision: master
+    path: .kubernetes/resources/redis
     helm:
-      values: |
-        auth:
-          existingSecret: redis-secret
-        master:
-          persistence:
-            enabled: false
-          service:
-            type: NodePort
-            nodePorts:
-              redis: "32103"
-        replica:
-          persistence:
-            enabled: false
+      valueFiles:
+      - values-{{ .Values.environment }}.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel
   syncPolicy:
     automated:
       prune: true
----
-{{ if eq .Values.environment "test" }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: redis-secret
-  namespace: solidvessel
-type: Opaque
-data:
-  redis-password: cmVkaXM=
-{{ end }}
----
-{{ if eq .Values.environment "prod" }}
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: redis-secret
-  namespace: solidvessel
-spec:
-  encryptedData:
-    redis-password: AgCZ29LT8tsOAgTZ6QFWHHPvQESN9icLVyPVUGlUE5cP67vbIL8UNh4K7uDbgzpFW0deR5T+ZsVU2yQeiskv2foCtG+KrGFpB0w7qeYRZxKkHv3SFgLCeFMK9acxzmFbBZpaaM+PqrAYuxmynS0ZXN+e+P9iw2njnCvCm5GTm3oPg72LDL5Xp40Ntu1FiTWZalJ+kgay7O1TuGg+YP1COfuR53uWVdGlRkFVH3KEqSy8XC/8qJrLzCk3IzWqNrVUryenPt0G1oBPjGWsA4cACbTvbarIeipGtE8UUjBO+4UjZ8NsipkzY4gKrUjl6DI21yKxAD6hou9jUn5nDITZYwBz4eJ4xDRW0jE4nHweHIU6CTvFBLFfy5EIzDFKGHuOl1f4Mfp+kqF9vnK0ZPJjd05Sm6X62b6Jx86amaAVMw+smyTWFxIIGYOw54eW3vL76Tc2+p0g+fBZEaxV8j4LigcnC1md7nnFRqdWZe5ODmjCHBBhPaF6NPkV+TQxW2EJbfyZ53D00JIYW9mhJLLGJ6BIYU6LhBuX7FQyGBzWmRDMaLuCT/7MINAnxWPKG7527aGBtq58OVCJCzaWXGPeRvHdWNOzOy6R5xzTiSNlGa6F8b06Y6QqjOa4048CHOR9HzG0N49YELxdLeHwRGniia9nt2PcaVyqMZklTydYJUR32qy0mMqVHA2M9VNjnBwb8CCAmzqG58+/W/MvE99oNyfobFn6rJWe0BY=
-  template:
-    metadata:
-      creationTimestamp: null
-      name: redis-secret
-      namespace: solidvessel
-    type: Opaque
-{{ end }}

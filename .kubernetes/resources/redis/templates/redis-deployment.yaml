@@ -16,30 +16,9 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:7
-        imagePullPolicy: IfNotPresent
+        image: redis:8.2.1
         ports:
         - containerPort: 6379
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        readinessProbe:
-          tcpSocket:
-            port: 6379
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        livenessProbe:
-          tcpSocket:
-            port: 6379
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        volumeMounts:
-        - name: redis-data
-          mountPath: /data
-      volumes:
-      - name: redis-data
-        emptyDir: { }
+        envFrom:
+        - secretRef:
+            name: redis-secret
