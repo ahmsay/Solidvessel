@@ -24,12 +24,9 @@ spec:
           username: nihilus
           password: temp-password
         extraEnv:
-        - name: KEYCLOAK_HOSTNAME
-          value: http://keycloak:8080
-        - name: KC_HTTP_ENABLED
-          value: "true"
-        - name: KC_PROXY_HEADERS
-          value: forwarded
+          KEYCLOAK_HOSTNAME: http://keycloak:8080
+          KC_HTTP_ENABLED: "true"
+          KC_PROXY_HEADERS: forwarded
         {{ if eq .Values.environment "test" }}
         extraVolumes:
         - name: keycloak-realm-volume
