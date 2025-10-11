@@ -19,6 +19,7 @@ spec:
         keycloak:
           existingSecret: keycloak-admin-secret
         postgres:
+          enabled: false
           host: {{ .Values.db.hostname }}
           database: keycloak
           username: nihilus
