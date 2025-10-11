@@ -23,7 +23,7 @@ spec:
         database:
           type: postgres
           host: {{ .Values.db.hostname }}
-          port: 5432
+          port: "5432"
           name: keycloak
           existingSecret: keycloak-db-secret
         extraEnv:
