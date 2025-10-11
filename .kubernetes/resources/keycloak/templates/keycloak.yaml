@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
+    repoURL: oci://registry-1.docker.io/cloudpirates/keycloak
     chart: keycloak
-    targetRevision: 25.2.0
+    targetRevision: 0.4.0
     helm:
       values: |
         production: true
@@ -16,19 +16,14 @@ spec:
           type: NodePort
           ports:
             http: 8080
-          nodePorts:
-            http: 31080
-        auth:
-          adminUser: admin
+        keycloak:
           existingSecret: keycloak-admin-secret
-        postgresql:
-          enabled: false
-        externalDatabase:
+        postgres:
           host: {{ .Values.db.hostname }}
           database: keycloak
-          user: nihilus
-          existingSecret: keycloak-db-secret
-        extraEnvVars:
+          username: nihilus
+          password: temp-password
+        extraEnv:
         - name: KEYCLOAK_HOSTNAME
           value: http://keycloak:8080
         - name: KC_HTTP_ENABLED
