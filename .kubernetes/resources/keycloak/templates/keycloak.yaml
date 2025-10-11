@@ -20,10 +20,11 @@ spec:
           existingSecret: keycloak-admin-secret
         postgres:
           enabled: false
-          host: {{ .Values.db.hostname }}
-          database: keycloak
-          username: nihilus
-          password: temp-password
+          auth:
+            host: {{ .Values.db.hostname }}
+            database: keycloak
+            username: nihilus
+            password: temp-password
         extraEnv:
           KEYCLOAK_HOSTNAME: http://keycloak:8080
           KC_HTTP_ENABLED: "true"
