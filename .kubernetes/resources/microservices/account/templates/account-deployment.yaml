@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: account
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:

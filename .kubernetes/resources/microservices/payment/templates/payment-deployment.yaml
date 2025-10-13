@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: payment
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:

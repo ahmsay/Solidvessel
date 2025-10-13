@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: redis
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:

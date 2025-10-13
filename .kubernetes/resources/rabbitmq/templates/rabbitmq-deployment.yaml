@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: rabbitmq
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:
