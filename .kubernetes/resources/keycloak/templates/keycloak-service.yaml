@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  selector:
+    app: keycloak
+  ports:
+  - name: keycloak
+    port: 8080
+    targetPort: 8080
+    nodePort: 31080
+  type: NodePort
