@@ -37,10 +37,10 @@ spec:
             name: keycloak-db-secret
         volumeMounts:
         - name: keycloak-realm-volume
-          mountPath: /opt/bitnami/keycloak/data/import/solidvessel-realm.json
+          mountPath: /opt/keycloak/data/import/solidvessel-realm.json
           subPath: solidvessel-realm.json
         - name: keycloak-users-volume
-          mountPath: /opt/bitnami/keycloak/data/import/solidvessel-users-0.json
+          mountPath: /opt/keycloak/data/import/solidvessel-users-0.json
           subPath: solidvessel-users-0.json
         args:
         - "--import-realm"
