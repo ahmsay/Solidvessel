@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: identity-provider
+  name: keycloak-db
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ahmsay/Solidvessel.git
     targetRevision: master
-    path: .kubernetes/resources/keycloak
+    path: .kubernetes/resources/keycloak-db
     helm:
       valueFiles:
       - values-{{ .Values.environment }}.yaml
