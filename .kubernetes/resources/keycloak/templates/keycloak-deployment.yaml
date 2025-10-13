@@ -43,6 +43,7 @@ spec:
           mountPath: /opt/keycloak/data/import/solidvessel-users-0.json
           subPath: solidvessel-users-0.json
         args:
+        - "start"
         - "--import-realm"
       volumes:
       - name: keycloak-realm-volume
