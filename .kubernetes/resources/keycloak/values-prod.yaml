@@ -1,3 +1,4 @@
 environment: prod
 db:
   hostname: keycloak.db.solidvessel.com
+hostnameStrict: "true"

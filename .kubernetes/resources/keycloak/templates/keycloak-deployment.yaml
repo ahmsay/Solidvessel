@@ -22,10 +22,12 @@ spec:
         ports:
         - containerPort: 8080
         env:
+        {{ if eq .Values.environment "prod" }}
         - name: KC_HOSTNAME
           value: http://keycloak:8080
+        {{ end }}
         - name: KC_HOSTNAME_STRICT
-          value: "false"
+          value: {{ .Values.hostnameStrict }}
         - name: KC_HTTP_ENABLED
           value: "true"
         - name: KC_PROXY_HEADERS
