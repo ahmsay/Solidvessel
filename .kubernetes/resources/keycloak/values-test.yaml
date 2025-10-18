@@ -1,4 +1,4 @@
 environment: test
 db:
   hostname: keycloak-db
-hostnameStrict: "false"
+hostnameStrict: false

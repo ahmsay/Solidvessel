@@ -27,7 +27,7 @@ spec:
           value: http://keycloak:8080
         {{ end }}
         - name: KC_HOSTNAME_STRICT
-          value: {{ .Values.hostnameStrict }}
+          value: "{{ .Values.hostnameStrict }}"
         - name: KC_HTTP_ENABLED
           value: "true"
         - name: KC_PROXY_HEADERS
