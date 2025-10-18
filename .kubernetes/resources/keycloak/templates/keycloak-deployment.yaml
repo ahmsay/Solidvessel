@@ -22,6 +22,10 @@ spec:
         ports:
         - containerPort: 8080
         env:
+        - name: KC_HOSTNAME
+          value: http://keycloak:8080
+        - name: KC_HOSTNAME_STRICT
+          value: false
         - name: KC_HTTP_ENABLED
           value: "true"
         - name: KC_PROXY_HEADERS
