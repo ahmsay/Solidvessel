@@ -22,14 +22,14 @@ spec:
         ports:
         - containerPort: 5432
         env:
-        - name: PGDATABASE
+        - name: POSTGRES_DB
           value: keycloak
-        - name: PGUSER
+        - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
               name: keycloak-db-secret
               key: KC_DB_USERNAME
-        - name: PGPASSWORD
+        - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: keycloak-db-secret
