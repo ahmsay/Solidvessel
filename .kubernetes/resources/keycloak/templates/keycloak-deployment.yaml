@@ -22,8 +22,6 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: KC_HOSTNAME
-          value: http://keycloak:8080
         - name: KC_HTTP_ENABLED
           value: "true"
         - name: KC_PROXY_HEADERS
@@ -32,8 +30,6 @@ spec:
           value: postgres
         - name: KC_DB_URL
           value: jdbc:postgresql://{{ .Values.db.hostname }}:5432/keycloak
-        - name: KC_FEATURES
-          value: hostname:v2
         envFrom:
         - secretRef:
             name: keycloak-admin-secret
