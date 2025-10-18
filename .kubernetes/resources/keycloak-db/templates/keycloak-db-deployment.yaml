@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-db
+  namespace: solidvessel
+  labels:
+    app: keycloak-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak-db
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: keycloak-db
+    spec:
+      containers:
+      - name: keycloak-db
+        image: postgres:17.6
+        ports:
+        - containerPort: 5432
+        env:
+        - name: PGDATABASE
+          value: keycloak
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-db-secret
+              key: KC_DB_USERNAME
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-db-secret
+              key: KC_DB_PASSWORD

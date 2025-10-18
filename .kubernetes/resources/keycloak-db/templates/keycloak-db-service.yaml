@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-db
+  namespace: solidvessel
+  labels:
+    app: keycloak-db
+spec:
+  selector:
+    app: keycloak-db
+  ports:
+  - name: keycloak-db
+    port: 5432
+    targetPort: 5432
+    nodePort: 32000
+  type: NodePort
