@@ -7,38 +7,16 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: postgresql
-    targetRevision: 16.7.27
+    repoURL: https://github.com/ahmsay/Solidvessel.git
+    targetRevision: master
+    path: .kubernetes/resources/microservices/account-db
     helm:
-      values: |
-        global:
-          postgresql:
-            auth:
-              database: account
-              username: nihilus
-              existingSecret: account-db-secret
-        primary:
-          persistence:
-            enabled: false
-          service:
-            type: NodePort
-            nodePorts:
-              postgresql: 32001
+      valueFiles:
+      - values-{{ .Values.environment }}.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: solidvessel
   syncPolicy:
     automated:
       prune: true
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: account-db-secret
-  namespace: solidvessel
-type: Opaque
-data:
-  password: bmloaWx1cw==
-  postgres-password: bmloaWx1cw==
 {{ end }}
