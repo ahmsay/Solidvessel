@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-db
+  namespace: solidvessel
+  labels:
+    app: account-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-db
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: account-db
+    spec:
+      containers:
+      - name: account-db
+        image: postgres:17.6
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: account
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: account-secret
+              key: DB_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: account-secret
+              key: DB_PASSWORD
