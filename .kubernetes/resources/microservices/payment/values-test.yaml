@@ -1,7 +1,7 @@
 environment: test
 db:
-  hostname: payment-db-postgresql.solidvessel.svc.cluster.local
-  url: jdbc:postgresql://payment-db-postgresql:5432/payment
+  hostname: payment-db.solidvessel.svc.cluster.local
+  url: jdbc:postgresql://payment-db:5432/payment
 spring:
   webExposure: "*"
   liquibase:

@@ -30,7 +30,7 @@ spec:
         args:
         - "--spring.profiles.active={{ .Values.environment }}"
         - "--spring.datasource.url={{ .Values.db.url }}"
-        - "--spring.datasource.username=nihilus"
+        - "--spring.datasource.username=${DB_USERNAME}"
         - "--spring.datasource.password=${DB_PASSWORD}"
         - "--spring.liquibase.contexts={{ .Values.spring.liquibase.contexts }}"
         - "--spring.data.redis.host=redis"
