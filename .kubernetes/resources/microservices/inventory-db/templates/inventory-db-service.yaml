@@ -12,5 +12,5 @@ spec:
   - name: account-db
     port: 5432
     targetPort: 5432
-    nodePort: 32001
+    nodePort: 32002
   type: NodePort
