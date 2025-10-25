@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: account-db
+  name: inventory-db
   namespace: solidvessel
   labels:
-    app: account-db
+    app: inventory-db
 spec:
   selector:
-    app: account-db
+    app: inventory-db
   ports:
-  - name: account-db
+  - name: inventory-db
     port: 5432
     targetPort: 5432
     nodePort: 32002
