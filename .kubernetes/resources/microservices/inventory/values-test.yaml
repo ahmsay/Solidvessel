@@ -1,7 +1,7 @@
 environment: test
 db:
-  hostname: inventory-db-postgresql.solidvessel.svc.cluster.local
-  url: jdbc:postgresql://inventory-db-postgresql:5432/inventory
+  hostname: inventory-db.solidvessel.svc.cluster.local
+  url: jdbc:postgresql://inventory-db:5432/inventory
 spring:
   webExposure: "*"
   liquibase:

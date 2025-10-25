@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-db
+  namespace: solidvessel
+  labels:
+    app: inventory-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-db
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: inventory-db
+    spec:
+      containers:
+      - name: inventory-db
+        image: postgres:17.6
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: inventory
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: inventory-secret
+              key: DB_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: inventory-secret
+              key: DB_PASSWORD
