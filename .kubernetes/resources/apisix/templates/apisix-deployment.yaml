@@ -25,7 +25,7 @@ spec:
         - secretRef:
             name: apisix-secret
         ports:
-        - containerPort: 9080
+        - containerPort: 8080
         volumeMounts:
         - name: apisix-conf-volume
           mountPath: /usr/local/apisix/conf/apisix.yaml
@@ -37,5 +37,3 @@ spec:
       - name: apisix-conf-volume
         configMap:
           name: apisix-conf
-      hostNetwork: {{ .Values.useHostNetwork }}
-      dnsPolicy: ClusterFirstWithHostNet

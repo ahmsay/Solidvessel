@@ -1,3 +1,2 @@
 environment: test
 redirectUri: "http://localhost:30080/auth/callback"
-useHostNetwork: true
