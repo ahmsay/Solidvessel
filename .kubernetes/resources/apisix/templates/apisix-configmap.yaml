@@ -77,3 +77,9 @@ data:
             - "cookie"
       desc: "oidc"
     #END
+  config.yaml: |
+    deployment:
+      role: data_plane
+      role_data_plane:
+        config_provider: yaml
+    #END

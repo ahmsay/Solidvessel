@@ -15,22 +15,9 @@ spec:
       labels:
         app: apisix
     spec:
-      initContainers:
-      - name: copy-apisix-conf
-        image: busybox
-        command: [ 'sh', '-c', 'cp /apisix-conf/apisix.yaml /etc/pre-install/apisix.yaml' ]
-        volumeMounts:
-        - name: apisix-conf-volume
-          mountPath: /apisix-conf
-        - name: pre-install
-          mountPath: /etc/pre-install
       containers:
       - name: apache-apisix
         image: apache/apisix:3.13.0-debian
-        lifecycle:
-          postStart:
-            exec:
-              command: [ 'sh', '-c', 'cp /etc/pre-install/apisix.yaml /usr/local/apisix/conf/apisix.yaml' ]
         env:
         - name: APISIX_STAND_ALONE
           value: "true"
@@ -40,11 +27,13 @@ spec:
         ports:
         - containerPort: 9080
         volumeMounts:
-        - name: pre-install
-          mountPath: /etc/pre-install
+        - name: apisix-conf-volume
+          mountPath: /usr/local/apisix/conf/apisix.yaml
+          subPath: apisix.yaml
+        - name: apisix-conf-volume
+          mountPath: /usr/local/apisix/conf/config.yaml
+          subPath: config.yaml
       volumes:
-      - name: pre-install
-        emptyDir: { }
       - name: apisix-conf-volume
         configMap:
           name: apisix-conf
