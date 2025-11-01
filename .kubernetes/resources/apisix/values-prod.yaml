@@ -1,2 +1,3 @@
 environment: prod
 redirectUri: "https://www.solidvessel.com/auth/callback"
+useHostNetwork: false
