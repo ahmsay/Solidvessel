@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: apisix
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:
@@ -25,7 +26,7 @@ spec:
         - secretRef:
             name: apisix-secret
         ports:
-        - containerPort: 8080
+        - containerPort: 9080
         volumeMounts:
         - name: apisix-conf-volume
           mountPath: /usr/local/apisix/conf/apisix.yaml
