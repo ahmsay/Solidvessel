@@ -36,8 +36,8 @@ services:
     container_name: keycloak
     image: quay.io/keycloak/keycloak:26.3
     environment:
-      KEYCLOAK_ADMIN: "admin"
-      KEYCLOAK_ADMIN_PASSWORD: "admin"
+      KC_BOOTSTRAP_ADMIN_USERNAME: "admin"
+      KC_BOOTSTRAP_ADMIN_PASSWORD: "admin"
     ports:
     - "9876:8080"
     command:
