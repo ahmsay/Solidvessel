@@ -3,10 +3,10 @@ services:
     container_name: postgres
     image: postgres:17.6
     environment:
-      - POSTGRES_USER=nihilus
-      - POSTGRES_PASSWORD=nihilus
+      POSTGRES_USER: "nihilus"
+      POSTGRES_PASSWORD: "nihilus"
     ports:
-      - "5432:5432"
+    - "5432:5432"
     volumes:
     - ./postgres:/docker-entrypoint-initdb.d
   redis:
@@ -23,6 +23,9 @@ services:
   apisix:
     container_name: apisix
     image: apache/apisix:3.13.0-debian
+    ports:
+    - "5672:5672"
+    - "15672:15672"
     environment:
       APISIX_STAND_ALONE: "true"
     volumes:
