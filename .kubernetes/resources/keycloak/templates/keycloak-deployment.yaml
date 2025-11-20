@@ -36,6 +36,8 @@ spec:
           value: postgres
         - name: KC_DB_URL
           value: jdbc:postgresql://{{ .Values.db.hostname }}:5432/keycloak
+        - name: KC_LOG_LEVEL
+          value: debug
         envFrom:
         - secretRef:
             name: keycloak-admin-secret
