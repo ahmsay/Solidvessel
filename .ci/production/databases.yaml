@@ -13,7 +13,6 @@ Resources:
       DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-kmdeh5lrckwz
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
-      DeletionPolicy: Delete
   InventoryDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -26,7 +25,6 @@ Resources:
       DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-opf2kfvocqrf
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
-      DeletionPolicy: Delete
   OrderDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -39,7 +37,6 @@ Resources:
       DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-usgtmpuqn5fw
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
-      DeletionPolicy: Delete
   PaymentDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -52,7 +49,6 @@ Resources:
       DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-umpczzspq9f7
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
-      DeletionPolicy: Delete
   KeycloakDB:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -65,7 +61,6 @@ Resources:
       DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-xf2sjwcuamhd
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
-      DeletionPolicy: Delete
   K8SSubnetGroup:
     Type: "AWS::RDS::DBSubnetGroup"
     Properties:
