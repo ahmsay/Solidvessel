@@ -9,7 +9,7 @@ Resources:
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
-      EngineVersion: "16.4"
+      EngineVersion: "17.6"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-kmdeh5lrckwz
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
@@ -21,7 +21,7 @@ Resources:
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
-      EngineVersion: "16.4"
+      EngineVersion: "17.6"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-opf2kfvocqrf
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
@@ -33,7 +33,7 @@ Resources:
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
-      EngineVersion: "16.4"
+      EngineVersion: "17.6"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-usgtmpuqn5fw
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
@@ -45,7 +45,7 @@ Resources:
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
-      EngineVersion: "16.4"
+      EngineVersion: "17.6"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-umpczzspq9f7
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
@@ -57,7 +57,7 @@ Resources:
       DBSubnetGroupName: !Ref K8SSubnetGroup
       AllocatedStorage: 20
       Engine: postgres
-      EngineVersion: "16.4"
+      EngineVersion: "17.6"
       DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-xf2sjwcuamhd
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
