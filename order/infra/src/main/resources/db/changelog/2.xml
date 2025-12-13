@@ -5,7 +5,7 @@
     <changeSet author="ahmsay" id="solidvessel-sql-2" context="sql">
         <sql>
             alter table orders
-                add column address varchar(200) not null;
+                add column address varchar(200);
         </sql>
     </changeSet>
 </databaseChangeLog>
