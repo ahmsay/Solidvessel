@@ -21,8 +21,6 @@ spec:
         image: quay.io/keycloak/keycloak:26.3
         ports:
         - containerPort: 8080
-        args:
-        - "start"
         env:
         - name: KC_HOSTNAME
           value: http://keycloak:8080
