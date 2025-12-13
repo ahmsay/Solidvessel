@@ -23,7 +23,6 @@ spec:
         - containerPort: 8080
         args:
         - "start"
-        - "-proxy=edge"
         env:
         - name: KC_HOSTNAME
           value: http://keycloak:8080
