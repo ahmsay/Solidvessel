@@ -62,9 +62,8 @@ change the databases inside **databases.yaml**, so they are going to be created 
 
 In the final stage ArgoCD is installed and the rest of the applications (microservices, Redis, RabbitMQ...) are created.
 In addition to the applications in the test environment,
-tools like External DNS and AWS Load Balancer Controller also created in this environment. Bitnami Postgres applications
-will
-not be created since RDS Postgres databases are used.
+tools like External DNS and AWS Load Balancer Controller also created in this environment. Postgres applications that
+are used in the test environment will not be created since RDS Postgres databases are used in production.
 
 ### Aftermath
 
