@@ -19,7 +19,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: apisix-data-plane
+            name: apisix
             port:
               number: 8080
 {{ end }}
