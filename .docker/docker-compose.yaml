@@ -23,9 +23,6 @@ services:
   apisix:
     container_name: apisix
     image: apache/apisix:3.13.0-debian
-    ports:
-    - "5672:5672"
-    - "15672:15672"
     environment:
       APISIX_STAND_ALONE: "true"
     volumes:
