@@ -1,4 +1,4 @@
-package com.solidvessel.account.adapter.in.address.rest.mapper;
+package com.solidvessel.account.adapter.in.address.mapper;
 
 import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.model.Address;

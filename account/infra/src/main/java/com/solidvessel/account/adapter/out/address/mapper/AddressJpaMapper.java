@@ -1,4 +1,4 @@
-package com.solidvessel.account.adapter.out.address.db.mapper;
+package com.solidvessel.account.adapter.out.address.mapper;
 
 import com.solidvessel.account.adapter.out.address.db.entity.AddressJpaEntity;
 import com.solidvessel.account.address.model.Address;
