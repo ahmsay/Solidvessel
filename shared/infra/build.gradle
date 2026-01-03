@@ -28,7 +28,4 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     api "org.keycloak:keycloak-admin-client:$rootProject.keycloakVersion"
-    api "org.mapstruct:mapstruct:$rootProject.mapStructVersion"
-    annotationProcessor "org.mapstruct:mapstruct-processor:$rootProject.mapStructVersion"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:$rootProject.mapStructBindingVersion"
 }

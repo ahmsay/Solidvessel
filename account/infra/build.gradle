@@ -29,6 +29,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation "org.mapstruct:mapstruct:$rootProject.mapStructVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$rootProject.mapStructVersion"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:$rootProject.mapStructBindingVersion"
     implementation "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
     implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
