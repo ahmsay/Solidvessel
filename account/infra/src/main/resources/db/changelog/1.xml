@@ -15,7 +15,7 @@
                 name               varchar(100) not null,
                 country            varchar(50)  not null,
                 city               varchar(100) not null,
-                zipcode            varchar(10)  not null
+                zip_code            varchar(10)  not null
             );
         </sql>
     </changeSet>

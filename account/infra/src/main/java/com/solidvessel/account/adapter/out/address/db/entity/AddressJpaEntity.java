@@ -31,7 +31,7 @@ public class AddressJpaEntity extends BaseEntity {
     private String city;
 
     @NotNull
-    private String zipcode;
+    private String zipCode;
 
     @NotNull
     private Boolean isPrimary;
@@ -46,7 +46,7 @@ public class AddressJpaEntity extends BaseEntity {
                 .name(name)
                 .country(country)
                 .city(city)
-                .zipCode(zipcode)
+                .zipCode(zipCode)
                 .isPrimary(isPrimary)
                 .build();
     }
@@ -61,7 +61,7 @@ public class AddressJpaEntity extends BaseEntity {
                 .name(address.getName())
                 .country(address.getCountry())
                 .city(address.getCity())
-                .zipcode(address.getZipCode())
+                .zipCode(address.getZipCode())
                 .isPrimary(address.getIsPrimary())
                 .build();
     }

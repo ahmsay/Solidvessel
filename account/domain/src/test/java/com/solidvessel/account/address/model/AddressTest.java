@@ -16,7 +16,7 @@ public class AddressTest {
         assertEquals(command.name(), address.getName());
         assertEquals(command.country(), address.getCountry());
         assertEquals(command.city(), address.getCity());
-        assertEquals(command.zipcode(), address.getZipCode());
+        assertEquals(command.zipCode(), address.getZipCode());
         assertEquals(command.customerId(), address.getCustomerId());
     }
 

@@ -22,7 +22,7 @@ public class Address extends DomainModel {
         this.name = command.name();
         this.country = command.country();
         this.city = command.city();
-        this.zipCode = command.zipcode();
+        this.zipCode = command.zipCode();
     }
 
     public void setPrimary() {

@@ -499,7 +499,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"turkey\",\n    \"city\": \"eskişehir\",\n    \"zipcode\": \"26000\"\n}",
+									"raw": "{\n    \"name\": \"home\",\n    \"country\": \"turkey\",\n    \"city\": \"eskişehir\",\n    \"zipCode\": \"26000\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -532,7 +532,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"2\",\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipcode\": \"35724\"\n}",
+									"raw": "{\n    \"id\": \"2\",\n    \"name\": \"home\",\n    \"country\": \"norway\",\n    \"city\": \"oslo\",\n    \"zipCode\": \"35724\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"

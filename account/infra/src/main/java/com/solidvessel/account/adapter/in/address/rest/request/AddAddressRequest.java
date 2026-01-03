@@ -8,10 +8,10 @@ public record AddAddressRequest(
         @NotNull String name,
         @NotNull String country,
         @NotNull String city,
-        @NotNull String zipcode
+        @NotNull String zipCode
 ) {
 
     public AddAddressCommand toCommand() {
-        return new AddAddressCommand(name, country, city, zipcode, SessionUtil.getCurrentUserId());
+        return new AddAddressCommand(name, country, city, zipCode, SessionUtil.getCurrentUserId());
     }
 }

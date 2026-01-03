@@ -9,9 +9,9 @@ public record UpdateAddressRequest(
         @NotNull String name,
         @NotNull String country,
         @NotNull String city,
-        @NotNull String zipcode
+        @NotNull String zipCode
 ) {
     public UpdateAddressCommand toCommand() {
-        return new UpdateAddressCommand(id, name, country, city, zipcode, SessionUtil.getCurrentUserId());
+        return new UpdateAddressCommand(id, name, country, city, zipCode, SessionUtil.getCurrentUserId());
     }
 }
