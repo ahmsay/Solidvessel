@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.adapter.out.product.db.entity;
 
+import com.solidvessel.inventory.adapter.out.product.mapper.ProductJpaMapper;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
@@ -38,30 +39,10 @@ public class ProductJpaEntity extends BaseEntity {
     private Boolean isAvailableInRegion;
 
     public Product toDomainModel() {
-        return Product.builder()
-                .id(getId())
-                .createdDate(getCreatedDate())
-                .lastModifiedDate(getLastModifiedDate())
-                .version(getVersion())
-                .name(name)
-                .price(price)
-                .category(category)
-                .quantity(quantity)
-                .isAvailableInRegion(isAvailableInRegion)
-                .build();
+        return ProductJpaMapper.INSTANCE.toDomainModel(this);
     }
 
     public static ProductJpaEntity from(Product product) {
-        return ProductJpaEntity.builder()
-                .id(product.getId())
-                .createdDate(product.getCreatedDate())
-                .lastModifiedDate(product.getLastModifiedDate())
-                .version(product.getVersion())
-                .name(product.getName())
-                .price(product.getPrice())
-                .category(product.getCategory())
-                .quantity(product.getQuantity())
-                .isAvailableInRegion(product.getIsAvailableInRegion())
-                .build();
+        return ProductJpaMapper.INSTANCE.toJpaEntity(product);
     }
 }
