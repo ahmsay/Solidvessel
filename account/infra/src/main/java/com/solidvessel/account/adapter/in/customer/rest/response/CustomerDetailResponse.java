@@ -1,5 +1,6 @@
 package com.solidvessel.account.adapter.in.customer.rest.response;
 
+import com.solidvessel.account.adapter.in.customer.mapper.CustomerWebMapper;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderResponse;
 import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse;
 
@@ -12,15 +13,6 @@ public record CustomerDetailResponse(String id, String firstName, String lastNam
 
     public static CustomerDetailResponse from(CustomerResponse customer, List<OrderResponse> orders,
                                               List<PaymentResponse> payments) {
-        return new CustomerDetailResponse(
-                customer.id(),
-                customer.firstName(),
-                customer.lastName(),
-                customer.birthDate(),
-                customer.email(),
-                customer.phoneNumber(),
-                orders,
-                payments
-        );
+        return CustomerWebMapper.INSTANCE.toCustomerDetailResponse(customer, orders, payments);
     }
 }
