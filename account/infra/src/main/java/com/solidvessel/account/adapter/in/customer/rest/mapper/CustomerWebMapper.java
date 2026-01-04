@@ -8,13 +8,14 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface CustomerWebMapper {
 
     CustomerWebMapper INSTANCE = Mappers.getMapper(CustomerWebMapper.class);
