@@ -1,4 +1,4 @@
-package com.solidvessel.account.adapter.in.customer.mapper;
+package com.solidvessel.account.adapter.in.customer.rest.mapper;
 
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailResponse;
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;

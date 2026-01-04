@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.out.address.db.entity;
 
-import com.solidvessel.account.adapter.out.address.mapper.AddressJpaMapper;
+import com.solidvessel.account.adapter.out.address.db.mapper.AddressJpaMapper;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;

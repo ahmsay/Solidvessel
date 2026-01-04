@@ -1,6 +1,6 @@
 package com.solidvessel.inventory.adapter.in.product.rest.response;
 
-import com.solidvessel.inventory.adapter.in.product.mapper.ProductWebMapper;
+import com.solidvessel.inventory.adapter.in.product.rest.mapper.ProductWebMapper;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 

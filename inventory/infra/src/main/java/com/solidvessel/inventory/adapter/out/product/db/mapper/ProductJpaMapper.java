@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.adapter.out.product.mapper;
+package com.solidvessel.inventory.adapter.out.product.db.mapper;
 
 import com.solidvessel.inventory.adapter.out.product.db.entity.ProductJpaEntity;
 import com.solidvessel.inventory.product.model.Product;

@@ -1,4 +1,4 @@
-package com.solidvessel.inventory.adapter.in.product.mapper;
+package com.solidvessel.inventory.adapter.in.product.rest.mapper;
 
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.Product;

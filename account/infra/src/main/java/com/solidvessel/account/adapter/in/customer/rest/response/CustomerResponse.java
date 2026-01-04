@@ -1,6 +1,6 @@
 package com.solidvessel.account.adapter.in.customer.rest.response;
 
-import com.solidvessel.account.adapter.in.customer.mapper.CustomerWebMapper;
+import com.solidvessel.account.adapter.in.customer.rest.mapper.CustomerWebMapper;
 import org.keycloak.representations.idm.UserRepresentation;
 
 import java.time.LocalDate;

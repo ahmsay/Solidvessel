@@ -1,6 +1,6 @@
 package com.solidvessel.inventory.adapter.out.product.db.entity;
 
-import com.solidvessel.inventory.adapter.out.product.mapper.ProductJpaMapper;
+import com.solidvessel.inventory.adapter.out.product.db.mapper.ProductJpaMapper;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
