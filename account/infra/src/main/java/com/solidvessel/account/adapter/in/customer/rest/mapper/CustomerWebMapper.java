@@ -7,7 +7,6 @@ import com.solidvessel.account.adapter.out.payment.rest.response.PaymentResponse
 import org.keycloak.representations.idm.UserRepresentation;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -26,7 +25,6 @@ public interface CustomerWebMapper {
 
     CustomerDetailResponse toCustomerDetailResponse(CustomerResponse customer, List<OrderResponse> orders, List<PaymentResponse> payments);
 
-    @Named("birthDateFromAttributes")
     default LocalDate birthDateFromAttributes(Map<String, List<String>> attributes) {
         if (attributes == null) {
             return null;
@@ -35,7 +33,6 @@ public interface CustomerWebMapper {
         return value == null ? null : LocalDate.parse(value.getFirst());
     }
 
-    @Named("phoneFromAttributes")
     default String phoneFromAttributes(Map<String, List<String>> attributes) {
         if (attributes == null) {
             return null;
