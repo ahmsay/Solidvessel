@@ -1,5 +1,6 @@
 package com.solidvessel.payment.adapter.out.cart.db.entity;
 
+import com.solidvessel.payment.adapter.out.cart.db.mapper.CartJpaMapper;
 import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
@@ -11,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @AllArgsConstructor
@@ -29,24 +29,10 @@ public class CartJpaEntity extends BaseEntity {
     private List<ProductEmbeddable> products;
 
     public Cart toDomainModel() {
-        return Cart.builder()
-                .id(getId())
-                .createdDate(getCreatedDate())
-                .lastModifiedDate(getLastModifiedDate())
-                .version(getVersion())
-                .customerId(customerId)
-                .products(products.stream().collect(Collectors.toMap(ProductEmbeddable::getProductId, ProductEmbeddable::toDomainModel)))
-                .build();
+        return CartJpaMapper.INSTANCE.toDomainModel(this);
     }
 
     public static CartJpaEntity from(Cart cart) {
-        return CartJpaEntity.builder()
-                .id(cart.getId())
-                .createdDate(cart.getCreatedDate())
-                .lastModifiedDate(cart.getLastModifiedDate())
-                .version(cart.getVersion())
-                .customerId(cart.getCustomerId())
-                .products(cart.getProductList().stream().map(ProductEmbeddable::from).toList())
-                .build();
+        return CartJpaMapper.INSTANCE.toJpaEntity(cart);
     }
 }
