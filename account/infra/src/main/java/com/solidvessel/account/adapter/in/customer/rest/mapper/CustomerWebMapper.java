@@ -20,14 +20,14 @@ public interface CustomerWebMapper {
 
     CustomerWebMapper INSTANCE = Mappers.getMapper(CustomerWebMapper.class);
 
-    @Mapping(source = "attributes", target = "birthDate", qualifiedByName = "birthDateFromAttributes")
-    @Mapping(source = "attributes", target = "phoneNumber", qualifiedByName = "phoneFromAttributes")
+    @Mapping(source = "attributes", target = "birthDate")
+    @Mapping(source = "attributes", target = "phoneNumber")
     CustomerResponse toCustomerResponse(UserRepresentation user);
 
     CustomerDetailResponse toCustomerDetailResponse(CustomerResponse customer, List<OrderResponse> orders, List<PaymentResponse> payments);
 
     @Named("birthDateFromAttributes")
-    static LocalDate birthDateFromAttributes(Map<String, List<String>> attributes) {
+    default LocalDate birthDateFromAttributes(Map<String, List<String>> attributes) {
         if (attributes == null) {
             return null;
         }
@@ -36,7 +36,7 @@ public interface CustomerWebMapper {
     }
 
     @Named("phoneFromAttributes")
-    static String phoneFromAttributes(Map<String, List<String>> attributes) {
+    default String phoneFromAttributes(Map<String, List<String>> attributes) {
         if (attributes == null) {
             return null;
         }

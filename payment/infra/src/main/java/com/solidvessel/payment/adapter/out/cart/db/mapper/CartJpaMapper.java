@@ -18,20 +18,20 @@ public interface CartJpaMapper {
 
     CartJpaMapper INSTANCE = Mappers.getMapper(CartJpaMapper.class);
 
-    @Mapping(source = "products", target = "products", qualifiedByName = "productsMapToList")
+    @Mapping(source = "products", target = "products")
     CartJpaEntity toJpaEntity(Cart cart);
 
-    @Mapping(source = "products", target = "products", qualifiedByName = "productsListToMap")
+    @Mapping(source = "products", target = "products")
     Cart toDomainModel(CartJpaEntity cart);
 
-    static List<ProductEmbeddable> productsMapToList(Map<Long, Product> products) {
+    default List<ProductEmbeddable> productsMapToList(Map<Long, Product> products) {
         if (products == null) return null;
         return products.values().stream()
                 .map(ProductEmbeddable::from)
                 .toList();
     }
 
-    static Map<Long, Product> productsListToMap(List<ProductEmbeddable> products) {
+    default Map<Long, Product> productsListToMap(List<ProductEmbeddable> products) {
         if (products == null) return null;
         return products.stream()
                 .collect(Collectors.toMap(
