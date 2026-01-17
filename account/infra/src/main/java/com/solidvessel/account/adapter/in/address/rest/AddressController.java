@@ -1,5 +1,6 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
+import com.solidvessel.account.adapter.in.address.rest.mapper.AddressWebMapper;
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
@@ -30,17 +31,18 @@ public class AddressController {
     private final DeleteAddressCommandService deleteAddressCommandService;
     private final UpdateAddressCommandService updateAddressCommandService;
     private final SetPrimaryAddressCommandService setPrimaryAddressCommandService;
+    private final AddressWebMapper addressWebMapper;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping
     public List<AddressResponse> getAddresses(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
-        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), QueryOptions.of(pageNumber, pageSize)).stream().map(AddressResponse::from).toList();
+        return addressQueryPort.getAddresses(SessionUtil.getCurrentUserId(), QueryOptions.of(pageNumber, pageSize)).stream().map(addressWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @PostMapping
     public AddressResponse addAddress(@RequestBody @Valid AddAddressRequest request) {
-        return AddressResponse.from(addAddressCommandService.execute(request.toCommand()));
+        return addressWebMapper.toResponse(addAddressCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
@@ -52,7 +54,7 @@ public class AddressController {
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @PutMapping
     public AddressResponse updateAddress(@RequestBody @Valid UpdateAddressRequest request) {
-        return AddressResponse.from(updateAddressCommandService.execute(request.toCommand()));
+        return addressWebMapper.toResponse(updateAddressCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

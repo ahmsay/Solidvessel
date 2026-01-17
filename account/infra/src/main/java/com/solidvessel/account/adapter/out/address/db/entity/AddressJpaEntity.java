@@ -1,7 +1,5 @@
 package com.solidvessel.account.adapter.out.address.db.entity;
 
-import com.solidvessel.account.adapter.out.address.db.mapper.AddressJpaMapper;
-import com.solidvessel.account.address.model.Address;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -36,12 +34,4 @@ public class AddressJpaEntity extends BaseEntity {
 
     @NotNull
     private Boolean isPrimary;
-
-    public Address toDomainModel() {
-        return AddressJpaMapper.INSTANCE.toDomainModel(this);
-    }
-
-    public static AddressJpaEntity from(Address address) {
-        return AddressJpaMapper.INSTANCE.toJpaEntity(address);
-    }
 }

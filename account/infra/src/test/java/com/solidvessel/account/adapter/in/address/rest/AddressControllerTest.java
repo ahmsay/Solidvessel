@@ -1,8 +1,8 @@
 package com.solidvessel.account.adapter.in.address.rest;
 
+import com.solidvessel.account.adapter.in.address.rest.mapper.AddressWebMapper;
 import com.solidvessel.account.adapter.in.address.rest.request.AddAddressRequest;
 import com.solidvessel.account.adapter.in.address.rest.request.UpdateAddressRequest;
-import com.solidvessel.account.adapter.in.address.rest.response.AddressResponse;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.AddAddressCommandService;
@@ -52,6 +52,9 @@ public class AddressControllerTest extends BaseControllerTest {
     @MockitoBean
     private SetPrimaryAddressCommandService setPrimaryAddressCommandService;
 
+    @MockitoBean
+    private AddressWebMapper addressWebMapper;
+
     @Test
     @WithMockCustomer
     void getAddresses() throws Exception {
@@ -63,7 +66,7 @@ public class AddressControllerTest extends BaseControllerTest {
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(addresses.stream().map(AddressResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(addresses.stream().map(addressWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -77,7 +80,7 @@ public class AddressControllerTest extends BaseControllerTest {
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(AddressResponse.from(savedAddress)), bodyOf(mvcResult));
+        assertEquals(bodyOf(addressWebMapper.toResponse(savedAddress)), bodyOf(mvcResult));
     }
 
     @Test
@@ -102,7 +105,7 @@ public class AddressControllerTest extends BaseControllerTest {
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(AddressResponse.from(savedAddress)), bodyOf(mvcResult));
+        assertEquals(bodyOf(addressWebMapper.toResponse(savedAddress)), bodyOf(mvcResult));
     }
 
     @Test

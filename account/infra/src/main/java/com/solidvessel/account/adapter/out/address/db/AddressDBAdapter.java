@@ -1,6 +1,7 @@
 package com.solidvessel.account.adapter.out.address.db;
 
 import com.solidvessel.account.adapter.out.address.db.entity.AddressJpaEntity;
+import com.solidvessel.account.adapter.out.address.db.mapper.AddressJpaMapper;
 import com.solidvessel.account.adapter.out.address.db.repository.AddressRepository;
 import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressPort;
@@ -13,11 +14,13 @@ import org.springframework.stereotype.Repository;
 public class AddressDBAdapter implements AddressPort {
 
     private final AddressRepository addressRepository;
+    private final AddressJpaMapper addressJpaMapper;
 
     @CacheEvict(value = "addresses", key = "#address.customerId")
     @Override
     public Address save(Address address) {
-        return addressRepository.save(AddressJpaEntity.from(address)).toDomainModel();
+        AddressJpaEntity addressJpaEntity = addressRepository.save(addressJpaMapper.toJpaEntity(address));
+        return addressJpaMapper.toDomainModel(addressJpaEntity);
     }
 
     @CacheEvict(value = "addresses", key = "#customerId")
