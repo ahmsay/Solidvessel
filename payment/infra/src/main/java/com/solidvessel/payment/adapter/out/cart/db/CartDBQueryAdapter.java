@@ -1,6 +1,7 @@
 package com.solidvessel.payment.adapter.out.cart.db;
 
 import com.solidvessel.payment.adapter.out.cart.db.entity.CartJpaEntity;
+import com.solidvessel.payment.adapter.out.cart.db.mapper.CartJpaMapper;
 import com.solidvessel.payment.adapter.out.cart.db.repository.CartRepository;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
@@ -16,10 +17,12 @@ public class CartDBQueryAdapter implements CartQueryPort {
 
     private final CartRepository cartRepository;
 
+    private final CartJpaMapper cartJpaMapper;
+
     @Cacheable(value = "cart", key = "#customerId")
     @Override
     public Cart getByCustomerId(String customerId) {
         Optional<CartJpaEntity> cart = cartRepository.findByCustomerId(customerId);
-        return cart.map(CartJpaEntity::toDomainModel).orElseGet(() -> Cart.newCart(customerId));
+        return cart.map(cartJpaMapper::toDomainModel).orElseGet(() -> Cart.newCart(customerId));
     }
 }
