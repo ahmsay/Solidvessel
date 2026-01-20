@@ -1,5 +1,6 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
+import com.solidvessel.payment.adapter.in.cart.rest.mapper.CartWebMapper;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
 import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.port.CartQueryPort;
@@ -21,11 +22,12 @@ public class CartController {
     private final RemoveFromCartCommandService removeFromCartCommandService;
     private final CartQueryPort cartQueryPort;
     private final ClearCartCommandService clearCartCommandService;
+    private final CartWebMapper cartWebMapper;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping
     public CartResponse listCart() {
-        return CartResponse.from(cartQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()));
+        return cartWebMapper.toResponse(cartQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

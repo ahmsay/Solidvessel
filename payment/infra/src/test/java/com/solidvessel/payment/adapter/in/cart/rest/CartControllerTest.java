@@ -1,7 +1,7 @@
 package com.solidvessel.payment.adapter.in.cart.rest;
 
+import com.solidvessel.payment.adapter.in.cart.rest.mapper.CartWebMapper;
 import com.solidvessel.payment.adapter.in.cart.rest.request.RemoveFromCartRequest;
-import com.solidvessel.payment.adapter.in.cart.rest.response.CartResponse;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.ClearCartCommandService;
@@ -44,6 +44,9 @@ public class CartControllerTest extends BaseControllerTest {
     @MockitoBean
     private ClearCartCommandService clearCartCommandService;
 
+    @MockitoBean
+    private CartWebMapper cartWebMapper;
+
     @Test
     @WithMockCustomer
     void listCart() throws Exception {
@@ -52,7 +55,7 @@ public class CartControllerTest extends BaseControllerTest {
                 2L, new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 2)
         );
         var cart = new Cart("123", products);
-        var cartResponse = CartResponse.from(cart);
+        var cartResponse = cartWebMapper.toResponse(cart);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
         MvcResult mvcResult = mockMvc.perform(
                 get("/cart")
