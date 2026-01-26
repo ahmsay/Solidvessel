@@ -1,5 +1,6 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
+import com.solidvessel.inventory.adapter.in.product.rest.mapper.ProductWebMapper;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
@@ -31,29 +32,30 @@ public class ProductController {
     private final DeleteProductsCommandService deleteProductsCommandService;
     private final UpdateProductCommandService updateProductCommandService;
     private final ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
+    private final ProductWebMapper productWebMapper;
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping
     public List<ProductResponse> getProducts(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
-        return productQueryPort.getProducts(QueryOptions.of(pageNumber, pageSize)).stream().map(ProductResponse::from).toList();
+        return productQueryPort.getProducts(QueryOptions.of(pageNumber, pageSize)).stream().map(productWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/{id}")
     public ProductResponse getById(@PathVariable Long id) {
-        return ProductResponse.from(productQueryPort.getById(id));
+        return productWebMapper.toResponse(productQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ids")
     public List<ProductResponse> getByIds(@RequestParam List<Long> ids) {
-        return productQueryPort.getByIds(ids).stream().map(ProductResponse::from).toList();
+        return productQueryPort.getByIds(ids).stream().map(productWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping
     public ProductResponse add(@RequestBody @Valid AddProductRequest request) {
-        return ProductResponse.from(addProductCommandService.execute(request.toCommand()));
+        return productWebMapper.toResponse(addProductCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
@@ -71,7 +73,7 @@ public class ProductController {
     @PreAuthorize("hasAuthority('MANAGER')")
     @PutMapping
     public ProductResponse update(@RequestBody @Valid UpdateProductRequest request) {
-        return ProductResponse.from(updateProductCommandService.execute(request.toCommand()));
+        return productWebMapper.toResponse(updateProductCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")

@@ -4,12 +4,9 @@ import com.solidvessel.inventory.adapter.in.product.rest.response.ProductRespons
 import com.solidvessel.inventory.product.model.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface ProductWebMapper {
-
-    ProductWebMapper INSTANCE = Mappers.getMapper(ProductWebMapper.class);
 
     ProductResponse toResponse(Product product);
 }

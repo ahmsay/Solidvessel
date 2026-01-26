@@ -1,10 +1,10 @@
 package com.solidvessel.inventory.adapter.in.product.rest;
 
+import com.solidvessel.inventory.adapter.in.product.rest.mapper.ProductWebMapper;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
-import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductAvailability;
 import com.solidvessel.inventory.product.model.ProductCategory;
@@ -60,6 +60,9 @@ public class ProductControllerTest extends BaseControllerTest {
     @MockitoBean
     private ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
 
+    @MockitoBean
+    private ProductWebMapper productWebMapper;
+
     @Test
     @WithMockCustomer
     void getProducts() throws Exception {
@@ -71,7 +74,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(ProductResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(products.stream().map(productWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -83,7 +86,7 @@ public class ProductControllerTest extends BaseControllerTest {
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(ProductResponse.from(product)), bodyOf(mvcResult));
+        assertEquals(bodyOf(productWebMapper.toResponse(product)), bodyOf(mvcResult));
     }
 
     @Test
@@ -99,7 +102,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .queryParam("ids", "1", "2")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(ProductResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(products.stream().map(productWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -113,7 +116,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(ProductResponse.from(savedProduct)), bodyOf(mvcResult));
+        assertEquals(bodyOf(productWebMapper.toResponse(savedProduct)), bodyOf(mvcResult));
     }
 
     @Test
@@ -167,7 +170,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(ProductResponse.from(savedProduct)), bodyOf(mvcResult));
+        assertEquals(bodyOf(productWebMapper.toResponse(savedProduct)), bodyOf(mvcResult));
     }
 
     @Test
