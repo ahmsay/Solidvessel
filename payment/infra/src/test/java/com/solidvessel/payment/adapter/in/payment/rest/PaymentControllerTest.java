@@ -65,7 +65,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(payment -> paymentWebMapper.toResponse(payment)).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(paymentWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/ofCurrentCustomer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(payment -> paymentWebMapper.toResponse(payment)).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(paymentWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(payment -> paymentWebMapper.toResponse(payment)).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(paymentWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
