@@ -1,6 +1,5 @@
 package com.solidvessel.payment.adapter.out.customer.db.entity;
 
-import com.solidvessel.payment.customer.model.Customer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -21,12 +20,4 @@ public class CustomerJpaEntity {
 
     @NotNull
     private String address;
-
-    public Customer toDomainModel() {
-        return new Customer(id, address);
-    }
-
-    public static CustomerJpaEntity from(Customer customer) {
-        return new CustomerJpaEntity(customer.getId(), customer.getAddress());
-    }
 }

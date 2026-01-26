@@ -1,5 +1,6 @@
 package com.solidvessel.account.adapter.in.customer.rest;
 
+import com.solidvessel.account.adapter.in.customer.rest.mapper.CustomerWebMapper;
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailResponse;
 import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;
 import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
@@ -25,18 +26,19 @@ public class CustomerController {
     private final KeycloakAdapter keycloakAdapter;
     private final OrderRestClient orderRestClient;
     private final PaymentRestClient paymentRestClient;
+    private final CustomerWebMapper customerWebMapper;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping
     public List<CustomerResponse> getCustomers(@RequestParam Integer start, @RequestParam(required = false) Integer end) {
         List<UserRepresentation> users = keycloakAdapter.getUsers(start, end);
-        return users.stream().map(CustomerResponse::from).toList();
+        return users.stream().map(customerWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public CustomerResponse getById(@PathVariable String id) {
-        return CustomerResponse.from(keycloakAdapter.getUser(id));
+        return customerWebMapper.toResponse(keycloakAdapter.getUser(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
@@ -46,7 +48,7 @@ public class CustomerController {
         CustomerResponse customer = getById(id);
         List<OrderResponse> orders = orderRestClient.getByCustomerId(id, token);
         List<PaymentResponse> payments = paymentRestClient.getByCustomerId(id, token);
-        return CustomerDetailResponse.from(customer, orders, payments);
+        return customerWebMapper.toDetailResponse(customer, orders, payments);
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

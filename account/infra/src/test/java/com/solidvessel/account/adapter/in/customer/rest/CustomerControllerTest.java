@@ -1,7 +1,6 @@
 package com.solidvessel.account.adapter.in.customer.rest;
 
-import com.solidvessel.account.adapter.in.customer.rest.response.CustomerDetailResponse;
-import com.solidvessel.account.adapter.in.customer.rest.response.CustomerResponse;
+import com.solidvessel.account.adapter.in.customer.rest.mapper.CustomerWebMapper;
 import com.solidvessel.account.adapter.out.order.rest.OrderRestClient;
 import com.solidvessel.account.adapter.out.order.rest.response.CancellationReason;
 import com.solidvessel.account.adapter.out.order.rest.response.OrderCancellation;
@@ -51,6 +50,10 @@ public class CustomerControllerTest extends BaseControllerTest {
     @MockitoBean
     private PaymentRestClient paymentRestClient;
 
+    @Autowired
+    @MockitoBean
+    private CustomerWebMapper customerWebMapper;
+
     @Test
     @WithMockManager
     void getCustomers() throws Exception {
@@ -62,7 +65,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                         .param("end", "100")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(users.stream().map(CustomerResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(users.stream().map(customerWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -74,20 +77,20 @@ public class CustomerControllerTest extends BaseControllerTest {
                 get("/customer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(CustomerResponse.from(user)), bodyOf(mvcResult));
+        assertEquals(bodyOf(customerWebMapper.toResponse(user)), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     void getCustomerDetailById() throws Exception {
         var user = createUser();
-        var customer = CustomerResponse.from(user);
+        var customer = customerWebMapper.toResponse(user);
         var orders = List.of(
                 new OrderResponse(1L, OrderStatus.DELIVERED, 5L, "48249 helsinki, finland", LocalDateTime.now(), null, "The Delawares"),
                 new OrderResponse(2L, OrderStatus.CANCELLED, 3L, "3841 brisbane, australia", LocalDateTime.now(), new OrderCancellation(CancellationReason.FOUND_BETTER_ALTERNATIVE, "."), null)
         );
         var payments = List.of(new PaymentResponse(5L, 260D, PaymentStatus.APPROVED, LocalDateTime.now()));
-        var customerDetail = CustomerDetailResponse.from(customer, orders, payments);
+        var customerDetail = customerWebMapper.toDetailResponse(customer, orders, payments);
         when(keycloakAdapter.getUser("123")).thenReturn(user);
         when(orderRestClient.getByCustomerId("123", "abc")).thenReturn(orders);
         when(paymentRestClient.getByCustomerId("123", "abc")).thenReturn(payments);
