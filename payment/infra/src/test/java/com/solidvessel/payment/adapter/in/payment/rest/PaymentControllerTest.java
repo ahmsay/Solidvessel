@@ -1,8 +1,7 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
+import com.solidvessel.payment.adapter.in.payment.rest.mapper.PaymentWebMapper;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
-import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentDetailResponse;
-import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
 import com.solidvessel.payment.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
@@ -51,6 +50,9 @@ public class PaymentControllerTest extends BaseControllerTest {
     @MockitoBean
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
+    @MockitoBean
+    private PaymentWebMapper paymentWebMapper;
+
     @Test
     @WithMockManager
     void getPayments() throws Exception {
@@ -63,7 +65,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(payment -> paymentWebMapper.toResponse(payment)).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -76,7 +78,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/ofCurrentCustomer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(payment -> paymentWebMapper.toResponse(payment)).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -89,7 +91,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(PaymentResponse.from(payment)), bodyOf(mvcResult));
+        assertEquals(bodyOf(paymentWebMapper.toResponse(payment)), bodyOf(mvcResult));
     }
 
     @Test
@@ -98,7 +100,7 @@ public class PaymentControllerTest extends BaseControllerTest {
         var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
         var payment = Payment.builder().id(1L).customerId("123").products(products).totalPrice(105D).status(PaymentStatus.APPROVED).build();
         var customer = new CustomerResponse("123", "lorne", "malvo");
-        var paymentDetail = PaymentDetailResponse.from(payment, customer);
+        var paymentDetail = paymentWebMapper.toDetailResponse(payment, customer);
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         when(keycloakAdapter.getUser("123")).thenReturn(createUser());
         MvcResult mvcResult = mockMvc.perform(
@@ -118,7 +120,7 @@ public class PaymentControllerTest extends BaseControllerTest {
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(payments.stream().map(PaymentResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(payments.stream().map(payment -> paymentWebMapper.toResponse(payment)).toList()), bodyOf(mvcResult));
     }
 
     @Test

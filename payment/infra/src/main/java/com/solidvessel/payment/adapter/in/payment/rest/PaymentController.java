@@ -1,5 +1,6 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
+import com.solidvessel.payment.adapter.in.payment.rest.mapper.PaymentWebMapper;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
 import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentDetailResponse;
 import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
@@ -24,23 +25,24 @@ public class PaymentController {
     private final PaymentQueryPort paymentQueryPort;
     private final KeycloakAdapter keycloakAdapter;
     private final AcceptPaymentCommandService acceptPaymentCommandService;
+    private final PaymentWebMapper paymentWebMapper;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
     public List<PaymentResponse> getPayments(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
-        return paymentQueryPort.getPayments(QueryOptions.of(pageNumber, pageSize)).stream().map(PaymentResponse::from).toList();
+        return paymentQueryPort.getPayments(QueryOptions.of(pageNumber, pageSize)).stream().map(paymentWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ofCurrentCustomer")
     public List<PaymentResponse> getPaymentsOfCurrentCustomer() {
-        return paymentQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()).stream().map(PaymentResponse::from).toList();
+        return paymentQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()).stream().map(paymentWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public PaymentResponse getById(@PathVariable Long id) {
-        return PaymentResponse.from(paymentQueryPort.getById(id));
+        return paymentWebMapper.toResponse((paymentQueryPort.getById(id)));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
@@ -48,13 +50,13 @@ public class PaymentController {
     public PaymentDetailResponse getDetailById(@PathVariable Long id) {
         Payment payment = paymentQueryPort.getById(id);
         CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(payment.getCustomerId()));
-        return PaymentDetailResponse.from(payment, customer);
+        return paymentWebMapper.toDetailResponse(payment, customer);
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
     public List<PaymentResponse> getByCustomerId(@PathVariable String customerId) {
-        return paymentQueryPort.getByCustomerId(customerId).stream().map(PaymentResponse::from).toList();
+        return paymentQueryPort.getByCustomerId(customerId).stream().map(paymentWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
