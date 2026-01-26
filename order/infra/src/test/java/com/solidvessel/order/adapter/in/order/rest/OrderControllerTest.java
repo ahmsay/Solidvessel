@@ -1,10 +1,9 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.in.order.rest.mapper.OrderWebMapper;
 import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.UpdateDeliveryAddressRequest;
-import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
-import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
@@ -65,6 +64,10 @@ public class OrderControllerTest extends BaseControllerTest {
     @MockitoBean
     private UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
 
+    @Autowired
+    @MockitoBean
+    private OrderWebMapper orderWebMapper;
+
     @Test
     @WithMockManager
     void getOrders() throws Exception {
@@ -77,7 +80,7 @@ public class OrderControllerTest extends BaseControllerTest {
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(orderWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -89,7 +92,7 @@ public class OrderControllerTest extends BaseControllerTest {
                 get("/ofCurrentCustomer")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(orderWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
@@ -101,7 +104,7 @@ public class OrderControllerTest extends BaseControllerTest {
                 get("/1")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(OrderResponse.from(order)), bodyOf(mvcResult));
+        assertEquals(bodyOf(orderWebMapper.toResponse(order)), bodyOf(mvcResult));
     }
 
     @Test
@@ -110,7 +113,7 @@ public class OrderControllerTest extends BaseControllerTest {
         var order = new Order(OrderStatus.DELIVERED, "123", 1L, "5284 minnesota, united states", null, "Sproule");
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var payment = new PaymentResponse(1L, 105D);
-        var orderDetail = OrderDetailResponse.from(order, customer, payment);
+        var orderDetail = orderWebMapper.toDetailResponse(order, customer, payment);
         when(orderQueryPort.getById(1L)).thenReturn(order);
         when(keycloakAdapter.getUser("123")).thenReturn(createUser());
         when(paymentRestClient.getById(1L, "abc")).thenReturn(payment);
@@ -131,7 +134,7 @@ public class OrderControllerTest extends BaseControllerTest {
                 get("/ofCustomer/123")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(orders.stream().map(OrderResponse::from).toList()), bodyOf(mvcResult));
+        assertEquals(bodyOf(orders.stream().map(orderWebMapper::toResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test

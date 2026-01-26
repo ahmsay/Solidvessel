@@ -1,5 +1,6 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.in.order.rest.mapper.OrderWebMapper;
 import com.solidvessel.order.adapter.in.order.rest.request.CancelOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.UpdateDeliveryAddressRequest;
@@ -34,23 +35,24 @@ public class OrderController {
     private final CancelOrderCommandService cancelOrderCommandService;
     private final DeliverOrderCommandService deliverOrderCommandService;
     private final UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
+    private final OrderWebMapper orderWebMapper;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
     public List<OrderResponse> getOrders(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
-        return orderQueryPort.getOrders(QueryOptions.of(pageNumber, pageSize)).stream().map(OrderResponse::from).toList();
+        return orderQueryPort.getOrders(QueryOptions.of(pageNumber, pageSize)).stream().map(orderWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ofCurrentCustomer")
     public List<OrderResponse> getOrdersOfCurrentCustomer() {
-        return orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()).stream().map(OrderResponse::from).toList();
+        return orderQueryPort.getByCustomerId(SessionUtil.getCurrentUserId()).stream().map(orderWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/{id}")
     public OrderResponse getById(@PathVariable Long id) {
-        return OrderResponse.from(orderQueryPort.getById(id));
+        return orderWebMapper.toResponse(orderQueryPort.getById(id));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
@@ -59,13 +61,13 @@ public class OrderController {
         Order order = orderQueryPort.getById(id);
         CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(order.getCustomerId()));
         PaymentResponse payment = paymentRestClient.getById(order.getPaymentId(), SessionUtil.getCurrentUserToken());
-        return OrderDetailResponse.from(order, customer, payment);
+        return orderWebMapper.toDetailResponse(order, customer, payment);
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/ofCustomer/{customerId}")
     public List<OrderResponse> getByCustomerId(@PathVariable String customerId) {
-        return orderQueryPort.getByCustomerId(customerId).stream().map(OrderResponse::from).toList();
+        return orderQueryPort.getByCustomerId(customerId).stream().map(orderWebMapper::toResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
