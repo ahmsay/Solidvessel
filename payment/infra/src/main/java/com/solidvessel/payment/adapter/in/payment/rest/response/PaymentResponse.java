@@ -8,5 +8,5 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record PaymentResponse(Long id, String customerId, List<ProductResponse> products, Double totalCharge,
-                              PaymentStatus status, LocalDateTime creationDate) implements Serializable {
+                              PaymentStatus status, LocalDateTime createdDate) implements Serializable {
 }

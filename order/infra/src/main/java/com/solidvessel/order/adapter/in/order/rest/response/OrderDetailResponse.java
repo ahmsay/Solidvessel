@@ -8,7 +8,7 @@ import com.solidvessel.order.order.model.OrderStatus;
 
 import java.time.LocalDateTime;
 
-public record OrderDetailResponse(Long id, OrderStatus status, String address, LocalDateTime creationDate,
+public record OrderDetailResponse(Long id, OrderStatus status, String address, LocalDateTime createdDate,
                                   OrderCancellation cancellation, String recipient, CustomerResponse customer,
                                   PaymentResponse payment) {
 

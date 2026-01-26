@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public record OrderResponse(Long id, OrderStatus status, String customerId, Long paymentId,
-                            String address, LocalDateTime creationDate,
+                            String address, LocalDateTime createdDate,
                             OrderCancellation cancellation, String recipient) implements Serializable {
 
     public static OrderResponse from(Order order) {
