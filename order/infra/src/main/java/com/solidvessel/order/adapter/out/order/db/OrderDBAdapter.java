@@ -1,6 +1,6 @@
 package com.solidvessel.order.adapter.out.order.db;
 
-import com.solidvessel.order.adapter.out.order.db.entity.OrderJpaEntity;
+import com.solidvessel.order.adapter.out.order.db.mapper.OrderJpaMapper;
 import com.solidvessel.order.adapter.out.order.db.repository.OrderRepository;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public class OrderDBAdapter implements OrderPort {
 
     private final OrderRepository orderRepository;
+    private final OrderJpaMapper orderJpaMapper;
 
     @Caching(evict = {
             @CacheEvict(value = "ordersOfCustomer", key = "#order.customerId"),
@@ -21,6 +22,6 @@ public class OrderDBAdapter implements OrderPort {
     })
     @Override
     public void save(Order order) {
-        orderRepository.save(OrderJpaEntity.from(order));
+        orderRepository.save(orderJpaMapper.toJpaEntity(order));
     }
 }
