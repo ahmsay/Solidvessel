@@ -1,6 +1,7 @@
 package com.solidvessel.payment.adapter.out.payment.db;
 
 import com.solidvessel.payment.adapter.out.payment.db.entity.PaymentJpaEntity;
+import com.solidvessel.payment.adapter.out.payment.mapper.PaymentJpaMapper;
 import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.integrationtest.BaseDatabaseTest;
@@ -19,6 +20,9 @@ public class PaymentDBAdapterTest extends BaseDatabaseTest {
 
     @Autowired
     private PaymentDBAdapter paymentDBAdapter;
+
+    @Autowired
+    private PaymentJpaMapper paymentJpaMapper;
 
     @Test
     void createPayment() {
@@ -40,7 +44,7 @@ public class PaymentDBAdapterTest extends BaseDatabaseTest {
                 .status(PaymentStatus.PENDING)
                 .build();
         var paymentJpaEntityFromDb = persistEntity(paymentJpaEntity);
-        var paymentFromDb = paymentJpaEntityFromDb.toDomainModel();
+        var paymentFromDb = paymentJpaMapper.toDomainModel(paymentJpaEntityFromDb);
         paymentFromDb.approve();
         paymentDBAdapter.update(paymentFromDb);
     }

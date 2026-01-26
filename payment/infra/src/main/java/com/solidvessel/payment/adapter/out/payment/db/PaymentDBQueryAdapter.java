@@ -2,6 +2,7 @@ package com.solidvessel.payment.adapter.out.payment.db;
 
 import com.solidvessel.payment.adapter.out.payment.db.entity.PaymentJpaEntity;
 import com.solidvessel.payment.adapter.out.payment.db.repository.PaymentRepository;
+import com.solidvessel.payment.adapter.out.payment.mapper.PaymentJpaMapper;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.shared.query.QueryOptions;
@@ -19,22 +20,23 @@ import static com.solidvessel.shared.jpa.query.PageUtil.withPage;
 public class PaymentDBQueryAdapter implements PaymentQueryPort {
 
     private final PaymentRepository paymentRepository;
+    private final PaymentJpaMapper paymentJpaMapper;
 
     @Override
     public List<Payment> getPayments(QueryOptions queryOptions) {
-        return paymentRepository.findAll(withPage(queryOptions)).stream().map(PaymentJpaEntity::toDomainModel).toList();
+        return paymentRepository.findAll(withPage(queryOptions)).stream().map(paymentJpaMapper::toDomainModel).toList();
     }
 
     @Cacheable(value = "payment", key = "#id")
     @Override
     public Payment getById(Long id) {
         PaymentJpaEntity paymentJpaEntity = paymentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Payment not found!"));
-        return paymentJpaEntity.toDomainModel();
+        return paymentJpaMapper.toDomainModel(paymentJpaEntity);
     }
 
     @Cacheable(value = "paymentsOfCustomer", key = "#customerId")
     @Override
     public List<Payment> getByCustomerId(String customerId) {
-        return paymentRepository.findByCustomerId(customerId).stream().map(PaymentJpaEntity::toDomainModel).toList();
+        return paymentRepository.findByCustomerId(customerId).stream().map(paymentJpaMapper::toDomainModel).toList();
     }
 }

@@ -2,6 +2,7 @@ package com.solidvessel.payment.adapter.out.payment.db;
 
 import com.solidvessel.payment.adapter.out.payment.db.entity.PaymentJpaEntity;
 import com.solidvessel.payment.adapter.out.payment.db.repository.PaymentRepository;
+import com.solidvessel.payment.adapter.out.payment.mapper.PaymentJpaMapper;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 public class PaymentDBAdapter implements PaymentPort {
 
     private final PaymentRepository paymentRepository;
+    private final PaymentJpaMapper paymentJpaMapper;
 
     @Caching(evict = {
             @CacheEvict(value = "paymentsOfCustomer", key = "#payment.customerId"),
@@ -21,7 +23,7 @@ public class PaymentDBAdapter implements PaymentPort {
     })
     @Override
     public Long create(Payment payment) {
-        PaymentJpaEntity paymentJpaEntity = paymentRepository.save(PaymentJpaEntity.from(payment));
+        PaymentJpaEntity paymentJpaEntity = paymentRepository.save(paymentJpaMapper.toJpaEntity(payment));
         return paymentJpaEntity.getId();
     }
 
@@ -33,6 +35,6 @@ public class PaymentDBAdapter implements PaymentPort {
     })
     @Override
     public void update(Payment payment) {
-        paymentRepository.save(PaymentJpaEntity.from(payment));
+        paymentRepository.save(paymentJpaMapper.toJpaEntity(payment));
     }
 }
