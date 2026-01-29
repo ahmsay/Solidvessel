@@ -31,7 +31,7 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
         var product = new Product("sickle", 5D, ProductCategory.TOOL, 10, true);
         when(productQueryPort.getById(1L)).thenReturn(product);
         var operationResult = commandService.execute(command);
-        verify(productAvailableEventEventPublisher).publish(ProductAvailableEvent.from(product, command.quantity(), "123"));
+        verify(productAvailableEventEventPublisher).publish(new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(), product.getCategory(), command.quantity(), command.customerId()));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
