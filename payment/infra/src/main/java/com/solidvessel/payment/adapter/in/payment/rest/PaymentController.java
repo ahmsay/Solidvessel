@@ -4,6 +4,7 @@ import com.solidvessel.payment.adapter.in.payment.rest.mapper.PaymentWebMapper;
 import com.solidvessel.payment.adapter.in.payment.rest.request.AcceptPaymentRequest;
 import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentDetailResponse;
 import com.solidvessel.payment.adapter.in.payment.rest.response.PaymentResponse;
+import com.solidvessel.payment.adapter.out.customer.rest.mapper.CustomerWebMapper;
 import com.solidvessel.payment.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
@@ -26,6 +27,7 @@ public class PaymentController {
     private final KeycloakAdapter keycloakAdapter;
     private final AcceptPaymentCommandService acceptPaymentCommandService;
     private final PaymentWebMapper paymentWebMapper;
+    private final CustomerWebMapper customerWebMapper;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
@@ -49,7 +51,7 @@ public class PaymentController {
     @GetMapping("/{id}/detail")
     public PaymentDetailResponse getDetailById(@PathVariable Long id) {
         Payment payment = paymentQueryPort.getById(id);
-        CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(payment.getCustomerId()));
+        CustomerResponse customer = customerWebMapper.toResponse(keycloakAdapter.getUser(payment.getCustomerId()));
         return paymentWebMapper.toDetailResponse(payment, customer);
     }
 

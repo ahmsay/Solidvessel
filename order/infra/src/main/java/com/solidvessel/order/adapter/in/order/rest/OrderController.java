@@ -6,6 +6,7 @@ import com.solidvessel.order.adapter.in.order.rest.request.DeliverOrderRequest;
 import com.solidvessel.order.adapter.in.order.rest.request.UpdateDeliveryAddressRequest;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderDetailResponse;
 import com.solidvessel.order.adapter.in.order.rest.response.OrderResponse;
+import com.solidvessel.order.adapter.out.customer.rest.mapper.CustomerWebMapper;
 import com.solidvessel.order.adapter.out.customer.rest.response.CustomerResponse;
 import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.adapter.out.payment.rest.response.PaymentResponse;
@@ -36,6 +37,7 @@ public class OrderController {
     private final DeliverOrderCommandService deliverOrderCommandService;
     private final UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
     private final OrderWebMapper orderWebMapper;
+    private final CustomerWebMapper customerWebMapper;
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/")
@@ -59,7 +61,7 @@ public class OrderController {
     @GetMapping("/{id}/detail")
     public OrderDetailResponse getDetailById(@PathVariable Long id) {
         Order order = orderQueryPort.getById(id);
-        CustomerResponse customer = CustomerResponse.from(keycloakAdapter.getUser(order.getCustomerId()));
+        CustomerResponse customer = customerWebMapper.toResponse(keycloakAdapter.getUser(order.getCustomerId()));
         PaymentResponse payment = paymentRestClient.getById(order.getPaymentId(), SessionUtil.getCurrentUserToken());
         return orderWebMapper.toDetailResponse(order, customer, payment);
     }
