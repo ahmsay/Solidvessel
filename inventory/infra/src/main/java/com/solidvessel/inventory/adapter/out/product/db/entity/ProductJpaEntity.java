@@ -1,7 +1,5 @@
 package com.solidvessel.inventory.adapter.out.product.db.entity;
 
-import com.solidvessel.inventory.adapter.out.product.db.mapper.ProductJpaMapper;
-import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
@@ -37,12 +35,4 @@ public class ProductJpaEntity extends BaseEntity {
 
     @NotNull
     private Boolean isAvailableInRegion;
-
-    public Product toDomainModel() {
-        return ProductJpaMapper.INSTANCE.toDomainModel(this);
-    }
-
-    public static ProductJpaEntity from(Product product) {
-        return ProductJpaMapper.INSTANCE.toJpaEntity(product);
-    }
 }
