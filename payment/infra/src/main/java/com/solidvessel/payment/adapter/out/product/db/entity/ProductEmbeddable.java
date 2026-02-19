@@ -7,11 +7,13 @@ import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class ProductEmbeddable {
 
     private Long productId;
