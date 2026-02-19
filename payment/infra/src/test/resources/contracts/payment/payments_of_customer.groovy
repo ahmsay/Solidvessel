@@ -36,7 +36,7 @@ Contract.make {
                             "quantity": 5
                         }
                     ],
-                    "totalCharge": 150,
+                    "totalPrice": 150,
                     "status": "APPROVED",
                     "createdDate": [2025,1,26,14,16,18,575]
                 },
@@ -59,7 +59,7 @@ Contract.make {
                             "quantity": 2
                         }
                     ],
-                    "totalCharge": 1300,
+                    "totalPrice": 1300,
                     "status": "APPROVED",
                     "createdDate": [2024,8,3,9,56,42,3815]
                 }

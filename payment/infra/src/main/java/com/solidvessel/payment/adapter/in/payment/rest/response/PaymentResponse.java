@@ -7,6 +7,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record PaymentResponse(Long id, String customerId, List<ProductResponse> products, Double totalCharge,
+public record PaymentResponse(Long id, String customerId, List<ProductResponse> products, Double totalPrice,
                               PaymentStatus status, LocalDateTime createdDate) implements Serializable {
 }
