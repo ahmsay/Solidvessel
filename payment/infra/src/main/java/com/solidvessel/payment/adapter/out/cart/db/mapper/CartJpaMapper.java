@@ -5,37 +5,48 @@ import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.adapter.out.product.db.mapper.ProductJpaMapper;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.product.model.Product;
-import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR, uses = {ProductJpaMapper.class})
-public interface CartJpaMapper {
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
+public abstract class CartJpaMapper {
 
-    @Mapping(source = "products", target = "products")
-    CartJpaEntity toJpaEntity(Cart cart);
+    @Autowired
+    protected ProductJpaMapper productJpaMapper;
 
-    @Mapping(source = "products", target = "products")
-    Cart toDomainModel(CartJpaEntity cart);
+    @Mapping(source = "products", target = "products", qualifiedByName = "toProductEmbeddableList")
+    public abstract CartJpaEntity toJpaEntity(Cart cart);
 
-    default List<ProductEmbeddable> productsMapToList(Map<Long, Product> products, @Context ProductJpaMapper productJpaMapper) {
-        if (products == null) return null;
+    @Mapping(source = "products", target = "products", qualifiedByName = "toProductMap")
+    public abstract Cart toDomainModel(CartJpaEntity cart);
+
+    @Named("toProductEmbeddableList")
+    protected List<ProductEmbeddable> toProductEmbeddableList(Map<Long, Product> products) {
+        if (products == null) {
+            return new ArrayList<>();
+        }
         return products.values().stream()
                 .map(productJpaMapper::toEmbeddable)
-                .toList();
+                .collect(Collectors.toList());
     }
 
-    default Map<Long, Product> productsListToMap(List<ProductEmbeddable> products, @Context ProductJpaMapper productJpaMapper) {
-        if (products == null) return null;
+    @Named("toProductMap")
+    protected Map<Long, Product> toProductMap(List<ProductEmbeddable> products) {
+        if (products == null) {
+            return new HashMap<>();
+        }
         return products.stream()
-                .collect(Collectors.toMap(
-                        ProductEmbeddable::getProductId,
-                        productJpaMapper::toDomainModel
-                ));
+                .map(productJpaMapper::toDomainModel)
+                .collect(Collectors.toMap(Product::getId, Function.identity()));
     }
 }
