@@ -79,5 +79,8 @@
       "frontchannelLogout": true,
       "protocol": "openid-connect"
     }
-  ]
+  ],
+  "attributes": {
+    "userProfileConfig": "{\"unmanagedAttributePolicy\":\"ENABLED\",\"attributes\":[],\"groups\":[]}"
+  }
 }
