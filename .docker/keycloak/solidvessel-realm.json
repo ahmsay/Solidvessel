@@ -81,6 +81,7 @@
     }
   ],
   "attributes": {
+    "userProfileEnabled": "true",
     "userProfileConfig": "{\"unmanagedAttributePolicy\":\"ENABLED\",\"attributes\":[],\"groups\":[]}"
   }
 }
