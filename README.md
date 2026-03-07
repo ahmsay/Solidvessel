@@ -107,4 +107,4 @@ Let's explain each component shown in the diagram one by one:
 - Migration from RabbitMQ to Kafka
 - Microservice with different framework
 - Microservice with different programming language
-- Get rid of bitnami completely
+- ~~Get rid of @bitnami completely~~
