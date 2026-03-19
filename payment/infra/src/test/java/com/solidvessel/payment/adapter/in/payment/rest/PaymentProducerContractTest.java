@@ -1,5 +1,7 @@
 package com.solidvessel.payment.adapter.in.payment.rest;
 
+import com.solidvessel.payment.adapter.in.payment.rest.mapper.PaymentWebMapper;
+import com.solidvessel.payment.adapter.out.customer.rest.mapper.CustomerWebMapper;
 import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.payment.port.PaymentQueryPort;
@@ -31,9 +33,15 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
     @MockitoBean
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
+    @MockitoBean
+    private PaymentWebMapper paymentWebMapper;
+
+    @MockitoBean
+    private CustomerWebMapper customerWebMapper;
+
     @BeforeEach
     void setup() {
-        RestAssuredMockMvc.standaloneSetup(new PaymentController(paymentQueryPort, keycloakAdapter, acceptPaymentCommandService));
+        RestAssuredMockMvc.standaloneSetup(new PaymentController(paymentQueryPort, keycloakAdapter, acceptPaymentCommandService, paymentWebMapper, customerWebMapper));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(createPayments());
         when(paymentQueryPort.getById(1L)).thenReturn(createPayment());
     }
