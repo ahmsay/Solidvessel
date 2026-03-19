@@ -33,7 +33,7 @@ public class AddressDBQueryAdapterTest extends BaseDatabaseTest {
         assertEquals(addressJpaEntity.getCountry(), address.getCountry());
         assertEquals(addressJpaEntity.getCity(), address.getCity());
         assertEquals(addressJpaEntity.getCustomerId(), address.getCustomerId());
-        assertEquals(addressJpaEntity.getZipcode(), address.getZipCode());
+        assertEquals(addressJpaEntity.getZipCode(), address.getZipCode());
         assertEquals(addressJpaEntity.getIsPrimary(), address.getIsPrimary());
     }
 
