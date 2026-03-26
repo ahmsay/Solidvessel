@@ -6,9 +6,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.solidvessel.shared.Profiles;
 import jakarta.annotation.PostConstruct;
-import org.mapstruct.Mapper;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MvcResult;
@@ -18,10 +15,6 @@ import java.nio.charset.StandardCharsets;
 
 @ActiveProfiles(Profiles.INTEGRATION_TEST)
 @Import(TestSecurityFilterConfig.class)
-@ComponentScan(
-        basePackages = "com.solidvessel",
-        includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Mapper.class})}
-)
 public class BaseControllerTest {
 
     ObjectMapper objectMapper;
