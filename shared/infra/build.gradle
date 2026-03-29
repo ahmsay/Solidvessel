@@ -28,8 +28,5 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa-test:4.0.3'
-    implementation "org.mapstruct:mapstruct:$rootProject.mapStructVersion"
-    annotationProcessor "org.mapstruct:mapstruct-processor:$rootProject.mapStructVersion"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:$rootProject.mapStructBindingVersion"
     api "org.keycloak:keycloak-admin-client:$rootProject.keycloakVersion"
 }
