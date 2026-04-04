@@ -52,7 +52,7 @@ public class AddressControllerTest extends BaseControllerTest {
     @MockitoBean
     private SetPrimaryAddressCommandService setPrimaryAddressCommandService;
 
-    @MockitoBean
+    @Autowired
     private AddressWebMapper addressWebMapper;
 
     @Test

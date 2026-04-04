@@ -65,7 +65,6 @@ public class OrderControllerTest extends BaseControllerTest {
     private UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
 
     @Autowired
-    @MockitoBean
     private OrderWebMapper orderWebMapper;
 
     @Test

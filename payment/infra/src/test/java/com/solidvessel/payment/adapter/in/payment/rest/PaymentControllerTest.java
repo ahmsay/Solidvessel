@@ -50,7 +50,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @MockitoBean
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
-    @MockitoBean
+    @Autowired
     private PaymentWebMapper paymentWebMapper;
 
     @Test

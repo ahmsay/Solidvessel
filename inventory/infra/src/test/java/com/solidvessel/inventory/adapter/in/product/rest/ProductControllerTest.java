@@ -60,7 +60,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @MockitoBean
     private ChangeProductAvailabilityCommandService changeProductAvailabilityCommandService;
 
-    @MockitoBean
+    @Autowired
     private ProductWebMapper productWebMapper;
 
     @Test

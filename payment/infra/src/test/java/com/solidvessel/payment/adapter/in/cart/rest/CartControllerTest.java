@@ -44,7 +44,7 @@ public class CartControllerTest extends BaseControllerTest {
     @MockitoBean
     private ClearCartCommandService clearCartCommandService;
 
-    @MockitoBean
+    @Autowired
     private CartWebMapper cartWebMapper;
 
     @Test
