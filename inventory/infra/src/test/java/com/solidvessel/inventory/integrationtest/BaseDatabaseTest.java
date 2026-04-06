@@ -16,6 +16,11 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Repository.class}))
+@ComponentScan(
+        basePackages = "com.solidvessel",
+        includeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*JpaMapperImpl"),
+        useDefaultFilters = false
+)
 @AutoConfigureTestDatabase(replace = NONE)
 @ActiveProfiles(Profiles.INTEGRATION_TEST)
 public class BaseDatabaseTest extends TestEntityHelper {
