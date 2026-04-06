@@ -3,6 +3,7 @@ package com.solidvessel.shared.test.database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jpa.test.autoconfigure.TestEntityManager;
 
+@Deprecated
 public class TestEntityHelper {
 
     @Autowired
