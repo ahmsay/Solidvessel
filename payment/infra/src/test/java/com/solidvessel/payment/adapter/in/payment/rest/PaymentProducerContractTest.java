@@ -12,6 +12,7 @@ import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
@@ -33,10 +34,10 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
     @MockitoBean
     private AcceptPaymentCommandService acceptPaymentCommandService;
 
-    @MockitoBean
+    @Autowired
     private PaymentWebMapper paymentWebMapper;
 
-    @MockitoBean
+    @Autowired
     private CustomerWebMapper customerWebMapper;
 
     @BeforeEach

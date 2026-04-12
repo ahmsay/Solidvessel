@@ -1,5 +1,7 @@
 package com.solidvessel.order.adapter.in.order.rest;
 
+import com.solidvessel.order.adapter.in.order.rest.mapper.OrderWebMapper;
+import com.solidvessel.order.adapter.out.customer.rest.mapper.CustomerWebMapper;
 import com.solidvessel.order.adapter.out.payment.rest.PaymentRestClient;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
@@ -11,6 +13,7 @@ import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
@@ -41,6 +44,12 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
     @MockitoBean
     private UpdateDeliveryAddressCommandService updateDeliveryAddressCommandService;
 
+    @Autowired
+    private OrderWebMapper orderWebMapper;
+
+    @Autowired
+    private CustomerWebMapper customerWebMapper;
+
     @BeforeEach
     void setup() {
         var orders = List.of(
@@ -62,7 +71,7 @@ public class OrderProducerContractTest extends BaseProducerContractTest {
                         .createdDate(LocalDateTime.of(2023, Month.DECEMBER, 9, 11, 49, 32, 8371))
                         .build()
         );
-        RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, keycloakAdapter, paymentRestClient, cancelOrderCommandService, deliverOrderCommandService, updateDeliveryAddressCommandService));
+        RestAssuredMockMvc.standaloneSetup(new OrderController(orderQueryPort, keycloakAdapter, paymentRestClient, cancelOrderCommandService, deliverOrderCommandService, updateDeliveryAddressCommandService, orderWebMapper, customerWebMapper));
         when(orderQueryPort.getByCustomerId("123")).thenReturn(orders);
     }
 }
