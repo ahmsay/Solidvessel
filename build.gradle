@@ -14,6 +14,5 @@ ext {
     springCloudBomVersion = "2025.0.0"
     mapStructVersion = "1.6.3"
     mapStructBindingVersion = "0.2.0"
-    springDataJpaTestVersion = "4.0.3"
-    springWebMvcTestVersion = "4.0.3"
+    springBootStarterTestVersion = "4.0.3"
 }
