@@ -15,4 +15,5 @@ ext {
     mapStructVersion = "1.6.3"
     mapStructBindingVersion = "0.2.0"
     springDataJpaTestVersion = "4.0.3"
+    springWebMvcTestVersion = "4.0.3"
 }
