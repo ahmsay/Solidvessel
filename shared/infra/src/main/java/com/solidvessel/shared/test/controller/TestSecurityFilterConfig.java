@@ -1,6 +1,7 @@
 package com.solidvessel.shared.test.controller;
 
 import com.solidvessel.shared.Profiles;
+import org.springframework.boot.webmvc.test.autoconfigure.MockMvcBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -22,5 +24,10 @@ public class TestSecurityFilterConfig {
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
+    }
+
+    @Bean
+    public MockMvcBuilderCustomizer securityMockMvcBuilderCustomizer() {
+        return builder -> builder.apply(SecurityMockMvcConfigurers.springSecurity());
     }
 }
