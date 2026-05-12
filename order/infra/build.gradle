@@ -36,7 +36,7 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:$rootProject.mapStructVersion"
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:$rootProject.mapStructBindingVersion"
     implementation "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
-    implementation "org.liquibase:liquibase-core:$rootProject.liquibaseVersion"
+    implementation 'org.springframework.boot:spring-boot-starter-liquibase'
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
     implementation "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$rootProject.circuitBreakerVersion"
     testImplementation "org.junit.jupiter:junit-jupiter:$rootProject.junitVersion"
