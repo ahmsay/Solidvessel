@@ -38,7 +38,7 @@ Contract.make {
                     ],
                     "totalPrice": 150,
                     "status": "APPROVED",
-                    "createdDate": [2025,1,26,14,16,18,575]
+                    "createdDate": "2025-01-26T14:16:18.000000575"
                 },
                 {
                     "id": 2,
@@ -61,7 +61,7 @@ Contract.make {
                     ],
                     "totalPrice": 1300,
                     "status": "APPROVED",
-                    "createdDate": [2024,8,3,9,56,42,3815]
+                    "createdDate": "2024-08-03T09:56:42.000003815"
                 }
             ]
         """.replaceAll("\\s", "")
