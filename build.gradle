@@ -2,14 +2,14 @@ group = 'com.solidvessel'
 
 ext {
     postgresDriverVersion = "42.7.7"
-    feignVersion = "4.3.0"
+    feignVersion = "5.0.0"
     circuitBreakerVersion = "3.2.2"
     keycloakVersion = "26.0.6"
     junitVersion = "6.0.3"
     junitPlatformVersion = "6.0.3"
     mockitoVersion = "5.19.0"
     testContainersVersion = "1.21.4"
-    springCloudContractVersion = "4.3.0"
+    springCloudContractVersion = "5.0.0"
     springCloudBomVersion = "2025.0.0"
     mapStructVersion = "1.6.3"
     mapStructBindingVersion = "0.2.0"
