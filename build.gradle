@@ -10,7 +10,7 @@ ext {
     mockitoVersion = "5.19.0"
     testContainersVersion = "1.21.4"
     springCloudContractVersion = "5.0.0"
-    springCloudBomVersion = "2025.0.0"
+    springCloudBomVersion = "2025.1.1"
     mapStructVersion = "1.6.3"
     mapStructBindingVersion = "0.2.0"
     springBootStarterTestVersion = "4.0.3"
