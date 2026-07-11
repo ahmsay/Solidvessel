@@ -10,7 +10,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "17.6"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-kmdeh5lrckwz
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-accountdb-50kvcvkspe05
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
   InventoryDB:
@@ -22,7 +22,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "17.6"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-opf2kfvocqrf
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-inventorydb-exrtbkau8o8c
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
   OrderDB:
@@ -34,7 +34,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "17.6"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-usgtmpuqn5fw
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-orderdb-5gsl5nwz9wk5
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
   PaymentDB:
@@ -46,7 +46,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "17.6"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-umpczzspq9f7
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-paymentdb-hjhxjuaertqm
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
   KeycloakDB:
@@ -58,7 +58,7 @@ Resources:
       AllocatedStorage: 20
       Engine: postgres
       EngineVersion: "17.6"
-      DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-xf2sjwcuamhd
+      DBSnapshotIdentifier: solidvessel-databases-snapshot-keycloakdb-i1xh5thsuxnt
       VPCSecurityGroups:
       - Ref: CommonDBSecurityGroup
   K8SSubnetGroup:
