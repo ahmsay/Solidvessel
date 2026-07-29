@@ -32,7 +32,7 @@ public class BaseDatabaseTest {
     @Autowired
     private TestEntityManager testEntityManager;
 
-    public static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:16.4")
+    public static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:17.6")
             .withDatabaseName("payment")
             .withUsername("nihilus")
             .withPassword("nihilus");
