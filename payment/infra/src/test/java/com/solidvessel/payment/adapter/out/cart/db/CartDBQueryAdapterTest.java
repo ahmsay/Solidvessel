@@ -39,4 +39,13 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
         assertEquals("123", cart.getCustomerId());
         assertTrue(cart.isEmpty());
     }
+
+    @Test
+    void getByCustomerIdNoProducts() {
+        var cartJpaEntity = persistEntity(new CartJpaEntity("123", null));
+        var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
+        assertEquals(cartJpaEntity.getId(), cart.getId());
+        assertEquals(cartJpaEntity.getCustomerId(), cart.getCustomerId());
+        assertTrue(cart.getProducts().isEmpty());
+    }
 }
