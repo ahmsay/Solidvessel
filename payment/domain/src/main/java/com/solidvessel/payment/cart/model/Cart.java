@@ -62,6 +62,9 @@ public class Cart extends DomainModel {
     }
 
     public Double getTotalPrice() {
+        if (products == null) {
+            return 0D;
+        }
         return products.values().stream().map(Product::getTotalPrice).reduce(0D, Double::sum);
     }
 

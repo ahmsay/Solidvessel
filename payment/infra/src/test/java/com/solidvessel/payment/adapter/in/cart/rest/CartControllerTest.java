@@ -66,6 +66,19 @@ public class CartControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockCustomer
+    void listCartWithNullProducts() throws Exception {
+        var cart = Cart.builder().customerId("123").products(null).build();
+        var cartResponse = cartWebMapper.toResponse(cart);
+        when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
+        MvcResult mvcResult = mockMvc.perform(
+                get("/cart")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+        assertEquals(bodyOf(cartResponse), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockCustomer
     void removeFromCart() throws Exception {
         var request = new RemoveFromCartRequest(1L);
         when(removeFromCartCommandService.execute(request.toCommand())).thenReturn(OperationResult.defaultSuccessResult());
