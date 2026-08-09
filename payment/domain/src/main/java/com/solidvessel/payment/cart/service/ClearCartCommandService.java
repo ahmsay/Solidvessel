@@ -4,6 +4,7 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.ClearCartCommand;
+import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
 import com.solidvessel.shared.service.OperationResult;
@@ -21,7 +22,7 @@ public class ClearCartCommandService implements CommandService<ClearCartCommand,
     public OperationResult execute(ClearCartCommand command) {
         Cart cart = cartQueryPort.getByCustomerId(command.customerId());
         if (cart.isEmpty()) {
-            return new OperationResult("Your cart is already empty.", ResultType.ERROR);
+            throw new PaymentDomainException("Your cart is already empty.");
         }
         cart.empty();
         cartPort.save(cart);
