@@ -104,6 +104,12 @@ public class CartTest {
     }
 
     @Test
+    void getTotalPriceWithNoProducts() {
+        var cart = Cart.newCart("123");
+        assertEquals(0D, cart.getTotalPrice());
+    }
+
+    @Test
     void getProductQuantities() {
         var cart = Cart.newCart("123");
         cart.addProduct(createProduct(1L, 2));
