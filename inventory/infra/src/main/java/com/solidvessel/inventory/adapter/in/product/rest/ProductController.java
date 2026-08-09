@@ -5,8 +5,8 @@ import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductReque
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.response.ProductAvailabilityResponse;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
-import com.solidvessel.inventory.product.model.ProductAvailability;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.*;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
@@ -60,14 +60,14 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/{id}/isAvailable")
-    public ProductAvailability isAvailable(@PathVariable Long id, @RequestParam Integer quantity) {
-        return productQueryPort.getById(id).isAvailable(quantity);
+    public ProductAvailabilityResponse isAvailable(@PathVariable Long id, @RequestParam Integer quantity) {
+        return productWebMapper.toResponse(productQueryPort.getById(id).isAvailable(quantity));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping("/changeAvailability")
-    public ProductAvailability changeAvailability(@RequestBody @Valid ChangeProductAvailabilityRequest request) {
-        return changeProductAvailabilityCommandService.execute(request.toCommand());
+    public ProductAvailabilityResponse changeAvailability(@RequestBody @Valid ChangeProductAvailabilityRequest request) {
+        return productWebMapper.toResponse(changeProductAvailabilityCommandService.execute(request.toCommand()));
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

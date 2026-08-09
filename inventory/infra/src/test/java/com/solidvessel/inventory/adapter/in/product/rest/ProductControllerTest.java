@@ -5,6 +5,7 @@ import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductReque
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.response.ProductAvailabilityResponse;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductAvailability;
 import com.solidvessel.inventory.product.model.ProductCategory;
@@ -129,7 +130,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .queryParam("quantity", "5")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(ProductAvailability.available()), bodyOf(mvcResult));
+        assertEquals(bodyOf(new ProductAvailabilityResponse(true, null)), bodyOf(mvcResult));
     }
 
     @Test
@@ -143,7 +144,7 @@ public class ProductControllerTest extends BaseControllerTest {
                         .content(bodyOf(request))
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(ProductAvailability.notAvailableInRegion()), bodyOf(mvcResult));
+        assertEquals(bodyOf(new ProductAvailabilityResponse(false, UnavailableReason.NOT_AVAILABLE_IN_REGION)), bodyOf(mvcResult));
     }
 
     @Test
