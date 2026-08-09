@@ -4,7 +4,6 @@ import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.cart.service.command.ClearCartCommand;
-import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
 import com.solidvessel.shared.service.ResultType;
@@ -15,7 +14,8 @@ import org.mockito.Mock;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class ClearCartCommandServiceTest extends BaseUnitTest {
@@ -47,7 +47,9 @@ public class ClearCartCommandServiceTest extends BaseUnitTest {
         var commandService = new ClearCartCommandService(cartPort, cartQueryPort);
         Cart cart = Cart.newCart("123");
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);
-        assertThrows(PaymentDomainException.class, () -> commandService.execute(command));
+        var operationResult = commandService.execute(command);
+        assertEquals(ResultType.ERROR, operationResult.resultType());
+        assertEquals("Your cart is already empty.", operationResult.message());
         verifyNoInteractions(cartPort);
         assertTrue(cart.isEmpty());
     }

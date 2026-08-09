@@ -1,6 +1,5 @@
 package com.solidvessel.inventory.product.service;
 
-import com.solidvessel.inventory.common.exception.InventoryDomainException;
 import com.solidvessel.inventory.product.event.ProductAvailableEvent;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class AddProductToCartCommandServiceTest extends BaseUnitTest {
@@ -41,7 +39,9 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
         var product = new Product("sickle", 5D, ProductCategory.TOOL, 1, true);
         when(productQueryPort.getById(1L)).thenReturn(product);
-        assertThrows(InventoryDomainException.class, () -> commandService.execute(command));
+        var operationResult = commandService.execute(command);
+        assertEquals(ResultType.ERROR, operationResult.resultType());
+        assertEquals("The product is not available. Reason: The product is not available in stocks with your desired quantity.", operationResult.message());
         verifyNoInteractions(productAvailableEventEventPublisher);
     }
 }

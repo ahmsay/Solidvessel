@@ -1,6 +1,5 @@
 package com.solidvessel.inventory.product.service;
 
-import com.solidvessel.inventory.common.exception.InventoryDomainException;
 import com.solidvessel.inventory.product.event.ProductAvailableEvent;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductAvailability;
@@ -25,7 +24,7 @@ public class AddProductToCartCommandService implements CommandService<AddProduct
         Product product = productQueryPort.getById(command.id());
         ProductAvailability availability = product.isAvailable(command.quantity());
         if (!availability.getIsAvailable()) {
-            throw new InventoryDomainException("The product is not available. Reason: %s".formatted(availability.getUnavailableReason().toString()));
+            return new OperationResult("The product is not available. Reason: %s".formatted(availability.getUnavailableReason().toString()), ResultType.ERROR);
         }
         productAvailableEventEventPublisher.publish(new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(), product.getCategory(), command.quantity(), command.customerId()));
         return new OperationResult("Product is added to the cart.", ResultType.SUCCESS);
