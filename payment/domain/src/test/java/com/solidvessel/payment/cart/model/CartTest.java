@@ -105,7 +105,7 @@ public class CartTest {
 
     @Test
     void getTotalPriceWithNoProducts() {
-        var cart = Cart.newCart("123");
+        var cart = Cart.builder().customerId("123").products(null).build();
         assertEquals(0D, cart.getTotalPrice());
     }
 
