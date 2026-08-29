@@ -5,6 +5,7 @@ import com.solidvessel.account.address.model.Address;
 import com.solidvessel.account.address.port.AddressPort;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.SetPrimaryAddressCommand;
+import com.solidvessel.account.common.exception.AccountDomainException;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class SetPrimaryAddressCommandServiceTest extends BaseUnitTest {
@@ -43,9 +45,8 @@ public class SetPrimaryAddressCommandServiceTest extends BaseUnitTest {
         var command = new SetPrimaryAddressCommand(1L, "123");
         var commandService = new SetPrimaryAddressCommandService(addressQueryPort, addressPort, primaryAddressSavedEventPublisher);
         when(addressQueryPort.getPrimaryAddress("123")).thenReturn(Address.builder().id(1L).isPrimary(true).build());
-        var result = commandService.execute(command);
+        assertThrows(AccountDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(addressPort);
-        assertEquals(ResultType.ERROR, result.resultType());
         verifyNoInteractions(primaryAddressSavedEventPublisher);
     }
 }

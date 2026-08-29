@@ -1,5 +1,6 @@
 package com.solidvessel.order.order.service;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
 import com.solidvessel.order.order.port.OrderQueryPort;
@@ -21,7 +22,7 @@ public class CancelOrderCommandService implements CommandService<CancelOrderComm
     public OperationResult execute(CancelOrderCommand command) {
         Order order = orderQueryPort.getByIdAndCustomerId(command.id(), command.customerId());
         if (!order.canCancel()) {
-            return new OperationResult("Your order must either being prepared or on it's way to cancel.", ResultType.ERROR);
+            throw new OrderDomainException("Your order must either being prepared or on it's way to cancel.");
         }
         order.cancel(command.cancellationReason(), command.explanation());
         orderPort.save(order);

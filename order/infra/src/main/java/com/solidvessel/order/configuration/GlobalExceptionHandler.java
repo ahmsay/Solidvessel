@@ -1,5 +1,6 @@
 package com.solidvessel.order.configuration;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.service.ResultType;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,6 +19,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<OperationResult> handleEntityNotFoundException(EntityNotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(new OperationResult(exception.getMessage(), ResultType.ERROR));
+    }
+
+    @ExceptionHandler(OrderDomainException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<OperationResult> handleDomainExceptions(OrderDomainException exception) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(new OperationResult(exception.getMessage(), ResultType.ERROR));
     }
 }

@@ -1,5 +1,6 @@
 package com.solidvessel.order.order.service;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderPort;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class UpdateDeliveryAddressCommandServiceTest extends BaseUnitTest {
@@ -39,9 +41,7 @@ public class UpdateDeliveryAddressCommandServiceTest extends BaseUnitTest {
         var commandService = new UpdateDeliveryAddressCommandService(orderQueryPort, orderPort);
         var order = Order.builder().id(1L).customerId("123").address("Yuma").status(OrderStatus.ON_THE_WAY).build();
         when(orderQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(order);
-        var operationResult = commandService.execute(command);
-        assertEquals(ResultType.ERROR, operationResult.resultType());
-        assertEquals("Your order must be in preparation to change the delivery address.", operationResult.message());
+        assertThrows(OrderDomainException.class, () -> commandService.execute(command));
         assertEquals("Yuma", order.getAddress());
         verifyNoInteractions(orderPort);
     }

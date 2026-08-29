@@ -1,5 +1,6 @@
 package com.solidvessel.order.order.service;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
 import com.solidvessel.order.order.port.OrderQueryPort;
@@ -21,7 +22,7 @@ public class UpdateDeliveryAddressCommandService implements CommandService<Updat
     public OperationResult execute(UpdateDeliveryAddressCommand command) {
         Order order = orderQueryPort.getByIdAndCustomerId(command.id(), command.customerId());
         if (!order.canUpdateAddress()) {
-            return new OperationResult("Your order must be in preparation to change the delivery address.", ResultType.ERROR);
+            throw new OrderDomainException("Your order must be in preparation to change the delivery address.");
         }
         order.updateAddress(command.address());
         orderPort.save(order);

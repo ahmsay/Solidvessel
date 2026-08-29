@@ -1,5 +1,6 @@
 package com.solidvessel.order.order.service;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.port.OrderPort;
 import com.solidvessel.order.order.port.OrderQueryPort;
@@ -21,7 +22,7 @@ public class DeliverOrderCommandService implements CommandService<DeliverOrderCo
     public OperationResult execute(DeliverOrderCommand command) {
         Order order = orderQueryPort.getById(command.id());
         if (!order.canDeliver()) {
-            return new OperationResult("The order must be on it's way to deliver.", ResultType.ERROR);
+            throw new OrderDomainException("The order must be on it's way to deliver.");
         }
         order.deliver(command.recipient());
         orderPort.save(order);

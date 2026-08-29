@@ -4,6 +4,7 @@ import com.solidvessel.account.address.event.PrimaryAddressSavedEvent;
 import com.solidvessel.account.address.port.AddressPort;
 import com.solidvessel.account.address.port.AddressQueryPort;
 import com.solidvessel.account.address.service.command.SetPrimaryAddressCommand;
+import com.solidvessel.account.common.exception.AccountDomainException;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.CommandService;
 import com.solidvessel.shared.service.DomainComponent;
@@ -23,7 +24,7 @@ public class SetPrimaryAddressCommandService implements CommandService<SetPrimar
     public OperationResult execute(SetPrimaryAddressCommand command) {
         var oldAddress = addressQueryPort.getPrimaryAddress(command.customerId());
         if (oldAddress.getId().equals(command.id())) {
-            return new OperationResult("This address is already a primary address.", ResultType.ERROR);
+            throw new AccountDomainException("This address is already a primary address.");
         }
         oldAddress.setNonPrimary();
         var newAddress = addressQueryPort.getByIdAndCustomerId(command.id(), command.customerId());

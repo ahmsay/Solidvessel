@@ -1,5 +1,6 @@
 package com.solidvessel.order.order.service;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
 import com.solidvessel.order.order.port.OrderPort;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class DeliverOrderCommandServiceTest extends BaseUnitTest {
@@ -39,10 +41,8 @@ public class DeliverOrderCommandServiceTest extends BaseUnitTest {
         var commandService = new DeliverOrderCommandService(orderQueryPort, orderPort);
         var order = Order.builder().id(1L).customerId("123").status(OrderStatus.PREPARING).build();
         when(orderQueryPort.getById(1L)).thenReturn(order);
-        var operationResult = commandService.execute(command);
+        assertThrows(OrderDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(orderPort);
-        assertEquals(ResultType.ERROR, operationResult.resultType());
-        assertEquals("The order must be on it's way to deliver.", operationResult.message());
         assertEquals(OrderStatus.PREPARING, order.getStatus());
     }
 }

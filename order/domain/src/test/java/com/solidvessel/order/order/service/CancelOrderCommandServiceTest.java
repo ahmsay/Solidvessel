@@ -1,5 +1,6 @@
 package com.solidvessel.order.order.service;
 
+import com.solidvessel.order.common.exception.OrderDomainException;
 import com.solidvessel.order.order.model.CancellationReason;
 import com.solidvessel.order.order.model.Order;
 import com.solidvessel.order.order.model.OrderStatus;
@@ -40,9 +41,7 @@ public class CancelOrderCommandServiceTest extends BaseUnitTest {
         var commandService = new CancelOrderCommandService(orderQueryPort, orderPort);
         var order = Order.builder().id(1L).customerId("123").status(OrderStatus.DELIVERED).build();
         when(orderQueryPort.getByIdAndCustomerId(1L, "123")).thenReturn(order);
-        var operationResult = commandService.execute(command);
-        assertEquals(ResultType.ERROR, operationResult.resultType());
-        assertEquals("Your order must either being prepared or on it's way to cancel.", operationResult.message());
+        assertThrows(OrderDomainException.class, () -> commandService.execute(command));
         assertNull(order.getCancellation());
         verifyNoInteractions(orderPort);
     }
