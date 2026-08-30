@@ -12,6 +12,17 @@ base {
     archivesName = 'order-infra'
 }
 
+configurations {
+    contractStubs {
+        canBeConsumed = true
+        canBeResolved = false
+    }
+}
+
+artifacts {
+    contractStubs(tasks.named('verifierStubsJar'))
+}
+
 dependencies {
     implementation project(':shared:infra')
     implementation project(':order:domain')
@@ -41,9 +52,7 @@ dependencies {
     testImplementation libs.testcontainers.postgres
     testImplementation libs.spring.cloud.contract.verifier
     testImplementation libs.spring.cloud.contract.stub.runner
-    testImplementation files(
-            "${project.rootDir}/payment/infra/build/libs/infra-stubs.jar"
-    )
+    testImplementation project(path: ':payment:infra', configuration: 'contractStubs')
 }
 
 dependencyManagement {
@@ -52,8 +61,9 @@ dependencyManagement {
     }
 }
 
-tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('payment:infra:verifierStubsJar')
-tasks.copyContracts.dependsOn rootProject.tasks.findByPath('payment:infra:verifierStubsJar')
+tasks.named('copyContracts') {
+    dependsOn project(':payment:infra').tasks.named('verifierStubsJar')
+}
 
 jib {
     from {

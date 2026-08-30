@@ -12,6 +12,17 @@ base {
     archivesName = 'payment-infra'
 }
 
+configurations {
+    contractStubs {
+        canBeConsumed = true
+        canBeResolved = false
+    }
+}
+
+artifacts {
+    contractStubs(tasks.named('verifierStubsJar'))
+}
+
 dependencies {
     implementation project(':shared:infra')
     implementation project(':payment:domain')
