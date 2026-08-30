@@ -1,0 +1,43 @@
+[versions]
+springBoot = "4.0.3"
+springDependencyManagement = "1.1.7"
+springCloudContract = "5.0.3"
+jib = "3.4.5"
+lombok = "8.14.2"
+postgres = "42.7.7"
+feign = "5.0.0"
+circuitBreaker = "3.2.2"
+keycloak = "26.0.6"
+junit = "6.0.3"
+mockito = "5.19.0"
+testcontainers = "1.21.4"
+springCloudBom = "2025.1.1"
+mapstruct = "1.6.3"
+mapstructBinding = "0.2.0"
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
+spring-cloud-contract = { id = "org.springframework.cloud.contract", version.ref = "springCloudContract" }
+jib = { id = "com.google.cloud.tools.jib", version.ref = "jib" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
+
+[libraries]
+postgres = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+feign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign", version.ref = "feign" }
+circuit-breaker = { module = "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j", version.ref = "circuitBreaker" }
+keycloak = { module = "org.keycloak:keycloak-admin-client", version.ref = "keycloak" }
+junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+junit-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+testcontainers-postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+mapstruct-lombok-binding = { module = "org.projectlombok:lombok-mapstruct-binding", version.ref = "mapstructBinding" }
+spring-cloud-contract-verifier = { module = "org.springframework.cloud:spring-cloud-starter-contract-verifier", version.ref = "springCloudContract" }
+spring-cloud-contract-stub-runner = { module = "org.springframework.cloud:spring-cloud-contract-stub-runner", version.ref = "springCloudContract" }

@@ -1,19 +1,15 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '4.0.3'
-    id 'io.spring.dependency-management' version '1.1.7'
-    id 'com.google.cloud.tools.jib' version '3.4.5'
-    id 'io.freefair.lombok' version '8.14.2'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'com.google.cloud.tools.jib'
+    id 'io.freefair.lombok'
     id 'jacoco'
-    id 'org.springframework.cloud.contract' version '5.0.3'
+    id 'org.springframework.cloud.contract'
 }
 
 base {
     archivesName = 'order-infra'
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 dependencies {
@@ -32,19 +28,19 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    implementation "org.mapstruct:mapstruct:$rootProject.mapStructVersion"
-    annotationProcessor "org.mapstruct:mapstruct-processor:$rootProject.mapStructVersion"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:$rootProject.mapStructBindingVersion"
-    implementation "org.postgresql:postgresql:$rootProject.postgresDriverVersion"
+    implementation libs.mapstruct
+    annotationProcessor libs.mapstruct.processor
+    annotationProcessor libs.mapstruct.lombok.binding
+    implementation libs.postgres
     implementation 'org.springframework.boot:spring-boot-starter-liquibase'
-    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$rootProject.feignVersion"
-    implementation "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$rootProject.circuitBreakerVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter:$rootProject.junitVersion"
-    testRuntimeOnly "org.junit.platform:junit-platform-engine:$rootProject.junitPlatformVersion"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher:$rootProject.junitPlatformVersion"
-    testImplementation "org.testcontainers:postgresql:$rootProject.testContainersVersion"
-    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:$rootProject.springCloudContractVersion"
-    testImplementation "org.springframework.cloud:spring-cloud-contract-stub-runner:$rootProject.springCloudContractVersion"
+    implementation libs.feign
+    implementation libs.circuit.breaker
+    testImplementation libs.junit
+    testRuntimeOnly libs.junit.platform.engine
+    testRuntimeOnly libs.junit.platform.launcher
+    testImplementation libs.testcontainers.postgres
+    testImplementation libs.spring.cloud.contract.verifier
+    testImplementation libs.spring.cloud.contract.stub.runner
     testImplementation files(
             "${project.rootDir}/payment/infra/build/libs/infra-stubs.jar"
     )
@@ -52,7 +48,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$rootProject.springCloudBomVersion"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${libs.versions.springCloudBom.get()}"
     }
 }
 
@@ -75,17 +71,6 @@ jib {
     }
     to {
         image = "public.ecr.aws/s9i7g5t1/solidvessel/order:latest"
-    }
-}
-
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = true
     }
 }
 

@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'io.freefair.lombok' version '8.14.2'
+    id 'io.freefair.lombok'
     id 'jacoco'
 }
 
@@ -10,20 +10,9 @@ base {
 
 dependencies {
     api project(':shared:domain')
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.junitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.junitVersion"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher:$rootProject.junitPlatformVersion"
-    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    testImplementation "org.mockito:mockito-junit-jupiter:$rootProject.mockitoVersion"
-}
-
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = true
-    }
+    testImplementation libs.junit.api
+    testRuntimeOnly libs.junit.engine
+    testRuntimeOnly libs.junit.platform.launcher
+    testImplementation libs.mockito
+    testImplementation libs.mockito.junit
 }

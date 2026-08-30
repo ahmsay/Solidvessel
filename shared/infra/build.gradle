@@ -1,16 +1,12 @@
 plugins {
     id 'java-library'
-    id 'org.springframework.boot' version '4.0.3'
-    id 'io.spring.dependency-management' version '1.1.7'
-    id 'io.freefair.lombok' version '8.14.2'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'io.freefair.lombok'
 }
 
 base {
     archivesName = 'shared-infra'
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 bootJar {
@@ -26,8 +22,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation "org.springframework.boot:spring-boot-starter-webmvc-test:$rootProject.springBootStarterTestVersion"
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa-test:$rootProject.springBootStarterTestVersion"
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
     implementation 'org.springframework.security:spring-security-test'
-    api "org.keycloak:keycloak-admin-client:$rootProject.keycloakVersion"
+    api libs.keycloak
 }
