@@ -1,3 +1,10 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 rootProject.name = 'solidvessel'
 
 include ':account'
@@ -23,8 +30,5 @@ include ':shared:infra'
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
-        maven { url = uri("https://plugins.gradle.org/m2") }
-        maven { url = uri("https://repo.spring.io/milestone") }
-        maven { url = uri("https://repo.maven.apache.org/maven2") }
     }
 }
