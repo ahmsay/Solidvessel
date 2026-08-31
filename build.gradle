@@ -26,11 +26,19 @@ subprojects {
     }
 
     pluginManager.withPlugin('jacoco') {
+        def coverageExclusions = [
+                '**/configuration/**',
+                '**/*Application.class'
+        ]
+
         tasks.named('test') {
             finalizedBy(tasks.named('jacocoTestReport'))
         }
 
         tasks.named('jacocoTestReport') {
+            classDirectories.setFrom(classDirectories.files.collect {
+                fileTree(dir: it, exclude: coverageExclusions)
+            })
             reports {
                 xml.required = true
             }
