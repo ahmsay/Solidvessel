@@ -5,8 +5,6 @@ springCloudContract = "5.0.3"
 jib = "3.4.5"
 lombok = "8.14.2"
 postgres = "42.7.7"
-feign = "5.0.0"
-circuitBreaker = "3.2.2"
 keycloak = "26.0.6"
 junit = "6.0.3"
 mockito = "5.19.0"
@@ -24,8 +22,8 @@ lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
 
 [libraries]
 postgres = { module = "org.postgresql:postgresql", version.ref = "postgres" }
-feign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign", version.ref = "feign" }
-circuit-breaker = { module = "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j", version.ref = "circuitBreaker" }
+feign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign" }
+circuit-breaker = { module = "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j" }
 keycloak = { module = "org.keycloak:keycloak-admin-client", version.ref = "keycloak" }
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }

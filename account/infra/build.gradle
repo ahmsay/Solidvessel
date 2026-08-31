@@ -43,6 +43,12 @@ dependencies {
     testImplementation project(path: ':payment:infra', configuration: 'contractStubs')
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${libs.versions.springCloudBom.get()}"
+    }
+}
+
 jib {
     from {
         image = "public.ecr.aws/s9i7g5t1/solidvessel/java/eclipse-temurin:21.0.1_12-jre-jammy"
