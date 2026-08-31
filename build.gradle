@@ -28,7 +28,8 @@ subprojects {
     pluginManager.withPlugin('jacoco') {
         def coverageExclusions = [
                 '**/configuration/**',
-                '**/*Application.class'
+                '**/*Application.class',
+                '**/*MapperImpl.class'
         ]
 
         tasks.named('test') {
@@ -53,7 +54,7 @@ subprojects {
                     limit {
                         counter = 'LINE'
                         value = 'COVEREDRATIO'
-                        minimum = 0.75
+                        minimum = 0.95
                     }
                 }
             }
