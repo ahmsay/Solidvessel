@@ -16,11 +16,11 @@ phases:
     - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s9i7g5t1
   build:
     commands:
-    - gradle test --parallel
+    - ./gradlew test --configuration-cache --parallel
     - ./codecov
   post_build:
     commands:
-    - gradle jib
+    - ./gradlew jib
 reports:
   test-results:
     files:
