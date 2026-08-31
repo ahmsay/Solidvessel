@@ -35,5 +35,24 @@ subprojects {
                 xml.required = true
             }
         }
+
+        tasks.named('jacocoTestCoverageVerification') {
+            classDirectories.setFrom(classDirectories.files.collect {
+                fileTree(dir: it, exclude: coverageExclusions)
+            })
+            violationRules {
+                rule {
+                    limit {
+                        counter = 'LINE'
+                        value = 'COVEREDRATIO'
+                        minimum = 0.75
+                    }
+                }
+            }
+        }
+
+        tasks.named('check') {
+            dependsOn(tasks.named('jacocoTestCoverageVerification'))
+        }
     }
 }
