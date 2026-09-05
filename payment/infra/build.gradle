@@ -72,7 +72,7 @@ jib {
         }
     }
     to {
-        image = "public.ecr.aws/s9i7g5t1/solidvessel/payment:${providers.gradleProperty('imageTag').getOrElse('0.1.0')}"
+        image = "public.ecr.aws/s9i7g5t1/solidvessel/payment:${providers.gradleProperty('imageTag').getOrElse('1.0.0')}"
     }
 }
 
