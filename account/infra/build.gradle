@@ -64,6 +64,6 @@ jib {
         }
     }
     to {
-        image = "public.ecr.aws/s9i7g5t1/solidvessel/account:latest"
+        image = "public.ecr.aws/s9i7g5t1/solidvessel/account:${providers.gradleProperty('imageTag').getOrElse('0.1.0')}"
     }
 }

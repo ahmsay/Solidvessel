@@ -20,7 +20,8 @@ phases:
     - ./codecov
   post_build:
     commands:
-    - ./gradlew jib
+    - export IMAGE_TAG="${IMAGE_TAG:-0.1.0}"
+    - ./gradlew jib -PimageTag="$IMAGE_TAG"
 reports:
   test-results:
     files:

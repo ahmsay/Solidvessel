@@ -1,4 +1,8 @@
 environment: prod
+image:
+  repository: public.ecr.aws/s9i7g5t1/solidvessel/inventory
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
 db:
   hostname: inventory.db.solidvessel.com
   url: jdbc:postgresql://inventory.db.solidvessel.com:5432/inventory

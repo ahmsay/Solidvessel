@@ -1,4 +1,8 @@
 environment: test
+image:
+  repository: public.ecr.aws/s9i7g5t1/solidvessel/payment
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
 db:
   hostname: payment-db.solidvessel.svc.cluster.local
   url: jdbc:postgresql://payment-db:5432/payment

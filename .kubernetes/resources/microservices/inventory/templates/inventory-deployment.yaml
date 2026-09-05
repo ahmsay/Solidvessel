@@ -25,8 +25,8 @@ spec:
         command: [ 'sh', '-c', "until nslookup keycloak.solidvessel.svc.cluster.local; do echo waiting for keycloak; sleep 1; done" ]
       containers:
       - name: inventory-app
-        image: public.ecr.aws/s9i7g5t1/solidvessel/inventory:latest
-        imagePullPolicy: Always
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
         - "--spring.profiles.active={{ .Values.environment }}"
         - "--spring.datasource.url={{ .Values.db.url }}"
