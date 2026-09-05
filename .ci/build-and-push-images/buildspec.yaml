@@ -1,4 +1,8 @@
 version: 0.2
+cache:
+  paths:
+  - '/root/.gradle/caches/**/*'
+  - '/root/.gradle/wrapper/**/*'
 env:
   shell: bash
 phases:
@@ -16,7 +20,7 @@ phases:
     - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s9i7g5t1
   build:
     commands:
-    - ./gradlew test --configuration-cache --parallel
+    - ./gradlew test --build-cache --configuration-cache --parallel
     - ./codecov
   post_build:
     commands:
