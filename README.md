@@ -98,10 +98,9 @@ Let's explain each component shown in the diagram one by one:
 
 ## Roadmap
 
-- Domain enrichment (add more features)
+- Domain expansion (add more features)
 - Data enrichment (add millions of records for prod environment)
 - Monitoring (LGTM Stack)
-- ~~AI assistant (agent to explain docs)~~
 - Maybe it's time to create a frontend ??
 - Apply CQRS in one of the microservices
 - Migration from RabbitMQ to Kafka
