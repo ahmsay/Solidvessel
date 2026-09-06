@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Solidvessel is a Java 21 Gradle multi-module shopping application built as
+Solidvessel is a shopping application built as
 microservices.
 
 Services:
