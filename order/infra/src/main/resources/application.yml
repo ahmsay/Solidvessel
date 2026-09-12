@@ -17,14 +17,21 @@ spring:
       simple:
         retry:
           enabled: true
+          max-attempts: 3
+          initial-interval: 1000
+          multiplier: 2
+          max-interval: 10000
+        default-requeue-rejected: false
 server:
   servlet:
     context-path: /order
 exchanges:
   payment: payment.topic
+  dead-letter: order.events.dlx
 queues:
   payment:
     approved: payment.approved
+    approved-dlq: payment.approved.dlq
 routing-keys:
   payment:
     approved: payment.approved

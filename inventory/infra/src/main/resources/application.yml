@@ -13,15 +13,22 @@ spring:
       simple:
         retry:
           enabled: true
+          max-attempts: 3
+          initial-interval: 1000
+          multiplier: 2
+          max-interval: 10000
+        default-requeue-rejected: false
 server:
   servlet:
     context-path: /inventory
 exchanges:
   payment: payment.topic
   product: product.topic
+  dead-letter: inventory.events.dlx
 queues:
   payment:
     saved: payment.saved
+    saved-dlq: payment.saved.dlq
 routing-keys:
   payment:
     saved: payment.saved

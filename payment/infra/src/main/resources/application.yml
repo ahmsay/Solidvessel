@@ -13,6 +13,11 @@ spring:
       simple:
         retry:
           enabled: true
+          max-attempts: 3
+          initial-interval: 1000
+          multiplier: 2
+          max-interval: 10000
+        default-requeue-rejected: false
 server:
   servlet:
     context-path: /payment
@@ -20,12 +25,16 @@ exchanges:
   payment: payment.topic
   product: product.topic
   address: address.topic
+  dead-letter: payment.events.dlx
 queues:
   product:
     available: product.available
+    available-dlq: product.available.dlq
     checked: product.checked
+    checked-dlq: product.checked.dlq
   address:
     primary-saved: address.primary-saved
+    primary-saved-dlq: address.primary-saved.dlq
 routing-keys:
   payment:
     saved: payment.saved
