@@ -33,7 +33,9 @@ testing, or communication behavior.
   existing design clearly requires it.
 - Prefer asynchronous communication through RabbitMQ where the existing design
   uses events.
-- Treat REST and Feign contracts as compatibility-sensitive.
+- The project is in active development; backward compatibility is not required
+  unless explicitly requested or needed for a concrete external integration.
+- REST and Feign contracts may be changed together with their callers and tests.
 - Use the `shared` modules only for genuinely cross-service concerns.
 
 ## Development
