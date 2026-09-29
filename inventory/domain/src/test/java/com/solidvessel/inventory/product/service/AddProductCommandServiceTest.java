@@ -2,6 +2,7 @@ package com.solidvessel.inventory.product.service;
 
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.inventory.product.model.ProductSubcategory;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.service.command.AddProductCommand;
 import com.solidvessel.shared.test.BaseUnitTest;
@@ -17,9 +18,9 @@ public class AddProductCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addProduct() {
-        var command = new AddProductCommand("macbook", 1200D, ProductCategory.ELECTRONICS, 3);
+        var command = new AddProductCommand("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3);
         var commandService = new AddProductCommandService(productPort);
         commandService.execute(command);
-        verify(productPort).save(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 3, true));
+        verify(productPort).save(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
     }
 }

@@ -5,6 +5,7 @@ import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.integrationtest.BaseDatabaseTest;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.query.QueryOptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     void getProducts() {
-        var product1 = new ProductEmbeddable(1L, "pillow", 10D, ProductCategory.CLOTHING, 6);
+        var product1 = new ProductEmbeddable(1L, "pillow", 10D, ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 6);
         var payment1 = new PaymentJpaEntity("123", List.of(product1), 60D, PaymentStatus.APPROVED);
-        var product2 = new ProductEmbeddable(2L, "scissors", 5D, ProductCategory.TOOL, 3);
+        var product2 = new ProductEmbeddable(2L, "scissors", 5D, ProductCategory.TOOL, ProductSubcategory.HAND_TOOLS, 3);
         var payment2 = new PaymentJpaEntity("456", List.of(product2), 15D, PaymentStatus.PENDING);
         persistEntity(payment1);
         persistEntity(payment2);
@@ -33,7 +34,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     void getById() {
-        var productEmbeddable = new ProductEmbeddable(1L, "phone", 500D, ProductCategory.ELECTRONICS, 2);
+        var productEmbeddable = new ProductEmbeddable(1L, "phone", 500D, ProductCategory.ELECTRONICS, ProductSubcategory.MOBILE_PHONES, 2);
         var paymentJpaEntity = persistEntity(new PaymentJpaEntity("123", List.of(productEmbeddable), 1000D, PaymentStatus.APPROVED));
         var payment = paymentDBQueryAdapter.getById(paymentJpaEntity.getId());
         assertEquals(paymentJpaEntity.getId(), payment.getId());
@@ -51,7 +52,7 @@ public class PaymentDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     void getByCustomerId() {
-        var product = new ProductEmbeddable(1L, "apple", 3D, ProductCategory.FURNITURE, 3);
+        var product = new ProductEmbeddable(1L, "apple", 3D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3);
         var payment = new PaymentJpaEntity("789", List.of(product), 9D, PaymentStatus.APPROVED);
         persistEntity(payment);
         var payments = paymentDBQueryAdapter.getByCustomerId("789");

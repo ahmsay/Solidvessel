@@ -18,9 +18,6 @@ public class Product implements Serializable {
     private ProductSubcategory subcategory;
     private Integer quantity;
 
-    public Product(Long id, String name, Double price, ProductCategory category, Integer quantity) {
-        this(id, name, price, category, null, quantity);
-    }
 
     public void increaseQuantity(Integer quantity) {
         this.quantity += quantity;

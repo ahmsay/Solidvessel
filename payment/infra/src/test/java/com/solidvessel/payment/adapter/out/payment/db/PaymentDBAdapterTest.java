@@ -9,6 +9,7 @@ import com.solidvessel.payment.payment.model.Payment;
 import com.solidvessel.payment.payment.model.PaymentStatus;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +27,7 @@ public class PaymentDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     void createPayment() {
-        var products = Map.of(1L, new Product(1L, "phone", 500D, ProductCategory.ELECTRONICS, 2));
+        var products = Map.of(1L, new Product(1L, "phone", 500D, ProductCategory.ELECTRONICS, ProductSubcategory.MOBILE_PHONES, 2));
         var cart = new Cart("123", products);
         var payment = Payment.newPayment("123", cart);
         paymentDBAdapter.create(payment);
@@ -34,7 +35,7 @@ public class PaymentDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     void updatePayment() {
-        var productEmbeddable = new ProductEmbeddable(1L, "phone", 500D, ProductCategory.ELECTRONICS, 2);
+        var productEmbeddable = new ProductEmbeddable(1L, "phone", 500D, ProductCategory.ELECTRONICS, ProductSubcategory.MOBILE_PHONES, 2);
         List<ProductEmbeddable> products = new ArrayList<>();
         products.add(productEmbeddable);
         var paymentJpaEntity = PaymentJpaEntity.builder()

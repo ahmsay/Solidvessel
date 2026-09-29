@@ -4,6 +4,7 @@ import com.solidvessel.inventory.common.exception.InventoryDomainException;
 import com.solidvessel.inventory.product.event.ProductAvailableEvent;
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.inventory.product.model.ProductSubcategory;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.AddProductToCartCommand;
 import com.solidvessel.shared.event.EventPublisher;
@@ -28,10 +29,11 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
     void addProductToCart() {
         var command = new AddProductToCartCommand(1L, 4, "123");
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
-        var product = new Product("sickle", 5D, ProductCategory.TOOL, 10, true);
+        var product = new Product("sickle", 5D, ProductCategory.TOOL, ProductSubcategory.HAND_TOOLS, 10, true);
         when(productQueryPort.getById(1L)).thenReturn(product);
         var operationResult = commandService.execute(command);
-        verify(productAvailableEventEventPublisher).publish(new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(), product.getCategory(), command.quantity(), command.customerId()));
+        verify(productAvailableEventEventPublisher).publish(new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(),
+                product.getCategory(), product.getSubcategory(), command.quantity(), command.customerId()));
         assertEquals(ResultType.SUCCESS, operationResult.resultType());
     }
 
@@ -39,7 +41,7 @@ public class AddProductToCartCommandServiceTest extends BaseUnitTest {
     void productNotAvailable() {
         var command = new AddProductToCartCommand(1L, 4, "123");
         var commandService = new AddProductToCartCommandService(productQueryPort, productAvailableEventEventPublisher);
-        var product = new Product("sickle", 5D, ProductCategory.TOOL, 1, true);
+        var product = new Product("sickle", 5D, ProductCategory.TOOL, ProductSubcategory.HAND_TOOLS, 1, true);
         when(productQueryPort.getById(1L)).thenReturn(product);
         assertThrows(InventoryDomainException.class, () -> commandService.execute(command));
         verifyNoInteractions(productAvailableEventEventPublisher);

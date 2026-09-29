@@ -6,10 +6,7 @@ import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCar
 import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductAvailabilityResponse;
-import com.solidvessel.inventory.product.model.Product;
-import com.solidvessel.inventory.product.model.ProductAvailability;
-import com.solidvessel.inventory.product.model.ProductCategory;
-import com.solidvessel.inventory.product.model.UnavailableReason;
+import com.solidvessel.inventory.product.model.*;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.*;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
@@ -68,7 +65,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     void getProducts() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var products = List.of(Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10));
+        var products = List.of(Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10));
         when(productQueryPort.getProducts(queryOptions)).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
@@ -81,7 +78,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     void getProductById() throws Exception {
-        var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 10);
+        var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10);
         when(productQueryPort.getById(1L)).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
@@ -109,7 +106,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void addProduct() throws Exception {
-        var request = new AddProductRequest("desk", 150D, ProductCategory.FURNITURE, 5);
+        var request = new AddProductRequest("desk", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5);
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
         when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(
@@ -163,7 +160,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void updateProduct() throws Exception {
-        var request = new UpdateProductRequest(1L, "Dark Saber", 15D, ProductCategory.ELECTRONICS, 9);
+        var request = new UpdateProductRequest(1L, "Dark Saber", 15D, ProductCategory.ELECTRONICS, ProductSubcategory.GAMING, 9);
         var savedProduct = Product.builder().id(1L).name("Dark Saber").price(15D).category(ProductCategory.ELECTRONICS).quantity(9).build();
         when(updateProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(

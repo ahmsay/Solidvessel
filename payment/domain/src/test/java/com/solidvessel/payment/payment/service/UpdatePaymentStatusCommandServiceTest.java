@@ -10,6 +10,7 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.product.event.ProductsCheckedEvent;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
@@ -62,8 +63,8 @@ public class UpdatePaymentStatusCommandServiceTest extends BaseUnitTest {
 
     private Payment createPayment() {
         List<Product> products = new ArrayList<>() {{
-            add(new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1));
-            add(new Product(1L, "apple", 3D, ProductCategory.ELECTRONICS, 3));
+            add(new Product(4L, "chair", 15D, ProductCategory.FURNITURE, ProductSubcategory.LIVING_ROOM, 1));
+            add(new Product(1L, "apple", 3D, ProductCategory.ELECTRONICS, ProductSubcategory.MOBILE_PHONES, 3));
         }};
         return new Payment("123", products, 24D, PaymentStatus.PENDING);
     }

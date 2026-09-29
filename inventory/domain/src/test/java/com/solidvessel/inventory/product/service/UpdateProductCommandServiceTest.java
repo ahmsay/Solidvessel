@@ -2,6 +2,7 @@ package com.solidvessel.inventory.product.service;
 
 import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.inventory.product.model.ProductSubcategory;
 import com.solidvessel.inventory.product.port.ProductPort;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.command.UpdateProductCommand;
@@ -22,11 +23,11 @@ public class UpdateProductCommandServiceTest extends BaseUnitTest {
 
     @Test
     void updateProduct() {
-        var command = new UpdateProductCommand(2L, "Dinosaur", 500D, ProductCategory.FURNITURE, 10);
+        var command = new UpdateProductCommand(2L, "Dinosaur", 500D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 10);
         var commandService = new UpdateProductCommandService(productQueryPort, productPort);
         var product = Product.builder().id(2L).name("Oil").price(250D).category(ProductCategory.CLOTHING).quantity(5).build();
         when(productQueryPort.getById(2L)).thenReturn(product);
         commandService.execute(command);
-        verify(productPort).save(Product.builder().id(2L).name("Dinosaur").price(500D).category(ProductCategory.FURNITURE).quantity(10).build());
+        verify(productPort).save(Product.builder().id(2L).name("Dinosaur").price(500D).category(ProductCategory.FURNITURE).subcategory(ProductSubcategory.OFFICE).quantity(10).build());
     }
 }

@@ -2,6 +2,7 @@ package com.solidvessel.payment.cart.model;
 
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -120,6 +121,6 @@ public class CartTest {
     }
 
     private Product createProduct(Long id, Integer quantity) {
-        return new Product(id, "table", 5D, ProductCategory.FURNITURE, quantity);
+        return new Product(id, "table", 5D, ProductCategory.FURNITURE, ProductSubcategory.LIVING_ROOM, quantity);
     }
 }

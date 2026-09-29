@@ -9,6 +9,7 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.query.QueryOptions;
 import com.solidvessel.shared.security.SessionUtil;
@@ -57,7 +58,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @WithMockManager
     void getPayments() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getPayments(queryOptions)).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
@@ -71,7 +72,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     void getPaymentsOfCurrentCustomer() throws Exception {
-        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getByCustomerId(SessionUtil.getCurrentUserId())).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(
@@ -84,7 +85,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getPaymentById() throws Exception {
-        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3));
         var payment = Payment.builder().id(1L).customerId("123").products(products).totalPrice(105D).status(PaymentStatus.CANCELLED).build();
         when(paymentQueryPort.getById(1L)).thenReturn(payment);
         MvcResult mvcResult = mockMvc.perform(
@@ -97,7 +98,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getPaymentDetailById() throws Exception {
-        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3));
         var payment = Payment.builder().id(1L).customerId("123").products(products).totalPrice(105D).status(PaymentStatus.APPROVED).build();
         var customer = new CustomerResponse("123", "lorne", "malvo");
         var paymentDetail = paymentWebMapper.toDetailResponse(payment, customer);
@@ -113,7 +114,7 @@ public class PaymentControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void getPaymentsByCustomerId() throws Exception {
-        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, 3));
+        var products = List.of(new Product(1L, "table", 35D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3));
         var payments = List.of(new Payment("123", products, 105D, PaymentStatus.APPROVED));
         when(paymentQueryPort.getByCustomerId("123")).thenReturn(payments);
         MvcResult mvcResult = mockMvc.perform(

@@ -5,6 +5,7 @@ import com.solidvessel.payment.cart.port.CartPort;
 import com.solidvessel.payment.cart.port.CartQueryPort;
 import com.solidvessel.payment.product.event.ProductAvailableEvent;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -22,7 +23,7 @@ public class AddToCartCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addToCart() {
-        var event = new ProductAvailableEvent(1L, "cellphone", 530D, ProductCategory.ELECTRONICS, 3, "123");
+        var event = new ProductAvailableEvent(1L, "cellphone", 530D, ProductCategory.ELECTRONICS, ProductSubcategory.MOBILE_PHONES, 3, "123");
         var commandService = new AddToCartCommandService(cartPort, cartQueryPort);
         Cart cart = Cart.newCart("123");
         when(cartQueryPort.getByCustomerId(event.customerId())).thenReturn(cart);

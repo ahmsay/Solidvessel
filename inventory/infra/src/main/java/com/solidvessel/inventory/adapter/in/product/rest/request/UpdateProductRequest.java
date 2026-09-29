@@ -10,13 +10,9 @@ public record UpdateProductRequest(
         @NotNull String name,
         @NotNull Double price,
         @NotNull ProductCategory category,
-        ProductSubcategory subcategory,
+        @NotNull ProductSubcategory subcategory,
         @NotNull Integer quantity
 ) {
-
-    public UpdateProductRequest(Long id, String name, Double price, ProductCategory category, Integer quantity) {
-        this(id, name, price, category, null, quantity);
-    }
 
     public UpdateProductCommand toCommand() {
         return new UpdateProductCommand(id, name, price, category, subcategory, quantity);

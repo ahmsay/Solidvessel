@@ -7,12 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 public record AddProductRequest(
         @NotNull String name, @NotNull Double price, @NotNull ProductCategory category,
-        ProductSubcategory subcategory, @NotNull Integer quantity
+        @NotNull ProductSubcategory subcategory, @NotNull Integer quantity
 ) {
-
-    public AddProductRequest(String name, Double price, ProductCategory category, Integer quantity) {
-        this(name, price, category, null, quantity);
-    }
 
     public AddProductCommand toCommand() {
         return new AddProductCommand(name, price, category, subcategory, quantity);

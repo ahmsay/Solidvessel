@@ -7,6 +7,7 @@ import com.solidvessel.payment.cart.service.command.ClearCartCommand;
 import com.solidvessel.payment.common.exception.PaymentDomainException;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.service.ResultType;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class ClearCartCommandServiceTest extends BaseUnitTest {
         var command = new ClearCartCommand("123");
         var commandService = new ClearCartCommandService(cartPort, cartQueryPort);
         Map<Long, Product> products = new HashMap<>() {{
-            put(3L, new Product(3L, "table", 5D, ProductCategory.FURNITURE, 7));
+            put(3L, new Product(3L, "table", 5D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 7));
         }};
         Cart cart = new Cart("123", products);
         when(cartQueryPort.getByCustomerId("123")).thenReturn(cart);

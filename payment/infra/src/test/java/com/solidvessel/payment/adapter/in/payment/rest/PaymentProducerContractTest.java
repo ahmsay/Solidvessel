@@ -8,6 +8,7 @@ import com.solidvessel.payment.payment.port.PaymentQueryPort;
 import com.solidvessel.payment.payment.service.AcceptPaymentCommandService;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.idp.KeycloakAdapter;
 import com.solidvessel.shared.test.contract.BaseProducerContractTest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -49,12 +50,12 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
 
     private List<Payment> createPayments() {
         var products1 = List.of(
-                new Product(3L, "table", 35D, ProductCategory.FURNITURE, 3),
-                new Product(6L, "sickle", 9D, ProductCategory.TOOL, 5)
+                new Product(3L, "table", 35D, ProductCategory.FURNITURE, ProductSubcategory.DINING, 3),
+                new Product(6L, "sickle", 9D, ProductCategory.TOOL, ProductSubcategory.HAND_TOOLS, 5)
         );
         var products2 = List.of(
-                new Product(2L, "macbook", 1200D, ProductCategory.ELECTRONICS, 1),
-                new Product(8L, "shirt", 50D, ProductCategory.CLOTHING, 2)
+                new Product(2L, "macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 1),
+                new Product(8L, "shirt", 50D, ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 2)
         );
         return List.of(
                 Payment.builder()
@@ -78,8 +79,8 @@ public class PaymentProducerContractTest extends BaseProducerContractTest {
 
     private Payment createPayment() {
         var products = List.of(
-                new Product(4L, "slippers", 12D, ProductCategory.CLOTHING, 2),
-                new Product(5L, "chair", 50D, ProductCategory.FURNITURE, 3)
+                new Product(4L, "slippers", 12D, ProductCategory.CLOTHING, ProductSubcategory.SHOES, 2),
+                new Product(5L, "chair", 50D, ProductCategory.FURNITURE, ProductSubcategory.LIVING_ROOM, 3)
         );
         return Payment.builder().id(1L).customerId("123").products(products).totalPrice(174D).status(PaymentStatus.APPROVED).build();
     }

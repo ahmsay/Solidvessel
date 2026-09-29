@@ -9,7 +9,7 @@ public class ProductTest {
 
     @Test
     void createNewProduct() {
-        var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, 5);
+        var product = Product.newProduct("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
         assertNull(product.getId());
         assertEquals("macbook", product.getName());
         assertEquals(1200D, product.getPrice());
@@ -20,14 +20,14 @@ public class ProductTest {
 
     @Test
     void decreaseQuantity() {
-        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5, true);
+        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
         product.decreaseQuantity(2);
         assertEquals(3, product.getQuantity());
     }
 
     @Test
     void isInStock() {
-        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, 5, true);
+        var product = new Product("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
         assertTrue(product.isAvailable(3).getIsAvailable());
         assertTrue(product.isAvailable(5).getIsAvailable());
         assertFalse(product.isAvailable(10).getIsAvailable());
@@ -36,8 +36,8 @@ public class ProductTest {
 
     @Test
     void isAvailableInRegion() {
-        var product1 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).isAvailableInRegion(true).build();
-        var product2 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).isAvailableInRegion(false).build();
+        var product1 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).isAvailableInRegion(true).build();
+        var product2 = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).isAvailableInRegion(false).build();
         assertTrue(product1.isAvailable(3).getIsAvailable());
         var availability = product2.isAvailable(3);
         assertFalse(availability.getIsAvailable());
@@ -46,8 +46,8 @@ public class ProductTest {
 
     @Test
     void update() {
-        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).build();
-        product.update(new UpdateProductCommand(1L, "milk", 15D, ProductCategory.FURNITURE, 6));
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
+        product.update(new UpdateProductCommand(1L, "milk", 15D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 6));
         assertEquals("milk", product.getName());
         assertEquals(15D, product.getPrice());
         assertEquals(ProductCategory.FURNITURE, product.getCategory());
@@ -57,7 +57,7 @@ public class ProductTest {
 
     @Test
     void changeAvailability() {
-        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).build();
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
         product.changeAvailability(false);
 
         var availability = product.isAvailable(0);

@@ -9,6 +9,7 @@ import com.solidvessel.payment.cart.service.RemoveFromCartCommandService;
 import com.solidvessel.payment.cart.service.command.ClearCartCommand;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.security.SessionUtil;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.test.controller.BaseControllerTest;
@@ -51,8 +52,8 @@ public class CartControllerTest extends BaseControllerTest {
     @WithMockCustomer
     void listCart() throws Exception {
         var products = Map.of(
-                1L, new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 3),
-                2L, new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, 2)
+                1L, new Product(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3),
+                2L, new Product(2L, "shirt", 20D, ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 2)
         );
         var cart = new Cart("123", products);
         var cartResponse = cartWebMapper.toResponse(cart);

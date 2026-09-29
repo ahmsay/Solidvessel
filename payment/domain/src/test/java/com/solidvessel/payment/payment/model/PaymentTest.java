@@ -3,6 +3,7 @@ package com.solidvessel.payment.payment.model;
 import com.solidvessel.payment.cart.model.Cart;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -53,8 +54,8 @@ public class PaymentTest {
 
     private Cart createCart() {
         Map<Long, Product> products = new HashMap<>();
-        products.put(1L, new Product(1L, "sickle", 234D, ProductCategory.TOOL, 5));
-        products.put(4L, new Product(4L, "chair", 5D, ProductCategory.FURNITURE, 9));
+        products.put(1L, new Product(1L, "sickle", 234D, ProductCategory.TOOL, ProductSubcategory.HAND_TOOLS, 5));
+        products.put(4L, new Product(4L, "chair", 5D, ProductCategory.FURNITURE, ProductSubcategory.LIVING_ROOM, 9));
         return new Cart("123", products);
     }
 }

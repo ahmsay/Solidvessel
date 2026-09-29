@@ -2,6 +2,7 @@ package com.solidvessel.inventory.adapter.out.product.event;
 
 import com.solidvessel.inventory.product.event.ProductAvailableEvent;
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.inventory.product.model.ProductSubcategory;
 import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -23,7 +24,7 @@ public class ProductAvailableEventPublisherTest extends BaseUnitTest {
 
     @Test
     void publishProductAvailableEvent() {
-        var event = new ProductAvailableEvent(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, 3, "123");
+        var event = new ProductAvailableEvent(1L, "macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, "123");
         var eventPublisher = new ProductAvailableEventPublisher(rabbitTemplate);
         eventPublisher.publish(event);
         verify(rabbitTemplate).convertAndSend(productExchange, productAvailableRoutingKey, event);

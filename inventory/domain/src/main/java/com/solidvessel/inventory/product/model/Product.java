@@ -20,14 +20,6 @@ public class Product extends DomainModel {
     @Builder.Default
     private Boolean isAvailableInRegion = true;
 
-    public Product(String name, Double price, ProductCategory category, Integer quantity, Boolean isAvailableInRegion) {
-        this(name, price, category, null, quantity, isAvailableInRegion);
-    }
-
-    public static Product newProduct(String name, Double price, ProductCategory category, Integer quantity) {
-        return new Product(name, price, category, null, quantity, true);
-    }
-
     public static Product newProduct(String name, Double price, ProductCategory category,
                                      ProductSubcategory subcategory, Integer quantity) {
         validateSubcategory(category, subcategory);

@@ -17,10 +17,6 @@ import lombok.Setter;
 @Setter
 public class ProductEmbeddable {
 
-    public ProductEmbeddable(Long productId, String name, Double price, ProductCategory category, Integer quantity) {
-        this(productId, name, price, category, null, quantity);
-    }
-
     private Long productId;
     private String name;
     private Double price;

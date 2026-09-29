@@ -4,6 +4,7 @@ import com.solidvessel.payment.adapter.out.cart.db.entity.CartJpaEntity;
 import com.solidvessel.payment.adapter.out.product.db.entity.ProductEmbeddable;
 import com.solidvessel.payment.integrationtest.BaseDatabaseTest;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +19,7 @@ public class CartDBQueryAdapterTest extends BaseDatabaseTest {
 
     @Test
     void getByCustomerId() {
-        var productEmbeddable = new ProductEmbeddable(1L, "desk", 20D, ProductCategory.FURNITURE, 4);
+        var productEmbeddable = new ProductEmbeddable(1L, "desk", 20D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 4);
         var cartJpaEntity = persistEntity(new CartJpaEntity("123", List.of(productEmbeddable)));
         var cart = cartDBQueryAdapter.getByCustomerId(cartJpaEntity.getCustomerId());
         assertEquals(cartJpaEntity.getId(), cart.getId());

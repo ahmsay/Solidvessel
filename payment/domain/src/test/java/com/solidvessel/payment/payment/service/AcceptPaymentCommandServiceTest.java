@@ -11,6 +11,7 @@ import com.solidvessel.payment.payment.port.PaymentPort;
 import com.solidvessel.payment.payment.service.command.AcceptPaymentCommand;
 import com.solidvessel.payment.product.model.Product;
 import com.solidvessel.payment.product.model.ProductCategory;
+import com.solidvessel.payment.product.model.ProductSubcategory;
 import com.solidvessel.shared.event.EventPublisher;
 import com.solidvessel.shared.service.OperationResult;
 import com.solidvessel.shared.service.ResultType;
@@ -53,8 +54,8 @@ public class AcceptPaymentCommandServiceTest extends BaseUnitTest {
 
     @Test
     void acceptPayment() {
-        Product product1 = new Product(4L, "chair", 15D, ProductCategory.FURNITURE, 1);
-        Product product2 = new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, 3);
+        Product product1 = new Product(4L, "chair", 15D, ProductCategory.FURNITURE, ProductSubcategory.LIVING_ROOM, 1);
+        Product product2 = new Product(5L, "apple", 3D, ProductCategory.ELECTRONICS, ProductSubcategory.MOBILE_PHONES, 3);
         Map<Long, Product> productMap = new HashMap<>() {{
             put(4L, product1);
             put(5L, product2);
