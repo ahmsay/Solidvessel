@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="solidvessel" id="solidvessel-data-2" context="data">
+        <sql>
+            update product
+            set subcategory = 'HAND_TOOLS'
+            where category = 'TOOL'
+              and subcategory is null;
+            update product
+            set subcategory = 'COMPUTERS'
+            where name = 'Laptop'
+              and subcategory is null;
+            update product
+            set subcategory = 'MOBILE_PHONES'
+            where name = 'Phone'
+              and subcategory is null;
+            update product
+            set subcategory = 'CAMERAS'
+            where name = 'Apple'
+              and subcategory is null;
+            update product
+            set subcategory = 'WOMENS_CLOTHING'
+            where name = 'Skirt'
+              and subcategory is null;
+            update product
+            set subcategory = 'MENS_CLOTHING'
+            where name = 'Pants'
+              and subcategory is null;
+            update product
+            set subcategory = 'OFFICE'
+            where category = 'FURNITURE'
+              and subcategory is null;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

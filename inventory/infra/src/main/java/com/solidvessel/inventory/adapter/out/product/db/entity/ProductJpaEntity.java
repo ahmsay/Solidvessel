@@ -1,6 +1,7 @@
 package com.solidvessel.inventory.adapter.out.product.db.entity;
 
 import com.solidvessel.inventory.product.model.ProductCategory;
+import com.solidvessel.inventory.product.model.ProductSubcategory;
 import com.solidvessel.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,6 +21,11 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "product")
 public class ProductJpaEntity extends BaseEntity {
 
+    public ProductJpaEntity(String name, Double price, ProductCategory category, Integer quantity,
+                            Boolean isAvailableInRegion) {
+        this(name, price, category, null, quantity, isAvailableInRegion);
+    }
+
     @NotNull
     private String name;
 
@@ -29,6 +35,9 @@ public class ProductJpaEntity extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
+
+    @Enumerated(EnumType.STRING)
+    private ProductSubcategory subcategory;
 
     @NotNull
     private Integer quantity;

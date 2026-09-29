@@ -12,6 +12,8 @@ public interface ProductJpaMapper {
     @Mapping(source = "id", target = "productId")
     ProductEmbeddable toEmbeddable(Product product);
 
-    @Mapping(source = "productId", target = "id")
-    Product toDomainModel(ProductEmbeddable product);
+    default Product toDomainModel(ProductEmbeddable product) {
+        return new Product(product.getProductId(), product.getName(), product.getPrice(),
+                product.getCategory(), product.getSubcategory(), product.getQuantity());
+    }
 }

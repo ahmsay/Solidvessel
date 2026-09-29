@@ -27,7 +27,8 @@ public class AddProductToCartCommandService implements CommandService<AddProduct
         if (!availability.getIsAvailable()) {
             throw new InventoryDomainException("The product is not available. Reason: %s".formatted(availability.getUnavailableReason().toString()));
         }
-        productAvailableEventEventPublisher.publish(new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(), product.getCategory(), command.quantity(), command.customerId()));
+        productAvailableEventEventPublisher.publish(new ProductAvailableEvent(product.getId(), product.getName(), product.getPrice(),
+                product.getCategory(), product.getSubcategory(), command.quantity(), command.customerId()));
         return new OperationResult("Product is added to the cart.", ResultType.SUCCESS);
     }
 }

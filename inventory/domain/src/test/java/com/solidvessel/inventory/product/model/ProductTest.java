@@ -64,4 +64,26 @@ public class ProductTest {
         assertFalse(availability.getIsAvailable());
         assertEquals(UnavailableReason.NOT_AVAILABLE_IN_REGION, availability.getUnavailableReason());
     }
+
+    @Test
+    void createsProductWithSubcategory() {
+        var product = Product.newProduct("phone", 500D, ProductCategory.ELECTRONICS,
+                ProductSubcategory.MOBILE_PHONES, 2);
+
+        assertEquals(ProductSubcategory.MOBILE_PHONES, product.getSubcategory());
+    }
+
+    @Test
+    void rejectsSubcategoryFromAnotherCategory() {
+        assertThrows(IllegalArgumentException.class, () -> Product.newProduct("phone", 500D,
+                ProductCategory.ELECTRONICS, ProductSubcategory.OFFICE, 2));
+    }
+
+    @Test
+    void listsSubcategoriesForCategory() {
+        assertTrue(ProductSubcategory.forCategory(ProductCategory.ELECTRONICS)
+                .contains(ProductSubcategory.MOBILE_PHONES));
+        assertFalse(ProductSubcategory.forCategory(ProductCategory.ELECTRONICS)
+                .contains(ProductSubcategory.OFFICE));
+    }
 }

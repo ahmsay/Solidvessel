@@ -15,12 +15,23 @@ public class Product extends DomainModel {
     private String name;
     private Double price;
     private ProductCategory category;
+    private ProductSubcategory subcategory;
     private Integer quantity;
     @Builder.Default
     private Boolean isAvailableInRegion = true;
 
+    public Product(String name, Double price, ProductCategory category, Integer quantity, Boolean isAvailableInRegion) {
+        this(name, price, category, null, quantity, isAvailableInRegion);
+    }
+
     public static Product newProduct(String name, Double price, ProductCategory category, Integer quantity) {
-        return new Product(name, price, category, quantity, true);
+        return new Product(name, price, category, null, quantity, true);
+    }
+
+    public static Product newProduct(String name, Double price, ProductCategory category,
+                                     ProductSubcategory subcategory, Integer quantity) {
+        validateSubcategory(category, subcategory);
+        return new Product(name, price, category, subcategory, quantity, true);
     }
 
     public void decreaseQuantity(Integer boughtQuantity) {
@@ -45,7 +56,15 @@ public class Product extends DomainModel {
         this.name = command.name();
         this.price = command.price();
         this.category = command.category();
+        validateSubcategory(command.category(), command.subcategory());
+        this.subcategory = command.subcategory();
         this.quantity = command.quantity();
+    }
+
+    private static void validateSubcategory(ProductCategory category, ProductSubcategory subcategory) {
+        if (subcategory != null && !subcategory.belongsTo(category)) {
+            throw new IllegalArgumentException("Subcategory does not belong to the selected category.");
+        }
     }
 
     public void changeAvailability(Boolean isAvailable) {
