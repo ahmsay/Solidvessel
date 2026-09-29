@@ -21,7 +21,7 @@ Add:
 
 - Product descriptions and images
 - Brands and manufacturers
-- Categories and subcategories
+- ~~Categories and subcategories~~
 - Product variants such as size, color, storage, or weight
 - SKU and barcode support
 - Product attributes and specifications
