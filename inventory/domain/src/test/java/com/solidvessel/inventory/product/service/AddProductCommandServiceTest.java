@@ -18,9 +18,9 @@ public class AddProductCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addProduct() {
-        var command = new AddProductCommand("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3);
+        var command = new AddProductCommand("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3);
         var commandService = new AddProductCommandService(productPort);
         commandService.execute(command);
-        verify(productPort).save(new Product("macbook", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
+        verify(productPort).save(new Product("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
     }
 }
