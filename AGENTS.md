@@ -45,6 +45,10 @@ testing, or communication behavior.
 - Dependencies are managed through `gradle/libs.versions.toml`.
 - Do not commit generated build output, IDE metadata, credentials, or local
   environment files.
+- Until the development phase is over, consolidate Liquibase schema changes into
+  the service's initial `1.xml` changeset instead of accumulating new changeset
+  files. Once development ends, treat applied changesets as immutable and add
+  new changesets for schema changes.
 
 Useful commands:
 
