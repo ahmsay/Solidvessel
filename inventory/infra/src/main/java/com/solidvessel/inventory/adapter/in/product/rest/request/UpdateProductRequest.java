@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 public record UpdateProductRequest(
         @NotNull Long id,
         @NotNull String name,
+        String description,
         @NotNull Double price,
         @NotNull ProductCategory category,
         @NotNull ProductSubcategory subcategory,
@@ -15,6 +16,6 @@ public record UpdateProductRequest(
 ) {
 
     public UpdateProductCommand toCommand() {
-        return new UpdateProductCommand(id, name, price, category, subcategory, quantity);
+        return new UpdateProductCommand(id, name, description, price, category, subcategory, quantity);
     }
 }
