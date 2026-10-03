@@ -19,7 +19,7 @@ The current `Product` model is too simple for a real catalog.
 
 Add:
 
-- Product descriptions
+- ~~Product descriptions~~
 - Product images
 - Brands and manufacturers
 - ~~Categories and subcategories~~
