@@ -11,11 +11,13 @@
                 created_date       timestamp      not null default now(),
                 last_modified_date timestamp,
                 version            int            not null default 0,
-                name               varchar(150)   not null,
-                price              numeric(10, 2) not null,
-                category           varchar(50)    not null,
-                subcategory varchar(50) not null,
-                quantity           int            not null
+                name                   varchar(150)   not null,
+                description            text,
+                price                  numeric(10, 2) not null,
+                category               varchar(50)    not null,
+                subcategory            varchar(50)    not null,
+                quantity               int            not null,
+                is_available_in_region boolean        not null default true
             );
         </sql>
     </changeSet>
