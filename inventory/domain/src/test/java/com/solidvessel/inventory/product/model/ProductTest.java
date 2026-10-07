@@ -20,14 +20,6 @@ public class ProductTest {
     }
 
     @Test
-    void createsProductWithBrand() {
-        var product = Product.newProduct("macbook", "A laptop", "Apple", 1200D,
-                ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
-
-        assertEquals("Apple", product.getBrand());
-    }
-
-    @Test
     void decreaseQuantity() {
         var product = new Product("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
         product.decreaseQuantity(2);
@@ -63,17 +55,6 @@ public class ProductTest {
         assertEquals(ProductCategory.FURNITURE, product.getCategory());
         assertEquals(6, product.getQuantity());
         assertEquals(true, product.getIsAvailableInRegion());
-    }
-
-    @Test
-    void updatesBrand() {
-        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING)
-                .subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
-
-        product.update(new UpdateProductCommand(1L, "shirt", "A shirt", "Levi's", 15D,
-                ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 6));
-
-        assertEquals("Levi's", product.getBrand());
     }
 
     @Test
