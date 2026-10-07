@@ -65,7 +65,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     void getProducts() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var products = List.of(Product.newProduct("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10));
+        var products = List.of(Product.newProduct("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10));
         when(productQueryPort.getProducts(queryOptions)).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
@@ -78,7 +78,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockCustomer
     void getProductById() throws Exception {
-        var product = Product.newProduct("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10);
+        var product = Product.newProduct("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10);
         when(productQueryPort.getById(1L)).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")

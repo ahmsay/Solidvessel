@@ -9,7 +9,7 @@ public class ProductTest {
 
     @Test
     void createNewProduct() {
-        var product = Product.newProduct("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
+        var product = Product.newProduct("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
         assertNull(product.getId());
         assertEquals("macbook", product.getName());
         assertEquals("A laptop", product.getDescription());
@@ -17,6 +17,14 @@ public class ProductTest {
         assertEquals(ProductCategory.ELECTRONICS, product.getCategory());
         assertEquals(5, product.getQuantity());
         assertEquals(true, product.getIsAvailableInRegion());
+    }
+
+    @Test
+    void createsProductWithBrand() {
+        var product = Product.newProduct("macbook", "A laptop", "Apple", 1200D,
+                ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
+
+        assertEquals("Apple", product.getBrand());
     }
 
     @Test
@@ -58,6 +66,17 @@ public class ProductTest {
     }
 
     @Test
+    void updatesBrand() {
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING)
+                .subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
+
+        product.update(new UpdateProductCommand(1L, "shirt", "A shirt", "Levi's", 15D,
+                ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 6));
+
+        assertEquals("Levi's", product.getBrand());
+    }
+
+    @Test
     void changeAvailability() {
         var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
         product.changeAvailability(false);
@@ -69,7 +88,7 @@ public class ProductTest {
 
     @Test
     void createsProductWithSubcategory() {
-        var product = Product.newProduct("phone", "A mobile phone", 500D, ProductCategory.ELECTRONICS,
+        var product = Product.newProduct("phone", "A mobile phone", "Samsung", 500D, ProductCategory.ELECTRONICS,
                 ProductSubcategory.MOBILE_PHONES, 2);
 
         assertEquals(ProductSubcategory.MOBILE_PHONES, product.getSubcategory());
@@ -77,7 +96,7 @@ public class ProductTest {
 
     @Test
     void rejectsSubcategoryFromAnotherCategory() {
-        assertThrows(IllegalArgumentException.class, () -> Product.newProduct("phone", "A mobile phone", 500D,
+        assertThrows(IllegalArgumentException.class, () -> Product.newProduct("phone", "A mobile phone", "Samsung", 500D,
                 ProductCategory.ELECTRONICS, ProductSubcategory.OFFICE, 2));
     }
 

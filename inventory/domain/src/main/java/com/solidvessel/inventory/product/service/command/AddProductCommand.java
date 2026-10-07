@@ -4,10 +4,15 @@ import com.solidvessel.inventory.product.model.Product;
 import com.solidvessel.inventory.product.model.ProductCategory;
 import com.solidvessel.inventory.product.model.ProductSubcategory;
 
-public record AddProductCommand(String name, String description, Double price, ProductCategory category,
+public record AddProductCommand(String name, String description, String brand, Double price, ProductCategory category,
                                 ProductSubcategory subcategory, Integer quantity) {
 
+    public AddProductCommand(String name, String description, Double price, ProductCategory category,
+                             ProductSubcategory subcategory, Integer quantity) {
+        this(name, description, null, price, category, subcategory, quantity);
+    }
+
     public Product toDomainModel() {
-        return Product.newProduct(name, description, price, category, subcategory, quantity);
+        return Product.newProduct(name, description, brand, price, category, subcategory, quantity);
     }
 }

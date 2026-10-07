@@ -19,7 +19,7 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     void saveProduct() {
-        var product = Product.newProduct("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4);
+        var product = Product.newProduct("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4);
         var jpaEntity = productDBAdapter.save(product);
         assertEquals("macbook", jpaEntity.getName());
         assertEquals("A laptop", jpaEntity.getDescription());
@@ -27,8 +27,8 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     void saveProducts() {
-        var product1 = Product.newProduct("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4);
-        var product2 = Product.newProduct("macnovel", "A novel laptop", 800D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 2);
+        var product1 = Product.newProduct("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4);
+        var product2 = Product.newProduct("macnovel", "A novel laptop", "Lenovo", 800D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 2);
         productDBAdapter.saveProducts(List.of(product1, product2));
     }
 
