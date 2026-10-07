@@ -21,16 +21,12 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "product")
 public class ProductJpaEntity extends BaseEntity {
 
-    public ProductJpaEntity(String name, String description, Double price, ProductCategory category,
-                            ProductSubcategory subcategory, Integer quantity, Boolean isAvailableInRegion) {
-        this(name, description, null, price, category, subcategory, quantity, isAvailableInRegion);
-    }
-
     @NotNull
     private String name;
 
     private String description;
 
+    @NotNull
     private String brand;
 
     @NotNull

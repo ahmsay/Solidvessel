@@ -7,9 +7,4 @@ public record UpdateProductCommand(Long id, String name, String description, Str
                                    ProductCategory category,
                                    ProductSubcategory subcategory, Integer quantity) {
 
-    public UpdateProductCommand(Long id, String name, String description, Double price, ProductCategory category,
-                                ProductSubcategory subcategory, Integer quantity) {
-        this(id, name, description, null, price, category, subcategory, quantity);
-    }
-
 }

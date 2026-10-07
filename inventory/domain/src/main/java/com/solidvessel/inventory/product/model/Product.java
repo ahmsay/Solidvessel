@@ -28,11 +28,6 @@ public class Product extends DomainModel {
         return new Product(name, description, brand, price, category, subcategory, quantity, true);
     }
 
-    public Product(String name, String description, Double price, ProductCategory category,
-                   ProductSubcategory subcategory, Integer quantity, Boolean isAvailableInRegion) {
-        this(name, description, null, price, category, subcategory, quantity, isAvailableInRegion);
-    }
-
     public void decreaseQuantity(Integer boughtQuantity) {
         quantity = quantity - boughtQuantity;
     }

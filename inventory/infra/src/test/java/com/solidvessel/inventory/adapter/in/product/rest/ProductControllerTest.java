@@ -106,7 +106,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void addProduct() throws Exception {
-        var request = new AddProductRequest("desk", "An office desk", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5);
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5);
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
         when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(
@@ -160,7 +160,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void updateProduct() throws Exception {
-        var request = new UpdateProductRequest(1L, "Dark Saber", "A gaming accessory", 15D, ProductCategory.ELECTRONICS, ProductSubcategory.GAMING, 9);
+        var request = new UpdateProductRequest(1L, "Dark Saber", "A gaming accessory", "Razer", 15D, ProductCategory.ELECTRONICS, ProductSubcategory.GAMING, 9);
         var savedProduct = Product.builder().id(1L).name("Dark Saber").price(15D).category(ProductCategory.ELECTRONICS).quantity(9).build();
         when(updateProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(

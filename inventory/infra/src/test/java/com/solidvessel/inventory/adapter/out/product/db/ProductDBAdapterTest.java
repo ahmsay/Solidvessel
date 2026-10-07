@@ -34,14 +34,14 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
 
     @Test
     void delete() {
-        var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
+        var productJpaEntity = persistEntity(new ProductJpaEntity("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
         productDBAdapter.delete(productJpaEntity.getId());
     }
 
     @Test
     void deleteByIds() {
-        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
-        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", "A pair of shorts", 50D, ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 5, true));
+        var productJpaEntity1 = persistEntity(new ProductJpaEntity("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
+        var productJpaEntity2 = persistEntity(new ProductJpaEntity("shorts", "A pair of shorts", "Levi's", 50D, ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 5, true));
         productDBAdapter.deleteByIds(List.of(productJpaEntity1.getId(), productJpaEntity2.getId()));
     }
 }
