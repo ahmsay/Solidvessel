@@ -21,14 +21,14 @@ Add:
 
 - ~~Product descriptions~~
 - Product images
-- Brands and manufacturers
+- ~~Brands~~
+- Manufacturers
 - ~~Categories and subcategories~~
 - Product variants such as size, color, storage, or weight
 - SKU and barcode support
 - Product attributes and specifications
 - Product bundles and kits
 - Related and substitute products
-- Digital products
 - Product lifecycle: draft, published, archived
 - SEO metadata
 - Multiple currencies and localized content

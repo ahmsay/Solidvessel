@@ -23,11 +23,11 @@ public class UpdateProductCommandServiceTest extends BaseUnitTest {
 
     @Test
     void updateProduct() {
-        var command = new UpdateProductCommand(2L, "Dinosaur", "A desk ornament", 500D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 10);
+        var command = new UpdateProductCommand(2L, "Dinosaur", "A desk ornament", "Ikea", 500D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 10);
         var commandService = new UpdateProductCommandService(productQueryPort, productPort);
         var product = Product.builder().id(2L).name("Oil").price(250D).category(ProductCategory.CLOTHING).quantity(5).build();
         when(productQueryPort.getById(2L)).thenReturn(product);
         commandService.execute(command);
-        verify(productPort).save(Product.builder().id(2L).name("Dinosaur").description("A desk ornament").price(500D).category(ProductCategory.FURNITURE).subcategory(ProductSubcategory.OFFICE).quantity(10).build());
+        verify(productPort).save(Product.builder().id(2L).name("Dinosaur").description("A desk ornament").brand("Ikea").price(500D).category(ProductCategory.FURNITURE).subcategory(ProductSubcategory.OFFICE).quantity(10).build());
     }
 }

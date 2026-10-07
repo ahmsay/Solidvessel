@@ -27,6 +27,9 @@ public class ProductJpaEntity extends BaseEntity {
     private String description;
 
     @NotNull
+    private String brand;
+
+    @NotNull
     private Double price;
 
     @NotNull

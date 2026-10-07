@@ -13,6 +13,7 @@
                 version            int            not null default 0,
                 name                   varchar(150)   not null,
                 description            text,
+                brand varchar(150),
                 price                  numeric(10, 2) not null,
                 category               varchar(50)    not null,
                 subcategory            varchar(50)    not null,

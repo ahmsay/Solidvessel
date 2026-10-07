@@ -9,7 +9,7 @@ public class ProductTest {
 
     @Test
     void createNewProduct() {
-        var product = Product.newProduct("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
+        var product = Product.newProduct("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
         assertNull(product.getId());
         assertEquals("macbook", product.getName());
         assertEquals("A laptop", product.getDescription());
@@ -21,14 +21,14 @@ public class ProductTest {
 
     @Test
     void decreaseQuantity() {
-        var product = new Product("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
+        var product = new Product("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
         product.decreaseQuantity(2);
         assertEquals(3, product.getQuantity());
     }
 
     @Test
     void isInStock() {
-        var product = new Product("macbook", "A laptop", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
+        var product = new Product("macbook", "A laptop", "Apple", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
         assertTrue(product.isAvailable(3).getIsAvailable());
         assertTrue(product.isAvailable(5).getIsAvailable());
         assertFalse(product.isAvailable(10).getIsAvailable());
@@ -48,7 +48,7 @@ public class ProductTest {
     @Test
     void update() {
         var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
-        product.update(new UpdateProductCommand(1L, "milk", "A desk accessory", 15D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 6));
+        product.update(new UpdateProductCommand(1L, "milk", "A desk accessory", "Ikea", 15D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 6));
         assertEquals("milk", product.getName());
         assertEquals("A desk accessory", product.getDescription());
         assertEquals(15D, product.getPrice());
@@ -69,7 +69,7 @@ public class ProductTest {
 
     @Test
     void createsProductWithSubcategory() {
-        var product = Product.newProduct("phone", "A mobile phone", 500D, ProductCategory.ELECTRONICS,
+        var product = Product.newProduct("phone", "A mobile phone", "Samsung", 500D, ProductCategory.ELECTRONICS,
                 ProductSubcategory.MOBILE_PHONES, 2);
 
         assertEquals(ProductSubcategory.MOBILE_PHONES, product.getSubcategory());
@@ -77,7 +77,7 @@ public class ProductTest {
 
     @Test
     void rejectsSubcategoryFromAnotherCategory() {
-        assertThrows(IllegalArgumentException.class, () -> Product.newProduct("phone", "A mobile phone", 500D,
+        assertThrows(IllegalArgumentException.class, () -> Product.newProduct("phone", "A mobile phone", "Samsung", 500D,
                 ProductCategory.ELECTRONICS, ProductSubcategory.OFFICE, 2));
     }
 
