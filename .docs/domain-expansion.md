@@ -21,7 +21,7 @@ Add:
 
 - ~~Product descriptions~~
 - Product images
-- Brands
+- ~~Brands~~
 - Manufacturers
 - ~~Categories and subcategories~~
 - Product variants such as size, color, storage, or weight
