@@ -4,15 +4,15 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="ahmsay" id="solidvessel-data-1" context="data">
         <sql>
-            insert into product(id, name, brand, price, category, subcategory, quantity, is_available_in_region)
-            values (nextval('product_seq'), 'Clipper', 'Clipper', 2.5, 'TOOL', 'HAND_TOOLS', 1, true),
-                   (nextval('product_seq'), 'Laptop', 'Lenovo', 3000, 'ELECTRONICS', 'COMPUTERS', 5, true),
-                   (nextval('product_seq'), 'Phone', 'Samsung', 5, 'ELECTRONICS', 'MOBILE_PHONES', 6, true),
-                   (nextval('product_seq'), 'Skirt', 'Zara', 20, 'CLOTHING', 'WOMENS_CLOTHING', 3, true),
-                   (nextval('product_seq'), 'Pants', 'Levi''s', 500, 'CLOTHING', 'MENS_CLOTHING', 7, true),
-                   (nextval('product_seq'), 'Apple', 'Apple', 499.99, 'ELECTRONICS', 'CAMERAS', 4, false),
-                   (nextval('product_seq'), 'Ice Pick', 'K2', 53, 'TOOL', 'HAND_TOOLS', 12, true),
-                   (nextval('product_seq'), 'Desk', 'Ikea', 25, 'FURNITURE', 'OFFICE', 3, true);
+            insert into product(id, name, brand, manufacturer, price, category, subcategory, quantity, is_available_in_region)
+            values (nextval('product_seq'), 'Clipper', 'Clipper', 'Clipper', 2.5, 'TOOL', 'HAND_TOOLS', 1, true),
+                   (nextval('product_seq'), 'Laptop', 'Lenovo', 'Lenovo', 3000, 'ELECTRONICS', 'COMPUTERS', 5, true),
+                   (nextval('product_seq'), 'Phone', 'Samsung', 'Samsung Electronics', 5, 'ELECTRONICS', 'MOBILE_PHONES', 6, true),
+                   (nextval('product_seq'), 'Skirt', 'Zara', 'Inditex', 20, 'CLOTHING', 'WOMENS_CLOTHING', 3, true),
+                   (nextval('product_seq'), 'Pants', 'Levi''s', 'Levi Strauss &amp; Co.', 500, 'CLOTHING', 'MENS_CLOTHING', 7, true),
+                   (nextval('product_seq'), 'Apple', 'Apple', 'Foxconn', 499.99, 'ELECTRONICS', 'CAMERAS', 4, false),
+                   (nextval('product_seq'), 'Ice Pick', 'K2', 'K2', 53, 'TOOL', 'HAND_TOOLS', 12, true),
+                   (nextval('product_seq'), 'Desk', 'Ikea', 'Ikea', 25, 'FURNITURE', 'OFFICE', 3, true);
         </sql>
     </changeSet>
 </databaseChangeLog>
