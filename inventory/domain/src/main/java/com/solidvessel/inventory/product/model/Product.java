@@ -15,6 +15,7 @@ public class Product extends DomainModel {
     private String name;
     private String description;
     private String brand;
+    private String manufacturer;
     private Double price;
     private ProductCategory category;
     private ProductSubcategory subcategory;
@@ -22,10 +23,10 @@ public class Product extends DomainModel {
     @Builder.Default
     private Boolean isAvailableInRegion = true;
 
-    public static Product newProduct(String name, String description, String brand, Double price, ProductCategory category,
-                                     ProductSubcategory subcategory, Integer quantity) {
+    public static Product newProduct(String name, String description, String brand, String manufacturer, Double price,
+                                     ProductCategory category, ProductSubcategory subcategory, Integer quantity) {
         validateSubcategory(category, subcategory);
-        return new Product(name, description, brand, price, category, subcategory, quantity, true);
+        return new Product(name, description, brand, manufacturer, price, category, subcategory, quantity, true);
     }
 
     public void decreaseQuantity(Integer boughtQuantity) {
@@ -50,6 +51,7 @@ public class Product extends DomainModel {
         this.name = command.name();
         this.description = command.description();
         this.brand = command.brand();
+        this.manufacturer = command.manufacturer();
         this.price = command.price();
         this.category = command.category();
         validateSubcategory(command.category(), command.subcategory());

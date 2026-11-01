@@ -22,7 +22,7 @@ Add:
 **1.1** ~~Product descriptions~~  
 **1.2** Product images  
 **1.3** ~~Brands~~  
-**1.4** Manufacturers  
+**1.4** ~~Manufacturers~~  
 **1.5** ~~Categories and subcategories~~  
 **1.6** Product variants such as size, color, storage, or weight  
 **1.7** SKU and barcode support  
