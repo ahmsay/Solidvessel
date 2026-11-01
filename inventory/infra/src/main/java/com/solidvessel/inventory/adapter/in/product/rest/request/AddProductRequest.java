@@ -6,7 +6,7 @@ import com.solidvessel.inventory.product.service.command.AddProductCommand;
 import jakarta.validation.constraints.NotNull;
 
 public record AddProductRequest(
-        @NotNull String name, String description, @NotNull String brand, String manufacturer, @NotNull Double price,
+        @NotNull String name, String description, @NotNull String brand, @NotNull String manufacturer, @NotNull Double price,
         @NotNull ProductCategory category,
         @NotNull ProductSubcategory subcategory, @NotNull Integer quantity
 ) {

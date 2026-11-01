@@ -118,6 +118,17 @@ public class ProductControllerTest extends BaseControllerTest {
     }
 
     @Test
+    @WithMockManager
+    void addProductWithoutManufacturer() throws Exception {
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", null, 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5);
+        mockMvc.perform(
+                post("/product")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isBadRequest());
+    }
+
+    @Test
     @WithMockCustomer
     void isProductAvailable() throws Exception {
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();

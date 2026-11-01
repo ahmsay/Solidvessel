@@ -10,7 +10,7 @@ public record UpdateProductRequest(
         @NotNull String name,
         String description,
         @NotNull String brand,
-        String manufacturer,
+        @NotNull String manufacturer,
         @NotNull Double price,
         @NotNull ProductCategory category,
         @NotNull ProductSubcategory subcategory,
