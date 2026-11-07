@@ -8,7 +8,6 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
@@ -52,7 +51,7 @@ public class ProductJpaEntity extends BaseEntity {
     @NotNull
     private Integer quantity;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "product_attribute", joinColumns = @JoinColumn(name = "product_id"))
     @OrderColumn(name = "attribute_order")
     private List<ProductAttributeEmbeddable> attributes;

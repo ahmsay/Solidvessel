@@ -42,7 +42,7 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         productQuantities.put(3L, 2);
         var event = new PaymentSavedEvent(1L, "123", productQuantities);
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
-        when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
+        when(productQueryPort.getByIdsWithAttributes(List.of(1L, 3L))).thenReturn(retrieveProducts());
         commandService.execute(event);
         verify(productPort).saveProducts(List.of(product1, product2));
         verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, true, "123"));
@@ -57,7 +57,7 @@ public class UpdateProductQuantitiesCommandServiceTest extends BaseUnitTest {
         productQuantities.put(3L, 15);
         var event = new PaymentSavedEvent(1L, "123", productQuantities);
         var commandService = new UpdateProductQuantitiesCommandService(productPort, productQueryPort, productsCheckedEventPublisher);
-        when(productQueryPort.getByIds(List.of(1L, 3L))).thenReturn(retrieveProducts());
+        when(productQueryPort.getByIdsWithAttributes(List.of(1L, 3L))).thenReturn(retrieveProducts());
         assertThrows(InventoryDomainException.class, () -> commandService.execute(event));
         verify(productsCheckedEventPublisher).publish(new ProductsCheckedEvent(1L, false, "123"));
         verifyNoInteractions(productPort);

@@ -73,19 +73,20 @@ public class ProductControllerTest extends BaseControllerTest {
                 get("/product")
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(productWebMapper::toResponse).toList()), bodyOf(mvcResult));
+        ).andExpect(status().isOk()).andExpect(jsonPath("$[0].attributes").doesNotExist()).andReturn();
+        assertEquals(bodyOf(products.stream().map(productWebMapper::toSummaryResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockCustomer
     void getProductById() throws Exception {
-        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10, List.of());
+        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10,
+                List.of(new ProductAttribute("RAM", "16 GB")));
         when(productQueryPort.getById(1L)).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
+        ).andExpect(status().isOk()).andExpect(jsonPath("$.attributes[0].key").value("RAM")).andReturn();
         assertEquals(bodyOf(productWebMapper.toResponse(product)), bodyOf(mvcResult));
     }
 
@@ -101,8 +102,8 @@ public class ProductControllerTest extends BaseControllerTest {
                 get("/product/ids")
                         .queryParam("ids", "1", "2")
                         .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(productWebMapper::toResponse).toList()), bodyOf(mvcResult));
+        ).andExpect(status().isOk()).andExpect(jsonPath("$[0].attributes").doesNotExist()).andReturn();
+        assertEquals(bodyOf(products.stream().map(productWebMapper::toSummaryResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test

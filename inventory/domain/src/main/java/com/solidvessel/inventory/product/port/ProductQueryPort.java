@@ -12,4 +12,6 @@ public interface ProductQueryPort {
     Product getById(Long id);
 
     List<Product> getByIds(List<Long> ids);
+
+    List<Product> getByIdsWithAttributes(List<Long> ids);
 }

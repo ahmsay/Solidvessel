@@ -10,6 +10,8 @@ import com.solidvessel.inventory.product.service.command.UpdateProductCommand;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jpa.test.autoconfigure.TestEntityManager;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -53,6 +55,47 @@ public class ProductDBAdapterTest extends BaseDatabaseTest {
         testEntityManager.clear();
 
         assertEquals(updatedAttributes, productDBQueryAdapter.getById(saved.getId()).getAttributes());
+    }
+
+    @Test
+    void savingBoughtProductsKeepsAttributes() {
+        var attributes = List.of(new ProductAttribute("RAM", "16 GB"), new ProductAttribute("Color", "Silver"));
+        var saved = productDBAdapter.save(Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4, attributes));
+        testEntityManager.flush();
+        testEntityManager.clear();
+
+        var products = productDBQueryAdapter.getByIdsWithAttributes(List.of(saved.getId()));
+        products.getFirst().decreaseQuantity(1);
+        productDBAdapter.saveProducts(products);
+        testEntityManager.flush();
+        testEntityManager.clear();
+
+        var product = productDBQueryAdapter.getById(saved.getId());
+        assertEquals(3, product.getQuantity());
+        assertEquals(attributes, product.getAttributes());
+    }
+
+    @Test
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    void handlesAttributesWithoutSurroundingTransaction() {
+        var attributes = List.of(new ProductAttribute("RAM", "16 GB"));
+        var saved = productDBAdapter.save(Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4, attributes));
+        assertEquals(attributes, saved.getAttributes());
+
+        var product = productDBQueryAdapter.getById(saved.getId());
+        assertEquals(attributes, product.getAttributes());
+        assertEquals(List.of(), productDBQueryAdapter.getByIds(List.of(saved.getId())).getFirst().getAttributes());
+
+        var updatedAttributes = List.of(new ProductAttribute("Color", "Black"));
+        product.update(new UpdateProductCommand(product.getId(), "macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 4, updatedAttributes));
+        assertEquals(updatedAttributes, productDBAdapter.save(product).getAttributes());
+
+        var products = productDBQueryAdapter.getByIdsWithAttributes(List.of(saved.getId()));
+        products.getFirst().decreaseQuantity(1);
+        productDBAdapter.saveProducts(products);
+        assertEquals(updatedAttributes, productDBQueryAdapter.getById(saved.getId()).getAttributes());
+
+        productDBAdapter.delete(saved.getId());
     }
 
     @Test
