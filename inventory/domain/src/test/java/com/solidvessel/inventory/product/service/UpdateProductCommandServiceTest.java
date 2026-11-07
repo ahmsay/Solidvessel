@@ -10,6 +10,8 @@ import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,7 +25,7 @@ public class UpdateProductCommandServiceTest extends BaseUnitTest {
 
     @Test
     void updateProduct() {
-        var command = new UpdateProductCommand(2L, "Dinosaur", "A desk ornament", "Ikea", "Ikea", 500D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 10);
+        var command = new UpdateProductCommand(2L, "Dinosaur", "A desk ornament", "Ikea", "Ikea", 500D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 10, List.of());
         var commandService = new UpdateProductCommandService(productQueryPort, productPort);
         var product = Product.builder().id(2L).name("Oil").price(250D).category(ProductCategory.CLOTHING).quantity(5).build();
         when(productQueryPort.getById(2L)).thenReturn(product);
