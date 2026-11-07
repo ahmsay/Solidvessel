@@ -3,13 +3,19 @@ package com.solidvessel.inventory.product.model;
 import com.solidvessel.inventory.product.service.command.UpdateProductCommand;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductTest {
 
     @Test
     void createNewProduct() {
-        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5);
+        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, List.of());
         assertNull(product.getId());
         assertEquals("macbook", product.getName());
         assertEquals("A laptop", product.getDescription());
@@ -21,15 +27,41 @@ public class ProductTest {
     }
 
     @Test
+    void createNewProductWithAttributes() {
+        var attributes = List.of(new ProductAttribute("RAM", "16 GB"), new ProductAttribute("Storage", "512 GB"));
+        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, attributes);
+        assertEquals(attributes, product.getAttributes());
+    }
+
+    @Test
+    void hasNoAttributesByDefault() {
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).quantity(6).build();
+        assertEquals(List.of(), product.getAttributes());
+    }
+
+    @Test
+    void isSerializableWithAttributesForCaching() throws Exception {
+        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5,
+                List.of(new ProductAttribute("RAM", "16 GB")));
+        var bytes = new ByteArrayOutputStream();
+        try (var output = new ObjectOutputStream(bytes)) {
+            output.writeObject(product);
+        }
+        try (var input = new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {
+            assertEquals(product, input.readObject());
+        }
+    }
+
+    @Test
     void decreaseQuantity() {
-        var product = new Product("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
+        var product = new Product("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, List.of(), true);
         product.decreaseQuantity(2);
         assertEquals(3, product.getQuantity());
     }
 
     @Test
     void isInStock() {
-        var product = new Product("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, true);
+        var product = new Product("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 5, List.of(), true);
         assertTrue(product.isAvailable(3).getIsAvailable());
         assertTrue(product.isAvailable(5).getIsAvailable());
         assertFalse(product.isAvailable(10).getIsAvailable());
@@ -49,7 +81,7 @@ public class ProductTest {
     @Test
     void update() {
         var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6).build();
-        product.update(new UpdateProductCommand(1L, "milk", "A desk accessory", "Ikea", "Ikea", 15D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 6));
+        product.update(new UpdateProductCommand(1L, "milk", "A desk accessory", "Ikea", "Ikea", 15D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 6, List.of()));
         assertEquals("milk", product.getName());
         assertEquals("A desk accessory", product.getDescription());
         assertEquals("Ikea", product.getManufacturer());
@@ -57,6 +89,15 @@ public class ProductTest {
         assertEquals(ProductCategory.FURNITURE, product.getCategory());
         assertEquals(6, product.getQuantity());
         assertEquals(true, product.getIsAvailableInRegion());
+    }
+
+    @Test
+    void updateReplacesAttributes() {
+        var product = Product.builder().id(1L).name("shirt").price(5D).category(ProductCategory.CLOTHING).subcategory(ProductSubcategory.MENS_CLOTHING).quantity(6)
+                .attributes(List.of(new ProductAttribute("Size", "M"))).build();
+        var attributes = List.of(new ProductAttribute("Color", "Black"));
+        product.update(new UpdateProductCommand(1L, "shirt", null, "Zara", "Inditex", 5D, ProductCategory.CLOTHING, ProductSubcategory.MENS_CLOTHING, 6, attributes));
+        assertEquals(attributes, product.getAttributes());
     }
 
     @Test
@@ -72,7 +113,7 @@ public class ProductTest {
     @Test
     void createsProductWithSubcategory() {
         var product = Product.newProduct("phone", "A mobile phone", "Samsung", "Samsung Electronics", 500D, ProductCategory.ELECTRONICS,
-                ProductSubcategory.MOBILE_PHONES, 2);
+                ProductSubcategory.MOBILE_PHONES, 2, List.of());
 
         assertEquals(ProductSubcategory.MOBILE_PHONES, product.getSubcategory());
     }
@@ -80,7 +121,7 @@ public class ProductTest {
     @Test
     void rejectsSubcategoryFromAnotherCategory() {
         assertThrows(IllegalArgumentException.class, () -> Product.newProduct("phone", "A mobile phone", "Samsung", "Samsung Electronics", 500D,
-                ProductCategory.ELECTRONICS, ProductSubcategory.OFFICE, 2));
+                ProductCategory.ELECTRONICS, ProductSubcategory.OFFICE, 2, List.of()));
     }
 
     @Test

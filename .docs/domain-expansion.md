@@ -24,9 +24,9 @@ Add:
 **1.3** ~~Brands~~  
 **1.4** ~~Manufacturers~~  
 **1.5** ~~Categories and subcategories~~  
-**1.6** Product variants such as size, color, storage, or weight  
+**1.6** ~~Product variants such as size, color, storage, or weight~~  
 **1.7** SKU and barcode support  
-**1.8** Product attributes and specifications  
+**1.8** ~~Product attributes and specifications~~  
 **1.9** Product bundles and kits  
 **1.10** Related and substitute products  
 **1.11** Product lifecycle: draft, published, archived  

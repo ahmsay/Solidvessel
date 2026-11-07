@@ -24,18 +24,23 @@ public class ProductDBQueryAdapter implements ProductQueryPort {
 
     @Override
     public List<Product> getProducts(QueryOptions queryOptions) {
-        return productRepository.findAll(withPage(queryOptions)).stream().map(productJpaMapper::toDomainModel).toList();
+        return productRepository.findAll(withPage(queryOptions)).stream().map(productJpaMapper::toSummaryDomainModel).toList();
     }
 
     @Cacheable(value = "product", key = "#id")
     @Override
     public Product getById(Long id) {
-        ProductJpaEntity productJpaEntity = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
+        ProductJpaEntity productJpaEntity = productRepository.findWithAttributesById(id).orElseThrow(() -> new EntityNotFoundException("Product not found!"));
         return productJpaMapper.toDomainModel(productJpaEntity);
     }
 
     @Override
     public List<Product> getByIds(List<Long> ids) {
-        return productRepository.findAllById(ids).stream().map(productJpaMapper::toDomainModel).toList();
+        return productRepository.findAllById(ids).stream().map(productJpaMapper::toSummaryDomainModel).toList();
+    }
+
+    @Override
+    public List<Product> getByIdsWithAttributes(List<Long> ids) {
+        return productRepository.findWithAttributesByIdIn(ids).stream().map(productJpaMapper::toDomainModel).toList();
     }
 }

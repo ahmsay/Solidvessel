@@ -13,6 +13,11 @@
                    (nextval('product_seq'), 'Apple', 'Apple', 'Foxconn', 499.99, 'ELECTRONICS', 'CAMERAS', 4, false),
                    (nextval('product_seq'), 'Ice Pick', 'K2', 'K2', 53, 'TOOL', 'HAND_TOOLS', 12, true),
                    (nextval('product_seq'), 'Desk', 'Ikea', 'Ikea', 25, 'FURNITURE', 'OFFICE', 3, true);
+            insert into product_attribute(product_id, attribute_order, key, value)
+            select id, 0, 'RAM', '16 GB' from product where name = 'Laptop'
+            union all select id, 1, 'Storage', '512 GB' from product where name = 'Laptop'
+            union all select id, 0, 'Size', 'M' from product where name = 'Skirt'
+            union all select id, 1, 'Color', 'Black' from product where name = 'Skirt';
         </sql>
     </changeSet>
 </databaseChangeLog>

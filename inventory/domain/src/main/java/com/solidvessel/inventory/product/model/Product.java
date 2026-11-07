@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 @SuperBuilder
@@ -21,12 +23,15 @@ public class Product extends DomainModel {
     private ProductSubcategory subcategory;
     private Integer quantity;
     @Builder.Default
+    private List<ProductAttribute> attributes = List.of();
+    @Builder.Default
     private Boolean isAvailableInRegion = true;
 
     public static Product newProduct(String name, String description, String brand, String manufacturer, Double price,
-                                     ProductCategory category, ProductSubcategory subcategory, Integer quantity) {
+                                     ProductCategory category, ProductSubcategory subcategory, Integer quantity,
+                                     List<ProductAttribute> attributes) {
         validateSubcategory(category, subcategory);
-        return new Product(name, description, brand, manufacturer, price, category, subcategory, quantity, true);
+        return new Product(name, description, brand, manufacturer, price, category, subcategory, quantity, attributes, true);
     }
 
     public void decreaseQuantity(Integer boughtQuantity) {
@@ -57,6 +62,7 @@ public class Product extends DomainModel {
         validateSubcategory(command.category(), command.subcategory());
         this.subcategory = command.subcategory();
         this.quantity = command.quantity();
+        this.attributes = command.attributes();
     }
 
     private static void validateSubcategory(ProductCategory category, ProductSubcategory subcategory) {

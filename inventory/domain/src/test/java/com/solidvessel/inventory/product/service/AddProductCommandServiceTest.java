@@ -9,6 +9,8 @@ import com.solidvessel.shared.test.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
 
 public class AddProductCommandServiceTest extends BaseUnitTest {
@@ -18,9 +20,9 @@ public class AddProductCommandServiceTest extends BaseUnitTest {
 
     @Test
     void addProduct() {
-        var command = new AddProductCommand("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3);
+        var command = new AddProductCommand("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, List.of());
         var commandService = new AddProductCommandService(productPort);
         commandService.execute(command);
-        verify(productPort).save(new Product("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, true));
+        verify(productPort).save(new Product("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 3, List.of(), true));
     }
 }

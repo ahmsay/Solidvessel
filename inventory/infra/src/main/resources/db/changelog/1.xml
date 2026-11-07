@@ -21,6 +21,14 @@
                 quantity               int            not null,
                 is_available_in_region boolean        not null default true
             );
+            create table product_attribute
+            (
+                product_id      bigint       not null references product,
+                attribute_order int          not null,
+                key             varchar(150) not null,
+                value           text         not null,
+                primary key (product_id, attribute_order)
+            );
         </sql>
     </changeSet>
 </databaseChangeLog>

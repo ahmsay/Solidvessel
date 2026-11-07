@@ -7,6 +7,7 @@ import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAv
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductAvailabilityResponse;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductResponse;
+import com.solidvessel.inventory.adapter.in.product.rest.response.ProductSummaryResponse;
 import com.solidvessel.inventory.product.port.ProductQueryPort;
 import com.solidvessel.inventory.product.service.*;
 import com.solidvessel.inventory.product.service.command.DeleteProductCommand;
@@ -36,8 +37,8 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping
-    public List<ProductResponse> getProducts(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
-        return productQueryPort.getProducts(QueryOptions.of(pageNumber, pageSize)).stream().map(productWebMapper::toResponse).toList();
+    public List<ProductSummaryResponse> getProducts(@RequestParam Integer pageNumber, @RequestParam(required = false) Integer pageSize) {
+        return productQueryPort.getProducts(QueryOptions.of(pageNumber, pageSize)).stream().map(productWebMapper::toSummaryResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
@@ -48,8 +49,8 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('CUSTOMER')")
     @GetMapping("/ids")
-    public List<ProductResponse> getByIds(@RequestParam List<Long> ids) {
-        return productQueryPort.getByIds(ids).stream().map(productWebMapper::toResponse).toList();
+    public List<ProductSummaryResponse> getByIds(@RequestParam List<Long> ids) {
+        return productQueryPort.getByIds(ids).stream().map(productWebMapper::toSummaryResponse).toList();
     }
 
     @PreAuthorize("hasAuthority('MANAGER')")

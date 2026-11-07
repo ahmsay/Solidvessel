@@ -4,6 +4,7 @@ import com.solidvessel.inventory.adapter.in.product.rest.mapper.ProductWebMapper
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.AddProductToCartRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.ChangeProductAvailabilityRequest;
+import com.solidvessel.inventory.adapter.in.product.rest.request.ProductAttributeRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.request.UpdateProductRequest;
 import com.solidvessel.inventory.adapter.in.product.rest.response.ProductAvailabilityResponse;
 import com.solidvessel.inventory.product.model.*;
@@ -29,6 +30,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {ProductController.class})
@@ -65,25 +67,26 @@ public class ProductControllerTest extends BaseControllerTest {
     @WithMockCustomer
     void getProducts() throws Exception {
         var queryOptions = new QueryOptions(0);
-        var products = List.of(Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10));
+        var products = List.of(Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10, List.of()));
         when(productQueryPort.getProducts(queryOptions)).thenReturn(products);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product")
                         .param("pageNumber", "0")
                         .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(productWebMapper::toResponse).toList()), bodyOf(mvcResult));
+        ).andExpect(status().isOk()).andExpect(jsonPath("$[0].attributes").doesNotExist()).andReturn();
+        assertEquals(bodyOf(products.stream().map(productWebMapper::toSummaryResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockCustomer
     void getProductById() throws Exception {
-        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10);
+        var product = Product.newProduct("macbook", "A laptop", "Apple", "Foxconn", 1200D, ProductCategory.ELECTRONICS, ProductSubcategory.COMPUTERS, 10,
+                List.of(new ProductAttribute("RAM", "16 GB")));
         when(productQueryPort.getById(1L)).thenReturn(product);
         MvcResult mvcResult = mockMvc.perform(
                 get("/product/1")
                         .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
+        ).andExpect(status().isOk()).andExpect(jsonPath("$.attributes[0].key").value("RAM")).andReturn();
         assertEquals(bodyOf(productWebMapper.toResponse(product)), bodyOf(mvcResult));
     }
 
@@ -99,14 +102,14 @@ public class ProductControllerTest extends BaseControllerTest {
                 get("/product/ids")
                         .queryParam("ids", "1", "2")
                         .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk()).andReturn();
-        assertEquals(bodyOf(products.stream().map(productWebMapper::toResponse).toList()), bodyOf(mvcResult));
+        ).andExpect(status().isOk()).andExpect(jsonPath("$[0].attributes").doesNotExist()).andReturn();
+        assertEquals(bodyOf(products.stream().map(productWebMapper::toSummaryResponse).toList()), bodyOf(mvcResult));
     }
 
     @Test
     @WithMockManager
     void addProduct() throws Exception {
-        var request = new AddProductRequest("desk", "An office desk", "Ikea", "Ikea", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5);
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", "Ikea", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5, List.of());
         var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
         when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(
@@ -119,8 +122,51 @@ public class ProductControllerTest extends BaseControllerTest {
 
     @Test
     @WithMockManager
+    void addProductWithAttributes() throws Exception {
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", "Ikea", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5,
+                List.of(new ProductAttributeRequest("Width", "120 cm"), new ProductAttributeRequest("Color", "White")));
+        var attributes = List.of(new ProductAttribute("Width", "120 cm"), new ProductAttribute("Color", "White"));
+        assertEquals(attributes, request.toCommand().attributes());
+        var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).attributes(attributes).build();
+        when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
+        MvcResult mvcResult = mockMvc.perform(
+                post("/product")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andExpect(jsonPath("$.attributes[0].key").value("Width")).andExpect(jsonPath("$.attributes[1].value").value("White")).andReturn();
+        assertEquals(bodyOf(productWebMapper.toResponse(savedProduct)), bodyOf(mvcResult));
+    }
+
+    @Test
+    @WithMockManager
+    void addProductWithoutAttributes() throws Exception {
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", "Ikea", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5, null);
+        assertEquals(List.of(), request.toCommand().attributes());
+        var savedProduct = Product.builder().id(1L).name("desk").price(150D).category(ProductCategory.FURNITURE).quantity(5).build();
+        when(addProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
+        mockMvc.perform(
+                post("/product")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andExpect(jsonPath("$.attributes").isEmpty());
+    }
+
+    @Test
+    @WithMockManager
+    void addProductWithBlankAttributeKey() throws Exception {
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", "Ikea", 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5,
+                List.of(new ProductAttributeRequest(" ", "120 cm")));
+        mockMvc.perform(
+                post("/product")
+                        .content(bodyOf(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @WithMockManager
     void addProductWithoutManufacturer() throws Exception {
-        var request = new AddProductRequest("desk", "An office desk", "Ikea", null, 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5);
+        var request = new AddProductRequest("desk", "An office desk", "Ikea", null, 150D, ProductCategory.FURNITURE, ProductSubcategory.OFFICE, 5, null);
         mockMvc.perform(
                 post("/product")
                         .content(bodyOf(request))
@@ -171,7 +217,7 @@ public class ProductControllerTest extends BaseControllerTest {
     @Test
     @WithMockManager
     void updateProduct() throws Exception {
-        var request = new UpdateProductRequest(1L, "Dark Saber", "A gaming accessory", "Razer", "Razer", 15D, ProductCategory.ELECTRONICS, ProductSubcategory.GAMING, 9);
+        var request = new UpdateProductRequest(1L, "Dark Saber", "A gaming accessory", "Razer", "Razer", 15D, ProductCategory.ELECTRONICS, ProductSubcategory.GAMING, 9, List.of());
         var savedProduct = Product.builder().id(1L).name("Dark Saber").price(15D).category(ProductCategory.ELECTRONICS).quantity(9).build();
         when(updateProductCommandService.execute(request.toCommand())).thenReturn(savedProduct);
         MvcResult mvcResult = mockMvc.perform(

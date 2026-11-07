@@ -24,7 +24,7 @@ public class UpdateProductQuantitiesCommandService implements VoidCommandService
     @Override
     public void execute(PaymentSavedEvent command) {
         var productQuantities = command.productQuantities();
-        List<Product> products = productQueryPort.getByIds(productQuantities.keySet().stream().toList());
+        List<Product> products = productQueryPort.getByIdsWithAttributes(productQuantities.keySet().stream().toList());
         products.forEach(product -> {
             var boughtQuantity = productQuantities.get(product.getId());
             var availability = product.isAvailable(boughtQuantity);
